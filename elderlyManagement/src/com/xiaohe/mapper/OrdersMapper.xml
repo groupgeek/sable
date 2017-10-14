@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Orders" >
+    <id column="orderId" property="orderid" jdbcType="VARCHAR" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="productName" property="productname" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="resAddress" property="resaddress" jdbcType="VARCHAR" />
+    <result column="productNumber" property="productnumber" jdbcType="INTEGER" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="orderTime" property="ordertime" jdbcType="DATE" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, productId, userId, productName, userName, resAddress, productNumber, totalPrice, 
+    price, orderTime, branchId, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from orders
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Orders" >
+    insert into orders (orderId, productId, userId, 
+      productName, userName, resAddress, 
+      productNumber, totalPrice, price, 
+      orderTime, branchId, status
+      )
+    values (#{orderid,jdbcType=VARCHAR}, #{productid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{productname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{resaddress,jdbcType=VARCHAR}, 
+      #{productnumber,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{ordertime,jdbcType=DATE}, #{branchid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="productname != null" >
+        productName,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="resaddress != null" >
+        resAddress,
+      </if>
+      <if test="productnumber != null" >
+        productNumber,
+      </if>
+      <if test="totalprice != null" >
+        totalPrice,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="ordertime != null" >
+        orderTime,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="resaddress != null" >
+        #{resaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productnumber != null" >
+        #{productnumber,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertime != null" >
+        #{ordertime,jdbcType=DATE},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Orders" >
+    update orders
+    <set >
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="resaddress != null" >
+        resAddress = #{resaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productnumber != null" >
+        productNumber = #{productnumber,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertime != null" >
+        orderTime = #{ordertime,jdbcType=DATE},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Orders" >
+    update orders
+    set productId = #{productid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      productName = #{productname,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      resAddress = #{resaddress,jdbcType=VARCHAR},
+      productNumber = #{productnumber,jdbcType=INTEGER},
+      totalPrice = #{totalprice,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      orderTime = #{ordertime,jdbcType=DATE},
+      branchId = #{branchid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </update>
+</mapper>

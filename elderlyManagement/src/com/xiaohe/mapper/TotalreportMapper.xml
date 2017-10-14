@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.TotalreportMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Totalreport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="duringTime" property="duringtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, totalPrice, totalExpenditure, branchId, duringTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from totalreport
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from totalreport
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Totalreport" >
+    insert into totalreport (id, totalPrice, totalExpenditure, 
+      branchId, duringTime)
+    values (#{id,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{totalexpenditure,jdbcType=DECIMAL}, 
+      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Totalreport" >
+    insert into totalreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="totalprice != null" >
+        totalPrice,
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="duringtime != null" >
+        duringTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalexpenditure != null" >
+        #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="duringtime != null" >
+        #{duringtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Totalreport" >
+    update totalreport
+    <set >
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="duringtime != null" >
+        duringTime = #{duringtime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Totalreport" >
+    update totalreport
+    set totalPrice = #{totalprice,jdbcType=DECIMAL},
+      totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      branchId = #{branchid,jdbcType=INTEGER},
+      duringTime = #{duringtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.MedicalrecordsMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Medicalrecords" >
+    <id column="medicalRecordsId" property="medicalrecordsid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.MedicalrecordsWithBLOBs" extends="BaseResultMap" >
+    <result column="nowMedicalRecords" property="nowmedicalrecords" jdbcType="LONGVARCHAR" />
+    <result column="beforeMedicalRecords" property="beforemedicalrecords" jdbcType="LONGVARCHAR" />
+    <result column="personalRecords" property="personalrecords" jdbcType="LONGVARCHAR" />
+    <result column="familyRecords" property="familyrecords" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    medicalRecordsId, userId, userName, sex, birthday
+  </sql>
+  <sql id="Blob_Column_List" >
+    nowMedicalRecords, beforeMedicalRecords, personalRecords, familyRecords
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from medicalrecords
+    where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from medicalrecords
+    where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.MedicalrecordsWithBLOBs" >
+    insert into medicalrecords (medicalRecordsId, userId, userName, 
+      sex, birthday, nowMedicalRecords, 
+      beforeMedicalRecords, personalRecords, 
+      familyRecords)
+    values (#{medicalrecordsid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{nowmedicalrecords,jdbcType=LONGVARCHAR}, 
+      #{beforemedicalrecords,jdbcType=LONGVARCHAR}, #{personalrecords,jdbcType=LONGVARCHAR}, 
+      #{familyrecords,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.MedicalrecordsWithBLOBs" >
+    insert into medicalrecords
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicalrecordsid != null" >
+        medicalRecordsId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="nowmedicalrecords != null" >
+        nowMedicalRecords,
+      </if>
+      <if test="beforemedicalrecords != null" >
+        beforeMedicalRecords,
+      </if>
+      <if test="personalrecords != null" >
+        personalRecords,
+      </if>
+      <if test="familyrecords != null" >
+        familyRecords,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicalrecordsid != null" >
+        #{medicalrecordsid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nowmedicalrecords != null" >
+        #{nowmedicalrecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="beforemedicalrecords != null" >
+        #{beforemedicalrecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="personalrecords != null" >
+        #{personalrecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="familyrecords != null" >
+        #{familyrecords,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.MedicalrecordsWithBLOBs" >
+    update medicalrecords
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nowmedicalrecords != null" >
+        nowMedicalRecords = #{nowmedicalrecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="beforemedicalrecords != null" >
+        beforeMedicalRecords = #{beforemedicalrecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="personalrecords != null" >
+        personalRecords = #{personalrecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="familyrecords != null" >
+        familyRecords = #{familyrecords,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.MedicalrecordsWithBLOBs" >
+    update medicalrecords
+    set userId = #{userid,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      nowMedicalRecords = #{nowmedicalrecords,jdbcType=LONGVARCHAR},
+      beforeMedicalRecords = #{beforemedicalrecords,jdbcType=LONGVARCHAR},
+      personalRecords = #{personalrecords,jdbcType=LONGVARCHAR},
+      familyRecords = #{familyrecords,jdbcType=LONGVARCHAR}
+    where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Medicalrecords" >
+    update medicalrecords
+    set userId = #{userid,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE}
+    where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
+  </update>
+</mapper>

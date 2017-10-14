@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Message" >
+    <id column="messageId" property="messageid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="messageTime" property="messagetime" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Message" extends="BaseResultMap" >
+    <result column="messageContext" property="messagecontext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    messageId, userId, messageTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    messageContext
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Message" >
+    insert into message (messageId, userId, messageTime, 
+      messageContext)
+    values (#{messageid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{messagetime,jdbcType=DATE}, 
+      #{messagecontext,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageid != null" >
+        messageId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="messagetime != null" >
+        messageTime,
+      </if>
+      <if test="messagecontext != null" >
+        messageContext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageid != null" >
+        #{messageid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="messagetime != null" >
+        #{messagetime,jdbcType=DATE},
+      </if>
+      <if test="messagecontext != null" >
+        #{messagecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Message" >
+    update message
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="messagetime != null" >
+        messageTime = #{messagetime,jdbcType=DATE},
+      </if>
+      <if test="messagecontext != null" >
+        messageContext = #{messagecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Message" >
+    update message
+    set userId = #{userid,jdbcType=INTEGER},
+      messageTime = #{messagetime,jdbcType=DATE},
+      messageContext = #{messagecontext,jdbcType=LONGVARCHAR}
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Message" >
+    update message
+    set userId = #{userid,jdbcType=INTEGER},
+      messageTime = #{messagetime,jdbcType=DATE}
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+</mapper>

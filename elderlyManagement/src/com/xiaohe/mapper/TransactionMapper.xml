@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.TransactionMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Transaction" >
+    <id column="transactionId" property="transactionid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="cycle" property="cycle" jdbcType="REAL" />
+    <result column="frequency" property="frequency" jdbcType="REAL" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="countBuy" property="countbuy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    transactionId, userId, cycle, frequency, totalPrice, countBuy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from transaction
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from transaction
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Transaction" >
+    insert into transaction (transactionId, userId, cycle, 
+      frequency, totalPrice, countBuy
+      )
+    values (#{transactionid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{cycle,jdbcType=REAL}, 
+      #{frequency,jdbcType=REAL}, #{totalprice,jdbcType=DECIMAL}, #{countbuy,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Transaction" >
+    insert into transaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transactionid != null" >
+        transactionId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="frequency != null" >
+        frequency,
+      </if>
+      <if test="totalprice != null" >
+        totalPrice,
+      </if>
+      <if test="countbuy != null" >
+        countBuy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transactionid != null" >
+        #{transactionid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=REAL},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=REAL},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="countbuy != null" >
+        #{countbuy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Transaction" >
+    update transaction
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=REAL},
+      </if>
+      <if test="frequency != null" >
+        frequency = #{frequency,jdbcType=REAL},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="countbuy != null" >
+        countBuy = #{countbuy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Transaction" >
+    update transaction
+    set userId = #{userid,jdbcType=INTEGER},
+      cycle = #{cycle,jdbcType=REAL},
+      frequency = #{frequency,jdbcType=REAL},
+      totalPrice = #{totalprice,jdbcType=DECIMAL},
+      countBuy = #{countbuy,jdbcType=INTEGER}
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </update>
+</mapper>

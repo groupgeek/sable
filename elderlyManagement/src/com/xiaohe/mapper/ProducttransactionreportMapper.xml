@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ProducttransactionreportMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Producttransactionreport" >
+    <id column="transactionId" property="transactionid" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="countBuy" property="countbuy" jdbcType="INTEGER" />
+    <result column="duringTime" property="duringtime" jdbcType="DATE" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    transactionId, productId, countBuy, duringTime, totalPrice, totalExpenditure, branchId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from producttransactionreport
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from producttransactionreport
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    insert into producttransactionreport (transactionId, productId, countBuy, 
+      duringTime, totalPrice, totalExpenditure, 
+      branchId)
+    values (#{transactionid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{countbuy,jdbcType=INTEGER}, 
+      #{duringtime,jdbcType=DATE}, #{totalprice,jdbcType=DECIMAL}, #{totalexpenditure,jdbcType=DECIMAL}, 
+      #{branchid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    insert into producttransactionreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transactionid != null" >
+        transactionId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="countbuy != null" >
+        countBuy,
+      </if>
+      <if test="duringtime != null" >
+        duringTime,
+      </if>
+      <if test="totalprice != null" >
+        totalPrice,
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transactionid != null" >
+        #{transactionid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="countbuy != null" >
+        #{countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="duringtime != null" >
+        #{duringtime,jdbcType=DATE},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalexpenditure != null" >
+        #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    update producttransactionreport
+    <set >
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="countbuy != null" >
+        countBuy = #{countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="duringtime != null" >
+        duringTime = #{duringtime,jdbcType=DATE},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    update producttransactionreport
+    set productId = #{productid,jdbcType=INTEGER},
+      countBuy = #{countbuy,jdbcType=INTEGER},
+      duringTime = #{duringtime,jdbcType=DATE},
+      totalPrice = #{totalprice,jdbcType=DECIMAL},
+      totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      branchId = #{branchid,jdbcType=INTEGER}
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </update>
+</mapper>

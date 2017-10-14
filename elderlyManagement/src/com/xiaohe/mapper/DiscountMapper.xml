@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.DiscountMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Discount" >
+    <id column="discountId" property="discountid" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="discountReason" property="discountreason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    discountId, productId, discount, discountReason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from discount
+    where discountId = #{discountid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from discount
+    where discountId = #{discountid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Discount" >
+    insert into discount (discountId, productId, discount, 
+      discountReason)
+    values (#{discountid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, 
+      #{discountreason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Discount" >
+    insert into discount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="discountid != null" >
+        discountId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="discountreason != null" >
+        discountReason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="discountid != null" >
+        #{discountid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountreason != null" >
+        #{discountreason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Discount" >
+    update discount
+    <set >
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountreason != null" >
+        discountReason = #{discountreason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where discountId = #{discountid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Discount" >
+    update discount
+    set productId = #{productid,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=DECIMAL},
+      discountReason = #{discountreason,jdbcType=VARCHAR}
+    where discountId = #{discountid,jdbcType=INTEGER}
+  </update>
+</mapper>

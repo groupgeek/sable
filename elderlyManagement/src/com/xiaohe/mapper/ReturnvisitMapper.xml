@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ReturnvisitMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Returnvisit" >
+    <id column="ReturnVisitId" property="returnvisitid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="lastVistTime" property="lastvisttime" jdbcType="DATE" />
+    <result column="countVisit" property="countvisit" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ReturnVisitId, userId, username, address, lastVistTime, countVisit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from returnvisit
+    where ReturnVisitId = #{returnvisitid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from returnvisit
+    where ReturnVisitId = #{returnvisitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Returnvisit" >
+    insert into returnvisit (ReturnVisitId, userId, username, 
+      address, lastVistTime, countVisit
+      )
+    values (#{returnvisitid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{lastvisttime,jdbcType=DATE}, #{countvisit,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Returnvisit" >
+    insert into returnvisit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="returnvisitid != null" >
+        ReturnVisitId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="lastvisttime != null" >
+        lastVistTime,
+      </if>
+      <if test="countvisit != null" >
+        countVisit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="returnvisitid != null" >
+        #{returnvisitid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lastvisttime != null" >
+        #{lastvisttime,jdbcType=DATE},
+      </if>
+      <if test="countvisit != null" >
+        #{countvisit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Returnvisit" >
+    update returnvisit
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lastvisttime != null" >
+        lastVistTime = #{lastvisttime,jdbcType=DATE},
+      </if>
+      <if test="countvisit != null" >
+        countVisit = #{countvisit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ReturnVisitId = #{returnvisitid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Returnvisit" >
+    update returnvisit
+    set userId = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      lastVistTime = #{lastvisttime,jdbcType=DATE},
+      countVisit = #{countvisit,jdbcType=INTEGER}
+    where ReturnVisitId = #{returnvisitid,jdbcType=INTEGER}
+  </update>
+</mapper>

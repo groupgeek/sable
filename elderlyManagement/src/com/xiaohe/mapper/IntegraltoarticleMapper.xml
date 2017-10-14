@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.IntegraltoarticleMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Integraltoarticle" >
+    <id column="articleId" property="articleid" jdbcType="INTEGER" />
+    <result column="articleName" property="articlename" jdbcType="VARCHAR" />
+    <result column="purchasePrice" property="purchaseprice" jdbcType="DECIMAL" />
+    <result column="Integral" property="integral" jdbcType="INTEGER" />
+    <result column="inStock" property="instock" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Integraltoarticle" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    articleId, articleName, purchasePrice, Integral, inStock, picture
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from integraltoarticle
+    where articleId = #{articleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from integraltoarticle
+    where articleId = #{articleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Integraltoarticle" >
+    insert into integraltoarticle (articleId, articleName, purchasePrice, 
+      Integral, inStock, picture, 
+      detail)
+    values (#{articleid,jdbcType=INTEGER}, #{articlename,jdbcType=VARCHAR}, #{purchaseprice,jdbcType=DECIMAL}, 
+      #{integral,jdbcType=INTEGER}, #{instock,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Integraltoarticle" >
+    insert into integraltoarticle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        articleId,
+      </if>
+      <if test="articlename != null" >
+        articleName,
+      </if>
+      <if test="purchaseprice != null" >
+        purchasePrice,
+      </if>
+      <if test="integral != null" >
+        Integral,
+      </if>
+      <if test="instock != null" >
+        inStock,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        #{articleid,jdbcType=INTEGER},
+      </if>
+      <if test="articlename != null" >
+        #{articlename,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseprice != null" >
+        #{purchaseprice,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="instock != null" >
+        #{instock,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Integraltoarticle" >
+    update integraltoarticle
+    <set >
+      <if test="articlename != null" >
+        articleName = #{articlename,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseprice != null" >
+        purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        Integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="instock != null" >
+        inStock = #{instock,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where articleId = #{articleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Integraltoarticle" >
+    update integraltoarticle
+    set articleName = #{articlename,jdbcType=VARCHAR},
+      purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
+      Integral = #{integral,jdbcType=INTEGER},
+      inStock = #{instock,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where articleId = #{articleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Integraltoarticle" >
+    update integraltoarticle
+    set articleName = #{articlename,jdbcType=VARCHAR},
+      purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
+      Integral = #{integral,jdbcType=INTEGER},
+      inStock = #{instock,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR}
+    where articleId = #{articleid,jdbcType=INTEGER}
+  </update>
+</mapper>

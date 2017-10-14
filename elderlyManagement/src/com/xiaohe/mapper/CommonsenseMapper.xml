@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.CommonsenseMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Commonsense" >
+    <id column="editorId" property="editorid" jdbcType="INTEGER" />
+    <result column="websiteType" property="websitetype" jdbcType="VARCHAR" />
+    <result column="contextType" property="contexttype" jdbcType="VARCHAR" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="Yshow" property="yshow" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Commonsense" extends="BaseResultMap" >
+    <result column="context" property="context" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    editorId, websiteType, contextType, branchId, title, picture, Yshow
+  </sql>
+  <sql id="Blob_Column_List" >
+    context
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from commonsense
+    where editorId = #{editorid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commonsense
+    where editorId = #{editorid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Commonsense" >
+    insert into commonsense (editorId, websiteType, contextType, 
+      branchId, title, picture, 
+      Yshow, context)
+    values (#{editorid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}, #{contexttype,jdbcType=VARCHAR}, 
+      #{branchid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{yshow,jdbcType=BIT}, #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Commonsense" >
+    insert into commonsense
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="editorid != null" >
+        editorId,
+      </if>
+      <if test="websitetype != null" >
+        websiteType,
+      </if>
+      <if test="contexttype != null" >
+        contextType,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="yshow != null" >
+        Yshow,
+      </if>
+      <if test="context != null" >
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="editorid != null" >
+        #{editorid,jdbcType=INTEGER},
+      </if>
+      <if test="websitetype != null" >
+        #{websitetype,jdbcType=VARCHAR},
+      </if>
+      <if test="contexttype != null" >
+        #{contexttype,jdbcType=VARCHAR},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="yshow != null" >
+        #{yshow,jdbcType=BIT},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Commonsense" >
+    update commonsense
+    <set >
+      <if test="websitetype != null" >
+        websiteType = #{websitetype,jdbcType=VARCHAR},
+      </if>
+      <if test="contexttype != null" >
+        contextType = #{contexttype,jdbcType=VARCHAR},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="yshow != null" >
+        Yshow = #{yshow,jdbcType=BIT},
+      </if>
+      <if test="context != null" >
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where editorId = #{editorid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Commonsense" >
+    update commonsense
+    set websiteType = #{websitetype,jdbcType=VARCHAR},
+      contextType = #{contexttype,jdbcType=VARCHAR},
+      branchId = #{branchid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      Yshow = #{yshow,jdbcType=BIT},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where editorId = #{editorid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Commonsense" >
+    update commonsense
+    set websiteType = #{websitetype,jdbcType=VARCHAR},
+      contextType = #{contexttype,jdbcType=VARCHAR},
+      branchId = #{branchid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      Yshow = #{yshow,jdbcType=BIT}
+    where editorId = #{editorid,jdbcType=INTEGER}
+  </update>
+</mapper>
