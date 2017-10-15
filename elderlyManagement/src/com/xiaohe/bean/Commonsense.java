@@ -1,11 +1,15 @@
 package com.xiaohe.bean;
 
+import java.util.Date;
+
 public class Commonsense {
+    private Integer commonsenseid;
+
     private Integer editorid;
 
     private String websitetype;
 
-    private String contexttype;
+	private String contexttype;
 
     private Integer branchid;
 
@@ -13,9 +17,17 @@ public class Commonsense {
 
     private String picture;
 
-    private Boolean yshow;
+    private Date createtime;
 
     private String context;
+
+    public Integer getCommonsenseid() {
+        return commonsenseid;
+    }
+
+    public void setCommonsenseid(Integer commonsenseid) {
+        this.commonsenseid = commonsenseid;
+    }
 
     public Integer getEditorid() {
         return editorid;
@@ -65,12 +77,12 @@ public class Commonsense {
         this.picture = picture == null ? null : picture.trim();
     }
 
-    public Boolean getYshow() {
-        return yshow;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setYshow(Boolean yshow) {
-        this.yshow = yshow;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     public String getContext() {
@@ -80,4 +92,13 @@ public class Commonsense {
     public void setContext(String context) {
         this.context = context == null ? null : context.trim();
     }
+    @Override
+	public String toString() {
+		return "Commonsense [commonsenseid=" + commonsenseid + ", editorid="
+				+ editorid + ", websitetype=" + websitetype + ", contexttype="
+				+ contexttype + ", branchid=" + branchid + ", title=" + title
+				+ ", picture=" + picture + ", createtime=" + createtime
+				+ ", context=" + context + "]";
+	}
+
 }

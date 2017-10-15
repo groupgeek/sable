@@ -41,5 +41,6 @@ public interface ActivityService {
 	 */
 	public List<ActivityCustom> queryActivitiesByCondition(ActivityCustom activityCondition);
 	
+	
 
 }

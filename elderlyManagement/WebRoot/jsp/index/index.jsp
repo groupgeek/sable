@@ -172,57 +172,25 @@
             <div class="container pm-containerPadding-top-80 pm-containerPadding-bottom-40">
                 <div class="row">
 
-                    <!-- Column 1 -->
+                   
+				<c:forEach items="${activities }" var="activitie" varStatus="status">
+				
+					 <!-- Column 1 -->
 
                     <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated" data-wow-delay="0.3s" data-wow-offset="50" data-wow-duration="1s">
                         <div class="block-one block">
                             <img src="${pageContext.request.contextPath }/jsp/index/images/icon1.png" width="200" class="img-responsive pm-inline" alt="icon" />
 
-                            <h6 class="pm-column-title">personal case</h6>
+                            <h6 class="pm-column-title">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla sem ut nisl auctor, sit amet auctor tortor mollis. Aliquam nibh elit, tincidunt sit amet orci ac, pellentesque pretium mi.</p>
-                            <div class="btn-blk"><a href="#" class="pm-rounded-btn">meet our trainers</a></div>
+                                <p>${activitie.introduction }.</p>
+                            <div class="btn-blk"><a href="#" class="pm-rounded-btn">去围观</a></div>
 
                         </div>
                     </div>
                     <!-- Column 1 end -->
-
-                    <!-- Column 2 -->
-
-                    <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated
-                        " data-wow-delay="0.6s" data-wow-offset="50" data-wow-duration="1s">
-                        <div class="block-one block">
-                        <img src="${pageContext.request.contextPath }/jsp/index/images/icon2.png" width="200" class="img-responsive pm-inline" alt="icon" />
-
-                        <h6 class="pm-column-title">Business Case</h6>
-                        <div class="caret-down"><i class="fa fa-caret-down"></i></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla sem ut nisl auctor, sit amet auctor tortor mollis. Aliquam nibh elit, tincidunt sit amet orci ac, pellentesque pretium mi.</p>
-
-                        <div class="btn-blk"><a href="#" class="pm-rounded-btn">view programs</a>
-                        </div>
-
-                    </div>
-                    </div>
-                    <!-- Column 2 end -->
-
-                    <!-- Column 3 -->
-
-                    <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated
-                     " data-wow-delay="0.9s" data-wow-offset="50" data-wow-duration="1s">
-                        <div class="block-one">
-                            <img src="${pageContext.request.contextPath }/jsp/index/images/icon3.png" width="200" class="img-responsive pm-inline" alt="icon" />
-
-                            <h6 class="pm-column-title">special case</h6>
-                            <div class="caret-down"><i class="fa fa-caret-down"></i></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla sem ut nisl auctor, sit amet auctor tortor mollis. Aliquam nibh elit, tincidunt sit amet orci ac, pellentesque pretium mi.</p>
-
-                            <div class="btn-blk">
-                                <a href="#" class="pm-rounded-btn">view classes</a>
-                            </div>
-
-                        </div>
-                    </div>
-                <!-- Column 3 end -->
+				</c:forEach>
+                
                 
                 
                 
@@ -237,138 +205,52 @@
             <div id="faq">
                 <div class="container">
                     <div class="title text-center">
-                        <h3 class="title-text faq-text">Frequently Asked Questions</h3>
+                        <h3 class="title-text faq-text">0.0.0.0.0.0..0</h3>
                         <hr>
-                        <em class="lead" >Here is the answer's , what people frequently ask us</em>
+                        <em class="lead" >介绍语</em>
                     </div>
 
 
 
                 <div class="col-md-6 col-sm-12 col-xs-12 wow animated zoomIn">
-                    <h3 class="title-panel text-center">Family Law FAQs</h3><hr>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                My wife is not allowing me to see my children,what can I do? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                What paperwork do I need to complete to file for divorce?</h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                What paperwork do I need to complete to file for divorce?</h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                What paperwork do I need to complete to file for divorce?</h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                How do I change my custody and support orders?</h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                How to make a General Diary?</h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
+                    <h3 class="title-panel text-center">心灵鸡汤</h3><hr>
+                 
+                    
+                    <c:forEach items="${heartCustoms }" var="heartCustom" varStatus="status">
+					
+							<div class="panel panel-default">
+								<div class="panel-heading clickable">
+									<h3 class="panel-title">${heartCustom.title }</h3>
+									<span class="pull-right "><i
+										class="glyphicon glyphicon-chevron-up"></i>
+									</span>
+								</div>
+								<div class="panel-body">
+									<p>${heartCustom.context }.</p>
+								</div>
+							</div>
+
+					</c:forEach>
+                  
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 wow animated zoomIn">
-                    <h3 class="title-panel text-center">Business Law FAQs</h3><hr>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                How do I protect a business name? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                Why, how, where do we need to keep corporate records? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                Should I incorporate my business? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                What are the steps in selling my business? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                What are the steps in selling my business? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading clickable">
-                            <h3 class="panel-title">
-                                What are the steps in buying any business? </h3>
-                            <span class="pull-right "><i class="glyphicon glyphicon-chevron-up"></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                        </div>
-                    </div>
+                    <h3 class="title-panel text-center">养生小常识</h3><hr>
+                    	
+				<c:forEach items="${commonsenseCustoms }" var="commonsenseCustom" varStatus="status">
+
+						<div class="panel panel-default">
+							<div class="panel-heading clickable">
+								<h3 class="panel-title">${commonsenseCustom.title }</h3>
+								<span class="pull-right "><i
+									class="glyphicon glyphicon-chevron-up"></i>
+								</span>
+							</div>
+							<div class="panel-body">
+								<p>${commonsenseCustom.context }.</p>
+							</div>
+						</div>
+				</c:forEach>
+                    
                 </div>
             </div>
             </div>
@@ -377,9 +259,9 @@
 
             <div id="contact">
                 <div class="title text-center">
-                    <h3 class="title-text">Contact us</h3>
+                    <h3 class="title-text">关于我们</h3>
 
-                    <em class="lead">For better service , you're bound to contact us.</em>
+                    <em class="lead">你可以发送宝贵的建议给我们.</em>
                     <hr>
                 </div>
             </div>
@@ -405,7 +287,7 @@
                         <div class="contact_widget row">
                             <div id="message"></div>
                             <form id="contactform" action="contact.php" name="contactform" method="post">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <input type="text" name="name" id="name" required="required" class="form-control" placeholder="Name">
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -413,7 +295,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <input type="text" name="subject" id="subject" required="required" class="form-control" placeholder="Subject">
-                                </div>
+                                </div> -->
 
                                 <div class="clearfix"></div>
 

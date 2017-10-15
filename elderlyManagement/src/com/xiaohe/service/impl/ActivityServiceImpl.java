@@ -17,15 +17,21 @@ public class ActivityServiceImpl implements ActivityService {
 	@Autowired
 	@Qualifier("activityMapper")
 	private ActivityMapper activityMapper;
-
+	
 	public Activity queryActivityById(Integer id ) {
 		return activityMapper.selectByPrimaryKey(id);
 	}
 
 	public List<ActivityCustom> queryActivitiesByCondition(
 			ActivityCustom activityCondition) {
-		
-		return activityMapper.selectActivitiesByCondition(activityCondition);
+		List<ActivityCustom> activityCustoms = activityMapper.selectActivitiesByCondition(activityCondition);
+		for(int i = 0 ; i < activityCustoms.size(); i++){
+			String introduction=activityCustoms.get(i).getActivitydetails().substring(0,4);
+			activityCustoms.get(i).setIntroduction(introduction);
+		}
+		return activityCustoms;
 	}
+
+	
 
 }
