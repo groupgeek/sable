@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page language="java" import="com.xiaohe.bean.User" pageEncoding="UTF-8"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,14 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     This is my JSP page. <br>
-    <%
-    
-    User user=new User();
-    user.setUserid(1);
-    user.setUsername("bbz");
-    user.setAreaid(1);
-    session.setAttribute("user", user); 
-    
-    %>
+
   </body>
 </html>

@@ -220,4 +220,10 @@
       areaId = #{areaid,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 自定义sql -->
+  <select id="queryAllUser" resultType="com.xiaohe.bean.User">
+  select * from user
+  </select>
 </mapper>

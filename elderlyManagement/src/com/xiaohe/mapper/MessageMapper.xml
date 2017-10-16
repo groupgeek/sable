@@ -92,4 +92,21 @@
       messageTime = #{messagetime,jdbcType=DATE}
     where messageId = #{messageid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="QureyMessages" resultType="com.xiaohe.bean.MessageCustom">
+  select m.*,username,email from user u,message m where u.userid = m.userid
+  </select>
+  
+	<select id="allMessages"  parameterType="com.xiaohe.bean.MessageVo" resultType="com.xiaohe.bean.MessageCustom">
+  	SELECT m.*,u.username,u.email from message m,user u WHERE u.userId = m.userId  ORDER BY messageTime DESC LIMIT #{start},#{size}
+ 	</select>
+  
+  <select id="somecount" resultType="java.lang.Integer">
+  select count(*) from message
+  </select>
+  
+  <select id="oneMessage" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.MessageCustom">
+  select m.*,username,email from user u,message m where u.userid = m.userid and m.messageid = #{messageid,jdbcType=INTEGER}
+  </select>
 </mapper>
