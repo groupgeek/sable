@@ -10,7 +10,14 @@ public class ActivityCustom extends Activity {
 	private Integer begin;
 	private Integer total;
 	private String introduction;
+	private String websitetype;
 	
+	public String getWebsitetype() {
+		return websitetype;
+	}
+	public void setWebsitetype(String websitetype) {
+		this.websitetype = websitetype;
+	}
 	public String getIntroduction() {
 		return introduction;
 	}

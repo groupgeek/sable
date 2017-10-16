@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityrecommendCustom;
 
 public interface ActivityMapper {
     int deleteByPrimaryKey(Integer activityid);
@@ -26,4 +27,11 @@ public interface ActivityMapper {
      * @return 活动类集合
      */
     List<ActivityCustom> selectActivitiesByCondition(ActivityCustom aCustom);
+    
+    /**
+	 * 查询活动推荐表，根据官网类型区分
+	 * @param type 官网类型
+	 * @return ActivityrecommendCustom集合
+	 */
+    List<ActivityCustom> selectActivityrecommendByType(String type);
 }

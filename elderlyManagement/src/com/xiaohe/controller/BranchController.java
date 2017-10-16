@@ -1,6 +1,7 @@
 package com.xiaohe.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,61 +10,75 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.CommonsenseCustom;
-import com.xiaohe.bean.Product;
+import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.User;
+import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.CommonsenseService;
 import com.xiaohe.service.ProductService;
 
 @Controller
-@RequestMapping("/index")
-public class IndexController {
-	
-	@Autowired
-	@Qualifier("productService")
-	private ProductService productService;
+@RequestMapping("/branch")
+public class BranchController {
 	
 	@Autowired
 	@Qualifier("activityService")
 	private ActivityService activityService;
 	
 	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
+	@Autowired
 	@Qualifier("commonsenseService")
 	private CommonsenseService commonsenseService;
 	
+	@Autowired
+	@Qualifier("messageMapper")
+	private MessageMapper messageMapper;
+	
+	
+	public User getUser(HttpServletRequest request){
+		
+		return (User) request.getSession().getAttribute("user");
+	}
+	
 	@RequestMapping("index")
 	public String index(Model model,HttpServletRequest request){
-		List<ProductCustom> productCustoms=new ArrayList<ProductCustom>();//热门产品
-		List<ActivityCustom> activities=new ArrayList<ActivityCustom>();//活动推荐
+		List<ActivityCustom> activities = new ArrayList<ActivityCustom>();
+		List<ProductCustom> productCustoms = new ArrayList<ProductCustom>();
 		List<CommonsenseCustom> commonsenseCustoms = new ArrayList<CommonsenseCustom>();//小常识
 		List<CommonsenseCustom> heartCustoms = new ArrayList<CommonsenseCustom>();//心灵鸡汤
 		
+		/**
+		 * 开始查询推荐活动
+		 */
+		activities = activityService.queryActivityrecommend("分店官网");
+		
+		/**
+		 * 推荐的商品 根据商品的购买次数推荐
+		 */
 		ProductCustom productCustom = new ProductCustom();
+		productCustom.setAreaid(getUser(request).getAreaid());
+		//productCustom.setAreaid(1);
 		productCustom.setBegin(0);
 		productCustom.setTotal(3);
 		productCustoms = productService.queryPopularProductByCondition(productCustom);
 		
-		ActivityCustom aCustom=new ActivityCustom();
-		//aCustom.setActivityid(2);
-		//aCustom.setActivityname("跑");
-		//aCustom.setActivitystatus("已开展");
-		//aCustom.setOnline(false);
-		//aCustom.setBranchid(1);
-		//aCustom.setActivitytypeid(2);
-		aCustom.setBegin(0);
-		aCustom.setTotal(3);
-		//activities=activityService.queryActivitiesByCondition(aCustom);
-		activities = activityService.queryActivityrecommend("官网");
-		
+		/**
+		 * 养生小常识 心灵鸡汤 
+		 */
 		CommonsenseCustom commonsenseCustom = new CommonsenseCustom();
 		commonsenseCustom.setBegin(0);
 		commonsenseCustom.setTotal(3);
-		commonsenseCustom.setWebsitetype("官网");
+		commonsenseCustom.setWebsitetype("分店官网");
 		
 		commonsenseCustom.setContexttype("养生小常识");
 		commonsenseCustoms = commonsenseService.queryCommonsenseByCondition(commonsenseCustom);
@@ -72,21 +87,21 @@ public class IndexController {
 		heartCustoms = commonsenseService.queryCommonsenseByCondition(commonsenseCustom);
 		
 		
-		
+		model.addAttribute("productCustoms", productCustoms);
 		model.addAttribute("activities", activities);
-		model.addAttribute("products", productCustoms);
 		model.addAttribute("commonsenseCustoms", commonsenseCustoms);
 		model.addAttribute("heartCustoms", heartCustoms);
-		
-		/**
-		 * 模拟登陆
-		 */
-		User user=new User();
-	    user.setUserid(1);
-	    user.setUsername("bbz");
-	    user.setAreaid(1);
-	    request.getSession().setAttribute("user", user); 
-		return "index/index";
+		return "index/branchIndex";
+	}
+	
+	@RequestMapping("sendMessage")
+	public @ResponseBody MessageCustom sendMessage(@RequestBody MessageCustom message, 
+			HttpServletRequest request){
+		message.setMessagetime(new Date());
+		message.setUserid(/*getUser(request).getUserid()*/1);
+		message.setMessagecontext(message.getMessagecontext());
+		messageMapper.insertSelective(message);
+		return message;
 	}
 
 }

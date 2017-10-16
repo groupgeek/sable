@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityrecommendCustom;
 
 /**
  * 活动处理
@@ -41,6 +42,12 @@ public interface ActivityService {
 	 */
 	public List<ActivityCustom> queryActivitiesByCondition(ActivityCustom activityCondition);
 	
+	/**
+	 * 查询活动推荐表，根据官网类型区分
+	 * @param type 官网类型
+	 * @return ActivityCustom集合
+	 */
+	public List<ActivityCustom> queryActivityrecommend(String type);
 	
 
 }

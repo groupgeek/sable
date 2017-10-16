@@ -1,10 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
-<!--[if IE 8]><html class="ie ie8"> <![endif]-->
-<!--[if IE 9]><html class="ie ie9"> <![endif]-->
-<!--[if gt IE 9]><!-->
-<html> <!--<![endif]-->
+<html>
 
 <head>
 
@@ -12,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title>官网</title>
+    <title>Attorney - Personal Portfolio, Blog Template</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -81,15 +78,17 @@
                                     <span class="sr-only">Toggle navigation</span>
                                     <i class="fa fa-bars fa-2x"></i>
                                 </button>
-                                <a id="brand" class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
+                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/jsp/index/branchIndex.jsp"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right" id="nav">
-                                    <li class="current"><a href="#Home" title="">首页</a></li>
-                                    <li><a href="#Practice_Area" title="">热销产品</a></li>
-                                    <li><a href="#Case_Area" title="">精彩活动</a></li>
-                                    <li><a href="#faq" title="">心灵鸡汤</a></li>
-                                    <li><a href="#contact" title="">联系我们</a></li>
+                                    <li class="current"><a href="#Home" title="">Home</a></li>
+                                    <li><a href="" title="">Practice Area</a></li>
+                                    <li><a href="" title="">FAQ</a></li>
+                                    <li><a href="" title="">Case Area</a></li>
+                                    <li><a href="" title="">Lawyers</a></li>
+                                    <li><a href="" title="">Contact</a></li>
+                                    <li><a href="" title="">安全退出</a></li>
                                 </ul>
                             </div><!-- end navbar-collapse collapse -->
                         </div><!-- nav -->
@@ -105,7 +104,7 @@
                 <h2 class="header-text">A <span class="rotate">Good, Great </span> Lawyer Knows the <span class="rotate"> Law, Judge </span></h2>
 
                 <div class="angle-down">
-                    <a href="#Practice_Area">
+                    <a href="#Case_Area">
                       <i class="fa fa-angle-double-down fa-4x wow animated fadeInDown" data-wow-iteration="infinite" ></i>
                     </a>
                 </div>
@@ -120,48 +119,9 @@
                 <p class="lead">We are a <span>Law</span> team working together to craft awesome websites, realise brand identities, design for<br> print and capture visual imagery through quality.</p>
             </div><!-- end tagline -->
         </div>
-            <div id="Practice_Area">
-            <div class="container">
-                <div class="title text-center">
-                    <h3 class="title-text">热销产品</h3>
-                    <em class="lead"> 品质护航 购物无忧</em>
-                    <hr>
-                </div>
-
-                <div class="row">
-				<c:forEach items="${products }" var="product" varStatus="status">
-	                <div class="portfolio-items">
-	                    <div class="item-blog col-lg-4 col-md-4 col-sm-6 col-xs-12">
-	                    <ul>
-	                        <li class="img_item">
-	                            <div class="caption8 ctn_blue">
-	                                <h3>${product.productname }</h3>
-	                                <p>${product.description }.</p>
-	                                <a href="#" class="pf_button green">详细</a>
-	                            </div>
-	                            <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" />
-	                        </li>
-	                    </ul>
-	                        </div>
-	                    </div><!-- End of .portfolio-items -->
-	                    
-                    	
-                    
-                    
-                    
-                   </c:forEach>
-                    
-                    
-                    
-
-                </div><!-- end row -->
-            </div><!-- end portfolio_wrapper -->
-            </div>
-
-            <br><div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-
-
-            <div id="Case_Area">
+        
+        
+        <div id="Case_Area">
                 <div class="wow animated fadeInLeft">
                 <div class="title text-center ">
                     <h3 class="title-text">精彩活动</h3>
@@ -190,17 +150,44 @@
                     </div>
                     <!-- Column 1 end -->
 				</c:forEach>
-                
-                
-                
-                
 
                 </div>
             </div>
         </div>
-<div  style="height: 100px"></div>
-      
-        <!-- FAQ -->
+   <div  style="height: 50px"></div>     
+        
+            <div id="Practice_Area">
+            <div class="container">
+                <div class="title text-center">
+                    <h3 class="title-text">热销产品</h3>
+                    <em class="lead"> 品质护航 购物无忧</em>
+                    <hr>
+                </div>
+
+                <div class="row">
+				<c:forEach items="${productCustoms }" var="product" varStatus="status">
+	                <div class="portfolio-items">
+	                    <div class="item-blog col-lg-4 col-md-4 col-sm-6 col-xs-12">
+	                    <ul>
+	                        <li class="img_item">
+	                            <div class="caption8 ctn_blue">
+	                                <h3>${product.productname }</h3>
+	                                <p>${product.description }.</p>
+	                                <a href="#" class="pf_button green">详细</a>
+	                            </div>
+	                            <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" />
+	                        </li>
+	                    </ul>
+	                        </div>
+	                    </div><!-- End of .portfolio-items -->
+
+                   </c:forEach>
+                </div><!-- end row -->
+            </div><!-- end portfolio_wrapper -->
+            </div>
+<div  style="height: 60px"></div>
+
+            <!-- FAQ -->
 
             <div id="faq">
                 <div class="container">
@@ -255,13 +242,16 @@
             </div>
             </div>
             <!--End Faq -->
+        
+
+        
         <!-- Contact -->
 
             <div id="contact">
                 <div class="title text-center">
-                    <h3 class="title-text">关于我们</h3>
+                    <h3 class="title-text">Contact us</h3>
 
-                    <em class="lead">你可以发送宝贵的建议给我们.</em>
+                    <em class="lead">For better service , you're bound to contact us.</em>
                     <hr>
                 </div>
             </div>
@@ -286,7 +276,7 @@
                         </div>
                         <div class="contact_widget row">
                             <div id="message"></div>
-                            <form id="contactform" action="contact.php" name="contactform" method="post">
+                            <form id="contactform" action="" name="contactform" method="post">
                                 <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <input type="text" name="name" id="name" required="required" class="form-control" placeholder="Name">
                                 </div>
@@ -304,7 +294,7 @@
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <button type="submit" value="SEND" id="submit" class="btn btn-lg btn-primary">SEND</button>
+                                    <button type="button" value="SEND" id="button" onclick='sendMessage()' class="btn btn-lg btn-primary">SEND</button>
                                 </div>
                             </form>
                         </div> <!-- end contact_widget -->
@@ -337,7 +327,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="title left">
-                                <h5 class="title-footer">Copyrights © 2014. All Rights Reserved.  More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></h5>
+                                <h5 class="title-footer">Copyrights Â© 2014. All Rights Reserved.  More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a> - Collect from <a href="http://www.cssmoban.com/" title="ç½é¡µæ¨¡æ¿" target="_blank">ç½é¡µæ¨¡æ¿</a></h5>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -358,7 +348,6 @@
             <script src="${pageContext.request.contextPath }/jsp/index/js/jquery.nav.js"></script>
             <script src="${pageContext.request.contextPath }/jsp/index/js/wow.min.js"></script>
             <script src="${pageContext.request.contextPath }/jsp/index/js/rotator.js"></script>
-
 
             <script type="text/javascript">
                           $('a').click(function(){
@@ -426,6 +415,27 @@
               $('.navbar-toggle:visible').click();
             });
           });
+        </script>
+        
+        <script type="text/javascript">
+        	function sendMessage(){
+        	alert(1);
+        	var message= $("#comments").val();
+        		$.ajax({
+        		
+        			type:"post",
+        			contentType:"application/json;charset=utf-8",
+        			url:"${pageContext.request.contextPath }/branch/sendMessage.action",
+        			//data:'messagecontext:'+message,
+        			data:'{"messagecontext"'+':'+'"'+message+'"}',
+        			success:function(data,status){
+        				alert(data.messagecontext);
+        				alert(status);
+        			}
+        		
+        		});
+        	 }
+        
         </script>
 </body>
 </html>

@@ -122,4 +122,16 @@ public class Product {
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Product [productid=" + productid + ", productname="
+				+ productname + ", instock=" + instock + ", price=" + price
+				+ ", picture=" + picture + ", shelves=" + shelves + ", buyno="
+				+ buyno + ", purchaseprice=" + purchaseprice
+				+ ", producttypeid=" + producttypeid + ", branchid=" + branchid
+				+ ", discount=" + discount + ", description=" + description
+				+ "]";
+	}
+    
 }

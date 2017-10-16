@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.service.ActivityService;
 
@@ -18,6 +19,23 @@ public class ActivityServiceImpl implements ActivityService {
 	@Qualifier("activityMapper")
 	private ActivityMapper activityMapper;
 	
+	/**
+	 * 给Introduction字段赋值 (活动描述里面的值的一部分)
+	 * @param activityCustoms 查询出来的活动集合
+	 * @param x 截取的位置
+	 * @return activityCustoms
+	 */
+	public List<ActivityCustom> sub(List<ActivityCustom> activityCustoms , int x){
+		
+		
+		for(int i = 0 ; i < activityCustoms.size(); i++){
+			String introduction=activityCustoms.get(i).getActivitydetails().substring(0,x);
+			activityCustoms.get(i).setIntroduction(introduction);
+		}
+		
+		return activityCustoms;
+	}
+	
 	public Activity queryActivityById(Integer id ) {
 		return activityMapper.selectByPrimaryKey(id);
 	}
@@ -25,12 +43,17 @@ public class ActivityServiceImpl implements ActivityService {
 	public List<ActivityCustom> queryActivitiesByCondition(
 			ActivityCustom activityCondition) {
 		List<ActivityCustom> activityCustoms = activityMapper.selectActivitiesByCondition(activityCondition);
-		for(int i = 0 ; i < activityCustoms.size(); i++){
-			String introduction=activityCustoms.get(i).getActivitydetails().substring(0,4);
-			activityCustoms.get(i).setIntroduction(introduction);
-		}
-		return activityCustoms;
+		
+		return sub(activityCustoms,4);
 	}
+
+	public List<ActivityCustom> queryActivityrecommend(String type) {
+		
+		List<ActivityCustom> activityCustoms = activityMapper.selectActivityrecommendByType(type);
+	
+		return sub(activityCustoms,4);
+	}
+	
 
 	
 

@@ -3,6 +3,7 @@ package com.xiaohe.mapper;
 import java.util.List;
 
 import com.xiaohe.bean.Product;
+import com.xiaohe.bean.ProductCustom;
 
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer productid);
@@ -18,11 +19,12 @@ public interface ProductMapper {
     int updateByPrimaryKeyWithBLOBs(Product record);
 
     int updateByPrimaryKey(Product record);
+
     
     /**
-     * 查询出热门的商品（购买次数）
-     * @param no  多少个商品数量
+     * 商品查询(包括商品名字模糊查询，也可以分页) 按照购买次数排序
+     * @param custom 条件
      * @return
      */
-    List<Product> selectPopularProductByRank(Integer no);
+    List<ProductCustom> selectPopularProductByCondition(ProductCustom custom);
 }

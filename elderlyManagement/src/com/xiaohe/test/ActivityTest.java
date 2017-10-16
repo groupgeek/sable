@@ -43,6 +43,13 @@ public class ActivityTest {
 		}
 		
 		
+		
 	}
+	@Test
+	public void queryActivityrecommendTest(){
+		System.out.println(activityService.queryActivityrecommend("分店官网").get(0).getWebsitetype());
+		
+	}
+	
 
 }

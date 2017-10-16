@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.service.ProductService;
 
 /**
@@ -22,7 +23,12 @@ public class ProductTest {
 
 	@org.junit.Test
 	public void queryPopularProductByRankTest(){
-		System.out.println(productService.queryPopularProductByRank(1));
+		
+		ProductCustom productCustom = new ProductCustom();
+		
+		productCustom.setBegin(0);
+		productCustom.setTotal(3);
+		System.out.println(productService.queryPopularProductByCondition(productCustom));
 	}
 	
 	

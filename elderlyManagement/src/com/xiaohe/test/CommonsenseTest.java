@@ -26,10 +26,10 @@ public class CommonsenseTest {
 	public void test1(){
 		CommonsenseCustom commonsenseCustom = new CommonsenseCustom();
 		//commonsenseCustom.setCommonsenseid(1);
-		commonsenseCustom.setEditorid(1);
-		commonsenseCustom.setBranchid(1);
+		//commonsenseCustom.setEditorid(1);
+		//commonsenseCustom.setBranchid(1);
 		//commonsenseCustom.setTitle("1");
-		//commonsenseCustom.setWebsitetype("官网");
+		commonsenseCustom.setWebsitetype("官网");
 		commonsenseCustom.setContexttype("养生小常识");
 		commonsenseCustom.setBegin(0);
 		commonsenseCustom.setTotal(5);

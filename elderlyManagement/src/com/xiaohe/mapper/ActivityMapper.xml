@@ -232,11 +232,10 @@
       </if>  
   </select>
   
-  
-  
-  
-  
-  
+  <select id="selectActivityrecommendByType" parameterType="String" resultType="ActivityCustom">
+  	SELECT a.* ,ac.websiteType FROM activityrecommend ac , activity a  WHERE websiteType = #{id} 
+  		AND a.activityId = ac.activityId
+  </select>
   
   
   

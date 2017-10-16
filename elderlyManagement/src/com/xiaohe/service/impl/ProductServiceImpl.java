@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.xiaohe.bean.Product;
+import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.service.ProductService;
 
@@ -18,9 +18,9 @@ public class ProductServiceImpl implements ProductService {
 	@Qualifier("productMapper")
 	private ProductMapper productMapper;
 
-	public List<Product> queryPopularProductByRank(Integer no) {
+	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
-		return productMapper.selectPopularProductByRank(no);
+		return productMapper.selectPopularProductByCondition(productCustom);
 	}
 
 }
