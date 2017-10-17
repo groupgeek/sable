@@ -19,7 +19,7 @@ import com.xiaohe.service.BranchAdminService;
 @Controller
 @RequestMapping("/brach")
 public class BrachAdminController {
-//
+
 	@Autowired
 	private BranchAdminService branchService;
 	
@@ -40,7 +40,7 @@ public class BrachAdminController {
 	@RequestMapping(value="/oneUser")
 	public String oneUser(Model model,Integer id){
 		branchService.oneUser(id);
-		return "";
+		return "String";
 	}
 	
 	@RequestMapping(value="/AllMessages")
