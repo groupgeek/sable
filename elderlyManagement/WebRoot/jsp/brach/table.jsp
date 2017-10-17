@@ -44,10 +44,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
-		
-		
 </head>
 
 <body>
