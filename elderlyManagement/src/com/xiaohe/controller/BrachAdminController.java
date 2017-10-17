@@ -19,7 +19,7 @@ import com.xiaohe.service.BranchAdminService;
 @Controller
 @RequestMapping("/brach")
 public class BrachAdminController {
-//
+
 	@Autowired
 	private BranchAdminService branchService;
 	
