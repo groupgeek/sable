@@ -226,4 +226,8 @@
   <select id="queryAllUser" resultType="com.xiaohe.bean.User">
   select * from user
   </select>
+  
+  <select id="branchUserCustoms" resultType="com.xiaohe.bean.UserCustom" parameterType="java.lang.Integer">
+  SELECT u.* from user u,branch b,Employee e where e.employeeId = 2 and b.employeeId = e.employeeId and b.areaId = u.areaId
+  </select>
 </mapper>

@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -13,12 +13,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 </head>
 
 <body>
@@ -33,15 +33,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> é¾è¾äº
+								<i class="halflings-icon white user"></i>龙腾云
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>è´¦å·è®¾å®</span>
+ 									<span>个人中心</span>
 								</li>
-								<li><a href="###"><i class="halflings-icon user"></i>ä¸ªäººä¸­å¿</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>éåºç»é</a></li>
+								<li><a href="###"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -81,39 +81,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 			<div class="row-fluid">
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
 					<div class="number">8954<i class="icon-arrow-up"></i></div>
-					<div class="title">visits</div>
+					<div class="title"></div>
 					<div class="footer">
-						read full report
+						总收入
 					</div>	
 				</div>
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
 					<div class="number">8954<i class="icon-arrow-up"></i></div>
-					<div class="title">visits</div>
+					<div class="title"></div>
 					<div class="footer">
-						read full report
+						商城收入
 					</div>
 				</div>
 				<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
 					<div class="number">8954<i class="icon-arrow-up"></i></div>
-					<div class="title">visits</div>
+					<div class="title"></div>
 					<div class="footer">
-						read full report
+						活动收入
 					</div>
 				</div>
 				<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
 					<div class="number">8954<i class="icon-arrow-up"></i></div>
-					<div class="title">visits</div>
+					<div class="title"></div>
 					<div class="footer">
-						read full report
+						教育收入
 					</div>
 				</div>	
 			</div>		
 
+				<!-- 中间的报表 -->
 			<div class="row-fluid">
 				<div class="span8 widget blue" onTablet="span7" onDesktop="span8">
 					<div id="stats-chart2"  style="height:282px" ></div>
@@ -121,103 +118,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- End .sparkStats -->
 			</div>
 			
-			<div class="row-fluid hideInIE8 circleStats">
-				
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox yellow">
-						<div class="header">Disk Space Usage</div>
-						<span class="percent">percent</span>
-						<div class="circleStat">
-                    		<input type="text" value="0.8" class="whiteCircle" />
-						</div>		
-						<div class="footer">
-							<span class="count">
-								<span class="number">2</span>
-								<span class="unit">åºå­</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">8550</span>
-								<span class="unit">åºå­</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox green">
-						<div class="header">Bandwidth</div>
-						<span class="percent">percent</span>
-						<div class="circleStat">
-                    		<input type="text" value="78" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">5000</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">5000</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox greenDark">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				
-
-				
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox greenLight">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-						
-			</div>		
+		
 						
 			<div class="row-fluid">
 				
 				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
 					
-					<h2><span class="glyphicons globe"><i></i></span> Demographics</h2>
+					<h2><span class="glyphicons globe"><i></i></span> 销量前十产品</h2>
 					
 					<hr>
 					
@@ -374,7 +281,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
 					
-					<h2><span class="glyphicons globe"><i></i></span> Demographics</h2>
+					<h2><span class="glyphicons globe"><i></i></span> 热门活动前十</h2>
 					
 					<hr>
 					
@@ -546,26 +453,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<a class="quick-button metro yellow span2">
 					<i class="icon-group"></i>
-					<p>Users</p>
+					<p>总用户</p>
 					<span class="badge">237</span>
 				</a>
 				<a class="quick-button metro red span2">
 					<i class="icon-comments-alt"></i>
-					<p>Comments</p>
+					<p>全部活动</p>
 					<span class="badge">46</span>
 				</a>
 				<a class="quick-button metro blue span2">
 					<i class="icon-shopping-cart"></i>
-					<p>Orders</p>
+					<p>总订单</p>
 					<span class="badge">13</span>
 				</a>
 				<a class="quick-button metro green span2">
 					<i class="icon-barcode"></i>
-					<p>Products</p>
+					<p>所有商品</p>
+					<span class="badge">13</span>
 				</a>
 				<a class="quick-button metro pink span2">
 					<i class="icon-envelope"></i>
-					<p>Messages</p>
+					<p>所有留言</p>
 					<span class="badge">88</span>
 				</a>
 				<a class="quick-button metro black span2">
@@ -612,60 +520,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: JavaScript-->
 
-		<script src="${pageContext.request.contextPath }/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery-migrate-1.0.0.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.ui.touch-punch.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.ui.touch-punch.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/modernizr.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/modernizr.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/bootstrap.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.cookie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cookie.js"></script>
 	
-		<script src='${pageContext.request.contextPath }/js/fullcalendar.min.js'></script>
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/fullcalendar.min.js'></script>
 	
-		<script src='${pageContext.request.contextPath }/js/jquery.dataTables.min.js'></script>
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
-		<script src="${pageContext.request.contextPath }/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/js/jquery.chosen.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/js/jquery.uniform.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 		
-		<script src="${pageContext.request.contextPath }/js/jquery.cleditor.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.noty.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uniform.min.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cleditor.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.elfinder.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.noty.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.raty.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.elfinder.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.iphone.toggle.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.raty.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.uploadify-3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.iphone.toggle.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.gritter.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uploadify-3.1.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.imagesloaded.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.gritter.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.masonry.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.imagesloaded.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.knob.modified.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.masonry.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.sparkline.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.knob.modified.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/counter.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.sparkline.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/retina.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/counter.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
-		<script src="${pageContext.request.contextPath }/js/custom.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

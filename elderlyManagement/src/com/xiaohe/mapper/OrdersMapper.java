@@ -1,5 +1,7 @@
 package com.xiaohe.mapper;
 
+import java.math.BigDecimal;
+
 import com.xiaohe.bean.Orders;
 
 public interface OrdersMapper {
@@ -14,4 +16,11 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+    
+    
+    /**
+     * 查询订单的总收入
+     * @return
+     */
+    BigDecimal queryOderIncome();
 }

@@ -1,9 +1,11 @@
 package com.xiaohe.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.UserCustom;
@@ -24,4 +26,14 @@ public interface BranchAdminService {
 	public int somecount();
 	
 	public MessageCustom oneMessage(Integer id);
+	
+	public BigDecimal totalEduIncome();
+	
+	public BigDecimal totalActIncome();
+	
+	public BigDecimal totalOderIncome();
+	
+	public Employee onEmployee(Integer id);
+	
+	public List<UserCustom> branchUser(Integer employeeid);
 }

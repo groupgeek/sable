@@ -174,4 +174,8 @@
       status = #{status,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
+  
+  <select id="queryOderIncome" resultType="DECIMAL">
+  select sum(totalPrice) from orders
+  </select>
 </mapper>

@@ -3,6 +3,8 @@ package com.xiaohe.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xiaohe.bean.Employee;
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.UserCustom;
@@ -24,9 +28,11 @@ public class BrachAdminController {
 	private BranchAdminService branchService;
 	
 	@RequestMapping(value="/AllUsers")
-	public String QueryUsers(Model model){
+	public String QueryUsers(Model model,Employee employee,HttpServletRequest request){
 		List<UserCustom> users = new ArrayList<UserCustom>();
-		users = branchService.queryAllUser();
+		employee = branchService.onEmployee(2);
+		request.getSession().setAttribute("employee", employee);
+		users = branchService.branchUser(employee.getAreaid());
 		model.addAttribute("users", users);
 		return "brach/table";
 	}
@@ -45,9 +51,9 @@ public class BrachAdminController {
 	
 	@RequestMapping(value="/AllMessages")
 	public String QueryMessages(Model model,Integer id){
-		List<MessageCustom> messages = new ArrayList<MessageCustom>();
-		messages =branchService.QureyMessages();
-		model.addAttribute("messages", messages);
+		Employee user = new Employee();
+		user = branchService.onEmployee(2);
+		model.addAttribute("user", user);
 		return "brach/message";
 	}
 	
@@ -78,6 +84,10 @@ public class BrachAdminController {
 		return "brach/message";
 	}
 	
-	
+	@RequestMapping(value="/index")
+	public String totalIncome(){
+		
+		return "";
+	}
 	
 }

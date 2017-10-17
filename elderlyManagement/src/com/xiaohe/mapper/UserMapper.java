@@ -23,4 +23,11 @@ public interface UserMapper {
      * @return
      */
     List<UserCustom> queryAllUser();
+    
+    /**
+     * 查询分店所有的用户信息
+     * @param employeeid
+     * @return
+     */
+    List<UserCustom> branchUserCustoms(Integer employeeid);
 }
