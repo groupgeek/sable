@@ -58,8 +58,6 @@ public class BrachAdminController {
 		return messageCustom;
 	}
 	
-	
-	
 	@RequestMapping(value="/fenyeMessage")
 	public String oneMessage(Model model,MessageVo messageVo){
 		int a = branchService.somecount();
@@ -79,5 +77,7 @@ public class BrachAdminController {
 		model.addAttribute("messageVo", messageVo);
 		return "brach/message";
 	}
+	
+	
 	
 }
