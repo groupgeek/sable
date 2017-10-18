@@ -35,5 +35,5 @@ public interface BranchAdminService {
 	
 	public Employee onEmployee(Integer id);
 	
-	public List<UserCustom> branchUser(Integer employeeid);
+	public List<UserCustom> branchUser(Integer areaid);
 }

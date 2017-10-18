@@ -10,11 +10,21 @@ public interface UserMapper {
 
     int insert(User record);
 
-    int insertSelective(User record);
+    /**
+     * 插入用戶
+     * @param record 用戶信息
+     * @return
+     */
+    int insertSelective(UserCustom record);
 
-    User selectByPrimaryKey(Integer userid);
+    UserCustom selectByPrimaryKey(Integer userid);
 
-    int updateByPrimaryKeySelective(User record);
+    /**
+     * 更新用戶
+     * @param record 更新信息
+     * @return
+     */
+    int updateByPrimaryKeySelective(UserCustom record);
 
     int updateByPrimaryKey(User record);
     
@@ -25,9 +35,16 @@ public interface UserMapper {
     List<UserCustom> queryAllUser();
     
     /**
+     * 根据手机号查询用户
+     * @param phone 手机号
+     * @return
+     */
+    UserCustom selectUserByPhone(String phone);
+    
+    /**
      * 查询分店所有的用户信息
      * @param employeeid
      * @return
      */
-    List<UserCustom> branchUserCustoms(Integer employeeid);
+    List<UserCustom> branchUserCustoms(Integer areaid);
 }
