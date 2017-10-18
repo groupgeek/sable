@@ -56,7 +56,7 @@
     <div class="makeborder-left"></div>
     <div class="makeborder-right"></div>
 
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+   <!--  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="searchform" role="form">
@@ -65,7 +65,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="wrapper">
         <div class="container">
@@ -74,21 +74,16 @@
                     <nav id="navigation" class="navbar navbar-default" role="navigation">
                         <div class="navbar-inner">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <i class="fa fa-bars fa-2x"></i>
-                                </button>
-                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/jsp/index/branchIndex.jsp"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
+                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right" id="nav">
-                                    <li class="current"><a href="#Home" title="">Home</a></li>
-                                    <li><a href="" title="">Practice Area</a></li>
-                                    <li><a href="" title="">FAQ</a></li>
-                                    <li><a href="" title="">Case Area</a></li>
-                                    <li><a href="" title="">Lawyers</a></li>
-                                    <li><a href="" title="">Contact</a></li>
-                                    <li><a href="" title="">安全退出</a></li>
+                                    <li class="current"><a href="#Home" title="">主页</a></li>
+                                    <li><a href="" title="">新闻</a></li>
+                                    <li><a href="" title="">教育中心</a></li>
+                                    <li><a href="" title="">健康中心</a></li>
+                                    <li><a href="" title="">个人中心</a></li>
+                                    <li><a href="" title="">安全退出${user.username }</a></li>
                                 </ul>
                             </div><!-- end navbar-collapse collapse -->
                         </div><!-- nav -->
@@ -101,7 +96,7 @@
 
 
             <div class="container text-center header-part">
-                <h2 class="header-text">A <span class="rotate">Good, Great </span> Lawyer Knows the <span class="rotate"> Law, Judge </span></h2>
+               <h2 class="header-text">哈哈 <span class="rotate">哈哈 </span> 哈哈  哈哈 哈哈<span class="rotate"> 哈哈 </span></h2>
 
                 <div class="angle-down">
                     <a href="#Case_Area">

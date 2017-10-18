@@ -90,11 +90,11 @@ public class IndexController {
 		/**
 		 * 模拟登陆
 		 */
-		User user=new User();
+		/*User user=new User();
 	    user.setUserid(1);
 	    user.setUsername("bbz");
 	    user.setAreaid(1);
-	    request.getSession().setAttribute("user", user); 
+	    request.getSession().setAttribute("user", user); */
 		return "index/index";
 	}
 

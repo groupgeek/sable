@@ -89,7 +89,7 @@
 					<div class="form-group">
 						<p>
 							没有注册? <a
-								href="${pageContext.request.contextPath }/jsp/logReg/sign-up.jsp">注册</a>
+								href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a>
 							| <a
 								href="${pageContext.request.contextPath }/jsp/logReg/forgot.jsp">忘记密码?</a>
 						</p>

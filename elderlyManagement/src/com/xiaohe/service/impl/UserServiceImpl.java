@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
 		if(userMapper.selectUserByPhone(userCustom.getPhone())==null){
+			userCustom.setAccountnumber(userCustom.getPhone());
 			userMapper.insertSelective(userCustom);
 			
 			
