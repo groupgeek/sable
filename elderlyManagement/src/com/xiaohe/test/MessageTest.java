@@ -31,5 +31,8 @@ public class MessageTest {
 		
 		
 	}
+	
+	
+	public void demo(){}
 
 }

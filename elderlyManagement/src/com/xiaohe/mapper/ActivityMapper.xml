@@ -232,9 +232,28 @@
       </if>  
   </select>
   
-  <select id="selectActivityrecommendByType" parameterType="String" resultType="ActivityCustom">
-  	SELECT a.* ,ac.websiteType FROM activityrecommend ac , activity a  WHERE websiteType = #{id} 
-  		AND a.activityId = ac.activityId
+  <select id="selectActivityrecommendByCondition" parameterType="activityrecommendCustom" resultType="ActivityCustom">
+  	SELECT a.* ,ac.websiteType FROM activityrecommend ac , activity a  
+  	<where>
+  		<if test="branchid != null">
+  			AND ac.branchId = #{branchid}
+  		</if>
+  		
+  		<if test="activityid != null">
+  			AND ac.activityId = #{activityid}
+  		</if>
+  		
+  		<if test="websitetype != null">
+  			AND ac.websiteType = #{websitetype}
+  		</if>
+  		
+  		<if test="true">
+  			AND a.activityId = ac.activityId
+  		</if>
+  		
+  	</where>
+  	
+  		
   </select>
   
   

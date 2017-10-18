@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xiaohe.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.xiaohe.bean.User" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.UserCustom" >
     <id column="userId" property="userid" jdbcType="INTEGER" />
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -47,7 +47,7 @@
       #{healthstatus,jdbcType=VARCHAR}, #{authorityid,jdbcType=INTEGER}, #{levelid,jdbcType=INTEGER}, 
       #{areaid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaohe.bean.User" >
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.UserCustom" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -150,7 +150,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.UserCustom" >
     update user
     <set >
       <if test="avatar != null" >
@@ -227,7 +227,13 @@
   select * from user
   </select>
   
-  <select id="branchUserCustoms" resultType="com.xiaohe.bean.UserCustom" parameterType="java.lang.Integer">
-  SELECT u.* from user u,branch b,Employee e where e.employeeId = 2 and b.employeeId = e.employeeId and b.areaId = u.areaId
+  <!-- 根据手机号查询用户 -->
+  <select id="selectUserByPhone" parameterType="String" resultType="userCustom">
+	SELECT * FROM `user` WHERE phone = #{id}  
+  </select>
+  
+  <!-- 查询分店所有用户 -->
+   <select id="branchUserCustoms" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom" >
+  SELECT u.* from user u,branch b,Employee e where b.employeeId = e.employeeId and b.areaId = u.areaId and e.employeeId = #{employeeId,jdbcType=INTEGER}
   </select>
 </mapper>

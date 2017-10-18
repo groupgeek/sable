@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.service.ActivityService;
 /**
  * 测试
@@ -21,6 +23,10 @@ public class ActivityTest {
 	@Autowired
 	@Qualifier("activityService")
 	private ActivityService activityService;
+/*	
+	@Autowired
+	@Qualifier("/branchMapper")
+	private BranchMapper branchMapper;*/
 	
 	@Test
 	public void activityConditon(){
@@ -47,7 +53,13 @@ public class ActivityTest {
 	}
 	@Test
 	public void queryActivityrecommendTest(){
-		System.out.println(activityService.queryActivityrecommend("分店官网").get(0).getWebsitetype());
+		//System.out.println(branchMapper.selectByPrimaryKey(1));
+		
+		
+		ActivityrecommendCustom custom = new ActivityrecommendCustom();
+		custom.setWebsitetype("分店官网");
+		custom.setBranchid(1);
+		System.out.println(activityService.queryActivityrecommend(custom).size());
 		
 	}
 	

@@ -29,9 +29,9 @@ public interface ActivityMapper {
     List<ActivityCustom> selectActivitiesByCondition(ActivityCustom aCustom);
     
     /**
-	 * 查询活动推荐表，根据官网类型区分
-	 * @param type 官网类型
+	 * 查询活动推荐表，根据ActivityrecommendCustom区分
+	 * @param ActivityrecommendCustom 条件
 	 * @return ActivityrecommendCustom集合
 	 */
-    List<ActivityCustom> selectActivityrecommendByType(String type);
+    List<ActivityCustom> selectActivityrecommendByCondition(ActivityrecommendCustom custom);
 }

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.CommonsenseCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -43,22 +44,30 @@ public class IndexController {
 		List<CommonsenseCustom> commonsenseCustoms = new ArrayList<CommonsenseCustom>();//小常识
 		List<CommonsenseCustom> heartCustoms = new ArrayList<CommonsenseCustom>();//心灵鸡汤
 		
+		/**
+		 * 开始查询推荐产品
+		 */
 		ProductCustom productCustom = new ProductCustom();
 		productCustom.setBegin(0);
 		productCustom.setTotal(3);
 		productCustoms = productService.queryPopularProductByCondition(productCustom);
 		
-		ActivityCustom aCustom=new ActivityCustom();
+		//ActivityCustom aCustom=new ActivityCustom();
 		//aCustom.setActivityid(2);
 		//aCustom.setActivityname("跑");
 		//aCustom.setActivitystatus("已开展");
 		//aCustom.setOnline(false);
 		//aCustom.setBranchid(1);
 		//aCustom.setActivitytypeid(2);
-		aCustom.setBegin(0);
-		aCustom.setTotal(3);
+		//aCustom.setBegin(0);
+		//aCustom.setTotal(3);
 		//activities=activityService.queryActivitiesByCondition(aCustom);
-		activities = activityService.queryActivityrecommend("官网");
+		/**
+		 * 开始查询推荐的活动
+		 */
+		ActivityrecommendCustom custom = new ActivityrecommendCustom();
+		custom.setWebsitetype("官网");
+		activities = activityService.queryActivityrecommend(custom);
 		
 		CommonsenseCustom commonsenseCustom = new CommonsenseCustom();
 		commonsenseCustom.setBegin(0);

@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Branch;
+import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.CommonsenseCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.service.ActivityService;
+import com.xiaohe.service.BranchService;
 import com.xiaohe.service.CommonsenseService;
 import com.xiaohe.service.ProductService;
 
@@ -45,6 +49,11 @@ public class BranchController {
 	private MessageMapper messageMapper;
 	
 	
+	@Autowired
+	@Qualifier("branchService")
+	private BranchService branchService;
+	
+	
 	public User getUser(HttpServletRequest request){
 		
 		return (User) request.getSession().getAttribute("user");
@@ -57,10 +66,16 @@ public class BranchController {
 		List<CommonsenseCustom> commonsenseCustoms = new ArrayList<CommonsenseCustom>();//小常识
 		List<CommonsenseCustom> heartCustoms = new ArrayList<CommonsenseCustom>();//心灵鸡汤
 		
+		//根据用户地区id查询分店信息 
+		Branch branch = branchService.queryBranchById(getUser(request).getAreaid());
 		/**
 		 * 开始查询推荐活动
 		 */
-		activities = activityService.queryActivityrecommend("分店官网");
+		ActivityrecommendCustom custom = new ActivityrecommendCustom();
+		custom.setWebsitetype("分店官网");
+		custom.setBranchid(branch.getBranchid());
+		custom.setBranchid(1);
+		activities = activityService.queryActivityrecommend(custom);
 		
 		/**
 		 * 推荐的商品 根据商品的购买次数推荐
@@ -80,6 +95,9 @@ public class BranchController {
 		commonsenseCustom.setTotal(3);
 		commonsenseCustom.setWebsitetype("分店官网");
 		
+		commonsenseCustom.setBranchid(branch.getBranchid());
+		commonsenseCustom.setBranchid(1);
+		
 		commonsenseCustom.setContexttype("养生小常识");
 		commonsenseCustoms = commonsenseService.queryCommonsenseByCondition(commonsenseCustom);
 		
@@ -98,7 +116,7 @@ public class BranchController {
 	public @ResponseBody MessageCustom sendMessage(@RequestBody MessageCustom message, 
 			HttpServletRequest request){
 		message.setMessagetime(new Date());
-		message.setUserid(/*getUser(request).getUserid()*/1);
+		message.setUserid(getUser(request).getUserid());
 		message.setMessagecontext(message.getMessagecontext());
 		messageMapper.insertSelective(message);
 		return message;
