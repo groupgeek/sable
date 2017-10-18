@@ -160,4 +160,16 @@ public class User {
     public void setAreaid(Integer areaid) {
         this.areaid = areaid;
     }
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", avatar=" + avatar + ", email="
+				+ email + ", username=" + username + ", password=" + password
+				+ ", accountnumber=" + accountnumber + ", sex=" + sex
+				+ ", birthday=" + birthday + ", phone=" + phone + ", address="
+				+ address + ", integral=" + integral + ", bankcardno="
+				+ bankcardno + ", healthstatus=" + healthstatus
+				+ ", authorityid=" + authorityid + ", levelid=" + levelid
+				+ ", areaid=" + areaid + "]";
+	}
 }

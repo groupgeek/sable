@@ -65,8 +65,11 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	public Employee onEmployee(Integer id) {
 		return employeeMapper.selectByPrimaryKey(id);
 	}
-	public List<UserCustom> branchUser(Integer employeeid) {
+	/*public List<UserCustom> branchUser(Integer employeeid) {
 		return userMapper.branchUserCustoms(employeeid);
+	}*/
+	public List<UserCustom> branchUser(Integer areaid) {
+		return userMapper.branchUserCustoms(areaid);
 	}
 
 	

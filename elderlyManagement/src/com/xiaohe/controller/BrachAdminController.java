@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.Employee;
-import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.UserCustom;
@@ -30,9 +29,10 @@ public class BrachAdminController {
 	@RequestMapping(value="/AllUsers")
 	public String QueryUsers(Model model,Employee employee,HttpServletRequest request){
 		List<UserCustom> users = new ArrayList<UserCustom>();
-		employee = branchService.onEmployee(2);
 		request.getSession().setAttribute("employee", employee);
+		employee = branchService.onEmployee(2);
 		users = branchService.branchUser(employee.getAreaid());
+		model.addAttribute("employee", employee);
 		model.addAttribute("users", users);
 		return "brach/table";
 	}
