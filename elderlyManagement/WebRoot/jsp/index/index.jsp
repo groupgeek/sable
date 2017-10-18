@@ -59,7 +59,7 @@
     <div class="makeborder-left"></div>
     <div class="makeborder-right"></div>
 
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="searchform" role="form">
@@ -68,19 +68,21 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="wrapper">
+    <div style="float: right; font-size: 1.3em;">
+    	<a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a>
+    	<span>||</span>
+    	<a href="${pageContext.request.contextPath }/jsp/logReg/sign-up.jsp">注册</a>
+    	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
         <div class="container">
             <header id="Home" class="header">
                 <div class="menu-wrapper">
                     <nav id="navigation" class="navbar navbar-default" role="navigation">
                         <div class="navbar-inner">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <i class="fa fa-bars fa-2x"></i>
-                                </button>
                                 <a id="brand" class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
