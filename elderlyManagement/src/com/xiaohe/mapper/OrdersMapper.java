@@ -19,8 +19,14 @@ public interface OrdersMapper {
     
     
     /**
-     * 查询订单的总收入
+     * 查询分店订单的总收入
      * @return
      */
-    BigDecimal queryOderIncome();
+    BigDecimal queryBranchOderIncome();
+    
+    /**
+     * 查询分店的总收入
+     * @return
+     */
+    BigDecimal branchIncome();
 }

@@ -1,12 +1,15 @@
 package com.xiaohe.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.annotation.Repeat;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +29,31 @@ public class BrachAdminController {
 	@Autowired
 	private BranchAdminService branchService;
 	
-	@RequestMapping(value="/AllUsers")
-	public String QueryUsers(Model model,Employee employee,HttpServletRequest request){
-		List<UserCustom> users = new ArrayList<UserCustom>();
+	@RequestMapping(value="/log")
+	public String log(HttpServletRequest request){
+		Employee employee = new Employee();
+		employee = branchService.onEmployee(1);
 		request.getSession().setAttribute("employee", employee);
-		employee = branchService.onEmployee(2);
-		users = branchService.branchUser(employee.getAreaid());
-		model.addAttribute("employee", employee);
+		return "brach/test";
+	}
+	
+	/*@RequestMapping(value="/AllUsers")
+	public String QueryUsers(Model model,Employee employee2){
+		List<UserCustom> users = new ArrayList<UserCustom>();
+		int a = employee.getEmployeeid();
+		employee2 = branchService.onEmployee(2);
+		users = branchService.branchUser(employee2.getAreaid());
+		model.addAttribute("users", users);
+		return "brach/table";
+	}*/
+	
+	@RequestMapping(value="/users")
+	public String Users(Model model,HttpServletRequest request){
+		int a =((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
+		Employee admin = new Employee();
+		admin = branchService.onEmployee(a);
+		List<UserCustom> users = new ArrayList<UserCustom>();
+		users = branchService.branchUser(admin.getEmployeeid());
 		model.addAttribute("users", users);
 		return "brach/table";
 	}
@@ -45,17 +66,16 @@ public class BrachAdminController {
 	
 	@RequestMapping(value="/oneUser")
 	public String oneUser(Model model,Integer id){
-		branchService.oneUser(id);
-		return "String";
+		return "brach/table";
 	}
 	
-	@RequestMapping(value="/AllMessages")
+	/*@RequestMapping(value="/AllMessages")
 	public String QueryMessages(Model model,Integer id){
 		Employee user = new Employee();
 		user = branchService.onEmployee(2);
 		model.addAttribute("user", user);
 		return "brach/message";
-	}
+	}*/
 	
 	@RequestMapping(value="/jsonMessage")
 	public @ResponseBody MessageCustom jsonMessageCustom(@RequestBody MessageCustom messageCustom){
@@ -85,9 +105,19 @@ public class BrachAdminController {
 	}
 	
 	@RequestMapping(value="/index")
-	public String totalIncome(){
-		
-		return "";
+	public String totalIncome(HttpServletRequest request,Model model){
+		int a =((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
+		BigDecimal b = branchService.totalEduIncome(a);
+		if(b == null){
+			b = new BigDecimal("0.00");
+		}
+		BigDecimal c = branchService.totalHealIncome(a);
+		if(c==null){
+			c =new BigDecimal("0.00");
+		}
+		BigDecimal []arr = new BigDecimal[]{b,c};
+		model.addAttribute("arr", arr);
+		return "brach/test";
 	}
 	
 }

@@ -33,6 +33,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								pattern="yyyy-MM-dd HH:mm:ss" /></span>
 						</c:forEach>
 	</ul>
-	${user.employeename }
+	${employee.employeename }<br>
+	教育收入：${arr[0] }<br>
+	健康收入：${arr[1] }<br>
+	<a href="${pageContext.request.contextPath }/brach/log.action">登陆成功</a>
+	<a href="${pageContext.request.contextPath }/brach/users.action">信息展示</a>
+	<a href="${pageContext.request.contextPath }/brach/fenyeMessage.action">留言信息</a>
+	<a href="${pageContext.request.contextPath }/brach/index.action">首页测试</a>
   </body>
 </html>

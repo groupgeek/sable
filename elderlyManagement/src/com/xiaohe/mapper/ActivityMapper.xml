@@ -237,8 +237,24 @@
   		AND a.activityId = ac.activityId
   </select>
   
-  
-  
+  <select id="branchHealIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
+  	SELECT sum(a.registeryFee) from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '是'
+	and b.activityTypeID=1
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  <select id="branchEduIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
+  	SELECT sum(a.registeryFee) from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '是'
+	and b.activityTypeID=2
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
   
   
   

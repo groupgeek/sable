@@ -27,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: CSS -->
 	
 
@@ -44,6 +43,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
+	
+		
+		
+		
 </head>
 
 <body>
@@ -56,19 +59,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>JANUX</span></a>
+				<a class="brand" href="index.html"><span>JONX</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						
-						<!-- start: Notifications Dropdown -->
-						<!-- end: Notifications Dropdown -->
-						<!-- start: Message Dropdown -->
+						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${employee.employeename }${employee.areaid }
+								<i class="halflings-icon white user"></i> ${employee.employeename }
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -96,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="index.jsp"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
 						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
@@ -106,7 +107,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!-- end: Main Menu -->
 			
-			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
 			
 			<!-- start: Content -->
 			<div id="content" class="span10">
@@ -115,10 +121,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">XIAOHE</a> 
+					<a href="index.html">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">客户信息</a></li>
+				<li><a href="#">Tables</a></li>
 			</ul>
 
 			<div class="row-fluid sortable">		
@@ -182,6 +188,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div><!--/span-->
 			
 			</div><!--/row-->
+
+			<!--/row-->
+			
+			<!--/row-->
+			
+			<!--/row-->
+    
+
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
@@ -190,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
+			<button type="button" class="close" data-dismiss="modal">Ã</button>
 			<h3>Settings</h3>
 		</div>
 		<div class="modal-body">
@@ -221,35 +235,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</footer>
 	
 	<!-- start: JavaScript-->
+
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.ui.touch-punch.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/modernizr.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/bootstrap.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cookie.js"></script>
+	
 		<script src='${pageContext.request.contextPath }/jsp/brach/js/fullcalendar.min.js'></script>
+	
 		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
+
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uniform.min.js"></script>
+		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cleditor.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.noty.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.elfinder.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.raty.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.iphone.toggle.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uploadify-3.1.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.gritter.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.imagesloaded.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.masonry.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.knob.modified.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.sparkline.min.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/counter.js"></script>
+	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
+
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
 	

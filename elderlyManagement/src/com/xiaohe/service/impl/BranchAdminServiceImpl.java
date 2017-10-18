@@ -10,13 +10,14 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.UserCustom;
+import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.BranchAdminService;
 
-@Repository("branchService")
+@Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
 
 	@Autowired
@@ -30,6 +31,10 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	
 	@Autowired
 	private EmployeeMapper employeeMapper;
+	
+	@Autowired
+	private ActivityMapper activityMapper;
+	
 	public List<MessageCustom> QureyMessages() {
 		return messageMapper.QureyMessages();
 	}
@@ -51,18 +56,16 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	public MessageCustom oneMessage(Integer id) {
 		return messageMapper.oneMessage(id);
 	}
-	public BigDecimal totalEduIncome() {
-		// TODO Auto-generated method stub
-		return null;
+	public BigDecimal totalEduIncome(Integer id) {
+		return activityMapper.branchEduIncome(id);
 	}
-	public BigDecimal totalActIncome() {
-		// TODO Auto-generated method stub
-		return null;
+	public BigDecimal totalHealIncome(Integer id) {
+		return activityMapper.branchHealIncome(id);
 	}
-	public BigDecimal totalOderIncome() {
-		return ordersMapper.queryOderIncome();
+	public BigDecimal totalOderIncome(Integer id) {
+		return ordersMapper.queryBranchOderIncome();
 	}
-	public Employee onEmployee(Integer id) {
+	public Employee onEmployee(Integer id){
 		return employeeMapper.selectByPrimaryKey(id);
 	}
 	/*public List<UserCustom> branchUser(Integer employeeid) {
