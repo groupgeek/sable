@@ -34,17 +34,22 @@ public interface ActivityMapper {
 	 * @param type 官网类型
 	 * @return ActivityrecommendCustom集合
 	 */
-    List<ActivityCustom> selectActivityrecommendByType(String type);
+    List<ActivityCustom> selectActivityrecommendByCondition(ActivityrecommendCustom custom);
     
     /**
-     * 查询分店健康的总收入
+     * 查询分店健康收入
+     * @param id
      * @return
      */
     BigDecimal branchHealIncome(Integer id);
     
     /**
-     * 查询分店教育的总收入
+     * 查询分店教育收入
+     * @param id
      * @return
      */
     BigDecimal branchEduIncome(Integer id);
+    
+    
+   
 }
