@@ -2,6 +2,7 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 
@@ -41,4 +42,18 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> branchHotProduct(Integer id);
+    
+    /**
+     * 模糊查询,查询字段：名字，描述
+     * @param condition
+     * @return
+     */
+    List<ProductCustom> selectProductByBlurryCondition(String condition);
+    
+    
+    //查询分店所有商品
+    List<ProductCustom> quertyAllProduct(Integer branchid);
+    
+    //分店管理员查询
+    EmployeeCustom selectAdminCustom(Integer employeeid);
 }

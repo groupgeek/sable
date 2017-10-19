@@ -24,7 +24,7 @@ public class UserTest {
 	public void regTest(){
 		UserCustom user = new UserCustom();
 		user.setUsername("bbz");
-		user.setPhone("18584430401");
+		user.setPhone("18584781");
 		user.setPassword("123456");
 		System.out.println(userService.registerUser(user));
 	}

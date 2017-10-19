@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttypeCustom;
 
 @Transactional
 public interface ProductService {
@@ -15,5 +16,32 @@ public interface ProductService {
 	 */
 	List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom);
 	
+	/**
+	 * 查询商品类型
+	 * @param producttypes 条件
+	 * @return 集合
+	 */
+	List<ProducttypeCustom> queryProductTypeByCondition(ProducttypeCustom producttype);
+	
+	/**
+	 * 查询推荐商品
+	 * @param total 几条商品数据
+	 * @return 商品集合
+	 */
+	List<ProductCustom> queryProductrecommend(Integer total);
+	
+	/**
+	 * 查询推荐商品
+	 * @param total 几条商品数据
+	 * @return 商品集合
+	 */
+	List<ProductCustom> queryDiscountProduct(Integer total);
+	
+	/**
+	 * 商品模糊查询 名字 描述字段
+	 * @param condition
+	 * @return
+	 */
+	List<ProductCustom> queryProductByBlurry(String condition);
 
 }

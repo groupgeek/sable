@@ -4,6 +4,15 @@ public class ProductCustom extends Product {
 	private Integer begin;
 	private Integer total;
 	private Integer areaid;
+		//商品类别名
+	private String productTypeName;
+	
+	public String getProductTypeName() {
+		return productTypeName;
+	}
+	public void setProductTypeName(String productTypeName) {
+		this.productTypeName = productTypeName;
+	}
 	public Integer getAreaid() {
 		return areaid;
 	}

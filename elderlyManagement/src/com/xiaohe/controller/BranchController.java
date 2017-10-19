@@ -74,7 +74,7 @@ public class BranchController {
 		ActivityrecommendCustom custom = new ActivityrecommendCustom();
 		custom.setWebsitetype("分店官网");
 		custom.setBranchid(branch.getBranchid());
-		custom.setBranchid(1);
+		//custom.setBranchid(1);
 		activities = activityService.queryActivityrecommend(custom);
 		
 		/**
