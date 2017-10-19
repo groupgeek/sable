@@ -5,6 +5,16 @@ public class MessageCustom extends Message {
 private String username;
 	
 	private String email;
+	
+	private String time;
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 
 	public String getEmail() {
 		return email;

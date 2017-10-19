@@ -1,6 +1,9 @@
 package com.xiaohe.mapper;
 
+import java.util.List;
+
 import com.xiaohe.bean.Activitytype;
+import com.xiaohe.bean.ActivitytypeCustom;
 
 public interface ActivitytypeMapper {
     int deleteByPrimaryKey(Integer activitytypeid);
@@ -14,4 +17,10 @@ public interface ActivitytypeMapper {
     int updateByPrimaryKeySelective(Activitytype record);
 
     int updateByPrimaryKey(Activitytype record);
+    
+    /**
+     * 查询所以的活动类型
+     * @return
+     */
+    List<ActivitytypeCustom> AllActTypes(); 
 }

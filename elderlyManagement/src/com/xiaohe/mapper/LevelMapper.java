@@ -14,4 +14,11 @@ public interface LevelMapper {
     int updateByPrimaryKeySelective(Level record);
 
     int updateByPrimaryKey(Level record);
+    
+    /**
+     * 根据用户id查询等级
+     * @param id
+     * @return
+     */
+    Level oneLev(Integer id);
 }

@@ -11,7 +11,14 @@ public class ActivityCustom extends Activity {
 	private Integer total;
 	private String introduction;
 	private String websitetype;
+	private Integer countUsers;
 	
+	public Integer getCountUsers() {
+		return countUsers;
+	}
+	public void setCountUsers(Integer countUsers) {
+		this.countUsers = countUsers;
+	}
 	public String getWebsitetype() {
 		return websitetype;
 	}

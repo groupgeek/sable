@@ -14,4 +14,11 @@ public interface BranchMapper {
     int updateByPrimaryKeySelective(Branch record);
 
     int updateByPrimaryKey(Branch record);
+    
+    /**
+     * 根据管理员id查询分店
+     * @param employeeid
+     * @return
+     */
+    Branch oneBranch(Integer employeeid);
 }

@@ -153,4 +153,29 @@
       birthday = #{birthday,jdbcType=DATE}
     where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  
+  <select id="oneMedicalrecordsWithBLOBsCustom" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.MedicalrecordsWithBLOBsCustom">
+  select m.* from user u,medicalrecords m
+	where m.userId = u.userId
+	and u.userId = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateMeds" parameterType="com.xiaohe.bean.MedicalrecordsWithBLOBs">
+    update medicalrecords
+    set userId = #{userid,jdbcType=INTEGER},
+      nowMedicalRecords = #{nowmedicalrecords,jdbcType=LONGVARCHAR},
+      beforeMedicalRecords = #{beforemedicalrecords,jdbcType=LONGVARCHAR},
+      personalRecords = #{personalrecords,jdbcType=LONGVARCHAR},
+      familyRecords = #{familyrecords,jdbcType=LONGVARCHAR}
+    where medicalRecordsId = #{medicalrecordsid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="oneUser" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.User">
+  SELECT u.* from medicalrecords m,user u
+	where m.userId = u.userId
+	and m.medicalRecordsId = #{userid,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

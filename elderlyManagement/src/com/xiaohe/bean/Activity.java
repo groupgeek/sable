@@ -26,7 +26,7 @@ public class Activity {
 
     private String activitydetails;
 
-    public Integer getActivityid() {
+    public Integer getActivityid(){
         return activityid;
     }
 
