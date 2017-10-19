@@ -283,4 +283,7 @@
 
 	</select>
 
+	<select id="selectProductByBlurryCondition" parameterType="String" resultType="productCustom">
+		SELECT * FROM product WHERE productName LIKE '%${value}%' OR description LIKE '%${value}%'
+	</select>
 </mapper>
