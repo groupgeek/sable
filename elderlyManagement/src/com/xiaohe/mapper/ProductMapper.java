@@ -27,4 +27,18 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> selectPopularProductByCondition(ProductCustom custom);
+    
+    
+    /**
+     * 查询分店的全部商品数量
+     * @param id
+     * @return
+     */
+    int branchCountProducts(Integer id);
+    
+    /**
+     * 查询分店的热销商品
+     * @return
+     */
+    List<ProductCustom> branchHotProduct(Integer id);
 }

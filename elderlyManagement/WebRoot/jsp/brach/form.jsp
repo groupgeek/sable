@@ -3,8 +3,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -13,12 +15,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 </head>
 
 <body>
@@ -33,15 +35,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> é¾è¾äº
+								<i class="halflings-icon white user"></i>龙腾云
 								<span class="caret"></span>
-							</a>
+								</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>è´¦å·è®¾å®</span>
+ 									<span>个人中心</span>
 								</li>
-								<li><a href="###"><i class="halflings-icon user"></i>ä¸ªäººä¸­å¿</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>éåºç»é</a></li>
+								<li><a href="###"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i>安全退出</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -79,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li>
 					<i class="icon-edit"></i>
-					<a href="#">å®¢æ·å³ç³»</a>
+					<a href="#">客户关系</a>
 				</li>
 			</ul>
 <!-- ä¸ææ¡ -->
@@ -98,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>å®¢æ·å³ç³»</h2>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>客户关系</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -108,20 +110,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
-							  <tr><th>å®¢æ·å§å</th>
-								  <th>äº¤æé¢ç</th>
-								  <th>äº¤æå¨æ</th>
-								  <th>äº¤ææ¬¡æ°</th>
-								  <th>æ»éé¢</th></tr>
+							  <tr><th>客户姓名</th>
+								  <th>交易周期</th>
+								  <th>交易频率</th>
+								  <th>交易总次数</th>
+								  <th>交易总金额</th>
+								  </tr>
 						  </thead>   
 						  <tbody>
+						  <c:forEach items="${trans }" var="trans">
 							<tr>
-								<td>Dennis Ji</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center"></td>
-								<td class="center"></td>
+								<td class="center">${trans.username }</td>
+								<td class="center">${trans.cycle }</td>
+								<td class="center">${trans.frequency }</td>
+								<td class="center">${trans.totalprice }</td>
+								<td class="center">${trans.countbuy }</td>
 							</tr>
+							</c:forEach>
 						  </tbody>
 					  </table>            
 					</div>
@@ -170,60 +175,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: JavaScript-->
 
-		<script src="${pageContext.request.contextPath }/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery-migrate-1.0.0.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.ui.touch-punch.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.ui.touch-punch.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/modernizr.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/modernizr.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/bootstrap.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.cookie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cookie.js"></script>
 	
-		<script src='${pageContext.request.contextPath }/js/fullcalendar.min.js'></script>
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/fullcalendar.min.js'></script>
 	
-		<script src='${pageContext.request.contextPath }/js/jquery.dataTables.min.js'></script>
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
-		<script src="${pageContext.request.contextPath }/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.resize.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.chosen.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.uniform.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uniform.min.js"></script>
 		
-		<script src="${pageContext.request.contextPath }/js/jquery.cleditor.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cleditor.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.noty.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.noty.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.elfinder.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.elfinder.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.raty.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.raty.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.iphone.toggle.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.iphone.toggle.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.uploadify-3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uploadify-3.1.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.gritter.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.gritter.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.imagesloaded.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.imagesloaded.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.masonry.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.masonry.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.knob.modified.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.knob.modified.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.sparkline.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.sparkline.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/counter.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/counter.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/retina.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
-		<script src="${pageContext.request.contextPath }/js/custom.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

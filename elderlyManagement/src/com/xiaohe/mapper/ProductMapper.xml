@@ -283,4 +283,19 @@
 
 	</select>
 
+	<select id="branchCountProducts" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	SELECT COUNT(*)from product p,employee e,branch b
+	where p.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+	</select>
+	
+	<select id="branchHotProduct"  parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ProductCustom">
+	select * from product p,branch b,employee e
+	where p.branchId = b.branchId
+	and b.employeeId = e.employeeId 
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+	ORDER BY p.buyNo DESC
+	LIMIT 0,10
+	</select>
 </mapper>

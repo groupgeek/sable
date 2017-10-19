@@ -99,7 +99,11 @@
   </select>
   
 	<select id="allMessages"  parameterType="com.xiaohe.bean.MessageVo" resultType="com.xiaohe.bean.MessageCustom">
-  	SELECT m.*,u.username,u.email from message m,user u WHERE u.userId = m.userId  ORDER BY messageTime DESC LIMIT #{start},#{size}
+  	SELECT m.*,u.username,u.email 
+  	from message m,user u 
+  	WHERE u.userId = m.userId  
+  	ORDER BY messageTime DESC 
+  	LIMIT #{start},#{size}
  	</select>
   
   <select id="somecount" resultType="java.lang.Integer">
@@ -108,5 +112,23 @@
   
   <select id="oneMessage" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.MessageCustom">
   select m.*,username,email from user u,message m where u.userid = m.userid and m.messageid = #{messageid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="branchMessages" parameterType="com.xiaohe.bean.MessageVo" resultType="com.xiaohe.bean.MessageCustom">
+ 	SELECT m.*,u.username,u.email from message m,branch b,employee e,user u
+	where m.userId = u.userId
+	and u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+	ORDER BY messageTime DESC
+	LIMIT #{start},#{size}
+  </select>
+  
+  <select id="branchMessagesCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  	SELECT count(m.messageId) from message m,branch b,employee e,user u
+	where m.userId = u.userId
+	and u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId =#{employeeid,jdbcType=INTEGER}
   </select>
 </mapper>

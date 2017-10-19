@@ -5,6 +5,14 @@ public class MessageVo {
 	private int start;
 	private int size;
 	private int count;
+	private Integer employeeid;
+	
+	public Integer getEmployeeid() {
+		return employeeid;
+	}
+	public void setEmployeeid(Integer employeeid) {
+		this.employeeid = employeeid;
+	}
 	private Integer nowPage;
 	public Integer getNowPage() {
 		return nowPage;

@@ -176,16 +176,23 @@
   </update>
   
   <!-- 自定义sql -->
-  <select id="queryBranchOderIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
+ <!--  <select id="branchIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
   SELECT sum(o.totalPrice) from orders o,branch b 
   where o.branchId = b.branchId 
   and b.employeeId =  #{employeeid,jdbcType=INTEGER}
-  </select>
+  </select> -->
   
-  <select id="branchIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
+  <select id="queryBranchOderIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
   select sum(o.totalPrice) from orders o,employee e,branch b 
   where e.employeeId = b.employeeId 
   and b.branchId = o.branchId 
   and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="branchCountOrders" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
+  SELECT COUNT(*)from orders o,employee e,branch b
+	where o.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
 </mapper>

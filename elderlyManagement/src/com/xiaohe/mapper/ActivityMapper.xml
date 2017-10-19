@@ -275,7 +275,12 @@
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
-  
+  <select id="branchCountActivity" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  SELECT COUNT(*)from activity a,employee e,branch b
+	where a.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
   
   
 </mapper>

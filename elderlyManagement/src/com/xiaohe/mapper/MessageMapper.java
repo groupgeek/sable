@@ -48,4 +48,16 @@ public interface MessageMapper {
      */
     int somecount();
     
+    /**
+     * 查询分店的所有留言信息
+     * @return
+     */
+    List<MessageCustom> branchMessages(MessageVo messageVo);
+    
+    /**
+     * 查询分店的信息条数
+     * @return
+     */
+    int branchMessagesCount(Integer id);
+    
 }

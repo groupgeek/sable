@@ -8,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
+import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.Returnvisit;
+import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.UserCustom;
 
 @Transactional
@@ -90,5 +93,65 @@ public interface BranchAdminService {
 	 */
 	public List<UserCustom> branchUser(Integer areaid);
 	
+	/**
+	 * 查询分店的所有信息
+	 * @return
+	 */
+	public List<MessageCustom> branchMessages(MessageVo messageVo);
 	
+	/**
+	 * 查询分店信息的总条数
+	 * @return
+	 */
+	public int branchMessagesCount(Integer id);
+	
+	/**
+	 * 查询分店总用户数
+	 * @param id
+	 * @return
+	 */
+	public int branchCountUsers(Integer id);
+	
+	/**
+	 * 查询分店总活动数
+	 * @param id
+	 * @return
+	 */
+	public int branchCountActivities(Integer id);
+	
+	/**
+	 * 查询分店总订单数
+	 * @param id
+	 * @return
+	 */
+	public int brachCountOrders(Integer id);
+	
+	/**
+	 * 查询分店总商品数
+	 * @param id
+	 * @return
+	 */
+	public int branchCountProducts(Integer id);
+	
+	
+	/**
+	 * 查询分店的热销商品
+	 * @param id
+	 * @return
+	 */
+	public List<ProductCustom>branchHotProduct(Integer id);
+	
+	/**
+	 * 查询分店的客户关系
+	 * @param id
+	 * @return
+	 */
+	public List<TransactionCustom> branchAllTran(Integer id);
+	
+	/**
+	 * 查询分店的回访信息
+	 * @param id
+	 * @return
+	 */
+	public List<Returnvisit> branchReturnVist(Integer id);
 }
