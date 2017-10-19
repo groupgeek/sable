@@ -41,4 +41,11 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> branchHotProduct(Integer id);
+    
+    /**
+     * 模糊查询,查询字段：名字，描述
+     * @param condition
+     * @return
+     */
+    List<ProductCustom> selectProductByBlurryCondition(String condition);
 }

@@ -79,4 +79,9 @@
       discountReason = #{discountreason,jdbcType=VARCHAR}
     where discountId = #{discountid,jdbcType=INTEGER}
   </update>
+  
+  
+  <select id="selectDiscountProducts" parameterType="Integer" resultType="ProductCustom">
+  	SELECT p.* FROM product p , discount d WHERE p.productId = d.productId LIMIT #{id}
+  </select>
 </mapper>
