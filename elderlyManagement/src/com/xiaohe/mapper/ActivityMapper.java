@@ -50,6 +50,11 @@ public interface ActivityMapper {
      */
     BigDecimal branchEduIncome(Integer id);
     
-    
+    /**
+     * 查询分店的全部活动数量
+     * @param id
+     * @return
+     */
+    int branchCountActivity(Integer id);
    
 }

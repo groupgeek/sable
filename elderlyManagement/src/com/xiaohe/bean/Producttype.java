@@ -30,4 +30,11 @@ public class Producttype {
     public void setFatherid(Integer fatherid) {
         this.fatherid = fatherid;
     }
+
+	@Override
+	public String toString() {
+		return "Producttype [producttypeid=" + producttypeid
+				+ ", producttypename=" + producttypename + ", fatherid="
+				+ fatherid + "]";
+	}
 }

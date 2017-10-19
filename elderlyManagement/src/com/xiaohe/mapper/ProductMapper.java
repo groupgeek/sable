@@ -19,12 +19,38 @@ public interface ProductMapper {
     int updateByPrimaryKeyWithBLOBs(Product record);
 
     int updateByPrimaryKey(Product record);
-
-    
     /**
-     * 商品查询(包括商品名字模糊查询，也可以分页) 按照购买次数排序
+     * 商品查询(包括商品名字模糊查询，也可以分页) 按照购买次数排序 热门
      * @param custom 条件
      * @return
      */
     List<ProductCustom> selectPopularProductByCondition(ProductCustom custom);
+    
+    
+    /**
+     * 查询分店的全部商品数量
+     * @param id
+     * @return
+     */
+    int branchCountProducts(Integer id);
+    
+    /**
+     * 查询分店的热销商品
+     * @return
+     */
+    List<ProductCustom> branchHotProduct(Integer id);
+    
+    /**
+     * 模糊查询,查询字段：名字，描述
+     * @param condition
+     * @return
+     */
+    List<ProductCustom> selectProductByBlurryCondition(String condition);
+    
+    /**
+     * 根据商品分类进行查询，可分页，模糊，根据购买次数，好评，价格排序
+     * @param condition
+     * @return 商品集合
+     */
+    List<ProductCustom> selectProductByCondition(ProductCustom condition);
 }

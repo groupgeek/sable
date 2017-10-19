@@ -22,11 +22,10 @@ public interface OrdersMapper {
      * 查询分店订单的总收入
      * @return
      */
-    BigDecimal queryBranchOderIncome();
+    BigDecimal queryBranchOderIncome(Integer id);
     
-    /**
-     * 查询分店的总收入
-     * @return
-     */
-    BigDecimal branchIncome();
+    
+   /* BigDecimal branchIncome();*/
+    
+    int branchCountOrders(Integer id);
 }

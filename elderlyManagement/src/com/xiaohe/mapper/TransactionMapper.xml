@@ -103,4 +103,14 @@
       countBuy = #{countbuy,jdbcType=INTEGER}
     where transactionId = #{transactionid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="branchAlltran" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.TransactionCustom">
+  SELECT t.*,u.username FROM transaction t,employee e,user u,branch b
+	where t.userId = u.userId
+	and u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

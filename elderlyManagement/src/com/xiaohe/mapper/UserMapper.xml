@@ -232,8 +232,19 @@
 	SELECT * FROM `user` WHERE phone = #{id}  
   </select>
   
-  <!-- 查询分店所有用户 -->
+  <!-- 查询分店所有用户信息 -->
    <select id="branchUserCustoms" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom" >
-  SELECT u.* from user u,branch b,Employee e where b.employeeId = e.employeeId and b.areaId = u.areaId and e.employeeId = #{employeeId,jdbcType=INTEGER}
+  SELECT u.* from user u,branch b,Employee e 
+  where b.employeeId = e.employeeId 
+  and b.areaId = u.areaId 
+  and e.employeeId = #{employeeId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询分店所有用户数量 -->
+  <select id="countBranchUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  SELECT COUNT(*)from user u,employee e,branch b
+	where u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeId,jdbcType=INTEGER}
   </select>
 </mapper>

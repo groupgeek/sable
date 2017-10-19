@@ -47,4 +47,10 @@ public interface UserMapper {
      * @return
      */
     List<UserCustom> branchUserCustoms(Integer areaid);
+    
+    /**
+     * 查询分店的所有用户数量
+     * @return
+     */
+    int countBranchUser(Integer id);
 }
