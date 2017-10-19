@@ -47,9 +47,9 @@ public class ActivityServiceImpl implements ActivityService {
 		return sub(activityCustoms,4);
 	}
 
-	public List<ActivityCustom> queryActivityrecommend(String type) {
+	public List<ActivityCustom> queryActivityrecommend(ActivityrecommendCustom custom) {
 		
-		List<ActivityCustom> activityCustoms = activityMapper.selectActivityrecommendByType(type);
+		List<ActivityCustom> activityCustoms = activityMapper.selectActivityrecommendByCondition(custom);
 	
 		return sub(activityCustoms,4);
 	}

@@ -70,7 +70,7 @@
 							placeholder="请输入手机号码" autocomplete="off" required>
 						</div>
 						<div class="form-group">
-							<p><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a> or <a href="${pageContext.request.contextPath }/jsp/logReg/sign-up.jsp">注册</a></p>
+							<p><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a> or <a href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a></p>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="发送" class="btn btn-primary">

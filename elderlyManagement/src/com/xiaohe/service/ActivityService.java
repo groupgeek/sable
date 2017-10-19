@@ -43,11 +43,11 @@ public interface ActivityService {
 	public List<ActivityCustom> queryActivitiesByCondition(ActivityCustom activityCondition);
 	
 	/**
-	 * 查询活动推荐表，根据官网类型区分
-	 * @param type 官网类型
+	 * 查询活动推荐表，根据ActivityrecommendCustom区分
+	 * @param ActivityrecommendCustom 条件
 	 * @return ActivityCustom集合
 	 */
-	public List<ActivityCustom> queryActivityrecommend(String type);
+	public List<ActivityCustom> queryActivityrecommend(ActivityrecommendCustom custom);
 	
 
 }

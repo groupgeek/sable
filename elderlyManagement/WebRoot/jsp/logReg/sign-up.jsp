@@ -52,6 +52,15 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	
+	<style type="text/css">
+		.select{
+			height: 45px;
+			width: 200px;
+			border-color: #E6E6E6;
+			font: #828282;
+		}
+	</style>
 
 </head>
 <body>
@@ -70,7 +79,7 @@
 							<div class="alert alert-success" role="alert">Your info has been saved.</div>
 						</div> -->
 					<div class="form-group">
-						<label for="name" class="sr-only">姓名</label> <input type="text"
+						<label for="name" class="sr-only">姓名</label> <input type="text" onfocus="selectArea()"
 							class="form-control" id="name" name="username" placeholder="姓名"
 							minlength=2 autocomplete="off" required>
 					</div>
@@ -81,6 +90,21 @@
 							digits=true minlength=11 maxlength=11 placeholder="手机号码"
 							autocomplete="off" required>
 					</div>
+					
+					<div class="form-group">
+						<label for="email" class="sr-only">选择地区</label>
+						<!-- <input type="text" class="form-control" id="email" name="areaid"
+							autocomplete="off" required> -->
+							<div style="height: 10px;"></div>
+							<select class="select" id = "selectArea" name="areaid">
+								<option>请选择您所在地区</option>
+								<c:forEach items="${allAreas }" var="allArea" varStatus="ststus">
+									<option value = "${allArea.areaid }">${allArea.areaname }</option>
+								</c:forEach>
+								
+							</select>
+					</div>
+					
 					<div class="form-group">
 						<label for="password" class="sr-only">密码</label> <input
 							type="password" class="form-control" id="password" minlength=6
@@ -145,6 +169,10 @@
 			$("#register").validate();
 		});
 	</script>
+	
+	
+	
+	
 
 	<!-- 		<script
 	src="//www.w3cschool.cn/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
