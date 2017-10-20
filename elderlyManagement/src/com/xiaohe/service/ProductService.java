@@ -50,5 +50,12 @@ public interface ProductService {
      * @return 商品集合
      */
 	List<ProductCustom> queryProductByCondition(ProductCustom condition);
+	
+	/**
+	 * 查询产品总数
+	 * @param condition
+	 * @return
+	 */
+	Integer queryProductSumByCondition(ProductCustom condition);
 
 }

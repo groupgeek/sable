@@ -1,12 +1,19 @@
 package com.xiaohe.bean;
 
 public class ProductCustom extends Product {
-	private Integer begin;
-	private Integer total;
+	private Integer begin;//开始
+	private Integer total;//每一页的条数
 	private Integer areaid;
-	private String sort;
+	private String sort;//排序的方式
 	private String producttypename;
 	private String search;
+	private Integer currentPage;
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
 	public String getSearch() {
 		return search;
 	}
