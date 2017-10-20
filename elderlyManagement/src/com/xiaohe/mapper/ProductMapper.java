@@ -49,6 +49,7 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> selectProductByBlurryCondition(String condition);
+<<<<<<< HEAD
     
     
     //查询分店所有商品
@@ -56,4 +57,6 @@ public interface ProductMapper {
     
     //分店管理员查询
     EmployeeCustom selectAdminCustom(Integer employeeid);
+=======
+>>>>>>> e51a28b8ba22f40553fb3f233e977df6c65e66c9
 }
