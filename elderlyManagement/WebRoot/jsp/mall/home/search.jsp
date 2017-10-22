@@ -656,13 +656,6 @@
 				});
 
 			
-			/* data:'{"producttypename"'+':'+'"'+producttypename+'"'+","
-					        					+"search"+':'+'"'+search+'"'+","
-					        					+"producttypename"+':'+'"'+producttypename+'"'+","
-					        					+"producttypename"+':'+'"'+producttypename+'"'+","
-					        					+"producttypename"+':'+'"'+producttypename+'"'+","
-					        					+"producttypename"+':'+'"'+producttypename+'"'+","
-					        				+'}', //数据传递 */
 			$("#ai-topsearch ,#ull li ,.sort li ,#selectDt dd").click(function(){
 				if($(this).attr("id") == "ai-topsearch"){
 					var producttypename = $("#selectB a").html();
