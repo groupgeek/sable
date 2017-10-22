@@ -748,11 +748,6 @@
 				}
 				
 				function ajacUpdate(id,sort,currentPage){
-					/* alert($(id).attr("id"));
-					alert(sort);
-					alert(currentPage); */
-					//alert("currentPage1"+$(id).attr("value"));
-					//alert("currentPage2"+currentPage);
 					var producttypename = $("#selectB a").html();
 					var search = document.getElementById("searchInput").value;
 					
