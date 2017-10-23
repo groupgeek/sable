@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.service.ProductManageService;
@@ -29,8 +30,8 @@ public class ProductManageServiceImpl implements ProductManageService {
 		
 	}
 
-	public void insertProduct(ProductCustom productCustom) throws Exception {
-		productMapper.insertSelective(productCustom);
+	public void insertProduct(Product product) throws Exception {
+		productMapper.insertSelective(product);
 	}
 
 public EmployeeCustom productManageAdminsLogin(EmployeeCustom employeeCustom)throws Exception {
@@ -48,5 +49,16 @@ public EmployeeCustom productManageAdminsLogin(EmployeeCustom employeeCustom)thr
 			return admin;
 		}
 	}
+
+
+
+public Product quertyProduct(Integer productid) throws Exception {
+	
+	return productMapper.selectByPrimaryKey(productid);
+}
+
+public void updateProductCustom(Product product) throws Exception {
+	productMapper.updateByPrimaryKeySelective(product);
+}
 
 }

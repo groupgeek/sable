@@ -125,32 +125,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 
                     <form id="insertproduct" action="${pageContext.request.contextPath }/productmanage/insertproduct.action">
                     <table class="form">
+                      <input type="text" name="productid" style="visibility:hidden"/>
                         <tr>
                             <td class="col1">
                                 <label>商品名</label>
                             </td>
                             <td class="col2">
-                                <input type="text" id="grumble" />
+                                <input type="text" id="grumble" name="productname"/>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    Small Input</label>
+                      <tr>
+                            <td class="col1">
+                                <label>价格</label>
                             </td>
-                            <td>
-                                <input type="text" class="mini" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    Medium Sized Input</label>
-                            </td>
-                            <td>
-                                <input type="text" class="medium" />
+                            <td class="col2">
+                                <input type="text" id="grumble" name="price"/>
                             </td>
                         </tr>
+                        
+                           
+                      <tr>
+                            <td class="col1">
+                                <label>折扣</label>
+                            </td>
+                            <td class="col2">
+                                <input type="text" id="grumble" name="discount"/>
+                            </td>
+                        </tr>
+                            
+                      <tr>
+                            <td class="col1">
+                                <label>进价</label>
+                            </td>
+                            <td class="col2">
+                                <input type="text" id="grumble" name="purchaseprice"/>
+                            </td>
+                        </tr>
+                    
                         <tr>
                             <td>
                                 <label>
@@ -170,7 +181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <span class="error">This is a required field.</span>
                             </td>
                         </tr> -->
-                        <tr>
+                      <!--   <tr>
                             <td>
                                 <label>
                                     Success</label>
@@ -179,14 +190,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="text" class="success"  name="email"/>
                                 <span class="success">Email address verfified.</span>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>
                                 <label>
-                                    Warning</label>
+                                    库存量</label>
                             </td>
                             <td>
-                                <input type="text" class="warning" />
+                                <input type="text" class="warning" name="instock" />
                             </td>
                         </tr>
                     <!--     <tr>
@@ -198,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="text" />
                             </td>
                         </tr> -->
-                        <tr>
+                       <!--  <tr>
                             <td>
                                 <label>
                                     Checkboxes</label>
@@ -207,15 +218,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="checkbox" />Checkbox 1
                                 <input type="checkbox" />Checkbox 2
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>
                                 <label>是否上架</label>
                             </td>
                             <td>
-                                <input type="radio" name="rd1" />
+                                <input type="radio" value="1" name="shelves" />
                             		    上架
-                                <input type="radio" name="rd1" />
+                                <input type="radio" value="0" name="shelves" />
       							    不上架
                             </td>
                         </tr>
@@ -225,58 +236,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 		    商品类型</label>
                             </td>
                             <td>
-                                <select id="select" name="producttypename">
+                                <select id="select" name="producttypeid" >
                                 <c:forEach var="type" items="${productTypes}">
-                                   <option value=" ${type.producttypename }">
+                                   <option value="${type.producttypeid }">
                                    ${type.producttypename }
                                    </option>
                                    </c:forEach>  
-                                   <!--  <option value="2">Value 2</option>
-                                    <option value="3">Value 3</option> -->
                                 </select>
                             </td>
                         </tr>
-                       <!--  <tr>
-                            <td>
-                                <label>
-                                    Progress Bar</label>
-                            </td>
-                            <td>
-                                <div id="progress-bar">
-                                </div>
-                            </td>
-                        </tr> -->
-                        <!-- <tr>
-                            <td>
-                                <label>
-                                    Dialog Box</label>
-                            </td>
-                            <td>
-                                <div id="dialog" title="Basic dialog">
-                                    <p>
-                                        This is an animated dialog which is useful for displaying information. The dialog
-                                        window can be moved, resized and closed with the 'x' icon.</p>
-                                </div>
-                                <button id="opener">
-                                    Open Dialog</button>
-                            </td>
-                        </tr> -->
-                        <tr>
-                            <td>
-                                <label>
-                                    Date Picker</label>
-                            </td>
-                            <td>
-                                <input type="text" id="date-picker" />
-                            </td>
-                        </tr>
+                     
                         <tr>
                             <td>
                                 <label>
                                    	商品图片</label>
                             </td>
                             <td>
-                                <input type="file" />
+                                <input type="file"	name="picture" />
                             </td>
                         </tr>
                         <tr>
@@ -285,9 +261,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 		商品描述		</label>
                             </td>
                             <td>
-                                <textarea class="tinymce"></textarea>
+                                <textarea class="tinymce" name="discount"></textarea>
                             </td>
                         </tr>
+                        <tr>
+                        <td>
+                        <input type="submit"  value="提交" />
+                        
+                        <input type="reset" value="重置">
+                        </td>
+                        </tr>
+                        
                     </table>
                     </form>
                 </div>

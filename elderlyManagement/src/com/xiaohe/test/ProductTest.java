@@ -1,5 +1,7 @@
 package com.xiaohe.test;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.service.ProductService;
@@ -51,13 +54,22 @@ public class ProductTest {
 	@Test
 	public void type1(){
 		ProductCustom products = new ProductCustom();
-		products.setSearch("1");
-		products.setProducttypename("衣服");
-		products.setSort("good");
-		products.setBegin(0);
-		products.setTotal(5);
-		
-		System.out.println(productService.queryProductByCondition(products).size());
+		//products.setSearch("");
+		//products.setProducttypename("裤子");
+		products.setSort("price");
+		//products.setBegin(1);
+		//products.setTotal(1);
+		//products.setCurrentPage(2);
+		//products.setSort("price");
+		//products.setBegin(1);
+		products.setTotal(4);
+		products.setCurrentPage(1);
+		java.util.List<ProductCustom> haha = new ArrayList<ProductCustom>();
+		haha = productService.queryProductByCondition(products);
+		for(ProductCustom h : haha ){
+			
+			System.out.println(h.getPrice());
+		}
 	}
 	
 	

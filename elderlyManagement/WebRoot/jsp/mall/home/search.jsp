@@ -58,7 +58,11 @@
 					<a name="index_none_header_sysc" href="#"></a>
 					<form>
 						<input id="searchInput" name="index_none_header_sysc" type="text" value="${searchCondition }" placeholder="搜索" autocomplete="off">
+<<<<<<< HEAD
 						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
+=======
+						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="button">
+>>>>>>> dbc6736877875b9ac4a4ab3d3ff9922234333c21
 					</form>
 				</div>
 			</div>
@@ -71,7 +75,7 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="#">首页</a></li>
+								<li class="index"><a href="#" id = "hah">首页</a></li>
                                 <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
@@ -97,8 +101,7 @@
 							</div>
 							<ul class="select">
 								<p class="title font-normal">
-									<span class="fl">松子</span>
-									<span class="total fl">搜索到<strong class="num">997</strong>件相关商品</span>
+									<span class="total fl">搜索到<strong class="num" id = "productPage">${sum }</strong>页相关商品</span>
 								</p>
 								<div class="clear"></div>
 								<li class="select-result">
@@ -113,9 +116,9 @@
 									<dl id="selectType">
 										<dt class="am-badge am-round">种类</dt>
 										<div class="dd-conent">
-											<dd class="select-all selected"><a href="#">全部</a></dd>
+											<!-- <dd class="select-all selected"><a href="#">全部</a></dd> -->
 											<c:forEach items="${producttypeCustoms }" var="producttypeCustom">
-											<dd><a href="#">${producttypeCustom.producttypename }</a></dd>
+											<dd><a href="javascript:;">${producttypeCustom.producttypename }</a></dd>
 											</c:forEach>
 											
 										</div>
@@ -126,7 +129,11 @@
 									<dl id="select2">
 										<dt class="am-badge am-round">类型</dt>
 										<div class="dd-conent" id="selectTypeSon">
+<<<<<<< HEAD
 											<dd class="select-all selected"><a href="#">全部</a></dd>
+=======
+											<dd></dd>
+>>>>>>> dbc6736877875b9ac4a4ab3d3ff9922234333c21
 										</div>
 									</dl>
 								</li>
@@ -136,14 +143,17 @@
                         </div>
 							<div class="search-content">
 								<div class="sort">
-									<li class="first"><a title="综合">综合排序</a></li>
-									<li><a title="销量">销量排序</a></li>
-									<li><a title="价格">价格优先</a></li>
-									<li class="big"><a title="评价" href="#">评价为主</a></li>
+									<li value = "buyNo" id = "buyNo"><a title="销量" href="javascript:;">销量排序</a></li>
+									<li value = "price" id = "price"><a title="价格" href="javascript:;">价格优先</a></li>
+									<li class="big" value = "good" id = "evaluation"><a title="评价" href="javascript:;">评价为主</a></li>
 								</div>
 								<div class="clear"></div>
 
+<<<<<<< HEAD
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
+=======
+								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes" id = "products">
+>>>>>>> dbc6736877875b9ac4a4ab3d3ff9922234333c21
 									
 									<c:forEach items="${blurryProductCustoms }" var="blurryProductCustom">
 										<li>
@@ -212,14 +222,12 @@
 							</div>
 							<div class="clear"></div>
 							<!--分页 -->
-							<ul class="am-pagination am-pagination-right">
-								<li class="am-disabled"><a href="#">&laquo;</a></li>
-								<li class="am-active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
+							<p style="float: right; height: 10px;">当前为第<strong id = "productCurrentPage">1</strong>页</p>
+							<ul class="am-pagination am-pagination-right" id = "ull">
+								<li value="${currentPage }" id = "home"><a href="javascript:;">首页</a></li>
+								<li value="${currentPage }" id = "previousPage"><a href="javascript:;">&laquo;</a></li>
+								<li value="${currentPage }" id = "nextPage"><a href="javascript:;">&raquo;</a></li>
+								<li value="${sum }" id = "lastPage"><a href="javascript:;">尾页</a></li>
 							</ul>
 
 						</div>
@@ -425,7 +433,9 @@
 <div class="theme-popover-mask"></div>
 		<script type="text/javascript">
 		
+				
 				$(document).ready(function(){
+				
 					$("#selectType dd").click(function(){
 					$(this).unbind("click");
 						var producttypename = $(this).text();
@@ -437,9 +447,9 @@
 		        			data:'{"producttypename"'+':'+'"'+producttypename+'"}',
 		        			success:function(data,status){
 		        				//alert(data[0].producttypename);
-		        				
+		        				//$("#selectTypeSon").html(" ");
 		        				for(var temp in data){
-		        					$("#selectTypeSon").append('<dd><a href="#">'+data[temp].producttypename+''+'</a></dd>');
+		        					$("#selectTypeSon").append('<dd><a href="javascript:;">'+data[temp].producttypename+''+'</a></dd>');
 		        				}
 		        				
 		        				
@@ -487,7 +497,6 @@
 							
 								$("#select2 dd").click(function() {
 								//***************************获取到子类的类型名字**************************/
-								alert($(this).text());
 									$(this).addClass("selected").siblings().removeClass("selected");
 									if ($(this).hasClass("select-all")) {
 										$("#selectB").remove();
@@ -507,7 +516,9 @@
 								});
 							
 								$("#selectB").live("click", function() {
+									//alert($(this).html());
 									$(this).remove();
+									queryProducts();
 									$("#select2 .select-all").addClass("selected").siblings().removeClass("selected");
 								});
 							
@@ -538,11 +549,282 @@
 									$(".select-result").hide();
 							
 								});
+								
+								
+								function queryProducts(){
+								
+									//alert($(id).html());
+									var producttypename = $("#selectB a").html();
+									var search = document.getElementById("searchInput").value;
+									
+									$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/queryProduct_json.action",
+					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+					        					+'"search"'+':'+'"'+search+'"'+','
+					        					+'"currentPage"'+':'+'"'+1+'"'
+					        			+'}',	
+					        			success:function(data){
+					        				//添加展示的商品
+					        				$("#products").html(" ");
+					        				$("#nextPage").attr("value",1);
+					        				$("#previousPage").attr("value",1);
+					        				productSumPage();//更新页数
+					        				for (var i in data){
+					        					$("#products").append(
+					        						'<li>'+
+														'<div class="i-pic limit">'+
+															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+															'<p class="title fl">'+data[i].productname+'</p>'+
+															'<p class="price fl">'+
+																'<b>¥</b>'+
+																'<strong>'+data[i].price+'</strong>'+
+															'</p>'+
+															'<p class="number fl">'+
+																'销量<span>'+data[i].buyno+'</span>'+
+															'</p>'+
+														'</div>'+
+													'</li>'
+					        					);
+					        				}
+					        			}
+									});
+									
+									
+									
+									
+									
+								
+								}
+								function productSumPage(){
+								
+									var producttypename = $("#selectB a").html();
+										var search = document.getElementById("searchInput").value;
+										$.ajax({
+														type:"post",
+														contentType:"application/json;charset=utf-8",
+									        			url:"${pageContext.request.contextPath }/product/queryProductSum_json.action",
+									        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+									        					+'"search"'+':'+'"'+search+'"'
+									        			+'}',	
+									        			success:function(data){
+									        					//alert(data-1+":尾页");
+									        					$("#lastPage").attr("value",data);
+									        					$("#productPage").html(data);
+									        			}
+										});
+								
+								
+								}
+												
+								
+								$("#selectDt dd").click(function(){
+									//alert($("#selectB a").html());//类型
+									//alert(document.getElementById("searchInput").value);//文本框
+									/* var producttypename = $("#selectB a").html();
+									var search = document.getElementById("searchInput").value;
+									
+									$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/queryProduct_json.action",
+					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+					        					+'"search"'+':'+'"'+search+'"'+','
+					        					+'"currentPage"'+':'+'"'+1+'"'
+					        			+'}',	
+					        			success:function(data){
+					        				//添加展示的商品
+					        				$("#products").html(" ");
+					        				$("#nextPage").attr("value",1);
+					        				$("#previousPage").attr("value",1);
+					        				productSumPage();//更新页数
+					        				for (var i in data){
+					        					$("#products").append(
+					        						'<li>'+
+														'<div class="i-pic limit">'+
+															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+															'<p class="title fl">'+data[i].productname+'</p>'+
+															'<p class="price fl">'+
+																'<b>¥</b>'+
+																'<strong>'+data[i].price+'</strong>'+
+															'</p>'+
+															'<p class="number fl">'+
+																'销量<span>'+data[i].buyno+'</span>'+
+															'</p>'+
+														'</div>'+
+													'</li>'
+					        					);
+					        				}
+					        			}
+									}); */
+									queryProducts();
+									
+								});//选择商品类型进行局部更新商品
 		        			}
 		        		
 		        		});
 						
 				});
+
+			
+			$("#ai-topsearch ,#ull li ,.sort li ,#selectDt dd").click(function(){
+				if($(this).attr("id") == "ai-topsearch"){
+					var producttypename = $("#selectB a").html();
+					var search = document.getElementById("searchInput").value;
+					productSum();
+					$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/queryProduct_json.action",
+					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+					        					+'"search"'+':'+'"'+search+'"'+','
+					        					+'"sort"'+':'+'"'+sort+'"'+','
+					        					+'"currentPage"'+':'+'"'+1+'"'
+					        			+'}',	
+					        			success:function(data){
+					        				//添加展示的商品
+					        				//alert("商品"+data);
+					        				$("#products").html(" ");
+					        				for (var i in data){
+					        					$("#products").append(
+					        						'<li>'+
+														'<div class="i-pic limit">'+
+															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+															'<p class="title fl">'+data[i].productname+'</p>'+
+															'<p class="price fl">'+
+																'<b>¥</b>'+
+																'<strong>'+data[i].price+'</strong>'+
+															'</p>'+
+															'<p class="number fl">'+
+																'销量<span>'+data[i].buyno+'</span>'+
+															'</p>'+
+														'</div>'+
+													'</li>'
+					        					);
+					        				}
+					        			}
+									});
+					
+				}
+				
+				if($(this).attr("id") == "buyNo" || $(this).attr("id") == "price"  || $(this).attr("id") == "evaluation"){
+					var sort = $(this).attr("id");
+					alert(sort);
+					//ajacUpdate(this,sort,null);
+				}
+				
+				if($(this).attr("id") == "home" || $(this).attr("id") == "previousPage"  || $(this).attr("id") == "nextPage"|| $(this).attr("id") == "lastPage"){
+					var currentPage = $(this).attr("value");
+					//alert(currentPage);
+					//if($(this).attr("id") == "lastPage"){
+						/* var producttypename = $("#selectB a").html();
+						var search = document.getElementById("searchInput").value;
+						$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/queryProductSum_json.action",
+					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+					        					+'"search"'+':'+'"'+search+'"'
+					        			+'}',	
+					        			success:function(data){
+					        					//alert(data-1+":尾页");
+					        					$("#lastPage").attr("value",data);
+					        					$("#productPage").html(data);
+					        			}
+						}); */
+					//}
+					productSum();
+					ajacUpdate(this,null,currentPage);
+				}
+				
+				function productSum(){
+				
+					var producttypename = $("#selectB a").html();
+						var search = document.getElementById("searchInput").value;
+						$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/queryProductSum_json.action",
+					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+					        					+'"search"'+':'+'"'+search+'"'
+					        			+'}',	
+					        			success:function(data){
+					        					//alert(data-1+":尾页");
+					        					$("#lastPage").attr("value",data);
+					        					$("#productPage").html(data);
+					        			}
+						});
+				
+				
+				}
+				
+				function ajacUpdate(id,sort,currentPage){
+					var producttypename = $("#selectB a").html();
+					var search = document.getElementById("searchInput").value;
+					
+					if("previousPage" == $(id).attr("id")){
+						if(currentPage > 1){
+							$(id).attr("value",currentPage-1);
+							$("#nextPage").attr("value",currentPage-1);
+						}
+					}
+					if("nextPage" == $(id).attr("id")){
+						//alert(sort);
+						if($(id).attr("value") < $("#lastPage").attr("value")){
+						
+							$(id).attr("value",currentPage+1);
+							$("#previousPage").attr("value",currentPage+1);
+						}
+					}
+					if("home" == $(id).attr("id")){
+						$("#nextPage").attr("value",1);
+						$("#previousPage").attr("value",1);
+					}
+					if("lastPage" == $(id).attr("id")){
+						$("#nextPage").attr("value",$(id).attr("value"));
+						$("#previousPage").attr("value",$(id).attr("value"));
+						
+					}
+					//alert("当前页"+$(id).attr("value"));	
+					//alert("页："+$("#productCurrentPage").text());
+					$("#productCurrentPage").text($(id).attr("value"));
+									$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/queryProduct_json.action",
+					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
+					        					+'"search"'+':'+'"'+search+'"'+','
+					        					+'"sort"'+':'+'"'+sort+'"'+','
+					        					+'"currentPage"'+':'+'"'+$(id).attr("value")+'"'
+					        			+'}',	
+					        			success:function(data){
+					        				//添加展示的商品
+					        				//alert("商品"+data)
+					        				$("#products").html(" ");
+					        				for (var i in data){
+					        					$("#products").append(
+					        						'<li>'+
+														'<div class="i-pic limit">'+
+															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+															'<p class="title fl">'+data[i].productname+'</p>'+
+															'<p class="price fl">'+
+																'<b>¥</b>'+
+																'<strong>'+data[i].price+'</strong>'+
+															'</p>'+
+															'<p class="number fl">'+
+																'销量<span>'+data[i].buyno+'</span>'+
+															'</p>'+
+														'</div>'+
+													'</li>'
+					        					);
+					        				}
+					        			}
+									});
+									
+					
+				}
+			});
 			
 		
 		});

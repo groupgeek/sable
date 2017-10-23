@@ -57,8 +57,32 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<ProductCustom> queryProductByCondition(ProductCustom condition) {
-		
-		return productMapper.selectProductByCondition(condition);
+		if(condition.getCurrentPage() >= 1){
+			 Integer tempBegin = (condition.getCurrentPage()-1) * condition.getTotal();
+			condition.setBegin(tempBegin);
+			/*condition.setSort(null);
+			condition.setProducttypename(null);*/
+		}
+		if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
+			condition.setProducttypename(null);
+		}
+		if(condition.getSort() == "" || "null".equals(condition.getSort())){
+			condition.setSort(null);
+		}
+		List<ProductCustom> listTemp = productMapper.selectProductByCondition(condition);
+		return listTemp;
+	}
+
+	public Integer queryProductSumByCondition(ProductCustom condition) {
+
+		if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
+			condition.setProducttypename(null);
+		}
+		if(condition.getSort() == "" || "null".equals(condition.getSort())){
+			condition.setSort(null);
+		}
+		Integer sum = productMapper.selectProductSumByCondition(condition);
+		return sum;
 	}
 
 }

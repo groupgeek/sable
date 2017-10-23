@@ -315,7 +315,7 @@
 		
 <select id="selectProductByCondition" parameterType="productCustom" resultType="productCustom">
 		SELECT * FROM product WHERE
-			productName LIKE '%${search}%' AND description LIKE '%${search}%' 
+			(productName LIKE '%${search}%' OR description LIKE '%${search}%')
 		<if test="producttypename != null">
 			
 			AND productTypeId = (SELECT producttypeid FROM producttype WHERE producttypename = #{producttypename})
@@ -333,4 +333,14 @@
 		</if>
 	
 	</select>
+	<select id="selectProductSumByCondition" parameterType="productCustom" resultType="Integer">
+		SELECT COUNT(*) FROM product WHERE
+			(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+		<if test="producttypename != null">
+			
+			AND productTypeId = (SELECT producttypeid FROM producttype WHERE producttypename = #{producttypename})
+		</if>
+	</select>
+	
+
 </mapper>

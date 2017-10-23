@@ -19,7 +19,7 @@ public interface ProductMapper {
 
     int updateByPrimaryKeyWithBLOBs(Product record);
 
-    int updateByPrimaryKey(Product record);
+    void  updateByPrimaryKey(Product record);
 
     
     /**
@@ -63,4 +63,13 @@ public interface ProductMapper {
      * @return 商品集合
      */
     List<ProductCustom> selectProductByCondition(ProductCustom condition);
+    
+    /**
+     * 查询总数
+     * @param condition
+     * @return 总数
+     */
+    Integer selectProductSumByCondition(ProductCustom condition);
+    
+  
 }
