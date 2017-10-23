@@ -21,6 +21,32 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/jquery.imagezoom.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/jquery.flexslider.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/list.js"></script>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function(){
+				$("#LikBuy,#LikBasket").click(function(){
+					alert("ok");
+					var id = 1;
+					$.ajax({
+						type:"post",
+						contentType:"application/json;charset=utf-8",
+						url:"${pageContext.request.contextPath }/product/clickBuyBasket.action",
+						//data:'{"id"'+':'+'"'+ 1 +'"'+'}',	
+						//data:'{"id" : "1"}',
+						data:'{"id"'+':'+'"'+id+'"'
+					        			+'}',
+						success:function(data){
+							alert("ok");
+							alert(data);
+						}
+				});
+					
+				});
+			});
+		
+		
+		</script>
 
 	</head>
 
@@ -141,22 +167,22 @@
 							</script>
 
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="../images/01.jpg"><img src="${pageContext.request.contextPath }/jsp/mall/images/01_mid.jpg" alt="细节展示放大镜特效" rel="../images/01.jpg" class="jqzoom" /></a>
+								<a href="${pageContext.request.contextPath }/jsp/mall/images/01.jpg"><img src="${pageContext.request.contextPath }/jsp/mall/images/01_mid.jpg" alt="细节展示放大镜特效" rel="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" class="jqzoom" /></a>
 							</div>
 							<ul class="tb-thumb" id="thumblist">
 								<li class="tb-selected">
 									<div class="tb-pic tb-s40">
-										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/01_small.jpg" mid="../images/01_mid.jpg" big="../images/01.jpg"></a>
+										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/01_small.jpg" mid="${pageContext.request.contextPath }/jsp/mall/images/01.jpg"></a>
 									</div>
 								</li>
 								<li>
 									<div class="tb-pic tb-s40">
-										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/02_small.jpg" mid="../images/02_mid.jpg" big="../images/02.jpg"></a>
+										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/02_small.jpg" mid="${pageContext.request.contextPath }/jsp/mall/images/02_mid.jpg" big="${pageContext.request.contextPath }/jsp/mall/images/02.jpg"></a>
 									</div>
 								</li>
 								<li>
 									<div class="tb-pic tb-s40">
-										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/03_small.jpg" mid="../images/03_mid.jpg" big="../images/03.jpg"></a>
+										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/03_small.jpg" mid="${pageContext.request.contextPath }/jsp/mall/images/03_mid.jpg" big="${pageContext.request.contextPath }/jsp/mall/images/03.jpg"></a>
 									</div>
 								</li>
 							</ul>
@@ -170,20 +196,18 @@
 						<!--规格属性-->
 						<!--名称-->
 						<div class="tb-detail-hd">
-							<h1>	
-				 良品铺子 手剥松子218g 坚果炒货 巴西松子
-	          </h1>
+							<h1 id = "productName">${productInfo.productname }</h1>
 						</div>
 						<div class="tb-detail-list">
 							<!--价格-->
 							<div class="tb-detail-price">
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">56.90</b>  </dd>                                 
+									<dd><em>¥</em><b class="sys_item_price">${productInfo.price }</b>  </dd>                                 
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
-									<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>									
+									<dd><em>¥</em><b class="sys_item_mktprice" id = "price">98.00</b></dd>									
 								</li>
 								<div class="clear"></div>
 							</div>
@@ -246,49 +270,84 @@
 												<div class="theme-signin-left">
 
 													<div class="theme-options">
-														<div class="cart-title">口味</div>
-														<ul>
-															<li class="sku-line selected">原味<i></i></li>
-															<li class="sku-line">奶油<i></i></li>
-															<li class="sku-line">炭烧<i></i></li>
-															<li class="sku-line">咸香<i></i></li>
-														</ul>
+														<ul id = "options"></ul>
+													
+														<c:if test="${productInfo.tasteList != null}">
+															<div class="cart-title">口味</div>
+															<ul id = "teast">
+																<!-- <li class="sku-line selected">原味<i></i></li> -->
+																<c:forEach items="${productInfo.tasteList}" var="taste" varStatus="status">
+																
+																	<li class="sku-line" value="">${taste.producttaste}<i></i></li>
+																</c:forEach>
+															</ul>
+														</c:if>
+														<c:if test="${productInfo.colourList != null}">
+															<div class="cart-title">颜色</div>
+															<ul id = "colour">
+																<!-- <li class="sku-line selected">原味<i></i></li> -->
+																<c:forEach items="${productInfo.colourList}" var="colour">
+																	<li class="sku-line" value="">${colour.productcolour}<i></i></li>
+																</c:forEach>
+															</ul>
+															
+															<c:if test="${productInfo.colourList[0].colourSizeList != null}">
+															<div class="cart-title">型号</div>
+															<ul id = "size">
+																<%-- <c:forEach items="${productInfo.colourList}" var="colour">
+																	<c:forEach items="${colour.colourSizeList}" var="size">
+																		<li class="sku-line" value="">${size.size}<i></i></li>
+																	</c:forEach>
+																</c:forEach> --%>
+																<li class="sku-line" value="">xs<i></i></li>
+																<li class="sku-line" value="">s<i></i></li>
+																<li class="sku-line" value="">m<i></i></li>
+																<li class="sku-line" value="">l<i></i></li>
+																<li class="sku-line" value="">xl<i></i></li>
+																<li class="sku-line" value="">xll<i></i></li>
+															</ul>
+															</c:if>
+														</c:if>
+														
 													</div>
-													<div class="theme-options">
+													
+													
+													
+													<!-- <div class="theme-options">
 														<div class="cart-title">包装</div>
 														<ul>
 															<li class="sku-line selected">手袋单人份<i></i></li>
+															<li class="sku-line">手袋单人份<i></i></li>
 															<li class="sku-line">礼盒双人份<i></i></li>
 															<li class="sku-line">全家福礼包<i></i></li>
 														</ul>
-													</div>
+													</div> -->
 													<div class="theme-options">
 														<div class="cart-title number">数量</div>
 														<dd>
 															<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
 															<input id="text_box" name="" type="text" value="1" style="width:30px;" />
 															<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-															<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+															<span id="Stock" class="tb-hidden">库存<span class="stock" id="inStock">${productInfo.instock }</span>件</span>
 														</dd>
 
 													</div>
 													<div class="clear"></div>
 
-													<div class="btn-op">
+													<!-- <div class="btn-op">
 														<div class="btn am-btn am-btn-warning">确认</div>
 														<div class="btn close am-btn am-btn-warning">取消</div>
-													</div>
+													</div> -->
 												</div>
-												<div class="theme-signin-right">
+											<%-- 	<div class="theme-signin-right">
 													<div class="img-info">
 														<img src="${pageContext.request.contextPath }/jsp/mall/images/songzi.jpg" />
 													</div>
 													<div class="text-info">
-														<span class="J_Price price-now">¥39.00</span>
 														<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
 													</div>
 												</div>
-
+ --%>
 											</form>
 										</div>
 									</div>
@@ -298,13 +357,13 @@
 							<div class="clear"></div>
 							<!--活动	-->
 							<div class="shopPromotion gold">
-								<div class="hot">
+								<!-- <div class="hot">
 									<dt class="tb-metatit">店铺优惠</dt>
 									<div class="gold-list">
 										<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
 									</div>
-								</div>
-								<div class="clear"></div>
+								</div> -->
+								<!-- <div class="clear"></div>
 								<div class="coupon">
 									<dt class="tb-metatit">优惠券</dt>
 									<div class="gold-list">
@@ -314,7 +373,7 @@
 											<li>298减20</li>
 										</ul>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 
@@ -1329,6 +1388,29 @@
 					</div>
 				</div>
 			</div>
+
+<script type="text/javascript">
+
+/* 	$(document).ready(function(){
+				$.ajax({
+										type:"post",
+										contentType:"application/json;charset=utf-8",
+					        			url:"${pageContext.request.contextPath }/product/productIfoCustom.action",
+					        			data:'{"id"'+':'+'"'+1+'"'+'}',	
+					        			success:function(data){
+					        					//alert(data-1+":尾页");
+					        					alert("ok")
+					        			}
+					
+				});
+	
+	
+	
+	}); */
+
+
+
+</script>
 
 	</body>
 

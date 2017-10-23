@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.DiscountMapper;
@@ -83,6 +84,22 @@ public class ProductServiceImpl implements ProductService {
 		}
 		Integer sum = productMapper.selectProductSumByCondition(condition);
 		return sum;
+	}
+
+	public ProductCustom queryProductInfoById(Integer id) {
+		
+		ProductCustom product= new ProductCustom();
+		Product temp = productMapper.selectByPrimaryKey(id);
+		if(temp.getEdiblemethod() != null){
+			
+			product = productMapper.selectProductTasteById(id);
+			product.setColourList(null);
+		}else{
+			product = productMapper.selectProductColourById(id);
+			product.setTasteList(null);
+		}
+		
+		return product;
 	}
 
 }

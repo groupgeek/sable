@@ -158,4 +158,25 @@ public class MallController {
 		}
 		return sum;
 	}
+	
+	/**
+	 * 加载商品详细信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/productInfo")
+	public String productInfo(Model model,Integer id){
+		
+		ProductCustom productInfo = productService.queryProductInfoById(id);
+		model.addAttribute("productInfo", productInfo);
+		return "mall/home/introduction";
+	}
+	
+	@RequestMapping("/clickBuyBasket")
+	public @ResponseBody int productIfoCustom(@RequestBody int id){
+		System.out.println(id);
+		
+		return id;
+	}
+	
 }

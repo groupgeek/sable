@@ -57,5 +57,12 @@ public interface ProductService {
 	 * @return
 	 */
 	Integer queryProductSumByCondition(ProductCustom condition);
+	
+	/**
+	 * 查询商品详细信息
+	 * @param id
+	 * @return
+	 */
+	ProductCustom queryProductInfoById(Integer id);
 
 }

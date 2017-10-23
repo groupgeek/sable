@@ -1,5 +1,7 @@
 package com.xiaohe.bean;
 
+import java.util.List;
+
 public class ProductCustom extends Product {
 	private Integer begin;//开始
 	private Integer total;//每一页的条数
@@ -8,6 +10,24 @@ public class ProductCustom extends Product {
 	private String producttypename;
 	private String search;
 	private Integer currentPage;
+	
+	private List<ProducttasteCustom> tasteList;
+	private List<ProductcolourCustom> colourList;
+	
+	
+	public List<ProductcolourCustom> getColourList() {
+		return colourList;
+	}
+	public void setColourList(List<ProductcolourCustom> colourList) {
+		this.colourList = colourList;
+	}
+	public List<ProducttasteCustom> getTasteList() {
+		return tasteList;
+	}
+	public void setTasteList(List<ProducttasteCustom> tasteList) {
+		this.tasteList = tasteList;
+	}
+	
 	public Integer getCurrentPage() {
 		return currentPage;
 	}
