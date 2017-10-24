@@ -1,6 +1,7 @@
 package com.xiaohe.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.EvaluationVo;
+import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttypeCustom;
@@ -172,11 +176,26 @@ public class MallController {
 		return "mall/home/introduction";
 	}
 	
+	/**
+	 * 无用
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/clickBuyBasket")
-	public @ResponseBody int productIfoCustom(@RequestBody int id){
+	public @ResponseBody int sendMessage(Integer id){
+		System.out.println("**************************");
 		System.out.println(id);
-		
 		return id;
 	}
+	
+	@RequestMapping("/queryEvaluation")
+	public @ResponseBody EvaluationVo queryEvaluation(@RequestBody EvaluationCustom evaluationCustom){
+		EvaluationVo evaluationVo = new EvaluationVo();
+		evaluationVo.setEvaluationsList(productService.queryEvaluationByProductId(evaluationCustom));
+		evaluationVo.setPageSum(productService.queryEvaluationSum(evaluationCustom.getProductid()));
+		evaluationVo.setEvaluation(productService.queryEvaluationLevalByProductId(evaluationCustom.getProductid()));
+		return evaluationVo;
+	}
+	
 	
 }
