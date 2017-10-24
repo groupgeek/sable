@@ -1,5 +1,7 @@
 package com.xiaohe.bean;
 
+import java.util.Date;
+
 public class Evaluation {
     private Integer evaluationid;
 
@@ -12,6 +14,14 @@ public class Evaluation {
     private String picture;
 
     private String video;
+
+    private Date commentdate;
+
+    private String taste;
+
+    private String colour;
+
+    private String size;
 
     private String evaluationcontent;
 
@@ -61,6 +71,38 @@ public class Evaluation {
 
     public void setVideo(String video) {
         this.video = video == null ? null : video.trim();
+    }
+
+    public Date getCommentdate() {
+        return commentdate;
+    }
+
+    public void setCommentdate(Date commentdate) {
+        this.commentdate = commentdate;
+    }
+
+    public String getTaste() {
+        return taste;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste == null ? null : taste.trim();
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour == null ? null : colour.trim();
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size == null ? null : size.trim();
     }
 
     public String getEvaluationcontent() {

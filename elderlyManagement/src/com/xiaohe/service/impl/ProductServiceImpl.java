@@ -1,14 +1,21 @@
 package com.xiaohe.service.impl;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.DiscountMapper;
+import com.xiaohe.mapper.EvaluationMapper;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
@@ -33,6 +40,10 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("discountMapper")
 	private DiscountMapper discountMapper;
+	
+	@Autowired
+	@Qualifier("evaluationMapper")
+	private EvaluationMapper evaluationMapper;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -84,5 +95,87 @@ public class ProductServiceImpl implements ProductService {
 		Integer sum = productMapper.selectProductSumByCondition(condition);
 		return sum;
 	}
+
+	public ProductCustom queryProductInfoById(Integer id) {
+		
+		ProductCustom product= new ProductCustom();
+		Product temp = productMapper.selectByPrimaryKey(id);
+		if(temp.getEdiblemethod() != null){
+			
+			product = productMapper.selectProductTasteById(id);
+			product.setColourList(null);
+		}else{
+			product = productMapper.selectProductColourById(id);
+			product.setTasteList(null);
+		}
+		
+		return product;
+	}
+
+	public List<EvaluationCustom> queryEvaluationByProductId(EvaluationCustom condition) {
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		condition.setPageNum(3);
+		if(condition.getCurrentPage() > 0){
+			Integer beginTemp = (condition.getCurrentPage() - 1) * condition.getPageNum();
+			condition.setBegin(beginTemp);
+		}else{
+			condition.setBegin(0);
+		}
+		
+		List<EvaluationCustom> evaluationList = evaluationMapper.selectEvaluationsByProdutId(condition);
+		for(EvaluationCustom evaluation : evaluationList){
+			String fmt = dt.format(evaluation.getCommentdate());
+			evaluation.setStringDate(fmt);
+		}
+		
+		return evaluationList;
+	}
+
+	public EvaluationCustom queryEvaluationLevalByProductId(Integer id) {
+		List<EvaluationCustom> evaluation = evaluationMapper.selectEvaluationLevalSum(id);
+		Integer badReview = 0;
+		Integer average = 0;
+		Integer praise = 0;
+		String praiseOf;
+		EvaluationCustom evaluationCustom = new EvaluationCustom();
+		for(EvaluationCustom temp : evaluation){
+			if(temp.getEvaluationleval() == 1 || temp.getEvaluationleval() == 2){
+				
+				badReview +=  temp.getEvaluationLevalSum();
+			}else if(temp.getEvaluationleval() == 3){
+				
+				average +=  temp.getEvaluationLevalSum();
+			}else{
+				praise += temp.getEvaluationLevalSum();
+			}
+			
+		}
+		double a = praise* 100;
+		double b = (average + badReview + praise)* 100;
+		double c = (a / b) * 100;
+		DecimalFormat df = new DecimalFormat("#.00");
+		praiseOf = df.format(c);
+		
+		evaluationCustom.setBadReview(badReview);
+		evaluationCustom.setAverage(average);
+		evaluationCustom.setPraise(praise);
+		evaluationCustom.setPraiseOf(praiseOf);
+		
+		
+		return evaluationCustom;
+	}
+
+	public Integer queryEvaluationSum(Integer id) {
+		
+		Integer sum = evaluationMapper.selectEvaluationSum(id);
+		Integer pageSum = sum / 3;
+		if(sum % 3 != 0){
+			pageSum += 1;
+		}
+		return pageSum;
+	}
+
+
+
 
 }

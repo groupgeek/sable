@@ -5,6 +5,7 @@ import java.util.List;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttypeCustom;
 
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer productid);
@@ -19,7 +20,7 @@ public interface ProductMapper {
 
     int updateByPrimaryKeyWithBLOBs(Product record);
 
-    void  updateByPrimaryKey(Product record);
+    int updateByPrimaryKey(Product record);
 
     
     /**
@@ -71,5 +72,26 @@ public interface ProductMapper {
      */
     Integer selectProductSumByCondition(ProductCustom condition);
     
-  
+    /**
+     * 查询商品详细信息，包括颜色，大小
+     * @param id 产品id
+     * @return
+     */
+    ProductCustom selectProductColourById(Integer id);
+    
+    /**
+     * 查询商品详细信息，口味
+     * @param id 产品id
+     * @return
+     */
+    ProductCustom selectProductTasteById(Integer id);
+    
+    /**
+     * 查询父类类型
+     * @param id
+     * @return
+     */
+    ProducttypeCustom selectProductFathertypeById(Integer id);
+    
+    
 }

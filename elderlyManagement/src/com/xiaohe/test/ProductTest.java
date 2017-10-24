@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.service.ProductService;
 
 /**
@@ -25,6 +27,9 @@ public class ProductTest {
 	@Autowired
 	@Qualifier("productService")
 	private ProductService productService;
+	
+	@Autowired
+	private ProductMapper productMapper;
 	
 
 	@org.junit.Test
@@ -70,6 +75,44 @@ public class ProductTest {
 			
 			System.out.println(h.getPrice());
 		}
+	}
+	
+	@Test
+	public void productInfoTest(){
+		
+		
+		ProductCustom custom = productService.queryProductInfoById(5);
+		
+		System.out.println(custom);
+		
+	}
+	
+	@Test
+	public void demo2(){
+		Product record = new Product();
+		record.setProductname("1");
+		record.setProducttypeid(12);
+		record.setBranchid(1);
+		System.out.println(productMapper.insertSelective(record));
+	}
+	@Test
+	public void Test223333(){
+		
+		
+		/*EvaluationCustom custom = new EvaluationCustom();
+		custom.setCurrentPage(1);
+		custom.setProductid(1);
+		
+		
+		System.out.println((productService.queryEvaluationByProductId(custom)));*/
+		/*EvaluationCustom custom = productService.queryEvaluationLevalByProductId(1);
+		
+		System.out.println(custom.getBadReview());
+		System.out.println(custom.getAverage());
+		System.out.println(custom.getPraise());
+		System.out.println(custom.getPraiseOf());*/
+		
+		System.out.println(productService.queryEvaluationSum(1));
 	}
 	
 	
