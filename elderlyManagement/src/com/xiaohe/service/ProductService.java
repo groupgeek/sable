@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 
@@ -57,5 +58,34 @@ public interface ProductService {
 	 * @return
 	 */
 	Integer queryProductSumByCondition(ProductCustom condition);
+	
+	/**
+	 * 查询商品详细信息
+	 * @param id
+	 * @return
+	 */
+	ProductCustom queryProductInfoById(Integer id);
+	
+	
+	/**
+	 * 查询商品评价
+	 * @param condition
+	 * @return 评价集合
+	 */
+	List<EvaluationCustom> queryEvaluationByProductId(EvaluationCustom condition);
+	
+	/**
+	 * 查询评价等级并且计算出好评度以及好评，中评，差评的个数
+	 * @param id
+	 * @return
+	 */
+	EvaluationCustom queryEvaluationLevalByProductId(Integer id);
+	
+	/**
+	 * 查询商品评价的总页数
+	 * @param id
+	 * @return
+	 */
+	Integer queryEvaluationSum(Integer id); 
 
 }
