@@ -3,7 +3,7 @@ package com.xiaohe.bean;
 public class ActivityrecommendKey {
     private Integer activityid;
 
-    private String websitetype;
+    private Integer branchid;
 
     public Integer getActivityid() {
         return activityid;
@@ -13,11 +13,11 @@ public class ActivityrecommendKey {
         this.activityid = activityid;
     }
 
-    public String getWebsitetype() {
-        return websitetype;
+    public Integer getBranchid() {
+        return branchid;
     }
 
-    public void setWebsitetype(String websitetype) {
-        this.websitetype = websitetype == null ? null : websitetype.trim();
+    public void setBranchid(Integer branchid) {
+        this.branchid = branchid;
     }
 }
