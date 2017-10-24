@@ -55,4 +55,10 @@
     set activityTypeName = #{activitytypename,jdbcType=VARCHAR}
     where activityTypeID = #{activitytypeid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  
+  <select id="AllActTypes" resultType="com.xiaohe.bean.ActivitytypeCustom">
+  select * from activitytype
+  </select>
 </mapper>

@@ -1174,7 +1174,7 @@ function charts() {
 	/* ---------- Chart with points ---------- */
 	if($("#facebookChart").length)
 	{	
-		var likes = [[1, 5+randNumFB()], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
+		var likes = [[1,300], [2, 200], [3, 100], [4, 100],[5, 100],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
 
 		var plot = $.plot($("#facebookChart"),
 			   [ { data: likes, label: "Fans"} ], {
@@ -1626,12 +1626,12 @@ function charts() {
 
 	/* ---------- Pie chart ---------- */
 	var data = [
-	{ label: "Internet Explorer",  data: 12},
+	{ label: "Internet Explorer",  data: 120},
 	{ label: "Mobile",  data: 27},
 	{ label: "Safari",  data: 85},
 	{ label: "Opera",  data: 64},
 	{ label: "Firefox",  data: 90},
-	{ label: "Chrome",  data: 112}
+	{ label: "Chrome",  data: 120}
 	];
 	
 	if($("#piechart").length)

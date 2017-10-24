@@ -28,21 +28,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="brand" href="index.html"><span>JANUX</span></a>
+				<a class="brand" href="index.html"><span>XIAOHE-Admin</span></a>
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i>龙腾云
+								<i class="halflings-icon white user"></i>${employee.employeename}
 								<span class="caret"></span>
 								</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>个人中心</span>
+ 									<span>账号设定</span>
 								</li>
-								<li><a href="###"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="###"><i class="halflings-icon user"></i>个人中心</a></li>
 								<li><a href="login.html"><i class="halflings-icon off"></i>安全退出</a></li>
 							</ul>
 						</li>
@@ -62,12 +62,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="index.jsp"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
-						<li><a href="messages.jsp"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
-						<li><a href="table.jsp"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
-						<li><a href="form.jsp"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
-						<li><a href="tasks.jsp"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
-						<li><a href="chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->
@@ -85,18 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 			</ul>
 <!-- ä¸ææ¡ -->
-			<div class="control-group">
-				<label class="control-label" for="selectError3">Plain Select</label>
-				<div class="controls">
-					<select id="selectError3">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-						<option>Option 4</option>
-						<option>Option 5</option>
-					</select>
-				</div>
-			</div>
+			
 			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
@@ -167,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
+			<span style="text-align:left;float:left">&copy; 2013 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎光临XIAOHE</a></span>
 			
 		</p>
 

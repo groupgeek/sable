@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>JONX</span></a>
+				<a class="brand" href="index.html"><span>XIAOHE-Admin</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -74,10 +74,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Account Settings</span>
+ 									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -97,12 +97,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="index.jsp"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
 						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->
@@ -121,10 +122,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
+					<a href="index.html">XIAOHE</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">Tables</a></li>
+				<li><a href="#">客户信息</a></li>
 			</ul>
 
 			<div class="row-fluid sortable">		
@@ -162,12 +163,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<%-- <td><a href="${pageContext.request.contextPath }/admin/deletUser.action?id=${ allUsers.userid}">删除</a></td> --%>
 						<td class="center">
 						<%-- <a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a> --%>
-									<a class="btn btn-success" href="#">
-										<i class="halflings-icon white zoom-in"></i>                                            
-									</a>
-									<a class="btn btn-info" href="#">
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneUser.action?id=${ users.userid}">
 										<i class="halflings-icon white edit"></i>                                            
 									</a>
+									<!-- <a class="btn btn-info" href="#">
+										<i class="halflings-icon white edit"></i>                                            
+									</a> -->
 									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delUser.action?id=${ users.userid}">
 										<i class="halflings-icon white trash"></i> 
 										
@@ -228,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
+			<span style="text-align:left;float:left">&copy; 2013 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎光临XIAOHE</a></span>
 			
 		</p>
 

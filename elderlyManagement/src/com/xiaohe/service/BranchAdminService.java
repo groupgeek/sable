@@ -5,12 +5,22 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Activity;
+import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.Activityrecommend;
+import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
+import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.Level;
+import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
+import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 
 @Transactional
@@ -154,4 +164,122 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public List<Returnvisit> branchReturnVist(Integer id);
+	
+	
+	/**
+	 * 查询分店所有的活动
+	 * @param id
+	 * @return
+	 */
+	public List<ActivityCustom> branchActs(Integer id);
+	
+	/**
+	 * 添加活动
+	 * @param activity
+	 */
+	public void inertActs(Activity activity);
+	
+	/**
+	 * 根据id查询分店
+	 * @param id
+	 * @return
+	 */
+	public Branch oneBranch(Integer id);
+	
+	/**
+	 * 查询所有的活动类型
+	 * @return
+	 */
+	public List<ActivitytypeCustom> allActivityTypes();
+	
+	/**
+	 * 查询活动的报名人数
+	 */
+	public int countActUsers(Integer id);
+	
+	/**
+	 * 查询活动详情包括报名人数
+	 * @param id
+	 * @return
+	 */
+	public ActivityCustom oneActCustom(Integer id);
+	
+	/**
+	 * 删除活动信息
+	 * @param id
+	 */
+	public void delAct(Integer id);
+	
+	/**
+	 * 根据用户id查询单个病例
+	 * @param id
+	 * @return
+	 */
+	public MedicalrecordsWithBLOBsCustom oneMedRed(Integer id);
+	
+	/**
+	 * 查询用户等级
+	 * @param id
+	 * @return
+	 */
+	public Level oneLev(Integer id);
+	
+	/**
+	 * 根据id更新病例信息
+	 * @param id
+	 */
+	public void updateMed(MedicalrecordsWithBLOBsCustom med);
+	
+	/**
+	 * 根据病例查到用户
+	 * @param id
+	 * @return
+	 */
+	public User oneUserMed(Integer id);
+	
+	/**
+	 * 查询所有的活动
+	 * @return
+	 */
+	public List<ActivityCustom> acts();
+	
+	/**
+	 * 查询分店所有活动推荐
+	 * @return
+	 */
+	public List<ActivityrecommendCustom> branchActRec(Integer id);
+	
+	/**
+	 * 删除分店的活动推荐
+	 * @param id
+	 */
+	public void delActRec(ActivityrecommendCustom activityrecommendCustom);
+	/*public Activity act(Integer id);*/
+	
+	/**
+	 * 根据管理员id找到分店
+	 * @param employeeid
+	 * @return
+	 */
+	public Branch oneBranchByEmployeeId(Integer employeeid);
+	
+	/**
+	 * 插入分店推荐活动
+	 * @param activityrecommend
+	 */
+	public void insertActRec(ActivityrecommendCustom activityrecommendCustom);
+	
+	/**
+	 * 根据id查询到对应的分店推荐活动
+	 * @param activityrecommendCustom
+	 * @return
+	 */
+	public ActivityrecommendCustom oneActRecById(ActivityrecommendCustom activityrecommendCustom);
+	
+	/**
+	 * 查询推荐活动总条数
+	 * @param id
+	 * @return
+	 */
+	public int countRecAct(Integer id);
 }

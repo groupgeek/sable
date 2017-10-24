@@ -68,4 +68,42 @@
     where activityId = #{activityid,jdbcType=INTEGER}
       and branchId = #{branchid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="branchActRec" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityrecommendCustom">
+  SELECT a.*,c.activityName from activityrecommend a,employee e,branch b,activity c
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and a.activityId = c.activityId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="deleteByPrimary" parameterType="com.xiaohe.bean.ActivityrecommendCustom">
+   delete from activityrecommend
+    where activityId = #{activityid,jdbcType=INTEGER}
+      and branchId = #{branchid,jdbcType=INTEGER}
+      </select>
+      
+    <select id="selectByPrimary" parameterType="com.xiaohe.bean.ActivityrecommendCustom" resultType="com.xiaohe.bean.ActivityrecommendCustom">
+   select * from activityrecommend
+    where activityId = #{activityid,jdbcType=INTEGER}
+     and branchId = #{branchid,jdbcType=INTEGER}
+      </select>  
+      
+      <insert id="insertAct" parameterType="com.xiaohe.bean.ActivityrecommendCustom" >
+    insert into activityrecommend (activityId, websiteType, branchId
+      )
+    values (#{activityid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}, #{branchid,jdbcType=INTEGER}
+      )
+  </insert> 
+  
+  
+  <select id="countActRec" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(*) from employee e,branch b,activityrecommend a
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+      
+      
 </mapper>

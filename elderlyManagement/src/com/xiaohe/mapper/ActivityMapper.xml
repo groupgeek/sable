@@ -295,5 +295,35 @@
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
+  <select id="branchActs" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
+  select a.* from activity a,employee e,branch b
+	where a.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
   
+  <select id="countActUsers" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(*) from activity a,user u,branch b
+	where a.branchId = b.branchId
+	and b.areaId = u.areaId
+	and a.activityId = #{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="oneActivity">
+  select a.* from activity a,user u,branch b
+	where a.branchId = b.branchId
+	and b.areaId = u.areaId
+	and a.activityId = #{activityid,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="oneActivityCustom" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
+  select count(*) countUsers,a.* from activity a,user u,branch b
+	where a.branchId = b.branchId
+	and b.areaId = u.areaId
+	and a.activityId = #{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="Acts" resultType="com.xiaohe.bean.ActivityCustom">
+  select * from activity
+  </select>
 </mapper>

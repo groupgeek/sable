@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>JANUX</span></a>
+				<a class="brand" href="index.html"><span>XIAOHE-Admin</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -100,10 +100,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Account Settings</span>
+ 									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -123,12 +123,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="index.jsp"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
 						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>				
 			<!-- start: Main Menu -->
@@ -141,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="index.html">XIAOHE</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">留言信息</a></li>
+				<li><a href="#">留言信息</a></li>
 			</ul>
 
 			<div class="row-fluid">
@@ -150,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<h1>所有留言</h1>
 					<ul class="messagesList">
 						<c:forEach items="${messages }" var="message">
-							<li id="hh" onclick="queryMessage(${message.messageid })">
+							<li id="hh" onclick="change(${message.messageid })">
 							<span class="from"><span class="glyphicons star"><i></i></span> ${message.username } <span class="glyphicons paperclip"><i></i></span></span><span id = "span1" class="title"> ${message.messagecontext }</span><span class="date">
 							<fmt:formatDate value="${message.messagetime }"
 								pattern="yyyy-MM-dd HH:mm:ss" /></span>
@@ -161,12 +162,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					<div class="message dark">
 						<div class="header">
-							<div class="from"><i class="halflings-icon user"></i> <b>${messages[0].username}</b> /<b> ${messages[0].email }</b></div>
-							<div class="date"><i class="halflings-icon time"></i><fmt:formatDate value="${messages[0].messagetime }"
+							<div class="from"><i class="halflings-icon user"></i> <b id="username">${messages[0].username}</b> /<b id="email"> ${messages[0].email }</b></div>
+							<%-- <div class="date"><i class="halflings-icon time"></i><span id="time"><fmt:formatDate value="${messages[0].messagetime }"
 								pattern="yyyy-MM-dd HH:mm:ss" /></span></div>
-							<div class="menu"></div></div>
-						<div class="content">
-							<p>${messages[0].messagecontext}</p>
+							<div class="menu"></div></div> --%>
+							<div style="margin-top: 30px">
+							<h6>留言详情：</h6>
+							</div>
+						<div class="content" style="margin-top: 30px">
+							<p id="context">${messages[0].messagecontext}</p>
 						</div>
 					</div>	
 					
@@ -176,7 +180,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div  style="position:absolute;left:430px;top:620px">
 			<table>
 <tr>
-<c:choose>
+	<c:choose>
 				<c:when test="${messageVo.nowPage==1}">
 					首页
 					上一页
@@ -200,6 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						尾页</a>
 				</c:otherwise>
 	</c:choose>
+	
 	</tr>
 </table>
 </div>
@@ -231,13 +236,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
+			<span style="text-align:left;float:left">&copy; 2013 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎光临XIAOHE</a></span>
 			
 		</p>
 
 	</footer>
 	
 	<!-- start: JavaScript-->
+	
+	
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
@@ -294,7 +301,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 		
-		
+		<script type="text/javascript">
+			function change(id){
+				$.ajax({
+					type : 'post',
+					/*${pageContext.request.contextPath }/*/
+					/* data:'{"userid":"1"}', */
+					url:'${pageContext.request.contextPath }/brach/RequestMessage.action',
+					contentType : 'application/json;charset=utf-8',
+					data:'{"messageid"'+':'+'"'+id+'"}',
+					success:function(data){
+						$("#username").html(data.username);
+						$("#context").html(data.messagecontext);
+						$("#email").html(data.email);
+						/* function fmt(data){
+						var year = date.getFullYear();
+						var month = date.getMonth()+1;
+						var day = date.getDate();
+						var hour = date.getHours();
+						var minute = date.getMinutes();
+						var second = date.getSeconds();
+						return [year,month,day].map(formatNumber).join('-')+''+[hour,minute,second].map(formatNumber).join(':');
+						}
+						function fmtn(n){
+						n = n.toString();
+						return n[1]?n:'0'+n;
+						}
+						var time = $("#time").html(data.messagetime);
+						fmtn(data); */
+						/* alert(new Date(parseInt(data.Data[1].Data.replace(igm,"")))); */
+						
+						/* $("#time").html(data.messagetime); */
+					}
+				});
+			}
+		</script>
 		
 		
 		

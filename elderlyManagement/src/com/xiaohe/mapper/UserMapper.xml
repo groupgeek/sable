@@ -234,7 +234,7 @@
   
   <!-- 查询分店所有用户信息 -->
    <select id="branchUserCustoms" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom" >
-  SELECT u.* from user u,branch b,Employee e 
+  SELECT u.* from user u,branch b,employee e 
   where b.employeeId = e.employeeId 
   and b.areaId = u.areaId 
   and e.employeeId = #{employeeId,jdbcType=INTEGER}

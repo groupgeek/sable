@@ -58,11 +58,7 @@
 					<a name="index_none_header_sysc" href="#"></a>
 					<form>
 						<input id="searchInput" name="index_none_header_sysc" type="text" value="${searchCondition }" placeholder="搜索" autocomplete="off">
-<<<<<<< HEAD
-						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
-=======
 						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="button">
->>>>>>> dbc6736877875b9ac4a4ab3d3ff9922234333c21
 					</form>
 				</div>
 			</div>
@@ -129,11 +125,7 @@
 									<dl id="select2">
 										<dt class="am-badge am-round">类型</dt>
 										<div class="dd-conent" id="selectTypeSon">
-<<<<<<< HEAD
-											<dd class="select-all selected"><a href="#">全部</a></dd>
-=======
 											<dd></dd>
->>>>>>> dbc6736877875b9ac4a4ab3d3ff9922234333c21
 										</div>
 									</dl>
 								</li>
@@ -149,11 +141,7 @@
 								</div>
 								<div class="clear"></div>
 
-<<<<<<< HEAD
-								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
-=======
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes" id = "products">
->>>>>>> dbc6736877875b9ac4a4ab3d3ff9922234333c21
 									
 									<c:forEach items="${blurryProductCustoms }" var="blurryProductCustom">
 										<li>
