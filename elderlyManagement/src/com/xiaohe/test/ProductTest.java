@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
@@ -93,6 +94,25 @@ public class ProductTest {
 		record.setProducttypeid(12);
 		record.setBranchid(1);
 		System.out.println(productMapper.insertSelective(record));
+	}
+	@Test
+	public void Test223333(){
+		
+		
+		/*EvaluationCustom custom = new EvaluationCustom();
+		custom.setCurrentPage(1);
+		custom.setProductid(1);
+		
+		
+		System.out.println((productService.queryEvaluationByProductId(custom)));*/
+		/*EvaluationCustom custom = productService.queryEvaluationLevalByProductId(1);
+		
+		System.out.println(custom.getBadReview());
+		System.out.println(custom.getAverage());
+		System.out.println(custom.getPraise());
+		System.out.println(custom.getPraiseOf());*/
+		
+		System.out.println(productService.queryEvaluationSum(1));
 	}
 	
 	

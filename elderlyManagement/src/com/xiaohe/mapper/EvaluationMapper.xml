@@ -8,12 +8,17 @@
     <result column="evaluationLeval" property="evaluationleval" jdbcType="INTEGER" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="commentDate" property="commentdate" jdbcType="DATE" />
+    <result column="taste" property="taste" jdbcType="VARCHAR" />
+    <result column="colour" property="colour" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Evaluation" extends="BaseResultMap" >
     <result column="evaluationContent" property="evaluationcontent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    evaluationid, userId, productId, evaluationLeval, picture, video
+    evaluationid, userId, productId, evaluationLeval, picture, video, commentDate, taste, 
+    colour, size
   </sql>
   <sql id="Blob_Column_List" >
     evaluationContent
@@ -33,10 +38,12 @@
   <insert id="insert" parameterType="com.xiaohe.bean.Evaluation" >
     insert into evaluation (evaluationid, userId, productId, 
       evaluationLeval, picture, video, 
-      evaluationContent)
+      commentDate, taste, colour, 
+      size, evaluationContent)
     values (#{evaluationid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, 
       #{evaluationleval,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, 
-      #{evaluationcontent,jdbcType=LONGVARCHAR})
+      #{commentdate,jdbcType=DATE}, #{taste,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{evaluationcontent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Evaluation" >
     insert into evaluation
@@ -58,6 +65,18 @@
       </if>
       <if test="video != null" >
         video,
+      </if>
+      <if test="commentdate != null" >
+        commentDate,
+      </if>
+      <if test="taste != null" >
+        taste,
+      </if>
+      <if test="colour != null" >
+        colour,
+      </if>
+      <if test="size != null" >
+        size,
       </if>
       <if test="evaluationcontent != null" >
         evaluationContent,
@@ -82,6 +101,18 @@
       <if test="video != null" >
         #{video,jdbcType=VARCHAR},
       </if>
+      <if test="commentdate != null" >
+        #{commentdate,jdbcType=DATE},
+      </if>
+      <if test="taste != null" >
+        #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null" >
+        #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
       <if test="evaluationcontent != null" >
         #{evaluationcontent,jdbcType=LONGVARCHAR},
       </if>
@@ -105,6 +136,18 @@
       <if test="video != null" >
         video = #{video,jdbcType=VARCHAR},
       </if>
+      <if test="commentdate != null" >
+        commentDate = #{commentdate,jdbcType=DATE},
+      </if>
+      <if test="taste != null" >
+        taste = #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null" >
+        colour = #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
       <if test="evaluationcontent != null" >
         evaluationContent = #{evaluationcontent,jdbcType=LONGVARCHAR},
       </if>
@@ -118,6 +161,10 @@
       evaluationLeval = #{evaluationleval,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
       video = #{video,jdbcType=VARCHAR},
+      commentDate = #{commentdate,jdbcType=DATE},
+      taste = #{taste,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
       evaluationContent = #{evaluationcontent,jdbcType=LONGVARCHAR}
     where evaluationid = #{evaluationid,jdbcType=INTEGER}
   </update>
@@ -127,7 +174,38 @@
       productId = #{productid,jdbcType=INTEGER},
       evaluationLeval = #{evaluationleval,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
-      video = #{video,jdbcType=VARCHAR}
+      video = #{video,jdbcType=VARCHAR},
+      commentDate = #{commentdate,jdbcType=DATE},
+      taste = #{taste,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR}
     where evaluationid = #{evaluationid,jdbcType=INTEGER}
   </update>
+  
+  
+  <select id="selectEvaluationsByProdutId" parameterType="EvaluationCustom" resultType="EvaluationCustom">
+  
+  	SELECT e.*,u.userName,u.avatar FROM evaluation e, user u 
+  	WHERE e.productId = #{productid} AND u.userId = e.userId ORDER 
+  	BY commentDate DESC
+  	<if test="begin != null">
+			<if test="pageNum != null">
+				LIMIT #{begin} , #{pageNum};
+			</if>
+	</if>
+  
+  
+  </select>
+  
+  <select id="selectEvaluationLevalSum" parameterType="Integer" resultType="EvaluationCustom">
+  	SELECT evaluationLeval ,COUNT(*) evaluationLevalSum FROM evaluation 
+  	WHERE productId = #{id} GROUP BY evaluationLeval 
+  </select>
+  
+  <select id="selectEvaluationSum" parameterType="Integer" resultType="Integer">
+  	SELECT COUNT(*) sum FROM evaluation WHERE productId = #{id}
+  </select>
+  
+  
+  
 </mapper>

@@ -1,13 +1,13 @@
 package com.xiaohe.bean;
 
 public class Activityrecommend extends ActivityrecommendKey {
-    private Integer branchid;
+    private String websitetype;
 
-    public Integer getBranchid() {
-        return branchid;
+    public String getWebsitetype() {
+        return websitetype;
     }
 
-    public void setBranchid(Integer branchid) {
-        this.branchid = branchid;
+    public void setWebsitetype(String websitetype) {
+        this.websitetype = websitetype == null ? null : websitetype.trim();
     }
 }
