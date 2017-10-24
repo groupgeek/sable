@@ -37,7 +37,7 @@ public class IndexController {
 	@Qualifier("commonsenseService")
 	private CommonsenseService commonsenseService;
 	
-	@RequestMapping("index")
+	@RequestMapping("/index")
 	public String index(Model model,HttpServletRequest request){
 		List<ProductCustom> productCustoms=new ArrayList<ProductCustom>();//热门产品
 		List<ActivityCustom> activities=new ArrayList<ActivityCustom>();//活动推荐

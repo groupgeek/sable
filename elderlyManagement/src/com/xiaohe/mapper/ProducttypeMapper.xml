@@ -101,4 +101,14 @@
 
 
 	</select>
+
+	<select id="selectProductTypeByFatherId" parameterType="producttypeCustom"
+		resultType="producttypeCustom">
+
+		SELECT * FROM producttype WHERE FatherId = (SELECT productTypeId FROM
+		producttype WHERE productTypeName = #{producttypename})
+
+
+
+	</select>
 </mapper>

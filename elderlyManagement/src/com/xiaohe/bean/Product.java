@@ -25,6 +25,22 @@ public class Product {
 
     private Boolean discount;
 
+    private Integer good;
+
+    private String origin;
+
+    private Double productspecifications;
+
+    private Integer shelflife;
+
+    private String producstandards;
+
+    private String productionlicensenumber;
+
+    private String storagemethod;
+
+    private String ediblemethod;
+
     private String description;
 
     public Integer getProductid() {
@@ -115,6 +131,70 @@ public class Product {
         this.discount = discount;
     }
 
+    public Integer getGood() {
+        return good;
+    }
+
+    public void setGood(Integer good) {
+        this.good = good;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin == null ? null : origin.trim();
+    }
+
+    public Double getProductspecifications() {
+        return productspecifications;
+    }
+
+    public void setProductspecifications(Double productspecifications) {
+        this.productspecifications = productspecifications;
+    }
+
+    public Integer getShelflife() {
+        return shelflife;
+    }
+
+    public void setShelflife(Integer shelflife) {
+        this.shelflife = shelflife;
+    }
+
+    public String getProducstandards() {
+        return producstandards;
+    }
+
+    public void setProducstandards(String producstandards) {
+        this.producstandards = producstandards == null ? null : producstandards.trim();
+    }
+
+    public String getProductionlicensenumber() {
+        return productionlicensenumber;
+    }
+
+    public void setProductionlicensenumber(String productionlicensenumber) {
+        this.productionlicensenumber = productionlicensenumber == null ? null : productionlicensenumber.trim();
+    }
+
+    public String getStoragemethod() {
+        return storagemethod;
+    }
+
+    public void setStoragemethod(String storagemethod) {
+        this.storagemethod = storagemethod == null ? null : storagemethod.trim();
+    }
+
+    public String getEdiblemethod() {
+        return ediblemethod;
+    }
+
+    public void setEdiblemethod(String ediblemethod) {
+        this.ediblemethod = ediblemethod == null ? null : ediblemethod.trim();
+    }
+
     public String getDescription() {
         return description;
     }
@@ -130,8 +210,12 @@ public class Product {
 				+ ", picture=" + picture + ", shelves=" + shelves + ", buyno="
 				+ buyno + ", purchaseprice=" + purchaseprice
 				+ ", producttypeid=" + producttypeid + ", branchid=" + branchid
-				+ ", discount=" + discount + ", description=" + description
-				+ "]";
+				+ ", discount=" + discount + ", good=" + good + ", origin="
+				+ origin + ", productspecifications=" + productspecifications
+				+ ", shelflife=" + shelflife + ", producstandards="
+				+ producstandards + ", productionlicensenumber="
+				+ productionlicensenumber + ", storagemethod=" + storagemethod
+				+ ", ediblemethod=" + ediblemethod + ", description="
+				+ description + "]";
 	}
-    
 }

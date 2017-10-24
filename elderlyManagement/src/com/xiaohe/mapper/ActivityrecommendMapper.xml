@@ -3,28 +3,28 @@
 <mapper namespace="com.xiaohe.mapper.ActivityrecommendMapper" >
   <resultMap id="BaseResultMap" type="com.xiaohe.bean.Activityrecommend" >
     <id column="activityId" property="activityid" jdbcType="INTEGER" />
-    <id column="websiteType" property="websitetype" jdbcType="VARCHAR" />
-    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <id column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="websiteType" property="websitetype" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    activityId, websiteType, branchId
+    activityId, branchId, websiteType
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.xiaohe.bean.ActivityrecommendKey" >
     select 
     <include refid="Base_Column_List" />
     from activityrecommend
     where activityId = #{activityid,jdbcType=INTEGER}
-      and websiteType = #{websitetype,jdbcType=VARCHAR}
+      and branchId = #{branchid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.xiaohe.bean.ActivityrecommendKey" >
     delete from activityrecommend
     where activityId = #{activityid,jdbcType=INTEGER}
-      and websiteType = #{websitetype,jdbcType=VARCHAR}
+      and branchId = #{branchid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Activityrecommend" >
-    insert into activityrecommend (activityId, websiteType, branchId
+    insert into activityrecommend (activityId, branchId, websiteType
       )
-    values (#{activityid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}, #{branchid,jdbcType=INTEGER}
+    values (#{activityid,jdbcType=INTEGER}, #{branchid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Activityrecommend" >
@@ -33,40 +33,40 @@
       <if test="activityid != null" >
         activityId,
       </if>
-      <if test="websitetype != null" >
-        websiteType,
-      </if>
       <if test="branchid != null" >
         branchId,
+      </if>
+      <if test="websitetype != null" >
+        websiteType,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="activityid != null" >
         #{activityid,jdbcType=INTEGER},
       </if>
-      <if test="websitetype != null" >
-        #{websitetype,jdbcType=VARCHAR},
-      </if>
       <if test="branchid != null" >
         #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="websitetype != null" >
+        #{websitetype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Activityrecommend" >
     update activityrecommend
     <set >
-      <if test="branchid != null" >
-        branchId = #{branchid,jdbcType=INTEGER},
+      <if test="websitetype != null" >
+        websiteType = #{websitetype,jdbcType=VARCHAR},
       </if>
     </set>
     where activityId = #{activityid,jdbcType=INTEGER}
-      and websiteType = #{websitetype,jdbcType=VARCHAR}
+      and branchId = #{branchid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Activityrecommend" >
     update activityrecommend
-    set branchId = #{branchid,jdbcType=INTEGER}
+    set websiteType = #{websitetype,jdbcType=VARCHAR}
     where activityId = #{activityid,jdbcType=INTEGER}
-      and websiteType = #{websitetype,jdbcType=VARCHAR}
+      and branchId = #{branchid,jdbcType=INTEGER}
   </update>
   
   <!-- 自定义sql -->
