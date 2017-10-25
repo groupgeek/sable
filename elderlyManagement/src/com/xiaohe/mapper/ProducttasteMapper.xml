@@ -79,4 +79,8 @@
       tasteStock = #{tastestock,jdbcType=INTEGER}
     where productTasteId = #{producttasteid,jdbcType=INTEGER}
   </update>
+  
+  <select id="countStock" parameterType="Integer" resultType="Integer">
+  select productId , SUM(tasteStock) st FROM producttaste GROUP BY productId;
+  </select>
 </mapper>

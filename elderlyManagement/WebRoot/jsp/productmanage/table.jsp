@@ -42,13 +42,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 
     </script>
+    <script type="text/javascript">
+
+
+</script>
 </head>
 <body>
  <div class="container_12">
         <div class="grid_12 header-repeat">
             <div id="branding">
                 <div class="floatleft">
-              		<p>孝和集团</p>
+              		<h3>孝和集团</h3>
                     <%-- <img src="${pageContext.request.contextPath }/jsp/productmanage/img/xiaohe.jpg" alt="Logo" /> --%></div>
                 <div class="floatright">
                     <div class="floatleft">
@@ -174,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div id="site_info">
         <p>
-            Copyright <a href="#">BlueWhale Admin</a>. All Rights Reserved.More Templates <a href="#" target="_blank" title="孝和">孝和</a> - Collect from <a href="#" title="网页模板" target="_blank"></a>
+            Copyright <a href="#">BlueWhale Admin</a>. All Rights Reserved.More Templates <a href="#" target="_blank" title="孝和集团">孝和</a> - Collect from <a href="#" title="网页模板" target="_blank"></a>
         </p>
     </div>
 </body>

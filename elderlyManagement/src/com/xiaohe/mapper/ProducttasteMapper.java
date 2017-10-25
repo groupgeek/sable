@@ -1,5 +1,7 @@
 package com.xiaohe.mapper;
 
+import java.util.List;
+
 import com.xiaohe.bean.Producttaste;
 
 public interface ProducttasteMapper {
@@ -14,4 +16,6 @@ public interface ProducttasteMapper {
     int updateByPrimaryKeySelective(Producttaste record);
 
     int updateByPrimaryKey(Producttaste record);
+    
+    List<Integer> countStock(Integer productid);
 }
