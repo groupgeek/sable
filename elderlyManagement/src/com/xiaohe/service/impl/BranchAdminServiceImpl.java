@@ -1,10 +1,7 @@
 package com.xiaohe.service.impl;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +18,7 @@ import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
@@ -35,15 +33,16 @@ import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ProductMapper;
+import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.mapper.ReturnvisitMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.BranchAdminService;
-import com.xiaohe.util.FileUpload;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
-	
+	@Autowired
+	private ProducttransactionreportMapper producttransactionreportMapper;
 	@Autowired
 	private ActivityrecommendMapper activityrecommendMapper;
 	@Autowired
@@ -212,5 +211,12 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public List<ProductCustom> quertyAllProduct(Integer id) {
 		return productMapper.quertyAllProduct(id);
+	}
+	public List<ProducttransactionreportCustom> selectByCondition(
+			ProducttransactionreportCustom producttransactionreportCustom) {
+		return producttransactionreportMapper.selectBranchByCondition(producttransactionreportCustom);
+	}
+	public ProductCustom BranchProductCustom(ProductCustom productCustom) {
+		return productMapper.countBranchProduct(productCustom);
 	}
 }

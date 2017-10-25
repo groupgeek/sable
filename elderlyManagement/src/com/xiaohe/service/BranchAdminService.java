@@ -20,6 +20,7 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
@@ -305,4 +306,20 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public List<ProductCustom> quertyAllProduct(Integer id);
+	
+/*****************************报表开始****************************************/
+	/**
+	 * 查询商品的交易记录
+	 * @param producttransactionreportCustom
+	 * @return
+	 */
+	public List<ProducttransactionreportCustom> selectByCondition(ProducttransactionreportCustom producttransactionreportCustom);
+
+	/**
+	 * 根据商品的id，查询商品的销售情况（分店）
+	 * @param productCustom
+	 * @return
+	 */
+	public ProductCustom BranchProductCustom(ProductCustom productCustom);
+
 }

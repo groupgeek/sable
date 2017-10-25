@@ -35,6 +35,7 @@ import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
@@ -53,7 +54,7 @@ public class BrachAdminController {
 	@RequestMapping(value="/log")
 	public String log(HttpServletRequest request){
 		Employee employee = new Employee();
-		employee = branchService.onEmployee(2);
+		employee = branchService.onEmployee(1);
 		request.getSession().setAttribute("employee", employee);
 		return "brach/test";
 	}
@@ -499,10 +500,36 @@ public class BrachAdminController {
 	//------------------------报表开始
 	
 	@RequestMapping(value="/charts")
-	public String charts(){
+	public String charts(HttpServletRequest request,Model model){
+		int a = ((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
+		Branch branch = new Branch();
+		branch = branchService.oneBranch(a);
+		List<ProductCustom> products = new ArrayList<ProductCustom>();
+		products = branchService.quertyAllProduct(branch.getBranchid());
+		System.out.println(products.get(0).getProductname());
 		
+		ProductCustom productCustom1 = new ProductCustom();
+		ProductCustom productCustom2 = new ProductCustom();
+		productCustom1.setEmployeeid(a);
+		productCustom1.setProductid(products.get(0).getProductid());
+		productCustom2 = branchService.BranchProductCustom(productCustom1);
+		model.addAttribute("productCus", productCustom2);//这个是销售情况（包括，总销售量和总销售额）
+		model.addAttribute("products",products);//这个是分店所有的商品
+		return "brach/chart";
+	}
+	
+	@RequestMapping(value="/requestProduct")
+	public @ResponseBody List<ProducttransactionreportCustom> product(@RequestBody ProducttransactionreportCustom products,HttpServletRequest request){
+		/*ProducttransactionreportCustom pro = new ProducttransactionreportCustom();*/
+		int x = ((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
+		int a = (products.getStartingTime()).compareTo(products.getEndTime());
+		if (a < 0 && products.getProductid() != null) {
+			products.setEmployeeid(x);
+			System.out.println(branchService.selectByCondition(products));
+			return branchService.selectByCondition(products);
+		} else {
+			return null;
+		}
 		
-		
-		return "";
 	}
 }

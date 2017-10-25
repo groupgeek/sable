@@ -195,7 +195,6 @@
       activityPrice = #{activityprice,jdbcType=DECIMAL}
     where activityId = #{activityid,jdbcType=INTEGER}
   </update>
-  
   <sql id="contidion">
       <if test="activityid != null" >
         AND activityId = #{activityid,jdbcType=INTEGER}

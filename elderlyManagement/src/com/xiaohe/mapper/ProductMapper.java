@@ -1,6 +1,8 @@
 package com.xiaohe.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
@@ -92,6 +94,20 @@ public interface ProductMapper {
      * @return
      */
     ProducttypeCustom selectProductFathertypeById(Integer id);
+    
+    /**
+     * 根据产品类型id查询商品
+     * @param id
+     * @return
+     */
+    List<ProductCustom> selectProductByProducttypeId(ProductCustom condition);
+    
+    /**
+     * 根据商品id和管理员id查询商品的总销售情况(分店)
+     * @param productCustom
+     * @return
+     */
+    public ProductCustom countBranchProduct(ProductCustom productCustom);
     
     
 }
