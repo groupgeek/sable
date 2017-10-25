@@ -480,5 +480,23 @@
 	
 	</select>
 	
+	<select id="selectProductByProducttypeId" parameterType="productCustom" resultType="productCustom">
 	
+		SELECT * FROM `product`
+		<if test="productid != null">
+		
+			<if test="producttypeid != null">
+		
+			 	WHERE productTypeId = #{producttypeid} AND productId != #{productid}
+			</if>
+		</if>
+		ORDER BY buyNo DESC
+		<if test="begin != null">
+			<if test="total != null">
+				LIMIT #{begin} , #{total}
+			</if>
+		</if>
+		
+	
+	</select>
 </mapper>

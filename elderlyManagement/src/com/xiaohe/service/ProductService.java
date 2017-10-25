@@ -25,14 +25,14 @@ public interface ProductService {
 	List<ProducttypeCustom> queryProductTypeByCondition(ProducttypeCustom producttype);
 	
 	/**
-	 * 查询推荐商品
+	 * 查询推荐商品  商城主页
 	 * @param total 几条商品数据
 	 * @return 商品集合
 	 */
 	List<ProductCustom> queryProductrecommend(Integer total);
 	
 	/**
-	 * 查询推荐商品
+	 * 查询优惠商品 商城主页 
 	 * @param total 几条商品数据
 	 * @return 商品集合
 	 */
@@ -87,5 +87,12 @@ public interface ProductService {
 	 * @return
 	 */
 	Integer queryEvaluationSum(Integer id); 
+	
+	/**
+	 * 根据产品id查询出同类的产品
+	 * @param productid
+	 * @return
+	 */
+	List<ProductCustom> querySimilarProductsByProductId(ProductCustom condition);
 
 }

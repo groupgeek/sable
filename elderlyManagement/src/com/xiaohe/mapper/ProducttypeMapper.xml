@@ -108,7 +108,16 @@
 		SELECT * FROM producttype WHERE FatherId = (SELECT productTypeId FROM
 		producttype WHERE productTypeName = #{producttypename})
 
-
-
+	</select>
+	
+	<select id="selectSmallProductType" parameterType="producttypeCustom"
+		resultType="producttypeCustom">
+		SELECT * FROM producttype WHERE FatherId != 0
+		<if test="begin != null">
+			<if test="pageNum != null">
+				LIMIT #{begin} , #{pageNum}
+			</if>
+		</if>
+	
 	</select>
 </mapper>

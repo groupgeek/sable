@@ -24,13 +24,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	  <img  src="/pic/${url }">
+  ${url }
+	  <img  src="/upload/${url }">
 	  	  <%-- <img  src="/pic/${url }"> --%>
-	  	   <img  src="${pageContext.request.contextPath }/jsp/picture/1.jpg">
+	  	   <img  id = "elementId" src="${pageContext.request.contextPath }/jsp/picture/1.jpg">
 	  	   
 
-  <form action="${pageContext.request.contextPath }/test/upload.action" method="post" enctype="multipart/form-data">
-   <input type="file" name="fileList" multiple>
+  <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
+   <input type="file" name="file" multiple>
   <input type="submit" value="提交">
   
   </form>

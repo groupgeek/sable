@@ -1,6 +1,7 @@
 package com.xiaohe.test;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,12 +10,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.ProductMapper;
+import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProducttransactionreportService;
 
 /**
  * 测试
@@ -30,6 +33,12 @@ public class ProductTest {
 	
 	@Autowired
 	private ProductMapper productMapper;
+	
+	@Autowired
+	private ProducttransactionreportService producttransactionreportService;
+	
+	@Autowired
+	private ProducttransactionreportMapper producttransactionreportMapper;
 	
 
 	@org.junit.Test
@@ -81,7 +90,7 @@ public class ProductTest {
 	public void productInfoTest(){
 		
 		
-		ProductCustom custom = productService.queryProductInfoById(5);
+		ProductCustom custom = productService.queryProductInfoById(4);
 		
 		System.out.println(custom);
 		
@@ -105,14 +114,54 @@ public class ProductTest {
 		
 		
 		System.out.println((productService.queryEvaluationByProductId(custom)));*/
-		/*EvaluationCustom custom = productService.queryEvaluationLevalByProductId(1);
+		/*EvaluationCustom custom = productService.queryEvaluationLevalByProductId(3);
 		
 		System.out.println(custom.getBadReview());
 		System.out.println(custom.getAverage());
 		System.out.println(custom.getPraise());
 		System.out.println(custom.getPraiseOf());*/
 		
-		System.out.println(productService.queryEvaluationSum(1));
+		//System.out.println(productService.queryEvaluationSum(1));
+		
+		 
+			ProductCustom condition = new ProductCustom();
+			condition.setProductid(1);
+			condition.setBegin(0);
+			condition.setTotal(4);
+		System.out.println(productService.querySimilarProductsByProductId(condition));
+	}
+	
+	@Test
+	public void test56565(){
+		/*ProducttransactionreportCustom custom = producttransactionreportService.statisticsProductSalesByProductId(2);
+		System.out.println(custom.getTotalCount());
+		System.out.println(custom.getTotalMoney());
+		System.out.println(custom.getTotalExpenses());*/
+		
+		ProducttransactionreportCustom condition = new ProducttransactionreportCustom();
+		Date date1 = new Date();
+		Date date2 = new Date();
+		date2.setYear(date1.getYear());
+		date2.setMonth(date1.getMonth());
+		date2.setDate(1);
+		date2.setHours(0);
+		date2.setMinutes(0);
+		date1.setDate(32);
+		date1.setHours(0);
+		date1.setMinutes(0);
+		
+		System.out.println(date1.getTime() - date2.getTime());
+		
+		
+		condition.setStartingTime(date2);
+		condition.setEndTime(date1);
+		
+		condition.setProductid(1);
+		condition.setUserid(26);
+		condition.setSort("BuyTime");
+		System.out.println(producttransactionreportMapper.selectByCondition(condition));
+		
+		
 	}
 	
 	
