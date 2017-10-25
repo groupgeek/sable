@@ -16,6 +16,16 @@ public interface ProducttasteMapper {
     int updateByPrimaryKeySelective(Producttaste record);
 
     int updateByPrimaryKey(Producttaste record);
+    /**
+     * 
+     * @return 库存总数
+     */
+    List<Integer> countStock();
     
-    List<Integer> countStock(Integer productid);
+    /**
+     *  商品口味
+     * @param productid
+     * @return 商品口味集合
+     */
+    List<Producttaste> quertyProducttasteByid(Integer productid);
 }

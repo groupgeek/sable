@@ -43,7 +43,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	if (admins == null) {
 
 		model.addAttribute("message", "登录失败,手机号码或者密码错误0.0");
-		return "productmanage/logReg/login";
+		return "productmanage/login/login";
 	} else {
 		
 		request.getSession().setAttribute("admins", admins);

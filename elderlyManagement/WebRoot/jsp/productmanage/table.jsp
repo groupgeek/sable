@@ -133,17 +133,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <h2>
                     Tables & Grids</h2>
                 <div class="block">
-                    
-                   
-                    
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>
 							<th>商品名称</th>
 							<th>图片</th>
 							<th>类型(s)</th>
-							<th>价格</th>
-							<th>库存</th>
+							<th id="2">价格</th>
+							<th id="1">库存</th>
 							<th>操作</th>
 						</tr>
 					</thead>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.EvaluationCustom;
@@ -19,9 +20,11 @@ import com.xiaohe.bean.EvaluationVo;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductrecommendCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProducttransactionreportService;
 
 
 @Controller
@@ -35,6 +38,10 @@ public class MallController {
 	@Autowired
 	@Qualifier("producttypeMapper")
 	private ProducttypeMapper producttypeMapper;
+	
+	@Autowired
+	@Qualifier("producttransactionreportService")
+	private ProducttransactionreportService producttransactionreportService;
 	
 	/**
 	 * 商城主页
@@ -141,8 +148,6 @@ public class MallController {
 	@RequestMapping("/queryProduct_json")
 	public @ResponseBody List<ProductCustom> queryProduct_json(@RequestBody ProductCustom condition){
 		condition.setTotal(1);
-		System.out.println("sort:"+condition.getSort());
-		System.out.println("name:"+condition.getProducttypename());
 		List<ProductCustom> products = productService.queryProductByCondition(condition);
 		return products;
 	}
@@ -164,6 +169,7 @@ public class MallController {
 	}
 	
 	/**
+	 * value="/productInfo",method = RequestMethod.POST
 	 * 加载商品详细信息
 	 * @param id
 	 * @return
@@ -171,8 +177,72 @@ public class MallController {
 	@RequestMapping("/productInfo")
 	public String productInfo(Model model,Integer id){
 		
-		ProductCustom productInfo = productService.queryProductInfoById(id);
+		/**
+		 * productInfo 产品详细信息
+		 * similarProducts 同类商品
+		 * salesThisMonth 本月销量
+		 * sales 总销量
+		 */
+		ProductCustom productInfo = new ProductCustom();
+		
+		List<ProductCustom> similarProducts = new ArrayList<ProductCustom>();
+		
+		/*if(productInfo == null){
+			return 商品丢失页面
+		}*/
+		
+		/**
+		 * 开始查询商品详细信息
+		 */
+		productInfo = productService.queryProductInfoById(id);
+		
+		/**
+		 * 开始查询商品同类产品
+		 */
+		ProductCustom condition = new ProductCustom();
+		condition.setProductid(id);
+		condition.setBegin(0);
+		condition.setTotal(4);
+		similarProducts = productService.querySimilarProductsByProductId(condition);
+		
+		/**
+		 * 开始查询本月销量
+		 */
+		ProducttransactionreportCustom conditionSales = new ProducttransactionreportCustom();
+		Date end = new Date();
+		Date start = new Date();
+		start.setYear(end.getYear());
+		start.setMonth(end.getMonth());
+		start.setDate(1);
+		start.setHours(0);
+		start.setMinutes(0);
+		end.setDate(31);
+		end.setHours(0);
+		end.setMinutes(0);
+		
+		conditionSales.setStartingTime(start);
+		conditionSales.setEndTime(end);
+		
+		conditionSales.setProductid(id);
+		ProducttransactionreportCustom salesThisMonth = producttransactionreportService.statisticsProductSalesByIdAndTime(conditionSales);
+		
+		/**
+		 * 开始查询总销量
+		 */
+		ProducttransactionreportCustom sales = producttransactionreportService.statisticsProductSalesByProductId(id);
+		
+		/**
+		 * 查询总评价数
+		 */
+		EvaluationCustom allEvaluationCustom = productService.queryEvaluationLevalByProductId(id);
+		Integer allEvaluation = allEvaluationCustom.getPraise()+allEvaluationCustom.getAverage()+allEvaluationCustom.getBadReview();
+		
+		
 		model.addAttribute("productInfo", productInfo);
+		model.addAttribute("similarProducts", similarProducts);
+		model.addAttribute("salesThisMonth", salesThisMonth);
+		model.addAttribute("sales", sales);
+		model.addAttribute("allEvaluation", allEvaluation);
 		return "mall/home/introduction";
 	}
 	
@@ -188,6 +258,11 @@ public class MallController {
 		return id;
 	}
 	
+	/**
+	 * 查询评价
+	 * @param evaluationCustom
+	 * @return
+	 */
 	@RequestMapping("/queryEvaluation")
 	public @ResponseBody EvaluationVo queryEvaluation(@RequestBody EvaluationCustom evaluationCustom){
 		EvaluationVo evaluationVo = new EvaluationVo();

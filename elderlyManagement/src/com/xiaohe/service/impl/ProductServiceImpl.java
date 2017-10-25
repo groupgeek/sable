@@ -106,7 +106,9 @@ public class ProductServiceImpl implements ProductService {
 			product.setColourList(null);
 		}else{
 			product = productMapper.selectProductColourById(id);
-			product.setTasteList(null);
+			if(product != null){
+				product.setTasteList(null);
+			}
 		}
 		
 		return product;
@@ -173,6 +175,24 @@ public class ProductServiceImpl implements ProductService {
 			pageSum += 1;
 		}
 		return pageSum;
+	}
+
+	public List<ProductCustom> querySimilarProductsByProductId(ProductCustom condition) {
+		
+		Product product = productMapper.selectByPrimaryKey(condition.getProductid());
+		condition.setProducttypeid(product.getProducttypeid());
+		List<ProductCustom> products = productMapper.selectProductByProducttypeId(condition);
+		return products;
+	}
+
+	public ProductCustom quertyProductColourById(Integer id) {
+		
+		return productMapper.selectProductColourById(id);
+	}
+
+	public ProductCustom quertyProductTasteById(Integer id) {
+		
+		return productMapper.selectProductTasteById(id);
 	}
 
 

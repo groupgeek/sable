@@ -52,10 +52,18 @@ public interface ProductMapper {
     List<ProductCustom> selectProductByBlurryCondition(String condition);
     
     
-    //查询分店所有商品
+    /**
+     * 查询分店所有商品
+     * @param branchid
+     * @return
+     */
     List<ProductCustom> quertyAllProduct(Integer branchid);
     
-    //分店管理员查询
+    /**
+     * 分店管理员查询
+     * @param employeeid
+     * @return
+     */
     EmployeeCustom selectAdminCustom(Integer employeeid);
     
     /**
@@ -92,6 +100,13 @@ public interface ProductMapper {
      * @return
      */
     ProducttypeCustom selectProductFathertypeById(Integer id);
+    
+    /**
+     * 根据产品类型id查询商品
+     * @param id
+     * @return
+     */
+    List<ProductCustom> selectProductByProducttypeId(ProductCustom condition);
     
     
 }
