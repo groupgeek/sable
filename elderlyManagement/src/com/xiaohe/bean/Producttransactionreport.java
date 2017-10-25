@@ -6,11 +6,13 @@ import java.util.Date;
 public class Producttransactionreport {
     private Integer transactionid;
 
+    private Integer userid;
+
     private Integer productid;
 
     private Integer countbuy;
 
-    private Date duringtime;
+    private Date buytime;
 
     private BigDecimal totalprice;
 
@@ -24,6 +26,14 @@ public class Producttransactionreport {
 
     public void setTransactionid(Integer transactionid) {
         this.transactionid = transactionid;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public Integer getProductid() {
@@ -42,12 +52,12 @@ public class Producttransactionreport {
         this.countbuy = countbuy;
     }
 
-    public Date getDuringtime() {
-        return duringtime;
+    public Date getBuytime() {
+        return buytime;
     }
 
-    public void setDuringtime(Date duringtime) {
-        this.duringtime = duringtime;
+    public void setBuytime(Date buytime) {
+        this.buytime = buytime;
     }
 
     public BigDecimal getTotalprice() {

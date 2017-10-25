@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>搜索页面</title>
+		<title>商品搜索</title>
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -145,6 +145,7 @@
 									
 									<c:forEach items="${blurryProductCustoms }" var="blurryProductCustom">
 										<li>
+										<a href = "${pageContext.request.contextPath }/product/productInfo?id=${blurryProductCustom.productid}">
 											<div class="i-pic limit">
 												<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />											
 												<p class="title fl">${blurryProductCustom.productname }</p>
@@ -156,6 +157,7 @@
 													销量<span>${blurryProductCustom.buyno}</span>
 												</p>
 											</div>
+										</a>
 										</li>
 									</c:forEach>
 			
@@ -561,18 +563,20 @@
 					        				productSumPage();//更新页数
 					        				for (var i in data){
 					        					$("#products").append(
-					        						'<li>'+
-														'<div class="i-pic limit">'+
-															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
-															'<p class="title fl">'+data[i].productname+'</p>'+
-															'<p class="price fl">'+
-																'<b>¥</b>'+
-																'<strong>'+data[i].price+'</strong>'+
-															'</p>'+
-															'<p class="number fl">'+
-																'销量<span>'+data[i].buyno+'</span>'+
-															'</p>'+
-														'</div>'+
+						        					'<li>'+
+						        						'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
+															'<div class="i-pic limit">'+
+																'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+																'<p class="title fl">'+data[i].productname+'</p>'+
+																'<p class="price fl">'+
+																	'<b>¥</b>'+
+																	'<strong>'+data[i].price+'</strong>'+
+																'</p>'+
+																'<p class="number fl">'+
+																	'销量<span>'+data[i].buyno+'</span>'+
+																'</p>'+
+															'</div>'+
+														'</a>'+
 													'</li>'
 					        					);
 					        				}
@@ -676,18 +680,20 @@
 					        				$("#products").html(" ");
 					        				for (var i in data){
 					        					$("#products").append(
-					        						'<li>'+
-														'<div class="i-pic limit">'+
-															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
-															'<p class="title fl">'+data[i].productname+'</p>'+
-															'<p class="price fl">'+
-																'<b>¥</b>'+
-																'<strong>'+data[i].price+'</strong>'+
-															'</p>'+
-															'<p class="number fl">'+
-																'销量<span>'+data[i].buyno+'</span>'+
-															'</p>'+
-														'</div>'+
+						        					'<li>'+
+					        							'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
+															'<div class="i-pic limit">'+
+																'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+																'<p class="title fl">'+data[i].productname+'</p>'+
+																'<p class="price fl">'+
+																	'<b>¥</b>'+
+																	'<strong>'+data[i].price+'</strong>'+
+																'</p>'+
+																'<p class="number fl">'+
+																	'销量<span>'+data[i].buyno+'</span>'+
+																'</p>'+
+															'</div>'+
+														'</a>'+	
 													'</li>'
 					        					);
 					        				}
@@ -792,18 +798,20 @@
 					        				$("#products").html(" ");
 					        				for (var i in data){
 					        					$("#products").append(
-					        						'<li>'+
-														'<div class="i-pic limit">'+
-															'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
-															'<p class="title fl">'+data[i].productname+'</p>'+
-															'<p class="price fl">'+
-																'<b>¥</b>'+
-																'<strong>'+data[i].price+'</strong>'+
-															'</p>'+
-															'<p class="number fl">'+
-																'销量<span>'+data[i].buyno+'</span>'+
-															'</p>'+
-														'</div>'+
+						        					'<li>'+
+					        							'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
+															'<div class="i-pic limit">'+
+																'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+																'<p class="title fl">'+data[i].productname+'</p>'+
+																'<p class="price fl">'+
+																	'<b>¥</b>'+
+																	'<strong>'+data[i].price+'</strong>'+
+																'</p>'+
+																'<p class="number fl">'+
+																	'销量<span>'+data[i].buyno+'</span>'+
+																'</p>'+
+															'</div>'+
+													'	</a>'+
 													'</li>'
 					        					);
 					        				}
