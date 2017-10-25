@@ -326,4 +326,8 @@
   <select id="Acts" resultType="com.xiaohe.bean.ActivityCustom">
   select * from activity
   </select>
+  
+  <select id="oneAct" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Activity">
+  select * from activity where activityid = #{activityid,jdbcType=INTEGER}
+  </select>
 </mapper>

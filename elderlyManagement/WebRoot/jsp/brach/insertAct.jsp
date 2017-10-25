@@ -65,18 +65,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						
+						<!-- start: Notifications Dropdown -->
+						
+						<!-- end: Notifications Dropdown -->
+						<!-- start: Message Dropdown -->
+						
 						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${employee.employeename }
+								<i class="halflings-icon white user"></i>${employee.employeename}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
+								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
 								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
@@ -123,16 +128,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">XIAOHE</a> 
-					<i class="icon-angle-right"></i>
+					<a href="index.html">XIAOHE</a>
+					<i class="icon-angle-right"></i> 
 				</li>
-				<li><a href="#">客户信息</a></li>
+				<li>
+					<i class="icon-edit"></i>
+					<a href="#">添加活动</a>
+				</li>
 			</ul>
-
-			<div class="row-fluid sortable">		
+			
+			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>客户信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>添加活动信息</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -140,57 +148,227 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-								  <th>客户姓名</th>
-								  <th>客户性别</th>
-								  <th>客户等级</th>
-								  <th>客户邮箱</th>
-								  <th>客户密码</th>
-								  <th>Actions</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-							<c:forEach items="${users }" var="users">
-					<tr>
-						<td class="center">${users.username }</td>
-						<td class="center">${users.sex }</td>
-						<td class="center">${users.password }</td>
-						<td class="center">${users.email }</td>
-						<td class="center">${users.password }</td>
-						<%-- <td><a href="${pageContext.request.contextPath }/admin/deletUser.action?id=${ allUsers.userid}">删除</a></td> --%>
-						<td class="center">
-						<%-- <a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a> --%>
-									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneUser.action?id=${ users.userid}">
-										<i class="halflings-icon white edit"></i>                                            
-									</a>
-									<!-- <a class="btn btn-info" href="#">
-										<i class="halflings-icon white edit"></i>                                            
-									</a> -->
-									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delUser.action?id=${ users.userid}">
-										<i class="halflings-icon white trash"></i> 
-										
-									</a>
-								</td>
-						<%-- <td><fmt:formatDate value="${user.birthday }"
-								pattern="yyyy-MM-dd HH:mm:ss" />
-						</td> --%>
-						<%-- <td><a
-							href="${pageContext.request.contextPath}/user/queryUserById.action?id=${user.id }">修改</a>
-						</td> --%>
-					</tr>
-				</c:forEach>
+					
+					
+					
+					
+					
+					
+			<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
+				<fieldset>
+					<div class="control-group">
+							  <label class="control-label" for="typeahead">活动名称 </label>
+							  <div class="controls">
+								<input type="text" name="activityname" class="span6 typeahead" id="typeahead">
+							  </div>
+					</div>
+					
+					<div class="control-group">
+							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
+							  <div class="controls">
+								<input name="activitydate" onClick="laydate()"><br /><br />
+								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
+							  </div>
+					</div>
+					
+					<div class="control-group">
+							  <label class="control-label" for="fileInput">添加图片</label>
+							  <div class="controls">
+							  <input type="file" name="file">
+							  </div>
+					</div> 
+					
+					<div class="control-group">
+							  <label class="control-label" for="fileInput">添加视频</label>
+							  <div class="controls">
+							  <input type="file" name="nice">
+							  </div>
+					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="selectError3">活动状态</label>
+								<div class="controls">
+									<select id="selectError3" name="activitystatus">
+										<option>已开展</option>
+										<option>未开展</option>
+										<option>进行中</option>
+									</select>
+								</div>
+					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="selectError3">活动类型</label>
+								<div class="controls">
+									<select id="selectError3" name="activitytypeid">
+									<c:forEach items="${actTypes }" var="actTypes">
+										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
+									</c:forEach>
+									</select>
+								</div>
+					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="selectError3">线上线下</label>
+								<div class="controls">
+									<select id="selectError3" name="online">
+										<option value="0">线上</option>
+										<option value="1">线下</option>
+									</select>
+								</div>
+					</div> 
+					
+					<div class="control-group">
+								<label class="control-label" for="appendedPrependedInput">活动经费</label>
+								<div class="controls">
+								  <div class="input-prepend input-append">
+									<span class="add-on">￥</span>
+									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
+								  </div>
+								</div>
+					</div>
 							
-						  </tbody>
-					  </table>            
+					<div class="control-group">
+								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
+								<div class="controls">
+								  <div class="input-prepend input-append">
+									<span class="add-on">￥</span>
+									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
+								  </div>
+								</div>
+				    </div>
+							
+					<div class="control-group hidden-phone">
+							  <label class="control-label" for="textarea2">活动描述</label>
+							  <div class="controls">
+								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
+							  </div>
+					</div>
+					
+					<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">提交信息</button>
+					</div>
+					<!-- <div>
+						<button type="submit">提交信息</button>
+					</div> -->
+					
+				</fieldset>
+			</form>
+					
+					
+					
+					
+					
+					
+					
+					
+						<%-- <form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
+						 <!--  <fieldset> -->
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">活动名称 </label>
+							  <div class="controls">
+								<input type="text" name="activityname" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+								<!-- <p class="help-block">Start typing to activate auto complete!</p> -->
+							  </div>
+							</div>
+							
+							<div class="control-group">
+							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
+							  <div class="controls">
+								<input name="activitydate" onClick="laydate()"><br /><br />
+								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
+							  </div>
+							</div>
+
+							<div class="control-group">
+							  <label class="control-label" for="fileInput">插入视频</label>
+							  <div class="controls">
+								<input class="input-file uniform_on" name="video" id="fileInput" type="file">
+							  </div>
+							</div>  
+							
+							
+							<div class="control-group">
+							  <label class="control-label" for="fileInput">插入图片</label>
+							  <div class="controls">
+							  <input type="file" name="activitypicture">
+								<!-- <input class="input-file uniform_on" name="activitypicture1" id="fileInput" type="file"> -->
+							  </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError3">活动状态</label>
+								<div class="controls">
+									<select id="selectError3" name="activitystatus">
+										<option>已开展</option>
+										<option>未开展</option>
+										<option>进行中</option>
+									</select>
+								</div>
+							</div>  
+							
+							<div class="control-group">
+								<label class="control-label" for="selectError3">活动类型</label>
+								<div class="controls">
+									<select id="selectError3" name="activitytypeid">
+									<c:forEach items="${actTypes }" var="actTypes">
+										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
+									</c:forEach>
+									</select>
+								</div>
+							</div> 
+							
+							<div class="control-group">
+								<label class="control-label" for="selectError3">线上线下</label>
+								<div class="controls">
+									<select id="selectError3" name="online">
+										<option value="0">线上</option>
+										<option value="1">线下</option>
+									</select>
+								</div>
+							</div> 
+							
+							<div class="control-group">
+								<label class="control-label" for="appendedPrependedInput">活动经费</label>
+								<div class="controls">
+								  <div class="input-prepend input-append">
+									<span class="add-on">￥</span>
+									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
+								  </div>
+								</div>
+							  </div>
+							
+							<div class="control-group">
+								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
+								<div class="controls">
+								  <div class="input-prepend input-append">
+									<span class="add-on">￥</span>
+									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
+								  </div>
+								</div>
+							  </div>
+							
+							<div class="control-group hidden-phone">
+							  <label class="control-label" for="textarea2">活动描述</label>
+							  <div class="controls">
+								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
+							  </div>
+							</div>
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">提交信息</button>
+							</div>
+						 <!--  </fieldset> -->
+						</form>   --%>
+						
+						<%-- <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
+						 <input type="file" name="file" multiple>
+						 <input type="submit" value="提交">
+						</form>  --%>
+
 					</div>
 				</div><!--/span-->
-			
+
 			</div><!--/row-->
 
-			<!--/row-->
-			
 			<!--/row-->
 			
 			<!--/row-->
@@ -215,14 +393,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
+	
 	<div class="clearfix"></div>
 	
 	<footer>
@@ -236,7 +407,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: JavaScript-->
 
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -290,6 +461,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
+		
 	<!-- end: JavaScript-->
 	
 </body>

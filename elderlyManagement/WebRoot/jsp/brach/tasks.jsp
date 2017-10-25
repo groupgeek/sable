@@ -69,6 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/products.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
@@ -113,14 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <td>${visits.countvisit }</td>
 						  </tr>
 						  </c:forEach>
-							<tr>
-								<td>Dennis Ji</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-								</td>
-								
-							</tr>
+							
 						  </tbody>
 					  </table>            
 					</div>

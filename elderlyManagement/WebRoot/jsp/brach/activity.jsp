@@ -76,8 +76,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i>退出登陆</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -126,13 +126,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="index.html">XIAOHE</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">客户信息</a></li>
+				<li><a href="#">活动信息</a></li>
 			</ul>
-
-			<div class="row-fluid sortable">		
+			
+			<div class="form-actions">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/brach/allActTypes.action"><i class=" icon-plus-sign"></i>  添加新的活动</a>
+			</div>
+							  
+							  
+			<div class="row-fluid sortable" style="margin-top: 30px">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>客户信息</h2>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>所有活动</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -143,32 +148,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								  <th>客户姓名</th>
-								  <th>客户性别</th>
-								  <th>客户等级</th>
-								  <th>客户邮箱</th>
-								  <th>客户密码</th>
-								  <th>Actions</th>
+							  	<th>活动名字</th>
+								  <th>活动状态</th>
+								  <th>活动报名费</th>
+								  <th>活动日期</th>
+								  <th>详情</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
-							<c:forEach items="${users }" var="users">
+							<c:forEach items="${acts }" var="acts">
 					<tr>
-						<td class="center">${users.username }</td>
-						<td class="center">${users.sex }</td>
-						<td class="center">${users.password }</td>
-						<td class="center">${users.email }</td>
-						<td class="center">${users.password }</td>
+						<td class="center">${acts.activityname }</td>
+						<td class="center">${acts.activitystatus }</td>
+						<td class="center">${acts.registeryfee }</td>
+						<td class="center"><fmt:formatDate value="${acts.activitydate }"pattern="yyyy-MM-dd" /></td>
 						<%-- <td><a href="${pageContext.request.contextPath }/admin/deletUser.action?id=${ allUsers.userid}">删除</a></td> --%>
 						<td class="center">
 						<%-- <a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a> --%>
-									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneUser.action?id=${ users.userid}">
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneActCus.action?id=${ acts.activityid}">
 										<i class="halflings-icon white edit"></i>                                            
 									</a>
 									<!-- <a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>                                            
 									</a> -->
-									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delUser.action?id=${ users.userid}">
+									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delAct.action?id=${ acts.activityid}">
 										<i class="halflings-icon white trash"></i> 
 										
 									</a>
@@ -187,7 +190,120 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div><!--/span-->
 			
-			</div><!--/row-->
+			</div>
+			
+			
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>设置推荐活动</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							 
+							 
+							 
+							 
+							 
+							 
+							 <div class="control-group">
+								<label class="control-label" for="selectError3" name="">推荐活动1</label>
+								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec1">
+								<div class="controls">
+									<select id="selectError1" name="activity" >
+									<c:if test="${allBranchActRec[0] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[0] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[0].activityname}</option>
+									</c:if>
+									
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct1()">
+										<i class="icon-ok-sign"></i>                                            
+									</a></div>
+							</div> 
+							
+							
+							
+							
+							
+							
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐活动2</label>
+								<input type="hidden" value="${allBranchActRec[1].activityid }" id = "activityidRec2">
+								<div class="controls">
+									
+									<select id="selectError2" name="activity" >
+									<c:if test="${allBranchActRec[1] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[1] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[1].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct2()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐活动3</label>
+								<input type="hidden" value="${allBranchActRec[2].activityid }" id = "activityidRec3">
+								<div class="controls">
+									<select id="selectError3" name="activity" >
+									<c:if test="${allBranchActRec[2] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[2] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[2].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct3()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> 
+									<!-- <button type="submit" class="btn btn-info" onclick="insertRecAct()"><i class="icon-ok-sign"></i> </button> -->
+									<%-- <c:if test="${allBranchActRec[2].activityid ==null}">
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/insertRecAct.action">
+										<i class="icon-ok-sign"></i>                                            
+									</a>
+									</c:if> --%>
+								</div>
+							</div> 
+							
+							
+							
+							
+							<!-- <div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Save changes</button>
+							  <button type="reset" class="btn">Cancel</button>
+							</div> -->
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div>
+			
+			
+			<!--/row-->
 
 			<!--/row-->
 			
@@ -291,6 +407,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
+	
+	<script type="text/javascript">
+	
+	function insertRecAct1(){
+		var select1 = document.getElementById("selectError1");
+		var value1 = select1.options[select1.selectedIndex].value;
+		var values = document.getElementById("activityidRec1").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value1+'"'+','+'"activityidRec"'+':'+'"'+values+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	
+	function insertRecAct2(){
+		var select2 = document.getElementById("selectError2");
+		var value2 = select2.options[select2.selectedIndex].value;
+		var value4 = document.getElementById("activityidRec2").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value2+'"'+','+'"activityidRec"'+':'+'"'+value4+'"}',
+			success:function(data){
+			alert("处理成功");
+			}
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	
+	function insertRecAct3(){
+		var select3 = document.getElementById("selectError3");
+		var value3 = select3.options[select3.selectedIndex].value;
+		var value5 = document.getElementById("activityidRec3").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value3+'"'+','+'"activityidRec"'+':'+'"'+value5+'"}',
+			success:function(data){
+			}
+		});
+	}
+	</script>
 	
 </body>
 </html>

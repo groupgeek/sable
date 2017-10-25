@@ -1,14 +1,18 @@
 package com.xiaohe.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.aop.IntroductionAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
@@ -35,6 +40,7 @@ import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.service.BranchAdminService;
+import com.xiaohe.util.FileUpload;
 
 
 @Controller
@@ -266,12 +272,73 @@ public class BrachAdminController {
 		
 	}*/
 	
+	
+	
 	@RequestMapping(value="/oneActCus")
 	public String oneActCustom(Integer id,Model model){
 		ActivityCustom act= new ActivityCustom();
+		List<ActivitytypeCustom> actTypes = new ArrayList<ActivitytypeCustom>();
+		actTypes = branchService.allActivityTypes();
+		model.addAttribute("actTypes", actTypes);
 		act = branchService.oneActCustom(id);
 		model.addAttribute("act", act);
-		return"brach/test2";
+		return"brach/ActDetail";
+	}
+	
+	@RequestMapping(value="/updateAct")
+	public String updateAct(Activity activity,Integer id,HttpServletRequest request,MultipartFile file,MultipartFile nice){
+		int a = ((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
+		Branch branch = new Branch();
+		branch = branchService.oneBranch(a);
+		activity.setBranchid(branch.getBranchid());
+		activity.setActivityid(id);
+		Activity act = new Activity();
+		act = branchService.oneAct(id);
+		String picturename = act.getActivitypicture();
+		String videoname = act.getVideo();
+		String path = "D:\\code\\web\\upload\\";
+		String filename = null;
+		String filevideo = null;
+		if (!file.isEmpty()) {
+			try {
+				File pictureFile = new File(path+picturename);
+				if(pictureFile.exists()){
+					if(pictureFile.isFile()){
+						pictureFile.delete();
+					}
+				}
+				filename = FileUpload.oneFileUpload(file, "picture");
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(!nice.isEmpty()){
+			try {
+				File videoFile = new File(path+videoname);
+				if(videoFile.exists()){
+					if(videoFile.isFile()){
+						videoFile.delete();
+					}
+				}
+				filevideo = FileUpload.oneFileUpload(nice, "video");
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(filename!=null){
+			activity.setActivitypicture(filename);
+			}
+			if(filevideo!=null){
+			activity.setActivitypicture(filevideo);	
+			}
+		
+		branchService.updateAct(activity);
+		return "redirect:allActs";
 	}
 	
 	@RequestMapping(value="/delAct")
@@ -290,13 +357,40 @@ public class BrachAdminController {
 	}
 	
 	@RequestMapping(value="/insertActs")
-	public String insertActs(Activity activity,HttpServletRequest request){
+	public String insertActs(Activity activity,HttpServletRequest request,MultipartFile file,MultipartFile nice,Model model){
 		Branch branch = new Branch();
 		int a = ((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
 		branch = branchService.oneBranch(a);
 		activity.setBranchid(branch.getBranchid());
-		branchService.inertActs(activity);
-		return "brach/insertAct";
+		String filename = null;
+		String fileVideo = null;
+		if(!file.isEmpty()){
+			try {
+				filename = FileUpload.oneFileUpload(file, "picture");
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if (!nice.isEmpty()) {
+			try {
+				fileVideo = FileUpload.oneFileUpload(nice, "video");
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("url", filename);
+		if(filename!=null){
+		activity.setActivitypicture(filename);
+		}
+		if(fileVideo!=null){
+		activity.setActivitypicture(fileVideo);	
+		}
+		branchService.inertActs(activity,file);
+		return "redirect:allActs";
 	}
 	
 	/**
@@ -387,6 +481,20 @@ public class BrachAdminController {
 		System.out.println("+++++++++++++++++++");
 		return "brach/test";
 	}*/
+	
+	@RequestMapping(value="/products")
+	public String products(Model model,HttpServletRequest request){
+		int a = ((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
+		Branch branch = new Branch();
+		branch = branchService.oneBranch(a);
+		List<ProductCustom> products = new ArrayList<ProductCustom>();
+		products = branchService.quertyAllProduct(branch.getBranchid());
+		model.addAttribute("products", products);
+		return "brach/products";
+	}
+	
+	
+	
 	
 	//------------------------报表开始
 	

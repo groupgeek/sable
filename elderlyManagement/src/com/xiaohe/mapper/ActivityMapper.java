@@ -83,5 +83,12 @@ public interface ActivityMapper {
      * @return
      */
     List<ActivityCustom> Acts();
+    
+    /**
+     * 根据活动id查询到一条活动信息
+     * @param id
+     * @return
+     */
+    Activity oneAct(Integer id);
    
 }
