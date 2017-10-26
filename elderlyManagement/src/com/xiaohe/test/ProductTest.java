@@ -16,7 +16,9 @@ import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
+import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.ProducttransactionreportService;
 
 /**
@@ -39,6 +41,10 @@ public class ProductTest {
 	
 	@Autowired
 	private ProducttransactionreportMapper producttransactionreportMapper;
+	
+	@Autowired
+	@Qualifier("productTypeService")
+	private ProductTypeService productTypeService;
 	
 
 	@org.junit.Test
@@ -125,10 +131,13 @@ public class ProductTest {
 		
 		 
 			ProductCustom condition = new ProductCustom();
-			condition.setProductid(1);
+			condition.setProducttypeid(8);
+			condition.setSort("buyNo");
 			condition.setBegin(0);
 			condition.setTotal(4);
-		System.out.println(productService.querySimilarProductsByProductId(condition));
+		//System.out.println(productService.querySimilarProductsByProductId(condition));
+		
+		System.out.println(productService.queryProductByTypeId(condition));
 	}
 	
 	@Test
@@ -161,6 +170,22 @@ public class ProductTest {
 		condition.setSort("BuyTime");
 		System.out.println(producttransactionreportMapper.selectByCondition(condition));
 		
+		
+	}
+	
+	@Test
+	public void poductSmallType(){
+		System.out.println(productTypeService.querySimallProducttype());
+	}
+	
+	@Test
+	public void allpoductTest(){
+		//条件
+		ProductCustom condition = new ProductCustom();
+				condition.setBegin(0);
+				condition.setTotal(7);
+		
+		System.out.println(productService.queryProductByAllType(condition));
 		
 	}
 	
