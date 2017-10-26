@@ -94,11 +94,18 @@ public interface ProductMapper {
     ProducttypeCustom selectProductFathertypeById(Integer id);
     
     /**
-     * 根据产品类型id查询商品
-     * @param id
+     * 查询同类产品，过滤掉本产品
+     * @param condition
      * @return
      */
     List<ProductCustom> selectProductByProducttypeId(ProductCustom condition);
+    
+    /**
+     * 根据产品类型id查询产品
+     * @param id
+     * @return
+     */
+    List<ProductCustom> selectProductBytypeId(ProductCustom condition);
     
     
 }
