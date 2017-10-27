@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xiaohe.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.xiaohe.bean.UserCustom" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.User" >
     <id column="userId" property="userid" jdbcType="INTEGER" />
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -9,7 +9,7 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="accountNumber" property="accountnumber" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="integral" property="integral" jdbcType="VARCHAR" />
@@ -18,10 +18,14 @@
     <result column="authorityId" property="authorityid" jdbcType="INTEGER" />
     <result column="levelId" property="levelid" jdbcType="INTEGER" />
     <result column="areaId" property="areaid" jdbcType="INTEGER" />
+    <result column="registrationDate" property="registrationdate" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="onLine" property="online" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
     userId, avatar, email, userName, password, accountNumber, sex, birthday, phone, address, 
-    integral, bankcardNo, healthStatus, authorityId, levelId, areaId
+    integral, bankcardNo, healthStatus, authorityId, levelId, areaId, registrationDate, 
+    status, onLine
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -39,15 +43,17 @@
       sex, birthday, phone, 
       address, integral, bankcardNo, 
       healthStatus, authorityId, levelId, 
-      areaId)
+      areaId, registrationDate, status, 
+      onLine)
     values (#{userid,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{integral,jdbcType=VARCHAR}, #{bankcardno,jdbcType=VARCHAR}, 
       #{healthstatus,jdbcType=VARCHAR}, #{authorityid,jdbcType=INTEGER}, #{levelid,jdbcType=INTEGER}, 
-      #{areaid,jdbcType=INTEGER})
+      #{areaid,jdbcType=INTEGER}, #{registrationdate,jdbcType=DATE}, #{status,jdbcType=BIT}, 
+      #{online,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaohe.bean.UserCustom" >
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -98,6 +104,15 @@
       <if test="areaid != null" >
         areaId,
       </if>
+      <if test="registrationdate != null" >
+        registrationDate,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="online != null" >
+        onLine,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -122,7 +137,7 @@
         #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        #{birthday,jdbcType=VARCHAR},
+        #{birthday,jdbcType=DATE},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -148,9 +163,18 @@
       <if test="areaid != null" >
         #{areaid,jdbcType=INTEGER},
       </if>
+      <if test="registrationdate != null" >
+        #{registrationdate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="online != null" >
+        #{online,jdbcType=BIT},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.UserCustom" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.User" >
     update user
     <set >
       <if test="avatar != null" >
@@ -172,7 +196,7 @@
         sex = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=VARCHAR},
+        birthday = #{birthday,jdbcType=DATE},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -198,6 +222,15 @@
       <if test="areaid != null" >
         areaId = #{areaid,jdbcType=INTEGER},
       </if>
+      <if test="registrationdate != null" >
+        registrationDate = #{registrationdate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="online != null" >
+        onLine = #{online,jdbcType=BIT},
+      </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
   </update>
@@ -209,7 +242,7 @@
       password = #{password,jdbcType=VARCHAR},
       accountNumber = #{accountnumber,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       integral = #{integral,jdbcType=VARCHAR},
@@ -217,12 +250,74 @@
       healthStatus = #{healthstatus,jdbcType=VARCHAR},
       authorityId = #{authorityid,jdbcType=INTEGER},
       levelId = #{levelid,jdbcType=INTEGER},
-      areaId = #{areaid,jdbcType=INTEGER}
+      areaId = #{areaid,jdbcType=INTEGER},
+      registrationDate = #{registrationdate,jdbcType=DATE},
+      status = #{status,jdbcType=BIT},
+      onLine = #{online,jdbcType=BIT}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
   
-  
-  <!-- 自定义sql -->
+     <!-- 自定义sql -->
+     <sql id="userSql">
+     	  <if test="userid != null" >
+	        AND userId = #{userid,jdbcType=INTEGER}
+	      </if>
+     	  <if test="avatar != null" >
+	        AND avatar = #{avatar,jdbcType=VARCHAR}
+	      </if>
+	      <if test="email != null" >
+	        AND email = #{email,jdbcType=VARCHAR}
+	      </if>
+	      <if test="username != null" >
+	        AND userName LIKE '%${username}%'
+	      </if>
+	      <if test="password != null" >
+	        AND password = #{password,jdbcType=VARCHAR}
+	      </if>
+	      <if test="accountnumber != null" >
+	        AND accountNumber = #{accountnumber,jdbcType=VARCHAR}
+	      </if>
+	      <if test="sex != null" >
+	        AND sex = #{sex,jdbcType=VARCHAR}
+	      </if>
+	      <if test="birthday != null" >
+	        AND birthday = #{birthday,jdbcType=DATE}
+	      </if>
+	      <if test="phone != null" >
+	        AND phone = #{phone,jdbcType=VARCHAR}
+	      </if>
+	      <if test="address != null" >
+	        AND address = #{address,jdbcType=VARCHAR}
+	      </if>
+	      <if test="integral != null" >
+	        AND integral = #{integral,jdbcType=VARCHAR}
+	      </if>
+	      <if test="bankcardno != null" >
+	        AND bankcardNo = #{bankcardno,jdbcType=VARCHAR}
+	      </if>
+	      <if test="healthstatus != null" >
+	        AND healthStatus = #{healthstatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="authorityid != null" >
+	        AND authorityId = #{authorityid,jdbcType=INTEGER}
+	      </if>
+	      <if test="levelid != null" >
+	        AND levelId = #{levelid,jdbcType=INTEGER}
+	      </if>
+	      <if test="areaid != null" >
+	        AND areaId = #{areaid,jdbcType=INTEGER}
+	      </if>
+	      <if test="registrationdate != null" >
+	        AND registrationDate = #{registrationdate,jdbcType=DATE}
+	      </if>
+	      <if test="status != null" >
+	        AND status = #{status,jdbcType=BIT}
+	      </if>
+	      <if test="online != null" >
+	        AND onLine = #{online,jdbcType=BIT}
+	      </if>
+     
+     </sql>
   <select id="queryAllUser" resultType="com.xiaohe.bean.User">
   select * from user
   </select>
@@ -247,4 +342,35 @@
 	and b.employeeId = e.employeeId
 	and e.employeeId = #{employeeId,jdbcType=INTEGER}
   </select>
+  
+  <update id="changeOnLine" parameterType="userCustom">
+  		UPDATE user SET `onLine` = #{online} WHERE phone = #{phone}
+  </update>
+  
+  <select id="selectAllUserByCondition" parameterType="userCustom" resultType="userCustom">
+  
+  	SELECT * FROM `user`
+  	<where>
+  		<include refid="userSql"/>
+  	</where>
+  	<if test="sort != null" >
+	     ORDER BY #{sort} DESC  
+	</if>
+   	<if test="begin != null" >
+	  <if test="pageNum != null" >
+	      LIMIT  #{begin} , #{pageNum};
+	  </if>
+  	</if>
+	    
+  </select>
+  
+  <select id="selectAllUserSumByCondition" parameterType="userCustom" resultType="Integer">
+  
+  	SELECT COUNT(*) FROM `user`
+  	<where>
+  		<include refid="userSql"/>
+  	</where>
+  
+  </select>
+  
 </mapper>
