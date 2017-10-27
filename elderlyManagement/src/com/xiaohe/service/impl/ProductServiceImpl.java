@@ -71,19 +71,25 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<ProductCustom> queryProductByCondition(ProductCustom condition) {
-		if(condition.getCurrentPage() >= 1){
-			 Integer tempBegin = (condition.getCurrentPage()-1) * condition.getTotal();
-			condition.setBegin(tempBegin);
-			/*condition.setSort(null);
-			condition.setProducttypename(null);*/
+		List<ProductCustom> listTemp = new ArrayList<ProductCustom>();
+		if(condition != null){
+			if(condition.getCurrentPage() >= 1){
+				 Integer tempBegin = (condition.getCurrentPage()-1) * condition.getTotal();
+				condition.setBegin(tempBegin);
+				/*condition.setSort(null);
+				condition.setProducttypename(null);*/
+			}else{
+				condition.setBegin(0);
+			}
+			if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
+				condition.setProducttypename(null);
+			}
+			if(condition.getSort() == "" || "null".equals(condition.getSort())){
+				condition.setSort(null);
+			}
 		}
-		if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
-			condition.setProducttypename(null);
-		}
-		if(condition.getSort() == "" || "null".equals(condition.getSort())){
-			condition.setSort(null);
-		}
-		List<ProductCustom> listTemp = productMapper.selectProductByCondition(condition);
+		
+		listTemp = productMapper.selectProductByCondition(condition);
 		return listTemp;
 	}
 
