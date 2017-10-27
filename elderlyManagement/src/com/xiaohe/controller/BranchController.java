@@ -59,7 +59,7 @@ public class BranchController {
 		return (User) request.getSession().getAttribute("user");
 	}
 	
-	@RequestMapping("index")
+	@RequestMapping("/index")
 	public String index(Model model,HttpServletRequest request){
 		List<ActivityCustom> activities = new ArrayList<ActivityCustom>();
 		List<ProductCustom> productCustoms = new ArrayList<ProductCustom>();
@@ -74,7 +74,7 @@ public class BranchController {
 		ActivityrecommendCustom custom = new ActivityrecommendCustom();
 		custom.setWebsitetype("分店官网");
 		custom.setBranchid(branch.getBranchid());
-		custom.setBranchid(1);
+		//custom.setBranchid(1);
 		activities = activityService.queryActivityrecommend(custom);
 		
 		/**
@@ -112,7 +112,7 @@ public class BranchController {
 		return "index/branchIndex";
 	}
 	
-	@RequestMapping("sendMessage")
+	@RequestMapping("/sendMessage")
 	public @ResponseBody MessageCustom sendMessage(@RequestBody MessageCustom message, 
 			HttpServletRequest request){
 		message.setMessagetime(new Date());

@@ -3,8 +3,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -13,12 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 </head>
 
 <body>
@@ -97,27 +100,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>客户地址</th>
 								  <th>上次回访时间</th>
 								  <th>总回访次数</th>
-								  <th>操作</th></tr>
 						  </thead>   
 						  <tbody>
+						  <c:forEach items="${visits }" var="visits">
+						  <tr>
+						  <td>${visits.username }</td>
+						  <td>${visits.address }</td>
+						  <td>
+						  <fmt:formatDate value="${visits.lastvisttime }"pattern="yyyy-MM-dd" />
+						  </td>
+						  <td>${visits.countvisit }</td>
+						  </tr>
+						  </c:forEach>
 							<tr>
 								<td>Dennis Ji</td>
 								<td class="center">2012/01/01</td>
 								<td class="center">Member</td>
 								<td class="center">
-									<span class="label label-success">Active</span>
 								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="halflings-icon white zoom-in"></i>  
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="halflings-icon white edit"></i>  
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="halflings-icon white trash"></i> 
-									</a>
-								</td>
+								
 							</tr>
 						  </tbody>
 					  </table>            
@@ -158,60 +159,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: JavaScript-->
 
-		<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery-migrate-1.0.0.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.ui.touch-punch.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.ui.touch-punch.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/modernizr.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/modernizr.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/bootstrap.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.cookie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cookie.js"></script>
 	
-		<script src='${pageContext.request.contextPath }/js/fullcalendar.min.js'></script>
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/fullcalendar.min.js'></script>
 	
-		<script src='${pageContext.request.contextPath }/js/jquery.dataTables.min.js'></script>
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
-		<script src="${pageContext.request.contextPath }/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath }/js/jquery.flot.resize.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.chosen.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.uniform.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uniform.min.js"></script>
 		
-		<script src="${pageContext.request.contextPath }/js/jquery.cleditor.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cleditor.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.noty.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.noty.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.elfinder.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.elfinder.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.raty.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.raty.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.iphone.toggle.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.iphone.toggle.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.uploadify-3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uploadify-3.1.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.gritter.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.gritter.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.imagesloaded.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.imagesloaded.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.masonry.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.masonry.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.knob.modified.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.knob.modified.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/jquery.sparkline.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.sparkline.min.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/counter.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/counter.js"></script>
 	
-		<script src="${pageContext.request.contextPath }/js/retina.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
-		<script src="${pageContext.request.contextPath }/js/custom.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

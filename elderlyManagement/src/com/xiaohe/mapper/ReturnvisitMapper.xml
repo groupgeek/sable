@@ -103,4 +103,15 @@
       countVisit = #{countvisit,jdbcType=INTEGER}
     where ReturnVisitId = #{returnvisitid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="branchReturnVist" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Returnvisit">
+  select r.*,u.userName from returnvisit r,user u,branch b,employee e
+	where r.userId = u.userId
+	and u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  
 </mapper>

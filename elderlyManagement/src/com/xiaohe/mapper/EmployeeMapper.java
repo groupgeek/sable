@@ -1,5 +1,7 @@
 package com.xiaohe.mapper;
 
+import java.util.List;
+
 import com.xiaohe.bean.Employee;
 
 public interface EmployeeMapper {
@@ -14,4 +16,11 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
+    
+    /**
+     * 查询所有员工的部分信息
+     * @param employee
+     * @return
+     */
+    List<Employee> selectEmployee(Employee employee);
 }

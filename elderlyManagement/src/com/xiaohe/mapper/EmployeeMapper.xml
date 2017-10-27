@@ -231,4 +231,10 @@
       totalBonus = #{totalbonus,jdbcType=DECIMAL}
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectEmployee" resultMap="BaseResultMap">
+  	select employeeId,employeeName,sex,phone,address,wage 
+  	from employee
+  </select>
+  
 </mapper>

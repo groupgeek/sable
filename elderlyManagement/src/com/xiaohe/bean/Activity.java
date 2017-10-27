@@ -22,6 +22,8 @@ public class Activity {
 
     private BigDecimal registeryfee;
 
+    private String video;
+
     private BigDecimal activityprice;
 
     private String activitydetails;
@@ -98,18 +100,15 @@ public class Activity {
         this.registeryfee = registeryfee;
     }
 
-    @Override
-	public String toString() {
-		return "Activity [activityid=" + activityid + ", activityname="
-				+ activityname + ", activitytypeid=" + activitytypeid
-				+ ", online=" + online + ", activitypicture=" + activitypicture
-				+ ", activitystatus=" + activitystatus + ", activitydate="
-				+ activitydate + ", branchid=" + branchid + ", registeryfee="
-				+ registeryfee + ", activityprice=" + activityprice
-				+ ", activitydetails=" + activitydetails + "]";
-	}
+    public String getVideo() {
+        return video;
+    }
 
-	public BigDecimal getActivityprice() {
+    public void setVideo(String video) {
+        this.video = video == null ? null : video.trim();
+    }
+
+    public BigDecimal getActivityprice() {
         return activityprice;
     }
 

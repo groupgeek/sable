@@ -74,7 +74,7 @@
     <div style="float: right; font-size: 1.3em;">
     	<a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a>
     	<span>||</span>
-    	<a href="${pageContext.request.contextPath }/jsp/logReg/sign-up.jsp">注册</a>
+    	<a href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a>
     	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </div>
         <div class="container">

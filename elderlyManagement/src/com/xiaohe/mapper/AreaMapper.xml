@@ -68,4 +68,24 @@
       areaAddress = #{areaaddress,jdbcType=VARCHAR}
     where areaId = #{areaid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAreasByCondition" parameterType="areaCustom" resultType="areaCustom">
+  	SELECT * FROM area
+  	<where>
+  	<if test="areaid != null" >
+        AND areaId = #{areaid,jdbcType=INTEGER}
+      </if>
+  		<if test="areaname != null" >
+        AND areaName = #{areaname,jdbcType=VARCHAR}
+      </if>
+      <if test="areaaddress != null" >
+        AND areaAddress = #{areaaddress,jdbcType=VARCHAR}
+      </if>
+  	</where>
+  
+  
+  
+  </select>
+  
+  
 </mapper>

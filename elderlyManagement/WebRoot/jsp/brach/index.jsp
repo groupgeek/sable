@@ -3,6 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
@@ -32,8 +34,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="nav pull-right">
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i>龙腾云
+							<a class="btn dropdown-toggle"  href="#">
+								<i class="halflings-icon white user"></i>${employee.employeename}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -81,28 +83,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 			<div class="row-fluid">
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<div class="number">8954<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[3] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						总收入
 					</div>	
 				</div>
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
-					<div class="number">8954<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[2] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						商城收入
 					</div>
 				</div>
 				<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-					<div class="number">8954<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[1] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
-						活动收入
+						健康收入
 					</div>
 				</div>
 				<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-					<div class="number">8954<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[0] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						教育收入
@@ -131,157 +133,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="content">
 						
 						<div class="verticalChart">
-							
+							<c:forEach items="${products }" var="products">
 							<div class="singleBar">
-							
 								<div class="bar">
-								
 									<div class="value">
-										<span>37%</span>
+										<span>${products.buyno }</span>
 									</div>
-								
 								</div>
-								
-								<div class="title">US</div>
-							
+								<div class="title">${products.productname }</div>
 							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>16%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">PL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>12%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">GB</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>9%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">DE</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>7%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">NL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>6%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">CA</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>5%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">FI</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>4%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">RU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>3%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">AU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>1%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">N/A</div>
-							
-							</div>	
-							
-							<div class="clearfix"></div>
+							</c:forEach>
+							<!-- <div class="clearfix"></div> -->
 							
 						</div>
 					
 					</div>
 					
 				</div>
-				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
+				<!-- <div class="widget blue span5" onTablet="span6" onDesktop="span5">
 					
-					<h2><span class="glyphicons globe"><i></i></span> 热门活动前十</h2>
+					<h2><span class="glyphicons globe"><i></i></span>活动收入前十</h2>
 					
 					<hr>
 					
@@ -435,7 +306,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					</div>
 					
-				</div>
+				</div> -->
 				<!--/span-->
 			</div>
 			
@@ -454,27 +325,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="quick-button metro yellow span2">
 					<i class="icon-group"></i>
 					<p>总用户</p>
-					<span class="badge">237</span>
+					<span class="badge">${ar[0] }</span>
 				</a>
 				<a class="quick-button metro red span2">
 					<i class="icon-comments-alt"></i>
 					<p>全部活动</p>
-					<span class="badge">46</span>
+					<span class="badge">${ar[1] }</span>
 				</a>
 				<a class="quick-button metro blue span2">
 					<i class="icon-shopping-cart"></i>
 					<p>总订单</p>
-					<span class="badge">13</span>
+					<span class="badge">${ar[2] }</span>
 				</a>
 				<a class="quick-button metro green span2">
 					<i class="icon-barcode"></i>
 					<p>所有商品</p>
-					<span class="badge">13</span>
+					<span class="badge">${ar[3] }</span>
 				</a>
 				<a class="quick-button metro pink span2">
 					<i class="icon-envelope"></i>
 					<p>所有留言</p>
-					<span class="badge">88</span>
+					<span class="badge">${ar[4] }</span>
 				</a>
 				<a class="quick-button metro black span2">
 					<i class="icon-calendar"></i>

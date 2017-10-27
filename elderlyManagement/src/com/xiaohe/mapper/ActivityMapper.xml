@@ -11,6 +11,7 @@
     <result column="activityDate" property="activitydate" jdbcType="DATE" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
     <result column="registeryFee" property="registeryfee" jdbcType="DECIMAL" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
     <result column="activityPrice" property="activityprice" jdbcType="DECIMAL" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Activity" extends="BaseResultMap" >
@@ -18,7 +19,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     activityId, activityName, activityTypeID, onLine, activityPicture, activityStatus, 
-    activityDate, branchId, registeryFee, activityPrice
+    activityDate, branchId, registeryFee, video, activityPrice
   </sql>
   <sql id="Blob_Column_List" >
     activityDetails
@@ -39,11 +40,13 @@
     insert into activity (activityId, activityName, activityTypeID, 
       onLine, activityPicture, activityStatus, 
       activityDate, branchId, registeryFee, 
-      activityPrice, activityDetails)
+      video, activityPrice, activityDetails
+      )
     values (#{activityid,jdbcType=INTEGER}, #{activityname,jdbcType=VARCHAR}, #{activitytypeid,jdbcType=INTEGER}, 
       #{online,jdbcType=BIT}, #{activitypicture,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, 
       #{activitydate,jdbcType=DATE}, #{branchid,jdbcType=INTEGER}, #{registeryfee,jdbcType=DECIMAL}, 
-      #{activityprice,jdbcType=DECIMAL}, #{activitydetails,jdbcType=LONGVARCHAR})
+      #{video,jdbcType=VARCHAR}, #{activityprice,jdbcType=DECIMAL}, #{activitydetails,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Activity" >
     insert into activity
@@ -74,6 +77,9 @@
       </if>
       <if test="registeryfee != null" >
         registeryFee,
+      </if>
+      <if test="video != null" >
+        video,
       </if>
       <if test="activityprice != null" >
         activityPrice,
@@ -110,6 +116,9 @@
       <if test="registeryfee != null" >
         #{registeryfee,jdbcType=DECIMAL},
       </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
       <if test="activityprice != null" >
         #{activityprice,jdbcType=DECIMAL},
       </if>
@@ -145,6 +154,9 @@
       <if test="registeryfee != null" >
         registeryFee = #{registeryfee,jdbcType=DECIMAL},
       </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
       <if test="activityprice != null" >
         activityPrice = #{activityprice,jdbcType=DECIMAL},
       </if>
@@ -164,6 +176,7 @@
       activityDate = #{activitydate,jdbcType=DATE},
       branchId = #{branchid,jdbcType=INTEGER},
       registeryFee = #{registeryfee,jdbcType=DECIMAL},
+      video = #{video,jdbcType=VARCHAR},
       activityPrice = #{activityprice,jdbcType=DECIMAL},
       activityDetails = #{activitydetails,jdbcType=LONGVARCHAR}
     where activityId = #{activityid,jdbcType=INTEGER}
@@ -178,10 +191,10 @@
       activityDate = #{activitydate,jdbcType=DATE},
       branchId = #{branchid,jdbcType=INTEGER},
       registeryFee = #{registeryfee,jdbcType=DECIMAL},
+      video = #{video,jdbcType=VARCHAR},
       activityPrice = #{activityprice,jdbcType=DECIMAL}
     where activityId = #{activityid,jdbcType=INTEGER}
   </update>
-  
   
   <sql id="contidion">
       <if test="activityid != null" >
@@ -256,10 +269,31 @@
   		
   </select>
   
+  <select id="branchHealIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
+  	SELECT sum(a.registeryFee) from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '是'
+	and b.activityTypeID=1
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  <select id="branchEduIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
+  	SELECT sum(a.registeryFee) from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '是'
+	and b.activityTypeID=2
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
   
-  
-  
-  
+  <select id="branchCountActivity" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  SELECT COUNT(*)from activity a,employee e,branch b
+	where a.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
   
   
 </mapper>

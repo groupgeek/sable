@@ -44,36 +44,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 			
-			
-			
-			function haha(id){
-			
-				alert(id);
-				alert($("#span1").html());
-			        		$.ajax({
-			        			type:"post",
-			        			contentType:"application/json;charset=utf-8",
-			        			url:"http://127.0.0.1:8080/elderlyManagement/brach/jsonMessage.action",
-			        			//data:'messageid:'+id,
-			        			//data:'{"messageid"'+':'+'"'+id+'"}',
-			        			data:'{"messageid":"sada"}',
-			        			success:function(data,status){
-			        				alert(data.messageid);
-			        				alert(status);
-			        			}
-			        		
-			        	
-
-			        	});
-			
-			
-			}
-			       
-			        	 
-			
-			</script> -->
+        	function queryMessage(id){
+	        	alert(id);
+	        	//var message= $("#span1").html();
+	        		$.ajax({
+	        			type:"post",
+	        			contentType:"application/json;charset=utf-8",
+	        			url:"${pageContext.request.contextPath }/brach/jsonMessage.action",
+	        			//data:'messagecontext:'+message,
+	        			data:'{"messagecontext"'+':'+'"'+message+'"}',
+	        			success:function(data,status){
+	        				/* $("#megUserName").html(data.username);
+	        				$("#megEmail").html(data.email);
+	        				$("#megDate").html(data.messagetime);
+	        				$("#megContent").html(data.messagecontext);*/
+	        				alert(data);
+	        			}
+	        		
+	        		});
+        	 }
+        
+        </script>
 		
 		
 		
@@ -102,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${employee.employeename }
+								<i class="halflings-icon white user"></i>${employee.employeename }
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -157,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<h1>所有留言</h1>
 					<ul class="messagesList">
 						<c:forEach items="${messages }" var="message">
-							<li id="hh" onclick="haha(${message.messageid })">
+							<li id="hh" onclick="queryMessage(${message.messageid })">
 							<span class="from"><span class="glyphicons star"><i></i></span> ${message.username } <span class="glyphicons paperclip"><i></i></span></span><span id = "span1" class="title"> ${message.messagecontext }</span><span class="date">
 							<fmt:formatDate value="${message.messagetime }"
 								pattern="yyyy-MM-dd HH:mm:ss" /></span>

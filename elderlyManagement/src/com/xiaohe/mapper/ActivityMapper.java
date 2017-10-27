@@ -1,5 +1,6 @@
 package com.xiaohe.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.xiaohe.bean.Activity;
@@ -29,9 +30,31 @@ public interface ActivityMapper {
     List<ActivityCustom> selectActivitiesByCondition(ActivityCustom aCustom);
     
     /**
-	 * 查询活动推荐表，根据ActivityrecommendCustom区分
-	 * @param ActivityrecommendCustom 条件
+	 * 查询活动推荐表，根据官网类型区分
+	 * @param type 官网类型
 	 * @return ActivityrecommendCustom集合
 	 */
     List<ActivityCustom> selectActivityrecommendByCondition(ActivityrecommendCustom custom);
+    
+    /**
+     * 查询分店健康收入
+     * @param id
+     * @return
+     */
+    BigDecimal branchHealIncome(Integer id);
+    
+    /**
+     * 查询分店教育收入
+     * @param id
+     * @return
+     */
+    BigDecimal branchEduIncome(Integer id);
+    
+    /**
+     * 查询分店的全部活动数量
+     * @param id
+     * @return
+     */
+    int branchCountActivity(Integer id);
+   
 }

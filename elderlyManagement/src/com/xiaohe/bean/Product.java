@@ -25,6 +25,8 @@ public class Product {
 
     private Boolean discount;
 
+    private Integer good;
+
     private String description;
 
     public Integer getProductid() {
@@ -115,6 +117,14 @@ public class Product {
         this.discount = discount;
     }
 
+    public Integer getGood() {
+        return good;
+    }
+
+    public void setGood(Integer good) {
+        this.good = good;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -130,8 +140,7 @@ public class Product {
 				+ ", picture=" + picture + ", shelves=" + shelves + ", buyno="
 				+ buyno + ", purchaseprice=" + purchaseprice
 				+ ", producttypeid=" + producttypeid + ", branchid=" + branchid
-				+ ", discount=" + discount + ", description=" + description
-				+ "]";
+				+ ", discount=" + discount + ", good=" + good
+				+ ", description=" + description + "]";
 	}
-    
 }
