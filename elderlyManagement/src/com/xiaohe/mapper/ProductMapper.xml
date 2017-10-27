@@ -1,232 +1,304 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiaohe.mapper.ProductMapper">
-	<resultMap id="BaseResultMap" type="com.xiaohe.bean.Product">
-		<id column="productId" property="productid" jdbcType="INTEGER" />
-		<result column="productName" property="productname" jdbcType="VARCHAR" />
-		<result column="inStock" property="instock" jdbcType="INTEGER" />
-		<result column="price" property="price" jdbcType="DECIMAL" />
-		<result column="picture" property="picture" jdbcType="VARCHAR" />
-		<result column="shelves" property="shelves" jdbcType="BIT" />
-		<result column="buyNo" property="buyno" jdbcType="INTEGER" />
-		<result column="purchasePrice" property="purchaseprice"
-			jdbcType="DECIMAL" />
-		<result column="productTypeId" property="producttypeid"
-			jdbcType="INTEGER" />
-		<result column="branchId" property="branchid" jdbcType="INTEGER" />
-		<result column="discount" property="discount" jdbcType="BIT" />
-	</resultMap>
-	<resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Product"
-		extends="BaseResultMap">
-		<result column="description" property="description" jdbcType="LONGVARCHAR" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		productId, productName, inStock, price, picture, shelves,
-		buyNo, purchasePrice,
-		productTypeId,
-		branchId, discount
-	</sql>
-	<sql id="Blob_Column_List">
-		description
-	</sql>
-	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
-		parameterType="java.lang.Integer">
-		select
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
-		from product
-		where productId = #{productid,jdbcType=INTEGER}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from
-		product
-		where productId = #{productid,jdbcType=INTEGER}
-	</delete>
-	<insert id="insert" parameterType="com.xiaohe.bean.Product">
-		insert into product
-		(productId, productName, inStock,
-		price, picture, shelves,
-		buyNo,
-		purchasePrice, productTypeId,
-		branchId, discount, description
-		)
-		values
-		(#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR},
-		#{instock,jdbcType=INTEGER},
-		#{price,jdbcType=DECIMAL},
-		#{picture,jdbcType=VARCHAR}, #{shelves,jdbcType=BIT},
-		#{buyno,jdbcType=INTEGER}, #{purchaseprice,jdbcType=DECIMAL},
-		#{producttypeid,jdbcType=INTEGER},
-		#{branchid,jdbcType=INTEGER},
-		#{discount,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
-		)
-	</insert>
-	<insert id="insertSelective" parameterType="com.xiaohe.bean.Product">
-		insert into product
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="productid != null">
-				productId,
-			</if>
-			<if test="productname != null">
-				productName,
-			</if>
-			<if test="instock != null">
-				inStock,
-			</if>
-			<if test="price != null">
-				price,
-			</if>
-			<if test="picture != null">
-				picture,
-			</if>
-			<if test="shelves != null">
-				shelves,
-			</if>
-			<if test="buyno != null">
-				buyNo,
-			</if>
-			<if test="purchaseprice != null">
-				purchasePrice,
-			</if>
-			<if test="producttypeid != null">
-				productTypeId,
-			</if>
-			<if test="branchid != null">
-				branchId,
-			</if>
-			<if test="discount != null">
-				discount,
-			</if>
-			<if test="description != null">
-				description,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="productid != null">
-				#{productid,jdbcType=INTEGER},
-			</if>
-			<if test="productname != null">
-				#{productname,jdbcType=VARCHAR},
-			</if>
-			<if test="instock != null">
-				#{instock,jdbcType=INTEGER},
-			</if>
-			<if test="price != null">
-				#{price,jdbcType=DECIMAL},
-			</if>
-			<if test="picture != null">
-				#{picture,jdbcType=VARCHAR},
-			</if>
-			<if test="shelves != null">
-				#{shelves,jdbcType=BIT},
-			</if>
-			<if test="buyno != null">
-				#{buyno,jdbcType=INTEGER},
-			</if>
-			<if test="purchaseprice != null">
-				#{purchaseprice,jdbcType=DECIMAL},
-			</if>
-			<if test="producttypeid != null">
-				#{producttypeid,jdbcType=INTEGER},
-			</if>
-			<if test="branchid != null">
-				#{branchid,jdbcType=INTEGER},
-			</if>
-			<if test="discount != null">
-				#{discount,jdbcType=BIT},
-			</if>
-			<if test="description != null">
-				#{description,jdbcType=LONGVARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Product">
-		update product
-		<set>
-			<if test="productname != null">
-				productName = #{productname,jdbcType=VARCHAR},
-			</if>
-			<if test="instock != null">
-				inStock = #{instock,jdbcType=INTEGER},
-			</if>
-			<if test="price != null">
-				price = #{price,jdbcType=DECIMAL},
-			</if>
-			<if test="picture != null">
-				picture = #{picture,jdbcType=VARCHAR},
-			</if>
-			<if test="shelves != null">
-				shelves = #{shelves,jdbcType=BIT},
-			</if>
-			<if test="buyno != null">
-				buyNo = #{buyno,jdbcType=INTEGER},
-			</if>
-			<if test="purchaseprice != null">
-				purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
-			</if>
-			<if test="producttypeid != null">
-				productTypeId = #{producttypeid,jdbcType=INTEGER},
-			</if>
-			<if test="branchid != null">
-				branchId = #{branchid,jdbcType=INTEGER},
-			</if>
-			<if test="discount != null">
-				discount = #{discount,jdbcType=BIT},
-			</if>
-			<if test="description != null">
-				description = #{description,jdbcType=LONGVARCHAR},
-			</if>
-		</set>
-		where productId = #{productid,jdbcType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Product">
-		update
-		product
-		set productName = #{productname,jdbcType=VARCHAR},
-		inStock =
-		#{instock,jdbcType=INTEGER},
-		price = #{price,jdbcType=DECIMAL},
-		picture
-		= #{picture,jdbcType=VARCHAR},
-		shelves = #{shelves,jdbcType=BIT},
-		buyNo
-		= #{buyno,jdbcType=INTEGER},
-		purchasePrice =
-		#{purchaseprice,jdbcType=DECIMAL},
-		productTypeId =
-		#{producttypeid,jdbcType=INTEGER},
-		branchId =
-		#{branchid,jdbcType=INTEGER},
-		discount = #{discount,jdbcType=BIT},
-		description = #{description,jdbcType=LONGVARCHAR}
-		where productId =
-		#{productid,jdbcType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Product">
-		update product
-		set
-		productName = #{productname,jdbcType=VARCHAR},
-		inStock =
-		#{instock,jdbcType=INTEGER},
-		price = #{price,jdbcType=DECIMAL},
-		picture
-		= #{picture,jdbcType=VARCHAR},
-		shelves = #{shelves,jdbcType=BIT},
-		buyNo
-		= #{buyno,jdbcType=INTEGER},
-		purchasePrice =
-		#{purchaseprice,jdbcType=DECIMAL},
-		productTypeId =
-		#{producttypeid,jdbcType=INTEGER},
-		branchId =
-		#{branchid,jdbcType=INTEGER},
-		discount = #{discount,jdbcType=BIT}
-		where
-		productId = #{productid,jdbcType=INTEGER}
-	</update>
-
-	<sql id="productByCondition">
+<mapper namespace="com.xiaohe.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Product" >
+    <id column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="productName" property="productname" jdbcType="VARCHAR" />
+    <result column="inStock" property="instock" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="shelves" property="shelves" jdbcType="BIT" />
+    <result column="buyNo" property="buyno" jdbcType="INTEGER" />
+    <result column="purchasePrice" property="purchaseprice" jdbcType="DECIMAL" />
+    <result column="productTypeId" property="producttypeid" jdbcType="INTEGER" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="discount" property="discount" jdbcType="BIT" />
+    <result column="good" property="good" jdbcType="INTEGER" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="productSpecifications" property="productspecifications" jdbcType="DOUBLE" />
+    <result column="shelfLife" property="shelflife" jdbcType="INTEGER" />
+    <result column="producStandards" property="producstandards" jdbcType="VARCHAR" />
+    <result column="productionLicenseNumber" property="productionlicensenumber" jdbcType="VARCHAR" />
+    <result column="storageMethod" property="storagemethod" jdbcType="VARCHAR" />
+    <result column="edibleMethod" property="ediblemethod" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Product" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productId, productName, inStock, price, picture, shelves, buyNo, purchasePrice, productTypeId, 
+    branchId, discount, good, origin, productSpecifications, shelfLife, producStandards, 
+    productionLicenseNumber, storageMethod, edibleMethod
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Product" >
+    insert into product (productId, productName, inStock, 
+      price, picture, shelves, 
+      buyNo, purchasePrice, productTypeId, 
+      branchId, discount, good, 
+      origin, productSpecifications, shelfLife, 
+      producStandards, productionLicenseNumber, 
+      storageMethod, edibleMethod, description
+      )
+    values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{instock,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{picture,jdbcType=VARCHAR}, #{shelves,jdbcType=BIT}, 
+      #{buyno,jdbcType=INTEGER}, #{purchaseprice,jdbcType=DECIMAL}, #{producttypeid,jdbcType=INTEGER}, 
+      #{branchid,jdbcType=INTEGER}, #{discount,jdbcType=BIT}, #{good,jdbcType=INTEGER}, 
+      #{origin,jdbcType=VARCHAR}, #{productspecifications,jdbcType=DOUBLE}, #{shelflife,jdbcType=INTEGER}, 
+      #{producstandards,jdbcType=VARCHAR}, #{productionlicensenumber,jdbcType=VARCHAR}, 
+      #{storagemethod,jdbcType=VARCHAR}, #{ediblemethod,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="productname != null" >
+        productName,
+      </if>
+      <if test="instock != null" >
+        inStock,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="shelves != null" >
+        shelves,
+      </if>
+      <if test="buyno != null" >
+        buyNo,
+      </if>
+      <if test="purchaseprice != null" >
+        purchasePrice,
+      </if>
+      <if test="producttypeid != null" >
+        productTypeId,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="good != null" >
+        good,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="productspecifications != null" >
+        productSpecifications,
+      </if>
+      <if test="shelflife != null" >
+        shelfLife,
+      </if>
+      <if test="producstandards != null" >
+        producStandards,
+      </if>
+      <if test="productionlicensenumber != null" >
+        productionLicenseNumber,
+      </if>
+      <if test="storagemethod != null" >
+        storageMethod,
+      </if>
+      <if test="ediblemethod != null" >
+        edibleMethod,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="instock != null" >
+        #{instock,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="shelves != null" >
+        #{shelves,jdbcType=BIT},
+      </if>
+      <if test="buyno != null" >
+        #{buyno,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseprice != null" >
+        #{purchaseprice,jdbcType=DECIMAL},
+      </if>
+      <if test="producttypeid != null" >
+        #{producttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=BIT},
+      </if>
+      <if test="good != null" >
+        #{good,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="productspecifications != null" >
+        #{productspecifications,jdbcType=DOUBLE},
+      </if>
+      <if test="shelflife != null" >
+        #{shelflife,jdbcType=INTEGER},
+      </if>
+      <if test="producstandards != null" >
+        #{producstandards,jdbcType=VARCHAR},
+      </if>
+      <if test="productionlicensenumber != null" >
+        #{productionlicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="storagemethod != null" >
+        #{storagemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ediblemethod != null" >
+        #{ediblemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Product" >
+    update product
+    <set >
+      <if test="productname != null" >
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="instock != null" >
+        inStock = #{instock,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="shelves != null" >
+        shelves = #{shelves,jdbcType=BIT},
+      </if>
+      <if test="buyno != null" >
+        buyNo = #{buyno,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseprice != null" >
+        purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
+      </if>
+      <if test="producttypeid != null" >
+        productTypeId = #{producttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=BIT},
+      </if>
+      <if test="good != null" >
+        good = #{good,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="productspecifications != null" >
+        productSpecifications = #{productspecifications,jdbcType=DOUBLE},
+      </if>
+      <if test="shelflife != null" >
+        shelfLife = #{shelflife,jdbcType=INTEGER},
+      </if>
+      <if test="producstandards != null" >
+        producStandards = #{producstandards,jdbcType=VARCHAR},
+      </if>
+      <if test="productionlicensenumber != null" >
+        productionLicenseNumber = #{productionlicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="storagemethod != null" >
+        storageMethod = #{storagemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ediblemethod != null" >
+        edibleMethod = #{ediblemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where productId = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Product" >
+    update product
+    set productName = #{productname,jdbcType=VARCHAR},
+      inStock = #{instock,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      picture = #{picture,jdbcType=VARCHAR},
+      shelves = #{shelves,jdbcType=BIT},
+      buyNo = #{buyno,jdbcType=INTEGER},
+      purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
+      productTypeId = #{producttypeid,jdbcType=INTEGER},
+      branchId = #{branchid,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=BIT},
+      good = #{good,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=VARCHAR},
+      productSpecifications = #{productspecifications,jdbcType=DOUBLE},
+      shelfLife = #{shelflife,jdbcType=INTEGER},
+      producStandards = #{producstandards,jdbcType=VARCHAR},
+      productionLicenseNumber = #{productionlicensenumber,jdbcType=VARCHAR},
+      storageMethod = #{storagemethod,jdbcType=VARCHAR},
+      edibleMethod = #{ediblemethod,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where productId = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Product" >
+    update product
+    set productName = #{productname,jdbcType=VARCHAR},
+      inStock = #{instock,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      picture = #{picture,jdbcType=VARCHAR},
+      shelves = #{shelves,jdbcType=BIT},
+      buyNo = #{buyno,jdbcType=INTEGER},
+      purchasePrice = #{purchaseprice,jdbcType=DECIMAL},
+      productTypeId = #{producttypeid,jdbcType=INTEGER},
+      branchId = #{branchid,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=BIT},
+      good = #{good,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=VARCHAR},
+      productSpecifications = #{productspecifications,jdbcType=DOUBLE},
+      shelfLife = #{shelflife,jdbcType=INTEGER},
+      producStandards = #{producstandards,jdbcType=VARCHAR},
+      productionLicenseNumber = #{productionlicensenumber,jdbcType=VARCHAR},
+      storageMethod = #{storagemethod,jdbcType=VARCHAR},
+      edibleMethod = #{ediblemethod,jdbcType=VARCHAR}
+    where productId = #{productid,jdbcType=INTEGER}
+  </update>
+ 	<sql id="productByCondition">
 		<if test="productid != null">
 			AND productId = #{productid,jdbcType=INTEGER}
 		</if>
@@ -265,6 +337,48 @@
 		</if>
 
 	</sql>
+	<!--****************************************************************************************  -->
+	<resultMap type="productCustom" id="selectProductInfoByIdSqlMap">
+		<id column="productId" property="productid" jdbcType="INTEGER" />
+	    <result column="productName" property="productname" jdbcType="VARCHAR" />
+	    <result column="inStock" property="instock" jdbcType="INTEGER" />
+	    <result column="price" property="price" jdbcType="DECIMAL" />
+	    <result column="picture" property="picture" jdbcType="VARCHAR" />
+	    <result column="shelves" property="shelves" jdbcType="BIT" />
+	    <result column="buyNo" property="buyno" jdbcType="INTEGER" />
+	    <result column="purchasePrice" property="purchaseprice" jdbcType="DECIMAL" />
+	    <result column="productTypeId" property="producttypeid" jdbcType="INTEGER" />
+	    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+	    <result column="discount" property="discount" jdbcType="BIT" />
+	    <result column="good" property="good" jdbcType="INTEGER" />
+	    <result column="origin" property="origin" jdbcType="VARCHAR" />
+	    <result column="productSpecifications" property="productspecifications" jdbcType="DOUBLE" />
+	    <result column="shelfLife" property="shelflife" jdbcType="INTEGER" />
+	    <result column="producStandards" property="producstandards" jdbcType="VARCHAR" />
+	    <result column="productionLicenseNumber" property="productionlicensenumber" jdbcType="VARCHAR" />
+	    <result column="storageMethod" property="storagemethod" jdbcType="VARCHAR" />
+	    <result column="edibleMethod" property="ediblemethod" jdbcType="VARCHAR" />
+	    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+	    <result column="productTypeName" property="producttypename" jdbcType="VARCHAR" />
+	     
+		<collection property="tasteList" ofType="producttasteCustom">
+			<id column="productTasteId" property="producttasteid"/>
+			<result column="productTaste" property="producttaste"/>
+			<result column="tasteStock" property="tastestock"/>
+		</collection>
+		
+		<collection property="colourList" ofType="productcolourCustom">
+			<id column="productColourId" property="productcolourid"/>
+			<result column="productColour" property="productcolour"/>
+			
+			<collection property="colourSizeList" ofType="productcoloursizeCustom">
+			<id column="sizeId" property="sizeid"/>
+			<result column="size" property="size"/>
+			<result column="sizeStock" property="sizestock"/>
+		</collection>
+		
+		</collection>
+	</resultMap>
 
 	<select id="selectPopularProductByCondition" parameterType="productCustom"
 		resultType="productCustom">
@@ -342,4 +456,65 @@
 		</if>
 	</select>
 	
+	<select id="selectProductColourById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
+	
+		SELECT p.* , pc.productColourId , pc.ProductColour ,pcs.sizeId, pcs.ProductColourId , pcs.size , pcs.sizeStock , ptype.productTypeName
+           FROM product p , productcolour pc , productcoloursize pcs , producttype ptype
+           WHERE p.productId = #{id} AND pc.productId = p.productId AND pcs.ProductColourId = pc.productColourId AND ptype.productTypeId = p.productTypeId
+		
+	
+	</select>
+	
+		<select id="selectProductTasteById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
+	
+		SELECT p.*,pt.producttasteid,pt.producttaste ,pt.tastestock,ptype.productTypeName
+           FROM product p , producttaste pt,producttype ptype
+           WHERE p.productId =#{id} AND ptype.productTypeId = p.productTypeId
+		
+	
+	</select>
+	<select id="selectProductFathertypeById" parameterType="Integer" resultType="producttypeCustom">
+		
+		SELECT pt.* FROM producttype pt,product p
+		   WHERE p.productId = #{id} AND pt.productTypeId = p.productTypeId
+	
+	</select>
+	
+	<select id="selectProductByProducttypeId" parameterType="productCustom" resultType="productCustom">
+	
+		SELECT * FROM `product`
+		<if test="productid != null">
+		
+			<if test="producttypeid != null">
+		
+			 	WHERE productTypeId = #{producttypeid} AND productId != #{productid}
+			</if>
+		</if>
+		ORDER BY buyNo DESC
+		<if test="begin != null">
+			<if test="total != null">
+				LIMIT #{begin} , #{total}
+			</if>
+		</if>
+		
+	
+	</select>
+	<select id="selectProductBytypeId" parameterType="productCustom" resultType="productCustom">
+	
+		SELECT * FROM `product`
+		
+		<if test="producttypeid != null">
+			WHERE productTypeId = #{producttypeid}
+		</if>
+		<if test="sort != null">
+			ORDER BY #{sort} DESC 
+		</if>
+		<if test="begin != null">
+			<if test="total != null">
+				LIMIT #{begin} , #{total};
+			</if>
+		</if>
+		
+	
+	</select>
 </mapper>

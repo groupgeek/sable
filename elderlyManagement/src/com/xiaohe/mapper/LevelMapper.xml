@@ -79,4 +79,10 @@
       level = #{level,jdbcType=VARCHAR}
     where levelId = #{levelid,jdbcType=INTEGER}
   </update>
+  
+  <select id="oneLev" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Level">
+  SELECT l.* from level l,user u
+	where l.levelId = u.levelId
+	and u.userId = #{userid,jdbcType=INTEGER}
+  </select>
 </mapper>

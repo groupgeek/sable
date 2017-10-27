@@ -25,13 +25,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  
+  
+						  
     <ul class="messagesList">
-						<c:forEach items="${visits }" var="visits">
+						<c:forEach items="${acts }" var="acts">
 							<tr>
-							<td>${visits.username }</td>
-							<td>${visits.address }</td>
-							<fmt:formatDate value="${visits.lastvisttime }"pattern="yyyy-MM-dd" />
-							<td>${visits.countvisit }</td>
+							<td>${acts.activityid}</td>
+							<td>${acts.activityname }</td>
+							<td>${acts.activitystatus }</td>
+							<fmt:formatDate value="${acts.activitydate }"pattern="yyyy-MM-dd" />
+							<td>${acts.registeryfee }</td>
+							<td><a href="${pageContext.request.contextPath }/brach/oneActCus.action?id=${ acts.activityid}">详情</a></td>
 							</tr>
 						</c:forEach>
 	</ul>
@@ -57,6 +62,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<a href="${pageContext.request.contextPath }/brach/fenyeMessage.action">留言信息</a>
 	<a href="${pageContext.request.contextPath }/brach/branchTran.action">客户关系</a>
 	<a href="${pageContext.request.contextPath }/brach/branchVist.action">客户回访</a>
+	<a href="${pageContext.request.contextPath }/brach/allActs.action">所有活动</a>
+	<a href="${pageContext.request.contextPath }/brach/allActTypes.action">添加活动</a>
+	<br>
 	
+	<input type="button" onclick="hello()" value="json请求"/>
+	
+	<p class="zb">你好啊  ！</p>
+	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
+	
+	<script type="text/javascript">
+	function hello(){
+	alert(11111);
+	$.ajax({
+		type : 'post',
+		/*${pageContext.request.contextPath }/*/
+		url : 'brach/demo.action',
+		//data:'username = "1"&password = "123"',
+		//数据格式是json串
+		contentType : 'application/json;charset=utf-8',
+		//data:'{"username":"zhangbiao","password":"123"}',
+		data:'{"userid":"1"}',
+		success : function(data) {
+			alert(data.username);
+			alert(data.password);
+			$("#zb").html(data.username+""+data.password);
+		}
+	});
+
+
+}
+	
+	
+	
+	
+	
+	</script>
   </body>
 </html>

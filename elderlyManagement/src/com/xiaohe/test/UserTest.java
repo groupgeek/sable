@@ -37,5 +37,19 @@ public class UserTest {
 		user.setPassword("123456");
 		System.out.println(userService.loginUser(user));
 	}
+	@Test
+	public void allUser(){
+		UserCustom user = new UserCustom();
+		user.setCurrentPage(0);
+		user.setPageNum(10);
+		
+		user.setSearch("");
+		user.setSort("registrationdate");
+		
+		
+		
+		System.out.println(userService.queryAllUserByCondition(user));
+		
+	}
 
 }

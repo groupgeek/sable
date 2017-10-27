@@ -31,4 +31,11 @@ public interface ProducttypeMapper {
      * @return
      */
     List<ProducttypeCustom> selectProductTypeByFatherId(ProducttypeCustom producttype);
+    
+    /**
+     * 查询小商品类型
+     * @param productType 查询条件
+     * @return 集合 ProducttypeCustom
+     */
+    List<ProducttypeCustom> selectSmallProductType(ProducttypeCustom productType);
 }

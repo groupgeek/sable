@@ -56,5 +56,39 @@ public interface ActivityMapper {
      * @return
      */
     int branchCountActivity(Integer id);
+    
+    /**
+     * 查询分店所有的活动
+     * @param id
+     * @return
+     */
+    List<ActivityCustom> branchActs(Integer id);
+    
+    /**
+     * 查询该活动的报名人数
+     * @param id
+     * @return
+     */
+    int countActUsers(Integer id);
+    
+    /**
+     * 查询activitycustom（包括用户数）
+     * @param id
+     * @return
+     */
+    ActivityCustom oneActivityCustom(Integer id);
+    
+    /**
+     * 查询所有的活动
+     * @return
+     */
+    List<ActivityCustom> Acts();
+    
+    /**
+     * 根据活动id查询到一条活动信息
+     * @param id
+     * @return
+     */
+    Activity oneAct(Integer id);
    
 }

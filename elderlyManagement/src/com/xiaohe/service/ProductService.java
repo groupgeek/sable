@@ -1,9 +1,14 @@
 package com.xiaohe.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.print.attribute.HashAttributeSet;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 
@@ -24,14 +29,14 @@ public interface ProductService {
 	List<ProducttypeCustom> queryProductTypeByCondition(ProducttypeCustom producttype);
 	
 	/**
-	 * 查询推荐商品
+	 * 查询推荐商品  商城主页
 	 * @param total 几条商品数据
 	 * @return 商品集合
 	 */
 	List<ProductCustom> queryProductrecommend(Integer total);
 	
 	/**
-	 * 查询推荐商品
+	 * 查询优惠商品 商城主页 
 	 * @param total 几条商品数据
 	 * @return 商品集合
 	 */
@@ -57,5 +62,56 @@ public interface ProductService {
 	 * @return
 	 */
 	Integer queryProductSumByCondition(ProductCustom condition);
-
+	
+	/**
+	 * 查询商品详细信息
+	 * @param id
+	 * @return
+	 */
+	ProductCustom queryProductInfoById(Integer id);
+	
+	
+	/**
+	 * 查询商品评价
+	 * @param condition
+	 * @return 评价集合
+	 */
+	List<EvaluationCustom> queryEvaluationByProductId(EvaluationCustom condition);
+	
+	/**
+	 * 查询评价等级并且计算出好评度以及好评，中评，差评的个数
+	 * @param id
+	 * @return
+	 */
+	EvaluationCustom queryEvaluationLevalByProductId(Integer id);
+	
+	/**
+	 * 查询商品评价的总页数
+	 * @param id
+	 * @return
+	 */
+	Integer queryEvaluationSum(Integer id); 
+	
+	/**
+	 * 根据产品id查询出同类的产品 商品详情
+	 * @param productid
+	 * @return
+	 */
+	List<ProductCustom> querySimilarProductsByProductId(ProductCustom condition);
+	
+	/**
+	 * 查询产品根据类型id
+	 * @param typeid
+	 * @return
+	 */
+	List<ProductCustom> queryProductByTypeId(ProductCustom condition);
+	
+	/**
+	 * 查询所有分类的一部分产品ProducttypeCustom:产品类型id，List<ProductCustom>产品集合
+	 * @param ProductCustom condition每一个分类查询多少条数据里面的begin和total 一般begin为0
+	 * @return map集合
+	 */
+	Map<ProducttypeCustom, List<ProductCustom>> queryProductByAllType(ProductCustom condition);
+	
+	
 }

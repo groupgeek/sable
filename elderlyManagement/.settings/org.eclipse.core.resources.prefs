@@ -1,5 +1,7 @@
-#Thu Oct 19 10:17:54 CST 2017
+#Fri Oct 27 18:23:44 CST 2017
 eclipse.preferences.version=1
+encoding//WebRoot/jsp/admin/index.jsp=UTF-8
+encoding//WebRoot/jsp/admin/page/userInfo.jsp=UTF-8
 encoding//WebRoot/jsp/index/index.jsp=UTF-8
 encoding//WebRoot/jsp/mall/home/home.jsp=UTF-8
 encoding//WebRoot/jsp/test/jquery.jsp=UTF-8

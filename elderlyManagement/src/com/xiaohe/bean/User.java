@@ -1,5 +1,7 @@
 package com.xiaohe.bean;
 
+import java.util.Date;
+
 public class User {
     private Integer userid;
 
@@ -15,7 +17,7 @@ public class User {
 
     private String sex;
 
-    private String birthday;
+    private Date birthday;
 
     private String phone;
 
@@ -32,6 +34,12 @@ public class User {
     private Integer levelid;
 
     private Integer areaid;
+
+    private Date registrationdate;
+
+    private Boolean status;
+
+    private Boolean online;
 
     public Integer getUserid() {
         return userid;
@@ -89,12 +97,12 @@ public class User {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday == null ? null : birthday.trim();
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {
@@ -161,15 +169,27 @@ public class User {
         this.areaid = areaid;
     }
 
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", avatar=" + avatar + ", email="
-				+ email + ", username=" + username + ", password=" + password
-				+ ", accountnumber=" + accountnumber + ", sex=" + sex
-				+ ", birthday=" + birthday + ", phone=" + phone + ", address="
-				+ address + ", integral=" + integral + ", bankcardno="
-				+ bankcardno + ", healthstatus=" + healthstatus
-				+ ", authorityid=" + authorityid + ", levelid=" + levelid
-				+ ", areaid=" + areaid + "]";
-	}
+    public Date getRegistrationdate() {
+        return registrationdate;
+    }
+
+    public void setRegistrationdate(Date registrationdate) {
+        this.registrationdate = registrationdate;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public Boolean getOnline() {
+        return online;
+    }
+
+    public void setOnline(Boolean online) {
+        this.online = online;
+    }
 }

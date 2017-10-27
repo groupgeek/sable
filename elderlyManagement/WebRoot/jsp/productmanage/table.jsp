@@ -48,7 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="grid_12 header-repeat">
             <div id="branding">
                 <div class="floatleft">
-                    <img src="${pageContext.request.contextPath }/jsp/productmanage/img/xiaohe.jpg" alt="Logo" /></div>
+              		<p>孝和集团</p>
+                    <%-- <img src="${pageContext.request.contextPath }/jsp/productmanage/img/xiaohe.jpg" alt="Logo" /> --%></div>
                 <div class="floatright">
                     <div class="floatleft">
                         <img src="img/img-profile.jpg" alt="Profile Pic" /></div>
@@ -147,10 +148,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr class="odd gradeX">
 							<td> ${pr.productname}</td>
 							 <td>  ${pr.instock}</td> 
-							<td>      ${pr.productTypeName}</td>
+							<td>      ${pr.producttypename}</td>
 							<td class="center">  ${pr.price}</td>
 							<td class="center">   ${pr.instock}</td>	
-							<td ><a href="${pageContext.request.contextPath }/productmanage/deleteproduct.action?productid=${pr.productid}">下架商品</a></td>	
+						
+							<td ><a href="${pageContext.request.contextPath }/productmanage/selectProduct.action?productid=${pr.productid}">更新商品</a>
+							<a href="${pageContext.request.contextPath }/productmanage/deleteproduct.action?productid=${pr.productid}">下架商品</a></td>
+							
+							
+								
 						</tr>
 					</c:forEach>
 					</tbody>

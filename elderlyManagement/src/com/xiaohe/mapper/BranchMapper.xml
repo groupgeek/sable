@@ -79,4 +79,13 @@
       employeeId = #{employeeid,jdbcType=INTEGER}
     where branchId = #{branchid,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 自定义sql -->
+  
+  <select id="oneBranch" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Branch">
+  select * from branch where employeeid = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  
 </mapper>

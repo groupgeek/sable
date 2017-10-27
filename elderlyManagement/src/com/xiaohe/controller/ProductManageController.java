@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.User;
 import com.xiaohe.service.ProductManageService;
 import com.xiaohe.service.ProductService;
 
@@ -29,29 +30,35 @@ public class ProductManageController {
 	@Qualifier("productService")
 	private ProductService productService;
 	
-	
-	@RequestMapping(value="quertyProduct")
-	public String quertyAllProduct(Integer branchid,Model model) throws Exception {
+public EmployeeCustom getAdmins(HttpServletRequest request){
 		
-		List<ProductCustom> product = productManageService.quertyAllProduct(branchid);
-		model.addAttribute("product", product);
-		return "productmanage/table";
-		}
+		return (EmployeeCustom) request.getSession().getAttribute("admins");
+	}
+	
 	
 	@RequestMapping(value="productAdminLogin")
 public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServletRequest request,Model model) throws Exception {
-	EmployeeCustom  admins = productManageService.productManageAdminsLogin(employeeCustom);
+	
+		EmployeeCustom  admins = productManageService.productManageAdminsLogin(employeeCustom);
 
 	if (admins == null) {
 
 		model.addAttribute("message", "登录失败,手机号码或者密码错误0.0");
 
-		return "logReg/login";
+		return "productmanage/logReg/login";
 	} else {
 		request.getSession().setAttribute("admins", admins);
-		productManageService.quertyAllProduct(admins.getBranchId());
-		return"redirect:/product/allProdcut.action";
+		return"redirect:/productmanage/quertyProduct.action";
 	}
+		}
+	
+
+	@RequestMapping(value="quertyProduct")
+	public String quertyAllProduct(Model model,HttpServletRequest request) throws Exception {
+	
+		List<ProductCustom> product = productManageService.quertyAllProduct(( getAdmins(request)).getBranchId());
+		model.addAttribute("product", product);
+		return "productmanage/table";
 		}
 	
 	@RequestMapping("deleteproduct")
@@ -60,11 +67,15 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		return"redirect:/productmanage/quertyProduct.action";
 	}
 	
-	@RequestMapping("insertproduct")
-	public String  insertProduct(ProductCustom productCustom,HttpServletRequest request,Model model) throws Exception{
+	@RequestMapping(value="insertproduct")
+	public String  insertProduct(Product product,HttpServletRequest request,Model model) throws Exception{
 		
-		productManageService.insertProduct(productCustom);
-		return"redirect:/product/allProdcut.action";
+		
+		product.setBranchid(getAdmins(request).getBranchId());
+			productManageService.insertProduct(product);
+			return"redirect:/productmanage/quertyProduct.action";
+		
+		
 		
 	}
 	
@@ -78,4 +89,18 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		
 	}
 	
+	@RequestMapping(value="update")
+	public String  updateProduct(Product product, HttpServletRequest request) throws Exception{
+		productManageService.updateProductCustom(product);
+		return"redirect:/productmanage/quertyProduct.action";
+	}
+	
+	//查询单个商品
+	@RequestMapping(value="selectProduct")
+	public String selectProduct(Integer productid,Model model ,HttpServletRequest request) throws Exception{
+		Product product= productManageService.quertyProduct(productid);
+		model.addAttribute("product", product);
+		return"productmanage/productlist";
+		
+	}
 }
