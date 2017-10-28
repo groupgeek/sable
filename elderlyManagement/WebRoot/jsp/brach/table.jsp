@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  									<span>账号设定</span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/jsp/productmanage/logReg/login.jsp"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->
@@ -142,7 +142,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-							  	<th>客户id</th>
 								  <th>客户姓名</th>
 								  <th>客户性别</th>
 								  <th>客户等级</th>
@@ -154,7 +153,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <tbody>
 							<c:forEach items="${users }" var="users">
 					<tr>
-						<td class="center">${users.userid }</td>
 						<td class="center">${users.username }</td>
 						<td class="center">${users.sex }</td>
 						<td class="center">${users.password }</td>

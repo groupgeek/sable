@@ -47,7 +47,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	} else {
 		
 		request.getSession().setAttribute("admins", admins);
-		return"redirect:/productmanage/quertyProduct.action";
+		return"redirect:/brach/log.action";
 	}
 		}
 	
@@ -57,7 +57,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	
 		List<ProductCustom> product = productManageService.quertyAllProduct(( getAdmins(request)).getBranchId());
 		model.addAttribute("product", product);
-		return "productmanage/table";
+		return "productmanage/page/productadmin";
 		}
 	
 	@RequestMapping("deleteproduct")

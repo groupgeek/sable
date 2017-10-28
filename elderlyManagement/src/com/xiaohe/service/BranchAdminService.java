@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
@@ -17,6 +18,7 @@ import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
@@ -177,7 +179,7 @@ public interface BranchAdminService {
 	 * 添加活动
 	 * @param activity
 	 */
-	public void inertActs(Activity activity);
+	public void inertActs(Activity activity,MultipartFile file);
 	
 	/**
 	 * 根据id查询分店
@@ -282,4 +284,25 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public int countRecAct(Integer id);
+	
+	/**
+	 * 更新活動信息
+	 * @param activityCustom
+	 * @return
+	 */
+	public int updateAct(Activity activity);
+	
+	/**
+	 * 根据活动id查询到一条活动信息
+	 * @param id
+	 * @return
+	 */
+	public Activity oneAct(Integer id);
+	
+	/**
+	 * 根据管理员id查询所有的分店商品
+	 * @param id
+	 * @return
+	 */
+	public List<ProductCustom> quertyAllProduct(Integer id);
 }

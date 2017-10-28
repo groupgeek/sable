@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script type="text/javascript">
 	function hello(){
-	alert(11111);
+
 	$.ajax({
 		type : 'post',
 		/*${pageContext.request.contextPath }/*/

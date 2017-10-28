@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  									<span>账号设定</span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登陆</a></li>
+								<li><a href="${pageContext.request.contextPath }/jsp/productmanage/logReg/login.jsp"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -103,6 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
@@ -164,11 +165,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<%-- <td><a href="${pageContext.request.contextPath }/admin/deletUser.action?id=${ allUsers.userid}">删除</a></td> --%>
 						<td class="center">
 						<%-- <a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a> --%>
-									<a class="btn btn-success" href="${pageContext.request.contextPath }/brach/oneActCus.action?id=${ acts.activityid}">
-										<i class="halflings-icon white zoom-in"></i>                                            
-									</a>
 									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneActCus.action?id=${ acts.activityid}">
 										<i class="halflings-icon white edit"></i>                                            
+									</a>
+									<!-- <a class="btn btn-info" href="#">
+										<i class="halflings-icon white edit"></i>                                            
+									</a> -->
+									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delAct.action?id=${ acts.activityid}">
+										<i class="halflings-icon white trash"></i> 
+										
 									</a>
 								</td>
 						<%-- <td><fmt:formatDate value="${user.birthday }"
@@ -210,7 +215,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 
 							 <div class="control-group">
 								<label class="control-label" for="selectError3" name="">推荐活动1</label>
-								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec">
+								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec1">
 								<div class="controls">
 									<select id="selectError1" name="activity" >
 									<c:if test="${allBranchActRec[0] ==null}">
@@ -236,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 							<div class="control-group">
 								<label class="control-label" for="selectError3">推荐活动2</label>
-								<input type="hidden" value="${allBranchActRec[1].activityid }" id = "activityidRec1">
+								<input type="hidden" value="${allBranchActRec[1].activityid }" id = "activityidRec2">
 								<div class="controls">
 									
 									<select id="selectError2" name="activity" >
@@ -257,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      
 							<div class="control-group">
 								<label class="control-label" for="selectError3">推荐活动3</label>
-								<input type="hidden" value="${allBranchActRec[2].activityid }" id = "activityidRec2">
+								<input type="hidden" value="${allBranchActRec[2].activityid }" id = "activityidRec3">
 								<div class="controls">
 									<select id="selectError3" name="activity" >
 									<c:if test="${allBranchActRec[2] ==null}">
@@ -408,32 +413,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function insertRecAct1(){
 		var select1 = document.getElementById("selectError1");
 		var value1 = select1.options[select1.selectedIndex].value;
-		var values = document.getElementById("activityidRec").value;
-		
-		alert(value1);
-		
+		var values = document.getElementById("activityidRec1").value;
 		$.ajax({
 			type:'post',
 			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
 			contentType : 'application/json;charset=utf-8',
 			data:'{"activityid"'+':'+'"'+value1+'"'+','+'"activityidRec"'+':'+'"'+values+'"}',
-			error:function(data){
-			alert("操作成功");
-			},
 			success:function(){
-			alert("操作失败");
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
 			}
 		});
-		
-	
-	
 	}
-	
-	
-	
-	
-	
-	
 	</script>
 	
 	<script type="text/javascript">
@@ -441,29 +433,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function insertRecAct2(){
 		var select2 = document.getElementById("selectError2");
 		var value2 = select2.options[select2.selectedIndex].value;
-		var value4 = document.getElementById("activityidRec1").value;
-		
-		alert(value2);
-		
+		var value4 = document.getElementById("activityidRec2").value;
 		$.ajax({
 			type:'post',
 			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value2+'"'+','+'"activityidRec1"'+':'+'"'+value4+'"}',
+			data:'{"activityid"'+':'+'"'+value2+'"'+','+'"activityidRec"'+':'+'"'+value4+'"}',
 			success:function(data){
 			alert("处理成功");
 			}
 		});
-		
-	
-	
 	}
-	
-	
-	
-	
-	
-	
 	</script>
 	
 	<script type="text/javascript">
@@ -471,30 +451,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function insertRecAct3(){
 		var select3 = document.getElementById("selectError3");
 		var value3 = select3.options[select3.selectedIndex].value;
-		var value5 = document.getElementById("activityidRec2").value;
-		alert(select3);
-		alert(value3);
-		alert(value5);
-		
+		var value5 = document.getElementById("activityidRec3").value;
 		$.ajax({
 			type:'post',
 			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value3+'"'+','+'"activityidRec2"'+':'+'"'+value5+'"}',
+			data:'{"activityid"'+':'+'"'+value3+'"'+','+'"activityidRec"'+':'+'"'+value5+'"}',
 			success:function(data){
-			alert("处理成功");
 			}
 		});
-		
-	
-	
 	}
-	
-	
-	
-	
-	
-	
 	</script>
 	
 </body>

@@ -1,19 +1,21 @@
 package com.xiaohe.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
-import com.xiaohe.bean.Activityrecommend;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
-import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
@@ -37,6 +39,7 @@ import com.xiaohe.mapper.ReturnvisitMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.BranchAdminService;
+import com.xiaohe.util.FileUpload;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
@@ -144,7 +147,7 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	public List<ActivityCustom> branchActs(Integer id) {
 		return activityMapper.branchActs(id);
 	}
-	public void inertActs(Activity activity) {
+	public void inertActs(Activity activity,MultipartFile file) {
 		activityMapper.insert(activity);
 	}
 	public Branch oneBranch(Integer id) {
@@ -200,5 +203,14 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public int countRecAct(Integer id) {
 		return activityrecommendMapper.countActRec(id);
+	}
+	public int updateAct(Activity activity) {
+		return activityMapper.updateByPrimaryKeyWithBLOBs(activity);
+	}
+	public Activity oneAct(Integer id) {
+		return activityMapper.oneAct(id);
+	}
+	public List<ProductCustom> quertyAllProduct(Integer id) {
+		return productMapper.quertyAllProduct(id);
 	}
 }

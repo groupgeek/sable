@@ -42,7 +42,7 @@ public class LogRegController {
 	public String registerUser(HttpServletRequest request,
 			UserCustom userCustom, Model model) {
 		if (userService.registerUser(userCustom)) {
-
+			
 			request.getSession().setAttribute("user", userCustom);
 
 			return "redirect:/branch/index.action";
@@ -65,9 +65,10 @@ public class LogRegController {
 			model.addAttribute("message", "登录失败,手机号码或者密码错误0.0");
 
 			return "logReg/login";
-		} else {
-
-			
+		} else if(!user.getStatus()){
+			model.addAttribute("message", user.getStatusMessage());
+			return "logReg/login";
+		}else{
 			request.getSession().setAttribute("user", user);
 			return "redirect:/branch/index.action";
 		}

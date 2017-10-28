@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>JANUX</span></a>
+				<a class="brand" href="index.html"><span>XIAOHE-Admin</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  									<span>账号设定</span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/jsp/productmanage/logReg/login.jsp"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -110,12 +110,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="index.jsp"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
 						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-briefcase"></i><span class="hidden-tablet">回访信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/brach/AllUsers.action"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>	
+					<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->
@@ -158,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateUser.action">
+						<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateUser.action?userid=${ users.userid}">
 							<fieldset>
 							
 							<div style="padding-left: 35%;padding-bottom: 30px">
@@ -169,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							   <div class="control-group">
 								<label class="control-label" for="disabledInput">客户姓名</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${user.username }" disabled="">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="userid" placeholder="${user.username }" disabled="">
 								</div>
 							  </div>
 							  
@@ -177,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="optionsCheckbox2">客户性别</label>
 								<div class="controls">
 								  <label class="checkbox">
-									<input type="checkbox" id="optionsCheckbox2" value="option1" checked="checked" disabled="">
+									<input type="checkbox" id="optionsCheckbox2" name="sex" value="${user.sex }" checked="checked" disabled="">
 									${user.sex }
 								  </label>
 								</div>
@@ -186,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							   <div class="control-group">
 								<label class="control-label" for="disabledInput">手机号</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${user.phone }" disabled="">
+								  <input class="input-xlarge disabled" id="disabledInput" name="phone" value="${user.phone }" type="text" placeholder="${user.phone }" disabled="">
 								</div>
 							  </div>
 							  
@@ -201,21 +203,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  <div class="control-group">
 								<label class="control-label" for="disabledInput">客户邮箱</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${user.email }" disabled="">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="email" value="${user.email }" placeholder="${user.email }" disabled="">
 								</div>
 							  </div>
 							  
 							   <div class="control-group">
 								<label class="control-label" for="disabledInput">客户密码</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${user.password }" disabled="">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="${user.password }" placeholder="${user.password }" disabled="">
 								</div>
 							  </div>
 							  
 							  <div class="control-group">
 								<label class="control-label">客户生日</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input" disabled="">${user.birthday }</span>
+								<a name="birthday" value="${user.birthday }"></a>
+								  <span class="input-xlarge uneditable-input" disabled="" value="${user.birthday }">${user.birthday }</span>
 								</div>
 							  </div>
 							  
@@ -247,12 +250,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 							  </div>
 							  
-							  <div class="control-group">
+							  <%-- <div class="control-group">
 								<label class="control-label" for="disabledInput">用户积分</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here…" disabled="">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${user.integral }" disabled="">
 								</div>
-							  </div>
+							  </div> --%>
 							  
 							  <div class="control-group">
 								<label class="control-label" for="disabledInput">用户等级</label>
@@ -264,7 +267,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  <div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">以往病史</label>
 							  <div class="controls">
-								<textarea id="textarea2" name="beforemedicalrecords"  style="width: 300px;height: 100px;"   rows="3">${med.beforemedicalrecords } </textarea>
+								<textarea id="textarea2" name="beforemedicalrecords"  style="width: 300px;height: 100px;" rows="3">${med.beforemedicalrecords } </textarea>
 							  </div>
 							</div>
 							
@@ -282,13 +285,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<textarea id="textarea2" name="familyrecords" style="width: 300px;height: 100px;" rows="3">${med.familyrecords } </textarea>
 							  </div>
 							</div>
-							
-							<div class="control-group hidden-phone" hidden="hidden" >
-							  <label class="control-label" for="textarea2" >***</label>
+							<%-- 
+							 <div class="control-group hidden-phone">
+							  <label class="control-label" for="textarea2">bingli</label>
 							  <div class="controls">
 								<textarea id="textarea2" name="medicalrecordsid" style="width: 300px;height: 100px;" rows="3">${med.medicalrecordsid } </textarea>
 							  </div>
-							</div>
+							</div> --%>
 							
 							  <div class="form-actions">
 								<button type="submit" class="btn btn-primary">提交修改</button>

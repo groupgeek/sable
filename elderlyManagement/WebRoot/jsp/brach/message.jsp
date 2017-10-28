@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  									<span>账号设定</span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/jsp/productmanage/logReg/login.jsp"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>				
 			<!-- start: Main Menu -->

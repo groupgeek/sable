@@ -418,7 +418,8 @@
 		</select>
 		<!-- 	商品查询 -->
 	<select id="quertyAllProduct" parameterType="Integer" resultType="ProductCustom">
-	SELECT * FROM product,branch WHERE product.branchId=branch.branchId AND product.branchId=#{branchId}
+<!-- 	SELECT * FROM product,branch WHERE product.branchId=branch.branchId AND product.branchId=#{branchId} -->
+	SELECT * FROM product,branch,producttype WHERE product.branchId=branch.branchId AND product.productTypeId=producttype.productTypeId AND product.branchId=#{branchId}
 	</select>
 	
 <!-- 	管理员信息查询       -->
@@ -498,4 +499,22 @@
 		</if>	
 	</select>
 	
+	<select id="selectProductBytypeId" parameterType="productCustom" resultType="productCustom">
+	
+		SELECT * FROM `product`
+		
+		<if test="producttypeid != null">
+			WHERE productTypeId = #{producttypeid}
+		</if>
+		<if test="sort != null">
+			ORDER BY #{sort} DESC 
+		</if>
+		<if test="begin != null">
+			<if test="total != null">
+				LIMIT #{begin} , #{total};
+			</if>
+		</if>
+		
+	
+	</select>
 </mapper>

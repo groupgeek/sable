@@ -40,7 +40,7 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a> <a href="#"
+						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">亲，请登录</a> <a href="#"
 							target="_top">免费注册</a>
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 			<ul class="message-r">
 				<div class="topMessage home">
 					<div class="menu-hd">
-						<a href="#" target="_top" class="h">商城首页</a>
+						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">商城首页</a>
 					</div>
 				</div>
 				<div class="topMessage my-shangcheng">
@@ -65,7 +65,7 @@
 				</div>
 				<div class="topMessage favorite">
 					<div class="menu-hd">
-						<a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
+						<a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>安全退出<%-- ${user.username } --%></span>
 						</a>
 					</div>
 			</ul>
@@ -150,13 +150,12 @@
 							<ul class="category-list" id="js_climit_li">
 								<!--  分类-->
 								<c:forEach items="${productTypes }" var="productType">
-									<li class="appliance js_toggle relative first">
+									<li class="appliance js_toggle relative first" value="${productType.producttypeid }">
 										<div class="category-info">
 											<h3 class="category-name b-category-name">
 												<i><img
 													src="${pageContext.request.contextPath }/jsp/mall/images/cake.png">
-												</i><a class="ml-22">${productType.producttypename }
-													</a>
+												</i><a class="ml-22">${productType.producttypename }</a>
 											</h3>
 											<em>&gt;</em>
 										</div>
@@ -168,67 +167,12 @@
 														<div class="sort-side">
 															<dl class="dl-sort">
 																<dt>
-																	<span title="蛋糕">蛋糕</span>
+																	<span title="蛋糕">名字</span>
 																</dt>
 																<dd>
-																	<a title="蒸蛋糕" href="#"><span>蒸蛋糕</span> </a>
+																	<a title="蒸蛋糕" href="#"><span>类容</span> </a>
 																</dd>
-																<dd>
-																	<a title="脱水蛋糕" href="#"><span>脱水蛋糕</span> </a>
-																</dd>
-																<dd>
-																	<a title="瑞士卷" href="#"><span>瑞士卷</span> </a>
-																</dd>
-																<dd>
-																	<a title="软面包" href="#"><span>软面包</span> </a>
-																</dd>
-																<dd>
-																	<a title="马卡龙" href="#"><span>马卡龙</span> </a>
-																</dd>
-																<dd>
-																	<a title="千层饼" href="#"><span>千层饼</span> </a>
-																</dd>
-																<dd>
-																	<a title="甜甜圈" href="#"><span>甜甜圈</span> </a>
-																</dd>
-																<dd>
-																	<a title="蒸三明治" href="#"><span>蒸三明治</span> </a>
-																</dd>
-																<dd>
-																	<a title="铜锣烧" href="#"><span>铜锣烧</span> </a>
-																</dd>
-															</dl>
-															<dl class="dl-sort">
-																<dt>
-																	<span title="蛋糕">点心</span>
-																</dt>
-																<dd>
-																	<a title="蒸蛋糕" href="#"><span>蒸蛋糕</span> </a>
-																</dd>
-																<dd>
-																	<a title="脱水蛋糕" href="#"><span>脱水蛋糕</span> </a>
-																</dd>
-																<dd>
-																	<a title="瑞士卷" href="#"><span>瑞士卷</span> </a>
-																</dd>
-																<dd>
-																	<a title="软面包" href="#"><span>软面包</span> </a>
-																</dd>
-																<dd>
-																	<a title="马卡龙" href="#"><span>马卡龙</span> </a>
-																</dd>
-																<dd>
-																	<a title="千层饼" href="#"><span>千层饼</span> </a>
-																</dd>
-																<dd>
-																	<a title="甜甜圈" href="#"><span>甜甜圈</span> </a>
-																</dd>
-																<dd>
-																	<a title="蒸三明治" href="#"><span>蒸三明治</span> </a>
-																</dd>
-																<dd>
-																	<a title="铜锣烧" href="#"><span>铜锣烧</span> </a>
-																</dd>
+																
 															</dl>
 
 														</div>
@@ -249,20 +193,6 @@
 																<dd>
 																	<a rel="nofollow" title="飞彦大厂直供" target="_blank"
 																		href="#" rel="nofollow"><span class="red">飞彦大厂直供</span>
-																	</a>
-																</dd>
-																<dd>
-																	<a rel="nofollow" title="红e·艾菲妮" target="_blank"
-																		href="#" rel="nofollow"><span>红e·艾菲妮</span> </a>
-																</dd>
-																<dd>
-																	<a rel="nofollow" title="本真旗舰店" target="_blank"
-																		href="#" rel="nofollow"><span class="red">本真旗舰店</span>
-																	</a>
-																</dd>
-																<dd>
-																	<a rel="nofollow" title="杭派女装批发网" target="_blank"
-																		href="#" rel="nofollow"><span class="red">杭派女装批发网</span>
 																	</a>
 																</dd>
 															</dl>
@@ -349,7 +279,7 @@
 
 			<!--走马灯 -->
 
-			<div class="marqueen">
+			<%-- <div class="marqueen">
 				<span class="marqueen-title">商城头条</span>
 				<div class="demo">
 
@@ -396,7 +326,7 @@
 							src="${pageContext.request.contextPath }/jsp/mall/images/advTip.jpg" />
 					</div>
 				</div>
-			</div>
+			</div> --%>
 			<div class="clear"></div>
 		</div>
 		<script type="text/javascript">
@@ -434,11 +364,11 @@
 					<div class="am-u-sm-4 am-u-lg-3 ">
 						<div class="info ">
 							<h3>${productrecommend.productname }</h3>
-							<h4>${productrecommend.productid }</h4>
+							<h4></h4>
 						</div>
 						<div class="recommendationMain one">
 							<a
-								href="${pageContext.request.contextPath }/jsp/mall/home/introduction.jsp"><img
+								href="${pageContext.request.contextPath }/product/productInfo?id=${productrecommend.productid }"><img
 								src="${pageContext.request.contextPath }/jsp/mall/images/tj.png "></img>
 							</a>
 						</div>
@@ -461,11 +391,11 @@
 							<div class="icon-sale two "></div>
 							<h4>特惠</h4>
 							<div class="activityMain ">
-								<img
-									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg "></img>
+								<a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }"><img
+									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg "></img></a>
 							</div>
 							<div class="info ">
-								<h3>${productDiscount.productname },${productDiscount.productid }</h3>
+								<h3><a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }">${productDiscount.productname }</a></h3>
 							</div>
 						</div>
 
@@ -478,1033 +408,102 @@
 			</div>
 			<div class="clear "></div>
 
-
-			<div id="f1">
-				<!--甜点-->
-
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>甜品</h4>
-						<h3>每一道甜品都有一个故事</h3>
-						<div class="today-brands ">
-							<a href="# ">桂花糕</a> <a href="# ">奶皮酥</a> <a href="# ">栗子糕 </a> <a
-								href="# ">马卡龙</a> <a href="# ">铜锣烧</a> <a href="# ">豌豆黄</a>
+			<c:forEach items="${allTypeProducts }" var="oneTypeProducts" varStatus="ststus">
+				<div id="f1">
+					<!--循环展示商品-->
+					<div class="am-container ">
+						<div class="shopTitle ">
+							<h4>${oneTypeProducts.key.producttypename }</h4>
+							<div class="today-brands ">
+								<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
+									href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
+							</div>
+							<span class="more "> <a href="# ">更多美味<i
+									class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
 						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
 					</div>
+					<div class="am-g am-g-fixed floodThree ">
+						<div class="am-u-sm-4 text-four list">
+							<!-- <div class="word">
+								<a class="outer" href="#"><span class="inner"><b
+										class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
+									class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
+									href="#"><span class="inner"><b class="text">核桃</b> </span>
+								</a> <a class="outer" href="#"><span class="inner"><b
+										class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
+									class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
+									href="#"><span class="inner"><b class="text">核桃</b> </span>
+								</a>
+							</div> -->
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[0].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[0].productname }</div>
+									<div class="title ">${oneTypeProducts.value[0].price }</div>
+								</div> </a>
+							<div class="triangle-topright"></div>
+						</div>
+						<div class="am-u-sm-4 text-four">
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[1].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[1].productname }</div>
+									<div class="sub-title ">¥${oneTypeProducts.value[1].price }</div>
+									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+								</div> </a>
+						</div>
+						<div class="am-u-sm-4 text-four sug">
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[2].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[2].productname }</div>
+									<div class="sub-title ">¥${oneTypeProducts.value[2].price }</div>
+									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+								</div> </a>
+						</div>
+	
+						<div class="am-u-sm-6 am-u-md-3 text-five big ">
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[3].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[3].productname }</div>
+									<div class="sub-title ">¥${oneTypeProducts.value[3].price }</div>
+									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+								</div> </a>
+						</div>
+						<div class="am-u-sm-6 am-u-md-3 text-five ">
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[4].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[4].productname }</div>
+									<div class="sub-title ">¥${oneTypeProducts.value[4].price }</div>
+									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+								</div> </a>
+						</div>
+						<div class="am-u-sm-6 am-u-md-3 text-five sug">
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[5].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[5].productname }</div>
+									<div class="sub-title ">¥${oneTypeProducts.value[5].price }</div>
+									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+								</div> </a>
+						</div>
+						<div class="am-u-sm-6 am-u-md-3 text-five big">
+							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[6].productid }"> <img
+								src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
+								<div class="outer-con ">
+									<div class="title ">${oneTypeProducts.value[6].productname }</div>
+									<div class="sub-title ">¥${oneTypeProducts.value[6].price }</div>
+									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+								</div> </a>
+						</div>
+	
+					</div>
+	
+					<div class="clear "></div>
 				</div>
-
-				<div class="am-g am-g-fixed floodFour">
-					<div class="am-u-sm-5 am-u-md-4 text-one list ">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# ">
-							<div class="outer-con ">
-								<div class="title ">开抢啦！</div>
-								<div class="sub-title ">零食大礼包</div>
-							</div> <img src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " /> </a>
-						<div class="triangle-topright"></div>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two sug">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/2.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/1.jpg" />
-						</a>
-					</div>
-
-
-					<div class="am-u-sm-3 am-u-md-2 text-three big">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three sug">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/3.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/4.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three last big ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-				</div>
-				<div class="clear "></div>
-			</div>
-
-
-			<div id="f2">
-				<!--坚果-->
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>坚果</h4>
-						<h3>酥酥脆脆，回味无穷</h3>
-						<div class="today-brands ">
-							<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
-								href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-				<div class="am-g am-g-fixed floodThree ">
-					<div class="am-u-sm-4 text-four list">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-							</div> </a>
-						<div class="triangle-topright"></div>
-					</div>
-					<div class="am-u-sm-4 text-four">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-4 text-four sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-					<div class="am-u-sm-6 am-u-md-3 text-five big ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five big">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-				</div>
-
-				<div class="clear "></div>
-			</div>
-
-
-			<div id="f3">
-				<!--甜点-->
-
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>甜品</h4>
-						<h3>每一道甜品都有一个故事</h3>
-						<div class="today-brands ">
-							<a href="# ">桂花糕</a> <a href="# ">奶皮酥</a> <a href="# ">栗子糕 </a> <a
-								href="# ">马卡龙</a> <a href="# ">铜锣烧</a> <a href="# ">豌豆黄</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-
-				<div class="am-g am-g-fixed floodFour">
-					<div class="am-u-sm-5 am-u-md-4 text-one list ">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# ">
-							<div class="outer-con ">
-								<div class="title ">开抢啦！</div>
-								<div class="sub-title ">零食大礼包</div>
-							</div> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-						</a>
-						<div class="triangle-topright"></div>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two sug">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/2.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/1.jpg" />
-						</a>
-					</div>
-
-
-					<div class="am-u-sm-3 am-u-md-2 text-three big">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three sug">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/3.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/4.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three last big ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-				</div>
-				<div class="clear "></div>
-			</div>
-
-
-			<div id="f4">
-				<!--坚果-->
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>坚果</h4>
-						<h3>酥酥脆脆，回味无穷</h3>
-						<div class="today-brands ">
-							<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
-								href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-				<div class="am-g am-g-fixed floodThree ">
-					<div class="am-u-sm-4 text-four list">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-							</div> </a>
-						<div class="triangle-topright"></div>
-					</div>
-					<div class="am-u-sm-4 text-four">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-4 text-four sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-					<div class="am-u-sm-6 am-u-md-3 text-five big ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five big">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-				</div>
-
-				<div class="clear "></div>
-			</div>
-
-
-			<div id="f5">
-				<!--甜点-->
-
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>甜品</h4>
-						<h3>每一道甜品都有一个故事</h3>
-						<div class="today-brands ">
-							<a href="# ">桂花糕</a> <a href="# ">奶皮酥</a> <a href="# ">栗子糕 </a> <a
-								href="# ">马卡龙</a> <a href="# ">铜锣烧</a> <a href="# ">豌豆黄</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-
-				<div class="am-g am-g-fixed floodFour">
-					<div class="am-u-sm-5 am-u-md-4 text-one list ">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# ">
-							<div class="outer-con ">
-								<div class="title ">开抢啦！</div>
-								<div class="sub-title ">零食大礼包</div>
-							</div> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-						</a>
-						<div class="triangle-topright"></div>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two sug">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/2.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/1.jpg" />
-						</a>
-					</div>
-
-
-					<div class="am-u-sm-3 am-u-md-2 text-three big">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three sug">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/3.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/4.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three last big ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-				</div>
-				<div class="clear "></div>
-			</div>
-
-
-			<div id="f6">
-				<!--坚果-->
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>坚果</h4>
-						<h3>酥酥脆脆，回味无穷</h3>
-						<div class="today-brands ">
-							<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
-								href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-				<div class="am-g am-g-fixed floodThree ">
-					<div class="am-u-sm-4 text-four list">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-							</div> </a>
-						<div class="triangle-topright"></div>
-					</div>
-					<div class="am-u-sm-4 text-four">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-4 text-four sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-					<div class="am-u-sm-6 am-u-md-3 text-five big ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five big">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-				</div>
-
-				<div class="clear "></div>
-			</div>
-
-
-
-			<div id="f7">
-				<!--甜点-->
-
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>甜品</h4>
-						<h3>每一道甜品都有一个故事</h3>
-						<div class="today-brands ">
-							<a href="# ">桂花糕</a> <a href="# ">奶皮酥</a> <a href="# ">栗子糕 </a> <a
-								href="# ">马卡龙</a> <a href="# ">铜锣烧</a> <a href="# ">豌豆黄</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-
-				<div class="am-g am-g-fixed floodFour">
-					<div class="am-u-sm-5 am-u-md-4 text-one list ">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# ">
-							<div class="outer-con ">
-								<div class="title ">开抢啦！</div>
-								<div class="sub-title ">零食大礼包</div>
-							</div> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-						</a>
-						<div class="triangle-topright"></div>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two sug">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/2.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img src="${pageContext.request.contextPath }/jsp/mall/images/1.jpg" /> </a>
-					</div>
-
-
-					<div class="am-u-sm-3 am-u-md-2 text-three big">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three sug">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/3.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/4.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three last big ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-				</div>
-				<div class="clear "></div>
-			</div>
-
-			<div id="f8">
-				<!--坚果-->
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>坚果</h4>
-						<h3>酥酥脆脆，回味无穷</h3>
-						<div class="today-brands ">
-							<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
-								href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-				<div class="am-g am-g-fixed floodThree ">
-					<div class="am-u-sm-4 text-four list">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-							</div> </a>
-						<div class="triangle-topright"></div>
-					</div>
-					<div class="am-u-sm-4 text-four">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-4 text-four sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-					<div class="am-u-sm-6 am-u-md-3 text-five big ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five ">
-						<a href="# "> <img src="../images/8.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five big">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-				</div>
-
-				<div class="clear "></div>
-			</div>
-
-			<div id="f9">
-				<!--甜点-->
-
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>甜品</h4>
-						<h3>每一道甜品都有一个故事</h3>
-						<div class="today-brands ">
-							<a href="# ">桂花糕</a> <a href="# ">奶皮酥</a> <a href="# ">栗子糕 </a> <a
-								href="# ">马卡龙</a> <a href="# ">铜锣烧</a> <a href="# ">豌豆黄</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-
-				<div class="am-g am-g-fixed floodFour">
-					<div class="am-u-sm-5 am-u-md-4 text-one list ">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# ">
-							<div class="outer-con ">
-								<div class="title ">开抢啦！</div>
-								<div class="sub-title ">零食大礼包</div>
-							</div> <img src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " /> </a>
-						<div class="triangle-topright"></div>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two sug">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/2.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-7 am-u-md-4 text-two">
-						<div class="outer-con ">
-							<div class="title ">雪之恋和风大福</div>
-							<div class="sub-title ">¥13.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/1.jpg" />
-						</a>
-					</div>
-
-
-					<div class="am-u-sm-3 am-u-md-2 text-three big">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three sug">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/3.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/4.jpg" />
-						</a>
-					</div>
-
-					<div class="am-u-sm-3 am-u-md-2 text-three last big ">
-						<div class="outer-con ">
-							<div class="title ">小优布丁</div>
-							<div class="sub-title ">¥4.8</div>
-							<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-						</div>
-						<a href="# "><img
-							src="${pageContext.request.contextPath }/jsp/mall/images/5.jpg" />
-						</a>
-					</div>
-
-				</div>
-				<div class="clear "></div>
-			</div>
-
-
-			<div id="f10">
-				<!--坚果-->
-				<div class="am-container ">
-					<div class="shopTitle ">
-						<h4>坚果</h4>
-						<h3>酥酥脆脆，回味无穷</h3>
-						<div class="today-brands ">
-							<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
-								href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-						</div>
-						<span class="more "> <a href="# ">更多美味<i
-								class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
-					</div>
-				</div>
-				<div class="am-g am-g-fixed floodThree ">
-					<div class="am-u-sm-4 text-four list">
-						<div class="word">
-							<a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a> <a class="outer" href="#"><span class="inner"><b
-									class="text">核桃</b> </span> </a> <a class="outer" href="#"><span
-								class="inner"><b class="text">核桃</b> </span> </a> <a class="outer"
-								href="#"><span class="inner"><b class="text">核桃</b> </span>
-							</a>
-						</div>
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-							</div> </a>
-						<div class="triangle-topright"></div>
-					</div>
-					<div class="am-u-sm-4 text-four">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-4 text-four sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-					<div class="am-u-sm-6 am-u-md-3 text-five big ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five ">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five sug">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-					<div class="am-u-sm-6 am-u-md-3 text-five big">
-						<a href="# "> <img
-							src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
-							<div class="outer-con ">
-								<div class="title ">雪之恋和风大福</div>
-								<div class="sub-title ">¥13.8</div>
-								<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-							</div> </a>
-					</div>
-
-				</div>
-
-				<div class="clear "></div>
-			</div>
-
+			</c:forEach>
 
 
 			<div class="footer ">
@@ -1683,6 +682,63 @@
 	</script>
 	<script type="text/javascript "
 		src="${pageContext.request.contextPath }/jsp/mall/basic/js/quick_links.js "></script>
+	<%-- <script type="text/javascript"
+		src="${pageContext.request.contextPath }/jsp/mall/basic/js/mallIndex.js"></script> --%>
+		
+		
+		
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$("#js_climit_li li").mouseenter(function(){
+			
+			//alert($(this).attr("value"));商品类型的值
+			//alert($(this).find("div.sort-side").find("dt").find("span").text());
+			var producttypeid = $(this).attr("value");
+			var pType = $(this).find("div.category-info").find("a");
+			//var dt = $(this).find("div.sort-side").find("dt").find("span");
+			var dl = $(this).find("div.sort-side").find("dl");
+			$.ajax({
+				
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:"${pageContext.request.contextPath }/product/quereyProduct_json",
+				data:'{"producttypeid"'+':'+'"'+producttypeid+'"'
+					+'}',
+				
+				success:function(data){
+					//alert(data);
+					/* <dt><span title="蛋糕">名字</span></dt>
+																<dd>
+																	<a title="蒸蛋糕" href="#"><span>类容</span> </a>
+																</dd>
+					 */
+					dl.html("");
+					dl.append('<dt><span title="类型名字">'+ pType.text() +'</span></dt>');
+					for(var i in data){
+						//dd.text(data[i].productname);
+						dl.append(
+						
+							'<dd>'+
+								'<a title="商品" href="${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'"><span>'+ data[i].productname  +'</span> </a>'+
+							'</dd>'
+						
+						);
+						
+					}
+					
+					
+					
+				
+				
+				
+				}
+			});
+			
+			
+		});
+	});
+	</script>
 </body>
 
 </html>
