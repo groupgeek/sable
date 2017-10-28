@@ -127,7 +127,6 @@
     where transactionId = #{transactionid,jdbcType=INTEGER}
   </update>
   
-<<<<<<< HEAD
   <select id="selectSumproductAllMoney" resultType="DECIMAL">
   	select sum(countBuy*(totalPrice-totalExpenditure)) money from producttransactionreport
   </select>
@@ -137,7 +136,6 @@
 	group by BuyTime order by BuyTime desc limit 15
   </select>
   
-=======
   
   
   <select id="selectByCondition" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
@@ -189,5 +187,4 @@
   </select>
   
 
->>>>>>> face5926196adb15c4fadd2c67da1231bba9290f
 </mapper>
