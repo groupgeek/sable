@@ -55,4 +55,10 @@
     set authorityLevel = #{authoritylevel,jdbcType=VARCHAR}
     where authorityId = #{authorityid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAll" resultType="AuthorityCustom">
+  
+  	SELECT * FROM authority
+  
+  </select>
 </mapper>

@@ -1,27 +1,25 @@
 $(document).ready(function(){
-	//alert(1);
 	var root = $("#root").attr("value");
 		var search = "";
 		var currentPage = 1;
 		var pageNum = $("#selectPageNum").attr("value");;
-		var sort = "registrationdate";
+		var sort = $("#selectSort").attr("value");
 		
-		//${pageContext.request.contextPath }/superAdmin/updateUserInfoView?id=1
-		function createUserTable(data){
-			for(var i in data.userList){
+		function createEmployeeTable(data){
+			for(var i in data.employeeList){
 				$("#box tbody").append(
 						'<tr>'+
-							'<td>'+ (data.userList)[i].username +'</td>'+
-							'<td class="center">'+(data.userList)[i].registrationdate+
-							'<td class="center">'+ (data.userList)[i].online +'</td>'+
+							'<td>'+ (data.employeeList)[i].employeename +'</td>'+
+							'<td class="center">'+(data.employeeList)[i].entrytime+
+							'<td class="center">'+ (data.employeeList)[i].employeestatus +'</td>'+
 							'<td class="center">'+
-								'<span class="label label-success">'+ (data.userList)[i].status +'</span>'+
+								'<span class="label label-success">'+ (data.employeeList)[i].age +'</span>'+
 							'</td>'+
 							'<td class="center">'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/userInfo.jsp?userid='+ (data.userList)[i].userid +'">'+
+								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/employeeInfo.jsp?employeeid='+ (data.employeeList)[i].employeeid +'">'+
 									'<i class="halflings-icon white zoom-in"></i>'+
 								'</a>'+
-								'<a class="btn btn-info" href="'+root+'/superAdmin/updateUserInfoView?id='+ (data.userList)[i].userid +'">'+
+								'<a class="btn btn-info" href="'+root+'/superAdmin/updateEmployeeInfoView?id='+ (data.employeeList)[i].employeeid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
 								'<a class="btn btn-danger" href="#">'+
@@ -42,7 +40,7 @@ $(document).ready(function(){
 				
 				type:"post",
 				contentType:"application/json;charset=utf-8",
-				url:root+"/superAdmin/queryAllUser",
+				url:root+"/superAdmin/queryAllEmployee",
 				data:'{"search"'+':'+'"'+search+'"'+','
 				+'"currentPage"'+':'+'"'+currentPage+'"'+','
 				+'"pageNum"'+':'+'"'+pageNum+'"'+','
@@ -58,7 +56,7 @@ $(document).ready(function(){
 					$("#lastPage").attr("value",data.pageSum);
 					$("#pageSum").text(data.pageSum);
 					$("#currentPage").text(currentPage);
-					createUserTable(data);
+					createEmployeeTable(data);
 				}
 			});
 		}
@@ -68,7 +66,7 @@ $(document).ready(function(){
 			
 			type:"post",
 			contentType:"application/json;charset=utf-8",
-			url:root+"/superAdmin/queryAllUser",
+			url:root+"/superAdmin/queryAllEmployee",
 			data:'{"search"'+':'+'"'+search+'"'+','
 			+'"currentPage"'+':'+'"'+currentPage+'"'+','
 			+'"pageNum"'+':'+'"'+pageNum+'"'+','
@@ -83,9 +81,9 @@ $(document).ready(function(){
 				$("#nextPage").attr("value",1);
 				$("#lastPage").attr("value",data.pageSum);
 				$("#pageSum").text(data.pageSum);
-				$("#userSum").text(data.userSum);
+				$("#employeeSum").text(data.employeeSum);
 				//alert($("#previousPage").attr("value"));
-				createUserTable(data);
+				createEmployeeTable(data);
 			}
 		});
 		
@@ -138,7 +136,7 @@ $(document).ready(function(){
 				
 				type:"post",
 				contentType:"application/json;charset=utf-8",
-				url:root+"/superAdmin/queryAllUser",
+				url:root+"/superAdmin/queryAllEmployee",
 				data:'{"search"'+':'+'"'+search+'"'+','
 				+'"currentPage"'+':'+'"'+currentPage+'"'+','
 				+'"pageNum"'+':'+'"'+pageNum+'"'+','
@@ -150,7 +148,7 @@ $(document).ready(function(){
 					$("#box tbody").html("");
 					//$("#home").attr("value",1);
 					//$("#lastPage").attr("value",data.pageSum);
-					createUserTable(data);
+					createEmployeeTable(data);
 				}
 			});
 			$("#currentPage").text(currentPage);
