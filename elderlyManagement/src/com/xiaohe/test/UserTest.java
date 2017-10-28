@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xiaohe.bean.UserCustom;
+import com.xiaohe.bean.UserVo;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
 
@@ -46,10 +47,15 @@ public class UserTest {
 		user.setSearch("");
 		user.setSort("registrationdate");
 		
+		UserVo test = userService.queryAllUserByCondition(user);
 		
+		System.out.println(test.getUserList().get(0).getOnline());
 		
-		System.out.println(userService.queryAllUserByCondition(user));
+	}
+	@Test
+	public void userInfo(){
 		
+		System.out.println(userService.queryUserInfoById(1).getMed().getBeforemedicalrecords());
 	}
 
 }

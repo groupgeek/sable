@@ -36,4 +36,11 @@ public interface UserService {
 	 * @return 用户集合
 	 */
 	public UserVo queryAllUserByCondition(UserCustom condition);
+	
+	/**
+	 * 查询用户信息所有信息
+	 * @param id
+	 * @return
+	 */
+	public UserCustom queryUserInfoById(Integer id);
 }

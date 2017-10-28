@@ -119,9 +119,10 @@ public class MallController {
 		condition.setSearch(searchCondition);
 		condition.setTotal(1);
 		condition.setCurrentPage(currentPage);
-		int sum = productService.queryProductSumByCondition(condition)/condition.getTotal();
+		int tempSum = productService.queryProductSumByCondition(condition);
+		int sum = tempSum / condition.getTotal();
 		
-		if(productService.queryProductSumByCondition(condition)%condition.getTotal() != 0){
+		if(tempSum % condition.getTotal() != 0){
 			sum += 1;
 		}
 		blurryProductCustoms = productService.queryProductByCondition(condition);
@@ -176,9 +177,10 @@ public class MallController {
 	@RequestMapping("/queryProductSum_json")
 	public @ResponseBody int  queryProductSum(@RequestBody ProductCustom condition){
 		condition.setTotal(1);
-		int sum = productService.queryProductSumByCondition(condition)/condition.getTotal();
+		int tempSum = productService.queryProductSumByCondition(condition);
+		int sum = tempSum / condition.getTotal();
 		
-		if(productService.queryProductSumByCondition(condition)%condition.getTotal() != 0){
+		if(tempSum % condition.getTotal() != 0){
 			sum += 1;
 		}
 		return sum;

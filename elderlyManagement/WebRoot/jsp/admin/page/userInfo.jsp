@@ -6,7 +6,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>用戶详情</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -403,65 +403,162 @@
 			<!-- start: Content -->
 			<div id="content" class="span10">
 			
-			
-			<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>用户信息管理</h2>
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户详细信息</h2>
 						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
-			</div>
-				<div class="box-content " id = "box">
-						<div>
-							<div id = "pageNumBox">
-								<select id = "selectPageNum">
-									<option value = "1">1</option>
-									<option value = "2">2</option>
-									<option value = "3">3</option>
-								</select>
-							</div>
-							<select id = "selectSort">
-								<option>排序方式</option>
-								<option>时间</option>
-								<option>0.0</option>
-							</select>
-							<input type="text" id = "search" placeholder = "搜索">
-							
-						</div>
-					
-					
-					
-					
-					
-						<table class="table table-striped table-bordered bootstrap-datatable">
-						  <thead>
-							  <tr>
-								  <th>用户姓名</th>
-								  <th>注册时间</th>
-								  <th>是否在线</th>
-								  <th>账号状态</th>
-								  <th>操作</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-						  </tbody>
-					  </table>
-					  
-					  <div id = "page" class = "page">
-					  		<div id = "userCurrentPage">
-								<p>当前为第<strong>1</strong>页</p>
-							</div>
-					  		
-							<ul class="am-pagination am-pagination-right" id = "ull">
-								<li value="" id = "home"><a href="javascript:;">首页</a></li>
-								<li value="" id = "previousPage"><a href="javascript:;">&laquo;</a></li>
-								<li value="" id = "nextPage"><a href="javascript:;">&raquo;</a></li>
-								<li value="" id = "lastPage"><a href="javascript:;">尾页</a></li>
-							</ul>
-					  </div>
-					  
-					              
 					</div>
-				</div><!--/span-->
+					<div class="box-content">
+						<form class="form-horizontal">
+							<fieldset>
+							  <div class="control-group" id = "username">
+								<label class="control-label">姓名</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "sex">
+								<label class="control-label">性别</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "phone">
+								<label class="control-label">手机号(账号)</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "password">
+								<label class="control-label">密码</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							   <div class="control-group" id = "registrationdate">
+								<label class="control-label">注册日期</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "address">
+								<label class="control-label">地址</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "status">
+								<label class="control-label">账号状态</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "integral">
+								<label class="control-label">积分</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							    <div class="control-group" id = "email">
+								<label class="control-label">邮箱</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "birthday">
+								<label class="control-label">生日</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "accountnumber">
+								<label class="control-label">银行卡号</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "healthstatus">
+								<label class="control-label">健康状态</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "authoritylevel">
+								<label class="control-label">权限</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "level">
+								<label class="control-label">等级</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "areaname">
+								<label class="control-label">地区</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							   <div class="control-group" id = "areaaddress">
+								<label class="control-label">地区地址</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							   <div class="control-group" id = "online">
+								<label class="control-label">是否在线</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+								</div>
+							   <div class="control-group" id = "branchname">
+								<label class="control-label">所在分店</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							   <div class="control-group" id = "branchname">
+								<label class="control-label">分店管理员</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							   <div style="position: relative;left: 500px;bottom: 950px; " id = "med">
+								<label class="control-label">病例</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here
+								  
+								  </span>
+								</div>
+							  </div>
+							  <div class="form-actions">
+								<button type="submit" class="btn btn-primary">Save changes</button>
+								<button class="btn">Cancel</button>
+							  </div>
+							</fieldset>
+						  </form>
+					
+					</div>
+				</div>
+			</div>
+				
+				
+				
+				
+				
+				
+			</div>
 			</div>
 
 		</div>
@@ -592,9 +689,9 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-		
-	<script 
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/superAdmin.js"></script>
+	
+	<script
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/userInfo.js"></script>	
 	
 	<!-- end: JavaScript-->
 	

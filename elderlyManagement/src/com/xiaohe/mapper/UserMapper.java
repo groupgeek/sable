@@ -76,4 +76,9 @@ public interface UserMapper {
      */
     Integer selectAllUserSumByCondition(UserCustom condition);
     
+    /**
+     * 查询用户所有信息
+     * @return
+     */
+    UserCustom selectUserInfoById(Integer id);
 }

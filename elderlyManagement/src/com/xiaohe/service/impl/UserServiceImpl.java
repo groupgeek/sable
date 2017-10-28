@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.MedicalrecordsWithBLOBs;
+import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
+import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
@@ -27,6 +30,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("transactionMapper")
 	private TransactionMapper transactionMapper;
+	
+	@Autowired
+	@Qualifier("medicalrecordsMapper")
+	private MedicalrecordsMapper medicalrecordsMapper;
 
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
@@ -50,6 +57,12 @@ public class UserServiceImpl implements UserService {
 				transaction.setCountbuy(0);
 				transaction.setFrequency((float) 0);
 				transactionMapper.insertSelective(transaction);
+				
+				//创建用户病例表
+				MedicalrecordsWithBLOBs userMed = new MedicalrecordsWithBLOBs();
+				userMed.setUserid(user.getUserid());
+				userMed.setUsername(user.getUsername());
+				medicalrecordsMapper.insertSelective(userMed);
 				
 				user.setOnline(true);
 				userMapper.changeOnLine(user);
@@ -84,7 +97,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean changeUserOnline(UserCustom userCustom) {
-		// TODO Auto-generated method stub
+		
 		if(userMapper.changeOnLine(userCustom)>1){
 			return true;
 		}else{
@@ -97,6 +110,7 @@ public class UserServiceImpl implements UserService {
 		UserVo allUserInfo = new UserVo();
 		List<UserCustom> userList = new ArrayList<UserCustom>();
 		Integer sum = 0;
+		Integer pageNum = 0;
 		
 		
 		if(condition != null){
@@ -112,14 +126,20 @@ public class UserServiceImpl implements UserService {
 		
 		userList = userMapper.selectAllUserByCondition(condition);
 		sum = userMapper.selectAllUserSumByCondition(condition);
-		
-		
-		
-		
+		pageNum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageNum +=  1;
+		}
+		allUserInfo.setUserSum(sum);
 		allUserInfo.setUserList(userList);
-		allUserInfo.setPageSum(sum);
+		allUserInfo.setPageSum(pageNum);
 		
 		return allUserInfo;
+	}
+
+	public UserCustom queryUserInfoById(Integer id) {
+		UserCustom userInfo = userMapper.selectUserInfoById(id);
+		return userInfo;
 	}
 	
 	

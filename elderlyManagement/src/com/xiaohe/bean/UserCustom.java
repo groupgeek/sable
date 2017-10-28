@@ -10,8 +10,65 @@ public class UserCustom extends User{
 	private String search;
 	private Integer onLineNum;//在线人数
 	private String sort;
+	
+	private AuthorityCustom authority;
+	private LevelCustom level;
+	private BranchCustom branch;
+	private AreaCustom area;
+	private MedicalrecordsWithBLOBsCustom med;
+	private EmployeeCustom manager;
+	
+	
 
 	
+	public AreaCustom getArea() {
+		return area;
+	}
+
+	public void setArea(AreaCustom area) {
+		this.area = area;
+	}
+
+	public AuthorityCustom getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(AuthorityCustom authority) {
+		this.authority = authority;
+	}
+
+	public LevelCustom getLevel() {
+		return level;
+	}
+
+	public void setLevel(LevelCustom level) {
+		this.level = level;
+	}
+
+	public BranchCustom getBranch() {
+		return branch;
+	}
+
+	public void setBranch(BranchCustom branch) {
+		this.branch = branch;
+	}
+
+	public MedicalrecordsWithBLOBsCustom getMed() {
+		return med;
+	}
+
+	public void setMed(MedicalrecordsWithBLOBsCustom med) {
+		this.med = med;
+	}
+
+	public EmployeeCustom getManager() {
+		return manager;
+	}
+
+	public void setManager(EmployeeCustom manager) {
+		this.manager = manager;
+	}
+
 	public String getSort() {
 		return sort;
 	}

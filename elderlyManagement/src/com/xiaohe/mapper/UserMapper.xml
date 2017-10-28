@@ -318,6 +318,44 @@
 	      </if>
      
      </sql>
+     
+     <resultMap type="userCustom" id="userInfoMap" extends="BaseResultMap">
+     
+     	<association property="authority" javaType="authorityCustom">
+     		<id column="authorityId" property="authorityid"></id>
+     		<result column="authorityLevel" property="authoritylevel"/>
+     	</association>
+     	
+     	<association property="level" javaType="levelCustom">
+     		<id column="levelId" property="levelid"/>
+     		<result column="level" property="level"/>
+     	</association>
+     	
+     	<association property="branch" javaType="branchCustom">
+     		<id column="branchId" property="branchid"/>
+     		<result column="branchName" property="branchname"/>
+     	</association>
+     	
+     	<association property="area" javaType="areaCustom">
+     		<id column="areaId" property="areaid"/>
+     		<result column="areNname" property="areaname"/>
+     		<result column="areaAddress" property="areaaddress"/>
+     	</association>
+     	
+     	<association property="med" javaType="MedicalrecordsWithBLOBsCustom">
+     		<id column="medicalrecordsId" property="medicalrecordsid"/>
+     		<result column="nowMedicalRecords" property="nowmedicalrecords"/>
+     		<result column="beforeMedicalRecords" property="beforemedicalrecords"/>
+     		<result column="personalRecords" property="personalrecords"/>
+     		<result column="familyRecords" property="familyrecords"/>
+     	</association>
+     	
+     	<association property="manager" javaType="EmployeeCustom">
+     		<id column="employeeId" property="employeeid"/>
+     		<result column="employeeName" property="employeename"/>
+     	</association>
+     
+     </resultMap>
   <select id="queryAllUser" resultType="com.xiaohe.bean.User">
   select * from user
   </select>
@@ -372,5 +410,19 @@
   	</where>
   
   </select>
+  
+  
+  <select id="selectUserInfoById" parameterType="Integer" resultMap="userInfoMap">
+  	SELECT u.* , ah.authorityLevel , l.`level` , a.areaName , a.areaAddress , b.branchId , 
+		b.branchName ,b.employeeId , e.employeeName , 
+		m.nowMedicalRecords , m.beforeMedicalRecords , 
+		m.personalRecords , m.familyRecords
+		FROM `user` u, authority ah,`level` l,area a,branch b,medicalrecords m  ,employee e
+		WHERE u.userId = #{id}
+		AND ah.authorityId = u.authorityId AND l.levelId = u.levelId 
+		AND a.areaId = u.areaId AND b.areaId =u.areaId AND e.employeeId = b.employeeId
+		AND m.userId = u.userId
+  </select>
+  
   
 </mapper>

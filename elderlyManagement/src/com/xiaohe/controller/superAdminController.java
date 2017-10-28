@@ -46,5 +46,12 @@ public class superAdminController {
 		return allUsers;
 	}
 
+	@RequestMapping("/queryuserInfo")
+	public @ResponseBody UserCustom queryuserInfo(@RequestBody UserCustom condition){
+		
+		UserCustom userInfo = userService.queryUserInfoById(condition.getUserid());
+		
+		return userInfo;
+	}
 	
 }
