@@ -28,6 +28,6 @@ public class EmployeeTest {
 		@org.junit.Test
 		public void employeeInfo(){
 			
-			System.out.println(employeeService.queryEmployeeInfoById(1));
+			System.out.println(employeeService.queryEmployeeInfoById(2));
 		}
 }

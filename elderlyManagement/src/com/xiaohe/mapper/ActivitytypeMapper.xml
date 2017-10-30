@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.xiaohe.bean.Activitytype" >
     <id column="activityTypeID" property="activitytypeid" jdbcType="INTEGER" />
     <result column="activityTypeName" property="activitytypename" jdbcType="VARCHAR" />
+    <result column="fatherTypeID" property="fathertypeid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    activityTypeID, activityTypeName
+    activityTypeID, activityTypeName, fatherTypeID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -19,8 +20,10 @@
     where activityTypeID = #{activitytypeid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Activitytype" >
-    insert into activitytype (activityTypeID, activityTypeName)
-    values (#{activitytypeid,jdbcType=INTEGER}, #{activitytypename,jdbcType=VARCHAR})
+    insert into activitytype (activityTypeID, activityTypeName, 
+      fatherTypeID)
+    values (#{activitytypeid,jdbcType=INTEGER}, #{activitytypename,jdbcType=VARCHAR}, 
+      #{fathertypeid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Activitytype" >
     insert into activitytype
@@ -31,6 +34,9 @@
       <if test="activitytypename != null" >
         activityTypeName,
       </if>
+      <if test="fathertypeid != null" >
+        fatherTypeID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="activitytypeid != null" >
@@ -38,6 +44,9 @@
       </if>
       <if test="activitytypename != null" >
         #{activitytypename,jdbcType=VARCHAR},
+      </if>
+      <if test="fathertypeid != null" >
+        #{fathertypeid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -47,16 +56,20 @@
       <if test="activitytypename != null" >
         activityTypeName = #{activitytypename,jdbcType=VARCHAR},
       </if>
+      <if test="fathertypeid != null" >
+        fatherTypeID = #{fathertypeid,jdbcType=INTEGER},
+      </if>
     </set>
     where activityTypeID = #{activitytypeid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Activitytype" >
     update activitytype
-    set activityTypeName = #{activitytypename,jdbcType=VARCHAR}
+    set activityTypeName = #{activitytypename,jdbcType=VARCHAR},
+      fatherTypeID = #{fathertypeid,jdbcType=INTEGER}
     where activityTypeID = #{activitytypeid,jdbcType=INTEGER}
   </update>
   
-  <!-- 自定义sql -->
+    <!-- 自定义sql -->
   
   <select id="AllActTypes" resultType="com.xiaohe.bean.ActivitytypeCustom">
   select * from activitytype

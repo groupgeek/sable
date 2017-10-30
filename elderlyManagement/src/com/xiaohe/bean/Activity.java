@@ -26,9 +26,11 @@ public class Activity {
 
     private BigDecimal activityprice;
 
+    private Integer maxnum;
+
     private String activitydetails;
 
-    public Integer getActivityid(){
+    public Integer getActivityid() {
         return activityid;
     }
 
@@ -114,6 +116,14 @@ public class Activity {
 
     public void setActivityprice(BigDecimal activityprice) {
         this.activityprice = activityprice;
+    }
+
+    public Integer getMaxnum() {
+        return maxnum;
+    }
+
+    public void setMaxnum(Integer maxnum) {
+        this.maxnum = maxnum;
     }
 
     public String getActivitydetails() {

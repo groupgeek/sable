@@ -62,6 +62,16 @@ public class ActivityTest {
 		System.out.println(activityService.queryActivityrecommend(custom).size());
 		
 	}
-	
+	@Test
+	public void queryActivityTest(){
+		
+		ActivityCustom condition = new ActivityCustom();
+		condition.setCurrentPage(1);
+		condition.setPageNum(3);
+		condition.setActivitystatus("未开展");
+		condition.setSort("activitydate");
+		System.out.println(activityService.queryAllActivityByCondition(condition));
+		
+	}
 
 }

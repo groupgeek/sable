@@ -17,10 +17,24 @@ public interface EmployeeService {
 	public EmployeeVo queryAllEmployeeByCondition(EmployeeCustom condition);
 	
 	/**
-	 * 查询用户信息所有信息
+	 * 查询员工信息所有信息
 	 * @param id
 	 * @return
 	 */
 	public EmployeeCustom queryEmployeeInfoById(Integer id);
+	
+	/**
+	 * 更新员工详细信息
+	 * @param employeeInfo
+	 * @return
+	 */
+	public boolean UpdateUserInfoByUser(EmployeeCustom employeeInfo);
+	
+	/**
+	 * 添加员工
+	 * @param employee
+	 * @return 员工账号
+	 */
+	public String addEmployee(EmployeeCustom employee);
 
 }

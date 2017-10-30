@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
+import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.util.GetAge;
@@ -76,6 +77,50 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employee.setEntryYears(GetAge.getAgeByBirth(employee.getEntrytime()));
 		
 		return employee;
+	}
+
+	public boolean UpdateUserInfoByUser(EmployeeCustom employeeInfo) {
+		if(employeeInfo == null) return false;
+		if(employeeInfo.getEmployeeid() == null) return false;
+		
+		if(employeeMapper.updateByPrimaryKeySelective(employeeInfo) < 0) return false;
+		
+		
+		return true;
+	}
+
+	public String addEmployee(EmployeeCustom employee) {
+		
+		/**
+		 * 判断参数是否合格
+		 */
+		if(employee == null) return null;
+		if(employee.getEmployeename() == null || " ".equals(employee.getEmployeename())) return null;
+		if(employee.getPhone() == null || employee.getPhone().length() != 11) return null;
+		if(employee.getPassword() == null || " ".equals(employee.getPassword())) return null;
+		if(employee.getBankcardno() == null || employee.getBankcardno().length() != 19) return null;
+		if(employee.getPositionid() == null || " ".equals(employee.getPositionid())) return null;
+		
+		Integer sum = employeeMapper.selectAllEmployeeSumByCondition(null);
+		String accountNumber = "xiaohe"+employee.getPositionid();
+		if(sum < 10){
+			accountNumber += "00000"+(sum+1);
+		}else if(sum >= 10 && sum < 100){
+			accountNumber += "0000"+(sum+1);
+		}else if(sum >= 100 && sum < 1000){
+			accountNumber += "000"+(sum+1);
+		}else if(sum >= 1000 && sum < 10000){
+			accountNumber += "00"+(sum+1);
+		}else if(sum >= 10000 && sum < 100000){
+			accountNumber += "0"+(sum+1);
+		}else{
+			accountNumber += sum+1;
+		}
+		
+		employee.setAccountnumber(accountNumber);
+		if(employeeMapper.insertSelective(employee) <= 0) return null;
+		
+		return accountNumber;
 	}
 
 }

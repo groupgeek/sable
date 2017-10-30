@@ -10,7 +10,7 @@
 		data:'{"employeeid"'+':'+'"'+employeeid+'"'
     			+'}',
 		success:function(data){
-			$("#employeeUrl").attr("href",root+'/superAdmin/updateEmployeeidInfoView?id='+data.employeeid);
+			$("#employeeUrl").attr("href",root+'/superAdmin/updateEmployeeInfoView?id='+data.employeeid);
 			$("#employeename span").text(data.employeename);
 			$("#sex span").text(data.sex);
 			$("#phone span").text(data.phone);

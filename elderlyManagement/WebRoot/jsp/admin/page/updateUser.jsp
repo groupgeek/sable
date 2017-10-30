@@ -32,9 +32,6 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
-<link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/admin/page/css/superAdmin.css"
-	rel="stylesheet">
 	<!-- end: CSS -->
 	
 
@@ -352,7 +349,7 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li id = "home"><a href="JavaScript:;"><i class="icon-bar-chart"></i><span
+						<li id = "home"><a href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
@@ -368,7 +365,7 @@
 								class="hidden-tablet"> 报表统计</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>
@@ -452,16 +449,23 @@
 								<label class="control-label">性别</label>
 								<div class="controls">
 								  <select name="sex">
-								  	<c:if test='${userInfo.sex == "男" }'>
-									  	<option value = "女" id = "sex_0">女</option>
-										<option value = "男" id = "sex_1" selected="selected">男</option>
-										<option value = "无" id = "sex_2">无</option>
-								 	</c:if>
-									  <c:if test='${userInfo.sex == "女" }'>
-									  	<option value = "女" id = "sex_0" selected="selected">女</option>
-										<option value = "男" id = "sex_1">男</option>
-										<option value = "无" id = "sex_2">无</option>
-									  </c:if>
+								  	<c:choose>
+								  		<c:when test='${userInfo.sex == "男" }'>
+									  		<option value = "女" id = "sex_0">女</option>
+											<option value = "男" id = "sex_1" selected="selected">男</option>
+											<option value = "无" id = "sex_2">无</option>
+								  		</c:when>
+								  		<c:when test='${userInfo.sex == "女" }'>
+									  		<option value = "女" id = "sex_0" selected="selected">女</option>
+											<option value = "男" id = "sex_1">男</option>
+											<option value = "无" id = "sex_2">无</option>
+								  		</c:when>
+								  		<c:otherwise>
+								  			<option value = "女" id = "sex_0">女</option>
+											<option value = "男" id = "sex_1">男</option>
+											<option value = "无" id = "sex_2" selected="selected">无</option>
+								  		</c:otherwise>
+								  	</c:choose>
 								  
 								  
 								  </select>
@@ -487,7 +491,7 @@
 								</div>
 							  </div>
 							  <div class="control-group" id = "address">
-								<label class="control-label">地址</label>
+								<label class="control-label">家庭地址</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "address" type="text" value="${userInfo.address }">
 								</div>
@@ -533,10 +537,10 @@
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "accountnumber">
+							  <div class="control-group" id = "bankcardno">
 								<label class="control-label">银行卡号</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "accountnumber" type="text" value="${userInfo.accountnumber }">
+								  <input class="input-xlarge focused" name = "bankcardno" type="text" value="${userInfo.bankcardno }">
 								</div>
 							  </div>
 							  

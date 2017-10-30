@@ -6,7 +6,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>员工详情</title>
+	<title>活动详情</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -410,148 +410,129 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp">员工管理</a>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp">活动管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">员工详情</a></li>
+				<li><a href="#">活动详情</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>员工详细信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>活动详细信息</h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="" id = "employeeUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="" id = "activityUrl"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
+					
 					<div class="box-content">
 						<form class="form-horizontal">
 							<fieldset>
-							  <div class="control-group" id = "employeename">
-								<label class="control-label">姓名</label>
+							  <div class="control-group" id = "activityname">
+								<label class="control-label">活动名字</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "sex">
-								<label class="control-label">性别</label>
+							  <div class="control-group" id = "activitytypename">
+								<label class="control-label">活动类型</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "phone">
-								<label class="control-label">手机号</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "accountnumber">
-								<label class="control-label">账号</label>
+							  <div class="control-group" id = "activitystatus">
+								<label class="control-label">活动状态</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "password">
-								<label class="control-label">密码</label>
+							  <div class="control-group" id = "activitydate">
+								<label class="control-label">活动时间</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div class="control-group" id = "entrytime">
-								<label class="control-label">入职时间</label>
+							  
+							  <div class="control-group" id = "branchname">
+								<label class="control-label">所属分店</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "address">
-								<label class="control-label">家庭地址</label>
+							   <div class="control-group" id = "activityprice">
+								<label class="control-label">活动支出</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "employeestatus">
-								<label class="control-label">员工状态</label>
+							  <div class="control-group" id = "registeryfee">
+								<label class="control-label">活动报名费</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "positional">
-								<label class="control-label">职位</label>
+							  <div class="control-group" id = "maxnum">
+								<label class="control-label">活动人数上限</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
+							  <div class="control-group" id = "online">
+								<label class="control-label">线上线下</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  
+							  <!-- <div class="control-group" id = "bankcardno">
+								<label class="control-label">活动详情</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
 							    <div class="control-group" id = "email">
-								<label class="control-label">邮箱</label>
+								<label class="control-label">活动图片</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "birthday">
-								<label class="control-label">生日</label>
+								<label class="control-label">活动视频</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
+							  </div> -->
+							  <div style="width: 390px;height: 540px; position: relative;left: 600px;bottom: 440px;">
+									
+									<div id = "activitypicture">
+										<label class="">活动图片</label>
+										<div style="width: 390px;height:100px;background: #FCFCFC ">
+											
+										</div>
+									</div>
+									<div style="height: 20px;"></div>
+									<div id = "video">
+										<label class="">活动视频</label>
+										<div style="width: 390px;height:100px;background: #FCFCFC ">
+											
+										</div>
+									</div>
+									<div style="height: 20px;"></div>
+									<div id = "activitydetails">
+										<label class="">活动详情</label>
+										<div style="width: 390px;height:100px;background: #FCFCFC ">
+											<p></p>
+										</div>
+									</div>
+								
+								
 							  </div>
-							  
-							  <div class="control-group" id = "bankcardno">
-								<label class="control-label">银行卡号</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "totalbonus">
-								<label class="control-label">奖金</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "authoritylevel">
-								<label class="control-label">权限</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "wage">
-								<label class="control-label">工资</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "areaname">
-								<label class="control-label">所在地区</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							   <div class="control-group" id = "areaaddress">
-								<label class="control-label">地区地址</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							   
-							   <div class="control-group" id = "branchname">
-								<label class="control-label">所在分店</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							   
-							  
-							  
-							  
-							  
-							  
-							  
-							  
 							  
 							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
@@ -700,9 +681,6 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-	
-	<script
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/employeeInfo.js"></script>	
 	
 	<!-- end: JavaScript-->
 	
