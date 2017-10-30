@@ -6,7 +6,7 @@
 
 <!-- start: Meta -->
 <meta charset="utf-8">
-<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+<title>管理员主页</title>
 <meta name="description" content="admin">
 <meta name="keyword" content="admin">
 <!-- end: Meta -->
@@ -235,7 +235,7 @@
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
