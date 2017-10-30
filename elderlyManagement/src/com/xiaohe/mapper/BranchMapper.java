@@ -1,6 +1,9 @@
 package com.xiaohe.mapper;
 
+import java.util.List;
+
 import com.xiaohe.bean.Branch;
+import com.xiaohe.bean.BranchCustom;
 
 public interface BranchMapper {
     int deleteByPrimaryKey(Integer branchid);
@@ -21,4 +24,10 @@ public interface BranchMapper {
      * @return
      */
     Branch oneBranch(Integer employeeid);
+    
+    /**
+     * 查询所有分店
+     * @return
+     */
+    List<BranchCustom> selectAll();
 }

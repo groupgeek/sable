@@ -6,7 +6,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>用戶详情</title>
+	<title>员工详情</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -360,6 +360,10 @@
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
+						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+								class="hidden-tablet">分店管理</span>
+						</a>
+						</li>
 						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
 								class="hidden-tablet"> 报表统计</span>
 						</a>
@@ -406,26 +410,26 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp">客户管理</a>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp">员工管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">客户详情</a></li>
+				<li><a href="#">员工详情</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户详细信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>员工详细信息</h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="" id = "userUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="" id = "#employeeUrl"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
 						<form class="form-horizontal">
 							<fieldset>
-							  <div class="control-group" id = "username">
+							  <div class="control-group" id = "employeename">
 								<label class="control-label">姓名</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
@@ -438,7 +442,14 @@
 								</div>
 							  </div>
 							  <div class="control-group" id = "phone">
-								<label class="control-label">手机号(账号)</label>
+								<label class="control-label">手机号</label>
+								<div class="controls">
+								  <span class="input-xlarge uneditable-input">Some value here</span>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "accountnumber">
+								<label class="control-label">账号</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
@@ -450,26 +461,26 @@
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div class="control-group" id = "registrationdate">
-								<label class="control-label">注册日期</label>
+							   <div class="control-group" id = "entrytime">
+								<label class="control-label">入职时间</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "address">
-								<label class="control-label">地址</label>
+								<label class="control-label">家庭地址</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "status">
-								<label class="control-label">账号状态</label>
+							  <div class="control-group" id = "employeestatus">
+								<label class="control-label">员工状态</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "integral">
-								<label class="control-label">积分</label>
+							  <div class="control-group" id = "positional">
+								<label class="control-label">职位</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
@@ -495,8 +506,8 @@
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "healthstatus">
-								<label class="control-label">健康状态</label>
+							  <div class="control-group" id = "totalbonus">
+								<label class="control-label">奖金</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
@@ -508,14 +519,14 @@
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							  <div class="control-group" id = "level">
-								<label class="control-label">等级</label>
+							  <div class="control-group" id = "wage">
+								<label class="control-label">工资</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "areaname">
-								<label class="control-label">地区</label>
+								<label class="control-label">所在地区</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
@@ -526,57 +537,15 @@
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div class="control-group" id = "online">
-								<label class="control-label">是否在线</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-								</div>
+							   
 							   <div class="control-group" id = "branchname">
 								<label class="control-label">所在分店</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div class="control-group" id = "manager">
-								<label class="control-label">分店管理员</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div>
-							   <div style="position: relative;left: 500px;bottom: 950px; " id = "med">
-								<label class="control-label">病例</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here
-								  
-								  </span>
-								</div>
-							  </div>
+							   
 							  
-							  <div class="control-group" id = "nowmedicalrecords">
-								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "beforemedicalrecords">
-								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "personalrecords">
-								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "familyrecords">
-								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
-								</div>
-							  </div>
 							  
 							  
 							  
@@ -733,7 +702,7 @@
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
 	
 	<script
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/userInfo.js"></script>	
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/employeeInfo.js"></script>	
 	
 	<!-- end: JavaScript-->
 	
