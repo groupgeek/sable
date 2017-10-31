@@ -79,4 +79,10 @@
       positionName = #{positionname,jdbcType=VARCHAR}
     where positionId = #{positionid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAll" resultType="positionalCustom">
+  
+  	SELECT * FROM positional
+  
+  </select>
 </mapper>

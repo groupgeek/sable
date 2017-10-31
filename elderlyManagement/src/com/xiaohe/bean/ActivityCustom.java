@@ -8,11 +8,48 @@ public class ActivityCustom extends Activity {
 	 * introduction 简介
 	 */
 	private Integer begin;
-	private Integer total;
+	private Integer total;//每一页显示多少条
 	private String introduction;
 	private String websitetype;
 	private Integer countUsers;
+	private String branchname;
 	
+
+	private Integer currentPage;
+	private Integer pageNum;//每一页的数量
+	private String sort;
+	private String search;
+	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+	public Integer getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+	public String getBranchname() {
+		return branchname;
+	}
+	public void setBranchname(String branchname) {
+		this.branchname = branchname;
+	}
 	public Integer getCountUsers() {
 		return countUsers;
 	}

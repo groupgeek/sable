@@ -70,10 +70,17 @@ public class UserServiceImpl implements UserService {
 		//如果手机号没有被注册 那么就注册该手机号
 		if(userMapper.selectUserByPhone(userCustom.getPhone()) == null){
 			userCustom.setAccountnumber(userCustom.getPhone());
-			userCustom.setLevelid(1);
-			userCustom.setAuthorityid(1);
+			
+			if(userCustom.getLevelid() == null){
+				userCustom.setLevelid(1);
+			}
+			if(userCustom.getAuthorityid() == null){
+				userCustom.setAuthorityid(1);
+			}
+			if(userCustom.getStatus() == null){
+				userCustom.setStatus(true);
+			}
 			userCustom.setRegistrationdate(new Date());
-			userCustom.setStatus(true);
 			userCustom.setOnline(false);
 			
 			if(userMapper.insertSelective(userCustom)>0){
@@ -91,8 +98,14 @@ public class UserServiceImpl implements UserService {
 				
 				//创建用户病例表
 				MedicalrecordsWithBLOBs userMed = new MedicalrecordsWithBLOBs();
-				userMed.setUserid(user.getUserid());
-				userMed.setUsername(user.getUsername());
+				if(userCustom.getMed() != null){
+					userMed = userCustom.getMed();
+					userMed.setUserid(user.getUserid());
+					userMed.setUsername(user.getUsername());
+				}else{
+					userMed.setUserid(user.getUserid());
+					userMed.setUsername(user.getUsername());
+				}
 				medicalrecordsMapper.insertSelective(userMed);
 				
 				user.setOnline(true);
@@ -191,12 +204,12 @@ public class UserServiceImpl implements UserService {
 		MedicalrecordsWithBLOBs med = userInfo.getMed();
 		//Employee manager = userInfo.getManager();
 		
-		if(userMapper.updateByPrimaryKeySelective(userInfo) < 0) return false;
+		if(userMapper.updateByPrimaryKeySelective(userInfo) <= 0) return false;
 		//if(authorityMapper.updateByPrimaryKeySelective(authority) < 0) return false;
 		//if(levelMapper.updateByPrimaryKeySelective(level) < 0) return false;
 		//if(branchMapper.updateByPrimaryKeySelective(branch) < 0) return false;
 		//if(areaMapper.updateByPrimaryKeySelective(area) < 0) return false;
-		if(medicalrecordsMapper.updateByPrimaryKeySelective(med) < 0) return false;
+		if(medicalrecordsMapper.updateByPrimaryKeySelective(med) <= 0) return false;
 		//if(employeeMapper.updateByPrimaryKeySelective(manager) < 0) return false;
 		
 		return true;

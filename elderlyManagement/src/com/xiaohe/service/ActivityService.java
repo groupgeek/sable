@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
 
 /**
@@ -48,6 +49,13 @@ public interface ActivityService {
 	 * @return ActivityCustom集合
 	 */
 	public List<ActivityCustom> queryActivityrecommend(ActivityrecommendCustom custom);
+	
+	/**
+	 * 查询所有活动
+	 * @param condition
+	 * @return
+	 */
+	public ActivityVo queryAllActivityByCondition(ActivityCustom condition);
 	
 
 }

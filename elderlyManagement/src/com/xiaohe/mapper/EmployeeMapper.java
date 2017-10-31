@@ -26,13 +26,6 @@ public interface EmployeeMapper {
      */
     List<Employee> selectEmployee(Employee employee);
     
-    /**
-     * 查询员工的所有信息
-     * @param id
-     * @return
-     * 没写完，map没写
-     */
-    EmployeeCustom selectEmployeeInfo(Integer id);
     
     /**
      * 查询员工信息
