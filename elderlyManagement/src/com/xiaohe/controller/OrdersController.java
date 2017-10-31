@@ -25,8 +25,8 @@ public class OrdersController {
 	public String selectByPrimaryKey(String orderid) throws Exception{
 		
 		Orders orderOne = new Orders();
-		orderOne = ordersService.selectByPrimaryKey("1234");//传入订单id获取订单信息
-		System.out.println(orderOne);
+	/*	orderOne = ordersService.selectByPrimaryKey("1234");//传入订单id获取订单信息
+		System.out.println(orderOne);*/
 		return "/deliverymanlogReg/loginfailure";
 	}
 	
