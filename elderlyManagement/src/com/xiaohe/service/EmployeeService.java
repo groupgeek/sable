@@ -1,8 +1,7 @@
 package com.xiaohe.service;
-
-
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 
@@ -21,6 +20,13 @@ public interface EmployeeService {
 	 * @param id
 	 * @return
 	 */
-	public EmployeeCustom queryEmployeeInfoById(Integer id);
+	public EmployeeCustom queryEmployeeInfoById(Integer employeeid);
+	/**
+	 * 根据员工id获取员工的工号和密码
+	 * @param employeeId
+	 * @return
+	 * @throws Exception
+	 */
+	public Employee selectByPrimaryKey(Integer employeeId) throws Exception;
 
 }

@@ -1,13 +1,15 @@
 package com.xiaohe.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+
+import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.mapper.EmployeeMapper;
@@ -76,6 +78,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employee.setEntryYears(GetAge.getAgeByBirth(employee.getEntrytime()));
 		
 		return employee;
+	}
+
+	public Employee selectByPrimaryKey(Integer employeeid) {		
+		return employeeMapper.selectByPrimaryKey(employeeid);
 	}
 
 }

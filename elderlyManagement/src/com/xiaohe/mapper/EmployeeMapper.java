@@ -37,7 +37,7 @@ public interface EmployeeMapper {
     /**
      * 查询员工信息
      * @param condition
-     * @return
+     * @return 
      */
     List<EmployeeCustom> selectAllEmployeeByCondition(EmployeeCustom condition);
     
