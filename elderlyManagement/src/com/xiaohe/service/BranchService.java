@@ -1,7 +1,5 @@
 package com.xiaohe.service;
 
-import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Branch;
@@ -17,9 +15,4 @@ public interface BranchService {
 	 */
 	public Branch queryBranchById(Integer id);
 
-	/**
-	 * 查询所有分店
-	 * @return
-	 */
-	public List<BranchCustom> queryAll();
 }

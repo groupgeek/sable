@@ -24,4 +24,6 @@ public class UserVo {
 	public void setUserSum(Integer userSum) {
 		this.userSum = userSum;
 	}
+	
+
 }

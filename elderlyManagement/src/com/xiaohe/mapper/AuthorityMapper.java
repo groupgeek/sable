@@ -1,9 +1,6 @@
 package com.xiaohe.mapper;
 
-import java.util.List;
-
 import com.xiaohe.bean.Authority;
-import com.xiaohe.bean.AuthorityCustom;
 
 public interface AuthorityMapper {
     int deleteByPrimaryKey(Integer authorityid);
@@ -17,10 +14,4 @@ public interface AuthorityMapper {
     int updateByPrimaryKeySelective(Authority record);
 
     int updateByPrimaryKey(Authority record);
-    
-    /**
-     * 查询所有权限
-     * @return
-     */
-    List<AuthorityCustom> selectAll();
 }

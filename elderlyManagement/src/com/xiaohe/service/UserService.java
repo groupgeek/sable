@@ -31,7 +31,7 @@ public interface UserService {
 	public boolean changeUserOnline(UserCustom userCustom);
 	
 	/**
-	 * 查询所有用户信息
+	 * 查询用户信息
 	 * @param condition 条件
 	 * @return 用户集合
 	 */
@@ -43,11 +43,4 @@ public interface UserService {
 	 * @return
 	 */
 	public UserCustom queryUserInfoById(Integer id);
-	
-	/**
-	 * 更新用户详细信息
-	 * @param userInfo
-	 * @return
-	 */
-	public boolean UpdateUserInfoByUser(UserCustom userInfo);
 }

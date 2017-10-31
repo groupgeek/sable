@@ -6,7 +6,7 @@
 
 <!-- start: Meta -->
 <meta charset="utf-8">
-<title>客户管理</title>
+<title>用户</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <meta name="keyword"
@@ -33,7 +33,7 @@
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
 <link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/admin/page/css/user_employee.css"
+	href="${pageContext.request.contextPath }/jsp/admin/page/css/user.css"
 	rel="stylesheet">
 <!-- end: CSS -->
 
@@ -251,16 +251,16 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li id="home"><a href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><i
+						<li id="home"><a href="JavaScript:;"><i
 								class="icon-bar-chart"></i><span class="hidden-tablet">主页</span>
 						</a>
 						</li>
 						<li id="userInfo"><a
-							href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i
+							href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i
 								class="icon-bar-chart"></i><span class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp"><i class="icon-envelope"></i><span
+						<li><a href="JavaScript:;"><i class="icon-envelope"></i><span
 								class="hidden-tablet">员工信息管理</span> </a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
@@ -298,18 +298,6 @@
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
-			
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath }/jsp/admin/index.jsp">主页</a> 
-					<i class="icon-angle-right"></i>
-				</li>
-				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp">客户管理</a>
-				</li>
-			</ul>
-			
 				<div class="row-fluid sortable">
 					<div class="box span12">
 

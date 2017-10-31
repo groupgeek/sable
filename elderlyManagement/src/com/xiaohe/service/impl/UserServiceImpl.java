@@ -9,22 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.xiaohe.bean.Area;
-import com.xiaohe.bean.Authority;
-import com.xiaohe.bean.Branch;
-import com.xiaohe.bean.Employee;
-import com.xiaohe.bean.EmployeeCustom;
-import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
+import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.Transaction;
-import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
-import com.xiaohe.mapper.AreaMapper;
-import com.xiaohe.mapper.AuthorityMapper;
-import com.xiaohe.mapper.BranchMapper;
-import com.xiaohe.mapper.EmployeeMapper;
-import com.xiaohe.mapper.LevelMapper;
 import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
@@ -45,27 +34,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("medicalrecordsMapper")
 	private MedicalrecordsMapper medicalrecordsMapper;
-	
-/*	@Autowired
-	@Qualifier("authorityMapper")
-	private AuthorityMapper authorityMapper;
-	
-	@Autowired
-	@Qualifier("levelMapper")
-	private LevelMapper levelMapper;
-	
-	@Autowired
-	@Qualifier("branchMapper")
-	private BranchMapper branchMapper;
-	
-	@Autowired
-	@Qualifier("areaMapper")
-	private AreaMapper areaMapper;
-	
-	@Autowired
-	@Qualifier("employeeMapper")
-	private EmployeeMapper employeeMapper;*/
-	
+
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
 		if(userMapper.selectUserByPhone(userCustom.getPhone()) == null){
@@ -141,7 +110,7 @@ public class UserServiceImpl implements UserService {
 		UserVo allUserInfo = new UserVo();
 		List<UserCustom> userList = new ArrayList<UserCustom>();
 		Integer sum = 0;
-		Integer pageNum = 0;//总页数
+		Integer pageNum = 0;
 		
 		
 		if(condition != null){
@@ -169,37 +138,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public UserCustom queryUserInfoById(Integer id) {
-		if(id == null || id < 0){
-			return null;
-		}
 		UserCustom userInfo = userMapper.selectUserInfoById(id);
 		return userInfo;
-	}
-
-
-	
-	public boolean UpdateUserInfoByUser(UserCustom userInfo) {
-		if(userInfo == null) return false;
-		if(userInfo.getUserid() == null) return false;
-		
-		//User user = new User();
-		
-		//Authority authority = userInfo.getAuthority();
-		//Level level = userInfo.getLevel();
-		//Branch branch = userInfo.getBranch(); 
-		//Area area = userInfo.getArea();
-		MedicalrecordsWithBLOBs med = userInfo.getMed();
-		//Employee manager = userInfo.getManager();
-		
-		if(userMapper.updateByPrimaryKeySelective(userInfo) < 0) return false;
-		//if(authorityMapper.updateByPrimaryKeySelective(authority) < 0) return false;
-		//if(levelMapper.updateByPrimaryKeySelective(level) < 0) return false;
-		//if(branchMapper.updateByPrimaryKeySelective(branch) < 0) return false;
-		//if(areaMapper.updateByPrimaryKeySelective(area) < 0) return false;
-		if(medicalrecordsMapper.updateByPrimaryKeySelective(med) < 0) return false;
-		//if(employeeMapper.updateByPrimaryKeySelective(manager) < 0) return false;
-		
-		return true;
 	}
 	
 	

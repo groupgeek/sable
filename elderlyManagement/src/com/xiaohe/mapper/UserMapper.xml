@@ -338,7 +338,7 @@
      	
      	<association property="area" javaType="areaCustom">
      		<id column="areaId" property="areaid"/>
-     		<result column="areaName" property="areaname"/>
+     		<result column="areNname" property="areaname"/>
      		<result column="areaAddress" property="areaaddress"/>
      	</association>
      	
@@ -416,7 +416,7 @@
   	SELECT u.* , ah.authorityLevel , l.`level` , a.areaName , a.areaAddress , b.branchId , 
 		b.branchName ,b.employeeId , e.employeeName , 
 		m.nowMedicalRecords , m.beforeMedicalRecords , 
-		m.personalRecords , m.familyRecords , m.medicalrecordsId
+		m.personalRecords , m.familyRecords
 		FROM `user` u, authority ah,`level` l,area a,branch b,medicalrecords m  ,employee e
 		WHERE u.userId = #{id}
 		AND ah.authorityId = u.authorityId AND l.levelId = u.levelId 

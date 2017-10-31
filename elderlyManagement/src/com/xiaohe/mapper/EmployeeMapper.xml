@@ -30,12 +30,10 @@
     from employee
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from employee
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </delete>
-  
   <insert id="insert" parameterType="com.xiaohe.bean.Employee" >
     insert into employee (employeeId, avatar, password, 
       email, accountNumber, employeeName, 
@@ -233,4 +231,10 @@
       totalBonus = #{totalbonus,jdbcType=DECIMAL}
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectEmployee" resultMap="BaseResultMap">
+  	select employeeId,employeeName,sex,phone,address,wage 
+  	from employee
+  </select>
+  
 </mapper>

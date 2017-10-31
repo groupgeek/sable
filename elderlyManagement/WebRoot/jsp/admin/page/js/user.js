@@ -6,22 +6,22 @@ $(document).ready(function(){
 		var pageNum = $("#selectPageNum").attr("value");;
 		var sort = "registrationdate";
 		
-		//${pageContext.request.contextPath }/superAdmin/updateUserInfoView?id=1
+		
 		function createUserTable(data){
 			for(var i in data.userList){
 				$("#box tbody").append(
 						'<tr>'+
 							'<td>'+ (data.userList)[i].username +'</td>'+
-							'<td class="center">'+(data.userList)[i].registrationdate+
+							'<td class="center">2012/01/01</td>'+
 							'<td class="center">'+ (data.userList)[i].online +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.userList)[i].status +'</span>'+
 							'</td>'+
 							'<td class="center">'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/userInfo.jsp?userid='+ (data.userList)[i].userid +'">'+
+								'<a class="btn btn-success" href="#">'+
 									'<i class="halflings-icon white zoom-in"></i>'+
 								'</a>'+
-								'<a class="btn btn-info" href="'+root+'/superAdmin/updateUserInfoView?id='+ (data.userList)[i].userid +'">'+
+								'<a class="btn btn-info" href="#">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
 								'<a class="btn btn-danger" href="#">'+
@@ -30,7 +30,6 @@ $(document).ready(function(){
 							'</td>'+
 						'</tr>'
 					);
-				
 			}
 		}
 		function queryData(){

@@ -87,9 +87,5 @@
   select * from branch where employeeid = #{employeeid,jdbcType=INTEGER}
   </select>
   
-  <select id="selectAll" resultType="branchCustom">
-  	SELECT b.* , e.employeeName FROM branch b, employee e WHERE e.employeeId = b.employeeId
-  </select>
-  
   
 </mapper>

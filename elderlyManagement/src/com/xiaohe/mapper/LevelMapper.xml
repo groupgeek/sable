@@ -85,9 +85,4 @@
 	where l.levelId = u.levelId
 	and u.userId = #{userid,jdbcType=INTEGER}
   </select>
-  
-  <select id="selectAll" resultType="levelCustom">
-  	 SELECT * from level
-  </select>
-  
 </mapper>

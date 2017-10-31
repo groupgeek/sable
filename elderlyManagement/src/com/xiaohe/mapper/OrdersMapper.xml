@@ -25,13 +25,10 @@
     from orders
     where orderId = #{orderid,jdbcType=VARCHAR}
   </select>
-  
-   <!--  根据订单id删除订单 -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from orders
     where orderId = #{orderid,jdbcType=VARCHAR}
   </delete>
-  
   <insert id="insert" parameterType="com.xiaohe.bean.Orders" >
     insert into orders (orderId, productId, userId, 
       productName, userName, resAddress, 
@@ -198,9 +195,4 @@
 	and b.employeeId = e.employeeId
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
-  
-  <select id="selectAllOrdersByBranchId" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Orders">
-  	select * from orders where branchid = #{branchid}
-  </select>
-  
 </mapper>

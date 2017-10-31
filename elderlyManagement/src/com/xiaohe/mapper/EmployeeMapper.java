@@ -3,8 +3,6 @@ package com.xiaohe.mapper;
 import java.util.List;
 
 import com.xiaohe.bean.Employee;
-import com.xiaohe.bean.EmployeeCustom;
-import com.xiaohe.bean.UserCustom;
 
 public interface EmployeeMapper {
     int deleteByPrimaryKey(Integer employeeid);
@@ -25,33 +23,4 @@ public interface EmployeeMapper {
      * @return
      */
     List<Employee> selectEmployee(Employee employee);
-    
-    /**
-     * 查询员工的所有信息
-     * @param id
-     * @return
-     * 没写完，map没写
-     */
-    EmployeeCustom selectEmployeeInfo(Integer id);
-    
-    /**
-     * 查询员工信息
-     * @param condition
-     * @return 
-     */
-    List<EmployeeCustom> selectAllEmployeeByCondition(EmployeeCustom condition);
-    
-    /**
-     * 查询员工数量
-     * @param condition
-     * @return
-     */
-    Integer selectAllEmployeeSumByCondition(EmployeeCustom condition);
-    
-    /**
-     * 查询员工的所有信息
-     * @param id
-     * @return
-     */
-    EmployeeCustom selectEmployeeInfoById(Integer id);
 }
