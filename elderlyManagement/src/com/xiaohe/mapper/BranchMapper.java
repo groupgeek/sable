@@ -30,4 +30,25 @@ public interface BranchMapper {
      * @return
      */
     List<BranchCustom> selectAll();
+    
+    /**
+     * 查询所有分店的地区，盈利，管理员等信息
+     * @param condition
+     * @return
+     */
+    List<BranchCustom> selectAllBranchByCondition(BranchCustom condition);
+    
+    /**
+     * 根据条件查询所有分店的数量 和 selectAllBranchByCondition一起用 
+     * @param condition
+     * @return
+     */
+    Integer selectAllBranchSumByCondition(BranchCustom condition);
+    
+    /**
+     * 查询分店的所有信息
+     * @param id
+     * @return
+     */
+    BranchCustom selectBranchInfoById(Integer id);
 }

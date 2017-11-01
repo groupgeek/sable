@@ -14,7 +14,16 @@ public class ProductCustom extends Product {
 	private List<ProducttasteCustom> tasteList;
 	private List<ProductcolourCustom> colourList;
 	
+	private Integer pageNum;//每一页的数量
 	
+	
+	
+	public Integer getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
 	public List<ProductcolourCustom> getColourList() {
 		return colourList;
 	}

@@ -517,4 +517,51 @@
 		
 	
 	</select>
+	
+	
+	<select id="selectAllProductByCondition" parameterType="productCustom" resultType="productCustom">
+  
+	  	SELECT * FROM `product`
+		WHERE 
+	  	<if test="search != null">
+	  		(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+	  	</if>
+	  	<if test="producttypeid != null" >
+		    AND productTypeId = #{producttypeid}
+		</if>
+	  	<if test="sort != null" >
+		    ORDER BY #{sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllProductSumByCondition" parameterType="productCustom" resultType="Integer">
+  
+	  	SELECT COUNT(*) FROM `product`
+		WHERE 
+	  	<if test="search != null">
+	  		(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+	  	</if>
+  		<if test="producttypeid != null" >
+		    AND productTypeId = #{producttypeid}
+		</if>
+  </select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

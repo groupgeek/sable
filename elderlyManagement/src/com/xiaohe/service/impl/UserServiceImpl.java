@@ -1,5 +1,6 @@
  package com.xiaohe.service.impl;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Area;
 import com.xiaohe.bean.Authority;
@@ -29,6 +31,7 @@ import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
+import com.xiaohe.util.FileUpload;
 
 
 @Repository("userService")//注册服务
@@ -191,10 +194,19 @@ public class UserServiceImpl implements UserService {
 
 
 	
-	public boolean UpdateUserInfoByUser(UserCustom userInfo) {
+	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload) {
 		if(userInfo == null) return false;
 		if(userInfo.getUserid() == null) return false;
 		
+		if(!pictureUpload.isEmpty()){
+			try {
+				userInfo.setAvatar(FileUpload.oneFileUpload(pictureUpload,userInfo.getAvatar(), "picture"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		//User user = new User();
 		
 		//Authority authority = userInfo.getAuthority();

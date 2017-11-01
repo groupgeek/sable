@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.BranchVo;
 
 @Transactional
 public interface BranchService {
@@ -22,4 +23,18 @@ public interface BranchService {
 	 * @return
 	 */
 	public List<BranchCustom> queryAll();
+	
+	/**
+	 * 查询所有分店的信息（盈利，地区，等 分页）
+	 * @param condition
+	 * @return
+	 */
+	public BranchVo queryAllBranchByCondition(BranchCustom condition);
+	
+	/**
+	 * 查询分店详细信息
+	 * @param id
+	 * @return
+	 */
+	public BranchCustom queryBranchInfoById(Integer id);
 }

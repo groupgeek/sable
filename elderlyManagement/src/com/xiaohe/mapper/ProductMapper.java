@@ -2,6 +2,7 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
+import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -115,5 +116,18 @@ public interface ProductMapper {
      */
     List<ProductCustom> selectProductBytypeId(ProductCustom condition);
     
+    /**
+     * 查询全部商品信息
+     * @param condition
+     * @return
+     */
+    List<ProductCustom> selectAllProductByCondition(ProductCustom condition);
+    
+    /**
+     * 查询商品数量 同上
+     * @param condition
+     * @return
+     */
+    Integer selectAllProductSumByCondition(ProductCustom condition);
     
 }

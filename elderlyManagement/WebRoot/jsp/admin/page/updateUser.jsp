@@ -353,7 +353,7 @@
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
@@ -369,10 +369,10 @@
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">商城管理</span>
-						</a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp"><i class="icon-dashboard"></i><span
+								class="hidden-tablet">分店管理</span> </a>
+						</li>
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
@@ -427,9 +427,28 @@
 					
 					
 					<div class="box-content">
-						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateUserInfo" method="post">
+						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateUserInfo" method="post" enctype="multipart/form-data">
 							<fieldset>
-							
+							 <div class="control-group" id = "avatar">
+								<label class="control-label">头像</label>
+								<div class="controls">
+									<c:choose>
+										<c:when test="${userInfo.avatar == null}">
+											<p>无</p>
+										</c:when>
+									
+										<c:otherwise>
+											<img  id = "" src="/upload/${userInfo.avatar }" style="width: 100px;">
+										</c:otherwise>
+									</c:choose>
+								</div>
+							  </div>
+							<div class="control-group" id = "avatartemp">
+								<label class="control-label">更改头像</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
+								</div>
+							  </div>
 							  <div class="control-group" id="username">
 								<label class="control-label" for="focusedInput">姓名</label>
 								<div class="controls">

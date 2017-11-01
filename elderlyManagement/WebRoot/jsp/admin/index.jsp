@@ -252,9 +252,9 @@
 						</a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">商城管理</span>
+								class="hidden-tablet">分店管理</span>
 						</a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>

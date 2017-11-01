@@ -91,5 +91,45 @@
   	SELECT b.* , e.employeeName FROM branch b, employee e WHERE e.employeeId = b.employeeId
   </select>
   
+  <select id="selectAllBranchByCondition" parameterType="branchCustom" resultType="branchCustom">
   
+	SELECT b.* , e.employeeName,a.areaName,a.areaAddress ,(SUM(t.totalPrice) - SUM(t.totalExpenditure)) profit
+	FROM `branch` b , employee e , area a , totalreport t
+	WHERE  e.employeeId = b.employeeId AND a.areaId = b.areaId AND t.branchId = b.branchId
+	
+	<if test="search != null">
+	  AND (b.branchName LIKE '%${search}%' OR e.employeeName LIKE '%${search}%' OR a.areaName LIKE '%${search}%' OR a.areaAddress LIKE '%${search}%')
+	</if> 
+	GROUP BY branchId 
+  		<if test="sort != null" >
+		    ORDER BY #{sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+  </select>
+  
+  <select id="selectAllBranchSumByCondition" parameterType="branchCustom" resultType="Integer">
+	  
+	SELECT COUNT(*)
+	FROM `branch` b , employee e , area a
+	WHERE  e.employeeId = b.employeeId AND a.areaId = b.areaId 
+		
+	<if test="search != null">
+	  AND (b.branchName LIKE '%${search}%' OR e.employeeName LIKE '%${search}%' OR a.areaName LIKE '%${search}%' OR a.areaAddress LIKE '%${search}%')
+	</if> 
+	
+  </select>
+  
+    <select id="selectBranchInfoById" parameterType="Integer" resultType="branchCustom">
+  	
+		  SELECT b.* , e.employeeName,a.areaName,a.areaAddress 
+			,COUNT(*) userNum ,(SELECT COUNT(*) FROM employee yee , branch bh WHERE yee.areaId = bh.areaId AND bh.branchId = #{id}) employeeNum
+			FROM `branch` b , employee e , area a ,`user` u
+			WHERE b.branchId = #{id}
+			AND e.employeeId = b.employeeId AND a.areaId = b.areaId 
+			AND u.areaId = b.areaId
+  </select>
 </mapper>

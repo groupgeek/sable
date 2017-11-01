@@ -21,16 +21,10 @@
 	width: 150px;
 	float: right;
 }
-#activitystatus{
+#profit{
 	width: 150px;
 	float: right;
 }
-#userPage{
-	float: left;	
-}
-#employeePage{
-	float: left;	
-}
-#messagePage{
+#branchPage{
 	float: left;	
 }

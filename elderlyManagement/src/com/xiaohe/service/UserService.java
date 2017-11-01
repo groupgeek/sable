@@ -3,6 +3,7 @@ package com.xiaohe.service;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
@@ -49,5 +50,5 @@ public interface UserService {
 	 * @param userInfo
 	 * @return
 	 */
-	public boolean UpdateUserInfoByUser(UserCustom userInfo);
+	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload);
 }

@@ -23,11 +23,17 @@ import com.xiaohe.bean.AddUserVo;
 import com.xiaohe.bean.AreaCustom;
 import com.xiaohe.bean.AuthorityCustom;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.BranchVo;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.bean.LevelCustom;
+import com.xiaohe.bean.MessageCustom;
+import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
+import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductVo;
+import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
@@ -38,7 +44,10 @@ import com.xiaohe.service.AuthorityService;
 import com.xiaohe.service.BranchService;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.LevelSevice;
+import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
+import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.UserService;
 
 @Controller
@@ -80,6 +89,19 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("activitytypeService")
 	private ActivitytypeService activitytypeService;
+	
+	@Autowired
+	@Qualifier("messageService")
+	private MessageService messageService;
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("productTypeService")
+	private ProductTypeService productTypeService;
+	
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -163,9 +185,9 @@ public class superAdminController {
 	 * @return
 	 */
 	@RequestMapping("/updateUserInfo")
-	public String updateUserInfo(UserCustom userInfo,Model model){
+	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload,Model model){
 		String message = null;
-		if(userService.UpdateUserInfoByUser(userInfo)){
+		if(userService.UpdateUserInfoByUser(userInfo,pictureUpload)){
 			message = "修改成功";
 		}else{
 			message = "修改失败";
@@ -283,9 +305,9 @@ public class superAdminController {
 	 * @return
 	 */
 	@RequestMapping("/updateEmployeeInfo")
-	public String updateEmployeeInfo(EmployeeCustom employeeInfo,Model model){
+	public String updateEmployeeInfo(EmployeeCustom employeeInfo,MultipartFile pictureUpload,Model model){
 		String message = null;
-		if(employeeService.UpdateUserInfoByUser(employeeInfo)){
+		if(employeeService.UpdateUserInfoByUser(employeeInfo,pictureUpload)){
 			message = "修改成功";
 		}else{
 			message = "修改失败";
@@ -340,7 +362,7 @@ public class superAdminController {
 	
 	/**
 	 * 查询所有活动
-	 * @paramcondition
+	 * @param condition
 	 * @return
 	 */
 	@RequestMapping("/queryAllActivity")
@@ -440,4 +462,105 @@ public class superAdminController {
 		}
 		return "admin/page/addActivity";
 	};
+	
+	/**
+	 * 查询所有分店
+	 * @return
+	 */
+	@RequestMapping("/queryAllBranch")
+	public @ResponseBody List<BranchCustom> queryAllBranch(){
+		
+		List<BranchCustom> allBranch = new ArrayList<BranchCustom>();
+		allBranch = branchService.queryAll();
+		return allBranch;
+	}
+	
+	/**
+	 * 查询所有留言
+	 * @return
+	 */
+	@RequestMapping("/queryAllMessage")
+	public @ResponseBody MessageVo queryAllMessage(@RequestBody MessageCustom condition){
+		
+		MessageVo messageVo = new MessageVo();
+		messageVo = messageService.queryAllMessageByCondition(condition);
+		
+		return messageVo;
+	}
+	
+	/**
+	 * 查询留言详细信息
+	 * @return
+	 */
+	@RequestMapping("/queryMessageInfo")
+	public @ResponseBody MessageCustom queryMessageInfo(@RequestBody MessageCustom condition){
+		MessageCustom message = new MessageCustom();
+		message = messageService.queryMessagInfoById(condition.getMessageid());
+		
+		return message;
+	}
+	
+	@RequestMapping("/updateMessageInfo")
+	public @ResponseBody String updateMessageInfo(@RequestBody MessageCustom messageInfo){
+		String message = null;
+		if(messageService.updateMessage(messageInfo)){
+			message = "更新成功";
+		}else{
+			message = "更新失败";
+		}
+		return message;
+	}
+	
+	
+	/**
+	 * 查询所有活动的信息（进入分店管理页面）
+	 * @return
+	 */
+	@RequestMapping("/queryAllBranchInfo")
+	public @ResponseBody BranchVo queryAllBranchInfo(@RequestBody BranchCustom condition){
+		BranchVo branchVo = new BranchVo();
+		branchVo = branchService.queryAllBranchByCondition(condition);
+		
+		return branchVo;
+	}
+	
+	/**
+	 * 查询分店信息
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryBranchInfo")
+	public @ResponseBody BranchCustom queryBranchInfo(@RequestBody BranchCustom condition){
+		if(condition == null) return null;
+		if(condition.getBranchid() == null) return null;
+		BranchCustom branchInfo = new BranchCustom();
+		branchInfo = branchService.queryBranchInfoById(condition.getBranchid());
+		return branchInfo;
+	}
+	
+	/**
+	 * 查询所有商品类型（小）
+	 * @return
+	 */
+	@RequestMapping("/queryAllProductType")
+	public @ResponseBody List<ProducttypeCustom> queryAllProductType(){
+		List<ProducttypeCustom> allProducttype = new ArrayList<ProducttypeCustom>();
+		allProducttype = productTypeService.querySimallProducttype();
+		return allProducttype;
+	}
+	
+	/**
+	 * 查询所有产品
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryAllProduct")
+	public @ResponseBody ProductVo queryAllProduct(@RequestBody ProductCustom condition){
+		ProductVo productVo = new ProductVo();
+		productVo = productService.queryAllProductByCondition(condition);
+		
+		return productVo;
+	}
+	
+	
 }

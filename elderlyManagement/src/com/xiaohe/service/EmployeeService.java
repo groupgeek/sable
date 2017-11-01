@@ -2,6 +2,7 @@ package com.xiaohe.service;
 
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
@@ -28,7 +29,7 @@ public interface EmployeeService {
 	 * @param employeeInfo
 	 * @return
 	 */
-	public boolean UpdateUserInfoByUser(EmployeeCustom employeeInfo);
+	public boolean UpdateUserInfoByUser(EmployeeCustom employeeInfo,MultipartFile pictureUpload);
 	
 	/**
 	 * 添加员工

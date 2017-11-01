@@ -11,6 +11,13 @@
     			+'}',
 		success:function(data){
 			$("#userUrl").attr("href",root+'/superAdmin/updateUserInfoView?id='+data.userid);
+			
+			if(data.avatar == null){
+				$("#avatar div").html("空");
+			}else{
+				$("#avatar img").attr("src","/upload/"+data.avatar);
+			}
+			
 			$("#username span").text(data.username);
 			$("#sex span").text(data.sex);
 			$("#phone span").text(data.phone);
