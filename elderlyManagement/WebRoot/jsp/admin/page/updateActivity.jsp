@@ -353,7 +353,7 @@
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
@@ -427,40 +427,30 @@
 					
 					
 					<div class="box-content">
-						<form class="form-horizontal" action = "<%-- ${pageContext.request.contextPath }/superAdmin/updateEmployeeInfo --%>" method="post">
+						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateUserInfo" method="post">
 							<fieldset>
-							
-							  <div class="control-group" id="activityname">
+								<div class="control-group" id="activityname">
 								<label class="control-label" for="focusedInput">活动名字</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "activityname" type="text" value="">
 								</div>
 							  </div>
 							  
-							   <!-- <div class="control-group" id = "sex">
-								<label class="control-label">性别</label>
-								 <div class="controls">
-									<label class="radio"><input name="sex" type="radio" value=1 checked="checked"/>男 </label>
-									<div style="clear:both"></div> 
-									<label class="radio"><input name="sex" type="radio" value=0 checked=""/>女 </label> 
-								</div>
-							  </div> -->
 							  <div class="control-group" id = "activitytypename">
 								<label class="control-label">活动类型</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "activitytypename" type="text" value="">
-								</div>
-							  </div>
-							   <div class="control-group" id = "fathertypename">
-								<label class="control-label">活动父类类型</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "fathertypename" type="text" value="">
+								   <select name="branchname">
+								  	
+								  </select>
 								</div>
 							  </div>
 							  <div class="control-group" id = "activitystatus">
 								<label class="control-label">活动状态</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "activitystatus" type="text" value="">
+									<select name = "activitystatus">
+										<option value="已开展" id = "activitystatus1">已开展</option>
+										<option value="未开展" id = "activitystatus2">未开展</option>
+									</select>
 								</div>
 							  </div>
 							   <div class="control-group" id = "activitydate">
@@ -511,50 +501,47 @@
 								<label class="control-label">线上</label>
 								<div class="controls">
 								  <select id="" data-rel="" name="online">
-								  
+								  	<option value=true id ="true">是</option>
+								  	<option value=false id = "false">否</option>
 								  </select>
 								</div>
 							  </div>
 							  
-							  
-							 <!--  <div style="width: 390px;height: 540px; position: relative;left: 600px;bottom: 440px;">
-									
-									<div id = "activitypicture">
-										<label class="">活动图片</label>
-										<div style="width: 390px;height:100px;background: #FCFCFC ">
-											
-										</div>
-									</div>
-									<div style="height: 20px;"></div>
-									<div id = "video">
-										<label class="">活动视频</label>
-										<div style="width: 390px;height:100px;background: #FCFCFC ">
-											
-										</div>
-									</div>
-									<div style="height: 20px;"></div>
-									<div id = "activitydetails">
-										<label class="">活动详情</label>
-										<div style="width: 390px;height:100px;background: #FCFCFC ">
-											<p></p>
-										</div>
-									</div>
-								
-								
+							  <div class="control-group" id = "activitypicturetemp">
+								<label class="control-label">已有图片</label>
+								<div class="controls">
+								</div>
 							  </div>
-							   -->
-							  <!-- <div style="width:300px; margin:10px auto;">
-								    演示一：<input onClick="laydate()"><br /><br />
-							  </div> -->
-								
-							  <%-- <input type="hidden" value = "${employeeInfo.authorityid }" id = "authorityid">
-							  <input type="hidden" value = "${employeeInfo.positionid }" id = "positionid">
-							  <input type="hidden" value = "${employeeInfo.areaid }" id = "areaid">
-							  <input type="hidden" value = "${employeeInfo.branch.branchid }" id = "branchid">
-							 
-							 <input type="hidden" value = "${employeeInfo.employeeid }" name = "employeeid"> --%>
-							 <input type="hidden" value = "${message }" id = "message">
 							  
+							  <div class="control-group" id = "videotemp">
+								<label class="control-label">已有视频</label>
+								<div class="controls">
+								</div>
+							  </div>
+							  <div class="control-group" id = "activitypicture">
+								<label class="control-label">更改图片</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "activitypicture" type="file">
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "video">
+								<label class="control-label">更改视频</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "video" type="file">
+								</div>
+							  </div>
+							  
+							  
+							  
+							  <div class="control-group hidden-phone" id = "activitydetails">
+								  <label class="control-label">活动详情</label>
+								  <div class="controls">
+									<textarea class="cleditor" id="" rows="3" name="activitydetails"></textarea>
+								  </div>
+							  </div>
+							 
+							 
 							  <div class="form-actions">
 								<button type="button" id = "updateActivity" class="btn btn-primary">保存</button>
 							  </div>
@@ -700,24 +687,11 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-	
-	<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>
-	
+		<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
+		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/admin/page/js/updateActivity.js"></script>
 	
-	
 	<!-- end: JavaScript-->
-	
-<!-- 	<script type="text/javascript">
-		$(document).ready(function(){
-			var positional = $("#authorityid").attr("value");
-			var positional = $("#positional").attr("value");
-			var positional = $("#areaid").attr("value");
-			var positional = $("#branchid").attr("value");
-		});
-	
-	</script> -->
-	
 </body>
 </html>

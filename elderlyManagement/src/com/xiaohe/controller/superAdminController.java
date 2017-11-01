@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
+import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.AddEmployeeVo;
 import com.xiaohe.bean.AddUserVo;
 import com.xiaohe.bean.AreaCustom;
@@ -23,6 +24,7 @@ import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.bean.LevelCustom;
 import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
+import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
 import com.xiaohe.service.ActivityService;
@@ -352,10 +354,16 @@ public class superAdminController {
 		return activityInfo;
 	}
 	
-	@RequestMapping("/updateActivityInfo")
-	public @ResponseBody String updateActivityInfo(@RequestBody ActivityCustom activityInfo){
+	@RequestMapping("/updateActivityInfoView")
+	public @ResponseBody UpdateActivityVo updateActivityInfo(@RequestBody ActivityCustom activityInfo){
+		UpdateActivityVo updateActivityVo = new UpdateActivityVo();
+		ActivityCustom activity = new ActivityCustom();
+		List<ActivitytypeCustom> activitytype = new ArrayList<ActivitytypeCustom>();
+		List<BranchCustom> allBranch = new ArrayList<BranchCustom>();
 		
 		
+		
+		allBranch = branchService.queryAll();
 		return null;
 	}
 }

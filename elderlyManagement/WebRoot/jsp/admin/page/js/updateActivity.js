@@ -2,6 +2,7 @@ $(document).ready(function(){
 	var root = $("#root").attr("value");
 	var val = window.location.href.split("?")[1];
 	var activityid = val.split("=")[1];
+	
 	$.ajax({
 		
 		type:"post",
@@ -10,24 +11,30 @@ $(document).ready(function(){
 		data:'{"activityid"'+':'+'"'+activityid+'"'
     			+'}',
 		success:function(data){
-			$("#activityname input").val();
-			$("#activitytypename input").val();
-			$("#fathertypename input").val();
-			$("#activitystatus input").val();
-			$("#activitydate input").val();
-			$("#branchname input").val();
-			$("#activityprice input").val();
-			$("#registeryfee input").val();
-			$("#maxnum input").val();
+			$("#activityname input").val(data.activityname);
 			
-			//$("#online input").val();
-			/*$("#activityname input").val();
-			$("#activityname input").val();
-			$("#activityname input").val();
-			$("#activityname input").val();
-			$("#activityname input").val();
-			$("#activityname input").val();
-			*/
+			
+			$("#activitytypename select").val(data.activitytypename);
+			$("#branchname input").val(data.branchname);
+			
+			if(data.activitystatus == "已开展"){
+				$("#activitystatus1").attr("selected","selected");
+			}else{
+				$("#activitystatus2").attr("selected","selected");
+			}
+			if(data.online == true){
+				$("#true").attr("selected","selected");
+			}else{
+				$("#false").attr("selected","selected");
+			}
+			$("#activitystatus select").val();
+			$("#activitydate input").val(data.activitydate);
+			
+			$("#activityprice input").val(data.activityprice);
+			$("#registeryfee input").val(data.registeryfee);
+			$("#maxnum input").val(data.maxnum);
+			$("#activitydetails input").val(data.activitydetails);//还有视频图片
+			
 		}
 	});
 	
