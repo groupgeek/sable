@@ -494,52 +494,28 @@
 							  </div>
 							  
 							  
-							  <!-- <div class="control-group" id = "bankcardno">
-								<label class="control-label">活动详情</label>
+							  <div class="control-group" id = "activitypicturetemp">
+								<label class="control-label">已有图片</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+									<img  id = "" src="" style="width: 100px;">
 								</div>
 							  </div>
 							  
-							    <div class="control-group" id = "email">
-								<label class="control-label">活动图片</label>
+							   <div class="control-group" id = "showVideo">
+								<label class="control-label">已有视频</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "birthday">
-								<label class="control-label">活动视频</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div> -->
-							  <div style="width: 390px;height: 540px; position: relative;left: 600px;bottom: 440px;">
 									
-									<div id = "activitypicture">
-										<label class="">活动图片</label>
-										<div style="width: 390px;height:100px;background: #FCFCFC ">
-											
-										</div>
-									</div>
-									<div style="height: 20px;"></div>
-									<div id = "video">
-										<label class="">活动视频</label>
-										<div style="width: 390px;height:100px;background: #FCFCFC ">
-											
-										</div>
-									</div>
-									<div style="height: 20px;"></div>
-									<div id = "activitydetails">
-										<label class="">活动详情</label>
-										<div style="width: 390px;height:100px;background: #FCFCFC ">
-											<p></p>
-										</div>
-									</div>
-								
-								
+								</div>
+							  </div>
+							  <div class="control-group hidden-phone" id = "activitydetails">
+								  <label class="control-label">活动详情</label>
+								  <div class="controls">
+									<textarea class="" id="" rows="6"  name="activitydetails" style="width: 500px;"></textarea>
+								  </div>
 							  </div>
 							  
+							  <input type="hidden" value="${message }" id = "message">
+							  <input type="hidden" value="${activityid }" id = "activityid">
 							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
 								<button class="btn">Cancel</button>

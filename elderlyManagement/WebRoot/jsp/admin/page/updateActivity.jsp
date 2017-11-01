@@ -353,7 +353,7 @@
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
@@ -427,7 +427,7 @@
 					
 					
 					<div class="box-content">
-						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateUserInfo" method="post">
+						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateActivityInfo" method="post" enctype="multipart/form-data">
 							<fieldset>
 								<div class="control-group" id="activityname">
 								<label class="control-label" for="focusedInput">活动名字</label>
@@ -491,7 +491,7 @@
 								<label class="control-label">人数上限</label>
 								<div class="controls">
 									<div class="input-prepend input-append">
-										<input id="appendedPrependedInput" size="16" type="text" name = "registeryfee" value="<fmt:formatDate value="${activity.maxnum }"pattern="yyyy-MM-dd" />"><span class="add-on">人</span>
+										<input id="appendedPrependedInput" size="16" type="text" name = "maxnum" value=""><span class="add-on">人</span>
 								    </div>
 								</div>
 							  </div>
@@ -510,25 +510,27 @@
 							  <div class="control-group" id = "activitypicturetemp">
 								<label class="control-label">已有图片</label>
 								<div class="controls">
+									<img  id = "" src="" style="width: 100px;">
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "videotemp">
+							  <div class="control-group" id = "showVideo">
 								<label class="control-label">已有视频</label>
 								<div class="controls">
+									
 								</div>
 							  </div>
 							  <div class="control-group" id = "activitypicture">
 								<label class="control-label">更改图片</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "activitypicture" type="file">
+								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "video">
 								<label class="control-label">更改视频</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "video" type="file">
+								  <input class="input-xlarge focused" name = "videoUpload" type="file">
 								</div>
 							  </div>
 							  
@@ -537,13 +539,18 @@
 							  <div class="control-group hidden-phone" id = "activitydetails">
 								  <label class="control-label">活动详情</label>
 								  <div class="controls">
-									<textarea class="cleditor" id="" rows="3" name="activitydetails"></textarea>
+									<textarea class="" id="" rows="6"  name="activitydetails" style="width: 500px;"></textarea>
 								  </div>
 							  </div>
-							 
+							  
+							 <%-- <input type="hidden" value="${message }" id = "message"> --%>
+							 <input type="hidden" value="" id = "activityid" name = "activityid">
+							 <input type="hidden" value="" id = "activitypicturehidden" name = "activitypicture">
+							 <input type="hidden" value="" id = "videohidden" name = "video">
+							
 							 
 							  <div class="form-actions">
-								<button type="button" id = "updateActivity" class="btn btn-primary">保存</button>
+								<button type="submit" id = "updateActivity" class="btn btn-primary">保存</button>
 							  </div>
 							</fieldset>
 						  </form>

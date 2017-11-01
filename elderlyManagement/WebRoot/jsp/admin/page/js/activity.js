@@ -20,7 +20,7 @@ $(document).ready(function(){
 								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/activityInfo.jsp?activityid='+ (data.activityList)[i].activityid +'">'+
 									'<i class="halflings-icon white zoom-in"></i>'+
 								'</a>'+
-								'<a class="btn btn-info" href="'+root+'/superAdmin/updateActivityInfoView?id='+ (data.activityList)[i].activityid +'">'+
+								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateActivity.jsp?activityid='+ (data.activityList)[i].activityid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
 								'<a class="btn btn-danger" href="#">'+

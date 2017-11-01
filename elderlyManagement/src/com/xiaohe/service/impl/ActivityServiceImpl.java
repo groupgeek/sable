@@ -1,11 +1,13 @@
 package com.xiaohe.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
@@ -13,6 +15,7 @@ import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.service.ActivityService;
+import com.xiaohe.util.FileUpload;
 
 @Repository("activityService")
 public class ActivityServiceImpl implements ActivityService {
@@ -96,7 +99,7 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityVo;
 	}
 
-	public ActivityCustom queryACtivityInfoById(Integer id) {
+	public ActivityCustom queryActivityInfoById(Integer id) {
 		if(id == null || id < 0) return null;
 		
 		ActivityCustom activityInfo = activityMapper.selectActivityInfoById(id);
@@ -104,15 +107,62 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityInfo;
 	}
 
-	public boolean updateActivityInfo(ActivityCustom activityInfo) {
+	public boolean updateActivityInfo(ActivityCustom activityInfo,MultipartFile videoUpload,MultipartFile pictureUpload) {
 		
 		if(activityInfo == null) return false;
 		if(activityInfo.getActivityid() == null || activityInfo.getActivityid() <0) return false;
 		if(activityInfo.getActivityname() == null || " ".equals(activityInfo.getActivityname()) || "".equals(activityInfo.getActivityname()))
 			return false;
+		if(!videoUpload.isEmpty()){
+			try {
+				String newVideo = FileUpload.oneFileUpload(videoUpload,activityInfo.getVideo() , "video");
+				activityInfo.setVideo(newVideo);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(!pictureUpload.isEmpty()){
+			try {
+				activityInfo.setActivitypicture(FileUpload.oneFileUpload(pictureUpload,activityInfo.getActivitypicture(), "picture"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if(activityMapper.updateByPrimaryKeySelective(activityInfo) < 0) return false;
+		return true;
+	}
+
+	public boolean addActivity(ActivityCustom activity,MultipartFile videoUpload,MultipartFile pictureUpload) {
+		if(activity == null) return false;
 		
+		if(!videoUpload.isEmpty()){
+			try {
+				String newVideo = FileUpload.oneFileUpload(videoUpload,null ,"video");
+				activity.setVideo(newVideo);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(!pictureUpload.isEmpty()){
+			try {
+				activity.setActivitypicture(FileUpload.oneFileUpload(pictureUpload,null,"picture"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(activityMapper.insertSelective(activity) < 0) return false;
 		return true;
 	}
 	

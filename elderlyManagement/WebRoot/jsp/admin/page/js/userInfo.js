@@ -30,10 +30,16 @@
 			$("#authoritylevel span").text(data.authority.authoritylevel);
 			$("#areaaddress span").text(data.area.areaaddress);
 			$("#online span").text(data.online);
-			$("#nowmedicalrecords span").text(data.med.nowmedicalrecords);
-			$("#beforemedicalrecords span").text(data.med.beforemedicalrecords);
-			$("#personalrecords span").text(data.med.personalrecords);
-			$("#familyrecords span").text(data.med.familyrecords);
+			
+			$("#nowmedicalrecords textarea").attr("value",data.med.nowmedicalrecords);
+			$("#beforemedicalrecords textarea").attr("value",data.med.beforemedicalrecords);
+			$("#personalrecords textarea").attr("value",data.med.personalrecords);
+			$("#familyrecords textarea").attr("value",data.med.familyrecords);
+			
+			$("#nowmedicalrecords textarea").attr("readonly","readonly");
+			$("#beforemedicalrecords textarea").attr("readonly","readonly");
+			$("#personalrecords textarea").attr("readonly","readonly");
+			$("#familyrecords textarea").attr("readonly","readonly");
 		}
 		
 	});

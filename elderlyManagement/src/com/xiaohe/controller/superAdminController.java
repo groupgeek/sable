@@ -1,7 +1,9 @@
 package com.xiaohe.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.AddActivityVo;
 import com.xiaohe.bean.AddEmployeeVo;
 import com.xiaohe.bean.AddUserVo;
 import com.xiaohe.bean.AreaCustom;
@@ -28,6 +32,7 @@ import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
 import com.xiaohe.service.ActivityService;
+import com.xiaohe.service.ActivitytypeService;
 import com.xiaohe.service.AreaService;
 import com.xiaohe.service.AuthorityService;
 import com.xiaohe.service.BranchService;
@@ -71,6 +76,10 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("activityService")
 	private ActivityService activityService;
+	
+	@Autowired
+	@Qualifier("activitytypeService")
+	private ActivitytypeService activitytypeService;
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -349,21 +358,86 @@ public class superAdminController {
 	@RequestMapping("/queryActivityInfo")
 	public @ResponseBody ActivityCustom queryActivityInfo(@RequestBody ActivityCustom condition){
 		
-		ActivityCustom activityInfo = activityService.queryACtivityInfoById(condition.getActivityid());
+		ActivityCustom activityInfo = activityService.queryActivityInfoById(condition.getActivityid());
 		
 		return activityInfo;
 	}
 	
+	/**
+	 * 加载活动数据
+	 * @param activityInfo
+	 * @return
+	 */
 	@RequestMapping("/updateActivityInfoView")
-	public @ResponseBody UpdateActivityVo updateActivityInfo(@RequestBody ActivityCustom activityInfo){
+	public @ResponseBody UpdateActivityVo updateActivityInfoView(@RequestBody ActivityCustom activityInfo){
 		UpdateActivityVo updateActivityVo = new UpdateActivityVo();
 		ActivityCustom activity = new ActivityCustom();
-		List<ActivitytypeCustom> activitytype = new ArrayList<ActivitytypeCustom>();
+		List<ActivitytypeCustom> allactivitytype = new ArrayList<ActivitytypeCustom>();
 		List<BranchCustom> allBranch = new ArrayList<BranchCustom>();
 		
-		
-		
+		activity = activityService.queryActivityInfoById(activityInfo.getActivityid());
+		allactivitytype = activitytypeService.queryAllType();
 		allBranch = branchService.queryAll();
-		return null;
+		
+		updateActivityVo.setActivityInfo(activity);
+		updateActivityVo.setAllActivitytype(allactivitytype);
+		updateActivityVo.setAllBranch(allBranch);
+		
+		return updateActivityVo;
 	}
+	
+	/**
+	 * 更新活动信息
+	 * @param model
+	 * @param activityInfo
+	 * @param videoUpload
+	 * @param pictureUpload
+	 * @return
+	 */
+	@RequestMapping("/updateActivityInfo")
+	public String updateActivityInfo(Model model,ActivityCustom activityInfo,MultipartFile videoUpload,MultipartFile pictureUpload){
+
+		if(activityService.updateActivityInfo(activityInfo, videoUpload, pictureUpload)){
+			model.addAttribute("message", "修改成功");
+			model.addAttribute("activityid", activityInfo.getActivityid());
+		}else{
+			model.addAttribute("message", "修改失败");
+		}
+		return "admin/page/activityInfo";
+	}
+	
+	/**
+	 * 加载添加活动信息
+	 * @return
+	 */
+	@RequestMapping("/addActivityView")
+	public @ResponseBody AddActivityVo addActivityView(){
+		AddActivityVo addActivityVo = new AddActivityVo();
+		Map<String, List<ActivitytypeCustom>> allTypes = new HashMap<String, List<ActivitytypeCustom>>();
+		List<BranchCustom> allBranch = new ArrayList<BranchCustom>();
+		
+		allTypes = activitytypeService.queryAllTypeOrderByFather();
+		allBranch = branchService.queryAll();
+		
+		addActivityVo.setAllTypes(allTypes);
+		addActivityVo.setAllBranchs(allBranch);
+		
+		return addActivityVo;
+	};
+	
+	/**
+	 * 添加活动
+	 * @param activity
+	 * @return
+	 */
+	@RequestMapping("/addActivity")
+	public String addActivity(Model model,ActivityCustom activity,MultipartFile videoUpload,MultipartFile pictureUpload){
+		
+		if(activityService.addActivity(activity, videoUpload, pictureUpload)){
+			model.addAttribute("message", "添加成功");
+		}else{
+			model.addAttribute("message", "添加失败");
+		}
+		return "admin/page/addActivity";
+	};
 }

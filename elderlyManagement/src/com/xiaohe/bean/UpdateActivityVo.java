@@ -1,26 +1,28 @@
 package com.xiaohe.bean;
 
+import java.util.List;
+
 public class UpdateActivityVo {
 	private ActivityCustom activityInfo;
-	private BranchCustom allBranch;
-	private ActivitytypeCustom allBctivitytype;
+	private List<BranchCustom> allBranch;
+	private List<ActivitytypeCustom> allActivitytype;
 	public ActivityCustom getActivityInfo() {
 		return activityInfo;
 	}
 	public void setActivityInfo(ActivityCustom activityInfo) {
 		this.activityInfo = activityInfo;
 	}
-	public BranchCustom getAllBranch() {
+	public List<BranchCustom> getAllBranch() {
 		return allBranch;
 	}
-	public void setAllBranch(BranchCustom allBranch) {
+	public void setAllBranch(List<BranchCustom> allBranch) {
 		this.allBranch = allBranch;
 	}
-	public ActivitytypeCustom getAllBctivitytype() {
-		return allBctivitytype;
+	public List<ActivitytypeCustom> getAllActivitytype() {
+		return allActivitytype;
 	}
-	public void setAllBctivitytype(ActivitytypeCustom allBctivitytype) {
-		this.allBctivitytype = allBctivitytype;
+	public void setAllActivitytype(List<ActivitytypeCustom> allActivitytype) {
+		this.allActivitytype = allActivitytype;
 	}
 	
 

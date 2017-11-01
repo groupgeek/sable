@@ -76,7 +76,7 @@ public class ActivityTest {
 	
 	@Test
 	public void queryInfo(){
-		System.out.println(activityService.queryACtivityInfoById(1).getFathertypename());
+		System.out.println(activityService.queryActivityInfoById(1).getFathertypename());
 	}
 
 }

@@ -352,7 +352,7 @@
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
@@ -544,37 +544,29 @@
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div style="position: relative;left: 500px;bottom: 950px; " id = "med">
-								<label class="control-label">病例</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here
-								  
-								  </span>
-								</div>
-							  </div>
 							  
 							  <div class="control-group" id = "nowmedicalrecords">
 								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
 								</div>
 							  </div>
 							  <div class="control-group" id = "beforemedicalrecords">
 								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
 								</div>
 							  </div>
 							  <div class="control-group" id = "personalrecords">
 								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
 								</div>
 							  </div>
 							  <div class="control-group" id = "familyrecords">
 								<label class="control-label">病例</label>
-								<div class="controls" style="border: 1px;background-color: #FCFCFC;">
-								  <span>Some value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value hereSome value here</span>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
 								</div>
 							  </div>
 							  
