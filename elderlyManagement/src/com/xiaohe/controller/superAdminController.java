@@ -338,4 +338,24 @@ public class superAdminController {
 		ActivityVo activityVo = activityService.queryAllActivityByCondition(condition);
 		return activityVo;
 	}
+	
+	/**
+	 * 查询活动所有信息
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryActivityInfo")
+	public @ResponseBody ActivityCustom queryActivityInfo(@RequestBody ActivityCustom condition){
+		
+		ActivityCustom activityInfo = activityService.queryACtivityInfoById(condition.getActivityid());
+		
+		return activityInfo;
+	}
+	
+	@RequestMapping("/updateActivityInfo")
+	public @ResponseBody String updateActivityInfo(@RequestBody ActivityCustom activityInfo){
+		
+		
+		return null;
+	}
 }

@@ -6,13 +6,14 @@
 		
 		type:"post",
 		contentType:"application/json;charset=utf-8",
-		url:root+"/superAdmin/",
-		data:'{"employeeid"'+':'+'"'+employeeid+'"'
+		url:root+"/superAdmin/queryActivityInfo",
+		data:'{"activityid"'+':'+'"'+activityid+'"'
     			+'}',
 		success:function(data){
 			$("#activityUrl").attr("href",root+'/superAdmin/updateActivityInfoView?id='+data.activityid);
 			$("#activityname span").text(data.activityname);
-			//$("#activitytypename span").text(data.activitytypename);//类型
+			$("#activitytypename span").text(data.activitytypename);//类型
+			$("#fathertypename span").text(data.fathertypename);//父类类型
 			$("#activitystatus span").text(data.activitystatus);
 			$("#activitydate span").text(data.activitydate);
 			$("#branchname span").text(data.branchname);

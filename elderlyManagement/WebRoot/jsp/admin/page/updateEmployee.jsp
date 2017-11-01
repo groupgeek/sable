@@ -490,7 +490,7 @@
 							   <div class="control-group" id = "entrytime">
 								<label class="control-label">入职时间</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "entrytime" type="text" value="<fmt:formatDate value="${employeeInfo.entrytime }"pattern="yyyy-MM-dd" />">
+								  <input class="input-xlarge focused" name = "entrytime" type="text" onClick="laydate()" value="<fmt:formatDate value="${employeeInfo.entrytime }"pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							  <div class="control-group" id = "address">
@@ -547,7 +547,7 @@
 							  <div class="control-group" id = "birthday">
 								<label class="control-label">生日</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "birthday" type="text" value="<fmt:formatDate value="${employeeInfo.birthday }"pattern="yyyy-MM-dd" />">
+								  <input class="input-xlarge focused" name = "birthday" type="text" onClick="laydate()" value="<fmt:formatDate value="${employeeInfo.birthday }"pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							  
@@ -818,6 +818,7 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
 	
 	
 	<!-- end: JavaScript-->

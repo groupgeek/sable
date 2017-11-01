@@ -1,12 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html>
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>活动详情</title>
+	<title>活动修改</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -360,10 +361,6 @@
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
-								class="hidden-tablet">分店管理</span>
-						</a>
-						</li>
 						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
 								class="hidden-tablet"> 报表统计</span>
 						</a>
@@ -403,6 +400,7 @@
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
+			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
@@ -413,108 +411,113 @@
 					<a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp">活动管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">活动详情</a></li>
+				<li><a href="#">活动信息修改</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>活动详细信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>活动信息修改</h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="" id = "activityUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="#"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
 					
+					
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" action = "<%-- ${pageContext.request.contextPath }/superAdmin/updateEmployeeInfo --%>" method="post">
 							<fieldset>
-							  <div class="control-group" id = "activityname">
-								<label class="control-label">活动名字</label>
+							
+							  <div class="control-group" id="activityname">
+								<label class="control-label" for="focusedInput">活动名字</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "activityname" type="text" value="">
 								</div>
 							  </div>
+							  
+							   <!-- <div class="control-group" id = "sex">
+								<label class="control-label">性别</label>
+								 <div class="controls">
+									<label class="radio"><input name="sex" type="radio" value=1 checked="checked"/>男 </label>
+									<div style="clear:both"></div> 
+									<label class="radio"><input name="sex" type="radio" value=0 checked=""/>女 </label> 
+								</div>
+							  </div> -->
 							  <div class="control-group" id = "activitytypename">
 								<label class="control-label">活动类型</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "activitytypename" type="text" value="">
 								</div>
 							  </div>
-							  <div class="control-group" id = "fathertypename">
+							   <div class="control-group" id = "fathertypename">
 								<label class="control-label">活动父类类型</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "fathertypename" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group" id = "activitystatus">
 								<label class="control-label">活动状态</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "activitystatus" type="text" value="">
 								</div>
 							  </div>
-							  
-							  <div class="control-group" id = "activitydate">
+							   <div class="control-group" id = "activitydate">
 								<label class="control-label">活动时间</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  	<input class="input-xlarge focused" name = "activitydate" type="text" onClick="laydate()" value="<fmt:formatDate value="${activity.activitydate }"pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
-							  
+							 
 							  <div class="control-group" id = "branchname">
 								<label class="control-label">所属分店</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <select name="branchname">
+								  	
+								  </select>
 								</div>
 							  </div>
 							   <div class="control-group" id = "activityprice">
-								<label class="control-label">活动支出(￥)</label>
+								<label class="control-label">活动支出</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <div class="input-prepend input-append">
+									<span class="add-on">$</span><input id="appendedPrependedInput" size="16" type="text" name = "activityprice"><span class="add-on">.00</span>
+								  </div>
 								</div>
 							  </div>
-							  <div class="control-group" id = "registeryfee">
-								<label class="control-label">活动报名费(￥)</label>
+							 
+							 
+							    <div class="control-group" id = "registeryfee">
+								<label class="control-label">活动报名费</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <div class="input-prepend input-append">
+									<span class="add-on">$</span><input id="appendedPrependedInput" size="16" type="text" name = "registeryfee"><span class="add-on">.00</span>
+								  </div>
 								</div>
 							  </div>
+							  
 							  <div class="control-group" id = "maxnum">
-								<label class="control-label">活动人数上限(人)</label>
+								<label class="control-label">人数上限</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+									<div class="input-prepend input-append">
+										<input id="appendedPrependedInput" size="16" type="text" name = "registeryfee" value="<fmt:formatDate value="${activity.maxnum }"pattern="yyyy-MM-dd" />"><span class="add-on">人</span>
+								    </div>
 								</div>
 							  </div>
+							  
+							  
 							  <div class="control-group" id = "online">
 								<label class="control-label">线上</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <select id="" data-rel="" name="online">
+								  
+								  </select>
 								</div>
 							  </div>
 							  
 							  
-							  <!-- <div class="control-group" id = "bankcardno">
-								<label class="control-label">活动详情</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							    <div class="control-group" id = "email">
-								<label class="control-label">活动图片</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "birthday">
-								<label class="control-label">活动视频</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div> -->
-							  <div style="width: 390px;height: 540px; position: relative;left: 600px;bottom: 440px;">
+							 <!--  <div style="width: 390px;height: 540px; position: relative;left: 600px;bottom: 440px;">
 									
 									<div id = "activitypicture">
 										<label class="">活动图片</label>
@@ -539,11 +542,22 @@
 								
 								
 							  </div>
-							  
-							  <!-- <div class="form-actions">
-								<button type="submit" class="btn btn-primary">Save changes</button>
-								<button class="btn">Cancel</button>
+							   -->
+							  <!-- <div style="width:300px; margin:10px auto;">
+								    演示一：<input onClick="laydate()"><br /><br />
 							  </div> -->
+								
+							  <%-- <input type="hidden" value = "${employeeInfo.authorityid }" id = "authorityid">
+							  <input type="hidden" value = "${employeeInfo.positionid }" id = "positionid">
+							  <input type="hidden" value = "${employeeInfo.areaid }" id = "areaid">
+							  <input type="hidden" value = "${employeeInfo.branch.branchid }" id = "branchid">
+							 
+							 <input type="hidden" value = "${employeeInfo.employeeid }" name = "employeeid"> --%>
+							 <input type="hidden" value = "${message }" id = "message">
+							  
+							  <div class="form-actions">
+								<button type="button" id = "updateActivity" class="btn btn-primary">保存</button>
+							  </div>
 							</fieldset>
 						  </form>
 					
@@ -558,7 +572,6 @@
 				
 			</div>
 			</div>
-
 		</div>
 	</div>
 		
@@ -688,10 +701,23 @@
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
 	
+	<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>
+	
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/activityInfo.js"></script>
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/updateActivity.js"></script>
+	
 	
 	<!-- end: JavaScript-->
+	
+<!-- 	<script type="text/javascript">
+		$(document).ready(function(){
+			var positional = $("#authorityid").attr("value");
+			var positional = $("#positional").attr("value");
+			var positional = $("#areaid").attr("value");
+			var positional = $("#branchid").attr("value");
+		});
+	
+	</script> -->
 	
 </body>
 </html>

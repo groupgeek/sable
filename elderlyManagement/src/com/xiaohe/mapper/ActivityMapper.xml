@@ -207,6 +207,11 @@
       maxNum = #{maxnum,jdbcType=INTEGER}
     where activityId = #{activityid,jdbcType=INTEGER}
   </update>
+  
+  
+  
+  
+  
   <sql id="contidion">
       <if test="activityid != null" >
         AND activityId = #{activityid,jdbcType=INTEGER}
@@ -416,9 +421,12 @@
   
   </select>
   
-  <select id="selectActivityInfoById">
-  	
-  
-  
+  <select id="selectActivityInfoById" parameterType="Integer" resultType="activityCustom">
+  	SELECT a.* ,b.branchName , ac1.activityTypeName,ac1.fatherTypeID , ac2.activityTypeName fatherTypeName
+		FROM activity a, branch b ,activitytype ac1, activitytype ac2 
+		WHERE a.activityId = #{id} AND
+		b.branchId = a.branchId AND ac1.activityTypeID = a.activityTypeID AND
+		ac2.activityTypeID = ac1.fatherTypeID
+		  
   </select>
 </mapper>

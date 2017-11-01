@@ -247,7 +247,7 @@
 								class="hidden-tablet"> 报表统计</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>

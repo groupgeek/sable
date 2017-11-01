@@ -503,7 +503,7 @@
 							  <div class="control-group" id = "birthday">
 								<label class="control-label">生日</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "birthday" type="text" value="">
+								  <input class="input-xlarge focused" name = "birthday" onClick="laydate()" type="text" value="">
 								</div>
 							  </div>
 							  
@@ -761,6 +761,8 @@
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.1.8.1.min.js"></script>
 	<script 
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.messages_zh.js"></script>	
+		
+	<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
 	<script>
 
 		$(document).ready(function() {

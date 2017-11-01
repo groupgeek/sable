@@ -57,5 +57,19 @@ public interface ActivityService {
 	 */
 	public ActivityVo queryAllActivityByCondition(ActivityCustom condition);
 	
+	/**
+	 * 查询活动所有信息
+	 * @param id
+	 * @return
+	 */
+	public ActivityCustom queryACtivityInfoById(Integer id);
+	
+	/**
+	 * 更新活动详细信息
+	 * @param activityInfo
+	 * @return
+	 */
+	public boolean updateActivityInfo(ActivityCustom activityInfo);
+	
 
 }

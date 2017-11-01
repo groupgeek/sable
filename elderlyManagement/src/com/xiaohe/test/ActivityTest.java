@@ -73,5 +73,10 @@ public class ActivityTest {
 		System.out.println(activityService.queryAllActivityByCondition(condition));
 		
 	}
+	
+	@Test
+	public void queryInfo(){
+		System.out.println(activityService.queryACtivityInfoById(1).getFathertypename());
+	}
 
 }

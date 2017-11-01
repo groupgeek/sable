@@ -20,6 +20,30 @@ public class ActivityCustom extends Activity {
 	private String sort;
 	private String search;
 	
+	private String fathertypename;
+	private Integer fathertypeid;
+	private String activitytypename;
+	
+	
+	
+	public String getActivitytypename() {
+		return activitytypename;
+	}
+	public void setActivitytypename(String activitytypename) {
+		this.activitytypename = activitytypename;
+	}
+	public String getFathertypename() {
+		return fathertypename;
+	}
+	public void setFathertypename(String fathertypename) {
+		this.fathertypename = fathertypename;
+	}
+	public Integer getFathertypeid() {
+		return fathertypeid;
+	}
+	public void setFathertypeid(Integer fathertypeid) {
+		this.fathertypeid = fathertypeid;
+	}
 	public String getSearch() {
 		return search;
 	}

@@ -513,7 +513,7 @@
 							  <div class="control-group" id = "birthday">
 								<label class="control-label">生日</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "birthday" type="text" value="<fmt:formatDate value="${employeeInfo.birthday }"pattern="yyyy-MM-dd" />">
+								  <input class="input-xlarge focused" name = "birthday" type="text" onClick="laydate()" value="<fmt:formatDate value="${employeeInfo.birthday }"pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							  
@@ -744,7 +744,9 @@
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.messages_zh.js"></script>
 		
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/addEmployee.js"></script>	
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/addEmployee.js"></script>
+		
+	<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
 	<script>
 
 		$(document).ready(function() {

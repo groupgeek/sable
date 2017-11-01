@@ -95,6 +95,26 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		return activityVo;
 	}
+
+	public ActivityCustom queryACtivityInfoById(Integer id) {
+		if(id == null || id < 0) return null;
+		
+		ActivityCustom activityInfo = activityMapper.selectActivityInfoById(id);
+		
+		return activityInfo;
+	}
+
+	public boolean updateActivityInfo(ActivityCustom activityInfo) {
+		
+		if(activityInfo == null) return false;
+		if(activityInfo.getActivityid() == null || activityInfo.getActivityid() <0) return false;
+		if(activityInfo.getActivityname() == null || " ".equals(activityInfo.getActivityname()) || "".equals(activityInfo.getActivityname()))
+			return false;
+		
+		if(activityMapper.updateByPrimaryKeySelective(activityInfo) < 0) return false;
+		
+		return true;
+	}
 	
 
 	
