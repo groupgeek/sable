@@ -1,5 +1,7 @@
 package com.xiaohe.bean;
 
+import java.util.List;
+
 public class MessageVo {
 	private Message message;
 	private int start;
@@ -7,6 +9,29 @@ public class MessageVo {
 	private int count;
 	private Integer employeeid;
 	
+	private Integer pageSum;//总页数
+	private Integer messageSum;
+	private List<MessageCustom> allMessage;
+	
+	
+	public Integer getPageSum() {
+		return pageSum;
+	}
+	public void setPageSum(Integer pageSum) {
+		this.pageSum = pageSum;
+	}
+	public Integer getMessageSum() {
+		return messageSum;
+	}
+	public void setMessageSum(Integer messageSum) {
+		this.messageSum = messageSum;
+	}
+	public List<MessageCustom> getAllMessage() {
+		return allMessage;
+	}
+	public void setAllMessage(List<MessageCustom> allMessage) {
+		this.allMessage = allMessage;
+	}
 	public Integer getEmployeeid() {
 		return employeeid;
 	}

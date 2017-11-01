@@ -26,6 +26,8 @@ import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.bean.LevelCustom;
+import com.xiaohe.bean.MessageCustom;
+import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
 import com.xiaohe.bean.UpdateActivityVo;
@@ -38,6 +40,7 @@ import com.xiaohe.service.AuthorityService;
 import com.xiaohe.service.BranchService;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.LevelSevice;
+import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
 import com.xiaohe.service.UserService;
 
@@ -80,6 +83,10 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("activitytypeService")
 	private ActivitytypeService activitytypeService;
+	
+	@Autowired
+	@Qualifier("messageService")
+	private MessageService messageService;
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -440,4 +447,41 @@ public class superAdminController {
 		}
 		return "admin/page/addActivity";
 	};
+	
+	/**
+	 * 查询所有分店
+	 * @return
+	 */
+	@RequestMapping("/queryAllBranch")
+	public @ResponseBody List<BranchCustom> queryAllBranch(){
+		
+		List<BranchCustom> allBranch = new ArrayList<BranchCustom>();
+		allBranch = branchService.queryAll();
+		return allBranch;
+	}
+	
+	/**
+	 * 查询所有留言
+	 * @return
+	 */
+	@RequestMapping("/queryAllMessage")
+	public @ResponseBody MessageVo queryAllMessage(@RequestBody MessageCustom condition){
+		
+		MessageVo messageVo = new MessageVo();
+		messageVo = messageService.queryAllMessageByCondition(condition);
+		
+		return messageVo;
+	}
+	
+	/**
+	 * 查询留言详细信息
+	 * @return
+	 */
+	@RequestMapping("/queryMessageInfo")
+	public @ResponseBody MessageCustom queryMessageInfo(@RequestBody MessageCustom condition){
+		MessageCustom message = new MessageCustom();
+		message = messageService.queryMessagInfoById(condition.getMessageid());
+		
+		return message;
+	}
 }

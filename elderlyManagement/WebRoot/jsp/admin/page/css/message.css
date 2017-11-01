@@ -21,15 +21,9 @@
 	width: 150px;
 	float: right;
 }
-#activitystatus{
+#branchname{
 	width: 150px;
 	float: right;
-}
-#userPage{
-	float: left;	
-}
-#employeePage{
-	float: left;	
 }
 #messagePage{
 	float: left;	
