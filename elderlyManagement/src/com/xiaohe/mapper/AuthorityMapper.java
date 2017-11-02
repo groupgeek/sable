@@ -19,6 +19,18 @@ public interface AuthorityMapper {
     int updateByPrimaryKey(Authority record);
     
     /**
+     * 查询所有的权限
+     * @return
+     */
+    List<Authority> allAuths();
+    
+    /**
+	 * 查询所有权限
+	 * @return
+	 */
+	public List<AuthorityCustom> queryAll();
+	
+	/**
      * 查询所有权限
      * @return
      */

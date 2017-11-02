@@ -261,6 +261,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
+public List<ProductCustom> quertyStockout() {
+		
+		return productMapper.quertyStockout();
+	}
+
+
 
 
 }

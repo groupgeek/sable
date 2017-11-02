@@ -24,4 +24,10 @@ public interface ProductrecommendMapper {
      * @return 商品集合
      */
     List<ProductCustom> selectProductrecommend(Integer total);
+    /**
+     * 
+     * @param branchid分店ID
+     * @return 本店商品推荐
+     */
+    List<ProductCustom> quertyRecommendProdcut(Integer branchid);
 }

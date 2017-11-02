@@ -79,12 +79,11 @@
       tasteStock = #{tastestock,jdbcType=INTEGER}
     where productTasteId = #{producttasteid,jdbcType=INTEGER}
   </update>
-  
   <select id="countStock"  resultType="Integer">
   select productId , SUM(tasteStock) st FROM producttaste GROUP BY productId;
   </select>
   
-  <select id="quertyProducttasteByid" parameterType="Integer" resultType="Producttaste">
-  SELECT * FROM producttaste WHERE productId=#{productid}
+  <select id="quertyProducttasteByid" parameterType="Integer" resultType="ProducttasteCustom">
+ SELECT price,productName,picture,producttaste.* FROM producttaste,product WHERE product.productId = producttaste.productId and product.productId= #{productId}
   </select>
 </mapper>

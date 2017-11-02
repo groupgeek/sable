@@ -3,6 +3,7 @@ package com.xiaohe.mapper;
 import java.util.List;
 
 import com.xiaohe.bean.Producttaste;
+import com.xiaohe.bean.ProducttasteCustom;
 
 public interface ProducttasteMapper {
     int deleteByPrimaryKey(Integer producttasteid);
@@ -27,5 +28,5 @@ public interface ProducttasteMapper {
      * @param productid
      * @return 商品口味集合
      */
-    List<Producttaste> quertyProducttasteByid(Integer productid);
+    List<ProducttasteCustom> quertyProducttasteByid(Integer productid);
 }

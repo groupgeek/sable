@@ -47,4 +47,11 @@ public interface EmployeeMapper {
      * @return
      */
     EmployeeCustom selectEmployeeInfoById(Integer id);
+    
+    /**
+     * 根据管理员 的id查询到对应的分店下面的员工（根据冠利元id，分店的所有员工）
+     * @param id
+     * @return
+     */
+    List<EmployeeCustom> allBrancheEmployees(Integer id);
 }

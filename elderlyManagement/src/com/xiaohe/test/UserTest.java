@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xiaohe.bean.UserCustom;
-import com.xiaohe.bean.UserVo;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
 
@@ -37,25 +36,6 @@ public class UserTest {
 		user.setPhone("18584430401");
 		user.setPassword("123456");
 		System.out.println(userService.loginUser(user));
-	}
-	@Test
-	public void allUser(){
-		UserCustom user = new UserCustom();
-		user.setCurrentPage(0);
-		user.setPageNum(10);
-		
-		user.setSearch("");
-		user.setSort("registrationdate");
-		
-		UserVo test = userService.queryAllUserByCondition(user);
-		
-		System.out.println(test.getUserList().get(0).getOnline());
-		
-	}
-	@Test
-	public void userInfo(){
-		
-		System.out.println(userService.queryUserInfoById(1).getMed().getBeforemedicalrecords());
 	}
 
 }

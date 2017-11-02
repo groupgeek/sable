@@ -64,6 +64,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<a href="${pageContext.request.contextPath }/brach/branchVist.action">客户回访</a>
 	<a href="${pageContext.request.contextPath }/brach/allActs.action">所有活动</a>
 	<a href="${pageContext.request.contextPath }/brach/allActTypes.action">添加活动</a>
+	<a href="${pageContext.request.contextPath }/brach/charts.action">报表</a>
+	<a href="${pageContext.request.contextPath }/brach/employees.action">员工</a>
+	
 	<br>
 	
 	<input type="button" onclick="hello()" value="json请求"/>
@@ -73,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script type="text/javascript">
 	function hello(){
-
+	alert(11111);
 	$.ajax({
 		type : 'post',
 		/*${pageContext.request.contextPath }/*/

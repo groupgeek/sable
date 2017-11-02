@@ -1,6 +1,8 @@
 package com.xiaohe.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.EmployeeCustom;
@@ -53,18 +55,10 @@ public interface ProductMapper {
     List<ProductCustom> selectProductByBlurryCondition(String condition);
     
     
-    /**
-     * 查询分店所有商品
-     * @param branchid
-     * @return
-     */
+    //查询分店所有商品
     List<ProductCustom> quertyAllProduct(Integer branchid);
     
-    /**
-     * 分店管理员查询
-     * @param employeeid
-     * @return
-     */
+    //分店管理员查询
     EmployeeCustom selectAdminCustom(Integer employeeid);
     
     /**
@@ -103,11 +97,18 @@ public interface ProductMapper {
     ProducttypeCustom selectProductFathertypeById(Integer id);
     
     /**
-     * 查询同类产品，过滤掉本产品
-     * @param condition
+     * 根据产品类型id查询商品
+     * @param id
      * @return
      */
     List<ProductCustom> selectProductByProducttypeId(ProductCustom condition);
+    
+    /**
+     * 根据商品id和管理员id查询商品的总销售情况(分店)
+     * @param productCustom
+     * @return
+     */
+    public ProductCustom countBranchProduct(ProductCustom productCustom);
     
     /**
      * 根据产品类型id查询产品
@@ -129,5 +130,22 @@ public interface ProductMapper {
      * @return
      */
     Integer selectAllProductSumByCondition(ProductCustom condition);
+    
+
+    /**
+     * 	缺少货物查询
+     * @return
+     */
+    List<ProductCustom> quertyStockout();
+   
+
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

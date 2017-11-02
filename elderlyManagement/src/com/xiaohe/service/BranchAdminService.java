@@ -11,6 +11,8 @@ import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.Activityrecommend;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Authority;
+import com.xiaohe.bean.AuthorityCustom;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
@@ -20,6 +22,7 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
@@ -305,4 +308,55 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public List<ProductCustom> quertyAllProduct(Integer id);
+	
+/*****************************报表开始****************************************/
+	/**
+	 * 查询商品的交易记录
+	 * @param producttransactionreportCustom
+	 * @return
+	 */
+	public List<ProducttransactionreportCustom> selectByCondition(ProducttransactionreportCustom producttransactionreportCustom);
+
+	/**
+	 * 根据商品的id，查询商品的销售情况（分店）
+	 * @param productCustom
+	 * @return
+	 */
+	public ProductCustom BranchProductCustom(ProductCustom productCustom);
+	
+	/**
+	 * 插入病例
+	 * @param medicalrecordsWithBLOBsCustom
+	 * @return
+	 */
+	public int insertMed(MedicalrecordsWithBLOBsCustom medicalrecordsWithBLOBsCustom);
+	
+	
+	/**
+	 * 根据管理员的id查询到对应的分店下面的所有的员工
+	 * @param id
+	 * @return
+	 */
+	public List<EmployeeCustom> allBranchEmployees(Integer id);
+	
+	/**
+	 * 根据员工id删除员工
+	 * @param id
+	 * @return
+	 */
+	public int delEmp(Integer id);
+	
+	/**
+	 * 根据员工id查询员工详情
+	 * @param id
+	 * @return
+	 */
+	public Employee oneEmpl(Integer id);
+	
+	/**
+	 * 查询到全部的权限
+	 * @return
+	 */
+	public List<Authority> authoritys();
+
 }

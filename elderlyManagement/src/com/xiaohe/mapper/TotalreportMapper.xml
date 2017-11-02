@@ -90,15 +90,4 @@
       duringTime = #{duringtime,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  
-  <select id="selectTotalreportSum" resultType="DECIMAL">
-  	select sum(totalPrice - totalExpenditure) 
-  	from totalreport	
-  </select>
-  <select id="selectTotalreportSumByTime" resultType="DECIMAL">
-  	select sum(totalPrice - totalExpenditure)
-  	from totalreport
-	group by duringtime order by duringTime desc limit 15
-  </select>
-  
 </mapper>

@@ -121,5 +121,12 @@ public interface ProductService {
 	 */
 	public ProductVo queryAllProductByCondition(ProductCustom condition);
 	
+	/**
+	 *  缺货查询
+	 * @return 缺货的信息
+	 */
+	List<ProductCustom> quertyStockout();
+
+	
 	
 }

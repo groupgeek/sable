@@ -13,11 +13,17 @@ public class ProductCustom extends Product {
 	
 	private List<ProducttasteCustom> tasteList;
 	private List<ProductcolourCustom> colourList;
-	
+	private Integer employeeid;
 	private Integer pageNum;//每一页的数量
 	
 	
 	
+	public Integer getEmployeeid() {
+		return employeeid;
+	}
+	public void setEmployeeid(Integer employeeid) {
+		this.employeeid = employeeid;
+	}
 	public Integer getPageNum() {
 		return pageNum;
 	}

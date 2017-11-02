@@ -56,9 +56,16 @@
     where authorityId = #{authorityid,jdbcType=INTEGER}
   </update>
   
-  <select id="selectAll" resultType="AuthorityCustom">
   
-  	SELECT * FROM authority
-  
+  <!-- 自定义sql -->
+  <select id="allAuths" resultType="com.xiaohe.bean.Authority">
+  select * from authority
   </select>
+  
+  <select id="selectAll" resultType="AuthorityCustom">
+  	SELECT * FROM authority
+  </select>
+  
+  
+  
 </mapper>

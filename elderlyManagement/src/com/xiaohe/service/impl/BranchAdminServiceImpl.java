@@ -1,10 +1,7 @@
 package com.xiaohe.service.impl;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,13 +11,16 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
@@ -28,6 +28,7 @@ import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityrecommendMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
+import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.LevelMapper;
@@ -35,15 +36,18 @@ import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ProductMapper;
+import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.mapper.ReturnvisitMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.BranchAdminService;
-import com.xiaohe.util.FileUpload;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
-	
+	@Autowired
+	private AuthorityMapper authorityMapper;
+	@Autowired
+	private ProducttransactionreportMapper producttransactionreportMapper;
 	@Autowired
 	private ActivityrecommendMapper activityrecommendMapper;
 	@Autowired
@@ -212,5 +216,27 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public List<ProductCustom> quertyAllProduct(Integer id) {
 		return productMapper.quertyAllProduct(id);
+	}
+	public List<ProducttransactionreportCustom> selectByCondition(
+			ProducttransactionreportCustom producttransactionreportCustom) {
+		return producttransactionreportMapper.selectBranchByCondition(producttransactionreportCustom);
+	}
+	public ProductCustom BranchProductCustom(ProductCustom productCustom) {
+		return productMapper.countBranchProduct(productCustom);
+	}
+	public int insertMed(MedicalrecordsWithBLOBsCustom medicalrecordsWithBLOBsCustom) {
+		return medicalrecordsMapper.insert(medicalrecordsWithBLOBsCustom);
+	}
+	public List<EmployeeCustom> allBranchEmployees(Integer id) {
+		return employeeMapper.allBrancheEmployees(id);
+	}
+	public int delEmp(Integer id) {
+		return employeeMapper.deleteByPrimaryKey(id);
+	}
+	public Employee oneEmpl(Integer id) {
+		return employeeMapper.selectByPrimaryKey(id);
+	}
+	public List<Authority> authoritys() {
+		return authorityMapper.allAuths();
 	}
 }

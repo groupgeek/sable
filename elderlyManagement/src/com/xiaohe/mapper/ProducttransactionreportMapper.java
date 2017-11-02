@@ -1,6 +1,5 @@
 package com.xiaohe.mapper;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,14 +19,6 @@ public interface ProducttransactionreportMapper {
 
     int updateByPrimaryKey(Producttransactionreport record);
     
-    BigDecimal selectSumproductAllMoney(Producttransactionreport producttransactionreport);
-    
-    /**
-     * 通过时间查询商城的盈利额
-     * @param producttransactionreport
-     * @return
-     */
-    List<BigDecimal> selectSumproductMoney(Producttransactionreport producttransactionreport);
     /**
      * 根据商品id,用户id查询该商品所有的交易记录,对sort赋值可以让其排序,也可以规定显示的数量进行分页,还可以查询某一个时间段的数据
      * @param condition 条件
@@ -41,5 +32,12 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     ProducttransactionreportCustom selectSumByCondition(ProducttransactionreportCustom condition);
+    
+    /**
+     * 根据商品id,用户id查询该商品所有的交易记录,对sort赋值可以让其排序,也可以规定显示的数量进行分页,还可以查询某一个时间段的数据(分店的，根据管理员id)
+     * @param producttransactionreportCustom
+     * @return
+     */
+    List<ProducttransactionreportCustom> selectBranchByCondition(ProducttransactionreportCustom producttransactionreportCustom);
     
 }
