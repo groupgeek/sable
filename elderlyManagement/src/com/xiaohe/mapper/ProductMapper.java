@@ -109,5 +109,22 @@ public interface ProductMapper {
      */
     public ProductCustom countBranchProduct(ProductCustom productCustom);
     
+    /**
+     * 根据产品类型id查询产品
+     * @param id
+     * @return
+     */
+    List<ProductCustom> selectProductBytypeId(ProductCustom condition);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

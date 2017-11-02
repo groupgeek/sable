@@ -239,7 +239,7 @@
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-envelope"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp"><i class="icon-envelope"></i><span
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
@@ -247,14 +247,14 @@
 								class="hidden-tablet"> 报表统计</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">商城管理</span>
+								class="hidden-tablet">分店管理</span>
 						</a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
@@ -282,6 +282,12 @@
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="${pageContext.request.contextPath }/jsp/admin/index.jsp">主页</a> 
+				</li>
+			</ul>
 			hello word
 			
 				

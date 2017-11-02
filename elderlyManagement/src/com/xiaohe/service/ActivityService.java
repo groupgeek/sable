@@ -3,9 +3,11 @@ package com.xiaohe.service;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
 
 /**
@@ -49,5 +51,33 @@ public interface ActivityService {
 	 */
 	public List<ActivityCustom> queryActivityrecommend(ActivityrecommendCustom custom);
 	
+	/**
+	 * 查询所有活动
+	 * @param condition
+	 * @return
+	 */
+	public ActivityVo queryAllActivityByCondition(ActivityCustom condition);
+	
+	/**
+	 * 查询活动所有信息
+	 * @param id
+	 * @return
+	 */
+	public ActivityCustom queryActivityInfoById(Integer id);
+	
+	/**
+	 * 更新活动详细信息
+	 * @param activityInfo
+	 * @return
+	 */
+	public boolean updateActivityInfo(ActivityCustom activityInfo,MultipartFile videoUpload,MultipartFile pictureUpload);
+	
+	
+	/**
+	 * 添加活动
+	 * @param activity
+	 * @return
+	 */
+	public boolean addActivity(ActivityCustom activity,MultipartFile videoUpload,MultipartFile pictureUpload);
 
 }

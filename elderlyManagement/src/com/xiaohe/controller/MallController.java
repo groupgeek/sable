@@ -2,7 +2,9 @@ package com.xiaohe.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +26,7 @@ import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.ProducttransactionreportService;
 
 
@@ -43,6 +46,10 @@ public class MallController {
 	@Qualifier("producttransactionreportService")
 	private ProducttransactionreportService producttransactionreportService;
 	
+	@Autowired
+	@Qualifier("productTypeService")
+	private ProductTypeService productTypeService;
+	
 	/**
 	 * 商城主页
 	 * @param model
@@ -55,14 +62,16 @@ public class MallController {
 		 * 产品类型 productTypes
 		 * 推荐商品 productrecommends
 		 * 优惠商品 productDiscountCustoms
+		 * 分类的产品 allTypeProducts
 		 */
 		List<ProducttypeCustom> productTypes = new ArrayList<ProducttypeCustom>();
 		List<ProductCustom> productrecommends = new ArrayList<ProductCustom>();
 		List<ProductCustom> productDiscounts = new ArrayList<ProductCustom>();
+		Map<ProducttypeCustom, List<ProductCustom>> allTypeProducts = new HashMap<ProducttypeCustom, List<ProductCustom>>();
 		
 		
 		//查询所有商品类型
-		productTypes = productService.queryProductTypeByCondition(null);
+		productTypes = productTypeService.querySimallProducttype();
 		
 		//查询推荐商品
 		productrecommends = productService.queryProductrecommend(3);
@@ -70,10 +79,17 @@ public class MallController {
 		//查询优惠商品
 		productDiscounts = productService.queryDiscountProduct(4);
 		
+		//开始查询所有分类的产品
+		ProductCustom condition = new ProductCustom();
+		condition.setBegin(0);
+		condition.setTotal(7);
+		allTypeProducts = productService.queryProductByAllType(condition);
+		
 		
 		model.addAttribute("productTypes", productTypes);
 		model.addAttribute("productrecommends", productrecommends);
 		model.addAttribute("productDiscounts", productDiscounts);
+		model.addAttribute("allTypeProducts", allTypeProducts);
 		return "mall/home/home";
 	}
 	
@@ -103,9 +119,10 @@ public class MallController {
 		condition.setSearch(searchCondition);
 		condition.setTotal(1);
 		condition.setCurrentPage(currentPage);
-		int sum = productService.queryProductSumByCondition(condition)/condition.getTotal();
+		int tempSum = productService.queryProductSumByCondition(condition);
+		int sum = tempSum / condition.getTotal();
 		
-		if(productService.queryProductSumByCondition(condition)%condition.getTotal() != 0){
+		if(tempSum % condition.getTotal() != 0){
 			sum += 1;
 		}
 		blurryProductCustoms = productService.queryProductByCondition(condition);
@@ -160,9 +177,10 @@ public class MallController {
 	@RequestMapping("/queryProductSum_json")
 	public @ResponseBody int  queryProductSum(@RequestBody ProductCustom condition){
 		condition.setTotal(1);
-		int sum = productService.queryProductSumByCondition(condition)/condition.getTotal();
+		int tempSum = productService.queryProductSumByCondition(condition);
+		int sum = tempSum / condition.getTotal();
 		
-		if(productService.queryProductSumByCondition(condition)%condition.getTotal() != 0){
+		if(tempSum % condition.getTotal() != 0){
 			sum += 1;
 		}
 		return sum;
@@ -272,5 +290,19 @@ public class MallController {
 		return evaluationVo;
 	}
 	
-	
+	/**
+	 * 商城首页的分类导航商品展示
+	 * @param producttype
+	 * @return
+	 */
+	@RequestMapping("/quereyProduct_json")
+	public @ResponseBody List<ProductCustom> quereyProductByProductTypeId_json(@RequestBody ProducttypeCustom producttype){
+		List<ProductCustom> pList = new ArrayList<ProductCustom>();
+		ProductCustom condition = new ProductCustom();
+		condition.setBegin(0);
+		condition.setTotal(20);
+		condition.setProducttypeid(producttype.getProducttypeid());
+		pList = productService.queryProductByTypeId(condition);
+		return pList;
+	}
 }

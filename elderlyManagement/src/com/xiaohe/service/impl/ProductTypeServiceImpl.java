@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductTypeService;
@@ -21,6 +22,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	public List<ProducttypeCustom> queryProductTypeByFather(ProducttypeCustom producttype) {
 		
 		return producttypeMapper.selectProductTypeByFatherId(producttype);
+	}
+
+	public List<ProducttypeCustom> querySimallProducttype() {
+		ProducttypeCustom condition = new ProducttypeCustom();
+		condition.setBegin(0);
+		condition.setPageNum(9);
+		return producttypeMapper.selectSmallProductType(condition);
 	}
 
 }

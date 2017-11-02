@@ -322,7 +322,7 @@ public class BrachAdminController {
 						pictureFile.delete();
 					}
 				}
-				filename = FileUpload.oneFileUpload(file, "picture");
+				filename = FileUpload.oneFileUpload(file,null, "picture");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -337,7 +337,7 @@ public class BrachAdminController {
 						videoFile.delete();
 					}
 				}
-				filevideo = FileUpload.oneFileUpload(nice, "video");
+				filevideo = FileUpload.oneFileUpload(nice,null, "video");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -381,7 +381,7 @@ public class BrachAdminController {
 		String fileVideo = null;
 		if(!file.isEmpty()){
 			try {
-				filename = FileUpload.oneFileUpload(file, "picture");
+				filename = FileUpload.oneFileUpload(file,null, "picture");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -390,7 +390,7 @@ public class BrachAdminController {
 		}
 		if (!nice.isEmpty()) {
 			try {
-				fileVideo = FileUpload.oneFileUpload(nice, "video");
+				fileVideo = FileUpload.oneFileUpload(nice,null, "video");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

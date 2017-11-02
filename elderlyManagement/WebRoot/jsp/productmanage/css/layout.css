@@ -796,6 +796,8 @@ table.display th{ /* background:#8f8f8f;   */ }
 .sorting_desc_disabled {
 	background: #8f8f8f url(../img/table/sort_desc_disabled.png) no-repeat center right; padding:8px 5px; text-align:left; color:#fff;
 }
+ 
+
 
 
 

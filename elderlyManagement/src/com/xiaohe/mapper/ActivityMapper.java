@@ -6,6 +6,7 @@ import java.util.List;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.EmployeeCustom;
 
 public interface ActivityMapper {
     int deleteByPrimaryKey(Integer activityid);
@@ -90,5 +91,26 @@ public interface ActivityMapper {
      * @return
      */
     Activity oneAct(Integer id);
+    
+    /**
+     * 查询活动信息
+     * @param condition
+     * @return
+     */
+    List<ActivityCustom> selectAllActivityByCondition(ActivityCustom condition);
+    
+    /**
+     * 查询活动数量
+     * @param condition
+     * @return
+     */
+    Integer selectAllActivitySumByCondition(ActivityCustom condition);
+    
+    /**
+     * 查询活动的所有信息
+     * @param id
+     * @return
+     */
+    ActivityCustom selectActivityInfoById(Integer id);
    
 }

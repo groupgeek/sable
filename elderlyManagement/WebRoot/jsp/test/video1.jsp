@@ -60,7 +60,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="${pageContext.request.contextPath }/test/video.action" method="post" enctype="multipart/form-data">
    <input type="file" name="video">
   <input type="submit" value="提交">
-  
   </form>
   
 
