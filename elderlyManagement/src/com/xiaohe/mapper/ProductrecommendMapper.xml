@@ -97,5 +97,10 @@
   
   </select>
   
+  <select id="quertyRecommendProdcut" parameterType="Integer" resultType="productCustom">
+  	
+  	SELECT p.* FROM productrecommend pre , product p WHERE p.productId = pre.productId and  p.branchId=#{branchId}
+  
+  </select>
   
 </mapper>

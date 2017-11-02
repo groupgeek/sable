@@ -31,6 +31,9 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
+import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductVo;
+import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
@@ -43,6 +46,8 @@ import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.LevelSevice;
 import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
+import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.UserService;
 
 @Controller
@@ -88,6 +93,15 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("messageService")
 	private MessageService messageService;
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("productTypeService")
+	private ProductTypeService productTypeService;
+	
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -510,14 +524,43 @@ public class superAdminController {
 		return branchVo;
 	}
 	
+	/**
+	 * 查询分店信息
+	 * @param condition
+	 * @return
+	 */
 	@RequestMapping("/queryBranchInfo")
 	public @ResponseBody BranchCustom queryBranchInfo(@RequestBody BranchCustom condition){
 		if(condition == null) return null;
 		if(condition.getBranchid() == null) return null;
 		BranchCustom branchInfo = new BranchCustom();
 		branchInfo = branchService.queryBranchInfoById(condition.getBranchid());
-		System.out.println(branchInfo.getEmployeenum());
 		return branchInfo;
 	}
+	
+	/**
+	 * 查询所有商品类型（小）
+	 * @return
+	 */
+	@RequestMapping("/queryAllProductType")
+	public @ResponseBody List<ProducttypeCustom> queryAllProductType(){
+		List<ProducttypeCustom> allProducttype = new ArrayList<ProducttypeCustom>();
+		allProducttype = productTypeService.querySimallProducttype();
+		return allProducttype;
+	}
+	
+	/**
+	 * 查询所有产品
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryAllProduct")
+	public @ResponseBody ProductVo queryAllProduct(@RequestBody ProductCustom condition){
+		ProductVo productVo = new ProductVo();
+		productVo = productService.queryAllProductByCondition(condition);
+		
+		return productVo;
+	}
+	
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.DiscountMapper;
 import com.xiaohe.mapper.EvaluationMapper;
@@ -223,6 +224,46 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		return allTypeProducts;
+	}
+
+	public ProductVo queryAllProductByCondition(ProductCustom condition) {
+		
+		ProductVo productVo = new ProductVo();
+		List<ProductCustom> allProducts = new ArrayList<ProductCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		if(condition != null){
+			if(condition.getProducttypeid() == -1){
+				condition.setProducttypeid(null);
+			}
+			
+			if(condition.getCurrentPage() >= 1){
+				Integer tempBegin = (condition.getCurrentPage()-1) * condition.getPageNum();
+				condition.setBegin(tempBegin);
+			}else{
+				condition.setBegin(0);
+			}
+			
+		}
+		
+		allProducts = productMapper.selectAllProductByCondition(condition);
+		sum = productMapper.selectAllProductSumByCondition(condition);
+		pageSum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageSum += 1;
+		}
+		productVo.setProductList(allProducts);
+		productVo.setProductSum(sum);
+		productVo.setPageSum(pageSum);
+		
+		
+		return productVo;
+	}
+
+
+public List<ProductCustom> quertyStockout() {
+		
+		return productMapper.quertyStockout();
 	}
 
 
