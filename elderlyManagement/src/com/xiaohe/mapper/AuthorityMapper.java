@@ -1,5 +1,7 @@
 package com.xiaohe.mapper;
 
+import java.util.List;
+
 import com.xiaohe.bean.Authority;
 
 public interface AuthorityMapper {
@@ -14,4 +16,10 @@ public interface AuthorityMapper {
     int updateByPrimaryKeySelective(Authority record);
 
     int updateByPrimaryKey(Authority record);
+    
+    /**
+     * 查询所有的权限
+     * @return
+     */
+    List<Authority> allAuths();
 }

@@ -231,4 +231,13 @@
       totalBonus = #{totalbonus,jdbcType=DECIMAL}
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="allBrancheEmployees" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.EmployeeCustom">
+  select e.* from branch b,area a,employee e
+	where b.areaId = a.areaId
+	and b.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  
 </mapper>

@@ -11,8 +11,10 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
@@ -26,6 +28,7 @@ import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityrecommendMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
+import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.LevelMapper;
@@ -41,6 +44,8 @@ import com.xiaohe.service.BranchAdminService;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
+	@Autowired
+	private AuthorityMapper authorityMapper;
 	@Autowired
 	private ProducttransactionreportMapper producttransactionreportMapper;
 	@Autowired
@@ -218,5 +223,20 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public ProductCustom BranchProductCustom(ProductCustom productCustom) {
 		return productMapper.countBranchProduct(productCustom);
+	}
+	public int insertMed(MedicalrecordsWithBLOBsCustom medicalrecordsWithBLOBsCustom) {
+		return medicalrecordsMapper.insert(medicalrecordsWithBLOBsCustom);
+	}
+	public List<EmployeeCustom> allBranchEmployees(Integer id) {
+		return employeeMapper.allBrancheEmployees(id);
+	}
+	public int delEmp(Integer id) {
+		return employeeMapper.deleteByPrimaryKey(id);
+	}
+	public Employee oneEmpl(Integer id) {
+		return employeeMapper.selectByPrimaryKey(id);
+	}
+	public List<Authority> authoritys() {
+		return authorityMapper.allAuths();
 	}
 }

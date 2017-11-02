@@ -55,4 +55,12 @@
     set authorityLevel = #{authoritylevel,jdbcType=VARCHAR}
     where authorityId = #{authorityid,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 自定义sql -->
+  <select id="allAuths" resultType="com.xiaohe.bean.Authority">
+  select * from authority
+  </select>
+  
+  
 </mapper>

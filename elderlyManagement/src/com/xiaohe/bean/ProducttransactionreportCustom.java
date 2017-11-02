@@ -14,8 +14,21 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private Date startingTime;
 	private Date endTime;
 	private Integer employeeid;
+	private String productname;
+	private Integer pagesum;//总页数
 	
-	
+	public Integer getPagesum() {
+		return pagesum;
+	}
+	public void setPagesum(Integer pagesum) {
+		this.pagesum = pagesum;
+	}
+	public String getProductname() {
+		return productname;
+	}
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
 	public Integer getEmployeeid(){
 		return employeeid;
 	}

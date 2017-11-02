@@ -1,16 +1,19 @@
 package com.xiaohe.test;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.core.config.Order;
 import org.junit.runner.RunWith;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
 
@@ -65,5 +68,12 @@ public class Test {
 		
  		producttransactionreportCustoms = producttransactionreportMapper.selectBranchByCondition(producttransactionreportCustom);
  		System.out.println(producttransactionreportCustoms);
+	}
+	
+	@org.junit.Test
+	public void demo4(){
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		
+		System.out.println(new Date());
 	}
 }

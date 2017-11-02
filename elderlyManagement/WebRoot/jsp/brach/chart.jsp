@@ -22,6 +22,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
+	<link id="superAdmin"
+	href="${pageContext.request.contextPath }/jsp/brach/css/user_employee.css"
+	rel="stylesheet">
 	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
@@ -59,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>JANUX</span></a>
+				<a class="brand" href="index.html"><span>XIAOHE-Admin</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -73,15 +76,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> Dennis Ji
+								<i class="halflings-icon white user"></i>${admins.employeename}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Account Settings</span>
+ 									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i> 退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -103,13 +106,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
 						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/employees.action"><i class="icon-list-alt"></i><span class="hidden-tablet">员工管理</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/products.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
-				</div>
+						<li><a href="${pageContext.request.contextPath }/brach/charts.action"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+					</div>
 			</div>
 			<!-- end: Main Menu -->
 			
@@ -138,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group" style="margin-top: 30px" >
 						<h3>选择商品：</h3>
 						<div class="controls">
-							<select id="selectError3" name="activitystatus" id="select">
+							<select id="activitystatus">
 								<c:forEach items="${products }" var="product">
 									<option value="${product.productid }">${product.productname }</option>
 								</c:forEach>
@@ -152,11 +156,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  <div class="controls">
 								从：<input name="activitydate" onClick="laydate()" id="begin">&nbsp&nbsp&nbsp&nbsp
 								至：<input name="activitydate" onClick="laydate()" id="end">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								 <a class="btn btn-info" href="" onclick="productReport()">
+								 <a class="btn btn-info" href="javaScript:;" onclick="productReport()">
 										<i class="icon-ok-sign"></i>            确认查询                                
 									</a>
-									
-								<input type="button" value="确认查询" onclick="productReport()" />
 							  </div>
 					</div>
 					
@@ -176,44 +178,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
-					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+					<div class="box-content" id="ddd">
+						<table class="table table-striped table-bordered bootstrap-datatable " >
 						  <thead>
 						  <tr>
 							  	<th>商品名字</th>
 								<th>总销售额</th>
 								<th>总购买数量</th>
-							  </tr>
-							  <tr>
-							  <td>${products[0].productname }</td>
+						 </tr>
+						 <tr>
+							   <td>${products[0].productname }</td>
 							   <td>${productCus.countPrice }</td>
-							    <td>${productCus.countBuy }</td>
-							  </tr>
-							  <tr>
-							  	<th>商品名字</th>
-								  <th>用户名字</th>
-								  <th>购买日期</th>
-								  <th>购买数量</th>
-								  <th>销售额</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-							<c:forEach items="${acts }" var="acts">
-						<tr>
-						<td class="center"></td>
-						<td class="center"></td>
-						<td class="center"></td>
-						<td class="center"></td>
-						<td class="center"></td>
-					</tr>
-				</c:forEach>
+							   <td>${productCus.countBuy }</td>
+						 </tr>
 							
-						  </tbody>
-					  </table>            
+							
+							<tr>
+							  	<th>商品名字</th>
+								<th>购买日期</th>
+								<th>购买数量</th>
+								<th>销售额</th>
+							  </tr>
+							  <tbody>
+							  </tbody>
+							 
+						 </thead>
+						 
+					  </table> 
+					  
+					  <div class="page">
+								<div id="userPage">
+									<p>
+										当前为第<strong id="currentPage">1</strong>页,共<strong id="pageSum">0</strong>页
+									</p>
+								</div>
+
+								<ul class="am-pagination am-pagination-right" id="pageUl">
+									<li value=1 id="home"><a href="javascript:;">首页</a></li>
+									<li id="previousPage"><a href="javascript:;">&laquo;</a></li>
+									<li id="nextPage"><a href="javascript:;">&raquo;</a></li>
+									<li id="lastPage"><a href="javascript:;">尾页</a></li>
+								</ul>
+							</div>
+					             
 					</div>
 				</div>
 
-					<div class="box span6">
+					<!-- <div class="box span6">
 					<div class="box-header">
 						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>商品收支百分比饼图</h2>
 						<div class="box-icon">
@@ -223,10 +234,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
-					<!-- custom.js 1627行代码 -->
+					custom.js 1627行代码
 							<div id="piechart" style="height:300px"></div>
 					</div>
-				</div>
+				</div> -->
 			</div><!--/row-->
 		
 			<hr>
@@ -294,10 +305,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
@@ -334,30 +345,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: JavaScript-->
 	<script type="text/javascript">
 	
-	
 		function productReport() {
-			alert(1);
-			var select = document.getElementById("select");
-			var option = select.options[select.selectedIndex].value;
-			alert(option);
+			var select = document.getElementById("activitystatus").value;
+			//alert(select);
 			var begin = document.getElementById("begin").value;
 			var end = document.getElementById("end").value;
-			alert(begin);
-			alert(end);
-			$
-					.ajax({
+			$.ajax({
 						type : 'post',
 						url : '${pageContext.request.contextPath}/brach/requestProduct.action',
 						contentType : 'application/json;charset=utf-8',
-						data : '{"messageid"' + ':' + '"' + id + '"}',
+						data : '{"productid"' + ':' + '"' + select + '"'+','+'"startingTime"'+':'+'"'+begin+'"'+','+'"endTime"'+':'+'"'+end+'"'+'}',
 						success : function(data) {
-							alert("请求成功");
+							//alert("查询成功");
+							$("#ddd tbody").html("");
+							createProductTable(data);
 						},
 						error : function() {
-							alert("请求失败");
+							$("#ddd tbody").html("");
+							alert("没有查询到任何数据！");
 						}
 
 					});
+			
+			function createProductTable(data){
+			//alert("start");
+			for(var i in data){
+				$("#ddd tbody").append(
+							'<tr>'+
+							'<td class="center">'+ data[i].productname +'</td>'+
+							'<td class="center">'+'<fmt:formatDate value="${data[i].buytime }" pattern="yyyy-MM-dd"/> '+'</td>'+
+							'<td class="center">'+ data[i].countbuy+'</td>'+
+							'<td class="center">'+ data[i].totalprice +'</td>'+
+							'</tr>'
+							);
+					}
+		}
+			
+		function queryData(){
+			pageNum = $("#selectPageNum").attr("value");//每页的条数
+			currentPage = 1;//当前页
+			$.ajax({
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:root+"/superAdmin/queryAllUser",
+				data:'{"currentPage"'+':'+'"'+currentPage+'"'+','
+				+'"pageNum"'+':'+'"'+pageNum+'"'+'}',
+				success:function(data){
+					//alert(data.pageSum);
+					//alert("ok");
+					$("#box tbody").html("");
+					$("#home").attr("value",1);
+					$("#previousPage").attr("value",1);
+					$("#nextPage").attr("value",1);
+					$("#lastPage").attr("value",data.pageSum);
+					$("#pageSum").text(data.pageSum);
+					$("#currentPage").text(currentPage);
+					createUserTable(data);
+				}
+			});
+		}			
 
 		}
 	</script>

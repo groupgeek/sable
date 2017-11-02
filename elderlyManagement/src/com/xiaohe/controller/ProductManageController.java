@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
-import com.xiaohe.bean.User;
 import com.xiaohe.service.ProductManageService;
 import com.xiaohe.service.ProductService;
+/*import com.xiaohe.service.ProducttasteService;*/
 
 @Controller
 @RequestMapping("/productmanage")
@@ -30,36 +31,61 @@ public class ProductManageController {
 	@Qualifier("productService")
 	private ProductService productService;
 	
+	/*@Autowired
+	@Qualifier("producttasteService")
+	private ProducttasteService producttasteService;*/
+	
 public EmployeeCustom getAdmins(HttpServletRequest request){
 		
 		return (EmployeeCustom) request.getSession().getAttribute("admins");
 	}
 	
 	
-	@RequestMapping(value="productAdminLogin")
-public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServletRequest request,Model model) throws Exception {
-	
+@RequestMapping(value="productAdminLogin")
+public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServletRequest request) throws Exception {
 		EmployeeCustom  admins = productManageService.productManageAdminsLogin(employeeCustom);
-
-	if (admins == null) {
-
-		model.addAttribute("message", "登录失败,手机号码或者密码错误0.0");
-
-		return "productmanage/logReg/login";
-	} else {
 		request.getSession().setAttribute("admins", admins);
-		return"redirect:/productmanage/quertyProduct.action";
+	if (admins == null) {
+		return "productmanage/login/login";
+} else if (admins
+			.getAuthorityid()==2) {
+		/*System.out.println(admins.getAuthority()+"------------------------");*/
+		//编辑员跳转页面'
+		
+		return "null";
+	}else if (admins.getAuthorityid()==3) {System.out.println(admins.getAuthorityid()+"dsds-----------------------");
+		//送货员跳转
+		return null;
+	}else if (admins.getAuthorityid()==4) {System.out.println(admins.getAuthorityid()+"----adada--------------------");
+		//商品管理跳转
+		return"redirect:/productmanage/quertyProduct.action.action";
+	}else if (admins.getAuthorityid()==5) {System.out.println(admins.getAuthorityid()+"-----adas-------------------");
+		//分店管理跳转
+		return"redirect:/brach/index.action";
+	}else if (admins.getAuthorityid()==6) {System.out.println(admins.getAuthorityid()+"----adad--------------------");
+		//ECO跳转
+		return"null";
+	}else if (admins.getAuthorityid()==7) {System.out.println(admins.getAuthorityid()+"----faefawef--------------------");
+		//超级管理员跳转
+		return"null";
 	}
+	System.out.println(admins.getEmployeeid());
+	System.out.println(admins.getPassword());
+	return null;
 		}
 	
 
 	@RequestMapping(value="quertyProduct")
-	public String quertyAllProduct(Model model,HttpServletRequest request) throws Exception {
+	public  String quertyAllProduct( Model model,HttpServletRequest request) throws Exception {
 	
 		List<ProductCustom> product = productManageService.quertyAllProduct(( getAdmins(request)).getBranchId());
 		model.addAttribute("product", product);
-		return "productmanage/table";
+		return "productmanage/page/productadmin";
+		
 		}
+
+	
+	
 	
 	@RequestMapping("deleteproduct")
 	public String  deleteProduct(Integer productid,HttpServletRequest request) throws Exception{
@@ -85,7 +111,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		//查询所有商品类型
 		productTypes = productService.queryProductTypeByCondition(null);
 		model.addAttribute("productTypes", productTypes);
-		return"productmanage/form-controls";
+		return"productmanage/page/insertproduct";
 		
 	}
 	
@@ -100,7 +126,22 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	public String selectProduct(Integer productid,Model model ,HttpServletRequest request) throws Exception{
 		Product product= productManageService.quertyProduct(productid);
 		model.addAttribute("product", product);
-		return"productmanage/productlist";
-		
+		request.setAttribute("product", product);
+		return"productmanage/page/productinfo";
 	}
+	
+	//产品详细信息包括产品分类信息 
+	@RequestMapping(value="productInfo")
+	public String productInfo(Integer productid ) throws Exception{
+		Product product=productManageService.quertyProduct(productid);
+		if (product.getProducttypeid()==7) {
+			/*producttasteService.quertyProductByid(productid);*/
+			
+		}else if (product.getProducttypeid()==10) {
+			/*producttasteService.quertyProductByid(productid);*/
+		}
+	return null;
+	}
+	
+	
 }

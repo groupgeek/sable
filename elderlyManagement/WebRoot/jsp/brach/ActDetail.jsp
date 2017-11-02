@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i>${employee.employeename}
+								<i class="halflings-icon white user"></i>${admins.employeename}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -104,12 +104,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
 						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/employees.action"><i class="icon-list-alt"></i><span class="hidden-tablet">员工管理</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/brach/products.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+						<li><a href="${pageContext.request.contextPath }/brach/charts.action"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->
@@ -154,11 +155,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group">
 							  <label class="control-label" for="typeahead">更换活动名称 </label>
 							  <div class="controls">
-								<input type="text" name="activityname" class="span6 typeahead" id="typeahead" value="${act.activityname }">
+								<input type="text" onclick="char()" name="activityname" 
+								class="span6 typeahead" id="typeahead" value="${act.activityname }">
 							  </div>
 					</div>
+
+
+
+
+
+
+
+
+
+
+									<script type="text/javascript">
+											function char(){
+											if (/[^\\x00-\\xff]/g.test(str)) {
+						      					  return false;
+						   					 }
+						   					 else {
+						      					  return true;
+						  					  }
+											
+											}
 					
-					<div class="control-group">
+					
+									</script>
+
+									<div class="control-group">
 							  <label class="control-label" for="date01" class="span6 typeahead">更换活动日期</label>
 							  <div class="controls">
 							 <%--  <fmt:formatDate value="${messages[0].messagetime }"

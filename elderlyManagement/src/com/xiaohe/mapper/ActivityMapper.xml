@@ -273,7 +273,7 @@
 	where a.activityTypeID = b.activityTypeID
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
-	and c.registery = '是'
+	and c.registery = '报名'
 	and b.activityTypeID=1
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
@@ -282,7 +282,7 @@
 	where a.activityTypeID = b.activityTypeID
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
-	and c.registery = '是'
+	and c.registery = '报名'
 	and b.activityTypeID=2
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
