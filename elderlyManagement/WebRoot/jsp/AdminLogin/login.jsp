@@ -50,23 +50,23 @@ with (thisform)
 <meta name="twitter:image" content="" />
 <meta name="twitter:url" content="" />
 <meta name="twitter:card" content="" />
-<link rel="shortcut icon" href="/jsp/AdminLogin/images/favicon.png">
+<link rel="shortcut icon" href="/jsp/producmanage/logReg/images/favicon.png">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
  
 <link rel="shortcut icon"
 
-	href="${pageContext.request.contextPath }/jsp/AdminLogin/favicon.ico">
+	href="${pageContext.request.contextPath }/jsp/logReg/favicon.ico">
 
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
 	rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/jsp/AdminLogin/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath }/jsp/logReg/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/jsp/AdminLogin/css/animate.css">
+	href="${pageContext.request.contextPath }/jsp/logReg/css/animate.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/jsp/AdminLogin/css/style.css">
+	href="${pageContext.request.contextPath }/jsp/logReg/css/style.css">
  <!-- Bootstrap CSS -->    
     <link href="${pageContext.request.contextPath }/jsp/AdminLogin/css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
@@ -76,12 +76,12 @@ with (thisform)
     <link href="${pageContext.request.contextPath }/jsp/AdminLogin/css/elegant-icons-style.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath }/jsp/AdminLogin/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom styles -->
-    <link href="${pageContext.request.contextPath }/jsp/AdminLogin/css/style.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/jsp/AdminLogin/css/style-responsive.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/jsp/AdminLogin/login/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/jsp/AdminLogin/login/css/style-responsive.css" rel="stylesheet" />
 
 <!-- Modernizr JS -->
 <script
-	src="${pageContext.request.contextPath }/jsp/AdminLogin/js/modernizr-2.6.2.min.js"></script>
+	src="${pageContext.request.contextPath }/jsp/logReg/js/modernizr-2.6.2.min.js"></script>
 
 
 <!-- FOR IE9 below -->
@@ -147,25 +147,25 @@ with (thisform)
 
 	<!-- jQuery -->
 	<script
-		src="${pageContext.request.contextPath }/jsp/AdminLogin/js/jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.min.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="${pageContext.request.contextPath }/jsp/AdminLogin/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath }/jsp/logReg/js/bootstrap.min.js"></script>
 	<!-- Placeholder -->
 	<script
-		src="${pageContext.request.contextPath }/jsp/AdminLogin/js/jquery.placeholder.min.js"></script>
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.placeholder.min.js"></script>
 	<!-- Waypoints -->
 	<script
-		src="${pageContext.request.contextPath }/jsp/AdminLogin/js/jquery.waypoints.min.js"></script>
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
-	<script src="${pageContext.request.contextPath }/jsp/AdminLogin/js/main.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/logReg/js/main.js"></script>
 	
 <!-- 	<script
 	src="//www.w3cschool.cn/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script> -->
 	<script 
-		src="${pageContext.request.contextPath }/jsp/AdminLogin/js/jquery.validate.1.8.1.min.js"></script>
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.1.8.1.min.js"></script>
 		<script 
-		src="${pageContext.request.contextPath }/jsp/AdminLogin/js/jquery.validate.messages_zh.js"></script>
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.messages_zh.js"></script>
 <!-- <script
 	src="//www.w3cschool.cn/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script> -->
 <script>
@@ -178,4 +178,9 @@ with (thisform)
 
 </body>
 </html>
+
+
+	
+
+	
 

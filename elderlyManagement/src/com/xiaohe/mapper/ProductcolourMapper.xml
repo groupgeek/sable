@@ -68,4 +68,11 @@
       ProductColour = #{productcolour,jdbcType=VARCHAR}
     where productColourId = #{productcolourid,jdbcType=INTEGER}
   </update>
+  
+   <select id="findProductColorAndSize" parameterType="Integer" resultType="com.xiaohe.bean.ProductcolourCustom">
+  SELECT p.picture,p.productId,p.productName,p.price,pr.ProductColour,pz.size,pz.sizeStock 
+  FROM product p ,productcolour pr,productcoloursize pz 
+  WHERE p.productId=pr.productId 
+  AND pr.productColourId=pz.ProductColourId and p.productId=#{productId}
+  </select>
 </mapper>

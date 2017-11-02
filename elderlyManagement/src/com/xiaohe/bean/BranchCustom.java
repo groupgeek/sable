@@ -16,7 +16,6 @@ public class BranchCustom extends Branch {
 	private Integer usernum;
 	private Integer employeenum;
 	
-
 	public Integer getUsernum() {
 		return usernum;
 	}

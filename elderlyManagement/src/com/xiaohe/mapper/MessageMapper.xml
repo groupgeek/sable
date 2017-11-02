@@ -160,11 +160,9 @@
 		  <if test="branchid != null" >
 	        AND b.branchId = #{branchid,jdbcType=DATE}
 	      </if>
-	  	<if test="username != null">
-	  		<if test="messagecontext != null">
+	  	<if test="search != null">
 	  			AND (userName LIKE '%${search}%'
 		    	OR messageContext LIKE '%${search}%')
-	  		</if>
 	  	</if>
 	  	<if test="sort != null" >
 		    ORDER BY #{sort} DESC  
@@ -186,11 +184,9 @@
 		  <if test="branchid != null" >
 	        AND b.branchId = #{branchid,jdbcType=DATE}
 	      </if>
-	  	<if test="username != null">
-	  		<if test="messagecontext != null">
-	  			AND (userName LIKE '%${username}%'
-		    	OR messageContext LIKE '%${messagecontext}%')
-	  		</if>
+	  	<if test="search != null">
+	  			AND (userName LIKE '%${search}%'
+		    	OR messageContext LIKE '%${search}%')
 	  	</if>
   
   </select>

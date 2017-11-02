@@ -83,7 +83,7 @@
   
   <!-- 自定义sql -->
   
-    <select id="oneBranch" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Branch">
+  <select id="oneBranch" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Branch">
   select * from branch where employeeid = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -132,7 +132,4 @@
 			AND e.employeeId = b.employeeId AND a.areaId = b.areaId 
 			AND u.areaId = b.areaId
   </select>
-  
-  
-  
 </mapper>
