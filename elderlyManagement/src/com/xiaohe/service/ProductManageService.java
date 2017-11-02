@@ -35,6 +35,13 @@ public interface ProductManageService {
 	 * @throws 单个
 	 */
 	public Product quertyProduct(Integer productid) throws Exception;
+	
+	/**
+	 * 
+	 * @param branchid
+	 * @return	本店现在推荐商品
+	 */
+	public List<ProductCustom> quertyRecommendProduct(Integer branchid);
 
 }
  

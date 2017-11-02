@@ -10,6 +10,7 @@ import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.mapper.ProductMapper;
+import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.service.ProductManageService;
 
 @Repository("productManageService")
@@ -18,6 +19,13 @@ public class ProductManageServiceImpl implements ProductManageService {
 	@Autowired
 	@Qualifier("productMapper")
 	private ProductMapper productMapper;
+	
+
+	@Autowired
+	@Qualifier("productrecommendMapper")
+	private ProductrecommendMapper productrecommendMapper;
+	
+	
 	
 	
 	public List<ProductCustom> quertyAllProduct(Integer branchid) throws Exception {
@@ -58,6 +66,10 @@ public Product quertyProduct(Integer productid) throws Exception {
 
 public void updateProductCustom(Product product) throws Exception {
 	productMapper.updateByPrimaryKeySelective(product);
+}
+public List<ProductCustom> quertyRecommendProduct(Integer branchid) {
+	
+	return productrecommendMapper.quertyRecommendProdcut(branchid);
 }
 
 }

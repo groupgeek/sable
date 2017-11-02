@@ -51,4 +51,5 @@ public interface BranchMapper {
      * @return
      */
     BranchCustom selectBranchInfoById(Integer id);
+    
 }

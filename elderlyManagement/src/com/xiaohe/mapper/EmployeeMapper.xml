@@ -434,5 +434,17 @@
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
   
+  <select id="selectAllEmployeeByPosition" resultType="employeeCustom" parameterType="employeeCustom">
   
+	SELECT * FROM employee
+	<where>
+		 <if test="positionid != null" >
+	        positionId = #{positionid}
+	     </if>	
+     </where>
+  </select>
+  
+  <update id="updateEmployeePositionalNull" parameterType="Integer">
+  	UPDATE employee SET positionId = null where employeeId = #{id}
+  </update>
 </mapper>

@@ -10,7 +10,7 @@
 		data:'{"branchid"'+':'+'"'+branchid+'"'
     			+'}',
 		success:function(data){
-			$("#branchUrl").attr("href",root+'/superAdmin/updateBranchInfoView?id='+data.branchid);
+			$("#branchUrl").attr("href",root+'/jsp/admin/page/updateBranch.jsp?brinchid='+data.branchid);
 			$("#branchname span").text(data.branchname);
 			$("#employeename span").text(data.employeename);
 			$("#areaname span").text(data.areaname);

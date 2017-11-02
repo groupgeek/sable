@@ -31,6 +31,10 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
+import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductVo;
+import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.ShowMessage;
 import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
@@ -43,6 +47,8 @@ import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.LevelSevice;
 import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
+import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.UserService;
 
 @Controller
@@ -88,6 +94,15 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("messageService")
 	private MessageService messageService;
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("productTypeService")
+	private ProductTypeService productTypeService;
+	
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -510,14 +525,195 @@ public class superAdminController {
 		return branchVo;
 	}
 	
+	/**
+	 * 查询分店信息
+	 * @param condition
+	 * @return
+	 */
 	@RequestMapping("/queryBranchInfo")
 	public @ResponseBody BranchCustom queryBranchInfo(@RequestBody BranchCustom condition){
 		if(condition == null) return null;
 		if(condition.getBranchid() == null) return null;
 		BranchCustom branchInfo = new BranchCustom();
 		branchInfo = branchService.queryBranchInfoById(condition.getBranchid());
-		System.out.println(branchInfo.getEmployeenum());
 		return branchInfo;
 	}
+	/**
+	 * 进入分店修改页面
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/updateBranchView")
+	public @ResponseBody BranchVo updatBranchView(@RequestBody BranchCustom condition){
+		BranchVo branchVo = new BranchVo();
+		branchVo = branchService.updateBranchView(condition.getBranchid());
+		return branchVo;
+	}
+	/**
+	 * 修改分店信息
+	 * @param branch
+	 * @return
+	 */
+	@RequestMapping("/updateBranch")
+	public @ResponseBody ShowMessage updatBranch(@RequestBody BranchCustom branch){
+		ShowMessage showMessage = new ShowMessage();
+		String message = null;
+		if(branchService.updateBranch(branch)){
+			message = "修改成功";
+		}else{
+			message = "修改失败";
+		}
+		
+		showMessage.setMessage(message);
+		return showMessage;
+	}
 	
+	/**
+	 * 加载添加分店页面数据
+	 * @return
+	 */
+	@RequestMapping("/addBranchView")
+	public @ResponseBody BranchVo addBranchView(){
+		
+		BranchVo branchVo = new BranchVo();
+		branchVo = branchService.addBranchView();
+		
+		return branchVo;
+	}
+	
+	/**
+	 * 分店添加
+	 * @return
+	 */
+	@RequestMapping("/addBranch")
+	public @ResponseBody ShowMessage addBranch(@RequestBody BranchCustom branchInfo){
+		
+		ShowMessage showMessage = new ShowMessage();
+		String message = null;
+		if(branchService.addBranch(branchInfo)){
+			message = "修改成功";
+		}else{
+			message = "修改失败";
+		}
+		
+		showMessage.setMessage(message);
+		return showMessage;
+	}
+	
+	/**
+	 * 查询所有商品类型（小）
+	 * @return
+	 */
+	@RequestMapping("/queryAllProductType")
+	public @ResponseBody List<ProducttypeCustom> queryAllProductType(){
+		List<ProducttypeCustom> allProducttype = new ArrayList<ProducttypeCustom>();
+		allProducttype = productTypeService.querySimallProducttype();
+		return allProducttype;
+	}
+	
+	/**
+	 * 查询所有产品
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryAllProduct")
+	public @ResponseBody ProductVo queryAllProduct(@RequestBody ProductCustom condition){
+		ProductVo productVo = new ProductVo();
+		productVo = productService.queryAllProductByCondition(condition);
+		
+		return productVo;
+	}
+	
+	/**
+	 * 查询产品详细信息
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryProductInfo")
+	public @ResponseBody ProductCustom queryProductInfo(@RequestBody ProductCustom condition){
+		if(condition == null) return null;
+		if(condition.getProductid() == null) return null;
+		ProductCustom productInfo = new ProductCustom();
+		productInfo = productService.queryProductInfoByProductid(condition.getProductid());
+		return productInfo;
+	}
+	
+	/**
+	 * 加载修改商品数据
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/updateProductView")
+	public @ResponseBody ProductVo updateProductView(@RequestBody ProductCustom condition){
+		if(condition == null) return null;
+		if(condition.getProductid() == null) return null;
+		ProductVo productVo = new ProductVo();
+		productVo = productService.updateProductView(condition.getProductid());
+		return productVo;
+	}
+	
+	/**
+	 * 加载商品类型 点击事件
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/updateProductType")
+	public @ResponseBody List<ProducttypeCustom> updateProductType(@RequestBody ProducttypeCustom condition){
+		List<ProducttypeCustom> list= new ArrayList<ProducttypeCustom>();
+		if(condition == null) return null;
+		if(condition.getProducttypeid() == null || condition.getProducttypeid() < 0) return null;
+		list = productTypeService.queryProductTypeByFatherId(condition.getProducttypeid());
+		return list;
+	}
+	
+	/**
+	 * 修改商品
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/updateProduct")
+	public String updateProduct(Model model,ProductCustom info,MultipartFile pictureUpload){
+		if(info == null) return null;
+		if(info.getProductid() == null) return "admin/page/mallInfo";
+		
+		if(productService.updateProduct(info,pictureUpload)){
+			model.addAttribute("message", "修改成功");
+		}else{
+			model.addAttribute("message", "修改失败");
+		}
+		
+		return "admin/page/mallInfo";
+	}
+	
+	/**
+	 * 加载修改商品数据
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/addProductView")
+	public @ResponseBody List<ProducttypeCustom> addProductView(){
+		
+		List<ProducttypeCustom> list = new ArrayList<ProducttypeCustom>();
+		list = productTypeService.queryFatherType();
+		
+		return list;
+	}
+	
+	/**
+	 * 添加商品
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/addProduct")
+	public String addProduct(Model model,ProductCustom productInfo,MultipartFile pictureUpload){
+		if(productInfo == null) return "admin/page/addProduct";
+		
+		if(productService.addProduct(productInfo, pictureUpload)){
+			model.addAttribute("message", "修改成功");
+		}else{
+			model.addAttribute("message", "修改失败");
+		}
+		
+		return "admin/page/addProduct";
+	}
 }

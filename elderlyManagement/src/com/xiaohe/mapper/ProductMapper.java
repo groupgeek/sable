@@ -1,8 +1,6 @@
 package com.xiaohe.mapper;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
@@ -90,7 +88,7 @@ public interface ProductMapper {
     
     /**
      * 查询父类类型
-     * @param id
+     * @param id 产品id
      * @return
      */
     ProducttypeCustom selectProductFathertypeById(Integer id);
@@ -116,9 +114,55 @@ public interface ProductMapper {
      */
     List<ProductCustom> selectProductBytypeId(ProductCustom condition);
     
+    /**
+     * 查询全部商品信息
+     * @param condition
+     * @return
+     */
+    List<ProductCustom> selectAllProductByCondition(ProductCustom condition);
     
+    /**
+     * 查询商品数量 同上
+     * @param condition
+     * @return
+     */
+    Integer selectAllProductSumByCondition(ProductCustom condition);
     
+
+    /**
+     * 	缺少货物查询
+     * @return
+     */
+    List<ProductCustom> quertyStockout();
+   
+
+    /**
+     * 查询食品类的商品
+     * @param id
+     * @return
+     */
+    ProductCustom selectProductAndTasteById(Integer id);
     
+    /**
+     * 查询服装类的商品 不查询型号
+     * @param id
+     * @return
+     */
+    ProductCustom selectProductAndColorById(Integer id);
+    
+    /**
+     * 查询服装类的商品 查询型号
+     * @param id
+     * @return
+     */
+    /*ProductCustom selectProductAndColorSizeById(Integer id);*/
+    
+    /**
+     * 查询其他类的商品
+     * @param id
+     * @return
+     */
+    ProductCustom selectProductAndOtherById(Integer id);
     
     
     

@@ -136,4 +136,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return accountNumber;
 	}
 
+	public List<EmployeeCustom> queryAllEmployeeByPosition(Integer positionid) {
+		List<EmployeeCustom> all = new ArrayList<EmployeeCustom>();
+		if(positionid == null || positionid < 0){
+			return null;
+		}
+		EmployeeCustom custom = new EmployeeCustom();
+		custom.setPositionid(positionid);
+		all = employeeMapper.selectAllEmployeeByPosition(custom);
+		
+		return all;
+	}
+
 }
