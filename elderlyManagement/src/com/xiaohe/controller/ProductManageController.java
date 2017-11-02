@@ -150,7 +150,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		}
 		Product list = productManageService.quertyProduct(productid);
 		model.addAttribute("list", list);
-		return "/productmanage/page/producttasteInfo";
+		return null;
 	}
 	
 	//热门商品
