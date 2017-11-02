@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.UserCustom;
 
 public interface EmployeeMapper {
     int deleteByPrimaryKey(Integer employeeid);
@@ -18,7 +19,35 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
     
-
+    /**
+     * 查询所有员工的部分信息
+     * @param employee
+     * @return
+     */
+    List<Employee> selectEmployee(Employee employee);
+    
+    
+    /**
+     * 查询员工信息
+     * @param condition
+     * @return
+     */
+    List<EmployeeCustom> selectAllEmployeeByCondition(EmployeeCustom condition);
+    
+    /**
+     * 查询员工数量
+     * @param condition
+     * @return
+     */
+    Integer selectAllEmployeeSumByCondition(EmployeeCustom condition);
+    
+    /**
+     * 查询员工的所有信息
+     * @param id
+     * @return
+     */
+    EmployeeCustom selectEmployeeInfoById(Integer id);
+    
     /**
      * 根据管理员 的id查询到对应的分店下面的员工（根据冠利元id，分店的所有员工）
      * @param id

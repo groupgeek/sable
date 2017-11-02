@@ -31,9 +31,6 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
-<link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/admin/page/css/superAdmin.css"
-	rel="stylesheet">
 	<!-- end: CSS -->
 	
 
@@ -351,15 +348,15 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li id = "home"><a href="JavaScript:;"><i class="icon-bar-chart"></i><span
+						<li id = "home"><a href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-envelope"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp"><i class="icon-envelope"></i><span
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
@@ -374,7 +371,7 @@
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">商城管理</span>
 						</a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
@@ -402,19 +399,38 @@
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="${pageContext.request.contextPath }/jsp/admin/index.jsp">主页</a> 
+					<i class="icon-angle-right"></i>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp">客户管理</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="#">客户详情</a></li>
+			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户详细信息</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
+							<a href="" id = "userUrl"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
 						<form class="form-horizontal">
 							<fieldset>
+							 <div class="control-group" id = "avatar">
+								<label class="control-label">头像</label>
+								<div class="controls">
+									<img  id = "" src="" style="width: 100px;">
+								</div>
+							  </div>
 							  <div class="control-group" id = "username">
 								<label class="control-label">姓名</label>
 								<div class="controls">
@@ -478,7 +494,7 @@
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "accountnumber">
+							  <div class="control-group" id = "bankcardno">
 								<label class="control-label">银行卡号</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
@@ -528,24 +544,48 @@
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div class="control-group" id = "branchname">
+							   <div class="control-group" id = "manager">
 								<label class="control-label">分店管理员</label>
 								<div class="controls">
 								  <span class="input-xlarge uneditable-input">Some value here</span>
 								</div>
 							  </div>
-							   <div style="position: relative;left: 500px;bottom: 950px; " id = "med">
+							  
+							  <div class="control-group" id = "nowmedicalrecords">
 								<label class="control-label">病例</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here
-								  
-								  </span>
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
 								</div>
 							  </div>
-							  <div class="form-actions">
+							  <div class="control-group" id = "beforemedicalrecords">
+								<label class="control-label">病例</label>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
+								</div>
+							  </div>
+							  <div class="control-group" id = "personalrecords">
+								<label class="control-label">病例</label>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
+								</div>
+							  </div>
+							  <div class="control-group" id = "familyrecords">
+								<label class="control-label">病例</label>
+								<div class="controls">
+									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
+								</div>
+							  </div>
+							  
+							  
+							  
+							  
+							  
+							  
+							  
+							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
 								<button class="btn">Cancel</button>
-							  </div>
+							  </div> -->
 							</fieldset>
 						  </form>
 					

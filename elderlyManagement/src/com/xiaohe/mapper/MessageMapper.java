@@ -2,6 +2,7 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
+import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.Message;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
@@ -59,5 +60,26 @@ public interface MessageMapper {
      * @return
      */
     int branchMessagesCount(Integer id);
+    
+    /**
+     * 查询留言信息
+     * @param condition
+     * @return
+     */
+    List<MessageCustom> selectAllMessageByCondition(MessageCustom condition);
+    
+    /**
+     * 查询留言数量
+     * @param condition
+     * @return
+     */
+    Integer selectAllMessageSumByCondition(MessageCustom condition);
+    
+    /**
+     * 查询留言的所有信息
+     * @param id
+     * @return
+     */
+    MessageCustom selectMessageInfoById(Integer id);
     
 }

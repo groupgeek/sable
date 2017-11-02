@@ -352,7 +352,7 @@
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
@@ -368,14 +368,14 @@
 								class="hidden-tablet"> 报表统计</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">商城管理</span>
 						</a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
@@ -422,13 +422,19 @@
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>员工详细信息</h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="" id = "#employeeUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="" id = "employeeUrl"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
 						<form class="form-horizontal">
 							<fieldset>
+							 <div class="control-group" id = "avatar">
+								<label class="control-label">头像</label>
+								<div class="controls">
+									<img  id = "" src="" style="width: 100px;">
+								</div>
+							  </div>
 							  <div class="control-group" id = "employeename">
 								<label class="control-label">姓名</label>
 								<div class="controls">

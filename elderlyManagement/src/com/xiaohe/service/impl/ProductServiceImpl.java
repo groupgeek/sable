@@ -3,8 +3,11 @@ package com.xiaohe.service.impl;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -68,19 +71,25 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<ProductCustom> queryProductByCondition(ProductCustom condition) {
-		if(condition.getCurrentPage() >= 1){
-			 Integer tempBegin = (condition.getCurrentPage()-1) * condition.getTotal();
-			condition.setBegin(tempBegin);
-			/*condition.setSort(null);
-			condition.setProducttypename(null);*/
+		List<ProductCustom> listTemp = new ArrayList<ProductCustom>();
+		if(condition != null){
+			if(condition.getCurrentPage() >= 1){
+				 Integer tempBegin = (condition.getCurrentPage()-1) * condition.getTotal();
+				condition.setBegin(tempBegin);
+				/*condition.setSort(null);
+				condition.setProducttypename(null);*/
+			}else{
+				condition.setBegin(0);
+			}
+			if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
+				condition.setProducttypename(null);
+			}
+			if(condition.getSort() == "" || "null".equals(condition.getSort())){
+				condition.setSort(null);
+			}
 		}
-		if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
-			condition.setProducttypename(null);
-		}
-		if(condition.getSort() == "" || "null".equals(condition.getSort())){
-			condition.setSort(null);
-		}
-		List<ProductCustom> listTemp = productMapper.selectProductByCondition(condition);
+		
+		listTemp = productMapper.selectProductByCondition(condition);
 		return listTemp;
 	}
 
@@ -100,14 +109,17 @@ public class ProductServiceImpl implements ProductService {
 		
 		ProductCustom product= new ProductCustom();
 		Product temp = productMapper.selectByPrimaryKey(id);
-		if(temp.getEdiblemethod() != null){
+		if(temp != null){
 			
-			product = productMapper.selectProductTasteById(id);
-			product.setColourList(null);
-		}else{
-			product = productMapper.selectProductColourById(id);
-			if(product != null){
-				product.setTasteList(null);
+			if(temp.getEdiblemethod() != null){
+				
+				product = productMapper.selectProductTasteById(id);
+				product.setColourList(null);
+			}else{
+				product = productMapper.selectProductColourById(id);
+				if(product != null){
+					product.setTasteList(null);
+				}
 			}
 		}
 		
@@ -180,9 +192,37 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductCustom> querySimilarProductsByProductId(ProductCustom condition) {
 		
 		Product product = productMapper.selectByPrimaryKey(condition.getProductid());
-		condition.setProducttypeid(product.getProducttypeid());
+		if(product != null){
+			condition.setProducttypeid(product.getProducttypeid());
+		}
 		List<ProductCustom> products = productMapper.selectProductByProducttypeId(condition);
 		return products;
+	}
+
+	public List<ProductCustom> queryProductByTypeId(ProductCustom condition) {
+		return productMapper.selectProductBytypeId(condition);
+	}
+
+	public Map<ProducttypeCustom, List<ProductCustom>> queryProductByAllType(
+			ProductCustom condition) {
+		//容器
+		List<ProducttypeCustom> allType = new ArrayList<ProducttypeCustom>();
+		List<ProductCustom> products = new ArrayList<ProductCustom>();
+		Map<ProducttypeCustom, List<ProductCustom>> allTypeProducts = new HashMap<ProducttypeCustom, List<ProductCustom>>();
+		
+		//开始查询所有的类型
+		allType = producttypeMapper.selectSmallProductType(null);
+		//开始查询某一类类型的产品
+		if(allType != null){
+			for(ProducttypeCustom type: allType){
+				condition.setProducttypeid(type.getProducttypeid());
+				products = productMapper.selectProductBytypeId(condition);
+				//把查询出来的产品和类型加入到容器中
+				allTypeProducts.put(type, products);
+			}
+		}
+		
+		return allTypeProducts;
 	}
 
 

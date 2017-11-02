@@ -15,5 +15,6 @@ public interface AreaService {
 	 * @return
 	 */
 	public List<AreaCustom> queryAreas(AreaCustom condition);
+	
 
 }

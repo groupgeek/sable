@@ -260,18 +260,18 @@
 								class="icon-bar-chart"></i><span class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-envelope"></i><span
+						<li id="employeeInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp"><i class="icon-envelope"></i><span
 								class="hidden-tablet">员工信息管理</span> </a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
 								class="hidden-tablet"> 报表统计</span> </a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span> </a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">商城管理</span> </a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span> </a>
 						</li>
 						<!-- <li><a class="dropmenu" href="JavaScript:;"><i
@@ -319,6 +319,9 @@
 							</h2>
 							<h2>
 								<span class="break"></span>共有员工<span id="employeeSum"></span>人
+							</h2>
+							<h2>
+								<span class="break"></span><a href="${pageContext.request.contextPath }/jsp/admin/page/addEmployee.jsp" style="color: white; text-decoration: none;">添加员工</a>
 							</h2>
 							<div class="box-icon">
 								<a href="#" class="btn-minimize"><i

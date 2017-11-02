@@ -23,4 +23,23 @@ public interface ActivitytypeMapper {
      * @return
      */
     List<ActivitytypeCustom> AllActTypes(); 
+    
+    /**
+     * 查询所有的活动父类型除外
+     * @return
+     */
+    List<ActivitytypeCustom> selectAllActTypes();
+    
+    /**
+     * 查询父类类型
+     * @return
+     */
+    List<ActivitytypeCustom> selectFatherTypes();
+    
+    /**
+     * 根据父类查询子类
+     * @param id
+     * @return
+     */
+    List<ActivitytypeCustom> selectAllSonByFatherId(Integer id);
 }

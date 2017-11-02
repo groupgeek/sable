@@ -5,6 +5,8 @@ public class Activitytype {
 
     private String activitytypename;
 
+    private Integer fathertypeid;
+
     public Integer getActivitytypeid() {
         return activitytypeid;
     }
@@ -19,5 +21,13 @@ public class Activitytype {
 
     public void setActivitytypename(String activitytypename) {
         this.activitytypename = activitytypename == null ? null : activitytypename.trim();
+    }
+
+    public Integer getFathertypeid() {
+        return fathertypeid;
+    }
+
+    public void setFathertypeid(Integer fathertypeid) {
+        this.fathertypeid = fathertypeid;
     }
 }

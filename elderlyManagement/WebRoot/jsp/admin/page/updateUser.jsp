@@ -32,9 +32,6 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
-<link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/admin/page/css/superAdmin.css"
-	rel="stylesheet">
 	<!-- end: CSS -->
 	
 
@@ -352,11 +349,11 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li id = "home"><a href="JavaScript:;"><i class="icon-bar-chart"></i><span
+						<li id = "home"><a href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
@@ -368,14 +365,14 @@
 								class="hidden-tablet"> 报表统计</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">商城管理</span>
 						</a>
-						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
@@ -430,9 +427,28 @@
 					
 					
 					<div class="box-content">
-						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateUserInfo" method="post">
+						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateUserInfo" method="post" enctype="multipart/form-data">
 							<fieldset>
-							
+							 <div class="control-group" id = "avatar">
+								<label class="control-label">头像</label>
+								<div class="controls">
+									<c:choose>
+										<c:when test="${userInfo.avatar == null}">
+											<p>无</p>
+										</c:when>
+									
+										<c:otherwise>
+											<img  id = "" src="/upload/${userInfo.avatar }" style="width: 100px;">
+										</c:otherwise>
+									</c:choose>
+								</div>
+							  </div>
+							<div class="control-group" id = "avatartemp">
+								<label class="control-label">更改头像</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
+								</div>
+							  </div>
 							  <div class="control-group" id="username">
 								<label class="control-label" for="focusedInput">姓名</label>
 								<div class="controls">
@@ -452,16 +468,23 @@
 								<label class="control-label">性别</label>
 								<div class="controls">
 								  <select name="sex">
-								  	<c:if test='${userInfo.sex == "男" }'>
-									  	<option value = "女" id = "sex_0">女</option>
-										<option value = "男" id = "sex_1" selected="selected">男</option>
-										<option value = "无" id = "sex_2">无</option>
-								 	</c:if>
-									  <c:if test='${userInfo.sex == "女" }'>
-									  	<option value = "女" id = "sex_0" selected="selected">女</option>
-										<option value = "男" id = "sex_1">男</option>
-										<option value = "无" id = "sex_2">无</option>
-									  </c:if>
+								  	<c:choose>
+								  		<c:when test='${userInfo.sex == "男" }'>
+									  		<option value = "女" id = "sex_0">女</option>
+											<option value = "男" id = "sex_1" selected="selected">男</option>
+											<option value = "无" id = "sex_2">无</option>
+								  		</c:when>
+								  		<c:when test='${userInfo.sex == "女" }'>
+									  		<option value = "女" id = "sex_0" selected="selected">女</option>
+											<option value = "男" id = "sex_1">男</option>
+											<option value = "无" id = "sex_2">无</option>
+								  		</c:when>
+								  		<c:otherwise>
+								  			<option value = "女" id = "sex_0">女</option>
+											<option value = "男" id = "sex_1">男</option>
+											<option value = "无" id = "sex_2" selected="selected">无</option>
+								  		</c:otherwise>
+								  	</c:choose>
 								  
 								  
 								  </select>
@@ -483,11 +506,11 @@
 							   <div class="control-group" id = "registrationdate">
 								<label class="control-label">注册日期</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "registrationdate" type="text" value="<fmt:formatDate value="${userInfo.registrationdate }"pattern="yyyy-MM-dd" />">
+								  <input class="input-xlarge focused" name = "registrationdate" type="text" onClick="laydate()" value="<fmt:formatDate value="${userInfo.registrationdate }"pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							  <div class="control-group" id = "address">
-								<label class="control-label">地址</label>
+								<label class="control-label">家庭地址</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "address" type="text" value="${userInfo.address }">
 								</div>
@@ -529,14 +552,14 @@
 							  <div class="control-group" id = "birthday">
 								<label class="control-label">生日</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "birthday" type="text" value="<fmt:formatDate value="${userInfo.birthday }"pattern="yyyy-MM-dd" />">
+								  <input class="input-xlarge focused" name = "birthday" type="text" onClick="laydate()" value="<fmt:formatDate value="${userInfo.birthday }"pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "accountnumber">
+							  <div class="control-group" id = "bankcardno">
 								<label class="control-label">银行卡号</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "accountnumber" type="text" value="${userInfo.accountnumber }">
+								  <input class="input-xlarge focused" name = "bankcardno" type="text" value="${userInfo.bankcardno }">
 								</div>
 							  </div>
 							  
@@ -800,6 +823,8 @@
 	
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/page/js/updateUser.js"></script>	
+		
+		<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
 	
 	<!-- end: JavaScript-->
 	

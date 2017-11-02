@@ -2,6 +2,7 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
+import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 
@@ -53,4 +54,31 @@ public interface UserMapper {
      * @return
      */
     int countBranchUser(Integer id);
+    
+    /**
+     * 改变用户的在线情况
+     * @param userid
+     * @return
+     */
+    int changeOnLine(UserCustom user);
+    
+    /**
+     * 查询用户信息
+     * @param condition
+     * @return
+     */
+    List<UserCustom> selectAllUserByCondition(UserCustom condition);
+    
+    /**
+     * 查询用户数量
+     * @param condition
+     * @return
+     */
+    Integer selectAllUserSumByCondition(UserCustom condition);
+    
+    /**
+     * 查询用户所有信息
+     * @return
+     */
+    UserCustom selectUserInfoById(Integer id);
 }
