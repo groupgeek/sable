@@ -225,10 +225,12 @@ public class ProductServiceImpl implements ProductService {
 		return allTypeProducts;
 	}
 
+
 public List<ProductCustom> quertyStockout() {
 		
 		return productMapper.quertyStockout();
 	}
+
 
 
 
