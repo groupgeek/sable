@@ -117,7 +117,12 @@ public interface ProductMapper {
     List<ProductCustom> selectProductBytypeId(ProductCustom condition);
     
     
-    
+    /**
+     * 	缺少货物查询
+     * @return
+     */
+    List<ProductCustom> quertyStockout();
+   
     
     
     

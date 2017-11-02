@@ -554,7 +554,6 @@ public class BrachAdminController {
 		branch = branchService.oneBranch(a);
 		List<ProductCustom> products = new ArrayList<ProductCustom>();
 		products = branchService.quertyAllProduct(branch.getBranchid());
-		System.out.println(products.get(0).getProductname());
 		
 		ProductCustom productCustom1 = new ProductCustom();
 		ProductCustom productCustom2 = new ProductCustom();
