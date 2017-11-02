@@ -11,12 +11,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class FileUpload {
 	
-	public static String oneFileUpload(MultipartFile file,String type) throws IllegalStateException, IOException{
+	public static String oneFileUpload(MultipartFile newFile,String oldFile,String type) throws IllegalStateException, IOException{
+		
+				if(newFile.isEmpty()){
+					return null;
+				}
 				String path = "D:\\code\\web\\upload\\";
+				//开始上传文件的处理
 				//原始文件名称
-				String pictureFile_name =  file.getOriginalFilename();
+				String file_name =  newFile.getOriginalFilename();
 				//新文件名称
-				String newFileName = UUID.randomUUID().toString()+pictureFile_name.substring(pictureFile_name.lastIndexOf("."));
+				String newFileName = UUID.randomUUID().toString()+file_name.substring(file_name.lastIndexOf("."));
 				if("picture".equals(type)){
 					newFileName = "picture\\" + newFileName;
 				}
@@ -26,10 +31,27 @@ public class FileUpload {
 				//上传图片
 				File uploadPic = new File(path+newFileName);
 				//向磁盘写文件
-				file.transferTo(uploadPic);
+				newFile.transferTo(uploadPic);
+				
+				//开始删除原来文件的处理
+				if(oldFile == null){
+					return newFileName;
+				}
+				File rmFile = new File(path+oldFile);
+				if(rmFile.isDirectory()){
+					return newFileName;
+				}
+				if(rmFile.isFile()){
+					if(rmFile.delete()){
+						return newFileName;
+					}else{
+						File rmNewFile = new File(path+newFileName);
+						rmNewFile.delete();
+						return null;
+					}
+				}
+				
 				return newFileName;
-		
-		
 	}
 	
 	

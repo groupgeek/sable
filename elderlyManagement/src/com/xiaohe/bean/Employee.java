@@ -38,6 +38,8 @@ public class Employee {
 
     private BigDecimal totalbonus;
 
+    private String employeestatus;
+
     public Integer getEmployeeid() {
         return employeeid;
     }
@@ -172,5 +174,13 @@ public class Employee {
 
     public void setTotalbonus(BigDecimal totalbonus) {
         this.totalbonus = totalbonus;
+    }
+
+    public String getEmployeestatus() {
+        return employeestatus;
+    }
+
+    public void setEmployeestatus(String employeestatus) {
+        this.employeestatus = employeestatus == null ? null : employeestatus.trim();
     }
 }

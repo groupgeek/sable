@@ -62,5 +62,10 @@
   select * from authority
   </select>
   
+  <select id="selectAll" resultType="AuthorityCustom">
+  	SELECT * FROM authority
+  </select>
+  
+  
   
 </mapper>

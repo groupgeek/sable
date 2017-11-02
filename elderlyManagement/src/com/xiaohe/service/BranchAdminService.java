@@ -358,5 +358,7 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public List<Authority> authoritys();
+	
+	public int updateEmpl(EmployeeCustom employeeCustom);
 
 }

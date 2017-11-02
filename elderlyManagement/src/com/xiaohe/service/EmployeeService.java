@@ -1,7 +1,9 @@
 package com.xiaohe.service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.xiaohe.bean.Employee;
+
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 
@@ -16,17 +18,24 @@ public interface EmployeeService {
 	public EmployeeVo queryAllEmployeeByCondition(EmployeeCustom condition);
 	
 	/**
-	 * 查询用户信息所有信息
+	 * 查询员工信息所有信息
 	 * @param id
 	 * @return
 	 */
-	public EmployeeCustom queryEmployeeInfoById(Integer employeeid);
+	public EmployeeCustom queryEmployeeInfoById(Integer id);
+	
 	/**
-	 * 根据员工id获取员工的工号和密码
-	 * @param employeeId
+	 * 更新员工详细信息
+	 * @param employeeInfo
 	 * @return
-	 * @throws Exception
 	 */
-	public Employee selectByPrimaryKey(Integer employeeId) throws Exception;
+	public boolean UpdateUserInfoByUser(EmployeeCustom employeeInfo,MultipartFile pictureUpload);
+	
+	/**
+	 * 添加员工
+	 * @param employee
+	 * @return 员工账号
+	 */
+	public String addEmployee(EmployeeCustom employee);
 
 }

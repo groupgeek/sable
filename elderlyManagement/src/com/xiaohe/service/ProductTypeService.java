@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 
 @Transactional
@@ -14,5 +15,12 @@ public interface ProductTypeService {
 	 * @return 商品类型集合
 	 */
 	public List<ProducttypeCustom> queryProductTypeByFather(ProducttypeCustom producttype);
+	
+	/**
+	 * 查询出商品小类型
+	 * @param
+	 * @return
+	 */
+	public List<ProducttypeCustom> querySimallProducttype();
 
 }

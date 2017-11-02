@@ -57,7 +57,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $('input[type="checkbox"]').fancybutton();
             $('input[type="radio"]').fancybutton();
         });
-    </script>
+ </script>
+    <script type="text/javascript">
+  function validate_required(field,alerttxt)
+{
+with (field)
+  {
+  if (value==null||value=="")
+    {alert(alerttxt);return false}
+  else {return true}
+  }
+}
+
+function validate_form(thisform)
+{
+with (thisform)
+  {
+  if (validate_required(productname,"商品名不能为空!")==false)
+    {productname.focus();return false}
+  }
+}
+</script>
     <!-- /TinyMCE -->
     <style type="text/css">
         #progress-bar
@@ -123,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     Form Controls</h2>
                 <div class="block ">
                 
-                    <form id="insertproduct" action="${pageContext.request.contextPath }/productmanage/insertproduct.action">
+                    <form id="insertproduct" action="${pageContext.request.contextPath }/productmanage/insertproduct.action" onsubmit="return validate_form(this)" method="post">
                     <table class="form">
                       <input type="text" name="productid" style="visibility:hidden"/>
                         <tr>
@@ -284,7 +304,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div id="site_info">
         <p>
-            Copyright <a href="#">BlueWhale Admin</a>. All Rights Reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            Copyright <a href="#">BlueWhale Admin</a>. All Rights Reserved.More Templates <a href="#" target="_blank" title="孝和集团">孝和集团</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
         </p>
     </div>
 </body>

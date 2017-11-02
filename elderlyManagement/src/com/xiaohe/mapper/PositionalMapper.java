@@ -1,6 +1,9 @@
 package com.xiaohe.mapper;
 
+import java.util.List;
+
 import com.xiaohe.bean.Positional;
+import com.xiaohe.bean.PositionalCustom;
 
 public interface PositionalMapper {
     int deleteByPrimaryKey(Integer positionid);
@@ -14,4 +17,6 @@ public interface PositionalMapper {
     int updateByPrimaryKeySelective(Positional record);
 
     int updateByPrimaryKey(Positional record);
+    
+    List<PositionalCustom> selectAll();
 }

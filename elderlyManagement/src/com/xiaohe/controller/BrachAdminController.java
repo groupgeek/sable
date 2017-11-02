@@ -322,7 +322,7 @@ public class BrachAdminController {
 						pictureFile.delete();
 					}
 				}
-				filename = FileUpload.oneFileUpload(file, "picture");
+				filename = FileUpload.oneFileUpload(file,null, "picture");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -337,7 +337,7 @@ public class BrachAdminController {
 						videoFile.delete();
 					}
 				}
-				filevideo = FileUpload.oneFileUpload(nice, "video");
+				filevideo = FileUpload.oneFileUpload(nice,null, "video");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -381,7 +381,7 @@ public class BrachAdminController {
 		String fileVideo = null;
 		if(!file.isEmpty()){
 			try {
-				filename = FileUpload.oneFileUpload(file, "picture");
+				filename = FileUpload.oneFileUpload(file,null, "picture");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -390,7 +390,7 @@ public class BrachAdminController {
 		}
 		if (!nice.isEmpty()) {
 			try {
-				fileVideo = FileUpload.oneFileUpload(nice, "video");
+				fileVideo = FileUpload.oneFileUpload(nice,null, "video");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -537,15 +537,13 @@ public class BrachAdminController {
 	
 	@RequestMapping(value="/updateEmpl")
 	public String updateEmployee(EmployeeCustom employeeCustom,HttpServletRequest request){
-		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
-		
-		
-		
+		/*int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();*/
+		branchService.updateEmpl(employeeCustom);
 		return "redirect:employees";
 	}
 	
 	
-	//------------------------报表开始------------------------
+	//--------------------------报表开始--------------------------
 	
 	@RequestMapping(value="/charts")
 	public String charts(HttpServletRequest request,Model model){

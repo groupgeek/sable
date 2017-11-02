@@ -1,6 +1,5 @@
 package com.xiaohe.bean;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductCustom extends Product {
@@ -11,35 +10,13 @@ public class ProductCustom extends Product {
 	private String producttypename;
 	private String search;
 	private Integer currentPage;
-	private BigDecimal countPrice;
-	private Integer branchid;
-	private int countBuy;
-	private int employeeid;
+	private Integer employeeid;
 	
-	public int getEmployeeid() {
+	public Integer getEmployeeid() {
 		return employeeid;
 	}
-	public void setEmployeeid(int employeeid) {
+	public void setEmployeeid(Integer employeeid) {
 		this.employeeid = employeeid;
-	}
-	public Integer getBranchid() {
-		return branchid;
-	}
-	public void setBranchid(Integer branchid) {
-		this.branchid = branchid;
-	}
-	
-	public BigDecimal getCountPrice() {
-		return countPrice;
-	}
-	public void setCountPrice(BigDecimal countPrice) {
-		this.countPrice = countPrice;
-	}
-	public int getCountBuy() {
-		return countBuy;
-	}
-	public void setCountBuy(int countBuy) {
-		this.countBuy = countBuy;
 	}
 	private List<ProducttasteCustom> tasteList;
 	private List<ProductcolourCustom> colourList;

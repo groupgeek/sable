@@ -19,10 +19,12 @@
     <result column="positionId" property="positionid" jdbcType="INTEGER" />
     <result column="bankcardNo" property="bankcardno" jdbcType="VARCHAR" />
     <result column="totalBonus" property="totalbonus" jdbcType="DECIMAL" />
+    <result column="employeeStatus" property="employeestatus" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     employeeId, avatar, password, email, accountNumber, employeeName, sex, birthday, 
-    phone, areaId, authorityId, address, wage, entryTime, positionId, bankcardNo, totalBonus
+    phone, areaId, authorityId, address, wage, entryTime, positionId, bankcardNo, totalBonus, 
+    employeeStatus
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -40,13 +42,15 @@
       sex, birthday, phone, 
       areaId, authorityId, address, 
       wage, entryTime, positionId, 
-      bankcardNo, totalBonus)
+      bankcardNo, totalBonus, employeeStatus
+      )
     values (#{employeeid,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, #{employeename,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, 
       #{areaid,jdbcType=INTEGER}, #{authorityid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
       #{wage,jdbcType=DECIMAL}, #{entrytime,jdbcType=DATE}, #{positionid,jdbcType=INTEGER}, 
-      #{bankcardno,jdbcType=VARCHAR}, #{totalbonus,jdbcType=DECIMAL})
+      #{bankcardno,jdbcType=VARCHAR}, #{totalbonus,jdbcType=DECIMAL}, #{employeestatus,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Employee" >
     insert into employee
@@ -102,6 +106,9 @@
       <if test="totalbonus != null" >
         totalBonus,
       </if>
+      <if test="employeestatus != null" >
+        employeeStatus,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="employeeid != null" >
@@ -154,6 +161,9 @@
       </if>
       <if test="totalbonus != null" >
         #{totalbonus,jdbcType=DECIMAL},
+      </if>
+      <if test="employeestatus != null" >
+        #{employeestatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -208,6 +218,9 @@
       <if test="totalbonus != null" >
         totalBonus = #{totalbonus,jdbcType=DECIMAL},
       </if>
+      <if test="employeestatus != null" >
+        employeeStatus = #{employeestatus,jdbcType=VARCHAR},
+      </if>
     </set>
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
@@ -228,16 +241,198 @@
       entryTime = #{entrytime,jdbcType=DATE},
       positionId = #{positionid,jdbcType=INTEGER},
       bankcardNo = #{bankcardno,jdbcType=VARCHAR},
-      totalBonus = #{totalbonus,jdbcType=DECIMAL}
+      totalBonus = #{totalbonus,jdbcType=DECIMAL},
+      employeeStatus = #{employeestatus,jdbcType=VARCHAR}
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
   
-  <!-- 自定义sql -->
+  <sql id="employeeSql">
+  
+  
+  	  <if test="employeeid != null" >
+	    AND employeeId = #{employeeid,jdbcType=INTEGER}
+	  </if>
+  	  <if test="avatar != null" >
+        AND avatar = #{avatar,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        AND password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+        AND email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="accountnumber != null" >
+        AND accountNumber = #{accountnumber,jdbcType=VARCHAR}
+      </if>
+      <if test="employeename != null" >
+        AND employeeName LIKE '%${employeename }%'
+      </if>
+      <if test="sex != null" >
+        AND sex = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="birthday != null" >
+        AND birthday = #{birthday,jdbcType=DATE}
+      </if>
+      <if test="phone != null" >
+        AND phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="areaid != null" >
+        AND areaId = #{areaid,jdbcType=INTEGER}
+      </if>
+      <if test="authorityid != null" >
+        AND authorityId = #{authorityid,jdbcType=INTEGER}
+      </if>
+      <if test="address != null" >
+        AND address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="wage != null" >
+        AND wage = #{wage,jdbcType=DECIMAL}
+      </if>
+      <if test="entrytime != null" >
+        AND entryTime = #{entrytime,jdbcType=DATE}
+      </if>
+      <if test="positionid != null" >
+        AND positionId = #{positionid,jdbcType=INTEGER}
+      </if>
+      <if test="bankcardno != null" >
+        AND bankcardNo = #{bankcardno,jdbcType=VARCHAR}
+      </if>
+      <if test="totalbonus != null" >
+        AND totalBonus = #{totalbonus,jdbcType=DECIMAL}
+      </if>
+  
+  
+  </sql>
+  
+  <resultMap type="employeeCustom" id="employeeInfoMap" extends="BaseResultMap">
+  	
+  	<association property="authority" javaType="authorityCustom">
+     		<id column="authorityId" property="authorityid"></id>
+     		<result column="authorityLevel" property="authoritylevel"/>
+    </association>
+  
+	<association property="branch" javaType="branchCustom">
+     		<id column="branchId" property="branchid"/>
+     		<result column="branchName" property="branchname"/>
+    </association>
+     	
+    <association property="area" javaType="areaCustom">
+     		<id column="areaId" property="areaid"/>
+     		<result column="areaName" property="areaname"/>
+     		<result column="areaAddress" property="areaaddress"/>
+    </association>
+    
+    <association property="positional" javaType="positionalCustom">
+    		<id column="positionalId" property="positionalid"/>
+    		<result column="positionName" property="positionname"/>
+    </association>
+  </resultMap>
+  
+  <select id="selectEmployee" resultMap="BaseResultMap">
+  	select employeeId,employeeName,sex,phone,address,wage 
+  	from employee
+  </select>
+  
+  <select id="selectEmployeeInfoById" parameterType="Integer" resultMap="employeeInfoMap">
+  
+  
+  	SELECT e.*,a.areaName ,a.areaAddress ,b.branchName,b.branchId,p.positionName ,ah.authorityLevel
+	FROM employee e , branch b , authority ah, area a, positional p
+	WHERE e.employeeId = #{id} AND
+	a.areaId = e.areaId AND b.areaId = e.areaId AND p.positionId = e.positionId AND ah.authorityId = e.authorityId
+	  
+  </select>
+  
+  <select id="selectAllEmployeeByCondition" parameterType="EmployeeCustom" resultType="EmployeeCustom">
+  
+  	SELECT * FROM `employee`
+  	<where>
+  		<include refid="employeeSql"/>
+  	</where>
+  	<if test="sort != null" >
+	     ORDER BY #{sort} DESC  
+	</if>
+   	<if test="begin != null" >
+	  <if test="pageNum != null" >
+	      LIMIT  #{begin} , #{pageNum};
+	  </if>
+  	</if>
+	    
+  </select>
+  
+  <select id="selectAllEmployeeSumByCondition" parameterType="EmployeeCustom" resultType="Integer">
+  
+  	SELECT COUNT(*) FROM `employee`
+  	<where>
+  		<include refid="employeeSql"/>
+  	</where>
+  
+  </select>
+  
   <select id="allBrancheEmployees" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.EmployeeCustom">
-  select e.* from branch b,area a,employee e
+  	select e.* from branch b,area a,employee e
 	where b.areaId = a.areaId
 	and b.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
+  
+  
+  <update id="updateByCustom" parameterType="com.xiaohe.bean.EmployeeCustom">
+   update employee
+    <set >
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="employeename != null" >
+        employeeName = #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null" >
+        areaId = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="authorityid != null" >
+        authorityId = #{authorityid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="wage != null" >
+        wage = #{wage,jdbcType=DECIMAL},
+      </if>
+      <if test="entrytime != null" >
+        entryTime = #{entrytime,jdbcType=DATE},
+      </if>
+      <if test="positionid != null" >
+        positionId = #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="bankcardno != null" >
+        bankcardNo = #{bankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbonus != null" >
+        totalBonus = #{totalbonus,jdbcType=DECIMAL},
+      </if>
+      <if test="employeestatus != null" >
+        employeeStatus = #{employeestatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where employeeId = #{employeeid,jdbcType=INTEGER}
+  </update>
   
   
 </mapper>

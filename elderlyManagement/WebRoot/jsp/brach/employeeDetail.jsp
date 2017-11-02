@@ -227,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text" value="${employee.wage }">
+									<input id="appendedPrependedInput" name="wage" size="16" type="text" value="${employee.wage }">
 								  </div>
 								</div>
 				    </div>
@@ -250,24 +250,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="disabledInput">员工权限等级</label>
 								<div class="controls">
 								<select id="selectError3" name="authorityid">
-								<c:if test="${employee.authorityid }!=null">
-								<option selected="true">000sd</option>
-								</c:if>
-								<c:if test="${employee.authorityid }==null">
-								<option selected="true">008888888888888</option>
+								<c:if test="${employee.authorityid !=null }">
+									<option selected="selected" value="${employee.authorityid }">${employee.authorityid }</option>
 								</c:if>
 								<c:forEach items="${auths }" var="auths">
+										<c:if test="${employee.authorityid != auths.authorityid }">
 										<option value="${auths.authorityid }">${auths.authorityid }</option>
+										</c:if>
 								</c:forEach>
 								</select>
-									<%-- <select id="selectError3" name="activitytypeid">
-									<c:if test="${auths.authorityid }!=null">
-										<option selected="true">${auths.authoritylevel }</option>
-									</c:if>
-									<c:forEach items="${auths }" var="auths">
-										<option value="${auths.authorityid }">${auths.authoritylevel }</option>
-									</c:forEach>
-									</select> --%>
 								</div>
 							  </div>
 							  

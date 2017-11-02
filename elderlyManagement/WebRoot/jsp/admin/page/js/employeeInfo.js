@@ -10,7 +10,13 @@
 		data:'{"employeeid"'+':'+'"'+employeeid+'"'
     			+'}',
 		success:function(data){
-			$("#employeeUrl").attr("href",root+'/superAdmin/updateEmployeeidInfoView?id='+data.employeeid);
+			$("#employeeUrl").attr("href",root+'/superAdmin/updateEmployeeInfoView?id='+data.employeeid);
+			if(data.avatar == null){
+				$("#avatar div").html("空");
+			}else{
+				$("#avatar img").attr("src","/upload/"+data.avatar);
+			}
+			
 			$("#employeename span").text(data.employeename);
 			$("#sex span").text(data.sex);
 			$("#phone span").text(data.phone);
