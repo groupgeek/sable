@@ -105,9 +105,6 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		product.setBranchid(getAdmins(request).getBranchId());
 			productManageService.insertProduct(product);
 			return"redirect:/productmanage/quertyProduct.action";
-		
-		
-		
 	}
 	
 	@RequestMapping(value="producttype")
