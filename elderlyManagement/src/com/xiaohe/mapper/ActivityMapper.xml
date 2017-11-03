@@ -430,6 +430,46 @@
 		  
   </select>
   
+  <select id="selectAllActivity" resultMap="BaseResultMap">
+  	select activityId,activityName,activityStatus,activityDate,registeryFee,activityPrice 
+  	from activity
+  </select>
   
+  <select id="selectCeoActivity" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoActivity">
+  	select a.*,act.activityTypeName,b.branchName from activity a,activitytype act,branch b
+	where act.activityTypeID=a.activityTypeID
+	and b.branchId=a.branchId
+	and a.activityid=#{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectSumActivityPrice" resultType="DECIMAL">
+  	select sum(activityPrice) from activity
+  </select>
+  
+  <select id="selectSumregisteryFee" resultType="DECIMAL">
+  	select sum(registeryFee) from activity a,activityregistery act
+	where a.activityId=act.activityId
+	and act.registery="报名"
+  </select>
+  
+  <select id="selectSumActivityByTime" resultType="DECIMAL">
+  	select sum(activityPrice) from activity
+	where activityDate = date_format(activityDate,'%Y-%m-%d') 
+	group by activityDate 
+	order by activityDate desc limit 15
+  </select>
+  
+  <select id="selectSumregisteryFeeByTime" resultType="DECIMAL">
+  	select sum(a.registeryFee) from activity a,activityregistery act
+	where a.activityId=act.activityId
+	and act.registery="报名"
+	and a.activityDate = date_format(a.activityDate,'%Y-%m-%d') 
+	group by a.activityDate
+	order by a.activityDate desc
+  </select>
+  
+  <select id="selectCountActivity" resultType="java.lang.Integer">
+  	select count(*) from activity
+  </select>
   
 </mapper>

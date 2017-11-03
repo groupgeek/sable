@@ -51,5 +51,18 @@ public interface BranchMapper {
      * @return
      */
     BranchCustom selectBranchInfoById(Integer id);
-    
+
+    /**
+     * 查询所有分店
+     * @param branch
+     * @return
+     */
+    List<Branch> selectAllBranchName(Branch branch);
+
+    /**
+     * 查询所有分店(包括分店管理员和分店所在地址)
+     * @param ceoBranchCustom
+     * @return
+     */
+    List<BranchCustom> selectBranchs(BranchCustom branchCustom);
 }

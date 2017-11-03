@@ -198,4 +198,9 @@
 			WHERE m.messageId = #{id} AND u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
 		  
   </select>
+  <select id="selectNewMessage" resultType = "com.xiaohe.bean.MessageCustom">
+  	select message.*,user.userName from message,user
+	where user.userId= message.userId 
+	order by messageTime desc limit 8
+  </select>
 </mapper>
