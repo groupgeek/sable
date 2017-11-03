@@ -81,4 +81,45 @@ public interface UserMapper {
      * @return
      */
     UserCustom selectUserInfoById(Integer id);
+    
+    /**
+     * 根据用户id查询到单个用户
+     * @param id
+     * @return
+     */
+    UserCustom selectOneUser(Integer id);
+    /**
+     * 从Ceo端查询用户数量
+     * @param user
+     * @return
+     */
+    int selectAllUser();
+
+    /**
+     * 通过注册时间查询用户数量
+     * @param user
+     * @return
+     */
+    List<User> selectAllUserByTime();
+
+    /**
+     * 查询用户人数最多的前十个分店
+     * @return
+     */
+    List<UserCustom> selectCountUserByBranch();
+
+    /**
+     * 查询新注册的4名用户
+     * @param user
+     * @return
+     */
+    List<User> selectfourUserByTime();
+
+    /**
+     * 根据id查询用户
+     * @param userid
+     * @return
+     */
+    User selectUserById(Integer userid);
+    
 }

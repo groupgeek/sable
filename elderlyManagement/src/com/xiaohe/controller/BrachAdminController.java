@@ -537,15 +537,13 @@ public class BrachAdminController {
 	
 	@RequestMapping(value="/updateEmpl")
 	public String updateEmployee(EmployeeCustom employeeCustom,HttpServletRequest request){
-		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
-		
-		
-		
+		/*int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();*/
+		branchService.updateEmpl(employeeCustom);
 		return "redirect:employees";
 	}
 	
 	
-	//------------------------报表开始------------------------
+	//--------------------------报表开始--------------------------
 	
 	@RequestMapping(value="/charts")
 	public String charts(HttpServletRequest request,Model model){

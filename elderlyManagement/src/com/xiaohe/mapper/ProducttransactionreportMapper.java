@@ -1,5 +1,6 @@
 package com.xiaohe.mapper;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -39,5 +40,19 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     List<ProducttransactionreportCustom> selectBranchByCondition(ProducttransactionreportCustom producttransactionreportCustom);
+
+    /**
+     * 查询商城的总盈利
+     * @param producttransactionreport
+     * @return
+     */
+    BigDecimal selectSumproductAllMoney();
+
+    /**
+     * 通过时间查询商城的盈利额
+     * @param producttransactionreport
+     * @return
+     */
+    List<BigDecimal> selectSumproductMoney();
     
 }

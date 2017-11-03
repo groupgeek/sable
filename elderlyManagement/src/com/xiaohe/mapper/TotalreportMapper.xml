@@ -90,4 +90,21 @@
       duringTime = #{duringtime,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectTotalreportSum" resultType="DECIMAL">
+  	select sum(totalPrice - totalExpenditure) 
+  	from totalreport	
+  </select>
+  <select id="selectTotalreportSumByTime" resultType="DECIMAL">
+  	select sum(totalPrice - totalExpenditure)
+  	from totalreport
+	group by duringtime order by duringTime desc limit 15
+  </select>
+  
+  <select id="selectTotalreportAndBranch" resultType="com.xiaohe.bean.CeoTotalreport">
+  	select sum(t.totalPrice - t.totalExpenditure) sumBigDecimal,b.branchName 
+	from totalreport t,branch b
+	where t.branchId = b.branchId
+	group by t.branchId
+	order by sum(t.totalPrice - t.totalExpenditure) desc limit 10
+  </select>
 </mapper>

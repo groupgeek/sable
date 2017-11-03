@@ -92,7 +92,7 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 		userMapper.deleteByPrimaryKey(id);
 	}
 	public UserCustom oneUser(Integer id) {
-		return (UserCustom) userMapper.selectByPrimaryKey(id);
+		return userMapper.selectOneUser(id);
 	}
 	public List<MessageCustom> allMessages(MessageVo messageVo) {
 		return messageMapper.allMessages(messageVo);
@@ -238,5 +238,8 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public List<Authority> authoritys() {
 		return authorityMapper.allAuths();
+	}
+	public int updateEmpl(EmployeeCustom employeeCustom) {
+		return employeeMapper.updateByCustom(employeeCustom);
 	}
 }

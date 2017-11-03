@@ -160,11 +160,9 @@
 		  <if test="branchid != null" >
 	        AND b.branchId = #{branchid,jdbcType=DATE}
 	      </if>
-	  	<if test="username != null">
-	  		<if test="messagecontext != null">
+	  	<if test="search != null">
 	  			AND (userName LIKE '%${search}%'
 		    	OR messageContext LIKE '%${search}%')
-	  		</if>
 	  	</if>
 	  	<if test="sort != null" >
 		    ORDER BY #{sort} DESC  
@@ -186,11 +184,9 @@
 		  <if test="branchid != null" >
 	        AND b.branchId = #{branchid,jdbcType=DATE}
 	      </if>
-	  	<if test="username != null">
-	  		<if test="messagecontext != null">
-	  			AND (userName LIKE '%${username}%'
-		    	OR messageContext LIKE '%${messagecontext}%')
-	  		</if>
+	  	<if test="search != null">
+	  			AND (userName LIKE '%${search}%'
+		    	OR messageContext LIKE '%${search}%')
 	  	</if>
   
   </select>
@@ -201,5 +197,10 @@
 			FROM `message` m , `user` u ,branch b ,area ar
 			WHERE m.messageId = #{id} AND u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
 		  
+  </select>
+  <select id="selectNewMessage" resultType = "com.xiaohe.bean.MessageCustom">
+  	select message.*,user.userName from message,user
+	where user.userId= message.userId 
+	order by messageTime desc limit 8
   </select>
 </mapper>

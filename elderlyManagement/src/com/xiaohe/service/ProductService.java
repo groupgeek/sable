@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProducttypeCustom;
 
 @Transactional
@@ -114,11 +115,22 @@ public interface ProductService {
 	Map<ProducttypeCustom, List<ProductCustom>> queryProductByAllType(ProductCustom condition);
 	
 
+
+	/**
+	 * 查询所有商品的信息（管理员）
+	 * @param condition
+	 * @return
+	 */
+	public ProductVo queryAllProductByCondition(ProductCustom condition);
+	
+
 	/**
 	 *  缺货查询
 	 * @return 缺货的信息
 	 */
 	List<ProductCustom> quertyStockout();
+
+
 
 	
 }

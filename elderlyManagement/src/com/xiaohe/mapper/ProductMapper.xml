@@ -418,7 +418,8 @@
 		</select>
 		<!-- 	商品查询 -->
 	<select id="quertyAllProduct" parameterType="Integer" resultType="ProductCustom">
-	SELECT * FROM product,branch WHERE product.branchId=branch.branchId AND product.branchId=#{branchId}
+<!-- 	SELECT * FROM product,branch WHERE product.branchId=branch.branchId AND product.branchId=#{branchId} -->
+	SELECT * FROM product,branch,producttype WHERE product.branchId=branch.branchId AND product.productTypeId=producttype.productTypeId AND product.branchId=#{branchId}
 	</select>
 	
 <!-- 	管理员信息查询       -->
@@ -480,9 +481,6 @@
 	
 	</select>
 	
-	
-	
-	
 	<select id="selectProductByProducttypeId" parameterType="productCustom" resultType="productCustom">
 	
 		SELECT * FROM `product`
@@ -498,9 +496,7 @@
 			<if test="total != null">
 				LIMIT #{begin} , #{total}
 			</if>
-		</if>
-		
-	
+		</if>	
 	</select>
 	
 	<select id="selectProductBytypeId" parameterType="productCustom" resultType="productCustom">
@@ -523,19 +519,60 @@
 	</select>
 	
 	
-	<select id="countBranchProduct" parameterType="com.xiaohe.bean.ProductCustom" resultType="com.xiaohe.bean.ProductCustom">
-	select count(totalPrice) countPrice,count(countBuy) countBuy from producttransactionreport p,branch b
+	<select id="selectAllProductByCondition" parameterType="productCustom" resultType="productCustom">
+  
+	  	SELECT * FROM `product`
+		WHERE 
+	  	<if test="search != null">
+	  		(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+	  	</if>
+	  	<if test="producttypeid != null" >
+		    AND productTypeId = #{producttypeid}
+		</if>
+	  	<if test="sort != null" >
+		    ORDER BY #{sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllProductSumByCondition" parameterType="productCustom" resultType="Integer">
+  
+	  	SELECT COUNT(*) FROM `product`
+		WHERE 
+	  	<if test="search != null">
+	  		(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+	  	</if>
+  		<if test="producttypeid != null" >
+		    AND productTypeId = #{producttypeid}
+		</if>
+  </select>
+  
+  <select id="countBranchProduct" parameterType="com.xiaohe.bean.ProductCustom" resultType="com.xiaohe.bean.ProductCustom">
+  select count(totalPrice) countPrice,count(countBuy) countBuy from producttransactionreport p,branch b
 		where p.branchId = b.branchId
 		and b.branchId = #{branchid}
 		and b.employeeId = #{employeeid}
+  </select>
+  
+  <select id="selectHotProduct" resultMap="BaseResultMap">
+		select productId,productName from product order by buyNo desc limit 8
 	</select>
+
 	
 	<select id="hahaha">
 	select * from product
 	</select>
 	<select id="quertyStockout" resultType="ProductCustom">
 	select * from product where inStock &lt;= 10
+
+	<select id="selectCountProduct" resultType="java.lang.Integer">
+		select count(*) from product
+
 	</select>
-	
 	
 </mapper>

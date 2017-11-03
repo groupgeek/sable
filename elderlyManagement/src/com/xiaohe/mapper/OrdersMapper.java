@@ -28,4 +28,10 @@ public interface OrdersMapper {
    /* BigDecimal branchIncome();*/
     
     int branchCountOrders(Integer id);
+
+    /**
+     * 查询订单总数
+     * @return
+     */
+    int selectCountOrder();
 }

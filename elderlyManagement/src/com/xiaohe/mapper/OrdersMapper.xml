@@ -195,4 +195,7 @@
 	and b.employeeId = e.employeeId
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
+  <select id="selectCountOrder" resultType="java.lang.Integer">
+  	select count(*) from orders
+  </select>
 </mapper>

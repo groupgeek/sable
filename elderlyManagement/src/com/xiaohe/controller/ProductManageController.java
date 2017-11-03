@@ -44,10 +44,12 @@ public class ProductManageController {
 	@Qualifier("prodcutColorService")
 	private ProdcutColorService prodcutColorService;
 	
+
 	@Autowired
 	@Qualifier("productRecommendService")
 	private ProductRecommendService productRecommendService;
 	
+
 public EmployeeCustom getAdmins(HttpServletRequest request){
 		
 		return (EmployeeCustom) request.getSession().getAttribute("admins");

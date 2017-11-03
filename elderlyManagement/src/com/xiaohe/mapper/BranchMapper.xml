@@ -83,7 +83,7 @@
   
   <!-- 自定义sql -->
   
-    <select id="oneBranch" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Branch">
+  <select id="oneBranch" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Branch">
   select * from branch where employeeid = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -133,6 +133,14 @@
 			AND u.areaId = b.areaId
   </select>
   
+  <select id="selectAllBranchName" resultType="Branch">
+  	select * from branch
+  </select>
   
-  
+  <select id="selectBranchs" resultType="com.xiaohe.bean.BranchCustom">
+  	select b.*,e.employeeName,a.areaAddress
+	from branch b,employee e,area a
+	where b.employeeId=e.employeeId
+	and a.areaId=b.areaId
+  </select>
 </mapper>

@@ -18,8 +18,8 @@ public class UserCustom extends User{
 	private MedicalrecordsWithBLOBsCustom med;
 	private EmployeeCustom manager;
 	
-	
-
+	private String usernumber;
+    private String branchname;
 	
 	public AreaCustom getArea() {
 		return area;
@@ -131,6 +131,22 @@ public class UserCustom extends User{
 
 	public void setStatusMessage(String statusMessage) {
 		this.statusMessage = statusMessage;
+	}
+
+	public String getUsernumber() {
+		return usernumber;
+	}
+
+	public void setUsernumber(String usernumber) {
+		this.usernumber = usernumber;
+	}
+
+	public String getBranchname() {
+		return branchname;
+	}
+
+	public void setBranchname(String branchname) {
+		this.branchname = branchname;
 	}
 	
 

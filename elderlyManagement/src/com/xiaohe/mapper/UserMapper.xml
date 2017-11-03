@@ -424,5 +424,28 @@
 		AND m.userId = u.userId
   </select>
   
-  
+  <select id="selectOneUser" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom">
+  select * from user where userId = #{userid}
+  </select>
+  <select id="selectAllUser" resultType="Integer">
+  	select count(*) from user
+  </select>
+  <select id="selectAllUserByTime" resultType="Integer">
+  	select count(*) from user 
+  	group by registrationDate 
+	order by registrationDate desc limit 15
+  </select>
+  <select id="selectfourUserByTime" resultMap="BaseResultMap">
+  	select userid,avatar,userName,sex,registrationDate from user 
+	order by registrationDate desc limit 4
+  </select> 
+  <select id="selectUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from user where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectCountUserByBranch" resultType="com.xiaohe.bean.UserCustom">
+  	select count(*) usernumber,branchName from user,branch
+	where user.areaId = branch.areaId 
+	group by user.areaId
+	order by count(*) desc limit 10
+  </select>
 </mapper>

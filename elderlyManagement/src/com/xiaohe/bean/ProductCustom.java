@@ -10,7 +10,13 @@ public class ProductCustom extends Product {
 	private String producttypename;
 	private String search;
 	private Integer currentPage;
+	
+	private List<ProducttasteCustom> tasteList;
+	private List<ProductcolourCustom> colourList;
 	private Integer employeeid;
+	private Integer pageNum;//每一页的数量
+	
+	
 	
 	public Integer getEmployeeid() {
 		return employeeid;
@@ -18,10 +24,12 @@ public class ProductCustom extends Product {
 	public void setEmployeeid(Integer employeeid) {
 		this.employeeid = employeeid;
 	}
-	private List<ProducttasteCustom> tasteList;
-	private List<ProductcolourCustom> colourList;
-	
-	
+	public Integer getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
 	public List<ProductcolourCustom> getColourList() {
 		return colourList;
 	}
