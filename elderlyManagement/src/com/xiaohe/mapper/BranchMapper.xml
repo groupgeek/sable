@@ -132,4 +132,15 @@
 			AND e.employeeId = b.employeeId AND a.areaId = b.areaId 
 			AND u.areaId = b.areaId
   </select>
+  
+  <select id="selectAllBranchName" resultType="Branch">
+  	select * from branch
+  </select>
+  
+  <select id="selectBranchs" resultType="com.xiaohe.bean.BranchCustom">
+  	select b.*,e.employeeName,a.areaAddress
+	from branch b,employee e,area a
+	where b.employeeId=e.employeeId
+	and a.areaId=b.areaId
+  </select>
 </mapper>

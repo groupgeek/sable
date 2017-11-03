@@ -137,7 +137,18 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> quertyStockout();
-   
+
+    /**
+     * 查询热销商品
+     * @return
+     */
+    List<Product> selectHotProduct();
+
+    /**
+     * 查询商品总量
+     * @return
+     */
+    int selectCountProduct();
 
     
     

@@ -81,5 +81,11 @@ public interface MessageMapper {
      * @return
      */
     MessageCustom selectMessageInfoById(Integer id);
+
+    /**
+     * 查询最新消息
+     * @return
+     */
+    List<MessageCustom> selectNewMessage();
     
 }

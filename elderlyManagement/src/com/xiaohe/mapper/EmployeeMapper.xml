@@ -329,7 +329,7 @@
   </resultMap>
   
   <select id="selectEmployee" resultMap="BaseResultMap">
-  	select employeeId,employeeName,sex,phone,address,wage 
+  	select *
   	from employee
   </select>
   
@@ -433,6 +433,20 @@
     </set>
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
-  
+   <select id="selectEmployeeAll" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoEmployee">
+  	select e.*,a.authorityLevel,p.positionName,b.branchName from employee e,authority a,positional p,branch b
+	where a.authorityId=e.authorityId
+	and p.positionId=e.positionId
+	and b.areaId=e.areaId
+  	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBranchEmployee" resultType="com.xiaohe.bean.CeoEmployee">
+  	select e.employeeName,e.sex,a.authorityLevel,p.positionName,b.branchid,b.branchName
+	from employee e,authority a,positional p,branch b
+	where a.authorityId=e.authorityId
+	and p.positionId=e.positionId
+	and b.areaId=e.areaId
+	order by b.branchid asc
+  </select>
   
 </mapper>

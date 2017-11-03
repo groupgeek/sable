@@ -6,6 +6,7 @@ import java.util.List;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.EmployeeCustom;
 
 public interface ActivityMapper {
@@ -112,5 +113,53 @@ public interface ActivityMapper {
      * @return
      */
     ActivityCustom selectActivityInfoById(Integer id);
+
+    /**
+     * 查询活动的总支出
+     * @param activity
+     * @return
+     */
+    BigDecimal selectSumActivityPrice();
+
+    /**
+     * 查询活动的总报名费
+     * @param activity
+     * @return
+     */
+    BigDecimal selectSumregisteryFee();
+
+    /**
+     * 根据时间查询活动的支出
+     * @param activity
+     * @return
+     */
+    List<Activity> selectSumActivityByTime();
+
+    /**
+     * 根据时间查询活动的收入
+     * @param ceoActivity
+     * @return
+     */
+    List<CeoActivity> selectSumregisteryFeeByTime();
+
+    /**
+     * 查询所有活动的基本信息
+     * @param activity
+     * @return
+     */
+    List<Activity> selectAllActivity(Activity activity);
+
+    /**
+     * 通过id查询活动的详细信息(关联查询分店名等)
+     * @param activityid
+     * @return
+     */
+    CeoActivity selectCeoActivity(Integer activityid);
+
+    /**
+     * 查询活动总数
+     * @return
+     */
+    int selectCountActivity();
    
 }

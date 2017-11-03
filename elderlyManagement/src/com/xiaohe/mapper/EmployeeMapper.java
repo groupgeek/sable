@@ -2,6 +2,7 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
+import com.xiaohe.bean.CeoEmployee;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.UserCustom;
@@ -61,4 +62,18 @@ public interface EmployeeMapper {
      * @return
      */
     int updateByCustom(EmployeeCustom employeeCustom);
+
+    /**
+     * 通过id查询员工的全部信息
+     * @param employeeid
+     * @return
+     */
+    Employee selectEmployeeAll(Integer employeeid);
+
+    /**
+     * 通过分店id查询分店员工
+     * @param branchid
+     * @return
+     */
+    List<CeoEmployee> selectBranchEmployee();
 }

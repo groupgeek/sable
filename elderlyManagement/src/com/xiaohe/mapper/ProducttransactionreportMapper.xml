@@ -209,5 +209,12 @@
 	</if>
   	
   </select>
-
+  <select id="selectSumproductAllMoney" resultType="DECIMAL">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) money from producttransactionreport
+  </select>
+  
+  <select id="selectSumproductMoney" resultType="DECIMAL">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) from producttransactionreport
+	group by BuyTime order by BuyTime desc limit 15
+  </select>
 </mapper>
