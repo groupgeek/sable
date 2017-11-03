@@ -569,6 +569,7 @@
 	</select>
 	<select id="quertyStockout" resultType="ProductCustom">
 	select * from product where inStock &lt;= 10
+	</select>
 
 	<select id="selectCountProduct" resultType="java.lang.Integer">
 		select count(*) from product
