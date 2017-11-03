@@ -3,6 +3,7 @@ package com.xiaohe.service;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import sun.net.www.content.text.plain;
 
@@ -20,7 +21,7 @@ public interface ProductManageService {
 	public void  deleteProduct(Integer productid) throws Exception;
 	
 	//增加商品
-	public void insertProduct(Product product) throws Exception;
+	public void insertProduct(Product product,MultipartFile pictureUpload) throws Exception;
 	
 	//管理员登录
 	//根据用户账号登录
@@ -42,6 +43,10 @@ public interface ProductManageService {
 	 * @return	本店现在推荐商品
 	 */
 	public List<ProductCustom> quertyRecommendProduct(Integer branchid);
+	
+	
+		
+	
 
 }
  

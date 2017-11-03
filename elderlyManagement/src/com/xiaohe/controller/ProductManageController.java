@@ -16,10 +16,12 @@ import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductcolourCustom;
+import com.xiaohe.bean.Productrecommend;
 import com.xiaohe.bean.ProducttasteCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.service.ProdcutColorService;
 import com.xiaohe.service.ProductManageService;
+import com.xiaohe.service.ProductRecommendService;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProducttasteService;
 
@@ -41,6 +43,10 @@ public class ProductManageController {
 	@Autowired
 	@Qualifier("prodcutColorService")
 	private ProdcutColorService prodcutColorService;
+	
+	@Autowired
+	@Qualifier("productRecommendService")
+	private ProductRecommendService productRecommendService;
 	
 public EmployeeCustom getAdmins(HttpServletRequest request){
 		
@@ -101,9 +107,9 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	}
 	
 	@RequestMapping(value="insertproduct")
-	public String  insertProduct(Product product,HttpServletRequest request,Model model,MultipartFile multipartFile) throws Exception{
+	public String  insertProduct(Product product,HttpServletRequest request,Model model, MultipartFile pictureUpload) throws Exception{
 		product.setBranchid(getAdmins(request).getBranchId());
-			productManageService.insertProduct(product);
+			productManageService.insertProduct(product,pictureUpload);
 			return"redirect:/productmanage/quertyProduct.action";
 	}
 	
@@ -170,7 +176,12 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	
 	
 	//商品推荐
-	
+	@RequestMapping("productRecommend")
+	public String productRecommed(Productrecommend productrecommend,HttpServletRequest request){
+		productrecommend.setBranchid(( getAdmins(request)).getBranchId());
+		productRecommendService.insertProductRecommend(productrecommend);
+		return"";
+	}
 	
 	//本店推荐查询
 	

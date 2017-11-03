@@ -532,7 +532,9 @@
 	
 	<select id="hahaha">
 	select * from product
-	
+	</select>
+	<select id="quertyStockout" resultType="ProductCustom">
+	select * from product where inStock &lt;= 10
 	</select>
 	
 	
