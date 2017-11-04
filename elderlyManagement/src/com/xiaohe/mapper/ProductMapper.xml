@@ -360,7 +360,12 @@
 	    <result column="edibleMethod" property="ediblemethod" jdbcType="VARCHAR" />
 	    <result column="description" property="description" jdbcType="LONGVARCHAR" />
 	    <result column="productTypeName" property="producttypename" jdbcType="VARCHAR" />
-	     
+	    <result column="fatherType" property="fathertype" jdbcType="LONGVARCHAR" />
+	    <result column="branchName" property="branchname" jdbcType="VARCHAR" />
+	    <result column="employeeid" property="employeeid"/>
+	    <result column="employeename" property="employeename" jdbcType="VARCHAR" />
+	    <result column="fatherTypeId" property="fathertypeid"/>  
+	       
 		<collection property="tasteList" ofType="producttasteCustom">
 			<id column="productTasteId" property="producttasteid"/>
 			<result column="productTaste" property="producttaste"/>
@@ -558,11 +563,41 @@
 		and b.branchId = #{branchid}
 		and b.employeeId = #{employeeid}
   </select>
-  
-  <select id="selectHotProduct" resultMap="BaseResultMap">
-		select productId,productName from product order by buyNo desc limit 8
+	
+	
+	
+	<select id="selectProductAndTasteById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
+	
+		SELECT p.* ,  b.branchName , e.employeeid, e.employeename,ptype1.productTypeName ,ptype2.productTypeName fatherType ,ptype2.productTypeId fatherTypeId , pt.productTaste
+		FROM `product` p ,branch b , employee e ,producttype ptype1 ,producttype ptype2 , producttaste pt 
+		WHERE p.productId = #{id}
+		AND b.branchId = p.branchId AND e.areaId = b.areaId AND e.employeeId = b.employeeId
+		AND ptype1.productTypeId =  p.productTypeId AND ptype2.productTypeId = ptype1.FatherId
+		AND pt.productId = p.productId 
 	</select>
+	
+	<select id="selectProductAndColorById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
+		SELECT p.* ,  b.branchName , e.employeeid,e.employeename,ptype1.productTypeName ,ptype2.productTypeName fatherType ,ptype2.productTypeId fatherTypeId , pc.ProductColour
+		FROM `product` p ,branch b , employee e ,producttype ptype1 ,producttype ptype2 , productcolour pc
+		WHERE p.productId = #{id}
+		AND b.branchId = p.branchId AND e.areaId = b.areaId AND e.employeeId = b.employeeId
+		AND ptype1.productTypeId =  p.productTypeId AND ptype2.productTypeId = ptype1.FatherId
+		AND pc.productId = p.productId
 
+	
+	</select>
+	
+	<select id="selectProductAndOtherById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
+	
+	
+		SELECT p.* ,  b.branchName , e.employeeid, e.employeename,ptype1.productTypeName ,ptype2.productTypeName fatherType ,ptype2.productTypeId fatherTypeId , 
+		FROM `product` p ,branch b , employee e ,producttype ptype1 ,producttype ptype2
+		WHERE p.productId = #{id}
+		AND b.branchId = p.branchId AND e.areaId = b.areaId AND e.employeeId = b.employeeId
+		AND ptype1.productTypeId =  p.productTypeId AND ptype2.productTypeId = ptype1.FatherId
+			
+	</select>
+	
 	
 	<select id="hahaha">
 	select * from product
@@ -574,8 +609,11 @@
 	<select id="selectCountProduct" resultType="java.lang.Integer">
 		select count(*) from product
 	</select>
+
 	<select id="quertyNoBranchRecommendProduct" parameterType="integer" resultType="ProductCustom">
 	SELECT * FROM product ,productrecommend WHERE product.productId=productrecommend.productId
 AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 	</select>
+
+
 </mapper>

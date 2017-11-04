@@ -75,4 +75,12 @@
   WHERE p.productId=pr.productId 
   AND pr.productColourId=pz.ProductColourId and p.productId=#{productId}
   </select>
+  
+  
+  <delete id="deleteColorByProductId" parameterType="Integer">
+
+	delete from productcolour
+    where productId = #{id}
+
+  </delete>
 </mapper>

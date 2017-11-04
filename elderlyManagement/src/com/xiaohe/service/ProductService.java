@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.print.attribute.HashAttributeSet;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
@@ -114,8 +115,6 @@ public interface ProductService {
 	 */
 	Map<ProducttypeCustom, List<ProductCustom>> queryProductByAllType(ProductCustom condition);
 	
-
-
 	/**
 	 * 查询所有商品的信息（管理员）
 	 * @param condition
@@ -123,12 +122,12 @@ public interface ProductService {
 	 */
 	public ProductVo queryAllProductByCondition(ProductCustom condition);
 	
-
 	/**
 	 *  缺货查询
 	 * @return 缺货的信息
 	 */
 	List<ProductCustom> quertyStockout();
+
 
 	/**
 	 * 	分店非推荐商品查询 
@@ -137,5 +136,35 @@ public interface ProductService {
 	 */
 	List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid);
 
+
+	
+	/**
+	 * 查询商品的所有信息（管理员）
+	 * @return
+	 */
+	public ProductCustom queryProductInfoByProductid(Integer productid);
+	
+	/**
+	 * 加载修改商品的数据
+	 * @param condition
+	 * @return
+	 */
+	public ProductVo updateProductView(Integer productid);
+	
+	/**
+	 * 修改商品数据
+	 * @param productInfo
+	 * @return
+	 */
+	public boolean updateProduct(ProductCustom productInfo,MultipartFile pictureUpload);
+	
+	/**
+	 * 添加商品
+	 * @param info
+	 * @param pictureUpload
+	 * @return
+	 */
+	public boolean addProduct(ProductCustom productInfo,MultipartFile pictureUpload);
+>>>>>>> 231d3e7ac4a5f853faaf0d46e20228b0d08a7551
 	
 }

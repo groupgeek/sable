@@ -1,5 +1,6 @@
 package com.xiaohe.service.impl;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -12,18 +13,27 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
+import com.xiaohe.bean.Productcolour;
+import com.xiaohe.bean.ProductcolourCustom;
+import com.xiaohe.bean.Producttaste;
+import com.xiaohe.bean.ProducttasteCustom;
+import com.xiaohe.bean.Producttype;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.DiscountMapper;
 import com.xiaohe.mapper.EvaluationMapper;
 import com.xiaohe.mapper.ProductMapper;
+import com.xiaohe.mapper.ProductcolourMapper;
 import com.xiaohe.mapper.ProductrecommendMapper;
+import com.xiaohe.mapper.ProducttasteMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.util.FileUpload;
 
 @Repository("productService")
 public class ProductServiceImpl implements ProductService {
@@ -48,6 +58,14 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("evaluationMapper")
 	private EvaluationMapper evaluationMapper;
+	
+	@Autowired
+	@Qualifier("producttasteMapper")
+	private ProducttasteMapper producttasteMapper;
+	
+	@Autowired
+	@Qualifier("productcolourMapper")
+	private ProductcolourMapper productcolourMapper;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -261,10 +279,54 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
-public List<ProductCustom> quertyStockout() {
+	public List<ProductCustom> quertyStockout() {
+			
+			return productMapper.quertyStockout();
+		}
+
+	public ProductCustom queryProductInfoByProductid(Integer productid) {
+		if(productid == null || productid < 0) return null;
+		ProductCustom productInfo = new ProductCustom();
+		ProducttypeCustom producttype = productMapper.selectProductFathertypeById(productid);
+		Producttype father = producttypeMapper.selectByPrimaryKey(producttype.getFatherid());
+		if(father == null) return null;
+		if("服装".equals(father.getProducttypename())){
+			productInfo = productMapper.selectProductAndColorById(productid);
+		}else if("食品".equals(father.getProducttypename())){
+			productInfo = productMapper.selectProductAndTasteById(productid);
+		}else{
+			productInfo = productMapper.selectProductAndOtherById(productid);
+		}
 		
-		return productMapper.quertyStockout();
+		
+		return productInfo;
 	}
+
+	public ProductVo updateProductView(Integer productid) {
+		if(productid == null || productid < 0) return null;
+		
+		ProductVo productVo = new ProductVo();
+		List<ProducttypeCustom> fatherTypeList = new ArrayList<ProducttypeCustom>();
+		ProductCustom productInfo = new ProductCustom();
+		
+		ProducttypeCustom producttype = productMapper.selectProductFathertypeById(productid);
+		Producttype father = producttypeMapper.selectByPrimaryKey(producttype.getFatherid());
+		if(father == null) return null;
+		if("服装".equals(father.getProducttypename())){
+			productInfo = productMapper.selectProductAndColorById(productid);
+		}else if("食品".equals(father.getProducttypename())){
+			productInfo = productMapper.selectProductAndTasteById(productid);
+		}else{
+			productInfo = productMapper.selectProductAndOtherById(productid);
+		}
+		
+		fatherTypeList = producttypeMapper.selectAllFatherType();
+		productVo.setFatherTypeList(fatherTypeList);
+		productVo.setProductInfo(productInfo);
+		
+		return productVo;
+	}
+
 
 public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 	
@@ -272,6 +334,87 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 }
 
 
+	public boolean updateProduct(ProductCustom productInfo,MultipartFile pictureUpload) {
+		if(productInfo == null) return false;
+		if(productInfo.getProductid() == null || productInfo.getProductid() < 0) return false;
+		/*List<ProducttasteCustom> allTaste = new ArrayList<ProducttasteCustom>();
+		List<ProductcolourCustom> allColor = new ArrayList<ProductcolourCustom>();*/
+		
+		if(!pictureUpload.isEmpty()){
+			try {
+				productInfo.setPicture(FileUpload.oneFileUpload(pictureUpload,productInfo.getPicture(), "picture"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(productMapper.updateByPrimaryKeySelective(productInfo) < 0) return false;
+		
+		
+		
+		Producttaste record = new Producttaste();
+		record.setProductid(productInfo.getProductid());
+		
+		if(productInfo.getTasteString() != null){
+			if(producttasteMapper.deleteProducttasteByProductid(record.getProductid()) < 0) return false;
+			for(String temp : productInfo.getTasteString().split(",")){
+				record.setProducttaste(temp);
+				if(producttasteMapper.insertSelective(record) < 0) return false;
+			}
+		}
+		
+		Productcolour recordColor = new Productcolour();
+		recordColor.setProductid(productInfo.getProductid());
+		if(productInfo.getColorString() != null){
+			if(productcolourMapper.deleteColorByProductId(recordColor.getProductid()) < 0) return false;
+			for(String temp : productInfo.getColorString().split(",")){
+				recordColor.setProductcolour(temp);
+				if(productcolourMapper.insert(recordColor) < 0) return false;
+			}
+		}
+		
+		
+		
+		return true;
+	}
+>>>>>>> 231d3e7ac4a5f853faaf0d46e20228b0d08a7551
+
+	public boolean addProduct(ProductCustom productInfo, MultipartFile pictureUpload) {
+		if(productInfo == null) return false;
+		if(!pictureUpload.isEmpty()){
+			try {
+				productInfo.setPicture(FileUpload.oneFileUpload(pictureUpload,null, "picture"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(productMapper.insertSelective(productInfo) < 0) return false;
+		
+		Producttaste record = new Producttaste();
+		record.setProductid(productInfo.getProductid());
+		
+		if(productInfo.getTasteString() != null ||  !"".endsWith(productInfo.getTasteString())){
+			for(String temp : productInfo.getTasteString().split(",")){
+				record.setProducttaste(temp);
+				if(producttasteMapper.insertSelective(record) < 0) return false;
+			}
+		}
+		
+		Productcolour recordColor = new Productcolour();
+		recordColor.setProductid(productInfo.getProductid());
+		if(productInfo.getColorString() != null || !"".endsWith(productInfo.getColorString())){
+			for(String temp : productInfo.getColorString().split(",")){
+				recordColor.setProductcolour(temp);
+				if(productcolourMapper.insert(recordColor) < 0) return false;
+			}
+		}
+		
+		return true;
+	}
 
 
 }

@@ -16,9 +16,54 @@ public class ProductCustom extends Product {
 	private List<ProductcolourCustom> colourList;
 	private Integer employeeid;
 	private Integer pageNum;//每一页的数量
+	private String branchname;
+	
+	private String employeename;
+	private String fathertype;
+	private Integer fathertypeid;
+	
+	private String tasteString;
+	private String colorString;
 	
 	
 	
+	
+	public String getTasteString() {
+		return tasteString;
+	}
+	public void setTasteString(String tasteString) {
+		this.tasteString = tasteString;
+	}
+	public String getColorString() {
+		return colorString;
+	}
+	public void setColorString(String colorString) {
+		this.colorString = colorString;
+	}
+	public String getFathertype() {
+		return fathertype;
+	}
+	public void setFathertype(String fathertype) {
+		this.fathertype = fathertype;
+	}
+	public String getEmployeename() {
+		return employeename;
+	}
+	public void setEmployeename(String employeename) {
+		this.employeename = employeename;
+	}
+	public Integer getFathertypeid() {
+		return fathertypeid;
+	}
+	public void setFathertypeid(Integer fathertypeid) {
+		this.fathertypeid = fathertypeid;
+	}
+	public String getBranchname() {
+		return branchname;
+	}
+	public void setBranchname(String branchname) {
+		this.branchname = branchname;
+	}
 	public Integer getEmployeeid() {
 		return employeeid;
 	}

@@ -329,7 +329,7 @@
   </resultMap>
   
   <select id="selectEmployee" resultMap="BaseResultMap">
-  	select *
+  	select employeeId,employeeName,sex,phone,address,wage 
   	from employee
   </select>
   
@@ -433,7 +433,22 @@
     </set>
     where employeeId = #{employeeid,jdbcType=INTEGER}
   </update>
-   <select id="selectEmployeeAll" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoEmployee">
+  
+  <select id="selectAllEmployeeByPosition" resultType="employeeCustom" parameterType="employeeCustom">
+  
+	SELECT * FROM employee
+	<where>
+		 <if test="positionid != null" >
+	        positionId = #{positionid}
+	     </if>	
+     </where>
+  </select>
+  
+  <update id="updateEmployeePositionalNull" parameterType="Integer">
+  	UPDATE employee SET positionId = null where employeeId = #{id}
+  </update>
+  
+  <select id="selectEmployeeAll" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoEmployee">
   	select e.*,a.authorityLevel,p.positionName,b.branchName from employee e,authority a,positional p,branch b
 	where a.authorityId=e.authorityId
 	and p.positionId=e.positionId
@@ -448,5 +463,4 @@
 	and b.areaId=e.areaId
 	order by b.branchid asc
   </select>
-  
 </mapper>

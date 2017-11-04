@@ -1,15 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html>
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>分店修改</title>
+	<title>商品添加</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
-	<meta name="author" content="Dennis Ji">
+	<meta name="author" content="zb">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<!-- end: Meta -->
 	
@@ -400,7 +399,6 @@
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
-			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
@@ -411,57 +409,173 @@
 					<a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp">分店管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">分店信息修改</a></li>
+				<li>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp">商城管理</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="#">商品添加</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>分店信息修改</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>商品添加</h2>
+						<h2 id = "adminMall"></h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="#"><i class="halflings-icon white wrench"></i></a>
+							<a href="" id = "updateProductUrl"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
 					
-					
 					<div class="box-content">
-						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateActivityInfo" method="post" enctype="multipart/form-data">
+						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/addProduct" method="post" enctype="multipart/form-data">
 							<fieldset>
-							<div class="control-group" id="branchname">
-								<label class="control-label" for="focusedInput">分店名字</label>
+							  
+							  <div class="control-group" id = "producPpicture">
+								<label class="control-label">添加图片</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "branchname" type="text" value="">
+								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
 								</div>
-							 </div>
-							   <div class="control-group" id = "employeename">
-								<label class="control-label" for="employeename">分店管理员</label>
+							  </div>
+							  <div class="control-group" id = "productname">
+								<label class="control-label">商品名字</label>
 								<div class="controls">
-								  <select name="employeename" data-rel="">
-								  	<!-- <option value = "" ></option> -->
+								  <input class="input-xlarge focused" name = "productname" type="text" value="">
+								</div>
+							  </div>
+							   <div class="control-group" id = "fathertypename">
+								<label class="control-label">商品父类类型</label>
+								<div class="controls">
+								  <select name = "fathertype">
 								  </select>
 								</div>
 							  </div>
-							 <!--  <div class="control-group" id = "activitystatus">
-								<label class="control-label">所在地区</label>
+							  <div class="control-group" id = "producttypename">
+								<label class="control-label">商品类型</label>
 								<div class="controls">
-									<select name = "activitystatus">
-										<option value="已开展" id = "activitystatus1">已开展</option>
-										<option value="未开展" id = "activitystatus2">未开展</option>
-									</select>
+								  <select name = "producttypeid">
+								  	
+								  </select>
+								</div>
+							  </div>
+							  <div class="control-group" id = "shelves">
+								<label class="control-label">是否上架</label>
+								<div class="controls">
+								   <select name = "shelves">
+								   	<option value = true>是</option>
+								   	<option value = false>否</option>
+								  </select>
+								</div>
+							  </div>
+							  <div class="control-group" id = "buyNo">
+								<label class="control-label">购买次数</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "buyno" type="text" value="">
+								</div>
+							  </div>
+							  <div class="control-group" id = "price">
+								<label class="control-label">商品价格</label>
+								<div class="controls">
+								  <span class="add-on">$</span><input id="" size="16" type="text" name = "price"><span class="add-on">.00</span>
+								</div>
+							  </div>
+							  <div class="control-group" id = "purchaseprice">
+								<label class="control-label">商品进价</label>
+								<div class="controls">
+								  <span class="add-on">$</span><input id="" size="16" type="text" name = "purchaseprice"><span class="add-on">.00</span>
+								</div>
+							  </div>
+							 <!--  <div class="control-group" id = "branchname">
+								<label class="control-label">所属分店</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "branchid" type="text" value="">
+								</div>
+							  </div> -->
+							   
+							  <div class="control-group" id = "instock">
+								<label class="control-label">总库存</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "instock" type="text" value="">
+								</div>
+							  </div>
+							 <!--  <div class="control-group" id = "discount">
+								<label class="control-label">打折</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "discount" type="text" value="">
 								</div>
 							  </div> -->
 							  
-							  <input type="hidden" value="${message }" id = "message">
-							  <input type="hidden" value="" id = "branchid">
-							  <input type="hidden" value="" id = "oldemployeeid">
-							  <input type="hidden" value="" id = "areaid">
-							 <%-- <input type="hidden" value="${message }" id = "message"> --%>
-							 
-							  <div class="form-actions">
-								<button type="button" id = "updateBranch" class="btn btn-primary">保存</button>
+							  
+							   <div class="control-group" id = "origin">
+								<label class="control-label">产地</label>
+								<div class="controls">
+									<input class="input-xlarge focused" name = "origin" type="text" value="">
+								</div>
 							  </div>
+							   <div class="control-group" id = "productspecifications">
+								<label class="control-label">产品规格</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "productspecifications" type="text" value="">
+								</div>
+							  </div>
+							   <div class="control-group" id = "producstandards">
+								<label class="control-label">产品标准号</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "producstandards" type="text" value="">
+								</div>
+							  </div>
+							   <div class="control-group" id = "productionlicensenumber">
+								<label class="control-label">生产许可证编号</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "productionlicensenumber" type="text" value="">
+								</div>
+							  </div>
+							   <div class="control-group" id = "producttaste">
+								<label class="control-label">口味</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "tasteString" type="text" placeholder="多个用空格分隔">
+								</div>
+							  </div>
+							  <div class="control-group" id = "storagemethod">
+								<label class="control-label">存储方法</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "storagemethod" type="text" value="">
+								</div>
+							  </div>
+							  <div class="control-group" id = "ediblemethod">
+								<label class="control-label">食用方法</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "ediblemethod" type="text" value="">
+								</div>
+							  </div>
+							  <div class="control-group" id = "shelflife">
+								<label class="control-label">保质期</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "shelflife" type="text" value="">
+								</div>
+							  </div>
+							   <div class="control-group" id = "productcolour">
+								<label class="control-label">颜色</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "colorString" type="text" placeholder="多个用空格分隔">
+								</div>
+							  </div>
+							  <div class="control-group hidden-phone" id = "description">
+								  <label class="control-label">商品描述</label>
+								  <div class="controls">
+									<textarea class="" id="" rows="6"  name="description" style="width: 500px;"></textarea>
+								  </div>
+							  </div>
+							  
+							  <input type="hidden" value="" id = "productid" name="productid">
+							  <div class="form-actions">
+							  	<button type="submit" class="btn btn-primary">保存</button>
+							  </div> 
+							  <!-- <div class="form-actions">
+								<button type="submit" class="btn btn-primary">Save changes</button>
+								<button class="btn">Cancel</button>
+							  </div> -->
 							</fieldset>
 						  </form>
 					
@@ -476,6 +590,7 @@
 				
 			</div>
 			</div>
+
 		</div>
 	</div>
 		
@@ -604,12 +719,10 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
-		
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/updateBranch.js"></script>
-		
 	
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/addProduct.js"></script>
 	<!-- end: JavaScript-->
+	
 </body>
 </html>
