@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
 	
-	//加载分店数据
+	//加载分店
 	$.ajax({
 		
 		type:"post",
@@ -9,30 +9,46 @@ $(document).ready(function(){
 		url:root+"/superAdmin/queryAllBranch",
 		success:function(data){
 			for(var i in data){
-				$("#branchid").append('<option value="'+data[i].branchid+'">'+data[i].branchname +'</option>');
+				
+				$("#selectBranch").append('<option value="'+data[i].branchid+'" >'+data[i].branchname+'</option>');
 			}
 		}
 	});
 	
-	//开始加载留言数据
+	
+	
+	
+	
+	//开始查询数据
 		var search = "";
 		var currentPage = 1;
 		var pageNum = $("#selectPageNum").attr("value");;
 		var sort = $("#selectSort").val();
-		var branchid = $("#branchid").attr("value");
+		var selectBranch = $("#selectBranch").attr("value");
+		
 		
 		function createActivityTable(data){
-			for(var i in data.allMessage){
-				$("#allMessages").append(
-					'<a href = "'+root+"/jsp/admin/page/messageInfo.jsp?messageid="+data.allMessage[i].messageid+'">'+ 	
-						'<li>'+
-							'<span class="from">'+
-							'<span class="glyphicons dislikes"><i></i></span>'+data.allMessage[i].username+'</span>'+
-							'<span class="title">'+data.allMessage[i].messagecontext+'</span>'+
-							'<span class="date">日期<b>'+data.allMessage[i].messagetimeString+'</b></span>'+
-						'</li>'+
-					'</a>'
-				);
+			$("#sum").text(data.recordSum);
+			for(var i in data.transactionList){
+				$("#box tbody").append(
+						'<tr>'+
+							'<a href = "'+root+'/jsp/admin/page/userInfo.jsp?userid='+ (data.transactionList)[i].userid +'" ><td>'+ (data.transactionList)[i].username +'</td></a>'+
+							'<td class="center">'+(data.transactionList)[i].cycle+
+							'<td class="center">'+(data.transactionList)[i].frequency +'</td>'+
+							'<td class="center">'+(data.transactionList)[i].countbuy +'</td>'+
+							'<td class="center">'+
+								'<span class="label label-success">'+ (data.transactionList)[i].totalprice +'</span>'+
+							'</td>'+
+							'<td class="center">'+
+								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateRecordInfo.jsp?transactionid='+ (data.transactionList)[i].transactionid +'">'+
+									'<i class="halflings-icon white edit"></i>'+  
+								'</a>'+
+								'<a class="btn btn-danger" href="#">'+
+									'<i class="halflings-icon white trash"></i>'+
+								'</a>'+
+							'</td>'+
+						'</tr>'
+					);
 				
 			}
 		}
@@ -40,24 +56,23 @@ $(document).ready(function(){
 			pageNum = $("#selectPageNum").attr("value");
 			sort = $("#selectSort").attr("value");
 			search = $("#search").val();
-			branchid = $("#branchid").attr("value");
-			
+			selectBranch = $("#selectBranch").attr("value");
 			currentPage = 1;
 			$.ajax({
 				
 				type:"post",
 				contentType:"application/json;charset=utf-8",
-				url:root+"/superAdmin/queryAllMessage",
+				url:root+"/superAdmin/queryAllRecord",
 				data:'{"search"'+':'+'"'+search+'"'+','
 				+'"currentPage"'+':'+'"'+currentPage+'"'+','
-				+'"branchid"'+':'+'"'+branchid+'"'+','
+				+'"branchid"'+':'+'"'+selectBranch+'"'+','
 				+'"pageNum"'+':'+'"'+pageNum+'"'+','
 				+'"sort"'+':'+'"'+sort+'"'
 	        			+'}',
 				success:function(data){
 					//alert(data.pageSum);
 					//alert("ok");
-					$("#allMessages").html("");
+					$("#box tbody").html("");
 					$("#home").attr("value",1);
 					$("#previousPage").attr("value",1);
 					$("#nextPage").attr("value",1);
@@ -70,27 +85,27 @@ $(document).ready(function(){
 		}
 		
 		//第一次进入
+		
 		$.ajax({
 			
 			type:"post",
 			contentType:"application/json;charset=utf-8",
-			url:root+"/superAdmin/queryAllMessage",
+			url:root+"/superAdmin/queryAllRecord",
 			data:'{"search"'+':'+'"'+search+'"'+','
 			+'"currentPage"'+':'+'"'+currentPage+'"'+','
 			+'"pageNum"'+':'+'"'+pageNum+'"'+','
-			+'"branchid"'+':'+'"'+branchid+'"'+','
+			+'"branchid"'+':'+'"'+selectBranch+'"'+','
 			+'"sort"'+':'+'"'+sort+'"'
         			+'}',
 			success:function(data){
 				//alert(data.pageSum);
 				//alert("ok");
-				$("#allMessages").html("");
+				$("#box tbody").html("");
 				$("#home").attr("value",1);
 				$("#previousPage").attr("value",1);
 				$("#nextPage").attr("value",1);
 				$("#lastPage").attr("value",data.pageSum);
 				$("#pageSum").text(data.pageSum);
-				$("#messageSum").text(data.messageSum);
 				//alert($("#previousPage").attr("value"));
 				createActivityTable(data);
 			}
@@ -99,24 +114,20 @@ $(document).ready(function(){
 		//事件开始
 		//搜索框事件
 		$("#search").bind('input propertychange', function(){
-			//alert($(this).attr("value"));
 			queryData();
 		});
 		
 		//排序
 		$("#sort").change(function(){
-			//alert($(this).attr("value"));
 			queryData();
 		});
 		//状态
-		$("#branchid").change(function(){
-			//alert($(this).attr("value"));
+		$("#selectBranch").change(function(){
 			queryData();
 		});
 		
 		//每页显示 排序 事件
 		$("#selectPageNum").change(function(){
-			//alert($(this).attr("value"));
 			queryData();
 		});
 		
@@ -149,22 +160,22 @@ $(document).ready(function(){
 			pageNum = $("#selectPageNum").attr("value");
 			sort = $("#selectSort").attr("value");
 			search = $("#search").val();
-			branchid = $("#branchid").attr("value");
+			selectBranch = $("#selectBranch").attr("value");
 			$.ajax({
 				
 				type:"post",
 				contentType:"application/json;charset=utf-8",
-				url:root+"/superAdmin/queryAllMessage",
+				url:root+"/superAdmin/queryAllRecord",
 				data:'{"search"'+':'+'"'+search+'"'+','
 				+'"currentPage"'+':'+'"'+currentPage+'"'+','
-				+'"branchid"'+':'+'"'+branchid+'"'+','
+				+'"branchid"'+':'+'"'+selectBranch+'"'+','
 				+'"pageNum"'+':'+'"'+pageNum+'"'+','
 				+'"sort"'+':'+'"'+sort+'"'
 	        			+'}',
 				success:function(data){
 					//alert(data.pageSum);
 					//alert("ok");
-					$("#allMessages").html("");
+					$("#box tbody").html("");
 					//$("#home").attr("value",1);
 					//$("#lastPage").attr("value",data.pageSum);
 					createActivityTable(data);

@@ -24,6 +24,26 @@ public class UserCustom extends User{
     private String stringregistrationdate;
     private String stringuser;
 	
+    private String dateStringRegistrationdate;//时间转换
+    
+    private String birthdayString;
+    
+	public String getBirthdayString() {
+		return birthdayString;
+	}
+
+	public void setBirthdayString(String birthdayString) {
+		this.birthdayString = birthdayString;
+	}
+
+	public String getDateStringRegistrationdate() {
+		return dateStringRegistrationdate;
+	}
+
+	public void setDateStringRegistrationdate(String dateStringRegistrationdate) {
+		this.dateStringRegistrationdate = dateStringRegistrationdate;
+	}
+
 	public AreaCustom getArea() {
 		return area;
 	}

@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -130,7 +134,9 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	}
 	
 	@RequestMapping(value="update")
-	public String  updateProduct(Product product, HttpServletRequest request) throws Exception{
+	public String  updateProduct( Product product, HttpServletRequest request) throws Exception{
+
+	
 		productManageService.updateProductCustom(product);
 		return"redirect:/productmanage/quertyProduct.action";
 	}

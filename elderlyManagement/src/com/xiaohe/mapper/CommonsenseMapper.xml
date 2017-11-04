@@ -9,7 +9,7 @@
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
-    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Commonsense" extends="BaseResultMap" >
     <result column="context" property="context" jdbcType="LONGVARCHAR" />
@@ -39,7 +39,7 @@
       )
     values (#{commonsenseid,jdbcType=INTEGER}, #{editorid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}, 
       #{contexttype,jdbcType=VARCHAR}, #{branchid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{picture,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{context,jdbcType=LONGVARCHAR}
+      #{picture,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{context,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Commonsense" >
@@ -96,7 +96,7 @@
         #{picture,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
-        #{createtime,jdbcType=DATE},
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="context != null" >
         #{context,jdbcType=LONGVARCHAR},
@@ -125,7 +125,7 @@
         picture = #{picture,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
-        createTime = #{createtime,jdbcType=DATE},
+        createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="context != null" >
         context = #{context,jdbcType=LONGVARCHAR},
@@ -141,7 +141,7 @@
       branchId = #{branchid,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=DATE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
       context = #{context,jdbcType=LONGVARCHAR}
     where commonsenseId = #{commonsenseid,jdbcType=INTEGER}
   </update>
@@ -153,7 +153,7 @@
       branchId = #{branchid,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=DATE}
+      createTime = #{createtime,jdbcType=TIMESTAMP}
     where commonsenseId = #{commonsenseid,jdbcType=INTEGER}
   </update>
   <sql id="CommonsenseByCondition">

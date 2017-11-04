@@ -9,7 +9,7 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="accountNumber" property="accountnumber" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="integral" property="integral" jdbcType="VARCHAR" />
@@ -18,7 +18,7 @@
     <result column="authorityId" property="authorityid" jdbcType="INTEGER" />
     <result column="levelId" property="levelid" jdbcType="INTEGER" />
     <result column="areaId" property="areaid" jdbcType="INTEGER" />
-    <result column="registrationDate" property="registrationdate" jdbcType="DATE" />
+    <result column="registrationDate" property="registrationdate" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="BIT" />
     <result column="onLine" property="online" jdbcType="BIT" />
   </resultMap>
@@ -47,10 +47,10 @@
       onLine)
     values (#{userid,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{integral,jdbcType=VARCHAR}, #{bankcardno,jdbcType=VARCHAR}, 
       #{healthstatus,jdbcType=VARCHAR}, #{authorityid,jdbcType=INTEGER}, #{levelid,jdbcType=INTEGER}, 
-      #{areaid,jdbcType=INTEGER}, #{registrationdate,jdbcType=DATE}, #{status,jdbcType=BIT}, 
+      #{areaid,jdbcType=INTEGER}, #{registrationdate,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, 
       #{online,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.User" >
@@ -137,7 +137,7 @@
         #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        #{birthday,jdbcType=DATE},
+        #{birthday,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
         #{areaid,jdbcType=INTEGER},
       </if>
       <if test="registrationdate != null" >
-        #{registrationdate,jdbcType=DATE},
+        #{registrationdate,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
         #{status,jdbcType=BIT},
@@ -196,7 +196,7 @@
         sex = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=DATE},
+        birthday = #{birthday,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -223,7 +223,7 @@
         areaId = #{areaid,jdbcType=INTEGER},
       </if>
       <if test="registrationdate != null" >
-        registrationDate = #{registrationdate,jdbcType=DATE},
+        registrationDate = #{registrationdate,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=BIT},
@@ -242,7 +242,7 @@
       password = #{password,jdbcType=VARCHAR},
       accountNumber = #{accountnumber,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       integral = #{integral,jdbcType=VARCHAR},
@@ -251,7 +251,7 @@
       authorityId = #{authorityid,jdbcType=INTEGER},
       levelId = #{levelid,jdbcType=INTEGER},
       areaId = #{areaid,jdbcType=INTEGER},
-      registrationDate = #{registrationdate,jdbcType=DATE},
+      registrationDate = #{registrationdate,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=BIT},
       onLine = #{online,jdbcType=BIT}
     where userId = #{userid,jdbcType=INTEGER}
@@ -281,7 +281,7 @@
 	        AND sex = #{sex,jdbcType=VARCHAR}
 	      </if>
 	      <if test="birthday != null" >
-	        AND birthday = #{birthday,jdbcType=DATE}
+	        AND birthday = #{birthday,jdbcType=TIMESTAMP}
 	      </if>
 	      <if test="phone != null" >
 	        AND phone = #{phone,jdbcType=VARCHAR}
@@ -308,7 +308,7 @@
 	        AND areaId = #{areaid,jdbcType=INTEGER}
 	      </if>
 	      <if test="registrationdate != null" >
-	        AND registrationDate = #{registrationdate,jdbcType=DATE}
+	        AND registrationDate = #{registrationdate,jdbcType=TIMESTAMP}
 	      </if>
 	      <if test="status != null" >
 	        AND status = #{status,jdbcType=BIT}

@@ -12,5 +12,6 @@ public interface ProductRecommendService {
 	 * @return 分店ID 商品ID productshow（是否显示默认为否）
 	 */
 	 void	insertProductRecommend(Productrecommend productrecommend);
-
+	 
+	 int  sumProductRecommend();
 }

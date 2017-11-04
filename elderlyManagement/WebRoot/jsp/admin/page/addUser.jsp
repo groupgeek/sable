@@ -361,8 +361,11 @@
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
-								class="hidden-tablet"> 报表统计</span>
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/customerRelations.jsp"><i class="icon-tasks"></i><span
+								class="hidden-tablet">客户关系</span>
+						</a>
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/returnVisitRecord.jsp"><i class="icon-tasks"></i><span
+								class="hidden-tablet">回访记录</span>
 						</a>
 						</li>
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
@@ -370,10 +373,14 @@
 						</a>
 						</li>
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">分店管理</span> </a>
-						</li>
+								class="hidden-tablet">分店管理</span>
+						</a>
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
+						</a>
+						</li>
+						<li><a href="javaScript:;" id = "demo"><i class="icon-dashboard"></i><span
+								class="hidden-tablet">报表统计</span>
 						</a>
 						</li>
 

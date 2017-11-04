@@ -8,7 +8,7 @@
     <result column="evaluationLeval" property="evaluationleval" jdbcType="INTEGER" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="video" property="video" jdbcType="VARCHAR" />
-    <result column="commentDate" property="commentdate" jdbcType="DATE" />
+    <result column="commentDate" property="commentdate" jdbcType="TIMESTAMP" />
     <result column="taste" property="taste" jdbcType="VARCHAR" />
     <result column="colour" property="colour" jdbcType="VARCHAR" />
     <result column="size" property="size" jdbcType="VARCHAR" />
@@ -42,7 +42,7 @@
       size, evaluationContent)
     values (#{evaluationid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, 
       #{evaluationleval,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, 
-      #{commentdate,jdbcType=DATE}, #{taste,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, 
+      #{commentdate,jdbcType=TIMESTAMP}, #{taste,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, 
       #{size,jdbcType=VARCHAR}, #{evaluationcontent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Evaluation" >
@@ -102,7 +102,7 @@
         #{video,jdbcType=VARCHAR},
       </if>
       <if test="commentdate != null" >
-        #{commentdate,jdbcType=DATE},
+        #{commentdate,jdbcType=TIMESTAMP},
       </if>
       <if test="taste != null" >
         #{taste,jdbcType=VARCHAR},
@@ -137,7 +137,7 @@
         video = #{video,jdbcType=VARCHAR},
       </if>
       <if test="commentdate != null" >
-        commentDate = #{commentdate,jdbcType=DATE},
+        commentDate = #{commentdate,jdbcType=TIMESTAMP},
       </if>
       <if test="taste != null" >
         taste = #{taste,jdbcType=VARCHAR},
@@ -161,7 +161,7 @@
       evaluationLeval = #{evaluationleval,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
       video = #{video,jdbcType=VARCHAR},
-      commentDate = #{commentdate,jdbcType=DATE},
+      commentDate = #{commentdate,jdbcType=TIMESTAMP},
       taste = #{taste,jdbcType=VARCHAR},
       colour = #{colour,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
       evaluationLeval = #{evaluationleval,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
       video = #{video,jdbcType=VARCHAR},
-      commentDate = #{commentdate,jdbcType=DATE},
+      commentDate = #{commentdate,jdbcType=TIMESTAMP},
       taste = #{taste,jdbcType=VARCHAR},
       colour = #{colour,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR}

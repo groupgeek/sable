@@ -6,7 +6,7 @@
 
 <!-- start: Meta -->
 <meta charset="utf-8">
-<title>留言管理</title>
+<title>回访记录管理</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <meta name="keyword"
@@ -33,7 +33,7 @@
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
 <link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/admin/page/css/message.css"
+	href="${pageContext.request.contextPath }/jsp/admin/page/css/user_employee.css"
 	rel="stylesheet">
 <!-- end: CSS -->
 
@@ -300,7 +300,7 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp">留言管理</a>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp">回访记录管理</a>
 				</li>
 			</ul>
 			
@@ -309,11 +309,14 @@
 
 						<div class="box-header" data-original-title>
 							<h2>
-								<i class="halflings-icon white user"></i><span class="break"></span>留言管理
+								<i class="halflings-icon white user"></i><span class="break"></span>回访记录信息管理
 							</h2>
 							<h2>
-								<span class="break"></span>留言数量<span id="messageSum"></span>
+								<span class="break"></span>共查询到数据<span id="sum"></span>条
 							</h2>
+							<%-- <h2>
+								<span class="break"></span><a href="${pageContext.request.contextPath }/jsp/admin/page/addCustomerRelations.jsp" style="color: white; text-decoration: none;">添加记录</a>
+							</h2> --%>
 							<div class="box-icon">
 								<a href="#" class="btn-minimize"><i
 									class="halflings-icon white chevron-up"></i> </a>
@@ -330,30 +333,39 @@
 								</div>
 								<select id="selectSort">
 									<!-- <option>排序方式</option> -->
-									<option value="activitydate">时间</option>
+									<option value="lastvisttime">最后访问时间</option>
 									<!-- <option>0.0</option> -->
 								</select> 
-								<select id="branchid">
-									<option value="全部" selected="selected">全部</option>
-									
-								</select> 
-								<input type="text" id="search" placeholder="搜索">
+								<select id="selectBranch" style="float: right;width: 150px;	float: right;">
+
+									<option value= -1 >全部分店</option>
+									<!-- <option>0.0</option> -->
+								</select><input type="text" id="search" placeholder="搜索">
 
 							</div>
 
 
 
 
-					<div class="span12" style="position: relative;left: -30px;">
-						<ul class="messagesList" id = "allMessages">
-							
-						</ul>
-					</div>
-					
-					
+
+							<table
+								class="table table-striped table-bordered bootstrap-datatable">
+								<thead>
+									<tr>
+										<th>客户姓名</th>
+										<th>地址</th>
+										<th>最后访问时间</th>
+										<th>访问次数</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+
 
 							<div class="page">
-								<div id="messagePage">
+								<div id="userPage">
 									<p>
 										当前为第<strong id="currentPage">1</strong>页,共<strong id="pageSum">0</strong>页
 									</p>
@@ -366,6 +378,7 @@
 									<li id="lastPage"><a href="javascript:;">尾页</a></li>
 								</ul>
 							</div>
+
 
 						</div>
 
@@ -503,9 +516,11 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-	
+		
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/message.js"></script>
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/returnVisitRecord.js"></script>
+		
+		
 	<!-- end: JavaScript-->
 
 </body>
