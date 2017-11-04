@@ -91,8 +91,8 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectTotalreportSum" resultType="DECIMAL">
-  	select sum(totalPrice - totalExpenditure) 
-  	from totalreport	
+  	select sum(totalPrice - totalExpenditure) stringmoney 
+  	from totalreport 
   </select>
   <select id="selectTotalreportSumByTime" resultType="DECIMAL">
   	select sum(totalPrice - totalExpenditure)
@@ -106,5 +106,42 @@
 	where t.branchId = b.branchId
 	group by t.branchId
 	order by sum(t.totalPrice - t.totalExpenditure) desc limit 10
+  </select>
+  <select id="selectBranchTotalreport" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoTotalreport">
+  	select b.branchname,sum(t.totalPrice) sumtotalprice,sum(t.totalExpenditure) sumtotalexpenditure
+	from branch b,totalreport t
+	where b.branchId=t.branchId
+	and b.branchId=#{branchid,jdbcType=INTEGER}
+  </select>
+  <select id="selectTotalreports" parameterType="com.xiaohe.bean.CeoTotalreport" resultType="com.xiaohe.bean.CeoTotalreport">
+  	seelct b.*,sum(t.totalPrice) sumtotalprice,sum(t.totalExpenditure) sumtotalexpenditure
+  	from branch b,totalreport t
+	<where>
+  			t.branchid = b.branchid
+  		<if test="branchid != null">
+  			AND b.branchid = #{branchid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND duringtime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  </select>
+  <select id="selectBranchMoney" parameterType="com.xiaohe.bean.CeoTotalreport" resultType="com.xiaohe.bean.CeoTotalreport">
+   	select b.branchname,sum(t.totalPrice) sumtotalprice,sum(t.totalExpenditure) sumtotalexpenditure
+	from branch b,totalreport t
+	where b.branchId=t.branchId
+	and b.branchId=#{branchid,jdbcType=INTEGER}
   </select>
 </mapper>

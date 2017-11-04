@@ -46,6 +46,10 @@ public class CeoEmployee extends Employee{
     private Integer branchid;
 
 	private String branchname;
+	
+	private String stringUserDate;
+	
+	private String stringemloyeeDate;
 
 	public Integer getBranchid() {
 		return branchid;
@@ -213,6 +217,22 @@ public class CeoEmployee extends Employee{
 
 	public void setBranchname(String branchname) {
 		this.branchname = branchname;
+	}
+
+	public String getStringUserDate() {
+		return stringUserDate;
+	}
+
+	public void setStringUserDate(String stringUserDate) {
+		this.stringUserDate = stringUserDate;
+	}
+
+	public String getStringemloyeeDate() {
+		return stringemloyeeDate;
+	}
+
+	public void setStringemloyeeDate(String stringemloyeeDate) {
+		this.stringemloyeeDate = stringemloyeeDate;
 	}
 
 	@Override

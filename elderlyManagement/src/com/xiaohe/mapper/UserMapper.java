@@ -120,6 +120,6 @@ public interface UserMapper {
      * @param userid
      * @return
      */
-    User selectUserById(Integer userid);
+    UserCustom selectUserById(Integer userid);
     
 }

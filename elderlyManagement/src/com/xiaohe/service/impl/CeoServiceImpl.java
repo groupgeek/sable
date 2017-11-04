@@ -1,6 +1,8 @@
 package com.xiaohe.service.impl;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +15,7 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
 import com.xiaohe.bean.CeoTotalreport;
@@ -27,6 +30,7 @@ import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityregisteryMapper;
 import com.xiaohe.mapper.BranchMapper;
+import com.xiaohe.mapper.CeoMapper;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.mapper.OrdersMapper;
@@ -51,10 +55,7 @@ public class CeoServiceImpl implements CeoService{
 	@Autowired
 	@Qualifier("activityMapper")
 	private ActivityMapper activityMapper;
-	
-	@Autowired
-	private ActivityregisteryMapper activityregisteryMapper;
-	
+
 	@Autowired
 	private MessageMapper messageMapper;
 	
@@ -69,6 +70,9 @@ public class CeoServiceImpl implements CeoService{
 	
 	@Autowired
 	private BranchMapper branchMapper;
+	
+	@Autowired
+	private CeoMapper ceoMapper;
 	
 	/**
 	 * 实现公司总盈利额的查询
@@ -89,7 +93,21 @@ public class CeoServiceImpl implements CeoService{
 	 * 查询各分店的总盈利
 	 */
 	public List<CeoTotalreport> findTotalreportAndBranch(){
-		return totalreportMapper.selectTotalreportAndBranch();
+		List<CeoTotalreport> bigdecimalCeoTotalreports = totalreportMapper.selectTotalreportAndBranch();
+		NumberFormat numberFormat = NumberFormat.getPercentInstance();
+		numberFormat.setMaximumFractionDigits(2);
+		BigDecimal bigDecimal1 = totalreportMapper.selectTotalreportSum();
+		BigDecimal a = bigDecimal1.setScale(2);
+		for (CeoTotalreport totalreport : bigdecimalCeoTotalreports) {
+			BigDecimal bigDecimal2 = totalreport.getSumBigDecimal();
+			BigDecimal b = bigDecimal2.setScale(2);
+			BigDecimal result = null;
+			result =  b.divide(a,2);
+			double c = result.doubleValue();
+			String bigDecimal = numberFormat.format(c);
+			totalreport.setStringbigdecimal(bigDecimal);
+		}		
+		return bigdecimalCeoTotalreports;
 	}
 	/**
 	 * 实现商城总盈利额的查询
@@ -156,7 +174,7 @@ public class CeoServiceImpl implements CeoService{
 	public List<User> findfourUserByTime(){
 		return userMapper.selectfourUserByTime();
 	}
-	public User findUserById(Integer userid){
+	public UserCustom findUserById(Integer userid){
 		return userMapper.selectUserById(userid);
 	}
 	/**
@@ -165,8 +183,31 @@ public class CeoServiceImpl implements CeoService{
 	public List<Employee> findEmployees(Employee employee) {
 		return employeeMapper.selectEmployee(employee);
 	}	
-	public Employee findEmployeeById(Integer employeeid){
-		return employeeMapper.selectEmployeeAll(employeeid);
+	public CeoEmployee findEmployeeById(Integer employeeid){
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		CeoEmployee employee = employeeMapper.selectEmployeeAll(employeeid);
+		if (employee.getBirthday()!=null) {
+			String format1 = dt.format(employee.getBirthday());
+			employee.setStringUserDate(format1);
+			if (employee.getEntrytime()!=null) {
+				String format2 = dt.format(employee.getEntrytime());
+				employee.setStringemloyeeDate(format2);
+				return employee;
+			}else {
+				employee.setStringemloyeeDate(null);
+				return employee;
+			}
+		}else if (employee.getEntrytime()!=null) {
+			String format2 = dt.format(employee.getEntrytime());
+			employee.setStringemloyeeDate(format2);
+			employee.setStringUserDate(null);
+			return employee;
+		}
+		else {
+			employee.setStringUserDate(null);
+			employee.setStringemloyeeDate(null);
+			return employee;
+		}
 	}
 	public List<CeoEmployee> findBranchEmployee() {
 		return employeeMapper.selectBranchEmployee();
@@ -175,11 +216,29 @@ public class CeoServiceImpl implements CeoService{
 	/**
 	 * 实现活动信息的查询
 	 */
-	public List<Activity> findAllActivities(Activity activity) {
-		return activityMapper.selectAllActivity(activity);
+	public List<CeoActivity> findAllActivities() {
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		List<CeoActivity> activitiesList = activityMapper.selectAllActivity();
+		for (CeoActivity activity : activitiesList) {
+			String format = dt.format(activity.getActivitydate());
+			activity.setStringDate(format);
+		}
+		return activitiesList;
 	}
 	public CeoActivity findCeoActivity(Integer activityid){
-		return activityMapper.selectCeoActivity(activityid);
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		CeoActivity activity = activityMapper.selectCeoActivity(activityid);
+		String format = dt.format(activity.getActivitydate());
+		activity.setStringDate(format);
+		if (activity.getOnline()==false) {
+			String line = "否";
+			activity.setStringline(line);
+			return activity;
+		}else {
+			String line = "是";
+			activity.setStringline(line);
+			return activity;
+		}
 	}
 	public int findCountActivity(){
 		return activityMapper.selectCountActivity();
@@ -250,8 +309,8 @@ public class CeoServiceImpl implements CeoService{
 		return userMapper.countBranchUser(id);
 	}
 
-	public List<Branch> findAllBranchName(Branch branch) {
-		return branchMapper.selectAllBranchName(branch);
+	public List<Branch> findAllBranchName() {
+		return branchMapper.selectAllBranchName();
 	}
 
 	public Branch findBrachById(Integer branchid) {
@@ -260,5 +319,35 @@ public class CeoServiceImpl implements CeoService{
 
 	public List<BranchCustom> findBranchCustoms(BranchCustom branchCustom) {
 		return branchMapper.selectBranchs(branchCustom);
+	}
+	
+	public List<CeoTotalreport> findBranchTotalreport(Integer branchid){
+		return totalreportMapper.selectBranchTotalreport(branchid);
+	}
+	public List<CeoTotalreport> findCeoTotalreports(CeoTotalreport ceoTotalreport){
+		return totalreportMapper.selectTotalreports(ceoTotalreport);
+	}
+	public CeoTotalreport findBranchMoney(CeoTotalreport ceoTotalreport){
+		return totalreportMapper.selectBranchMoney(ceoTotalreport);
+	}
+	public Ceo quertyCEO(Ceo ceo) {
+		
+		
+		if(ceo==null){
+			return null;
+		}else {
+		Ceo ceos = ceoMapper.selectByPrimaryKey(ceo.getCeoid());
+		if(ceos == null){
+			
+			return null;
+			
+		}else if(ceos.getPassword().equals(ceo.getPassword()) == false){
+			
+			return  null;
+			
+		}else{
+			return ceos;
+			}
+		}	
 	}
 }

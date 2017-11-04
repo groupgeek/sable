@@ -31,6 +31,9 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
+<link id="superAdmin"
+	href="${pageContext.request.contextPath }/jsp/admin/page/css/superAdmin.css"
+	rel="stylesheet">
 	<!-- end: CSS -->
 	
 
@@ -320,7 +323,7 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> Dennis Ji
+								<i class="halflings-icon white user"></i> ${employee.employeename }
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -348,235 +351,255 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li id = "home"><a href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><i class="icon-bar-chart"></i><span
+				<%-- 		<li id = "home"><a href="JavaScript:;"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">主页</span>
 						</a>
 						</li>
-						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i class="icon-bar-chart"></i><span
+						<li id = "userInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/userInfo.jsp"><i class="icon-bar-chart"></i><span
 								class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp"><i class="icon-envelope"></i><span
+						<li><a href="JavaScript:;"><i class="icon-envelope"></i><span
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/customerRelations.jsp"><i class="icon-tasks"></i><span
-								class="hidden-tablet">客户关系</span>
-						</a>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/returnVisitRecord.jsp"><i class="icon-tasks"></i><span
-								class="hidden-tablet">回访记录</span>
+						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
+								class="hidden-tablet"> 报表统计</span>
 						</a>
 						</li>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
+						<li><a href="JavaScript:;"><i class="icon-eye-open"></i><span
 								class="hidden-tablet">活动管理</span>
 						</a>
 						</li>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">分店管理</span>
+						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+								class="hidden-tablet">商城管理</span>
 						</a>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">留言管理</span>
+						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
+								class="hidden-tablet">留言管理</spa --%>
+								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
+								<li><a href="${pageContext.request.contextPath }/jsp/productmanage/logReg/login.jsp"><i class="halflings-icon off"></i>退出登录</a></li>
+							</ul>
+						</li>
+						<!-- end: User Dropdown -->
+					</ul>
+				</div>
+				<!-- end: Header Menu -->
+				
+			</div>
+		</div>
+	</div>
+	<!-- start: Header -->
+	
+		<div class="container-fluid-full">
+		<div class="row-fluid">
+				
+			<!-- start: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/productmanage/producttype.action"><i class="icon-comment"></i><span class="hidden-tablet"> 增加商品</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/stockout.action"><i class="icon-user"></i><span class="hidden-tablet">缺货商品</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/NoproductRecommend.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 推荐商品</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/quertyPopularProduct.action"><i class="icon-random"></i><span class="hidden-tablet">热销商品</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/recommendproduct.action"><i class="icon-briefcase"></i><span class="hidden-tablet">本店推荐</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>						
+						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+				</div>
+			</div>
 						</a>
 						</li>
-						<li><a href="javaScript:;" id = "demo"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">报表统计</span>
+						<!-- <li><a class="dropmenu" href="JavaScript:;"><i
+								class="icon-folder-close-alt"></i><span class="hidden-tablet">
+									活动管理</span><span class="label label-important"> 3 </span>
 						</a>
-						</li>
+							<ul>
+								<li><a class="submenu" href="JavaScript:;"><i
+										class="icon-file-alt"></i><span class="hidden-tablet">
+											教育</span>
+								</a>
+								</li>
+								<li><a class="submenu" href="JavaScript:;"><i
+										class="icon-file-alt"></i><span class="hidden-tablet">
+											健康</span>
+								</a>
+								</li>
+							</ul>
+						</li> -->
 
 					</ul>
 				</div>
 			</div>
 
 			<!-- start: Content -->
+			
 			<div id="content" class="span10">
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath }/jsp/admin/index.jsp">主页</a> 
-					<i class="icon-angle-right"></i>
-				</li>
-				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp">客户管理</a>
-					<i class="icon-angle-right"></i>
-				</li>
-				<li><a href="#">客户详情</a></li>
-			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户详细信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>商品详情</h2>
 						<div class="box-icon">
-							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="" id = "userUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
+				<form  action="${pageContext.request.contextPath }/productmanage/update.action" class="form-horizontal" method="post" >
+				 <input type="hidden" name="productid" value="${product.productid }" />
 					<div class="box-content">
-						<form class="form-horizontal">
+						
 							<fieldset>
-							 <div class="control-group" id = "avatar">
-								<label class="control-label">头像</label>
+							  <div class="control-group" id = "productname">
+								<label class="control-label">商品名</label>
 								<div class="controls">
-									<img  id = "" src="" style="width: 100px;">
+								  
+								  <input class="input-xlarge" type="text" id="grumble" name="productname" value="${product.productname}"/>
+							
 								</div>
 							  </div>
-							  <div class="control-group" id = "username">
-								<label class="control-label">姓名</label>
+							  <div class="control-group" id = "instock">
+								<label class="control-label">库存</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								<input class="input-xlarge " type="text" class="warning" name="instock" value="${product.instock}" />
+								  
 								</div>
 							  </div>
-							  <div class="control-group" id = "sex">
-								<label class="control-label">性别</label>
+							  <div class="control-group" id = "price">
+								<label class="control-label">价格</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "phone">
-								<label class="control-label">手机号(账号)</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "password">
-								<label class="control-label">密码</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							   <div class="control-group" id = "registrationdate">
-								<label class="control-label">注册日期</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "address">
-								<label class="control-label">地址</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "status">
-								<label class="control-label">账号状态</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "integral">
-								<label class="control-label">积分</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							    <div class="control-group" id = "email">
-								<label class="control-label">邮箱</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								
+								   <input class="input-xlarge"   name="price" value="${product.price}"/>
+								 
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "birthday">
-								<label class="control-label">生日</label>
+							  <div class="control-group" id = "producttypeid">
+								<label class="control-label">类别</label>
+								
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+                              <input class="input-xlarge "  name="producttypeid"  value="${product.producttypeid}"/>
+                             
+								</div>
+							  </div>
+							   <div class="control-group" id = "productname">
+								<label class="control-label">状态</label>
+								<div class="controls">
+								  
+								  <input class="input-xlarge" type="text" id="picture" name="picture" value="${prodcut.picture}"/>
+							
+								</div>
+							  </div> 
+							 
+							  
+							  <div class="control-group" id = "buyno">
+								<label class="control-label">购买次数</label>
+								<div class="controls">
+								
+								   <input class="input-xlarge" readonly="readonly"  name="buyno" value="${product.buyno}"/>
+								 
 								</div>
 							  </div>
 							  
-							  <div class="control-group" id = "bankcardno">
-								<label class="control-label">银行卡号</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
+							
 							  
-							  <div class="control-group" id = "healthstatus">
-								<label class="control-label">健康状态</label>
+							   <div class="control-group" id = "discount">
+								<label class="control-label">折扣</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "authoritylevel">
-								<label class="control-label">权限</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "level">
-								<label class="control-label">等级</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  <div class="control-group" id = "areaname">
-								<label class="control-label">地区</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							   <div class="control-group" id = "areaaddress">
-								<label class="control-label">地区地址</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							   <div class="control-group" id = "online">
-								<label class="control-label">是否在线</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-								</div>
-							   <div class="control-group" id = "branchname">
-								<label class="control-label">所在分店</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							   <div class="control-group" id = "manager">
-								<label class="control-label">分店管理员</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							  <div class="control-group" id = "nowmedicalrecords">
-								<label class="control-label">病例</label>
-								<div class="controls">
-									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
-								</div>
-							  </div>
-							  <div class="control-group" id = "beforemedicalrecords">
-								<label class="control-label">病例</label>
-								<div class="controls">
-									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
-								</div>
-							  </div>
-							  <div class="control-group" id = "personalrecords">
-								<label class="control-label">病例</label>
-								<div class="controls">
-									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
-								</div>
-							  </div>
-							  <div class="control-group" id = "familyrecords">
-								<label class="control-label">病例</label>
-								<div class="controls">
-									<textarea rows="4" style="width: 500px; background-color: #FCFCFC;"></textarea>
+								
+								   <input class="input-xlarge"   name="discount" value="${product.discount}"/>
+								 
 								</div>
 							  </div>
 							  
 							  
 							  
+							
+							  
+							  	   <div class="control-group" id = "good">
+								<label class="control-label">货物</label>
+								<div class="controls">
+								
+								   <input class="input-xlarge"   name="good" value="${product.good}"/>
+								 
+								</div>
+							  </div>
 							  
 							  
+							 
+							     <div class="control-group" id = "branchid">
+								<label class="control-label">起源</label>
+								<div class="controls">
+								  <input type="text" class="input-xlarge " readonly="readonly"  name="origin"  value="${product.origin}"/>
+								</div>
+							  </div>
 							  
+							  	   <div class="control-group" id = "productspecifications">
+								<label class="control-label">商品规格扣</label>
+								<div class="controls">
+								
+								   <input class="input-xlarge"    name="productspecifications" value="${product.productspecifications}"/>
+								 
+								</div>
+							  </div>
+							
+								  	   <div class="control-group" id = "shelflife">
+								<label class="control-label">保质期</label>
+								<div class="controls">
+								
+								   <input class="input-xlarge" readonly="readonly" name="shelflife" value="${product.shelflife}"/>
+								 
+								</div>
+							  </div>
+								  	   <div class="control-group" id = "producstandards">
+								<label class="control-label">商品标准号</label>
+								<div class="controls">
+								
+								   <input class="input-xlarge"  readonly="readonly"  name="producstandards" value="${product.producstandards}"/>
+								 
+								</div>
+							  </div>
+							 
+							
+							  		  	   <div class="control-group" id = "productionlicensenumber">
+								<label class="control-label">商品生产许可</label>
+								<div class="controls">
+								   <input class="input-xlarge" readonly="readonly" name="productionlicensenumber" value="${product.productionlicensenumber}"/>
+								 
+								</div>
+							  </div>
+							 
+							  		  	   <div class="control-group" id = "storagemethod">
+								<label class="control-label">存储方法</label>
+								<div class="controls">
+								   <input class="input-xlarge" readonly="readonly"  name="storagemethod" value="${product.storagemethod}"/>
+								 
+								</div>
+							  </div>
 							  
-							  <!-- <div class="form-actions">
+							 
+							  
+							   		  	   <div class="control-group" id = "ediblemethod">
+								<label class="control-label">食用方法</label>
+								<div class="controls">
+								   <input class="input-xlarge"   name="ediblemethod" value="${product.ediblemethod}"/>
+								 
+								</div>
+							  </div>
+							 
+							 		  <div class="control-group" id = "description">
+								<label class="control-label">商品描述</label>
+								<div class="controls">
+								   <input class="input-xlarge"   name="description" value="${product.description}"/>
+								 
+								</div>
+							  </div>
+							   </fieldset>
+							  </div> 
+							  <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
-								<button class="btn">Cancel</button>
-							  </div> -->
-							</fieldset>
+								
+							  </div>
+							
 						  </form>
 					
 					</div>
@@ -720,10 +743,9 @@
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
 	
-	<script
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/userInfo.js"></script>	
+<%-- 	<script
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/userInfo.js"></script>	 --%>
 	
 	<!-- end: JavaScript-->
-	
 </body>
 </html>

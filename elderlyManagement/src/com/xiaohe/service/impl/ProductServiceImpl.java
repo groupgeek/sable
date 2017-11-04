@@ -327,6 +327,13 @@ public class ProductServiceImpl implements ProductService {
 		return productVo;
 	}
 
+
+public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
+	
+	return productMapper.quertyNoBranchRecommendProduct(branchid);
+}
+
+
 	public boolean updateProduct(ProductCustom productInfo,MultipartFile pictureUpload) {
 		if(productInfo == null) return false;
 		if(productInfo.getProductid() == null || productInfo.getProductid() < 0) return false;

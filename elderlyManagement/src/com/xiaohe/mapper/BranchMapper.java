@@ -57,7 +57,7 @@ public interface BranchMapper {
      * @param branch
      * @return
      */
-    List<Branch> selectAllBranchName(Branch branch);
+    List<Branch> selectAllBranchName();
 
     /**
      * 查询所有分店(包括分店管理员和分店所在地址)

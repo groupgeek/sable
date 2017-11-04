@@ -49,9 +49,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		//计算年龄,入职多少年,转换时间
 		for(EmployeeCustom temp : allEmployee){
-			temp.setAge(GetAge.getAgeByBirth(temp.getBirthday()));
 			temp.setEntryYears(GetAge.getAgeByBirth(temp.getEntrytime()));
-			temp.setBirthdayString(GetStringByDate.getString(temp.getBirthday()));
+			if(temp.getBirthday() != null){
+				temp.setAge(GetAge.getAgeByBirth(temp.getBirthday()));
+				
+				temp.setBirthdayString(GetStringByDate.getString(temp.getBirthday()));
+			}
 			temp.setEntrytimeString(GetStringByDate.getString(temp.getEntrytime()));
 		}
 		
@@ -79,10 +82,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		EmployeeCustom employee = employeeMapper.selectEmployeeInfoById(id);
 		//计算年龄,入职多少年
-		employee.setAge(GetAge.getAgeByBirth(employee.getBirthday()));
+		if(employee.getBirthday() != null){
+			employee.setAge(GetAge.getAgeByBirth(employee.getBirthday()));
+			
+			employee.setBirthdayString(GetStringByDate.getString(employee.getBirthday()));
+		}
 		employee.setEntryYears(GetAge.getAgeByBirth(employee.getEntrytime()));
 		
-		employee.setBirthdayString(GetStringByDate.getString(employee.getBirthday()));
 		employee.setEntrytimeString(GetStringByDate.getString(employee.getEntrytime()));
 		
 		return employee;

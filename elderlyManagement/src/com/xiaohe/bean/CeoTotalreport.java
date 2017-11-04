@@ -14,7 +14,8 @@ public class CeoTotalreport extends Totalreport{
     private Integer branchid;
 
     private Date duringtime;
-    
+	private Date startingTime;
+	private Date endTime;
     private String branchname;
 
     private Integer areaid;
@@ -22,6 +23,16 @@ public class CeoTotalreport extends Totalreport{
     private Integer employeeid;
     
     private BigDecimal sumBigDecimal;
+    private String stringmoney;
+    private String stringbigdecimal;
+    
+    private BigDecimal sumtotalprice;
+    
+    private BigDecimal sumtotalexpenditure;
+	private String sort;
+	private Integer begin;
+	private Integer pageNum;
+	private Integer pagesum;
 
 	public BigDecimal getSumBigDecimal() {
 		return sumBigDecimal;
@@ -95,13 +106,84 @@ public class CeoTotalreport extends Totalreport{
 		this.employeeid = employeeid;
 	}
 
-	@Override
-	public String toString() {
-		return "CeoTotalreport [id=" + id + ", totalprice=" + totalprice
-				+ ", totalexpenditure=" + totalexpenditure + ", branchid="
-				+ branchid + ", duringtime=" + duringtime + ", branchname="
-				+ branchname + ", areaid=" + areaid + ", employeeid="
-				+ employeeid + "]";
+	public BigDecimal getSumtotalprice() {
+		return sumtotalprice;
 	}
-    
+
+	public void setSumtotalprice(BigDecimal sumtotalprice) {
+		this.sumtotalprice = sumtotalprice;
+	}
+
+	public BigDecimal getSumtotalexpenditure() {
+		return sumtotalexpenditure;
+	}
+
+	public void setSumtotalexpenditure(BigDecimal sumtotalexpenditure) {
+		this.sumtotalexpenditure = sumtotalexpenditure;
+	}
+
+	public Date getStartingTime() {
+		return startingTime;
+	}
+
+	public void setStartingTime(Date startingTime) {
+		this.startingTime = startingTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public Integer getBegin() {
+		return begin;
+	}
+
+	public void setBegin(Integer begin) {
+		this.begin = begin;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public Integer getPagesum() {
+		return pagesum;
+	}
+
+	public void setPagesum(Integer pagesum) {
+		this.pagesum = pagesum;
+	}
+
+	public String getStringbigdecimal() {
+		return stringbigdecimal;
+	}
+
+	public void setStringbigdecimal(String stringbigdecimal) {
+		this.stringbigdecimal = stringbigdecimal;
+	}
+
+	public String getStringmoney() {
+		return stringmoney;
+	}
+
+	public void setStringmoney(String stringmoney) {
+		this.stringmoney = stringmoney;
+	}
+
 }

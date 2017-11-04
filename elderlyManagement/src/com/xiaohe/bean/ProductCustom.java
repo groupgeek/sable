@@ -11,6 +11,7 @@ public class ProductCustom extends Product {
 	private String search;
 	private Integer currentPage;
 	
+	
 	private List<ProducttasteCustom> tasteList;
 	private List<ProductcolourCustom> colourList;
 	private Integer employeeid;
