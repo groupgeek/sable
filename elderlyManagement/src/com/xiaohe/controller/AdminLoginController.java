@@ -60,7 +60,7 @@ public class AdminLoginController {
 			request.getSession().setAttribute("ceos", ceos);
 			System.out.println(ceos.getAuthorityid()+"----adad--------------------");
 			//ECO跳转
-			return"null";
+			return"redirect:/ceo/index.action";
 			}
 		return null;
 	}	

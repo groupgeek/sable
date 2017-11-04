@@ -74,8 +74,9 @@ public interface CeoService {
 	 * @param user
 	 * @return
 	 */
-	public List<User> findfourUserByTime();
+	public List<UserCustom> findfourUserByTime();
 	public UserCustom findUserById(Integer userid);
+	public List<UserCustom> findAllUserAndBranch();
 	/**
 	 * 查询员工信息
 	 * @param employee
@@ -203,4 +204,6 @@ public interface CeoService {
 	 * @return CEO信息
 	 */
 	public Ceo quertyCEO(Ceo ceo) ;
+	
+	public Ceo findCeoById(Integer ceoid);
 }
