@@ -11,7 +11,7 @@
     <result column="productNumber" property="productnumber" jdbcType="INTEGER" />
     <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
     <result column="price" property="price" jdbcType="DECIMAL" />
-    <result column="orderTime" property="ordertime" jdbcType="DATE" />
+    <result column="orderTime" property="ordertime" jdbcType="TIMESTAMP" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
@@ -38,7 +38,7 @@
     values (#{orderid,jdbcType=VARCHAR}, #{productid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
       #{productname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{resaddress,jdbcType=VARCHAR}, 
       #{productnumber,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
-      #{ordertime,jdbcType=DATE}, #{branchid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      #{ordertime,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Orders" >
@@ -110,7 +110,7 @@
         #{price,jdbcType=DECIMAL},
       </if>
       <if test="ordertime != null" >
-        #{ordertime,jdbcType=DATE},
+        #{ordertime,jdbcType=TIMESTAMP},
       </if>
       <if test="branchid != null" >
         #{branchid,jdbcType=INTEGER},
@@ -148,7 +148,7 @@
         price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="ordertime != null" >
-        orderTime = #{ordertime,jdbcType=DATE},
+        orderTime = #{ordertime,jdbcType=TIMESTAMP},
       </if>
       <if test="branchid != null" >
         branchId = #{branchid,jdbcType=INTEGER},
@@ -169,7 +169,7 @@
       productNumber = #{productnumber,jdbcType=INTEGER},
       totalPrice = #{totalprice,jdbcType=DECIMAL},
       price = #{price,jdbcType=DECIMAL},
-      orderTime = #{ordertime,jdbcType=DATE},
+      orderTime = #{ordertime,jdbcType=TIMESTAMP},
       branchId = #{branchid,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=VARCHAR}

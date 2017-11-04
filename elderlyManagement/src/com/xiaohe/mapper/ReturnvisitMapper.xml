@@ -6,7 +6,7 @@
     <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="lastVistTime" property="lastvisttime" jdbcType="DATE" />
+    <result column="lastVistTime" property="lastvisttime" jdbcType="TIMESTAMP" />
     <result column="countVisit" property="countvisit" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -27,7 +27,7 @@
       address, lastVistTime, countVisit
       )
     values (#{returnvisitid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{lastvisttime,jdbcType=DATE}, #{countvisit,jdbcType=INTEGER}
+      #{address,jdbcType=VARCHAR}, #{lastvisttime,jdbcType=TIMESTAMP}, #{countvisit,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Returnvisit" >
@@ -66,7 +66,7 @@
         #{address,jdbcType=VARCHAR},
       </if>
       <if test="lastvisttime != null" >
-        #{lastvisttime,jdbcType=DATE},
+        #{lastvisttime,jdbcType=TIMESTAMP},
       </if>
       <if test="countvisit != null" >
         #{countvisit,jdbcType=INTEGER},
@@ -86,7 +86,7 @@
         address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="lastvisttime != null" >
-        lastVistTime = #{lastvisttime,jdbcType=DATE},
+        lastVistTime = #{lastvisttime,jdbcType=TIMESTAMP},
       </if>
       <if test="countvisit != null" >
         countVisit = #{countvisit,jdbcType=INTEGER},
@@ -99,7 +99,7 @@
     set userId = #{userid,jdbcType=INTEGER},
       username = #{username,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      lastVistTime = #{lastvisttime,jdbcType=DATE},
+      lastVistTime = #{lastvisttime,jdbcType=TIMESTAMP},
       countVisit = #{countvisit,jdbcType=INTEGER}
     where ReturnVisitId = #{returnvisitid,jdbcType=INTEGER}
   </update>
@@ -114,4 +114,46 @@
   </select>
   
   
+        <select id="selectAllRecordByCondition" parameterType="ReturnvisitCustom" resultType="ReturnvisitCustom">
+  
+	  	SELECT r.* FROM `returnvisit` r , branch b , `user` u ,area a
+		WHERE r.userId = u.userId AND u.areaId = a.areaId AND a.areaId = b.areaId
+		<if test="branchid != null">
+			AND b.branchId = #{branchid}
+		</if>
+		
+	  	<if test="search != null">
+	  		AND (r.username LIKE '%${search}%' OR r.address LIKE '%${search}%')
+	  	</if>
+	  	<if test="sort != null" >
+		    ORDER BY #{sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllRecordSumByCondition" parameterType="ReturnvisitCustom" resultType="Integer">
+  
+  		SELECT COUNT(*) FROM `returnvisit` r , branch b , `user` u ,area a
+		WHERE r.userId = u.userId AND u.areaId = a.areaId AND a.areaId = b.areaId
+		
+		<if test="branchid != null">
+			AND b.branchId = #{branchid}
+		</if>
+		
+	  	<if test="search != null">
+	  		AND (r.username LIKE '%${search}%' OR r.address LIKE '%${search}%')
+	  	</if>
+  
+  </select>
+  
+  <select id="selectRecordById" parameterType="Integer" resultType="ReturnvisitCustom">
+  
+  	SELECT * FROM `returnvisit` 
+	WHERE ReturnVisitId = #{id}
+  </select>
 </mapper>

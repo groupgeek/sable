@@ -6,7 +6,7 @@
     <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
     <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
-    <result column="duringTime" property="duringtime" jdbcType="DATE" />
+    <result column="duringTime" property="duringtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, totalPrice, totalExpenditure, branchId, duringTime
@@ -25,7 +25,7 @@
     insert into totalreport (id, totalPrice, totalExpenditure, 
       branchId, duringTime)
     values (#{id,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{totalexpenditure,jdbcType=DECIMAL}, 
-      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=DATE})
+      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Totalreport" >
     insert into totalreport
@@ -60,7 +60,7 @@
         #{branchid,jdbcType=INTEGER},
       </if>
       <if test="duringtime != null" >
-        #{duringtime,jdbcType=DATE},
+        #{duringtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         branchId = #{branchid,jdbcType=INTEGER},
       </if>
       <if test="duringtime != null" >
-        duringTime = #{duringtime,jdbcType=DATE},
+        duringTime = #{duringtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -87,7 +87,7 @@
     set totalPrice = #{totalprice,jdbcType=DECIMAL},
       totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
       branchId = #{branchid,jdbcType=INTEGER},
-      duringTime = #{duringtime,jdbcType=DATE}
+      duringTime = #{duringtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectTotalreportSum" resultType="DECIMAL">

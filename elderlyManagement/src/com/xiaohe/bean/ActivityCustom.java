@@ -24,8 +24,17 @@ public class ActivityCustom extends Activity {
 	private Integer fathertypeid;
 	private String activitytypename;
 	
+	private String activitydateString;
 	
 	
+	
+	
+	public String getActivitydateString() {
+		return activitydateString;
+	}
+	public void setActivitydateString(String activitydateString) {
+		this.activitydateString = activitydateString;
+	}
 	public String getActivitytypename() {
 		return activitytypename;
 	}

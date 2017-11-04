@@ -103,14 +103,60 @@
       countBuy = #{countbuy,jdbcType=INTEGER}
     where transactionId = #{transactionid,jdbcType=INTEGER}
   </update>
-  
-  <!-- 自定义sql -->
-  <select id="branchAlltran" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.TransactionCustom">
+   <select id="branchAlltran" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.TransactionCustom">
   SELECT t.*,u.username FROM transaction t,employee e,user u,branch b
 	where t.userId = u.userId
 	and u.areaId = b.areaId
 	and b.employeeId = e.employeeId
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  
+      <select id="selectAllRecordByCondition" parameterType="TransactionCustom" resultType="TransactionCustom">
+  
+	  	SELECT u.userName , t.*, b.branchId , b.branchName
+	  	FROM `transaction` t ,branch b ,`user` u , area a
+		WHERE a.areaId = b.areaId AND u.areaId = a.areaId AND t.userId = u.userId
+		
+		<if test="branchid != null">
+			AND b.branchId = #{branchid}
+		</if>
+		
+	  	<if test="search != null">
+	  		AND u.username LIKE '%${search}%'
+	  	</if>
+	  	<if test="sort != null" >
+		    ORDER BY #{sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllRecordSumByCondition" parameterType="TransactionCustom" resultType="Integer">
+  
+  		SELECT COUNT(*) FROM `transaction` t ,branch b ,`user` u , area a
+		WHERE a.areaId = b.areaId AND u.areaId = a.areaId AND t.userId = u.userId
+		
+		<if test="branchid != null">
+			AND b.branchId = #{branchid}
+		</if>
+		
+	  	<if test="search != null">
+	  		AND u.username LIKE '%${search}%'
+	  	</if>
+  
+  </select>
+  
+  <select id="selectRecordById" parameterType="Integer" resultType="TransactionCustom">
+  
+  	SELECT u.userName , t.*, b.branchId , b.branchName
+	  	FROM `transaction` t ,branch b ,`user` u , area a
+		WHERE a.areaId = b.areaId AND u.areaId = a.areaId AND t.userId = u.userId 
+  		AND transactionId = #{id,jdbcType=INTEGER}
   </select>
   
 </mapper>

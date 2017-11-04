@@ -28,7 +28,7 @@
 			$("#activitytypename span").text(data.activitytypename);//类型
 			$("#fathertypename span").text(data.fathertypename);//父类类型
 			$("#activitystatus span").text(data.activitystatus);
-			$("#activitydate span").text(data.activitydate);
+			$("#activitydate span").text(data.activitydateString);
 			$("#branchname span").text(data.branchname);
 			$("#activityprice span").text(data.activityprice);
 			$("#registeryfee span").text(data.registeryfee);

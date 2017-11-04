@@ -9,13 +9,13 @@
     <result column="accountNumber" property="accountnumber" jdbcType="VARCHAR" />
     <result column="employeeName" property="employeename" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="areaId" property="areaid" jdbcType="INTEGER" />
     <result column="authorityId" property="authorityid" jdbcType="INTEGER" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="wage" property="wage" jdbcType="DECIMAL" />
-    <result column="entryTime" property="entrytime" jdbcType="DATE" />
+    <result column="entryTime" property="entrytime" jdbcType="TIMESTAMP" />
     <result column="positionId" property="positionid" jdbcType="INTEGER" />
     <result column="bankcardNo" property="bankcardno" jdbcType="VARCHAR" />
     <result column="totalBonus" property="totalbonus" jdbcType="DECIMAL" />
@@ -46,9 +46,9 @@
       )
     values (#{employeeid,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, #{employeename,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, 
       #{areaid,jdbcType=INTEGER}, #{authorityid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
-      #{wage,jdbcType=DECIMAL}, #{entrytime,jdbcType=DATE}, #{positionid,jdbcType=INTEGER}, 
+      #{wage,jdbcType=DECIMAL}, #{entrytime,jdbcType=TIMESTAMP}, #{positionid,jdbcType=INTEGER}, 
       #{bankcardno,jdbcType=VARCHAR}, #{totalbonus,jdbcType=DECIMAL}, #{employeestatus,jdbcType=VARCHAR}
       )
   </insert>
@@ -133,7 +133,7 @@
         #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        #{birthday,jdbcType=DATE},
+        #{birthday,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -151,7 +151,7 @@
         #{wage,jdbcType=DECIMAL},
       </if>
       <if test="entrytime != null" >
-        #{entrytime,jdbcType=DATE},
+        #{entrytime,jdbcType=TIMESTAMP},
       </if>
       <if test="positionid != null" >
         #{positionid,jdbcType=INTEGER},
@@ -189,7 +189,7 @@
         sex = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=DATE},
+        birthday = #{birthday,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
         wage = #{wage,jdbcType=DECIMAL},
       </if>
       <if test="entrytime != null" >
-        entryTime = #{entrytime,jdbcType=DATE},
+        entryTime = #{entrytime,jdbcType=TIMESTAMP},
       </if>
       <if test="positionid != null" >
         positionId = #{positionid,jdbcType=INTEGER},
@@ -232,13 +232,13 @@
       accountNumber = #{accountnumber,jdbcType=VARCHAR},
       employeeName = #{employeename,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
       phone = #{phone,jdbcType=VARCHAR},
       areaId = #{areaid,jdbcType=INTEGER},
       authorityId = #{authorityid,jdbcType=INTEGER},
       address = #{address,jdbcType=VARCHAR},
       wage = #{wage,jdbcType=DECIMAL},
-      entryTime = #{entrytime,jdbcType=DATE},
+      entryTime = #{entrytime,jdbcType=TIMESTAMP},
       positionId = #{positionid,jdbcType=INTEGER},
       bankcardNo = #{bankcardno,jdbcType=VARCHAR},
       totalBonus = #{totalbonus,jdbcType=DECIMAL},
@@ -271,7 +271,7 @@
         AND sex = #{sex,jdbcType=VARCHAR}
       </if>
       <if test="birthday != null" >
-        AND birthday = #{birthday,jdbcType=DATE}
+        AND birthday = #{birthday,jdbcType=TIMESTAMP}
       </if>
       <if test="phone != null" >
         AND phone = #{phone,jdbcType=VARCHAR}
@@ -289,7 +289,7 @@
         AND wage = #{wage,jdbcType=DECIMAL}
       </if>
       <if test="entrytime != null" >
-        AND entryTime = #{entrytime,jdbcType=DATE}
+        AND entryTime = #{entrytime,jdbcType=TIMESTAMP}
       </if>
       <if test="positionid != null" >
         AND positionId = #{positionid,jdbcType=INTEGER}
@@ -398,7 +398,7 @@
         sex = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=DATE},
+        birthday = #{birthday,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -416,7 +416,7 @@
         wage = #{wage,jdbcType=DECIMAL},
       </if>
       <if test="entrytime != null" >
-        entryTime = #{entrytime,jdbcType=DATE},
+        entryTime = #{entrytime,jdbcType=TIMESTAMP},
       </if>
       <if test="positionid != null" >
         positionId = #{positionid,jdbcType=INTEGER},

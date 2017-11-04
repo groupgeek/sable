@@ -34,7 +34,11 @@ import com.xiaohe.bean.PositionalCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.ReturnvisitCustom;
+import com.xiaohe.bean.ReturnvisitVo;
 import com.xiaohe.bean.ShowMessage;
+import com.xiaohe.bean.TransactionCustom;
+import com.xiaohe.bean.TransactionVo;
 import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
@@ -49,6 +53,8 @@ import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProductTypeService;
+import com.xiaohe.service.ReturnvisitService;
+import com.xiaohe.service.TransactionService;
 import com.xiaohe.service.UserService;
 
 @Controller
@@ -102,6 +108,15 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("productTypeService")
 	private ProductTypeService productTypeService;
+	
+	@Autowired
+	@Qualifier("transactionService")
+	private TransactionService transactionService;
+	
+	@Autowired
+	@Qualifier("returnvisitService")
+	private ReturnvisitService returnvisitService;
+	
 	
 	
 	@RequestMapping("/test")
@@ -715,5 +730,95 @@ public class superAdminController {
 		}
 		
 		return "admin/page/addProduct";
+	}
+	
+	/**
+	 * 查询用户交易表
+	 * @return
+	 */
+	@RequestMapping("/queryAllRecord")
+	public @ResponseBody TransactionVo queryAllRecord(@RequestBody TransactionCustom condition){
+		//检查管理员是否登录......
+		//代码
+		if(condition == null) return null;
+		TransactionVo transactionVo = new TransactionVo();
+		transactionVo = transactionService.queryAllRecordByCondition(condition);
+		return transactionVo;
+	}
+	
+	/**
+	 * 进入修改用户交易表
+	 * @return
+	 */
+	@RequestMapping("/updateTransationRecordView")
+	public @ResponseBody TransactionCustom updateTransationRecordView(@RequestBody TransactionCustom condition){
+		if(condition == null) return null;
+		if(condition.getTransactionid() == null || condition.getTransactionid() < 0) return null;
+		TransactionCustom info = transactionService.queryRecordInfoById(condition.getTransactionid());
+		return info;
+	}
+	
+	/**
+	 * 修改用户交易表
+	 * @return
+	 */
+	@RequestMapping("/updateTransationRecord")
+	public @ResponseBody ShowMessage updateTransationRecord(@RequestBody TransactionCustom info){
+		if(info == null) return null;
+		if(info.getTransactionid() == null || info.getTransactionid() < 0) return null;
+		ShowMessage showMessage = new ShowMessage();
+		String message = null;
+		if(transactionService.updateRecordInfoById(info)){
+			message = "修改成功";
+		}else{
+			message = "修改失败";
+		}
+		
+		showMessage.setMessage(message);
+		return showMessage;
+	}
+	
+	/**
+	 * 查询所有回访记录
+	 * @return
+	 */
+	@RequestMapping("/queryAllReturnRecord")
+	public @ResponseBody ReturnvisitVo queryAllReturnRecord(@RequestBody ReturnvisitCustom condition){
+		if(condition == null ) return null;
+		ReturnvisitVo returnvisitVo = new ReturnvisitVo();
+		returnvisitVo = returnvisitService.queryAllRecordByCondition(condition);
+		return returnvisitVo;
+	}
+	
+	/**
+	 * 加载进入修改回访的数据
+	 * @return
+	 */
+	@RequestMapping("/updateReturnRecordView")
+	public @ResponseBody ReturnvisitCustom updateReturnRecordView(@RequestBody ReturnvisitCustom condition){
+		if(condition == null ) return null;
+		
+		ReturnvisitCustom info = new ReturnvisitCustom();
+		info = returnvisitService.queryRecordInfoById(condition.getReturnvisitid());
+		
+		return info;
+	}
+	
+	/**
+	 * 修改回访的数据
+	 * @return
+	 */
+	@RequestMapping("/updateReturnRecord")
+	public @ResponseBody ShowMessage updateReturnRecord(@RequestBody ReturnvisitCustom info){
+		if(info == null ) return null;
+		ShowMessage showMessage = new ShowMessage();
+		String message = null;
+		if(returnvisitService.updateRecordInfoById(info)){
+			message = "修改成功";
+		}else{
+			message = "修改失败";
+		}
+		showMessage.setMessage(message);
+		return showMessage;
 	}
 }

@@ -18,6 +18,7 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
+import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
@@ -28,10 +29,12 @@ import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.LevelMapper;
 import com.xiaohe.mapper.MedicalrecordsMapper;
+import com.xiaohe.mapper.ReturnvisitMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
+import com.xiaohe.util.GetStringByDate;
 
 
 @Repository("userService")//注册服务
@@ -49,7 +52,11 @@ public class UserServiceImpl implements UserService {
 	@Qualifier("medicalrecordsMapper")
 	private MedicalrecordsMapper medicalrecordsMapper;
 	
-/*	@Autowired
+	@Autowired
+	@Qualifier("returnvisitMapper")
+	private ReturnvisitMapper returnvisitMapper;
+	
+	@Autowired
 	@Qualifier("authorityMapper")
 	private AuthorityMapper authorityMapper;
 	
@@ -67,7 +74,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	@Qualifier("employeeMapper")
-	private EmployeeMapper employeeMapper;*/
+	private EmployeeMapper employeeMapper;
 	
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
@@ -98,6 +105,12 @@ public class UserServiceImpl implements UserService {
 				transaction.setCountbuy(0);
 				transaction.setFrequency((float) 0);
 				transactionMapper.insertSelective(transaction);
+				
+				//创建回访表
+				Returnvisit returnvisit = new Returnvisit();
+				returnvisit.setUserid(user.getUserid());
+				returnvisit.setUsername(user.getUsername());
+				returnvisitMapper.insertSelective(returnvisit);
 				
 				//创建用户病例表
 				MedicalrecordsWithBLOBs userMed = new MedicalrecordsWithBLOBs();
@@ -172,6 +185,10 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		userList = userMapper.selectAllUserByCondition(condition);
+		for(UserCustom temp : userList){
+			temp.setDateStringRegistrationdate(GetStringByDate.getString(temp.getRegistrationdate()));
+		}
+		
 		sum = userMapper.selectAllUserSumByCondition(condition);
 		pageNum = sum / condition.getPageNum();
 		if(sum % condition.getPageNum() != 0){
@@ -189,6 +206,8 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		UserCustom userInfo = userMapper.selectUserInfoById(id);
+		userInfo.setDateStringRegistrationdate(GetStringByDate.getString(userInfo.getRegistrationdate()));
+		userInfo.setBirthdayString(GetStringByDate.getString(userInfo.getBirthday()));
 		return userInfo;
 	}
 

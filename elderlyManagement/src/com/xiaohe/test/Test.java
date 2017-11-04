@@ -1,6 +1,7 @@
 package com.xiaohe.test;
 
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,11 +16,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xiaohe.bean.ProducttransactionreportCustom;
+import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
+import com.xiaohe.mapper.TransactionMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:config/spring/applicationContext.xml")
 public class Test {
+	
+	@Autowired
+	private TransactionMapper transactionMapper;
+	
 	@Autowired
 	private ProducttransactionreportMapper producttransactionreportMapper;
 	@org.junit.Test
@@ -72,8 +79,19 @@ public class Test {
 	
 	@org.junit.Test
 	public void demo4(){
-		SimpleDateFormat sdf = new SimpleDateFormat();
-		
-		System.out.println(new Date());
+		TransactionCustom custom = new TransactionCustom();
+		//custom.setTransactionid(4);
+		custom.setUserid(1);
+		/*custom.setCycle((float) 223);
+		custom.setUserid(26);
+		custom.setFrequency((float) 1);
+		custom.setCountbuy(1);
+		BigDecimal bigDecimal = new BigDecimal(8);
+		custom.setTotalprice(bigDecimal);*/
+		//System.out.println(transactionMapper.updateByPrimaryKey(custom));
+		//System.out.println(transactionMapper.updateByPrimaryKeySelective(custom));
+		System.out.println(transactionMapper.insertSelective(custom));
 	}
+	
+	
 }
