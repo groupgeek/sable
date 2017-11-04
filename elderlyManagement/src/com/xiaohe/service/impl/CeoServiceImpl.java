@@ -13,10 +13,12 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -27,6 +29,7 @@ import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityregisteryMapper;
 import com.xiaohe.mapper.BranchMapper;
+import com.xiaohe.mapper.CeoMapper;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.mapper.OrdersMapper;
@@ -51,6 +54,10 @@ public class CeoServiceImpl implements CeoService{
 	@Autowired
 	@Qualifier("activityMapper")
 	private ActivityMapper activityMapper;
+	
+	@Autowired
+	@Qualifier("ceoMapper")
+	private CeoMapper ceoMapper;
 	
 	@Autowired
 	private ActivityregisteryMapper activityregisteryMapper;
@@ -261,4 +268,25 @@ public class CeoServiceImpl implements CeoService{
 	public List<BranchCustom> findBranchCustoms(BranchCustom branchCustom) {
 		return branchMapper.selectBranchs(branchCustom);
 	}
+	public Ceo quertyCEO(Ceo ceo) {
+		
+	
+		if(ceo==null){
+			return null;
+		}else {
+		Ceo ceos = ceoMapper.selectByPrimaryKey(ceo.getCeoid());
+		if(ceos == null){
+			
+			return null;
+			
+		}else if(ceos.getPassword().equals(ceo.getPassword()) == false){
+			
+			return  null;
+			
+		}else{
+			return ceos;
+			}
+		}	
+	}
+	
 }

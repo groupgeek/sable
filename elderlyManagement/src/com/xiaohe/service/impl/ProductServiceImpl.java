@@ -266,6 +266,11 @@ public List<ProductCustom> quertyStockout() {
 		return productMapper.quertyStockout();
 	}
 
+public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
+	
+	return productMapper.quertyNoBranchRecommendProduct(branchid);
+}
+
 
 
 

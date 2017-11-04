@@ -194,4 +194,10 @@ public class CeoController {
 		return "ceo/branch";
 	}
 	
+	//ceo信息查询
+	public String quertyCEO() {
+		return"";
+	}
+	
+	
 }
