@@ -439,8 +439,10 @@
   	select userid,avatar,userName,sex,registrationDate from user 
 	order by registrationDate desc limit 4
   </select> 
-  <select id="selectUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-  	select * from user where userid = #{userid,jdbcType=INTEGER}
+  <select id="selectUserById" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom">
+  	select u.*,b.* from user u, branch b
+	where u.areaId= b.areaId 
+	and u.userid = #{userid,jdbcType=INTEGER}
   </select>
   <select id="selectCountUserByBranch" resultType="com.xiaohe.bean.UserCustom">
   	select count(*) usernumber,branchName from user,branch

@@ -1,13 +1,11 @@
 package com.xiaohe.service;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Activity;
-import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.Ceo;
@@ -18,8 +16,6 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
-import com.xiaohe.bean.Producttransactionreport;
-import com.xiaohe.bean.Totalreport;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 
@@ -79,14 +75,14 @@ public interface CeoService {
 	 * @return
 	 */
 	public List<User> findfourUserByTime();
-	public User findUserById(Integer userid);
+	public UserCustom findUserById(Integer userid);
 	/**
 	 * 查询员工信息
 	 * @param employee
 	 * @return
 	 */
 	public List<Employee> findEmployees(Employee employee);
-	public Employee findEmployeeById(Integer employeeid);
+	public CeoEmployee findEmployeeById(Integer employeeid);
 	public List<CeoEmployee> findBranchEmployee();
 	
 	/**
@@ -94,7 +90,7 @@ public interface CeoService {
 	 * @param activity
 	 * @return
 	 */
-	public List<Activity> findAllActivities(Activity activity);
+	public List<CeoActivity> findAllActivities();
 	public CeoActivity findCeoActivity(Integer activityid);
 	/**
 	 * 查询热销商品
@@ -183,7 +179,7 @@ public interface CeoService {
 	 * @param branch
 	 * @return
 	 */
-	public List<Branch> findAllBranchName(Branch branch);
+	public List<Branch> findAllBranchName();
 	
 	/**
 	 * 查询分店并关联查询分店的管理员和地址
@@ -192,6 +188,15 @@ public interface CeoService {
 	 */
 	public List<BranchCustom> findBranchCustoms(BranchCustom branchCustom);
 	
+	/**
+	 * 查询各分店的收入和支出
+	 * @param branchid
+	 * @return
+	 */
+	public List<CeoTotalreport> findBranchTotalreport(Integer branchid);
+	
+	public List<CeoTotalreport> findCeoTotalreports(CeoTotalreport ceoTotalreport);
+	public CeoTotalreport findBranchMoney(CeoTotalreport ceoTotalreport);
 	/**
 	 *  ceo信息查询
 	 * @param ceoid
