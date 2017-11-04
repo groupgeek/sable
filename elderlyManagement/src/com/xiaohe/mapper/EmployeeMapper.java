@@ -81,7 +81,7 @@ public interface EmployeeMapper {
      * @param employeeid
      * @return
      */
-    Employee selectEmployeeAll(Integer employeeid);
+    CeoEmployee selectEmployeeAll(Integer employeeid);
 
     /**
      * 通过分店id查询分店员工

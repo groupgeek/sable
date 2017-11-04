@@ -25,4 +25,24 @@ public class CeoTest {
 		List<UserCustom> list = ceoService.findUserCustoms();
 		System.out.println(list);
 	}
+	
+	@Test
+	public void findSumTotalreportMoney(){
+		System.out.println(ceoService.findSumTotalreportMoney());
+	}
+	
+	@Test
+	public void findSumTotalreportMoneyByTime(){
+		System.out.println(ceoService.findSumTotalreportMoneyByTime());
+	}
+	
+	@Test
+	public void findBranchTotalreport(){
+		System.out.println(ceoService.findBranchTotalreport(1));
+	}
+	
+	@Test
+	public void findTotalreportAndBranch(){
+		System.out.println(ceoService.findTotalreportAndBranch().get(1).getStringbigdecimal());
+	}
 }
