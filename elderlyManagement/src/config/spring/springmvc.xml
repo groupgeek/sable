@@ -17,7 +17,7 @@
 	<!-- 扫描基本包，来确定控制器中的注解 -->
 	<context:component-scan base-package="com.xiaohe.controller" />
 
-	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService" ></mvc:annotation-driven>
 
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -74,7 +74,6 @@
 	<mvc:resources mapping="/images/**" location="/static_resources/images/" />
 	<mvc:resources mapping="/vidaos/**" location="/static_resources/vidaos/" />
 	<mvc:default-servlet-handler />
-
 
 
 

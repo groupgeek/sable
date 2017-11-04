@@ -378,7 +378,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		
 		return true;
 	}
->>>>>>> 231d3e7ac4a5f853faaf0d46e20228b0d08a7551
+
 
 	public boolean addProduct(ProductCustom productInfo, MultipartFile pictureUpload) {
 		if(productInfo == null) return false;

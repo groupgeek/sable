@@ -165,6 +165,5 @@ public interface ProductService {
 	 * @return
 	 */
 	public boolean addProduct(ProductCustom productInfo,MultipartFile pictureUpload);
->>>>>>> 231d3e7ac4a5f853faaf0d46e20228b0d08a7551
 	
 }
