@@ -1,10 +1,12 @@
 package com.xiaohe.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
@@ -12,6 +14,7 @@ import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.service.ProductManageService;
+import com.xiaohe.util.FileUpload;
 
 @Repository("productManageService")
 public class ProductManageServiceImpl implements ProductManageService {
@@ -38,7 +41,16 @@ public class ProductManageServiceImpl implements ProductManageService {
 		
 	}
 
-	public void insertProduct(Product product) throws Exception {
+	public void insertProduct(Product product,MultipartFile pictureUpload) throws Exception {
+		if(!pictureUpload.isEmpty()){
+			try {
+				product.setPicture(FileUpload.oneFileUpload(pictureUpload,product.getPicture(), "picture"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		productMapper.insertSelective(product);
 	}
 

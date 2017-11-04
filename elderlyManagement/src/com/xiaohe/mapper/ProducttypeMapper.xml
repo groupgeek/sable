@@ -120,4 +120,17 @@
 		</if>
 	
 	</select>
+	
+	<select id="selectAllFatherType" resultType="producttypeCustom">
+	
+		SELECT * FROM producttype WHERE FatherId = 0
+	
+	</select>
+	
+		<select id="selectProductTypeByFather" parameterType="Integer"
+		resultType="producttypeCustom">
+
+		SELECT * FROM producttype WHERE FatherId = #{id}
+
+	</select>
 </mapper>

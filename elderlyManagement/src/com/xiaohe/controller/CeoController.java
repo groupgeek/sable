@@ -24,7 +24,6 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
-import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.service.CeoService;
@@ -242,4 +241,8 @@ public class CeoController {
 			return null;
 		}
 	}
+	//ceo信息查询
+		public String quertyCEO() {
+			return"";
+		}
 }

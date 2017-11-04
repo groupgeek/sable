@@ -3,6 +3,7 @@ package com.xiaohe.service;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttypeCustom;
@@ -22,5 +23,18 @@ public interface ProductTypeService {
 	 * @return
 	 */
 	public List<ProducttypeCustom> querySimallProducttype();
-
+	
+	/**
+	 * 根据父类id查询子类
+	 * @param id
+	 * @return
+	 */
+	public List<ProducttypeCustom> queryProductTypeByFatherId(Integer id);
+	
+	/**
+	 * 查询父类类型
+	 * @return
+	 */
+	public List<ProducttypeCustom> queryFatherType();
+	
 }

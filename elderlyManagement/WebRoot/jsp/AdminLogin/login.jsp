@@ -90,22 +90,22 @@ with (thisform)
 	<![endif]-->
 
 </head>
-<body>
+<body style="background-image: url('/elderlyManagement/jsp/AdminLogin/images/ligbg2.jpg');height: 100%;">
 
 	<div class="container">
 		<div class="row">
 			<div style="height: 50px;"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
+			<div class="col-md-4 col-md-offset-4" ">
 				<!-- Start Sign In Form -->
 				<form id="login"
-					action="${pageContext.request.contextPath }/productmanage/productAdminLogin.action"
-					class="fh5co-form animate-box" data-animate-effect="fadeIn"  onsubmit="return validate_form(this)" method="post">
+					action="${pageContext.request.contextPath }/adminlogin/AdminLogin.action"
+					class="fh5co-form animate-box" data-animate-effect="fadeIn" style="background-color:rgba(0,0,0,0.5); padding-bottom: 50px;"   method="post">
 					<h2>登录</h2>
 					<div class="form-group">
 						<label for="employeeid" class="sr-only">员工账号</label> <input
-							type="text" class="form-control" id="employeeid" name="employeeid" digits=true  maxlength = 10
+							type="text" class="form-control" id="id" name="id" digits=true  maxlength = 10
 							placeholder="员工账号" autocomplete="off" required>
 					</div>
 					<div class="form-group">
@@ -125,6 +125,20 @@ with (thisform)
 								href="${pageContext.request.contextPath }/jsp/logReg/forgot.jsp">忘记密码?</a>
 						</p>
 					</div>
+					<div class="control-group">
+								<label class="control-label" for="selectError3"></label>
+								<div class="controls">
+								
+								<label> 
+                                <input type="radio" value="1" name="mark" />
+                            		    员工</label> 
+                            		    <label>
+                                <input type="radio" value="0" name="mark" />
+      							   CEO
+      							    </label>
+               
+								</div>
+					</div> 
 					<div class="form-group">
 						<input type="submit" value="登录" class="btn btn-primary">
 					</div>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,10 +17,12 @@ import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductcolourCustom;
+import com.xiaohe.bean.Productrecommend;
 import com.xiaohe.bean.ProducttasteCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.service.ProdcutColorService;
 import com.xiaohe.service.ProductManageService;
+import com.xiaohe.service.ProductRecommendService;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProducttasteService;
 
@@ -42,6 +45,12 @@ public class ProductManageController {
 	@Qualifier("prodcutColorService")
 	private ProdcutColorService prodcutColorService;
 	
+
+	@Autowired
+	@Qualifier("productRecommendService")
+	private ProductRecommendService productRecommendService;
+	
+
 public EmployeeCustom getAdmins(HttpServletRequest request){
 		
 		return (EmployeeCustom) request.getSession().getAttribute("admins");
@@ -101,13 +110,13 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	}
 	
 	@RequestMapping(value="insertproduct")
-	public String  insertProduct(Product product,HttpServletRequest request,Model model,MultipartFile multipartFile) throws Exception{
-		product.setBranchid(getAdmins(request).getBranchId());
-			productManageService.insertProduct(product);
+	public String  insertProduct(Product product,HttpServletRequest request,Model model, MultipartFile pictureUpload) throws Exception{
+			product.setBranchid(getAdmins(request).getBranchId());
+		
+		
+			productManageService.insertProduct(product,pictureUpload);
+			
 			return"redirect:/productmanage/quertyProduct.action";
-		
-		
-		
 	}
 	
 	@RequestMapping(value="producttype")
@@ -173,7 +182,16 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	
 	
 	//商品推荐
-	
+	@RequestMapping("productRecommend")
+	public String productRecommed(Integer productid,HttpServletRequest request){
+		Productrecommend productrecommend = new Productrecommend();
+		productrecommend.setBranchid(( getAdmins(request)).getBranchId());
+		productrecommend.setProductshow(true);
+		productrecommend.setProductid(productid);
+		System.out.println(productid);
+		productRecommendService.insertProductRecommend(productrecommend);
+		return"redirect:/productmanage/NoproductRecommend.action";
+	}
 	
 	//本店推荐查询
 	
@@ -185,9 +203,19 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		
 	}
 	
+	//分店非推荐商品查询
+	@RequestMapping(value="/NoproductRecommend")
+	public String noProductRecommdend(Model model,HttpServletRequest request){
+		List<ProductCustom>  recommendproduct = productService.quertyNoBranchRecommendProduct(( getAdmins(request)).getBranchId());
+		model.addAttribute("recommendproduct", recommendproduct);
+		return"/productmanage/page/recommendproduct";
+	}
 	
-	
-	
+	@RequestMapping("/loginout")
+	public String logOut(HttpSession session){
+		session.invalidate();
+		return"/AdminLogin/login";
+	}
 	
 	
 	
