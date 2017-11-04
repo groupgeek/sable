@@ -16,6 +16,17 @@ public class BranchCustom extends Branch {
 	private Integer usernum;
 	private Integer employeenum;
 	
+	private Integer oldemployeeid;
+	
+	
+	public Integer getOldemployeeid() {
+		return oldemployeeid;
+	}
+
+	public void setOldemployeeid(Integer oldemployeeid) {
+		this.oldemployeeid = oldemployeeid;
+	}
+
 	public Integer getUsernum() {
 		return usernum;
 	}

@@ -1,6 +1,8 @@
 package com.xiaohe.service;
 
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,5 +39,12 @@ public interface EmployeeService {
 	 * @return 员工账号
 	 */
 	public String addEmployee(EmployeeCustom employee);
+	
+	/**
+	 * 获取到某职位的所有员工
+	 * @param positionid
+	 * @return
+	 */
+	public List<EmployeeCustom> queryAllEmployeeByPosition(Integer positionid);
 
 }

@@ -62,7 +62,20 @@ public interface EmployeeMapper {
      * @return
      */
     int updateByCustom(EmployeeCustom employeeCustom);
-
+    
+    /**
+     * 获取到某职位的所有员工
+     * @param positionid
+     * @return
+     */
+    List<EmployeeCustom> selectAllEmployeeByPosition(EmployeeCustom positionid);
+    
+    /**
+     * 修改员工的职位为空
+     * @return
+     */
+    int updateEmployeePositionalNull(Integer id);
+    
     /**
      * 通过id查询员工的全部信息
      * @param employeeid

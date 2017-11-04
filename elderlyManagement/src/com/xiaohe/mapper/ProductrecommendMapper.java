@@ -30,4 +30,5 @@ public interface ProductrecommendMapper {
      * @return 本店商品推荐
      */
     List<ProductCustom> quertyRecommendProdcut(Integer branchid);
+    
 }

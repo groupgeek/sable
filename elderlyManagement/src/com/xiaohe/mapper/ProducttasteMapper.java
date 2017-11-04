@@ -29,4 +29,9 @@ public interface ProducttasteMapper {
      * @return 商品口味集合
      */
     List<ProducttasteCustom> quertyProducttasteByid(Integer productid);
+    
+    /**
+     * 根据产品id删除口味
+     */
+    int deleteProducttasteByProductid(Integer productid);
 }

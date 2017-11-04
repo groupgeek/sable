@@ -1,10 +1,7 @@
 package com.xiaohe.mapper;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
-import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -91,7 +88,7 @@ public interface ProductMapper {
     
     /**
      * 查询父类类型
-     * @param id
+     * @param id 产品id
      * @return
      */
     ProducttypeCustom selectProductFathertypeById(Integer id);
@@ -137,7 +134,38 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> quertyStockout();
+   
 
+    /**
+     * 查询食品类的商品
+     * @param id
+     * @return
+     */
+    ProductCustom selectProductAndTasteById(Integer id);
+    
+    /**
+     * 查询服装类的商品 不查询型号
+     * @param id
+     * @return
+     */
+    ProductCustom selectProductAndColorById(Integer id);
+    
+    /**
+     * 查询服装类的商品 查询型号
+     * @param id
+     * @return
+     */
+    /*ProductCustom selectProductAndColorSizeById(Integer id);*/
+    
+    /**
+     * 查询其他类的商品
+     * @param id
+     * @return
+     */
+    ProductCustom selectProductAndOtherById(Integer id);
+    
+    
+    
     /**
      * 查询热销商品
      * @return
@@ -150,13 +178,19 @@ public interface ProductMapper {
      */
     int selectCountProduct();
 
+
+    /**
+	 * 	分店非推荐商品查询 
+	 * @param branchid
+	 * @return 分店非推荐商品
+	 */
+	List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid);
     
     
     
     
     
-    
-    
+
     
     
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
 import com.xiaohe.bean.CeoTotalreport;
@@ -196,5 +197,10 @@ public interface CeoService {
 	
 	public List<CeoTotalreport> findCeoTotalreports(CeoTotalreport ceoTotalreport);
 	public CeoTotalreport findBranchMoney(CeoTotalreport ceoTotalreport);
-	
+	/**
+	 *  ceo信息查询
+	 * @param ceoid
+	 * @return CEO信息
+	 */
+	public Ceo quertyCEO(Ceo ceo) ;
 }
