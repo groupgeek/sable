@@ -35,6 +35,10 @@ public class CeoActivity extends Activity{
     
     private String registery;
     
+    private String stringDate;
+    
+    private String stringline;
+    
 	public String getRegistery() {
 		return registery;
 	}
@@ -153,6 +157,22 @@ public class CeoActivity extends Activity{
 
 	public void setBranchname(String branchname) {
 		this.branchname = branchname;
+	}
+
+	public String getStringDate() {
+		return stringDate;
+	}
+
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
+	}
+
+	public String getStringline() {
+		return stringline;
+	}
+
+	public void setStringline(String stringline) {
+		this.stringline = stringline;
 	}
 
 	@Override

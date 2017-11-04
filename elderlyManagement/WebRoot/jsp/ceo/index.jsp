@@ -27,15 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/ceo/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<link id="ie-style" href="${pageContext.request.contextPath }/jsp/ceo/css/ie.css" rel="stylesheet">
-	<![endif]-->
-	
-	<!--[if IE 9]>
-		<link id="ie9style" href="${pageContext.request.contextPath }/jsp/ceo/css/ie9.css" rel="stylesheet">
-	<![endif]-->
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
@@ -117,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="singleBar">
 									<div class="bar">
 										<div class="value">
-											<span>${k.sumBigDecimal }</span>
+											<span>${k.stringbigdecimal }</span>
 										</div>								
 									</div>								
 									<div class="title">${k.branchname }</div>							
@@ -199,32 +190,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-content">
 						<ul class="dashboard-list metro">
 							<li class="green">
-								<a href="#">
-									<img class="avatar" alt="Dennis Ji" src="img/avatar.jpg">
+								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[0].userid}">
+									<img class="avatar" alt="${findFourUser[0].username }" src="img/avatar.jpg">
 								</a>
-								<strong>姓名：</strong><a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[0].userid}"> ${findFourUser[0].username}</a><br>
+								<strong>姓名：</strong> ${findFourUser[0].username}<br>
 								<strong>性别：</strong> ${findFourUser[0].sex }<br>
 								<strong>注册时间：</strong> ${findFourUser[0].registrationdate }             
 							</li>
 							<li class="yellow">
-								<a href="#">
-									<img class="avatar" alt="Dennis Ji" src="img/avatar.jpg">
+								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[1].userid}">
+									<img class="avatar" alt="${findFourUser[1].username }" src="img/avatar.jpg">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[1].username }<br>
 								<strong>性别：</strong> ${findFourUser[1].sex }<br>
 								<strong>注册时间：</strong> ${findFourUser[1].registrationdate }                                
 							</li>
 							<li class="red">
-								<a href="#">
-									<img class="avatar" alt="Dennis Ji" src="img/avatar.jpg">
+								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[2].userid}">
+									<img class="avatar" alt="${findFourUser[2].username }" src="img/avatar.jpg">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[2].username }<br>
 								<strong>性别：</strong> ${findFourUser[2].sex }<br>
 								<strong>注册时间：</strong> ${findFourUser[2].registrationdate }                                
 							</li>
 							<li class="blue">
-								<a href="#">
-									<img class="avatar" alt="Dennis Ji" src="img/avatar.jpg">
+								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[3].userid}">
+									<img class="avatar" alt="${findFourUser[3].username }" src="img/avatar.jpg">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[3].username }<br>
 								<strong>性别：</strong> ${findFourUser[3].sex }<br>
@@ -246,42 +237,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="todo metro">
 							<ul class="todo-list">
 								<li class="red">
-									<a class="action icon-check-empty"></a>	
+									<i class="icon-envelope-alt"></i>	
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[0].messageid }">${findNewMessage[0].username } </a>
 									<strong>${findNewMessage[0].messagetime }</strong>
 								</li>
 								<li class="red">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[1].messageid }">${findNewMessage[1].username } </a>
 									<strong>${findNewMessage[1].messagetime }</strong>
 								</li>
 								<li class="yellow">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[2].messageid }">${findNewMessage[2].username } </a>
 									<strong>${findNewMessage[2].messagetime }</strong>
 								</li>
 								<li class="yellow">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[3].messageid }">${findNewMessage[3].username } </a>
 									<strong>${findNewMessage[3].messagetime }</strong>
 								</li>
 								<li class="green">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[4].messageid }">${findNewMessage[4].username } </a>
 									<strong>${findNewMessage[4].messagetime }</strong>
 								</li>
 								<li class="green">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[5].messageid }">${findNewMessage[5].username } </a>
 									<strong>${findNewMessage[5].messagetime }</strong>
 								</li>
 								<li class="blue">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[6].messageid }">${findNewMessage[6].username } </a>
 									<strong>${findNewMessage[6].messagetime }</strong>
 								</li>
 								<li class="blue">
-									<a class="action icon-check-empty"></a>
+									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[7].messageid }">${findNewMessage[7].username } </a>
 									<strong>${findNewMessage[7].messagetime }</strong>
 								</li>

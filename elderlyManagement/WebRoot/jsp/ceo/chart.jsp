@@ -1,16 +1,17 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
-<html>
-  <head>
-    <!-- start: Meta -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5 Transitional//EN">
+<html lang="en">
+<head>
+	
+	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>管理员界面</title>
+	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -21,104 +22,131 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
-	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/ceo/css/bootstrap.min.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath }/jsp/ceo/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="${pageContext.request.contextPath }/jsp/ceo/css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/ceo/css/style-responsive.css" rel="stylesheet">
+	<link id="superAdmin"
+	href="${pageContext.request.contextPath }/jsp/brach/css/user_employee.css"
+	rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<link id="ie-style" href="${pageContext.request.contextPath }/jsp/ceo/css/ie.css" rel="stylesheet">
-	<![endif]-->
-	
-	<!--[if IE 9]>
-		<link id="ie9style" href="${pageContext.request.contextPath }/jsp/ceo/css/ie9.css" rel="stylesheet">
-	<![endif]-->
 	<!-- start: Favicon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
+	
+		
+		
+		
+</head>
 
-  </head>
-  
-  <body>
-  	<jsp:include page="header.jsp"></jsp:include>
-  	<!-- start: Content -->
+<body>
+	<jsp:include page="header.jsp"></jsp:include>		
+			<!-- start: Content -->
 			<div id="content" class="span10">
 			
 						
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
+					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">Charts</a></li>
+				<li><a href="#">报表</a></li>
 			</ul>
 
-			<div class="row-fluid">
-				
-				<div class="box">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Chart with points</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+			<div>
+
+					<div class="control-group" style="margin-top: 30px" >
+						<h3>选择分店：</h3>
+						<div class="controls">
+							<select id="activitystatus">
+								<c:forEach items="${findBranchs }" var="branch">
+									<option value="${branch.branchid }">${branch.branchname }</option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
-					<div class="box-content">
-						<div id="sincos"  class="center" style="height:300px;" ></div>
-						<p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p>
+					
+					<div class="control-group" style=" position: absolute;left:300px; top:70px" >
+					
+							  <h3>运营间隔：</h3>
+							  <div class="controls">
+								从：<input name="activitydate" onClick="laydate()" id="begin">&nbsp&nbsp&nbsp&nbsp
+								至：<input name="activitydate" onClick="laydate()" id="end">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								 <a class="btn btn-info" href="javaScript:;" onclick="productReport()">
+										<i class="icon-ok-sign"></i>            确认查询                                
+									</a>
+							  </div>
 					</div>
-				</div>
-				
-				<div class="box">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Flot</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
+					
 					</div>
-					<div class="box-content">
-						<div id="flotchart" class="center" style="height:300px"></div>
-					</div>
-				</div>
-				
-				<div class="box">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Stack Example</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						 <div id="stackchart" class="center" style="height:300px;"></div>
+					
+					
 
-						<p class="stackControls center">
-							<input class="btn" type="button" value="With stacking">
-							<input class="btn" type="button" value="Without stacking">
-						</p>
-
-						<p class="graphControls center">
-							<input class="btn-primary" type="button" value="Bars">
-							<input class="btn-primary" type="button" value="Lines">
-							<input class="btn-primary" type="button" value="Lines with steps">
-						</p>
-					</div>
-				</div>
-
-			</div><!--/row-->
-			
 			<div class="row-fluid sortable">
-				<div class="box span6">
+			
+			
+			<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>分店收益报表</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content" id="ddd">
+						<table class="table table-striped table-bordered bootstrap-datatable " >
+						  <thead>
+						  <tr>
+							  	<th>分店名字</th>
+								<th>总收入</th>
+								<th>总支出</th>
+								<td>合计</td>
+						 </tr>
+						 <tr>
+							   <td>${findBranchs[0].branchname }</td>
+							   <td>${branchtTotalreport.sumtotalprice }</td>
+							   <td>${branchtTotalreport.sumtotalexpenditure }</td>
+							   <td>${branchtTotalreport.sumtotalprice-branchtTotalreport.sumtotalexpenditure }</td>
+						 </tr>
+							</thead>
+							
+							<tr>
+							  	<th>商城收入</th>
+								<th>消费人数</th>
+								<th>活动收入</th>
+								<th>参与人数</th>
+							  </tr>
+							  <tbody>
+							  </tbody>
+							 
+						 
+						 
+					  </table> 
+					  
+					  <div class="page">
+								<div id="userPage">
+									<p>
+										当前为第<strong id="currentPage">1</strong>页,共<strong id="pageSum">0</strong>页
+									</p>
+								</div>
+
+								<ul class="am-pagination am-pagination-right" id="pageUl">
+									<li value=1 id="home"><a href="javascript:;">首页</a></li>
+									<li id="previousPage"><a href="javascript:;">&laquo;</a></li>
+									<li id="nextPage"><a href="javascript:;">&raquo;</a></li>
+									<li id="lastPage"><a href="javascript:;">尾页</a></li>
+								</ul>
+							</div>
+					             
+					</div>
+				</div>
+
+					<!-- <div class="box span6">
 					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pie</h2>
+						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>商品收支百分比饼图</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -126,65 +154,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
+					custom.js 1627行代码
 							<div id="piechart" style="height:300px"></div>
 					</div>
-				</div>
-			
-				<div class="box span6">
-					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Donut</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						 <div id="donutchart" style="height: 300px;"></div>
-					</div>
-				</div>
-			
+				</div> -->
 			</div><!--/row-->
 		
 			<hr>
 		
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Realtime</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						 <div id="realtimechart" style="height:190px;"></div>
-						 <p>You can update a chart periodically to get a real-time effect by using a timer to insert the new data in the plot and redraw it.</p>
-						 <p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
-					</div>
-				</div>
-			</div><!--/row-->
 			
-			<div class="row-fluid">
-				
-				<div class="widget span6" onTablet="span6" onDesktop="span6">
-					<h2><span class="glyphicons facebook"><i></i></span>Facebook Fans</h2>
-					<hr>
-					<div class="content">
-						<div id="facebookChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
-				
-				<div class="widget span6" onTablet="span6" onDesktop="span6">
-					<h2><span class="glyphicons twitter"><i></i></span>Twitter Followers</h2>
-					<hr>
-					<div class="content">
-						<div id="twitterChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
 			
-			</div>
 		
 		
 
@@ -226,38 +205,130 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</p>
 
 	</footer>
+	
 	<!-- start: JavaScript-->
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.ui.touch-punch.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/modernizr.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/bootstrap.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cookie.js"></script>
+	
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/fullcalendar.min.js'></script>
+	
+		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.ui.touch-punch.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/modernizr.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/bootstrap.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.cookie.js"></script>	
-		<script src='${pageContext.request.contextPath }/jsp/ceo/js/fullcalendar.min.js'></script>	
-		<script src='${pageContext.request.contextPath }/jsp/ceo/js/jquery.dataTables.min.js'></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/excanvas.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.pie.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.stack.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.resize.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.chosen.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.uniform.min.js"></script>		
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.cleditor.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.noty.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.elfinder.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.raty.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.iphone.toggle.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.uploadify-3.1.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.gritter.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.imagesloaded.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.masonry.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.knob.modified.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.sparkline.min.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uniform.min.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cleditor.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.noty.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.elfinder.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.raty.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.iphone.toggle.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uploadify-3.1.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.gritter.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.imagesloaded.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.masonry.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.knob.modified.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.sparkline.min.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/counter.js"></script>
+	
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
+
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
 	<!-- end: JavaScript-->
-  </body>
+	<script type="text/javascript">
+	
+		function productReport() {
+			//var select = document.getElementById("activitystatus").value;
+			//alert(select);
+			//var begin = document.getElementById("begin").value;
+			//var end = document.getElementById("end").value;
+			$.ajax({
+						type : 'post',
+						url : '${pageContext.request.contextPath}/ceo/requestchart.action',
+						contentType : 'application/json;charset=utf-8',
+						data : '{"branchid"' + ':' + '"' + select + '"'+','+'"startingTime"'+':'+'"'+begin+'"'+','+'"endTime"'+':'+'"'+end+'"'+'}',
+						success : function(data) {
+							//alert("查询成功");
+							$("#ddd tbody").html("");
+							createbranchTable(data);
+						},
+						error : function() {
+							$("#ddd tbody").html("");
+							alert("没有查询到任何数据！");
+						}
+
+					});
+			
+			function createbranchTable(data){
+			//alert("start");
+			for(var i in data){
+				$("#ddd tbody").append(
+							'<tr>'+
+							'<td class="center">'+ data[i].branchname +'</td>'+
+							'<td class="center">'+'<fmt:formatDate value="${data[i].duringtime }" pattern="yyyy-MM-dd"/> '+'</td>'+
+							'<td class="center">'+ data[i].sumtotalprice+'</td>'+
+							'<td class="center">'+ data[i].sumtotalexpenditure +'</td>'+
+							'</tr>'
+							);
+					}
+		}
+			
+		function queryData(){
+			pageNum = $("#selectPageNum").attr("value");//每页的条数
+			currentPage = 1;//当前页
+			$.ajax({
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:root+"/superAdmin/queryAllUser",
+				data:'{"currentPage"'+':'+'"'+currentPage+'"'+','
+				+'"pageNum"'+':'+'"'+pageNum+'"'+'}',
+				success:function(data){
+					//alert(data.pageSum);
+					//alert("ok");
+					$("#box tbody").html("");
+					$("#home").attr("value",1);
+					$("#previousPage").attr("value",1);
+					$("#nextPage").attr("value",1);
+					$("#lastPage").attr("value",data.pageSum);
+					$("#pageSum").text(data.pageSum);
+					$("#currentPage").text(currentPage);
+					createUserTable(data);
+				}
+			});
+		}			
+
+		}
+	</script>
+	
+	
+	
+</body>
 </html>

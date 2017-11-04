@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.Activity;
+import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
@@ -21,6 +24,7 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.service.CeoService;
@@ -79,7 +83,7 @@ public class CeoController {
 	}	
 	@RequestMapping(value = "/user")
 	public String findUser(Model model,Integer userid){
-		User findUserById = ceoService.findUserById(userid);
+		UserCustom findUserById = ceoService.findUserById(userid);
 		
 		model.addAttribute("findUserById",findUserById);
 		
@@ -108,7 +112,7 @@ public class CeoController {
 	}
 	@RequestMapping(value = "/employee")
 	public String findEmployeeAllMessage(HttpServletRequest request , Model model ,Integer employeeid ){
-		Employee findEmployeeAllMessage = ceoService.findEmployeeById(employeeid);
+		CeoEmployee findEmployeeAllMessage = ceoService.findEmployeeById(employeeid);
 		
 		model.addAttribute("findEmployeeAllMessage",findEmployeeAllMessage);
 		
@@ -116,10 +120,8 @@ public class CeoController {
 	}
 	
 	@RequestMapping(value="/gallery")
-	public String findAllActivity(HttpServletRequest request , Model model){
-		Activity activity = new Activity();
-		
-		List<Activity> findAllActivitie = ceoService.findAllActivities(activity);
+	public String findAllActivity(HttpServletRequest request , Model model){	
+		List<CeoActivity> findAllActivitie = ceoService.findAllActivities();
 		
 		model.addAttribute("findAllActivitie",findAllActivitie);
 		
@@ -194,4 +196,50 @@ public class CeoController {
 		return "ceo/branch";
 	}
 	
+	@RequestMapping(value = "/chart")
+	public String dochart(HttpServletRequest request,Model model){
+		List<Branch> findBranchs = ceoService.findAllBranchName();
+		
+		CeoTotalreport ceoTotalreport = new CeoTotalreport();
+		CeoTotalreport ceoTotalreport2 = new CeoTotalreport();
+		ceoTotalreport.setBranchid(findBranchs.get(0).getBranchid());
+		ceoTotalreport2 = ceoService.findBranchMoney(ceoTotalreport);
+		
+		model.addAttribute("findBranchs",findBranchs);
+		model.addAttribute("branchtTotalreport",ceoTotalreport2);
+		
+		return "ceo/chart";
+	}
+	
+	@RequestMapping(value = "requestchart")
+	public @ResponseBody List<CeoTotalreport> branch(Model model,@RequestBody CeoTotalreport totalreport,HttpServletRequest request){
+		int a = (totalreport.getStartingTime()).compareTo(totalreport.getEndTime());
+		if (a < 0 && totalreport.getBranchid() != null) {
+			List<CeoTotalreport> resquesTotalreports = new ArrayList<CeoTotalreport>();
+			resquesTotalreports = ceoService.findCeoTotalreports(totalreport);
+			for(int i=0;i<resquesTotalreports.size();i++){
+				CeoTotalreport ceoTotalreport = new CeoTotalreport();
+				CeoTotalreport ceoTotalreport2 = new CeoTotalreport();
+				ceoTotalreport.setBranchid(resquesTotalreports.get(i).getBranchid());
+				ceoTotalreport2 = ceoService.findBranchMoney(ceoTotalreport);
+				totalreport.setBranchname(ceoTotalreport2.getBranchname());
+			}
+			List<CeoTotalreport> pro = new ArrayList<CeoTotalreport>();
+			totalreport.setPageNum(10);    											//每页显示的数据数量
+			if(pro.size()>0 && (pro.size())%(totalreport.getPageNum())!=0){
+				totalreport.setPagesum(((pro.size())/(totalreport.getPageNum()))+1);       //总页数
+			}else if(pro.size()>0 && (pro.size())%(totalreport.getPageNum())==0){
+				totalreport.setPagesum((pro.size())/(totalreport.getPageNum()));
+			}else{
+				totalreport.setPagesum(0);
+			}
+			
+			totalreport.setBegin(0);													//起始数据
+			pro = ceoService.findCeoTotalreports(totalreport);
+			
+			return pro;
+		} else {
+			return null;
+		}
+	}
 }

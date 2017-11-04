@@ -147,7 +147,7 @@ public interface ActivityMapper {
      * @param activity
      * @return
      */
-    List<Activity> selectAllActivity(Activity activity);
+    List<CeoActivity> selectAllActivity();
 
     /**
      * 通过id查询活动的详细信息(关联查询分店名等)

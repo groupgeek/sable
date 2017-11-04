@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr>
 									<td>是否线上</td>
-									<td class="center">${findCeoActivity.online }</td>									                                        
+									<td class="center">${findCeoActivity.stringline }</td>									                                        
 								</tr>
 								<tr>
 									<td>活动状态</td>
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>								 
 								<tr>
 									<td>活动日期</td>
-									<td class="center">${findCeoActivity.activitydate }</td>                                        
+									<td class="center">${findCeoActivity.stringDate }</td>                                        
 								</tr>  
 								<tr>
 									<td>注册费</td>

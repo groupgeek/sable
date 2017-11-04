@@ -72,7 +72,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		return"redirect:/brach/index.action";
 	}else if (admins.getAuthorityid()==6) {System.out.println(admins.getAuthorityid()+"----adad--------------------");
 		//ECO跳转
-		return"null";
+		return"redirect:/ceo/index.action";
 	}else if (admins.getAuthorityid()==7) {System.out.println(admins.getAuthorityid()+"----faefawef--------------------");
 		//超级管理员跳转
 		return"null";

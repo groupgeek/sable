@@ -38,4 +38,14 @@ public interface TotalreportMapper {
      * @return
      */
     List<CeoTotalreport> selectTotalreportAndBranch();
+    
+    /**
+     * 根据分店id查询各分店的收入支出
+     * @param branchid
+     * @return
+     */
+    List<CeoTotalreport> selectBranchTotalreport(Integer branchid);
+    
+    List<CeoTotalreport> selectTotalreports(CeoTotalreport ceoTotalreport);
+    CeoTotalreport selectBranchMoney(CeoTotalreport ceoTotalreport);
 }

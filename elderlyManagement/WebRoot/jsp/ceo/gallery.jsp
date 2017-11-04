@@ -67,14 +67,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  </thead>   
 							<c:forEach items = "${findAllActivitie }" var = "d">
 								<tr>
-									<td>${d.activityname }</td>
-									<td class="center">${d.activitydate }</td>
+									<td>
+										<a href="${pageContext.request.contextPath }/ceo/activity.action?activityid=${d.activityid}">
+										${d.activityname }</a>
+									</td>
+									<td class="center">
+										<a href="${pageContext.request.contextPath }/ceo/activity.action?activityid=${d.activityid}">
+										${d.stringDate }</a>
+									</td>
 									<td class="center">${d.registeryfee }</td>
 									<td class="center">${d.activityprice }</td>
-									<td class="center">${d.activitystatus }
-										<a class="btn btn-success" href="${pageContext.request.contextPath }/ceo/activity.action?activityid=${d.activityid}">
-											<i class="halflings-icon white zoom-in"></i>  
-										</a>
+									<td class="center">
+										<a href="${pageContext.request.contextPath }/ceo/activity.action?activityid=${d.activityid}">
+										${d.activitystatus }</a>
 									</td>
 								</tr>
 							
