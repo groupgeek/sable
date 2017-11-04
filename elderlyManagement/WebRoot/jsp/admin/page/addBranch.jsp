@@ -7,7 +7,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>分店修改</title>
+	<title>添加分店</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -411,13 +411,14 @@
 					<a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp">分店管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">分店信息修改</a></li>
+				<li><a href="#">添加分店</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>分店信息修改</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>添加分店</h2>
+						<h2><span class="break"></span>带*必填</h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
 							<a href="#"><i class="halflings-icon white wrench"></i></a>
@@ -427,40 +428,38 @@
 					
 					
 					<div class="box-content">
-						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/updateActivityInfo" method="post" enctype="multipart/form-data">
+						<form class="form-horizontal" id = "regActivity" action = "${pageContext.request.contextPath }/superAdmin/" method="post">
 							<fieldset>
-							<div class="control-group" id="branchname">
-								<label class="control-label" for="focusedInput">分店名字</label>
+							
+							  <div class="control-group" id="branchname">
+								<label class="control-label" for="focusedInput">分店名字*</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "branchname" type="text" value="">
+								  <input class="input-xlarge focused" name = "branchname" type="text"placeholder="分店名字"
+										minlength=2 autocomplete="off" required>
 								</div>
-							 </div>
-							   <div class="control-group" id = "employeename">
-								<label class="control-label" for="employeename">分店管理员</label>
+							  </div>
+							  
+							  
+							  <div class="control-group" id = "areaname">
+								<label class="control-label">分店地区*</label>
 								<div class="controls">
-								  <select name="employeename" data-rel="">
-								  	<!-- <option value = "" ></option> -->
+								 <select  name="activitytypeid">
 								  </select>
 								</div>
 							  </div>
-							 <!--  <div class="control-group" id = "activitystatus">
-								<label class="control-label">所在地区</label>
+							  <div class="control-group" id = "employeename">
+								<label class="control-label">分店管理员</label>
 								<div class="controls">
-									<select name = "activitystatus">
-										<option value="已开展" id = "activitystatus1">已开展</option>
-										<option value="未开展" id = "activitystatus2">未开展</option>
+								  	<select name = "activitystatus">
+										<option value="-1">空</option>
 									</select>
 								</div>
-							  </div> -->
+							  </div>
 							  
-							  <input type="hidden" value="${message }" id = "message">
-							  <input type="hidden" value="" id = "branchid">
-							  <input type="hidden" value="" id = "oldemployeeid">
-							  <input type="hidden" value="" id = "areaid">
-							 <%-- <input type="hidden" value="${message }" id = "message"> --%>
-							 
+							 <input type="hidden" value = "${message }" id = "message">
+							  
 							  <div class="form-actions">
-								<button type="button" id = "updateBranch" class="btn btn-primary">保存</button>
+								<button type="button" id = "addBranch" class="btn btn-primary">保存</button>
 							  </div>
 							</fieldset>
 						  </form>
@@ -604,12 +603,33 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
 		
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/updateBranch.js"></script>
+	<script 
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.1.8.1.min.js"></script>
+	<script 
+		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.messages_zh.js"></script>
 		
+	<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>
 	
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/addBranch.js"></script>
+	<script>
+
+		$(document).ready(function() {
+			$("#regEmployee").validate();
+		});
+</script>
 	<!-- end: JavaScript-->
+	
+<!-- 	<script type="text/javascript">
+		$(document).ready(function(){
+			var positional = $("#authorityid").attr("value");
+			var positional = $("#positional").attr("value");
+			var positional = $("#areaid").attr("value");
+			var positional = $("#branchid").attr("value");
+		});
+	
+	</script> -->
+	
 </body>
 </html>

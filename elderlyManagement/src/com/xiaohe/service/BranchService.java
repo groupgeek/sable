@@ -37,4 +37,29 @@ public interface BranchService {
 	 * @return
 	 */
 	public BranchCustom queryBranchInfoById(Integer id);
+	
+	/**
+	 * 进入分店修改页面
+	 * @return
+	 */
+	public BranchVo updateBranchView(Integer id);
+	
+	/**
+	 * 修改分店信息
+	 * @param branch
+	 * @return
+	 */
+	public boolean updateBranch(BranchCustom branch);
+	
+	/**
+	 * 分店添加页面 加载数据
+	 * @return
+	 */
+	public BranchVo addBranchView();
+	
+	/**
+	 * 分店添加
+	 * @return
+	 */
+	public boolean addBranch(BranchCustom branchInfo);
 }

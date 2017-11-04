@@ -257,7 +257,7 @@
 						</li>
 						<li id="userInfo"><a
 							href="${pageContext.request.contextPath }/jsp/admin/page/user.jsp"><i
-								class="icon-bar-chart"></i><span class="hidden-tablet">分店信息管理</span>
+								class="icon-bar-chart"></i><span class="hidden-tablet">客户信息管理</span>
 						</a>
 						</li>
 						<li id="employeeInfo"><a href="${pageContext.request.contextPath }/jsp/admin/page/employee.jsp"><i class="icon-envelope"></i><span
