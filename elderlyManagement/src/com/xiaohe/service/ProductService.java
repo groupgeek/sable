@@ -128,6 +128,15 @@ public interface ProductService {
 	 */
 	List<ProductCustom> quertyStockout();
 
+
+	/**
+	 * 	分店非推荐商品查询 
+	 * @param branchid
+	 * @return 分店非推荐商品
+	 */
+	List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid);
+
+
 	
 	/**
 	 * 查询商品的所有信息（管理员）

@@ -430,9 +430,8 @@
 		  
   </select>
   
-  <select id="selectAllActivity" resultMap="BaseResultMap">
-  	select activityId,activityName,activityStatus,activityDate,registeryFee,activityPrice 
-  	from activity
+  <select id="selectAllActivity" resultType="com.xiaohe.bean.CeoActivity">
+  	select * from activity
   </select>
   
   <select id="selectCeoActivity" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoActivity">

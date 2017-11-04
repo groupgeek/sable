@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${admins.employeename }
+								<i class="halflings-icon white user"></i> ${employee.employeename }
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -106,6 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>						
 						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
+			</div>
 			</div>
 			<!-- end: Main Menu -->
 			
@@ -145,26 +146,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 <tr>
 								  <th>商品名称</th>
 								  <th>图片</th>
-								  <th>类型(s)</th>
-								  <th>价格</th>
+								  <th>服装颜色</th>
+								<th> 颜色型号</th>
 								  <th>库存</th>
 								  <th>操作</th>
 								 
 							  </tr>
 						  </thead>   
 						  <tbody>
-							<c:forEach items="${recommendproduct }" var="recommendproduct">
+							<c:forEach items="${Color }" var="Color">
 					<tr>
-						<td class="center">${recommendproduct.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="/upload/${recommendproduct.picture }" alt="" style="width:80px;height:40px"/></td>
-						<td class="center">${recommendproduct.producttypename}</td>
-						<td class="center"> ${recommendproduct.price}</td>
-						<td class="center">${recommendproduct.instock}</td>
+						<td class="center">${Color.productname }</td>
+						<td class="center"> <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" style="width:80px;height:40px"/></td>
+						<td class="center">${Color.productcolour}</td>
+						<td class="center"> ${Color.size}</td>
+						<td class="center"> ${Color.price}</td>
+						<td class="center"> ${Color.sizestock}</td>
+					
+					
 						<td class="center">
-						
-						<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/productRecommend.action?productid=${recommendproduct.productid}">
+						<a class="btn btn-success" href="#">
+										<i class="halflings-icon white zoom-in"></i>
+									</a>
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/selectProduct.action?productid=${product.productid}">
 										<i class="halflings-icon white edit"></i>  
-									</a>		
+									</a>
+									<a class="btn btn-danger" href="${pageContext.request.contextPath }/productmanage/deleteproduct.action?productid=${product.productid}">+
+										<i class="halflings-icon white trash"></i>
+									</a>
 						</td>
 						<%-- <td class="center">
 						<a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a>

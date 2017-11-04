@@ -153,18 +153,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </tr>
 						  </thead>   
 						  <tbody>
-							<c:forEach items="${recommendproduct }" var="recommendproduct">
+							<c:forEach items="${stockout }" var="stockout">
 					<tr>
-						<td class="center">${recommendproduct.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="/upload/${recommendproduct.picture }" alt="" style="width:80px;height:40px"/></td>
-						<td class="center">${recommendproduct.producttypename}</td>
-						<td class="center"> ${recommendproduct.price}</td>
-						<td class="center">${recommendproduct.instock}</td>
+						<td class="center">${stockout.productname }</td>
+						<td class="center"> <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" style="width:80px;height:40px"/></td>
+						<td class="center">${stockout.producttypename}</td>
+						<td class="center"> ${stockout.price}</td>
+						<td class="center">${stockout.instock}</td>
 						<td class="center">
-						
-						<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/productRecommend.action?productid=${recommendproduct.productid}">
+						<a class="btn btn-success" href="${pageContext.request.contextPath }/productmanage/productInfo.action?productid=${stockout.productid}">
+										<i class="halflings-icon white zoom-in"></i>
+									</a>
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/selectProduct.action?productid=${stockout.productid}">
 										<i class="halflings-icon white edit"></i>  
-									</a>		
+									</a>
+								
 						</td>
 						<%-- <td class="center">
 						<a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a>

@@ -18,4 +18,9 @@ public class ProductRecommendServiceImpl implements ProductRecommendService {
 		productrecommendMapper.insertSelective(productrecommend);
 	}
 
+	public int sumProductRecommend() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
