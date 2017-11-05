@@ -104,7 +104,7 @@ with (thisform)
 					class="fh5co-form animate-box" data-animate-effect="fadeIn" style="background-color:rgba(0,0,0,0.5); padding-bottom: 50px;"   method="post">
 					<h2>登录</h2>
 					<div class="form-group">
-						<label for="employeeid" class="sr-only">员工账号</label> <input
+						<label for="employeeid" class="sr-only" >员工账号</label> <input
 							type="text" class="form-control" id="id" name="id" digits=true  maxlength = 10
 							placeholder="员工账号" autocomplete="off" required>
 					</div>
@@ -130,7 +130,7 @@ with (thisform)
 								<div class="controls">
 								
 								<label> 
-                                <input type="radio" value="1" name="mark" />
+                                <input type="radio" value="1" name="mark"  checked/>
                             		    员工</label> 
                             		    <label>
                                 <input type="radio" value="0" name="mark" />
