@@ -23,11 +23,11 @@
 			$("#phone span").text(data.phone);
 			$("#password span").text(data.password);
 			$("#address span").text(data.address);
-			$("#registrationdate span").text(data.registrationdate);
+			$("#registrationdate span").text(data.dateStringRegistrationdate);
 			$("#status span").text(data.status);
 			$("#integral span").text(data.integral);
 			$("#email span").text(data.email);
-			$("#birthday span").text(data.birthday);
+			$("#birthday span").text(data.birthdayString);
 			$("#bankcardno span").text(data.bankcardno);
 			$("#healthstatus span").text(data.healthstatus);
 			$("#level span").text(data.level.level);

@@ -8,7 +8,7 @@
     <result column="onLine" property="online" jdbcType="BIT" />
     <result column="AveragePeople" property="averagepeople" jdbcType="INTEGER" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
-    <result column="DuringTime" property="duringtime" jdbcType="DATE" />
+    <result column="DuringTime" property="duringtime" jdbcType="TIMESTAMP" />
     <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
     <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
   </resultMap>
@@ -33,7 +33,7 @@
       totalExpenditure)
     values (#{activityreporid,jdbcType=INTEGER}, #{activitytypeid,jdbcType=INTEGER}, 
       #{countactivity,jdbcType=INTEGER}, #{online,jdbcType=BIT}, #{averagepeople,jdbcType=INTEGER}, 
-      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=DATE}, #{totalprice,jdbcType=DECIMAL}, 
+      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=TIMESTAMP}, #{totalprice,jdbcType=DECIMAL}, 
       #{totalexpenditure,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Activityreport" >
@@ -87,7 +87,7 @@
         #{branchid,jdbcType=INTEGER},
       </if>
       <if test="duringtime != null" >
-        #{duringtime,jdbcType=DATE},
+        #{duringtime,jdbcType=TIMESTAMP},
       </if>
       <if test="totalprice != null" >
         #{totalprice,jdbcType=DECIMAL},
@@ -116,7 +116,7 @@
         branchId = #{branchid,jdbcType=INTEGER},
       </if>
       <if test="duringtime != null" >
-        DuringTime = #{duringtime,jdbcType=DATE},
+        DuringTime = #{duringtime,jdbcType=TIMESTAMP},
       </if>
       <if test="totalprice != null" >
         totalPrice = #{totalprice,jdbcType=DECIMAL},
@@ -134,7 +134,7 @@
       onLine = #{online,jdbcType=BIT},
       AveragePeople = #{averagepeople,jdbcType=INTEGER},
       branchId = #{branchid,jdbcType=INTEGER},
-      DuringTime = #{duringtime,jdbcType=DATE},
+      DuringTime = #{duringtime,jdbcType=TIMESTAMP},
       totalPrice = #{totalprice,jdbcType=DECIMAL},
       totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL}
     where ActivityReporId = #{activityreporid,jdbcType=INTEGER}

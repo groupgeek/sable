@@ -11,7 +11,7 @@ $(document).ready(function(){
 				$("#box tbody").append(
 						'<tr>'+
 							'<td>'+ (data.activityList)[i].activityname +'</td>'+
-							'<td class="center">'+(data.activityList)[i].activitydate+
+							'<td class="center">'+(data.activityList)[i].activitydateString+
 							'<td class="center">'+ (data.activityList)[i].activitystatus +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.activityList)[i].branchname +'</span>'+

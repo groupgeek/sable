@@ -32,8 +32,7 @@ public class AdminLoginController {
 			admins.setPassword(password);
 			admins = productManageService.productManageAdminsLogin(admins);
 		request.getSession().setAttribute("admins", admins);
-		 if (admins
-				.getAuthorityid()==2) {
+		 if (admins.getAuthorityid()==2) {
 			System.out.println(admins.getAuthority()+"------------------------");
 			//编辑员跳转页面'
 			
@@ -47,9 +46,9 @@ public class AdminLoginController {
 		}else if (admins.getAuthorityid()==5) {System.out.println(admins.getAuthorityid()+"-----adas-------------------");
 			//分店管理跳转
 			return"redirect:/brach/index.action";
-		}else if (admins.getAuthorityid()==7) {System.out.println(admins.getAuthorityid()+"----faefawef--------------------");
+		}else if (admins.getAuthorityid()==7) {
 		//超级管理员跳转
-		return"null";
+		return "admin/index";
 	}
 		}
 		if (mark==0) {
@@ -60,7 +59,7 @@ public class AdminLoginController {
 			request.getSession().setAttribute("ceos", ceos);
 			System.out.println(ceos.getAuthorityid()+"----adad--------------------");
 			//ECO跳转
-			return"null";
+			return"redirect:/ceo/index.action";
 			}
 		return "AdminLogin/login";
 	}	

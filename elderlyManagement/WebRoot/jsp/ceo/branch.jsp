@@ -51,11 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white user"></i><span class="break"></span>分店基本情况</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
+						
 					</div>
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
@@ -117,8 +113,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
-			
+			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<a>  使用者：${findCeoById.ceoid }</a>
 		</p>
 
 	</footer>

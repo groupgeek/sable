@@ -25,8 +25,8 @@
 		success:function(data){
 			$("#messageUrl").attr("href",root+'/jsp/admin/page/updateMessage.jsp?messageid='+data.messageid);
 			$("#username span").text(data.username);
-			$("#messagetime span").text(data.messagetime);//类型
-			$("#branchname span").text(data.branchname);//父类类型
+			$("#messagetime span").text(data.messagetimeString);
+			$("#branchname span").text(data.branchname);
 			$("#messagecontext textarea").text(data.messagecontext);
 			
 		}

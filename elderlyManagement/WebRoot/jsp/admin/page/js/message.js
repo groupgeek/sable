@@ -29,7 +29,7 @@ $(document).ready(function(){
 							'<span class="from">'+
 							'<span class="glyphicons dislikes"><i></i></span>'+data.allMessage[i].username+'</span>'+
 							'<span class="title">'+data.allMessage[i].messagecontext+'</span>'+
-							'<span class="date">日期<b>'+data.allMessage[i].messagetime+'</b></span>'+
+							'<span class="date">日期<b>'+data.allMessage[i].messagetimeString+'</b></span>'+
 						'</li>'+
 					'</a>'
 				);

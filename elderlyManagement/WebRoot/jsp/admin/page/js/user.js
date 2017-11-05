@@ -12,7 +12,7 @@ $(document).ready(function(){
 				$("#box tbody").append(
 						'<tr>'+
 							'<td>'+ (data.userList)[i].username +'</td>'+
-							'<td class="center">'+(data.userList)[i].registrationdate+
+							'<td class="center">'+(data.userList)[i].dateStringRegistrationdate+
 							'<td class="center">'+ (data.userList)[i].online +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.userList)[i].status +'</span>'+

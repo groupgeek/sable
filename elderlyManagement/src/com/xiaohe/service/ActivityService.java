@@ -21,7 +21,7 @@ public interface ActivityService {
 	 * 根据id查询活动
 	 * @return ActivityCustom对象
 	 */
-	public Activity queryActivityById(Integer id);
+	public ActivityCustom queryActivityById(Integer id);
 	
 	/**
 	 * 根据活动状态查询活动   已开展 未开展 正在开展

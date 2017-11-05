@@ -12,6 +12,7 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.service.MessageService;
+import com.xiaohe.util.GetStringByDate;
 
 @Repository("messageService")
 public class MessageServiceImpl implements MessageService {
@@ -44,6 +45,10 @@ public class MessageServiceImpl implements MessageService {
 			condition.setBranchid(null);
 		}
 		allMessage = messageMapper.selectAllMessageByCondition(condition);
+		
+		for(MessageCustom custom : allMessage){
+			custom.setMessagetimeString(GetStringByDate.getString(custom.getMessagetime()));
+		}
 		messageSum = messageMapper.selectAllMessageSumByCondition(condition);
 		pageSum = messageSum / condition.getPageNum();
 		if(messageSum % condition.getPageNum() != 0){
@@ -63,6 +68,7 @@ public class MessageServiceImpl implements MessageService {
 		
 		MessageCustom message = new MessageCustom();
 		message = messageMapper.selectMessageInfoById(id);
+		message.setMessagetimeString(GetStringByDate.getString(message.getMessagetime()));
 		
 		return message;
 	}

@@ -20,6 +20,26 @@ public class EmployeeCustom extends Employee{
 	private AreaCustom area;
 	private AuthorityCustom authority;
 	private PositionalCustom positional;
+	
+	private String birthdayString;
+	private String entrytimeString;
+	
+
+	public String getBirthdayString() {
+		return birthdayString;
+	}
+
+	public void setBirthdayString(String birthdayString) {
+		this.birthdayString = birthdayString;
+	}
+
+	public String getEntrytimeString() {
+		return entrytimeString;
+	}
+
+	public void setEntrytimeString(String entrytimeString) {
+		this.entrytimeString = entrytimeString;
+	}
 
 	public Integer getBranchId() {
 		return branchId;

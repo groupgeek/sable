@@ -86,8 +86,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 	
 					<i class="icon-angle-right"></i>
 				</li>
-				
-				<li><a>用户信息</a></li>
+				<li>					
+					<a href="${pageContext.request.contextPath }/ceo/usertable.action">用户信息</a> 	
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a>用户详细信息</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
@@ -95,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户详情</h2>
 						<div class="box-icon">
-							<a href="${pageContext.request.contextPath }/ceo/index.action" ><i class="halflings-icon white remove"></i></a>
+							<a href="${pageContext.request.contextPath }/ceo/usertable.action" ><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
@@ -120,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 			 <div class="control-group">
 											<label class="control-label" for="optionsCheckbox2">出生日期</label>
 											<div class="controls">
-							   					<input class="input-xlarge disabled" id="disabledInput" type="text" name="birthday" value="${findUserById.birthday }" disabled="">
+							   					<input class="input-xlarge disabled" id="disabledInput" type="text" name="birthday" value="${findUserById.stringDate }" disabled="">
 							  				</div>
 							  			</div>
 							  			
@@ -156,6 +159,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  			</div>
 							  		</div>
 							  		<div class="control-group">
+										<label class="control-label" for="disabledInput">健康情况</label>
+										<div class="controls">
+							   				<input class="input-xlarge disabled" id="disabledInput" type="text" name="healthstatus" value="${findUserById.healthstatus }" disabled="">
+							  			</div>
+							  		</div>
+							  		<div class="control-group">
 										<label class="control-label" for="appendedPrependedInput">用户等级</label>
 										<div class="controls">
 							   				<input class="input-xlarge disabled" id="disabledInput" type="text" name="levelid" value="${findUserById.levelid }" disabled="">
@@ -167,12 +176,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  			<input class="input-xlarge disabled" id="disabledInput" type="text" name="status" value="${findUserById.status }" disabled="">
 										</div>
 							  		</div>
-							  		<!-- <div class="control-group">
-										<label class="control-label" for="disabledInput">用户状态</label>
-										<div class="controls">
-								  			<input class="input-xlarge disabled" id="disabledInput" type="text" name="status" value="${findUserById.status }" disabled="">
-										</div>
-							  		</div> -->
 								</div>
 								<div id="section">
 									<div class="control-group">
@@ -194,11 +197,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  			</div>
 							  		</div>
 							  		<div class="control-group">
-										<label class="control-label" for="disabledInput">健康情况</label>
+										<label class="control-label" for="disabledInput">注册时间</label>
 										<div class="controls">
-							   				<input class="input-xlarge disabled" id="disabledInput" type="text" name="healthstatus" value="${findUserById.healthstatus }" disabled="">
-							  			</div>
+								  			<input class="input-xlarge disabled" id="disabledInput" type="text" name="registrationdate" value="${findUserById.stringregistrationdate }" disabled="">
+										</div>
 							  		</div>
+							  		
 							  		<div class="control-group">
 										<label class="control-label" for="disabledInput">用户权限</label>
 										<div class="controls">
@@ -244,7 +248,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="clearfix"></div>	
 	<footer>
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/jsp/index/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo管理员系统</a></span>			
+			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<a>  使用者：${findCeoById.ceoid }</a>
 		</p>
 	</footer>
 	
