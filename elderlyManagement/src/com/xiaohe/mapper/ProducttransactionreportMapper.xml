@@ -6,7 +6,7 @@
     <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="productId" property="productid" jdbcType="INTEGER" />
     <result column="countBuy" property="countbuy" jdbcType="INTEGER" />
-    <result column="BuyTime" property="buytime" jdbcType="DATE" />
+    <result column="BuyTime" property="buytime" jdbcType="TIMESTAMP" />
     <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
     <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
@@ -30,7 +30,7 @@
       countBuy, BuyTime, totalPrice, 
       totalExpenditure, branchId)
     values (#{transactionid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, 
-      #{countbuy,jdbcType=INTEGER}, #{buytime,jdbcType=DATE}, #{totalprice,jdbcType=DECIMAL}, 
+      #{countbuy,jdbcType=INTEGER}, #{buytime,jdbcType=TIMESTAMP}, #{totalprice,jdbcType=DECIMAL}, 
       #{totalexpenditure,jdbcType=DECIMAL}, #{branchid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Producttransactionreport" >
@@ -75,7 +75,7 @@
         #{countbuy,jdbcType=INTEGER},
       </if>
       <if test="buytime != null" >
-        #{buytime,jdbcType=DATE},
+        #{buytime,jdbcType=TIMESTAMP},
       </if>
       <if test="totalprice != null" >
         #{totalprice,jdbcType=DECIMAL},
@@ -101,7 +101,7 @@
         countBuy = #{countbuy,jdbcType=INTEGER},
       </if>
       <if test="buytime != null" >
-        BuyTime = #{buytime,jdbcType=DATE},
+        BuyTime = #{buytime,jdbcType=TIMESTAMP},
       </if>
       <if test="totalprice != null" >
         totalPrice = #{totalprice,jdbcType=DECIMAL},
@@ -120,7 +120,7 @@
     set userId = #{userid,jdbcType=INTEGER},
       productId = #{productid,jdbcType=INTEGER},
       countBuy = #{countbuy,jdbcType=INTEGER},
-      BuyTime = #{buytime,jdbcType=DATE},
+      BuyTime = #{buytime,jdbcType=TIMESTAMP},
       totalPrice = #{totalprice,jdbcType=DECIMAL},
       totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
       branchId = #{branchid,jdbcType=INTEGER}
@@ -209,5 +209,12 @@
 	</if>
   	
   </select>
-
+  <select id="selectSumproductAllMoney" resultType="DECIMAL">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) money from producttransactionreport
+  </select>
+  
+  <select id="selectSumproductMoney" resultType="DECIMAL">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) from producttransactionreport
+	group by BuyTime order by BuyTime desc limit 15
+  </select>
 </mapper>

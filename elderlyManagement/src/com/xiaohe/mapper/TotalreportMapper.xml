@@ -6,7 +6,7 @@
     <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
     <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
-    <result column="duringTime" property="duringtime" jdbcType="DATE" />
+    <result column="duringTime" property="duringtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, totalPrice, totalExpenditure, branchId, duringTime
@@ -25,7 +25,7 @@
     insert into totalreport (id, totalPrice, totalExpenditure, 
       branchId, duringTime)
     values (#{id,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{totalexpenditure,jdbcType=DECIMAL}, 
-      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=DATE})
+      #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Totalreport" >
     insert into totalreport
@@ -60,7 +60,7 @@
         #{branchid,jdbcType=INTEGER},
       </if>
       <if test="duringtime != null" >
-        #{duringtime,jdbcType=DATE},
+        #{duringtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         branchId = #{branchid,jdbcType=INTEGER},
       </if>
       <if test="duringtime != null" >
-        duringTime = #{duringtime,jdbcType=DATE},
+        duringTime = #{duringtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -87,7 +87,61 @@
     set totalPrice = #{totalprice,jdbcType=DECIMAL},
       totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
       branchId = #{branchid,jdbcType=INTEGER},
-      duringTime = #{duringtime,jdbcType=DATE}
+      duringTime = #{duringtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectTotalreportSum" resultType="DECIMAL">
+  	select sum(totalPrice - totalExpenditure) stringmoney 
+  	from totalreport 
+  </select>
+  <select id="selectTotalreportSumByTime" resultType="DECIMAL">
+  	select sum(totalPrice - totalExpenditure)
+  	from totalreport
+	group by duringtime order by duringTime desc limit 15
+  </select>
+  
+  <select id="selectTotalreportAndBranch" resultType="com.xiaohe.bean.CeoTotalreport">
+  	select sum(t.totalPrice - t.totalExpenditure) sumBigDecimal,b.branchName 
+	from totalreport t,branch b
+	where t.branchId = b.branchId
+	group by t.branchId
+	order by sum(t.totalPrice - t.totalExpenditure) desc limit 10
+  </select>
+  <select id="selectBranchTotalreport" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoTotalreport">
+  	select b.branchname,sum(t.totalPrice) sumtotalprice,sum(t.totalExpenditure) sumtotalexpenditure
+	from branch b,totalreport t
+	where b.branchId=t.branchId
+	and b.branchId=#{branchid,jdbcType=INTEGER}
+  </select>
+  <select id="selectTotalreports" parameterType="com.xiaohe.bean.CeoTotalreport" resultType="com.xiaohe.bean.CeoTotalreport">
+  	seelct b.*,sum(t.totalPrice) sumtotalprice,sum(t.totalExpenditure) sumtotalexpenditure
+  	from branch b,totalreport t
+	<where>
+  			t.branchid = b.branchid
+  		<if test="branchid != null">
+  			AND b.branchid = #{branchid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND duringtime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  </select>
+  <select id="selectBranchMoney" parameterType="com.xiaohe.bean.CeoTotalreport" resultType="com.xiaohe.bean.CeoTotalreport">
+   	select b.branchname,sum(t.totalPrice) sumtotalprice,sum(t.totalExpenditure) sumtotalexpenditure
+	from branch b,totalreport t
+	where b.branchId=t.branchId
+	and b.branchId=#{branchid,jdbcType=INTEGER}
+  </select>
 </mapper>

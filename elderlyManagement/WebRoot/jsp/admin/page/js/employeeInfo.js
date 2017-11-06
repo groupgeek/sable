@@ -23,10 +23,10 @@
 			$("#password span").text(data.password);
 			$("#address span").text(data.address);
 			$("#accountnumber span").text(data.accountnumber);
-			$("#entrytime span").text(data.entrytime);
+			$("#entrytime span").text(data.entrytimeString);
 			$("#employeestatus span").text(data.employeestatus);
 			$("#email span").text(data.email);
-			$("#birthday span").text(data.birthday);
+			$("#birthday span").text(data.birthdayString);
 			$("#bankcardno span").text(data.bankcardno);
 			$("#positional span").text(data.positional.positionname);
 			$("#totalbonus span").text(data.totalbonus);

@@ -86,28 +86,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 			<div class="row-fluid">
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
+				<c:if test="${arr[3]>10000 && arr[3]<100000000 }">
+					<div class="number">￥${db[3] }万<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[3]>100000000 }">
+					<div class="number">￥${db[7] }亿<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[2]<10000 }">
 					<div class="number">￥${arr[3] }<i class="icon-arrow-up"></i></div>
+				</c:if>
 					<div class="title"></div>
 					<div class="footer">
 						总收入
 					</div>	
 				</div>
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
+				<c:if test="${arr[2]>10000 && arr[2]<100000000 }">
+					<div class="number">￥${db[2] }万<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[2]>100000000 }">
+					<div class="number">￥${db[6] }亿<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[2]<10000 }">
 					<div class="number">￥${arr[2] }<i class="icon-arrow-up"></i></div>
+				</c:if>
 					<div class="title"></div>
 					<div class="footer">
 						商城收入
 					</div>
 				</div>
 				<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
+				<c:if test="${arr[1]>10000 && arr[1]<100000000 }">
+					<div class="number">￥${db[1] }万<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[1]>100000000 }">
+					<div class="number">￥${db[5] }亿<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[1]<10000 }">
 					<div class="number">￥${arr[1] }<i class="icon-arrow-up"></i></div>
+				</c:if>
 					<div class="title"></div>
 					<div class="footer">
 						健康收入
 					</div>
 				</div>
 				<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
+				<c:if test="${arr[0]>10000 && arr[0]<100000000 }">
+					<div class="number">￥${db[0] }万<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[0]>100000000 }">
+					<div class="number">￥${db[4] }亿<i class="icon-arrow-up"></i></div>
+				</c:if>
+				<c:if test="${arr[0]<10000 }">
 					<div class="number">￥${arr[0] }<i class="icon-arrow-up"></i></div>
+				</c:if>
 					<div class="title"></div>
 					<div class="footer">
 						教育收入

@@ -7,7 +7,7 @@ public class MessageCustom extends Message {
 	private String email;
 	
 	private String time;
-	
+	private String messagetimeString;
 	private Integer currentPage;
 	private Integer pageNum;//每一页的数量
 	private String sort;
@@ -15,6 +15,16 @@ public class MessageCustom extends Message {
 	private String branchname;
 	private Integer begin;
 	private String branchid;
+	private String stringDate;
+
+	
+	public String getMessagetimeString() {
+		return messagetimeString;
+	}
+
+	public void setMessagetimeString(String messagetimeString) {
+		this.messagetimeString = messagetimeString;
+	}
 
 	public String getBranchid() {
 		return branchid;
@@ -94,6 +104,14 @@ public class MessageCustom extends Message {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getStringDate() {
+		return stringDate;
+	}
+
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
 	}
 
 	@Override

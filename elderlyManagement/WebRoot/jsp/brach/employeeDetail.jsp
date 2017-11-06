@@ -165,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<fieldset>
 							
 							<div style="padding-left: 35%;padding-bottom: 30px">
-							<img class="image1" src="">
+							<img  src="${pageContext.request.contextPath }/upload/${employee.avatar }">
 							</div>
 							
 							<input type="hidden" name="employeeid" value="${employee.employeeid }"  />

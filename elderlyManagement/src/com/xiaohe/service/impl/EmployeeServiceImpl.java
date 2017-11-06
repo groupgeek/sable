@@ -17,6 +17,7 @@ import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetAge;
+import com.xiaohe.util.GetStringByDate;
 
 @Repository("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
@@ -46,10 +47,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		allEmployee = employeeMapper.selectAllEmployeeByCondition(condition);
 		
-		//计算年龄,入职多少年
+		//计算年龄,入职多少年,转换时间
 		for(EmployeeCustom temp : allEmployee){
 			temp.setAge(GetAge.getAgeByBirth(temp.getBirthday()));
 			temp.setEntryYears(GetAge.getAgeByBirth(temp.getEntrytime()));
+			temp.setBirthdayString(GetStringByDate.getString(temp.getBirthday()));
+			temp.setEntrytimeString(GetStringByDate.getString(temp.getEntrytime()));
 		}
 		
 		
@@ -78,6 +81,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		//计算年龄,入职多少年
 		employee.setAge(GetAge.getAgeByBirth(employee.getBirthday()));
 		employee.setEntryYears(GetAge.getAgeByBirth(employee.getEntrytime()));
+		
+		employee.setBirthdayString(GetStringByDate.getString(employee.getBirthday()));
+		employee.setEntrytimeString(GetStringByDate.getString(employee.getEntrytime()));
 		
 		return employee;
 	}
@@ -134,6 +140,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if(employeeMapper.insertSelective(employee) <= 0) return null;
 		
 		return accountNumber;
+	}
+
+	public List<EmployeeCustom> queryAllEmployeeByPosition(Integer positionid) {
+		List<EmployeeCustom> all = new ArrayList<EmployeeCustom>();
+		if(positionid == null || positionid < 0){
+			return null;
+		}
+		EmployeeCustom custom = new EmployeeCustom();
+		custom.setPositionid(positionid);
+		all = employeeMapper.selectAllEmployeeByPosition(custom);
+		
+		return all;
 	}
 
 }

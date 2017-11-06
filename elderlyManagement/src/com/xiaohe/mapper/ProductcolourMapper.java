@@ -19,4 +19,11 @@ public interface ProductcolourMapper {
     int updateByPrimaryKey(Productcolour record);
     
     List<ProductcolourCustom> findProductColorAndSize(Integer productId);
+    
+    /**
+     * 根据产品id删除颜色以及型号
+     * @param productId
+     * @return
+     */
+    int deleteColorByProductId(Integer productId);
 }

@@ -8,7 +8,7 @@
     <result column="onLine" property="online" jdbcType="BIT" />
     <result column="activityPicture" property="activitypicture" jdbcType="VARCHAR" />
     <result column="activityStatus" property="activitystatus" jdbcType="VARCHAR" />
-    <result column="activityDate" property="activitydate" jdbcType="DATE" />
+    <result column="activityDate" property="activitydate" jdbcType="TIMESTAMP" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
     <result column="registeryFee" property="registeryfee" jdbcType="DECIMAL" />
     <result column="video" property="video" jdbcType="VARCHAR" />
@@ -45,7 +45,7 @@
       activityDetails)
     values (#{activityid,jdbcType=INTEGER}, #{activityname,jdbcType=VARCHAR}, #{activitytypeid,jdbcType=INTEGER}, 
       #{online,jdbcType=BIT}, #{activitypicture,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, 
-      #{activitydate,jdbcType=DATE}, #{branchid,jdbcType=INTEGER}, #{registeryfee,jdbcType=DECIMAL}, 
+      #{activitydate,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{registeryfee,jdbcType=DECIMAL}, 
       #{video,jdbcType=VARCHAR}, #{activityprice,jdbcType=DECIMAL}, #{maxnum,jdbcType=INTEGER}, 
       #{activitydetails,jdbcType=LONGVARCHAR})
   </insert>
@@ -112,7 +112,7 @@
         #{activitystatus,jdbcType=VARCHAR},
       </if>
       <if test="activitydate != null" >
-        #{activitydate,jdbcType=DATE},
+        #{activitydate,jdbcType=TIMESTAMP},
       </if>
       <if test="branchid != null" >
         #{branchid,jdbcType=INTEGER},
@@ -153,7 +153,7 @@
         activityStatus = #{activitystatus,jdbcType=VARCHAR},
       </if>
       <if test="activitydate != null" >
-        activityDate = #{activitydate,jdbcType=DATE},
+        activityDate = #{activitydate,jdbcType=TIMESTAMP},
       </if>
       <if test="branchid != null" >
         branchId = #{branchid,jdbcType=INTEGER},
@@ -183,7 +183,7 @@
       onLine = #{online,jdbcType=BIT},
       activityPicture = #{activitypicture,jdbcType=VARCHAR},
       activityStatus = #{activitystatus,jdbcType=VARCHAR},
-      activityDate = #{activitydate,jdbcType=DATE},
+      activityDate = #{activitydate,jdbcType=TIMESTAMP},
       branchId = #{branchid,jdbcType=INTEGER},
       registeryFee = #{registeryfee,jdbcType=DECIMAL},
       video = #{video,jdbcType=VARCHAR},
@@ -199,7 +199,7 @@
       onLine = #{online,jdbcType=BIT},
       activityPicture = #{activitypicture,jdbcType=VARCHAR},
       activityStatus = #{activitystatus,jdbcType=VARCHAR},
-      activityDate = #{activitydate,jdbcType=DATE},
+      activityDate = #{activitydate,jdbcType=TIMESTAMP},
       branchId = #{branchid,jdbcType=INTEGER},
       registeryFee = #{registeryfee,jdbcType=DECIMAL},
       video = #{video,jdbcType=VARCHAR},
@@ -229,7 +229,7 @@
         AND activityStatus = #{activitystatus,jdbcType=VARCHAR}
       </if>
       <if test="activitydate != null" >
-        AND activityDate = #{activitydate,jdbcType=DATE}
+        AND activityDate = #{activitydate,jdbcType=TIMESTAMP}
       </if>
       <if test="branchid != null" >
         AND branchId = #{branchid,jdbcType=INTEGER}
@@ -267,7 +267,7 @@
         AND activityStatus = #{activitystatus,jdbcType=VARCHAR}
       </if>
       <if test="activitydate != null" >
-        AND activityDate = #{activitydate,jdbcType=DATE}
+        AND activityDate = #{activitydate,jdbcType=TIMESTAMP}
       </if>
       <if test="branchid != null" >
         AND branchId = #{branchid,jdbcType=INTEGER}
@@ -430,6 +430,45 @@
 		  
   </select>
   
+  <select id="selectAllActivity" resultType="com.xiaohe.bean.CeoActivity">
+  	select * from activity
+  </select>
   
+  <select id="selectCeoActivity" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoActivity">
+  	select a.*,act.activityTypeName,b.branchName from activity a,activitytype act,branch b
+	where act.activityTypeID=a.activityTypeID
+	and b.branchId=a.branchId
+	and a.activityid=#{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectSumActivityPrice" resultType="DECIMAL">
+  	select sum(activityPrice) from activity
+  </select>
+  
+  <select id="selectSumregisteryFee" resultType="DECIMAL">
+  	select sum(registeryFee) from activity a,activityregistery act
+	where a.activityId=act.activityId
+	and act.registery="报名"
+  </select>
+  
+  <select id="selectSumActivityByTime" resultType="DECIMAL">
+  	select sum(activityPrice) from activity
+	where activityDate = date_format(activityDate,'%Y-%m-%d') 
+	group by activityDate 
+	order by activityDate desc limit 15
+  </select>
+  
+  <select id="selectSumregisteryFeeByTime" resultType="DECIMAL">
+  	select sum(a.registeryFee) from activity a,activityregistery act
+	where a.activityId=act.activityId
+	and act.registery="报名"
+	and a.activityDate = date_format(a.activityDate,'%Y-%m-%d') 
+	group by a.activityDate
+	order by a.activityDate desc
+  </select>
+  
+  <select id="selectCountActivity" resultType="java.lang.Integer">
+  	select count(*) from activity
+  </select>
   
 </mapper>

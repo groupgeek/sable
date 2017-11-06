@@ -155,36 +155,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group">
 							  <label class="control-label" for="typeahead">更换活动名称 </label>
 							  <div class="controls">
-								<input type="text" onclick="char()" name="activityname" 
+								<input type="text"  onkeyup="long()" name="activityname" 
 								class="span6 typeahead" id="typeahead" value="${act.activityname }">
 							  </div>
 					</div>
 
-
-
-
-
-
-
-
-
-
-									<script type="text/javascript">
-											function char(){
-											if (/[^\\x00-\\xff]/g.test(str)) {
-						      					  return false;
-						   					 }
-						   					 else {
-						      					  return true;
-						  					  }
-											
-											}
-					
-					
-									</script>
-
-									<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">更换活动日期</label>
+						<div class="control-group">
+							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">更换活动日期</label>
 							  <div class="controls">
 							 <%--  <fmt:formatDate value="${messages[0].messagetime }"
 								pattern="yyyy-MM-dd HH:mm:ss" /> --%>
@@ -193,6 +170,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
 							  </div>
 					</div>
+					
+					<div >
+					 <label class="control-label" for="fileInput">活动图片</label>
+						<div class="controls">
+						<c:if test="${act.activitypicture!=null }">
+							<img style="width: 140px;height: 120px" src="/upload/${act.activitypicture }">						
+						</c:if>
+						<c:if test="${act.activitypicture==null }">
+						<img style="width: 160px;height: 140px" src="/upload/picture/hh.jpg">	
+						</c:if>
+						</div>
+					</div><br>
+
+									<div>
+										<label class="control-label" for="fileInput">活动视频</label>
+										<c:if test="${act.video!=null }">
+										<div class="controls">
+											<video width="320" height="240" controls autoplay> <source
+												src="/upload/${act.video }" type="video/ogg"> <source
+												src="/upload/${act.video }" type="video/mp4"> <source
+												src="/upload/${act.video }" type="video/webm"> <object
+												data="/upload/${act.video }" width="320" height="240">
+												<embed width="320" height="240" src="/upload/${act.video }">
+											</object></video>
+										</div>
+										</c:if>
+										<c:if test="${act.video==null }">
+										<div class="controls">
+										暂时没有视频，快去添加吧
+										</div>
+										</c:if>
+
+									</div>
+									<br>
 					
 					<div class="control-group">
 							  <label class="control-label" for="fileInput">更换图片</label>
@@ -212,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="selectError3">更换活动状态</label>
 								<div class="controls">
 									<select id="selectError3" name="activitystatus">
-									<c:if test="${act.activitystatus }!=null">
+									<c:if test="${act.activitystatus !=null}">
 									<option selected="true">${act.activitystatus}</option>
 									</c:if>
 										<option>已开展</option>
@@ -226,8 +237,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="selectError3">更换活动类型</label>
 								<div class="controls">
 									<select id="selectError3" name="activitytypeid">
-									<c:if test="${act.activitytypeid }!=null">
-										<option selected="true">${actTypes.activitytypename }</option>
+									<c:if test="${act.activitytypeid !=null}">
+										<option selected="true" value="${act.activitytypeid }">${actcus.activitytypename }</option>
 									</c:if>
 									<c:forEach items="${actTypes }" var="actTypes">
 										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
@@ -240,8 +251,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="selectError3">更换模式</label>
 								<div class="controls">
 									<select id="selectError3" name="online">
+									<c:if test="${act.online==true || act.online==null}">
+									<option value=true>线上</option>
+									<option value=false>线下</option>
+									</c:if>
+									<c:if test="${act.online ==false}">
+									<option value=false>线下</option>
+									<option value=true>线上</option>
+									</c:if>
+									
+									<%-- <c:if test="${act.online ==null}">
 										<option value="0">线上</option>
 										<option value="1">线下</option>
+									</c:if> --%>
 									</select>
 								</div>
 					</div> 
@@ -251,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text" value="${act.activityprice }">
+									<input class="appendedPrependedInput" id="appendedPrependedInput" name="activityprice" oninput="xixi(this.value)" size="16" type="text" value="${act.activityprice }">
 								  </div>
 								</div>
 					</div>
@@ -261,7 +283,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text" value="${act.registeryfee }">
+									<input class="appendedPrependedInput2" id="appendedPrependedInput2" name="registeryfee" oninput="xixi2(this.value)" size="16" type="text" value="${act.registeryfee }">
 								  </div>
 								</div>
 				    </div>
@@ -269,7 +291,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">更新活动描述</label>
 							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3">${act.activitydetails }</textarea>
+							 	<textarea id="subject" style="width: 320px;height: 100px" name="activitydetails" maxlength="120" onkeyup="checkLength(this)" accesskey="1" tabindex="11">${act.activitydetails }</textarea>
+								<span id="subjectchk">还可输入
+  							    <strong id="checklen" style="color: #FF0000">?</strong>个字符
+   								</span>
+   								<span id="postNameRule" class="spn_flag_1" style="display: none"></span>
 							  </div>
 					</div>
 					
@@ -492,6 +518,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
 		
 	<!-- end: JavaScript-->
 	

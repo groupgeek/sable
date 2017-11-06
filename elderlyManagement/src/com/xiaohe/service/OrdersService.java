@@ -22,5 +22,11 @@ public interface OrdersService {
 	 */
 	List<Orders> selectAllOrdersByBranchId(Integer branchid) throws Exception;
 	
-	public int deleteByPrimaryKey(String orderid) throws Exception;
+	public void deleteByPrimaryKey(String orderid) throws Exception;
+	
+	public void updateByPrimaryKey(Orders record) throws Exception;
+	
+	/*public void deleteByBranchId(Integer branchid) throws Exception;*/
+	
+	Orders selectByPrimaryKey2(String orderid) throws Exception;
 }

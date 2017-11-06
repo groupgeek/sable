@@ -10,6 +10,7 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.Activityrecommend;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activitytype;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.AuthorityCustom;
@@ -359,6 +360,18 @@ public interface BranchAdminService {
 	 */
 	public List<Authority> authoritys();
 	
+	/**
+	 * 更新管理员信息
+	 * @param employeeCustom
+	 * @return
+	 */
 	public int updateEmpl(EmployeeCustom employeeCustom);
+	
+	/**
+	 * 根据活动id查到活动类型id查到活动类型的名字
+	 * @param id
+	 * @return
+	 */
+	public Activitytype oneActivitytype(Integer id);
 
 }

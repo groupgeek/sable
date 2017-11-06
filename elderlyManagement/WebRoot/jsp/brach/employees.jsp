@@ -129,6 +129,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li><a href="#">员工信息</a></li>
 			</ul>
+			
+			<div class="form-actions">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/brach/allActTypes.action"><i class=" icon-plus-sign"></i>  添加新员工</a>
+			</div><br>
 
 			<div class="row-fluid sortable">		
 				<div class="box span12">

@@ -16,6 +16,7 @@ import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.util.FileUpload;
+import com.xiaohe.util.GetStringByDate;
 
 @Repository("activityService")
 public class ActivityServiceImpl implements ActivityService {
@@ -41,8 +42,10 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityCustoms;
 	}
 	
-	public Activity queryActivityById(Integer id ) {
-		return activityMapper.selectByPrimaryKey(id);
+	public ActivityCustom queryActivityById(Integer id ) {
+		ActivityCustom activityCustom = (ActivityCustom) activityMapper.selectByPrimaryKey(id);
+		activityCustom.setActivitydateString(GetStringByDate.getString(activityCustom.getActivitydate()));
+		return activityCustom;
 	}
 
 	public List<ActivityCustom> queryActivitiesByCondition(
@@ -83,7 +86,9 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		
 		allActivity = activityMapper.selectAllActivityByCondition(condition);
-		
+		for(ActivityCustom activityCustom : allActivity){
+			activityCustom.setActivitydateString(GetStringByDate.getString(activityCustom.getActivitydate()));
+		}
 		sum = activityMapper.selectAllActivitySumByCondition(condition);
 		pageSum = sum / condition.getPageNum();
 		if(sum % condition.getPageNum() != 0){
@@ -103,7 +108,7 @@ public class ActivityServiceImpl implements ActivityService {
 		if(id == null || id < 0) return null;
 		
 		ActivityCustom activityInfo = activityMapper.selectActivityInfoById(id);
-		
+		activityInfo.setActivitydateString(GetStringByDate.getString(activityInfo.getActivitydate()));
 		return activityInfo;
 	}
 

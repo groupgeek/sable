@@ -1,6 +1,8 @@
+
 package com.xiaohe.mapper;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.xiaohe.bean.Orders;
 
@@ -28,4 +30,16 @@ public interface OrdersMapper {
    /* BigDecimal branchIncome();*/
     
     int branchCountOrders(Integer id);
+
+    /**
+     * 查询订单总数
+     * @return
+     */
+    int selectCountOrder();
+
+
+	List<Orders> selectAllOrdersByBranchId(Integer branchid);
+
+	Orders selectByPrimaryKey2(String orderid);
+	
 }

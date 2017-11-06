@@ -361,8 +361,11 @@
 								class="hidden-tablet">员工信息管理</span>
 						</a>
 						</li>
-						<li><a href="JavaScript:;"><i class="icon-tasks"></i><span
-								class="hidden-tablet"> 报表统计</span>
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/customerRelations.jsp"><i class="icon-tasks"></i><span
+								class="hidden-tablet">客户关系</span>
+						</a>
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/returnVisitRecord.jsp"><i class="icon-tasks"></i><span
+								class="hidden-tablet">回访记录</span>
 						</a>
 						</li>
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp"><i class="icon-eye-open"></i><span
@@ -370,29 +373,16 @@
 						</a>
 						</li>
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp"><i class="icon-dashboard"></i><span
-								class="hidden-tablet">分店管理</span> </a>
-						</li>
+								class="hidden-tablet">分店管理</span>
+						</a>
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
-						<!-- <li><a class="dropmenu" href="JavaScript:;"><i
-								class="icon-folder-close-alt"></i><span class="hidden-tablet">
-									活动管理</span><span class="label label-important"> 3 </span>
+						<li><a href="javaScript:;" id = "demo"><i class="icon-dashboard"></i><span
+								class="hidden-tablet">报表统计</span>
 						</a>
-							<ul>
-								<li><a class="submenu" href="JavaScript:;"><i
-										class="icon-file-alt"></i><span class="hidden-tablet">
-											教育</span>
-								</a>
-								</li>
-								<li><a class="submenu" href="JavaScript:;"><i
-										class="icon-file-alt"></i><span class="hidden-tablet">
-											健康</span>
-								</a>
-								</li>
-							</ul>
-						</li> -->
+						</li>
 
 					</ul>
 				</div>
@@ -435,12 +425,11 @@
 								  <input class="input-xlarge focused" name = "branchname" type="text" value="">
 								</div>
 							 </div>
-							  
-							  <div class="control-group" id = "employeename">
-								<label class="control-label">分店管理员</label>
+							   <div class="control-group" id = "employeename">
+								<label class="control-label" for="employeename">分店管理员</label>
 								<div class="controls">
-								   <select name="employeename">
-								  	
+								  <select name="employeename" data-rel="">
+								  	<!-- <option value = "" ></option> -->
 								  </select>
 								</div>
 							  </div>
@@ -456,11 +445,12 @@
 							  
 							  <input type="hidden" value="${message }" id = "message">
 							  <input type="hidden" value="" id = "branchid">
-							  <input type="hidden" value="" id = "employeeid">
+							  <input type="hidden" value="" id = "oldemployeeid">
+							  <input type="hidden" value="" id = "areaid">
 							 <%-- <input type="hidden" value="${message }" id = "message"> --%>
 							 
 							  <div class="form-actions">
-								<button type="submit" id = "updateActivity" class="btn btn-primary">保存</button>
+								<button type="button" id = "updateBranch" class="btn btn-primary">保存</button>
 							  </div>
 							</fieldset>
 						  </form>
@@ -605,6 +595,9 @@
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/admin/page/js/laydate.js"></script>	
+		
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/updateBranch.js"></script>
 		
 	
 	<!-- end: JavaScript-->

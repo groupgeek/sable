@@ -23,10 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.Activityrecommend;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activitytype;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
@@ -43,7 +45,11 @@ import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
+import com.xiaohe.mapper.ActivityMapper;
+import com.xiaohe.service.ActivityService;
+import com.xiaohe.service.ActivitytypeService;
 import com.xiaohe.service.BranchAdminService;
+import com.xiaohe.service.EmployeeService;
 import com.xiaohe.util.FileUpload;
 
 
@@ -53,6 +59,9 @@ public class BrachAdminController {
 
 	@Autowired
 	private BranchAdminService branchService;
+	
+	@Autowired
+	private EmployeeService employeeService;
 	
 	@RequestMapping(value="/log")
 	public String log(HttpServletRequest request){
@@ -116,27 +125,8 @@ public class BrachAdminController {
 			medicalrecordsWithBLOBsCustom.setMedicalrecordsid(med.getMedicalrecordsid());
 			branchService.updateMed(medicalrecordsWithBLOBsCustom);
 		}
-		/*user = branchService.oneUserMed(medicalrecordsWithBLOBsCustom.getMedicalrecordsid());
-		branchService.updateMed(medicalrecordsWithBLOBsCustom);
-		medicalrecordsWithBLOBsCustom.setUserid(user.getUserid());
-		branchService.updateMed(medicalrecordsWithBLOBsCustom);*/
 		return"redirect:users";
 	}
-	/*@RequestMapping(value="/AllMessages")
-	public String QueryMessages(Model model,Integer id){
-		Employee user = new Employee();
-		user = branchService.onEmployee(2);
-		model.addAttribute("user", user);
-		return "brach/message";
-	}*/
-	
-	/*@RequestMapping(value="/jsonMessage")
-	public @ResponseBody MessageCustom jsonMessageCustom(@RequestBody MessageCustom messageCustom){
-		System.out.println("****000000000000000000000000000000000000000000000");
-		MessageCustom messageCustom2 = branchService.oneMessage(messageCustom.getMessageid());
-		//return branchService.oneMessage(messageCustom.getMessageid());
-		return messageCustom2;
-	}*/
 	
 	@RequestMapping(value="/fenyeMessage")
 	public String oneMessage(Model model,MessageVo messageVo,HttpServletRequest request){
@@ -178,7 +168,26 @@ public class BrachAdminController {
 			d =new BigDecimal("0.00");
 		}
 		BigDecimal e = b.add(d).add(c);
+		BigDecimal q1 = new BigDecimal(10000);
+		BigDecimal q2 = new BigDecimal(100000000);
+		BigDecimal bb = b.divide(q1);
+		double b1 = bb.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal cc = c.divide(q1);
+		double c1 = cc.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal dd = d.divide(q1);
+		double d1 = dd.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal ee = e.divide(q1);
+		double e1 = ee.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal bbb = b.divide(q2);
+		double b2 = bbb.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal ccc = c.divide(q2);
+		double c2 = ccc.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal ddd = d.divide(q2);
+		double d2 = ddd.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		BigDecimal eee = e.divide(q2);
+		double e2 = eee.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		BigDecimal []arr = new BigDecimal[]{b,c,d,e};
+		double []db = new double[]{b1,c1,d1,e1,b2,c2,d2,e2};
 		int o=branchService.brachCountOrders(a);
 		int m=branchService.branchMessagesCount(a);
 		int ac=branchService.branchCountActivities(a);
@@ -188,6 +197,7 @@ public class BrachAdminController {
 		model.addAttribute("products", products);
 		model.addAttribute("ar", ar);
 		model.addAttribute("arr", arr);
+		model.addAttribute("db", db);
 		return "brach/index";
 	}
 	
@@ -242,60 +252,16 @@ public class BrachAdminController {
 		
 	}
 	
-	
-	/*//插入分店推荐活动
-	@RequestMapping(value="/insertRecAct")
-	public String insertRecAct(ActivityCustom activityCustom,Activityrecommend activityrecommend,ActivityrecommendCustom activityrecommendCustom,HttpServletRequest request){
-		int a = ((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
-		Branch branch = new Branch();
-		branch = branchService.oneBranchByEmployeeId(a);
-		Activityrecommend acts = new Activityrecommend();
-		acts.setBranchid(branch.getBranchid());
-		acts.setActivityid(activityrecommendCustom.getActivityid());
-		acts = branchService.oneActRecById(activityrecommend);
-		if(acts==null){
-			ActivityrecommendCustom acts = new ActivityrecommendCustom();
-			acts.setActivityid(activityrecommendCustom.getActivityid());
-			acts.setBranchid(branch.getBranchid());
-			activityrecommend.setBranchid(branch.getBranchid());
-			activityrecommend.setWebsitetype("分店官网1");
-			System.out.println(activityrecommendCustom.getActivityid());
-			activityrecommend.setActivityid(activityrecommend.getActivityid());
-			branchService.insertActRec(activityrecommend);
-			return "brach/test";
-		}
-		else{
-			activityrecommendCustom.setBranchid(branch.getBranchid());
-			activityrecommendCustom.setActivityid(activityrecommendCustom.getActivityid());
-			branchService.delActRec(activityrecommendCustom);
-			activityrecommend.setBranchid(branch.getBranchid());
-			activityrecommend.setWebsitetype("分店官网1");
-			activityrecommend.setActivityid(activityrecommend.getActivityid());
-			branchService.insertActRec(activityrecommend);
-			return "brach/test";
-		}
-		activityrecommend.setBranchid(branch.getBranchid());
-		activityrecommend.setWebsitetype("分店官网1");
-		Activityrecommend act = new Activityrecommend();
-		act = branchService.oneActRecById(activityrecommend);
-		if(!(act.getActivityid()==activityrecommend.getActivityid()&&act.getBranchid()==activityrecommend.getBranchid())){
-			ActivityrecommendCustom acts = new ActivityrecommendCustom();
-			acts.setActivityid(activityrecommendCustom.getActivityid());
-			acts.setBranchid(branch.getBranchid());
-			branchService.delActRec(activityrecommendCustom);
-			branchService.insertActRec(activityrecommend);
-		
-	}*/
-	
-	
-	
 	@RequestMapping(value="/oneActCus")
 	public String oneActCustom(Integer id,Model model){
 		ActivityCustom act= new ActivityCustom();
+		Activitytype actcus = new Activitytype(); 
 		List<ActivitytypeCustom> actTypes = new ArrayList<ActivitytypeCustom>();
 		actTypes = branchService.allActivityTypes();
 		model.addAttribute("actTypes", actTypes);
 		act = branchService.oneActCustom(id);
+		actcus = branchService.oneActivitytype(act.getActivitytypeid());
+		model.addAttribute("actcus", actcus);
 		model.addAttribute("act", act);
 		return"brach/ActDetail";
 	}
@@ -322,12 +288,14 @@ public class BrachAdminController {
 						pictureFile.delete();
 					}
 				}
-				filename = FileUpload.oneFileUpload(file,null, "picture");
+				filename = FileUpload.oneFileUpload(file,null,"picture");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else{
+			filename = act.getActivitypicture();
 		}
 		if(!nice.isEmpty()){
 			try {
@@ -337,23 +305,26 @@ public class BrachAdminController {
 						videoFile.delete();
 					}
 				}
-				filevideo = FileUpload.oneFileUpload(nice,null, "video");
+				filevideo = FileUpload.oneFileUpload(nice,null,"video");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			filevideo = act.getVideo();
 		}
 		
 		if(filename!=null){
 			activity.setActivitypicture(filename);
 			}
-			if(filevideo!=null){
-			activity.setActivitypicture(filevideo);	
+		if(filevideo!=null){
+			activity.setVideo(filevideo);
 			}
 		
 		branchService.updateAct(activity);
 		return "redirect:allActs";
+		
 	}
 	
 	@RequestMapping(value="/delAct")
@@ -406,6 +377,7 @@ public class BrachAdminController {
 		}
 		branchService.inertActs(activity,file);
 		return "redirect:allActs";
+		
 	}
 	
 	/**
@@ -542,6 +514,11 @@ public class BrachAdminController {
 		return "redirect:employees";
 	}
 	
+	@RequestMapping(value="/insertEmpl")
+	public String insertEmployee(EmployeeCustom employee){
+		employeeService.addEmployee(employee);
+		return"redirect:employees";
+	}
 	
 	//--------------------------报表开始--------------------------
 	

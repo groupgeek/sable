@@ -18,9 +18,32 @@ public class UserCustom extends User{
 	private MedicalrecordsWithBLOBsCustom med;
 	private EmployeeCustom manager;
 	
+	private Integer usernumber;
+    private String branchname;
+    private String stringDate;
+    private String stringregistrationdate;
+    private String stringuser;
 	
+    private String dateStringRegistrationdate;//时间转换
+    
+    private String birthdayString;
+    
+	public String getBirthdayString() {
+		return birthdayString;
+	}
 
-	
+	public void setBirthdayString(String birthdayString) {
+		this.birthdayString = birthdayString;
+	}
+
+	public String getDateStringRegistrationdate() {
+		return dateStringRegistrationdate;
+	}
+
+	public void setDateStringRegistrationdate(String dateStringRegistrationdate) {
+		this.dateStringRegistrationdate = dateStringRegistrationdate;
+	}
+
 	public AreaCustom getArea() {
 		return area;
 	}
@@ -131,6 +154,46 @@ public class UserCustom extends User{
 
 	public void setStatusMessage(String statusMessage) {
 		this.statusMessage = statusMessage;
+	}
+
+	public Integer getUsernumber() {
+		return usernumber;
+	}
+
+	public void setUsernumber(Integer usernumber) {
+		this.usernumber = usernumber;
+	}
+
+	public String getBranchname() {
+		return branchname;
+	}
+
+	public void setBranchname(String branchname) {
+		this.branchname = branchname;
+	}
+
+	public String getStringDate() {
+		return stringDate;
+	}
+
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
+	}
+
+	public String getStringregistrationdate() {
+		return stringregistrationdate;
+	}
+
+	public void setStringregistrationdate(String stringregistrationdate) {
+		this.stringregistrationdate = stringregistrationdate;
+	}
+
+	public String getStringuser() {
+		return stringuser;
+	}
+
+	public void setStringuser(String stringuser) {
+		this.stringuser = stringuser;
 	}
 	
 

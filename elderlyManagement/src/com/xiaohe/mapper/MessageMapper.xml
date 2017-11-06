@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.xiaohe.bean.Message" >
     <id column="messageId" property="messageid" jdbcType="INTEGER" />
     <result column="userId" property="userid" jdbcType="INTEGER" />
-    <result column="messageTime" property="messagetime" jdbcType="DATE" />
+    <result column="messageTime" property="messagetime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Message" extends="BaseResultMap" >
     <result column="messageContext" property="messagecontext" jdbcType="LONGVARCHAR" />
@@ -30,7 +30,7 @@
   <insert id="insert" parameterType="com.xiaohe.bean.Message" >
     insert into message (messageId, userId, messageTime, 
       messageContext)
-    values (#{messageid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{messagetime,jdbcType=DATE}, 
+    values (#{messageid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{messagetime,jdbcType=TIMESTAMP}, 
       #{messagecontext,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Message" >
@@ -57,7 +57,7 @@
         #{userid,jdbcType=INTEGER},
       </if>
       <if test="messagetime != null" >
-        #{messagetime,jdbcType=DATE},
+        #{messagetime,jdbcType=TIMESTAMP},
       </if>
       <if test="messagecontext != null" >
         #{messagecontext,jdbcType=LONGVARCHAR},
@@ -71,7 +71,7 @@
         userId = #{userid,jdbcType=INTEGER},
       </if>
       <if test="messagetime != null" >
-        messageTime = #{messagetime,jdbcType=DATE},
+        messageTime = #{messagetime,jdbcType=TIMESTAMP},
       </if>
       <if test="messagecontext != null" >
         messageContext = #{messagecontext,jdbcType=LONGVARCHAR},
@@ -82,14 +82,14 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Message" >
     update message
     set userId = #{userid,jdbcType=INTEGER},
-      messageTime = #{messagetime,jdbcType=DATE},
+      messageTime = #{messagetime,jdbcType=TIMESTAMP},
       messageContext = #{messagecontext,jdbcType=LONGVARCHAR}
     where messageId = #{messageid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Message" >
     update message
     set userId = #{userid,jdbcType=INTEGER},
-      messageTime = #{messagetime,jdbcType=DATE}
+      messageTime = #{messagetime,jdbcType=TIMESTAMP}
     where messageId = #{messageid,jdbcType=INTEGER}
   </update>
   
@@ -104,7 +104,7 @@
         AND userId = #{userid,jdbcType=INTEGER}
       </if>
       <if test="messagetime != null" >
-        AND messageTime = #{messagetime,jdbcType=DATE}
+        AND messageTime = #{messagetime,jdbcType=TIMESTAMP}
       </if>
       <if test="messagecontext != null" >
         AND messageContext = #{messagecontext,jdbcType=LONGVARCHAR}
@@ -158,7 +158,7 @@
 			WHERE u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
 		  	
 		  <if test="branchid != null" >
-	        AND b.branchId = #{branchid,jdbcType=DATE}
+	        AND b.branchId = #{branchid,jdbcType=TIMESTAMP}
 	      </if>
 	  	<if test="search != null">
 	  			AND (userName LIKE '%${search}%'
@@ -182,7 +182,7 @@
 			WHERE u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
 		  	
 		  <if test="branchid != null" >
-	        AND b.branchId = #{branchid,jdbcType=DATE}
+	        AND b.branchId = #{branchid,jdbcType=TIMESTAMP}
 	      </if>
 	  	<if test="search != null">
 	  			AND (userName LIKE '%${search}%'
@@ -197,5 +197,10 @@
 			FROM `message` m , `user` u ,branch b ,area ar
 			WHERE m.messageId = #{id} AND u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
 		  
+  </select>
+  <select id="selectNewMessage" resultType = "com.xiaohe.bean.MessageCustom">
+  	select message.*,user.userName from message,user
+	where user.userId= message.userId 
+	order by messageTime desc limit 8
   </select>
 </mapper>

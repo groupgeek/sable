@@ -2,9 +2,13 @@ package com.xiaohe.bean;
 
 import java.math.BigDecimal;
 
+import com.sun.istack.internal.NotNull;
+
+
 public class Product {
     private Integer productid;
-
+    
+@NotNull
     private String productname;
 
     private Integer instock;

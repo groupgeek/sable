@@ -10,7 +10,7 @@ $(document).ready(function(){
 				$("#box tbody").append(
 						'<tr>'+
 							'<td>'+ (data.employeeList)[i].employeename +'</td>'+
-							'<td class="center">'+(data.employeeList)[i].entrytime+
+							'<td class="center">'+(data.employeeList)[i].entrytimeString+
 							'<td class="center">'+ (data.employeeList)[i].employeestatus +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.employeeList)[i].age +'</span>'+

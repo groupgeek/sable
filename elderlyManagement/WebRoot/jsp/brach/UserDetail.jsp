@@ -165,9 +165,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<fieldset>
 							
 							<div style="padding-left: 35%;padding-bottom: 30px">
-							<img class="image1" src="${user.avatar }">
+							<c:if test="${user.avatar==null }">
+							<img class="image1" src="/upload/picture/ss.jpg">
+							</c:if>
+							<c:if test="${user.avatar!=null }">
+							<img class="image1" src="/upload/${user.avatar }">
+							</c:if>
 							</div>
-							
 							<input type="hidden" name="userid" value="${user.userid }"  />
 							
 							   <div class="control-group">
@@ -409,7 +413,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
 	<!-- end: JavaScript-->
+	
+
 	
 </body>
 </html>

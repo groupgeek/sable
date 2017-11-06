@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activitytype;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
@@ -241,5 +242,8 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public int updateEmpl(EmployeeCustom employeeCustom) {
 		return employeeMapper.updateByCustom(employeeCustom);
+	}
+	public Activitytype oneActivitytype(Integer id) {
+		return activitytypeMapper.selectByPrimaryKey(id);
 	}
 }
