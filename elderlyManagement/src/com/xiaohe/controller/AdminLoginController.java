@@ -39,7 +39,7 @@ public class AdminLoginController {
 			return "null";
 		}else if (admins.getAuthorityid()==3) {System.out.println(admins.getAuthorityid()+"dsds-----------------------");
 			//送货员跳转
-			return null;
+		return "redirect:/selectorder/selectorderbybranchid.action";
 		}else if (admins.getAuthorityid()==4) {System.out.println(admins.getAuthorityid()+"----adada--------------------");
 			//商品管理跳转
 			return"redirect:/productmanage/quertyProduct.action";
@@ -61,6 +61,6 @@ public class AdminLoginController {
 			//ECO跳转
 			return"redirect:/ceo/index.action";
 			}
-		return null;
+		return "AdminLogin/login";
 	}	
 }
