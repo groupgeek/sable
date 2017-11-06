@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>修改活动信息</title>
+	<title>员工个人中心</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -44,6 +44,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
 	
+	<style type="text/css">
+	.image1{ 
+       
+        width:130px; 
+        height:130px; 
+        border-radius:130px; 
+    }
+	</style>
 		
 		
 		
@@ -134,14 +142,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li>
 					<i class="icon-edit"></i>
-					<a href="#">修改活动</a>
+					<a href="#">个人中心</a>
 				</li>
 			</ul>
 			
-			<div class="row-fluid sortable">
+			
+					
+					
+					
+					<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>修改活动信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>个人中心</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -149,277 +161,146 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
-					
-			<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateAct.action?id=${act.activityid}" method="post" enctype="multipart/form-data">
-				<fieldset>
-					<div class="control-group">
-							  <label class="control-label" for="typeahead">更换活动名称 </label>
-							  <div class="controls">
-								<input type="text"  onkeyup="long()" name="activityname" 
-								class="span6 typeahead" id="typeahead" value="${act.activityname }">
+						<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateVip.action" method="post" enctype="multipart/form-data">
+							<fieldset>
+							
+							<div style="padding-left: 35%;padding-bottom: 30px">
+							<c:if test="${employee.avatar==null }">
+							<img class="image1" src="/upload/picture/ss.jpg">
+							</c:if>
+							<c:if test="${employee.avatar!=null }">
+							<img class="image1" src="/upload/${employee.avatar }">
+							</c:if>
+							</div>
+							
+							<input type="hidden" name="employeeid" value="${employee.employeeid }"  />
+							
+							
+							<div class="control-group">
+								<label class="control-label" for="disabledInput">账号</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="accountnumber" value="${employee.accountnumber }" disabled="">
+								</div>
 							  </div>
-					</div>
-
-						<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">更换活动日期</label>
+							
+							  <div class="control-group">
+							  <label class="control-label" for="typeahead">姓名 </label>
 							  <div class="controls">
-							 <%--  <fmt:formatDate value="${messages[0].messagetime }"
-								pattern="yyyy-MM-dd HH:mm:ss" /> --%>
-								<input name="activitydate" onClick="laydate()"  value = '<fmt:formatDate value="${act.activitydate }"
-								pattern="yyyy-MM-dd" />'><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
+							   <input class="input-xlarge disabled" id="typeahead" onkeyup="long()" type="text" name="employeename" value="${employee.employeename }">
 							  </div>
-					</div>
-					
-					<div >
-					 <label class="control-label" for="fileInput">活动图片</label>
-						<div class="controls">
-						<c:if test="${act.activitypicture!=null }">
-							<img style="width: 140px;height: 120px" src="/upload/${act.activitypicture }">						
-						</c:if>
-						<c:if test="${act.activitypicture==null }">
-						<img style="width: 160px;height: 140px" src="/upload/picture/hh.jpg">	
-						</c:if>
-						</div>
-					</div><br>
-
-									<div>
-										<label class="control-label" for="fileInput">活动视频</label>
-										<c:if test="${act.video!=null }">
-										<div class="controls">
-											<video width="320" height="240" controls autoplay> <source
-												src="/upload/${act.video }" type="video/ogg"> <source
-												src="/upload/${act.video }" type="video/mp4"> <source
-												src="/upload/${act.video }" type="video/webm"> <object
-												data="/upload/${act.video }" width="320" height="240">
-												<embed width="320" height="240" src="/upload/${act.video }">
-											</object></video>
-										</div>
-										</c:if>
-										<c:if test="${act.video==null }">
-										<div class="controls">
-										暂时没有视频，快去添加吧
-										</div>
-										</c:if>
-
-									</div>
-									<br>
-					
-					<div class="control-group">
-							  <label class="control-label" for="fileInput">更换图片</label>
+							  </div>
+							  
+							  <div class="control-group">
+							  <label class="control-label" for="fileInput">更换头像</label>
 							  <div class="controls">
 							  <input type="file" name="file">
 							  </div>
-					</div> 
-					
-					<div class="control-group">
-							  <label class="control-label" for="fileInput">更换视频</label>
-							  <div class="controls">
-							  <input type="file" name="nice">
+								</div>
+							  
+							  <div class="control-group">
+								<label class="control-label" for="optionsCheckbox2">邮箱</label>
+								<div class="controls">
+								<input type="text" name="email" 
+								class="span6 typeahead" id="email" onkeyup="IsEmail()" value="${employee.email }">
+							  <p id="mail">邮箱格式为 xxx@163.com</p>
 							  </div>
-					</div>
-					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换活动状态</label>
+							  </div>
+							  
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">密码</label>
 								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-									<c:if test="${act.activitystatus !=null}">
-									<option selected="true">${act.activitystatus}</option>
-									</c:if>
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
-								</div>
-					</div>
-					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换活动类型</label>
+								<input type="text" name="password" 
+								class="span6 typeahead" id="pass" onkeyup="IsString()" value="${employee.password }">
+							  </div>
+							  </div>
+							  
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">生日</label>
 								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:if test="${act.activitytypeid !=null}">
-										<option selected="true" value="${act.activitytypeid }">${actcus.activitytypename }</option>
-									</c:if>
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="birthday" value=<fmt:formatDate value="${employee.birthday }" pattern="yyyy-MM-dd"/> disabled="">
 								</div>
-					</div>
-					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换模式</label>
+							  </div>
+							  
+							  <div class="control-group">
+								<label class="control-label" for="typeahead">电话</label>
 								<div class="controls">
-									<select id="selectError3" name="online">
-									<c:if test="${act.online==true || act.online==null}">
-									<option value=true>线上</option>
-									<option value=false>线下</option>
-									</c:if>
-									<c:if test="${act.online ==false}">
-									<option value=false>线下</option>
-									<option value=true>线上</option>
-									</c:if>
-									
-									<%-- <c:if test="${act.online ==null}">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</c:if> --%>
-									</select>
+								<input type="text" name="phone" class="span6 typeahead" onkeyup="IsPhone()" id="phone" value="${employee.phone }">
 								</div>
-					</div> 
-					
-					<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">修改活动经费</label>
+							</div>
+							  
+							  <div class="control-group">
+								<label class="control-label" for="disabledInput">员工地址</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="address" placeholder="${employee.address }" disabled="">
+								</div>
+							  </div>
+							  
+							 <div class="control-group">
+								<label class="control-label" for="appendedPrependedInput">工资</label>
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input class="appendedPrependedInput" id="appendedPrependedInput" name="activityprice" oninput="xixi(this.value)" size="16" type="text" value="${act.activityprice }">
-								  </div>
-								</div>
-					</div>
-							
-					<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">修改活动报名费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input class="appendedPrependedInput2" id="appendedPrependedInput2" name="registeryfee" oninput="xixi2(this.value)" size="16" type="text" value="${act.registeryfee }">
+									<input id="appendedPrependedInput" disabled="" oninput="xixi(this.value)" name="wage" size="16" type="text" value="${employee.wage }">
 								  </div>
 								</div>
 				    </div>
-							
-					<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">更新活动描述</label>
-							  <div class="controls">
-							 	<textarea id="subject" style="width: 320px;height: 100px" name="activitydetails" maxlength="120" onkeyup="checkLength(this)" accesskey="1" tabindex="11">${act.activitydetails }</textarea>
-								<span id="subjectchk">还可输入
-  							    <strong id="checklen" style="color: #FF0000">?</strong>个字符
-   								</span>
-   								<span id="postNameRule" class="spn_flag_1" style="display: none"></span>
-							  </div>
-					</div>
-					
-					<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">提交信息</button>
-					</div>
-					<!-- <div>
-						<button type="submit">提交信息</button>
-					</div> -->
-					
-				</fieldset>
-			</form>
-					
-					
-					
-					
-					
-					
-					
-					
-						<%-- <form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
-						 <!--  <fieldset> -->
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">活动名称 </label>
-							  <div class="controls">
-								<input type="text" name="activityname" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-								<!-- <p class="help-block">Start typing to activate auto complete!</p> -->
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
-							  <div class="controls">
-								<input name="activitydate" onClick="laydate()"><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
-							  </div>
-							</div>
-
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入视频</label>
-							  <div class="controls">
-								<input class="input-file uniform_on" name="video" id="fileInput" type="file">
-							  </div>
-							</div>  
-							
-							
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入图片</label>
-							  <div class="controls">
-							  <input type="file" name="activitypicture">
-								<!-- <input class="input-file uniform_on" name="activitypicture1" id="fileInput" type="file"> -->
-							  </div>
-							</div> 
-							      
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动状态</label>
+							  
+							  <div class="control-group">
+								<label class="control-label" for="disabledInput">入职时间</label>
 								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="entrytime" value=<fmt:formatDate value="${employee.entrytime }" pattern="yyyy-MM-dd"/> disabled="">
 								</div>
-							</div>  
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动类型</label>
+							  </div>
+							 
+							  <div class="control-group">
+								<label class="control-label" for="typeahead">银行卡号</label>
 								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
+								<input type="text" name="bankcardno"  value="${employee.bankcardno }"  class="span6 typeahead" id="bankno" onkeyup="bank(this.value)">
+								<p id="bank"></p>
 								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">线上线下</label>
+								</div>
+							 
+							  <div class="control-group">
+								<label class="control-label" for="disabledInput">员工权限等级</label>
 								<div class="controls">
-									<select id="selectError3" name="online">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</select>
+								<select id="selectError3" name="authorityid">
+								<c:if test="${employee.authorityid !=null }">
+									<option selected="selected" disabled="disabled" value="${employee.authorityid }">${employee.authorityid }</option>
+								</c:if>
+								</select>
 								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动经费</label>
+							  </div>
+							  
+							  <div class="control-group">
+								<label class="control-label" for="appendedPrependedInput">奖金</label>
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
+									<input id="appendedPrependedInput" disabled="disabled" name="totalbonus" oninput="xixi2(this.value)" size="16" type="text" value="${employee.totalbonus }">
 								  </div>
 								</div>
-							  </div>
+				   				</div>
 							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
-								  </div>
-								</div>
+							  <div class="form-actions">
+								<button type="submit" class="btn btn-primary">提交修改</button>
 							  </div>
-							
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">活动描述</label>
-							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
-							  </div>
-							</div>
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">提交信息</button>
-							</div>
-						 <!--  </fieldset> -->
-						</form>   --%>
-						
-						<%-- <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
-						 <input type="file" name="file" multiple>
-						 <input type="submit" value="提交">
-						</form>  --%>
-
+							</fieldset>
+						  </form>
+					
 					</div>
+				</div><!--/span-->
+			
+			
+			
+			
+			</div>
+					
+					
+					
+					
+					
+					
+					
 				</div><!--/span-->
 
 			</div><!--/row-->
@@ -432,8 +313,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
@@ -517,10 +396,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 		
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
-		
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
-		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/xixi.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

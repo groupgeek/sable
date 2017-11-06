@@ -12,6 +12,7 @@ import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.Activitytype;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Area;
 import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
@@ -29,6 +30,7 @@ import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityrecommendMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
+import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.EmployeeMapper;
@@ -45,6 +47,8 @@ import com.xiaohe.service.BranchAdminService;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
+	@Autowired
+	private AreaMapper areaMapper;
 	@Autowired
 	private AuthorityMapper authorityMapper;
 	@Autowired
@@ -245,5 +249,19 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public Activitytype oneActivitytype(Integer id) {
 		return activitytypeMapper.selectByPrimaryKey(id);
+	}
+	public int insertEmpl(Employee employee) {
+		employeeMapper.insertSelective(employee);
+		return 0;
+	}
+	public int countEmpl() {
+		return employeeMapper.countEmpl();
+	}
+	public Area oneArea(Integer id) {
+		return areaMapper.oneAreaByEmpId(id);
+	}
+	public int delMed(Integer id) {
+		medicalrecordsMapper.deleteByPrimaryKey(id);
+		return 0;
 	}
 }

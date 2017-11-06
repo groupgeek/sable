@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>添加员工信息</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -81,8 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/vip.action"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/logout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -155,216 +155,148 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					
 					
-			<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertEmpl.action" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<div class="control-group">
-							  <label class="control-label" for="typeahead">活动名字 </label>
+							  <label class="control-label" for="typeahead">员工姓名 </label>
 							  <div class="controls">
-								<input type="text" name="activityname" onkeyup="long()" class="span6 typeahead" id="typeahead">
+								<input type="text" name="employeename" onkeyup="long()" class="span6 typeahead" id="typeahead">
 							  </div>
 					</div>
 					
 					<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
+							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">员工生日</label>
 							  <div class="controls">
-								<input name="activitydate" onClick="laydate()"><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
+								<input name="birthday" onClick="laydate()" id="str"><br /><br />
 							  </div>
 					</div>
 					
 					<div class="control-group">
-							  <label class="control-label" for="fileInput">添加图片</label>
+							  <label class="control-label" for="fileInput">添加头像</label>
 							  <div class="controls">
 							  <input type="file" name="file">
 							  </div>
 					</div> 
 					
 					<div class="control-group">
-							  <label class="control-label" for="fileInput">添加视频</label>
+							  <label class="control-label" for="typeahead">员工密码</label>
 							  <div class="controls">
-							  <input type="file" name="nice">
+								<input type="text" name="password" onkeyup="IsString()" class="span6 typeahead" id="pass">
+								<p id="pass2"></p>
 							  </div>
 					</div>
 					
+					
 					<div class="control-group">
-								<label class="control-label" for="selectError3">活动状态</label>
+								<label class="control-label" for="typeahead">员工邮箱</label>
 								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
+								<input type="text" name="email" class="span6 typeahead" onkeyup="IsEmail()" id="email">
+								<p id="mail">邮箱格式为 xxx@163.com</p>
 								</div>
 					</div>
 					
 					<div class="control-group">
-								<label class="control-label" for="selectError3">活动类型</label>
+								<label class="control-label" for="typeahead">员工电话</label>
 								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
+								<input type="text" name="phone" class="span6 typeahead" onkeyup="IsPhone()" id="phone">
 								</div>
 					</div>
 					
 					<div class="control-group">
-								<label class="control-label" for="selectError3">线上线下</label>
-								<div class="controls">
-									<select id="selectError3" name="online">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</select>
-								</div>
-					</div> 
+								<label class="control-label" for="typeahead">员工性别</label>
+								<table><tr>
+								<td><label class="radio-inline">
+								<input name="sex" checked="checked" type="radio" value="男">男</label></td>
+								<td><label class="radio-inline">
+								<input name="sex" type="radio" value="女">女</label></td>
+							</tr></table>
+					</div>
 					
 					<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动经费</label>
+								<label class="control-label" for="typeahead">家庭住址</label>
+								<div class="controls">
+								<input type="text" name="address" class="span6 typeahead" onkeyup="add()" id="addr">
+								</div>
+					</div>	
+					
+					<div class="control-group">
+								<label class="control-label" for="typeahead">员工工资</label>
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
+									<input id="appendedPrependedInput" oninput="xixi(this.value)" name="wage" size="16" type="text">
 								  </div>
 								</div>
 					</div>
-							
+					
 					<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
+								<label class="control-label" for="typeahead">奖金</label>
 								<div class="controls">
-								  <div class="input-prepend input-append">
+								<div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
+									<input id="appendedPrependedInput2" oninput="xixi2(this.value)" name="totalbonus" size="16" type="text">
 								  </div>
 								</div>
-				    </div>
-							
-					<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">活动描述</label>
-							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
-							  </div>
 					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="typeahead" onkeyup="haha2()">入职时间</label>
+								<div class="controls">
+								<input name="entrytime" onClick="laydate()" id="str2"><br /><br />
+								</div>
+					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="typeahead">职位等级*</label>
+								<div class="controls">
+								<select id="selectError3" name="positionid">
+										<option value="3">送货员</option>
+										<option value="2">商城管理员</option>
+								</select>
+								</div>
+					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="typeahead">员工权限等级*</label>
+								<div class="controls">
+								<select id="selectError3" name="authorityid">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+									</select>
+								</div>
+					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="typeahead">银行卡号</label>
+								<div class="controls">
+								<input type="text" name="bankcardno"  class="span6 typeahead" id="bankno" onkeyup="bank(this.value)">
+								<p id="bank"></p>
+								</div>
+					</div>
+					
+					
+					
+					<div class="control-group">
+								<label class="control-label" for="typeahead">工作状态</label>
+								<div class="controls">
+								<select id="selectError3" name="employeestatus">
+										<option value="正常">正常</option>
+										<option value="休假">休假</option>
+										<option value="请假">请假</option>
+									</select>
+								</div>
+					</div>
+					
 					
 					<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">提交信息</button>
 					</div>
-					<!-- <div>
-						<button type="submit">提交信息</button>
-					</div> -->
 					
 				</fieldset>
 			</form>
 					
-					
-					
-					
-					
-					
-					
-					
-						<%-- <form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
-						 <!--  <fieldset> -->
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">活动名称 </label>
-							  <div class="controls">
-								<input type="text" name="activityname" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-								<!-- <p class="help-block">Start typing to activate auto complete!</p> -->
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
-							  <div class="controls">
-								<input name="activitydate" onClick="laydate()"><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
-							  </div>
-							</div>
-
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入视频</label>
-							  <div class="controls">
-								<input class="input-file uniform_on" name="video" id="fileInput" type="file">
-							  </div>
-							</div>  
-							
-							
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入图片</label>
-							  <div class="controls">
-							  <input type="file" name="activitypicture">
-								<!-- <input class="input-file uniform_on" name="activitypicture1" id="fileInput" type="file"> -->
-							  </div>
-							</div> 
-							      
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动状态</label>
-								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
-								</div>
-							</div>  
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动类型</label>
-								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
-								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">线上线下</label>
-								<div class="controls">
-									<select id="selectError3" name="online">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</select>
-								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动经费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
-								  </div>
-								</div>
-							  </div>
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
-								  </div>
-								</div>
-							  </div>
-							
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">活动描述</label>
-							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
-							  </div>
-							</div>
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">提交信息</button>
-							</div>
-						 <!--  </fieldset> -->
-						</form>   --%>
-						
-						<%-- <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
-						 <input type="file" name="file" multiple>
-						 <input type="submit" value="提交">
-						</form>  --%>
-
 					</div>
 				</div><!--/span-->
 
@@ -465,7 +397,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
 		
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/xixi.js"></script>
 		
 	<!-- end: JavaScript-->
 	

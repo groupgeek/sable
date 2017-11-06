@@ -424,120 +424,120 @@
 							  <div class="control-group" id = "username">
 								<label class="control-label">姓名</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "sex">
 								<label class="control-label">性别</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "phone">
 								<label class="control-label">手机号(账号)</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "password">
 								<label class="control-label">密码</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							   <div class="control-group" id = "registrationdate">
 								<label class="control-label">注册日期</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "address">
 								<label class="control-label">地址</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "status">
 								<label class="control-label">账号状态</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "integral">
 								<label class="control-label">积分</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							    <div class="control-group" id = "email">
 								<label class="control-label">邮箱</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "birthday">
 								<label class="control-label">生日</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "bankcardno">
 								<label class="control-label">银行卡号</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "healthstatus">
 								<label class="control-label">健康状态</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "authoritylevel">
 								<label class="control-label">权限</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "level">
 								<label class="control-label">等级</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  <div class="control-group" id = "areaname">
 								<label class="control-label">地区</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							   <div class="control-group" id = "areaaddress">
 								<label class="control-label">地区地址</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							   <div class="control-group" id = "online">
 								<label class="control-label">是否在线</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 								</div>
 							   <div class="control-group" id = "branchname">
 								<label class="control-label">所在分店</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							   <div class="control-group" id = "manager">
 								<label class="control-label">分店管理员</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
+								  <span class="input-xlarge uneditable-input"></span>
 								</div>
 							  </div>
 							  

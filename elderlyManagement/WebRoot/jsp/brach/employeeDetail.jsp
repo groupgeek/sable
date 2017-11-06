@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>修改员工信息</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -89,8 +89,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/vip.action"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/logout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -165,7 +165,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<fieldset>
 							
 							<div style="padding-left: 35%;padding-bottom: 30px">
-							<img  src="${pageContext.request.contextPath }/upload/${employee.avatar }">
+							<c:if test="${employee.avatar==null }">
+							<img class="image1" src="/upload/picture/ss.jpg">
+							</c:if>
+							<c:if test="${employee.avatar!=null }">
+							<img class="image1" src="/upload/${employee.avatar }">
+							</c:if>
 							</div>
 							
 							<input type="hidden" name="employeeid" value="${employee.employeeid }"  />
@@ -188,16 +193,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  <div class="control-group">
 								<label class="control-label" for="optionsCheckbox2">员工邮箱</label>
 								<div class="controls">
-								<input type="text" onclick="char()" name="email" 
-								class="span6 typeahead" id="typeahead" value="${employee.email }">
+								<input type="text" name="email" 
+								class="span6 typeahead" id="email" onkeyup="IsEmail()" value="${employee.email }">
+							  <p id="mail">邮箱格式为 xxx@163.com</p>
 							  </div>
 							  </div>
 							  
 							   <div class="control-group">
 								<label class="control-label" for="disabledInput">员工密码</label>
 								<div class="controls">
-								<input type="text" onclick="char()" name="password" 
-								class="span6 typeahead" id="typeahead" value="${employee.password }">
+								<input type="text" name="password" 
+								class="span6 typeahead" id="pass" onkeyup="IsString()" value="${employee.password }">
 							  </div>
 							  </div>
 							  
@@ -227,7 +233,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="wage" size="16" type="text" value="${employee.wage }">
+									<input id="appendedPrependedInput" oninput="xixi(this.value)" name="wage" size="16" type="text" value="${employee.wage }">
 								  </div>
 								</div>
 				    </div>
@@ -253,11 +259,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<c:if test="${employee.authorityid !=null }">
 									<option selected="selected" value="${employee.authorityid }">${employee.authorityid }</option>
 								</c:if>
-								<c:forEach items="${auths }" var="auths">
-										<c:if test="${employee.authorityid != auths.authorityid }">
-										<option value="${auths.authorityid }">${auths.authorityid }</option>
-										</c:if>
-								</c:forEach>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
 								</select>
 								</div>
 							  </div>
@@ -267,7 +272,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="totalbonus" size="16" type="text" value="${employee.totalbonus }">
+									<input id="appendedPrependedInput" name="totalbonus" oninput="xixi2(this.value)" size="16" type="text" value="${employee.totalbonus }">
 								  </div>
 								</div>
 				   				</div>
@@ -386,6 +391,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/xixi.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

@@ -24,4 +24,11 @@ public interface AreaMapper {
      * @return
      */
     List<AreaCustom> selectAreasByCondition(AreaCustom condition);
+    
+    /**
+     * 根据管理员id查询到地区
+     * @param id
+     * @return
+     */
+    Area oneAreaByEmpId(Integer id);
 }
