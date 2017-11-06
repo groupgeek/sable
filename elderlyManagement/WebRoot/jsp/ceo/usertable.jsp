@@ -45,43 +45,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a>员工管理</a></li>
+				<li><a>用户信息</a></li>
 			</ul>
 				
 			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>员工基本情况</h2>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>用户基本情况</h2>
 						
 					</div>
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-							  	  <th>员工账号</th>	
-								  <th>员工姓名</th>
-								  <th>员工性别</th>
-								  <th>员工地址</th>
-								  <th>员工电话</th>
+							  	  <th>用户账号</th>	
+								  <th>用户姓名</th>
+								  <th>用户性别</th>
+								  <th>用户地址</th>
+								  <th>用户电话</th>
 							  </tr>
 						  </thead>   
-							<c:forEach items = "${findEmployees }" var = "c">
+							<c:forEach items = "${finduserandbranch }" var = "user">
 										
 								<tr>
 									<td>
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.accountnumber }</a>
+										<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${user.userid}">
+										${user.accountnumber }</a>
 									</td>
 									<td class="center">
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.employeename }</a>
+										<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${user.userid}">
+										${user.username }</a>
 									</td>
-									<td class="center">${c.sex }</td>
+									<td class="center">${user.sex }</td>
 									<td class="center">
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.address }</a>
+										<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${user.userid}">
+										${user.address }</a>
 									</td>
-									<td class="center">${c.phone }</td>
+									<td class="center">${user.phone }</td>
 								</tr>						
 							</c:forEach>							
 						  </tbody>

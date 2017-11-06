@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:forEach items="${findMessageCustoms }" var="e">
 							<li>
 								<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${e.messageid }">
-									<span class="from"> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.messagetime }</b></span>
+									<span class="from"> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>
 								</a>
 							</li>
 						</c:forEach>
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="header">
 							<h1>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.."</h1>
 							<div class="from"><i class="halflings-icon user"></i> <b>${findMessage.username }</b> / ${findMessage.email }</div>
-							<div class="date"><i class="halflings-icon time"></i> ${findMessage.messagetime }</div>
+							<div class="date"><i class="halflings-icon time"></i> ${findMessage.stringDate }</div>
 							
 							<div class="menu"></div>
 							
@@ -136,8 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
-			
+			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<a>  使用者：${findCeoById.ceoid }</a>
 		</p>
 
 	</footer>

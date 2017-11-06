@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="singleBar">
 									<div class="bar">
 										<div class="value">
-											<span>${m.usernumber }</span>
+											<span>${m.stringuser }</span>
 										</div>								
 									</div>								
 									<div class="title">${m.branchname }</div>							
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 								<strong>姓名：</strong> ${findFourUser[0].username}<br>
 								<strong>性别：</strong> ${findFourUser[0].sex }<br>
-								<strong>注册时间：</strong> ${findFourUser[0].registrationdate }             
+								<strong>注册时间：</strong> ${findFourUser[0].stringregistrationdate }             
 							</li>
 							<li class="yellow">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[1].userid}">
@@ -203,7 +203,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 								<strong>姓名：</strong> ${findFourUser[1].username }<br>
 								<strong>性别：</strong> ${findFourUser[1].sex }<br>
-								<strong>注册时间：</strong> ${findFourUser[1].registrationdate }                                
+								<strong>注册时间：</strong> ${findFourUser[1].stringregistrationdate }                                
 							</li>
 							<li class="red">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[2].userid}">
@@ -211,7 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 								<strong>姓名：</strong> ${findFourUser[2].username }<br>
 								<strong>性别：</strong> ${findFourUser[2].sex }<br>
-								<strong>注册时间：</strong> ${findFourUser[2].registrationdate }                                
+								<strong>注册时间：</strong> ${findFourUser[2].stringregistrationdate }                                
 							</li>
 							<li class="blue">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[3].userid}">
@@ -219,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 								<strong>姓名：</strong> ${findFourUser[3].username }<br>
 								<strong>性别：</strong> ${findFourUser[3].sex }<br>
-								<strong>注册时间：</strong> ${findFourUser[3].registrationdate }                        
+								<strong>注册时间：</strong> ${findFourUser[3].stringregistrationdate }                        
 							</li>
 						</ul>
 					</div>
@@ -227,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="box black span4 noMargin" onTablet="span12" onDesktop="span4">
 					<div class="box-header">
-						<h2><i class="halflings-icon white check"></i><span class="break"></span>To Do List</h2>
+						<h2><i class="icon-envelope-alt"></i><span class="break"></span>To Do List</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
@@ -239,42 +239,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="red">
 									<i class="icon-envelope-alt"></i>	
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[0].messageid }">${findNewMessage[0].username } </a>
-									<strong>${findNewMessage[0].messagetime }</strong>
+									<strong>${findNewMessage[0].stringDate }</strong>
 								</li>
 								<li class="red">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[1].messageid }">${findNewMessage[1].username } </a>
-									<strong>${findNewMessage[1].messagetime }</strong>
+									<strong>${findNewMessage[1].stringDate }</strong>
 								</li>
 								<li class="yellow">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[2].messageid }">${findNewMessage[2].username } </a>
-									<strong>${findNewMessage[2].messagetime }</strong>
+									<strong>${findNewMessage[2].stringDate }</strong>
 								</li>
 								<li class="yellow">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[3].messageid }">${findNewMessage[3].username } </a>
-									<strong>${findNewMessage[3].messagetime }</strong>
+									<strong>${findNewMessage[3].stringDate }</strong>
 								</li>
 								<li class="green">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[4].messageid }">${findNewMessage[4].username } </a>
-									<strong>${findNewMessage[4].messagetime }</strong>
+									<strong>${findNewMessage[4].stringDate }</strong>
 								</li>
 								<li class="green">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[5].messageid }">${findNewMessage[5].username } </a>
-									<strong>${findNewMessage[5].messagetime }</strong>
+									<strong>${findNewMessage[5].stringDate }</strong>
 								</li>
 								<li class="blue">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[6].messageid }">${findNewMessage[6].username } </a>
-									<strong>${findNewMessage[6].messagetime }</strong>
+									<strong>${findNewMessage[6].stringDate }</strong>
 								</li>
 								<li class="blue">
 									<i class="icon-envelope-alt"></i>
 									<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${findNewMessage[7].messageid }">${findNewMessage[7].username } </a>
-									<strong>${findNewMessage[7].messagetime }</strong>
+									<strong>${findNewMessage[7].stringDate }</strong>
 								</li>
 							</ul>
 						</div>	
@@ -354,8 +354,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
-			
+			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<a>  使用者：${findCeoById.ceoid }</a>
 		</p>
 
 	</footer>

@@ -28,6 +28,7 @@ public class ProductCustom extends Product {
 	
 	
 	
+	
 	public String getTasteString() {
 		return tasteString;
 	}

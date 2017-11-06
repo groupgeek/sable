@@ -93,7 +93,7 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    int selectAllUser();
+    Integer selectAllUser();
 
     /**
      * 通过注册时间查询用户数量
@@ -113,7 +113,7 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    List<User> selectfourUserByTime();
+    List<UserCustom> selectfourUserByTime();
 
     /**
      * 根据id查询用户
@@ -121,5 +121,10 @@ public interface UserMapper {
      * @return
      */
     UserCustom selectUserById(Integer userid);
+    /**
+     * 查询所有用户信息（关联查询所在分店）
+     * @return
+     */
+    List<UserCustom> selectAlluserandbranch();
     
 }

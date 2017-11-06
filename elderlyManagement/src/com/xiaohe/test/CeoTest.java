@@ -22,8 +22,7 @@ public class CeoTest {
 	
 	@Test
 	public void findUserCustoms(){
-		List<UserCustom> list = ceoService.findUserCustoms();
-		System.out.println(list);
+		System.out.println(ceoService.findUserCustoms().get(0).getStringuser());
 	}
 	
 	@Test
@@ -43,6 +42,25 @@ public class CeoTest {
 	
 	@Test
 	public void findTotalreportAndBranch(){
-		System.out.println(ceoService.findTotalreportAndBranch().get(1).getStringbigdecimal());
+		System.out.println(ceoService.findTotalreportAndBranch().get(0).getStringbigdecimal());
 	}
+	
+	@Test
+	public void findfourUserByTime(){
+		System.out.println(ceoService.findfourUserByTime().get(0).getStringregistrationdate());
+	}
+	
+	@Test
+	public void findUserById(){
+		System.out.println(ceoService.findUserById(33).getStringregistrationdate());
+	}
+	@Test
+	public void findAllUserMessageCustoms(){
+		System.out.println(ceoService.findAllUserMessageCustoms().get(0).getStringDate());
+	}
+	@Test
+	public void findMessage(){
+		System.out.println(ceoService.findMessage(1).getStringDate());
+	}
+	
 }

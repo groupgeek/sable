@@ -37,15 +37,12 @@
 	<div class="hmtop">
 		<!--顶部导航条 -->
 		<div class="am-container header">
-			<ul class="message-l">
-				<div class="topMessage">
+			<ul class="message-r">
+			<div class="topMessage home">
 					<div class="menu-hd">
-						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">亲，请登录</a> <a href="#"
-							target="_top">免费注册</a>
+						<a href="${pageContext.request.contextPath }/branch/index" target="_top" class="h">官网首页</a>
 					</div>
 				</div>
-			</ul>
-			<ul class="message-r">
 				<div class="topMessage home">
 					<div class="menu-hd">
 						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">商城首页</a>

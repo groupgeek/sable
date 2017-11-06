@@ -8,11 +8,14 @@ import javax.print.attribute.HashAttributeSet;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.Shoppingcar;
+import com.xiaohe.bean.ShoppingcarCustom;
 
 @Transactional
 public interface ProductService {
@@ -165,5 +168,19 @@ public interface ProductService {
 	 * @return
 	 */
 	public boolean addProduct(ProductCustom productInfo,MultipartFile pictureUpload);
+	
+	/**
+	 * 添加到购物车
+	 * @param addShopCartVo
+	 * @return
+	 */
+	public boolean addShopCart(Shoppingcar shoppingcar);
+	
+	/**
+	 * 查询购物车根据用户id
+	 * @param userid
+	 * @return
+	 */
+	public List<ShoppingcarCustom> queryAllShopCart(Integer userid);
 	
 }

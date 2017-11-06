@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -25,6 +26,8 @@ import com.xiaohe.bean.Producttaste;
 import com.xiaohe.bean.ProducttasteCustom;
 import com.xiaohe.bean.Producttype;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.Shoppingcar;
+import com.xiaohe.bean.ShoppingcarCustom;
 import com.xiaohe.mapper.DiscountMapper;
 import com.xiaohe.mapper.EvaluationMapper;
 import com.xiaohe.mapper.ProductMapper;
@@ -32,6 +35,7 @@ import com.xiaohe.mapper.ProductcolourMapper;
 import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.mapper.ProducttasteMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
+import com.xiaohe.mapper.ShoppingcarMapper;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.util.FileUpload;
 
@@ -66,6 +70,10 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("productcolourMapper")
 	private ProductcolourMapper productcolourMapper;
+	
+	@Autowired
+	@Qualifier("shoppingcarMapper")
+	private ShoppingcarMapper shoppingcarMapper;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -413,6 +421,44 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		}
 		
 		return true;
+	}
+
+	public boolean addShopCart(Shoppingcar shoppingcar) {
+		if(shoppingcar == null) return false;
+		if(shoppingcar.getProductid() == null || shoppingcar.getProductid() < 0 ) return false;
+		
+		shoppingcar.setPrice(productMapper.selectByPrimaryKey(shoppingcar.getProductid()).getPrice());
+		
+		if(shoppingcarMapper.insertSelective(shoppingcar) < 0) return false;
+		
+		
+		return true;
+	}
+
+	public List<ShoppingcarCustom> queryAllShopCart(Integer userid) {
+		if(userid == null) return null;
+		List<ShoppingcarCustom> all = new ArrayList<ShoppingcarCustom>();
+		List<ShoppingcarCustom> food = new ArrayList<ShoppingcarCustom>();
+		List<ShoppingcarCustom> clothes = new ArrayList<ShoppingcarCustom>();
+		List<ShoppingcarCustom> other = new ArrayList<ShoppingcarCustom>();
+		
+		food = shoppingcarMapper.selectAllShopCartFoodByUserid(userid);
+		for(ShoppingcarCustom temp : food){
+			temp.setType(1);
+		}
+		clothes = shoppingcarMapper.selectAllShopCartClothesByUserid(userid);
+		for(ShoppingcarCustom temp : clothes){
+			temp.setType(2);
+		}
+		other = shoppingcarMapper.selectAllShopCartOtherByUserid(userid);
+		for(ShoppingcarCustom temp : other){
+			temp.setType(0);
+		}
+		if(food != null) all.addAll(food);
+		if(clothes != null) all.addAll(clothes);
+		if(other != null) all.addAll(other);
+		
+		return all;
 	}
 
 

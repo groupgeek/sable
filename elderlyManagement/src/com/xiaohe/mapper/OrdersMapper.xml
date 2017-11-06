@@ -120,6 +120,8 @@
       </if>
     </trim>
   </insert>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Orders" >
     update orders
     <set >
@@ -159,6 +161,8 @@
     </set>
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Orders" >
     update orders
     set productId = #{productid,jdbcType=INTEGER},
@@ -195,7 +199,26 @@
 	and b.employeeId = e.employeeId
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAllOrdersByBranchId" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Orders">
+  	select * from orders where branchid = #{branchid}
+  </select>
+  
+  <select id="selectByPrimaryKey2" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectCountOrder" resultType="java.lang.Integer">
   	select count(*) from orders
   </select>
+  
+
+  
 </mapper>
+  
+
+
+
