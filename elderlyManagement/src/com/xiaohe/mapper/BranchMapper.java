@@ -65,4 +65,11 @@ public interface BranchMapper {
      * @return
      */
     List<BranchCustom> selectBranchs(BranchCustom branchCustom);
+    
+    /**
+     * 根据用户id查询分店
+     * @param userid
+     * @return
+     */
+    BranchCustom selectBranchByUserid(Integer userid);
 }

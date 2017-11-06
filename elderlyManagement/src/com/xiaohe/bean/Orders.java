@@ -26,7 +26,11 @@ public class Orders {
 
     private Integer branchid;
 
-    private String status;
+    private String orderstatus;
+
+    private String productstatus;
+
+    private String phone;
 
     public String getOrderid() {
         return orderid;
@@ -116,11 +120,27 @@ public class Orders {
         this.branchid = branchid;
     }
 
-    public String getStatus() {
-        return status;
+    public String getOrderstatus() {
+        return orderstatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setOrderstatus(String orderstatus) {
+        this.orderstatus = orderstatus == null ? null : orderstatus.trim();
+    }
+
+    public String getProductstatus() {
+        return productstatus;
+    }
+
+    public void setProductstatus(String productstatus) {
+        this.productstatus = productstatus == null ? null : productstatus.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 }

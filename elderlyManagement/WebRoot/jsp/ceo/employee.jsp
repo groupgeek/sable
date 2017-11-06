@@ -235,7 +235,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="clearfix"></div>	
 	<footer>
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/jsp/index/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo管理员系统</a></span>			
+			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<a>  使用者：${findCeoById.ceoid }</a>
 		</p>
 	</footer>
 	

@@ -2,6 +2,16 @@ package com.xiaohe.bean;
 
 public class ShowMessage {
 	private String message;
+	private boolean flag;
+	
+
+	public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
 
 	public String getMessage() {
 		return message;

@@ -18,8 +18,11 @@ public class UserCustom extends User{
 	private MedicalrecordsWithBLOBsCustom med;
 	private EmployeeCustom manager;
 	
-	private String usernumber;
+	private Integer usernumber;
     private String branchname;
+    private String stringDate;
+    private String stringregistrationdate;
+    private String stringuser;
 	
     private String dateStringRegistrationdate;//时间转换
     
@@ -153,11 +156,11 @@ public class UserCustom extends User{
 		this.statusMessage = statusMessage;
 	}
 
-	public String getUsernumber() {
+	public Integer getUsernumber() {
 		return usernumber;
 	}
 
-	public void setUsernumber(String usernumber) {
+	public void setUsernumber(Integer usernumber) {
 		this.usernumber = usernumber;
 	}
 
@@ -167,6 +170,30 @@ public class UserCustom extends User{
 
 	public void setBranchname(String branchname) {
 		this.branchname = branchname;
+	}
+
+	public String getStringDate() {
+		return stringDate;
+	}
+
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
+	}
+
+	public String getStringregistrationdate() {
+		return stringregistrationdate;
+	}
+
+	public void setStringregistrationdate(String stringregistrationdate) {
+		this.stringregistrationdate = stringregistrationdate;
+	}
+
+	public String getStringuser() {
+		return stringuser;
+	}
+
+	public void setStringuser(String stringuser) {
+		this.stringuser = stringuser;
 	}
 	
 

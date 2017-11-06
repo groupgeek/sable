@@ -83,4 +83,9 @@
     where productId = #{id}
 
   </delete>
+  
+  
+  <select id="selectColourByProductid" parameterType="Integer" resultType="ProductcolourCustom">
+  	SELECT * FROM productcolour WHERE productId = #{id}
+  </select>
 </mapper>

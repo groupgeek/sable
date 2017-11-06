@@ -329,8 +329,7 @@
   </resultMap>
   
   <select id="selectEmployee" resultMap="BaseResultMap">
-  	select employeeId,employeeName,sex,phone,address,wage 
-  	from employee
+  	select * from employee
   </select>
   
   <select id="selectEmployeeInfoById" parameterType="Integer" resultMap="employeeInfoMap">

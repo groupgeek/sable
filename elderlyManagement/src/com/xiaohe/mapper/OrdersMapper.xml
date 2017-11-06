@@ -13,11 +13,13 @@
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="orderTime" property="ordertime" jdbcType="TIMESTAMP" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="orderStatus" property="orderstatus" jdbcType="VARCHAR" />
+    <result column="productStatus" property="productstatus" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     orderId, productId, userId, productName, userName, resAddress, productNumber, totalPrice, 
-    price, orderTime, branchId, status
+    price, orderTime, branchId, orderStatus, productStatus, phone
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -27,19 +29,19 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from orders
-    where orderId = #{orderid,jdbcType=VARCHAR}
+    where orderId = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Orders" >
     insert into orders (orderId, productId, userId, 
       productName, userName, resAddress, 
       productNumber, totalPrice, price, 
-      orderTime, branchId, status
-      )
+      orderTime, branchId, orderStatus, 
+      productStatus, phone)
     values (#{orderid,jdbcType=VARCHAR}, #{productid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
       #{productname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{resaddress,jdbcType=VARCHAR}, 
       #{productnumber,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
-      #{ordertime,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
-      )
+      #{ordertime,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{orderstatus,jdbcType=VARCHAR}, 
+      #{productstatus,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Orders" >
     insert into orders
@@ -77,8 +79,14 @@
       <if test="branchid != null" >
         branchId,
       </if>
-      <if test="status != null" >
-        status,
+      <if test="orderstatus != null" >
+        orderStatus,
+      </if>
+      <if test="productstatus != null" >
+        productStatus,
+      </if>
+      <if test="phone != null" >
+        phone,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -115,8 +123,14 @@
       <if test="branchid != null" >
         #{branchid,jdbcType=INTEGER},
       </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
+      <if test="orderstatus != null" >
+        #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productstatus != null" >
+        #{productstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,8 +167,14 @@
       <if test="branchid != null" >
         branchId = #{branchid,jdbcType=INTEGER},
       </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=VARCHAR},
+      <if test="orderstatus != null" >
+        orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productstatus != null" >
+        productStatus = #{productstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
     </set>
     where orderId = #{orderid,jdbcType=VARCHAR}
@@ -171,11 +191,12 @@
       price = #{price,jdbcType=DECIMAL},
       orderTime = #{ordertime,jdbcType=TIMESTAMP},
       branchId = #{branchid,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR}
+      orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      productStatus = #{productstatus,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
-  
-  <!-- 自定义sql -->
+        <!-- 自定义sql -->
  <!--  <select id="branchIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
   SELECT sum(o.totalPrice) from orders o,branch b 
   where o.branchId = b.branchId 
@@ -195,7 +216,83 @@
 	and b.employeeId = e.employeeId
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAllOrdersByBranchId" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Orders">
+  	select * from orders where branchid = #{branchid}
+  </select>
+  
+  <select id="selectByPrimaryKey2" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectCountOrder" resultType="java.lang.Integer">
   	select count(*) from orders
   </select>
+  
+  
+  <select id="selectOrdersByOrdersId" parameterType="String" resultType="OrdersCustom">
+  
+  	SELECT o.*,p.picture , p.description FROM product p , orders o
+	WHERE o.orderId = #{id}
+	AND p.productId = o.productId
+  </select>
+  
+  
+  <update id="updateByUseridSelective" parameterType="OrdersCustom" >
+    update orders
+    <set >
+      <if test="orderid != null" >
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="resaddress != null" >
+        resAddress = #{resaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productnumber != null" >
+        productNumber = #{productnumber,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertime != null" >
+        orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productstatus != null" >
+        productStatus = #{productstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid}
+  </update>
+  
+  
+  <delete id="deleteOrdersById" parameterType="String">
+  
+  	
+	DELETE FROM orders WHERE orderId = #{id}
+  </delete>
+  
+  
 </mapper>

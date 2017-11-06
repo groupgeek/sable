@@ -37,15 +37,12 @@
 	<div class="hmtop">
 		<!--顶部导航条 -->
 		<div class="am-container header">
-			<ul class="message-l">
-				<div class="topMessage">
+			<ul class="message-r">
+			<div class="topMessage home">
 					<div class="menu-hd">
-						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">亲，请登录</a> <a href="#"
-							target="_top">免费注册</a>
+						<a href="${pageContext.request.contextPath }/branch/index" target="_top" class="h">官网首页</a>
 					</div>
 				</div>
-			</ul>
-			<ul class="message-r">
 				<div class="topMessage home">
 					<div class="menu-hd">
 						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">商城首页</a>
@@ -58,7 +55,7 @@
 				</div>
 				<div class="topMessage mini-cart">
 					<div class="menu-hd">
-						<a id="mc-menu-hd" href="#" target="_top"><i
+						<a id="mc-menu-hd" href="${pageContext.request.contextPath }/jsp/mall/home/shopcart.jsp" target="_top"><i
 							class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
 							id="J_MiniCartNum" class="h">0</strong> </a>
 					</div>
@@ -86,7 +83,7 @@
 
 			<div class="search-bar pr">
 				<a name="index_none_header_sysc" href="#"></a>
-				<form action="${pageContext.request.contextPath }/product/search.action" method="post">
+				<form action="${pageContext.request.contextPath }/product/search" method="post">
 					<!--商品搜索  -->
 					<input id="searchInput" name="searchCondition" type="text"
 						placeholder="搜索" autocomplete="off"> <input
@@ -564,7 +561,7 @@
 
 				</div>
 				<div id="shopCart " class="item ">
-					<a href="# "> <span class="message "></span> </a>
+					<a href="${pageContext.request.contextPath }/jsp/mall/home/shopcart.jsp"> <span class="message "></span> </a>
 					<p>购物车</p>
 					<p class="cart_num ">0</p>
 				</div>

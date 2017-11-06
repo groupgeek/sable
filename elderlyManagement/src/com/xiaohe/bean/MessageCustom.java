@@ -15,6 +15,7 @@ public class MessageCustom extends Message {
 	private String branchname;
 	private Integer begin;
 	private String branchid;
+	private String stringDate;
 
 	
 	public String getMessagetimeString() {
@@ -103,6 +104,14 @@ public class MessageCustom extends Message {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getStringDate() {
+		return stringDate;
+	}
+
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
 	}
 
 	@Override

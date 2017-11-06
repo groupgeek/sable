@@ -427,7 +427,7 @@
   <select id="selectOneUser" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom">
   select * from user where userId = #{userid}
   </select>
-  <select id="selectAllUser" resultType="Integer">
+  <select id="selectAllUser" resultType="java.lang.Integer">
   	select count(*) from user
   </select>
   <select id="selectAllUserByTime" resultType="Integer">
@@ -435,7 +435,7 @@
   	group by registrationDate 
 	order by registrationDate desc limit 15
   </select>
-  <select id="selectfourUserByTime" resultMap="BaseResultMap">
+  <select id="selectfourUserByTime" resultType="com.xiaohe.bean.UserCustom">
   	select userid,avatar,userName,sex,registrationDate from user 
 	order by registrationDate desc limit 4
   </select> 
@@ -449,5 +449,9 @@
 	where user.areaId = branch.areaId 
 	group by user.areaId
 	order by count(*) desc limit 10
+  </select>
+  <select id="selectAlluserandbranch" resultType="com.xiaohe.bean.UserCustom">
+  	select u.*,b.* from user u,branch b
+  	where u.areaId= b.areaId 
   </select>
 </mapper>

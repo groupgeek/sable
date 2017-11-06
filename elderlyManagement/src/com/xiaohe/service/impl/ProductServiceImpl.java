@@ -1,21 +1,27 @@
 package com.xiaohe.service.impl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.AddShopCartVo;
+import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
@@ -25,13 +31,20 @@ import com.xiaohe.bean.Producttaste;
 import com.xiaohe.bean.ProducttasteCustom;
 import com.xiaohe.bean.Producttype;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.Shoppingcar;
+import com.xiaohe.bean.ShoppingcarCustom;
+import com.xiaohe.bean.User;
+import com.xiaohe.bean.UserCustom;
+import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.DiscountMapper;
 import com.xiaohe.mapper.EvaluationMapper;
+import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.mapper.ProductcolourMapper;
 import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.mapper.ProducttasteMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
+import com.xiaohe.mapper.ShoppingcarMapper;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.util.FileUpload;
 
@@ -66,6 +79,18 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("productcolourMapper")
 	private ProductcolourMapper productcolourMapper;
+	
+	@Autowired
+	@Qualifier("shoppingcarMapper")
+	private ShoppingcarMapper shoppingcarMapper;
+	
+	@Autowired
+	@Qualifier("branchMapper")
+	private BranchMapper branchMapper;
+	
+	@Autowired
+	@Qualifier("ordersMapper")
+	private OrdersMapper ordersMapper;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -413,6 +438,200 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		}
 		
 		return true;
+	}
+
+	public boolean addShopCart(Shoppingcar shoppingcar) {
+		if(shoppingcar == null) return false;
+		if(shoppingcar.getProductid() == null || shoppingcar.getProductid() < 0 ) return false;
+		Product product = new ProductCustom();
+		product = productMapper.selectByPrimaryKey(shoppingcar.getProductid());
+		
+		shoppingcar.setPrice(product.getPrice());
+		shoppingcar.setProductname(product.getProductname());
+		if(shoppingcarMapper.insertSelective(shoppingcar) < 0) return false;
+		
+		
+		return true;
+	}
+
+	public List<ShoppingcarCustom> queryAllShopCart(Integer userid) {
+		if(userid == null) return null;
+		List<ShoppingcarCustom> all = new ArrayList<ShoppingcarCustom>();
+		List<ShoppingcarCustom> food = new ArrayList<ShoppingcarCustom>();
+		List<ShoppingcarCustom> clothes = new ArrayList<ShoppingcarCustom>();
+		List<ShoppingcarCustom> other = new ArrayList<ShoppingcarCustom>();
+		
+		food = shoppingcarMapper.selectAllShopCartFoodByUserid(userid);
+		for(ShoppingcarCustom temp : food){
+			temp.setType(1);
+		}
+		clothes = shoppingcarMapper.selectAllShopCartClothesByUserid(userid);
+		for(ShoppingcarCustom temp : clothes){
+			temp.setType(2);
+		}
+		other = shoppingcarMapper.selectAllShopCartOtherByUserid(userid);
+		for(ShoppingcarCustom temp : other){
+			temp.setType(0);
+		}
+		if(food != null) all.addAll(food);
+		if(clothes != null) all.addAll(clothes);
+		if(other != null) all.addAll(other);
+		
+		return all;
+	}
+
+	public String[] addOrders(Map<UserCustom, ShoppingcarCustom[]> shoppingcar) {
+		if(shoppingcar == null) return null;
+		if(shoppingcar.isEmpty()) return null;
+		ShoppingcarCustom[] shoppingcarCustoms = null;
+		
+		
+		UserCustom user = new UserCustom();
+		Shoppingcar car = new ShoppingcarCustom(); 
+		List<Shoppingcar> listShop = new ArrayList<Shoppingcar>();
+		OrdersCustom info = new OrdersCustom();
+		
+		
+		
+		
+		Iterator<UserCustom> it =  shoppingcar.keySet().iterator();
+		while (it.hasNext()){
+			user = it.next();
+			shoppingcarCustoms = shoppingcar.get(user);
+		}
+		
+		if(user == null) return null;
+		if(user.getUserid() == null || user.getUserid() < 0) return null;
+		if(shoppingcarCustoms == null) return null;
+		
+		
+		//返回值 返回订单id
+		String[] ordersId = new String[shoppingcarCustoms.length];
+		int index = 0;
+				
+		for(ShoppingcarCustom one : shoppingcarCustoms){
+			if(one.getShoppingcarid() == null) return null;
+			//更新数量
+			shoppingcarMapper.updateByPrimaryKeySelective(one);
+			//查询购物车
+			car = shoppingcarMapper.selectByPrimaryKey(one.getShoppingcarid());
+			if(car.getUserid() != user.getUserid()) return null;
+			
+			//生成订单
+			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+			String orderid = df.format(new Date())+(ordersMapper.selectCountOrder()+1) + UUID.randomUUID().toString().split("-")[0];
+			
+			info.setOrderid(orderid);
+			info.setUserid(user.getUserid());
+			info.setProductid(car.getProductid());
+			info.setProductname(car.getProductname());
+			info.setUsername(user.getUsername());
+			info.setResaddress(user.getAddress());
+			info.setProductnumber(car.getNumber());
+			info.setPrice(car.getPrice());
+			//运算总价
+			BigDecimal number = new BigDecimal(car.getNumber());
+			BigDecimal totalprice = new BigDecimal(0);
+			totalprice = number.multiply(car.getPrice());
+			info.setTotalprice(totalprice);
+			info.setOrdertime(new Date());
+			info.setPhone(user.getPhone());
+			
+			//查询用户分店
+			Branch branch = new Branch();
+			branch = branchMapper.selectBranchByUserid(user.getUserid());
+			info.setBranchid(branch.getBranchid());
+			info.setOrderstatus("未付款");
+			info.setProductstatus("未发货");
+			
+			if(ordersMapper.insertSelective(info) < 0) return null;
+			ordersId[index] = orderid;
+			index++;
+			
+			//删除购物车
+			if(shoppingcarMapper.deleteByPrimaryKey(one.getShoppingcarid()) <= 0) return null;
+		}
+		
+		
+		
+		return ordersId;
+	}
+
+	public List<OrdersCustom> queryAllOrdersByOrdersId(
+			Map<User, String[]> orders) {
+		if(orders == null) return null;
+		if(orders.isEmpty()) return null;
+		
+		User user = new User();//key
+		String[] value = null;//value
+		OrdersCustom ordersData = new OrdersCustom();//单条订单
+		List<OrdersCustom> all = new ArrayList<OrdersCustom>();//订单集合
+		
+		Iterator<User> it = orders.keySet().iterator();
+		while(it.hasNext()){
+			user = it.next();
+			value = orders.get(user);
+		}
+		
+		if(user == null) return null;
+		if(user.getUserid() == null) return null;
+		
+		
+		
+		for(String id : value){
+			ordersData = ordersMapper.selectOrdersByOrdersId(id);
+			if(ordersData == null) return null;
+			if(user.getUserid() != ordersData.getUserid()) return null;
+			all.add(ordersData);
+		}
+		
+		return all;
+	}
+
+	public boolean updateOrderById(OrdersCustom info) {
+		
+		if(info == null) return false;
+		if(info.getUserid() == null) return false;
+		if(ordersMapper.updateByUseridSelective(info) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean updateOrderNumberById(OrdersCustom orderInfo) {
+		
+		if(orderInfo == null) return false;
+		if(orderInfo.getOrderid() == null) return false;
+		
+		if(ordersMapper.updateByPrimaryKeySelective(orderInfo) < 0) return false;
+		
+		return true;
+	}
+
+	public boolean deleteOrderByOid(String oid) {
+		if(oid == null) return false;
+		
+		if(ordersMapper.deleteOrdersById(oid) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean deleteShoppingcarById(Integer id) {
+		if(id == null) return false;
+		if(shoppingcarMapper.deleteByPrimaryKey(id) <= 0) return false;
+		return true;
+	}
+
+	public ProductCustom queryColourOrTasteByProductid(Integer pid) {
+		if(pid == null) return null;
+		ProductCustom colourOrTaste = new ProductCustom();
+		List<ProducttasteCustom> tasteList = new ArrayList<ProducttasteCustom>();
+	    List<ProductcolourCustom> colourList = new ArrayList<ProductcolourCustom>();
+	    tasteList = producttasteMapper.selectasteByProductid(pid);
+	    colourList = productcolourMapper.selectColourByProductid(pid);
+	    if(tasteList != null) colourOrTaste.setTasteList(tasteList);
+	    if(colourList != null) colourOrTaste.setColourList(colourList);
+		
+		return colourOrTaste;
 	}
 
 

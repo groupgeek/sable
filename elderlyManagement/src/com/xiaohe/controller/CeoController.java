@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
 import com.xiaohe.bean.CeoTotalreport;
@@ -38,6 +39,8 @@ public class CeoController {
 	
 	@RequestMapping(value="/index")
 	public String sumTotalreportMoney(HttpServletRequest request , Model model){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		BigDecimal sumAllBigDecimal = ceoService.findSumTotalreportMoney();
 		List<BigDecimal> sumBigDecimalByTim = ceoService.findSumTotalreportMoneyByTime();
 		BigDecimal sumProductAllMoney = ceoService.findSumProductMoney();
@@ -51,13 +54,14 @@ public class CeoController {
 		List<User> alluserByTime = ceoService.findAllUserByTime();
 		List<CeoTotalreport> findTotalreportandBranch = ceoService.findTotalreportAndBranch();
 		List<UserCustom> findUserCustoms = ceoService.findUserCustoms();
-		List<User> findFourUser = ceoService.findfourUserByTime();
+		List<UserCustom> findFourUser = ceoService.findfourUserByTime();
 		List<Product> findHotProduct = ceoService.findHotProducts();
 		int findCountProduct = ceoService.findCountProduct();
 		int allorders = ceoService.findCountOrder();
 		int findCountMessage = ceoService.findCountMessage();
 		List<MessageCustom> findNewMessage = ceoService.findNewMessages();
 		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("sumAllBigDecimal",sumAllBigDecimal);
 		model.addAttribute("sumBigDecimalByTim",sumBigDecimalByTim);
 		model.addAttribute("sumProductAllMoney",sumProductAllMoney);
@@ -79,19 +83,34 @@ public class CeoController {
 		model.addAttribute("findNewMessage",findNewMessage);
 		
 		return "ceo/index";
-	}	
+	}
+	
+	@RequestMapping(value="/usertable")
+	public String userandbranch(HttpServletRequest request ,Model model){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
+		List<UserCustom> finduserandbranch = ceoService.findAllUserAndBranch();
+		model.addAttribute("findCeoById",findCeoById);
+		model.addAttribute("finduserandbranch",finduserandbranch);
+		return "ceo/usertable";
+	}
+	
 	@RequestMapping(value = "/user")
-	public String findUser(Model model,Integer userid){
+	public String findUser(HttpServletRequest request ,Model model,Integer userid){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		UserCustom findUserById = ceoService.findUserById(userid);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findUserById",findUserById);
 		
 		return "ceo/user";
 	}
 	@RequestMapping(value = "/product")
-	public String findProduct(Model model , Integer productid){
+	public String findProduct(HttpServletRequest request ,Model model , Integer productid){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		Product findProductById = ceoService.findProductById(productid);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findProductById",findProductById);
 		
 		return "ceo/product";
@@ -99,11 +118,13 @@ public class CeoController {
 	
 	@RequestMapping(value="/table")
 	public String findEmployee(HttpServletRequest request , Model model){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		Employee employee = new Employee();
 		
 		List<Employee> findEmployees = ceoService.findEmployees(employee);
 		List<CeoEmployee> findBranchEmployee = ceoService.findBranchEmployee();
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findEmployees",findEmployees);
 		model.addAttribute("findBranchEmployee",findBranchEmployee);
 		
@@ -111,8 +132,10 @@ public class CeoController {
 	}
 	@RequestMapping(value = "/employee")
 	public String findEmployeeAllMessage(HttpServletRequest request , Model model ,Integer employeeid ){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		CeoEmployee findEmployeeAllMessage = ceoService.findEmployeeById(employeeid);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findEmployeeAllMessage",findEmployeeAllMessage);
 		
 		return "ceo/employee";
@@ -120,17 +143,21 @@ public class CeoController {
 	
 	@RequestMapping(value="/gallery")
 	public String findAllActivity(HttpServletRequest request , Model model){	
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		List<CeoActivity> findAllActivitie = ceoService.findAllActivities();
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findAllActivitie",findAllActivitie);
 		
 		return "ceo/gallery";
 	}
 	
 	@RequestMapping(value = "/activity")
-	public String findCeoActivity(Model model , Integer activityid){
+	public String findCeoActivity(HttpServletRequest request ,Model model , Integer activityid){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		CeoActivity findCeoActivity = ceoService.findCeoActivity(activityid);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findCeoActivity",findCeoActivity);
 		
 		return "ceo/activity";
@@ -138,9 +165,11 @@ public class CeoController {
 	
 	@RequestMapping(value = "/messages")
 	public String findAllUserMessage(HttpServletRequest request , Model model,Integer id){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		List<MessageCustom> findMessageCustoms = ceoService.findAllUserMessageCustoms();
 		MessageCustom findMessage = ceoService.findMessage(id);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findMessageCustoms",findMessageCustoms);
 		model.addAttribute("findMessage",findMessage);
 		
@@ -149,9 +178,8 @@ public class CeoController {
 	
 	@RequestMapping(value="/submenu1")
 	public String totalIncome(HttpServletRequest request,Model model,Integer employeeid){
-		//int a =((Employee)request.getSession().getAttribute("employee")).getEmployeeid();
-		
-		//Branch branch = ceoService.findBrachById(branchid);
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		
 		List<ProductCustom> products = new ArrayList<ProductCustom>();
 		products = ceoService.branchHotProduct(employeeid);
@@ -178,6 +206,7 @@ public class CeoController {
 		model.addAttribute("products", products);
 		model.addAttribute("ar", ar);
 		model.addAttribute("arr", arr);
+		model.addAttribute("findCeoById",findCeoById);
 		
 		//model.addAttribute("branch",branch);
 		
@@ -185,11 +214,13 @@ public class CeoController {
 	}
 	
 	@RequestMapping(value = "/branch")
-	public String findBranchCustom(Model model){
+	public String findBranchCustom(HttpServletRequest request,Model model){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		BranchCustom branchCustom = new BranchCustom();	
 		
 		List<BranchCustom> findBranchCustoms = ceoService.findBranchCustoms(branchCustom);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findBranchCustoms",findBranchCustoms);
 		
 		return "ceo/branch";
@@ -197,20 +228,22 @@ public class CeoController {
 	
 	@RequestMapping(value = "/chart")
 	public String dochart(HttpServletRequest request,Model model){
+		int x =((Ceo)request.getSession().getAttribute("ceos")).getCeoid();
+		Ceo findCeoById = ceoService.findCeoById(x);
 		List<Branch> findBranchs = ceoService.findAllBranchName();
 		
 		CeoTotalreport ceoTotalreport = new CeoTotalreport();
 		CeoTotalreport ceoTotalreport2 = new CeoTotalreport();
 		ceoTotalreport.setBranchid(findBranchs.get(0).getBranchid());
 		ceoTotalreport2 = ceoService.findBranchMoney(ceoTotalreport);
-		
+		model.addAttribute("findCeoById",findCeoById);
 		model.addAttribute("findBranchs",findBranchs);
 		model.addAttribute("branchtTotalreport",ceoTotalreport2);
 		
 		return "ceo/chart";
 	}
 	
-	@RequestMapping(value = "requestchart")
+	@RequestMapping(value = "/requestchart")
 	public @ResponseBody List<CeoTotalreport> branch(Model model,@RequestBody CeoTotalreport totalreport,HttpServletRequest request){
 		int a = (totalreport.getStartingTime()).compareTo(totalreport.getEndTime());
 		if (a < 0 && totalreport.getBranchid() != null) {

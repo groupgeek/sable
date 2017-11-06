@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.sun.org.apache.xml.internal.serialize.OutputFormat.DTD;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Branch;
@@ -97,12 +98,12 @@ public class CeoServiceImpl implements CeoService{
 		NumberFormat numberFormat = NumberFormat.getPercentInstance();
 		numberFormat.setMaximumFractionDigits(2);
 		BigDecimal bigDecimal1 = totalreportMapper.selectTotalreportSum();
-		BigDecimal a = bigDecimal1.setScale(2);
+		BigDecimal a = bigDecimal1.setScale(4);
 		for (CeoTotalreport totalreport : bigdecimalCeoTotalreports) {
 			BigDecimal bigDecimal2 = totalreport.getSumBigDecimal();
-			BigDecimal b = bigDecimal2.setScale(2);
+			BigDecimal b = bigDecimal2.setScale(4);
 			BigDecimal result = null;
-			result =  b.divide(a,2);
+			result =  b.divide(a,4);
 			double c = result.doubleValue();
 			String bigDecimal = numberFormat.format(c);
 			totalreport.setStringbigdecimal(bigDecimal);
@@ -166,16 +167,53 @@ public class CeoServiceImpl implements CeoService{
 		return list;
 	}
 	public List<UserCustom> findUserCustoms(){
-		return userMapper.selectCountUserByBranch();
+		NumberFormat numberFormat = NumberFormat.getPercentInstance();
+		numberFormat.setMaximumFractionDigits(2);
+		Integer user1 = userMapper.selectAllUser();
+		List<UserCustom> user2 = userMapper.selectCountUserByBranch();
+		if (user1 != null && user2 != null) {
+			for (UserCustom userCustom : user2) {
+				Integer user = userCustom.getUsernumber();
+				float user3 = (float)user/(float)user1;
+				String unmber = numberFormat.format(user3);
+				userCustom.setStringuser(unmber);
+			}
+			return user2;
+		}else {
+			return user2;
+		}	
 	}
 	/**
 	 * 实现新注册用户的查询
 	 */
-	public List<User> findfourUserByTime(){
-		return userMapper.selectfourUserByTime();
+	public List<UserCustom> findfourUserByTime(){
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<UserCustom> userCustom = userMapper.selectfourUserByTime();
+		for (UserCustom uCustom : userCustom) {
+			String format = dt.format(uCustom.getRegistrationdate());
+			uCustom.setStringregistrationdate(format);
+		}				
+		return userCustom;
 	}
 	public UserCustom findUserById(Integer userid){
-		return userMapper.selectUserById(userid);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		UserCustom userCustom = userMapper.selectUserById(userid);				
+		if (userCustom.getBirthday() != null) {
+			String format1 = dateFormat.format(userCustom.getBirthday());
+			userCustom.setStringDate(format1);
+		}else {
+			userCustom.setStringDate(null);
+		}
+		if (userCustom.getRegistrationdate() != null) {
+			String format2 = dateFormat.format(userCustom.getRegistrationdate());
+			userCustom.setStringregistrationdate(format2);
+		}else {
+			userCustom.setStringregistrationdate(null);
+		}
+		return userCustom;
+	}
+	public List<UserCustom> findAllUserAndBranch(){
+		return userMapper.selectAlluserandbranch();
 	}
 	/**
 	 * 实现员工信息查询
@@ -185,29 +223,20 @@ public class CeoServiceImpl implements CeoService{
 	}	
 	public CeoEmployee findEmployeeById(Integer employeeid){
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-		CeoEmployee employee = employeeMapper.selectEmployeeAll(employeeid);
-		if (employee.getBirthday()!=null) {
+		CeoEmployee employee = employeeMapper.selectEmployeeAll(employeeid);	
+		if (employee.getBirthday() != null) {
 			String format1 = dt.format(employee.getBirthday());
 			employee.setStringUserDate(format1);
-			if (employee.getEntrytime()!=null) {
-				String format2 = dt.format(employee.getEntrytime());
-				employee.setStringemloyeeDate(format2);
-				return employee;
-			}else {
-				employee.setStringemloyeeDate(null);
-				return employee;
-			}
-		}else if (employee.getEntrytime()!=null) {
+		}else {
+			employee.setStringUserDate(null);
+		}
+		if (employee.getEntrytime() != null) {
 			String format2 = dt.format(employee.getEntrytime());
 			employee.setStringemloyeeDate(format2);
-			employee.setStringUserDate(null);
-			return employee;
-		}
-		else {
-			employee.setStringUserDate(null);
+		}else {
 			employee.setStringemloyeeDate(null);
-			return employee;
 		}
+		return employee;
 	}
 	public List<CeoEmployee> findBranchEmployee() {
 		return employeeMapper.selectBranchEmployee();
@@ -261,16 +290,43 @@ public class CeoServiceImpl implements CeoService{
 	}
 
 	public List<MessageCustom> findAllUserMessageCustoms() {
-		return messageMapper.QureyMessages();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<MessageCustom> messageCustoms = messageMapper.QureyMessages();
+		for (MessageCustom mCustom : messageCustoms) {
+			String format = dateFormat.format(mCustom.getMessagetime());
+			if (format != null) {
+				mCustom.setStringDate(format);
+			}else {
+				mCustom.setStringDate(null);
+			}
+		}
+		return messageCustoms;
 	}
 	public int findCountMessage(){
 		return messageMapper.somecount();
 	}
 	public List<MessageCustom> findNewMessages(){
-		return messageMapper.selectNewMessage();
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<MessageCustom> messageCustoms = messageMapper.selectNewMessage();
+		for (MessageCustom mCustom : messageCustoms) {
+			String format = dt.format(mCustom.getMessagetime());
+			mCustom.setStringDate(format);
+		}
+		return messageCustoms;
 	}
 	public MessageCustom findMessage(Integer id){
-		return messageMapper.oneMessage(id);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if (id == null) {
+			id = 1;
+		}
+		MessageCustom messageCustom = messageMapper.oneMessage(id);			
+			if (messageCustom.getMessagetime() != null) {
+				String format = dateFormat.format(messageCustom.getMessagetime());
+				messageCustom.setStringDate(format);
+			}else {
+				messageCustom.setStringDate(null);
+			}
+			return messageCustom;
 	}
 
 	public List<ProductCustom> branchHotProduct(Integer id) {
@@ -329,6 +385,9 @@ public class CeoServiceImpl implements CeoService{
 	}
 	public CeoTotalreport findBranchMoney(CeoTotalreport ceoTotalreport){
 		return totalreportMapper.selectBranchMoney(ceoTotalreport);
+	}
+	public Ceo findCeoById(Integer ceoid){
+		return ceoMapper.selectByPrimaryKey(ceoid);
 	}
 	public Ceo quertyCEO(Ceo ceo) {
 		

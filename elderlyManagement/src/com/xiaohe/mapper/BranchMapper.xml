@@ -143,4 +143,12 @@
 	where b.employeeId=e.employeeId
 	and a.areaId=b.areaId
   </select>
+  
+  
+  <select id="selectBranchByUserid" parameterType="Integer" resultType="BranchCustom">
+  	SELECT b.* FROM branch  b , `user` u 
+	WHERE u.userId = #{id}
+	AND b.areaId = u.areaId
+  
+  </select>
 </mapper>
