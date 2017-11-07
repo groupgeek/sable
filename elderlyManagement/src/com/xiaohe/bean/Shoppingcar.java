@@ -13,6 +13,16 @@ public class Shoppingcar {
 
     private BigDecimal price;
 
+    private Integer taste;
+
+    private Integer colour;
+
+    private Integer szie;
+
+    private String sziestring;
+
+    private Integer number;
+
     public Integer getShoppingcarid() {
         return shoppingcarid;
     }
@@ -51,5 +61,45 @@ public class Shoppingcar {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getTaste() {
+        return taste;
+    }
+
+    public void setTaste(Integer taste) {
+        this.taste = taste;
+    }
+
+    public Integer getColour() {
+        return colour;
+    }
+
+    public void setColour(Integer colour) {
+        this.colour = colour;
+    }
+
+    public Integer getSzie() {
+        return szie;
+    }
+
+    public void setSzie(Integer szie) {
+        this.szie = szie;
+    }
+
+    public String getSziestring() {
+        return sziestring;
+    }
+
+    public void setSziestring(String sziestring) {
+        this.sziestring = sziestring == null ? null : sziestring.trim();
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

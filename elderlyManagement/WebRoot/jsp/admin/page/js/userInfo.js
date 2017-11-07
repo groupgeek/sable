@@ -27,7 +27,9 @@
 			$("#status span").text(data.status);
 			$("#integral span").text(data.integral);
 			$("#email span").text(data.email);
+			
 			$("#birthday span").text(data.birthdayString);
+			
 			$("#bankcardno span").text(data.bankcardno);
 			$("#healthstatus span").text(data.healthstatus);
 			$("#level span").text(data.level.level);

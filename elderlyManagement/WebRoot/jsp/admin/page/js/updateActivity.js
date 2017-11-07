@@ -42,7 +42,7 @@ $(document).ready(function(){
 			}else{
 				$("#false").attr("selected","selected");
 			}
-			$("#activitydate input").val(data.activityInfo.activitydate);
+			$("#activitydate input").val(data.activityInfo.activitydateString);
 			
 			$("#activityprice input").val(data.activityInfo.activityprice);
 			$("#registeryfee input").val(data.activityInfo.registeryfee);

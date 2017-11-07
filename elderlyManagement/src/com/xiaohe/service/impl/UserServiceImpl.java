@@ -207,6 +207,7 @@ public class UserServiceImpl implements UserService {
 		}
 		UserCustom userInfo = userMapper.selectUserInfoById(id);
 		userInfo.setDateStringRegistrationdate(GetStringByDate.getString(userInfo.getRegistrationdate()));
+		if(userInfo.getBirthday() != null)
 		userInfo.setBirthdayString(GetStringByDate.getString(userInfo.getBirthday()));
 		return userInfo;
 	}

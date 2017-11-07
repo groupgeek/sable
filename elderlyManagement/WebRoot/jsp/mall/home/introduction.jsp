@@ -175,7 +175,8 @@
 	</head>
 
 	<body>
-
+	<input id="root" type="hidden"
+		value="${pageContext.request.contextPath }">
 
 		<!--顶部导航条 -->
 		<div class="am-container header">
@@ -320,15 +321,16 @@
 
 						<!--规格属性-->
 						<!--名称-->
+						
 						<div class="tb-detail-hd">
-							<h1 id = "productName">${productInfo.productname }</h1><input id = "productid" type="hidden" value = ${productInfo.productid }>
+							<h1 id = "productName">${productInfo.productname }</h1>
 						</div>
 						<div class="tb-detail-list">
 							<!--价格-->
 							<div class="tb-detail-price" style="background-color: white;">
 								<li class="price iteminfo_price">
 									<dt>单价</dt>
-									<dd><em>¥</em><b class="sys_item_price">${productInfo.price }</b>  </dd>                                 
+									<dd><em>¥</em><b class="sys_item_price" id="price">${productInfo.price }</b>  </dd>                                 
 								</li>
 								<!-- <li class="price iteminfo_mktprice">
 									<dt>原价</dt>
@@ -338,14 +340,10 @@
 							</div>
 
 							<!--地址-->
-							<dl class="iteminfo_parameter freight">
+							<!-- <dl class="iteminfo_parameter freight">
 								<dt>配送至</dt>
 								<div class="iteminfo_freprice">
 									<div class="am-form-content address">
-										<select data-am-selected>
-											<option value="a">浙江省</option>
-											<option value="b">湖北省</option>
-										</select>
 										<select data-am-selected>
 											<option value="a">温州市</option>
 											<option value="b">武汉市</option>
@@ -355,11 +353,11 @@
 											<option value="b">洪山区</option>
 										</select>
 									</div>
-									<!-- <div class="pay-logis">
+									<div class="pay-logis">
 										快递<b class="sys_item_freprice">10</b>元
-									</div> -->
+									</div>
 								</div>
-							</dl>
+							</dl> -->
 							<div class="clear"></div>
 
 							<!--销量-->
@@ -392,6 +390,12 @@
 										<div class="theme-popbod dform">
 											<form class="theme-signin" name="loginform" action="" method="post">
 
+												<input id = "productid" name="productid" type="hidden" value = ${productInfo.productid }>
+												<input id = "price" name="price" type="hidden" value = ${productInfo.price }>
+												<!-- <input id = "teast" name="productid" type="hidden">
+												<input id = "colour" name="price" type="hidden">
+												<input id = "szie" name="productid" type="hidden">
+												 -->
 												<div class="theme-signin-left">
 
 													<div class="theme-options">
@@ -399,20 +403,22 @@
 													
 														<c:if test="${productInfo.tasteList != null}">
 															<div class="cart-title">口味</div>
+															<input type="hidden" name="type" id = "teastType" value = "1">
 															<ul id = "teast">
 																<!-- <li class="sku-line selected">原味<i></i></li> -->
 																<c:forEach items="${productInfo.tasteList}" var="taste" varStatus="status">
 																
-																	<li class="sku-line" value="">${taste.producttaste}<i></i></li>
+																	<li class="sku-line" value="${taste.producttasteid}">${taste.producttaste}<i></i></li>
 																</c:forEach>
 															</ul>
 														</c:if>
 														<c:if test="${productInfo.colourList != null}">
 															<div class="cart-title">颜色</div>
+															<input type="hidden" name="type" id = "colourType" value = "2">
 															<ul id = "colour">
 																<!-- <li class="sku-line selected">原味<i></i></li> -->
 																<c:forEach items="${productInfo.colourList}" var="colour">
-																	<li class="sku-line" value="">${colour.productcolour}<i></i></li>
+																	<li class="sku-line" value="${colour.productcolourid}">${colour.productcolour}<i></i></li>
 																</c:forEach>
 															</ul>
 															
@@ -424,12 +430,13 @@
 																		<li class="sku-line" value="">${size.size}<i></i></li>
 																	</c:forEach>
 																</c:forEach> --%>
-																<li class="sku-line" value="">xs<i></i></li>
-																<li class="sku-line" value="">s<i></i></li>
-																<li class="sku-line" value="">m<i></i></li>
-																<li class="sku-line" value="">l<i></i></li>
-																<li class="sku-line" value="">xl<i></i></li>
-																<li class="sku-line" value="">xll<i></i></li>
+																<li class="sku-line" value= "xs" >xs<i></i></li>
+																<li class="sku-line" value= "s" >s<i></i></li>
+																<li class="sku-line" value= "m" >m<i></i></li>
+																<li class="sku-line" value= "l" >l<i></i></li>
+																<li class="sku-line" value= "xl" >xl<i></i></li>
+																<li class="sku-line" value= "xll" >xll<i></i></li>
+																<!-- <li class="sku-line" value="xlll">xlll<i></i></li> -->
 															</ul>
 															</c:if>
 														</c:if>
@@ -450,9 +457,9 @@
 													<div class="theme-options">
 														<div class="cart-title number">数量</div>
 														<dd>
-															<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
-															<input id="text_box" name="" type="text" value="1" style="width:30px;" />
-															<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
+															<input id="min" class="min" name="" type="button" value="-" />
+															<input id="text_box" name="number" type="text" value="1" style="width:30px;" />
+															<input id="add" class="add" name="" type="button" value="+" />
 															<span id="Stock" class="tb-hidden">库存<span class="stock" id="inStock">${productInfo.instock }</span>件</span>
 														</dd>
 
@@ -503,21 +510,24 @@
 						</div>
 
 						<div class="pay">
-							<div class="pay-opt">
+<!-- 							<div class="pay-opt">
 							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
 							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
 							
 							</div>
-							<li>
-								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
-								</div>
-							</li>
-							<li>
-								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
-								</div>
-							</li>
+							
+ -->						<ul id="pay">
+	 							<li id="buy">
+									<div class="clearfix tb-btn tb-btn-buy theme-login">
+										<a title="点此按钮到下一步确认购买信息" href="javaScript:;">立即购买</a>
+									</div>
+								</li>
+								<li id="shoppingCart">
+									<div class="clearfix tb-btn tb-btn-basket theme-login">
+										<a title="加入购物车" href="javaScript:;"><i></i>加入购物车</a>
+									</div>
+								</li>
+							</ul>
 						</div>
 
 					</div>
@@ -895,28 +905,8 @@
 				</div>
 			</div>
 
-<script type="text/javascript">
-
-/* 	$(document).ready(function(){
-				$.ajax({
-										type:"post",
-										contentType:"application/json;charset=utf-8",
-					        			url:"${pageContext.request.contextPath }/product/productIfoCustom.action",
-					        			data:'{"id"'+':'+'"'+1+'"'+'}',	
-					        			success:function(data){
-					        					//alert(data-1+":尾页");
-					        					alert("ok")
-					        			}
-					
-				});
-	
-	
-	
-	}); */
-
-
-
-</script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/jsp/mall/home/js/introduction.js"></script>
 
 	</body>
 

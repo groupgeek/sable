@@ -50,6 +50,7 @@ public class ReturnvisitCustomImpl implements ReturnvisitService {
 		returnvisitList = returnvisitMapper.selectAllRecordByCondition(condition);
 		
 		for(ReturnvisitCustom temp : returnvisitList){
+			if(temp.getLastvisttime() != null)
 			temp.setLastvisttimeString(GetStringByDate.getString(temp.getLastvisttime()));
 		}
 		
@@ -72,6 +73,7 @@ public class ReturnvisitCustomImpl implements ReturnvisitService {
 		
 		if(id == null || id < 0) return null;
 		ReturnvisitCustom temp = returnvisitMapper.selectRecordById(id);
+		if(temp.getLastvisttime() != null)
 		temp.setLastvisttimeString(GetStringByDate.getString(temp.getLastvisttime()));
 		return temp;
 	}
