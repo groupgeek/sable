@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import sun.awt.GlobalCursorManager;
 
 import com.xiaohe.bean.AreaCustom;
 import com.xiaohe.bean.UserCustom;
