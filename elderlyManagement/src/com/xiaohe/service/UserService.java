@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
 
@@ -51,4 +53,11 @@ public interface UserService {
 	 * @return
 	 */
 	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload);
+	
+	/**
+	 * 查询出某用户的所有收货地址
+	 * @param userid
+	 * @return
+	 */
+	public ShippingAddVo queryAllAddressByUserid(Integer userid);
 }

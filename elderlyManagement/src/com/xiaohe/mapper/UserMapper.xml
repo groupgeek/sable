@@ -454,4 +454,6 @@
   	select u.*,b.* from user u,branch b
   	where u.areaId= b.areaId 
   </select>
+  
+  
 </mapper>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.EvaluationCustom;
@@ -26,6 +27,8 @@ import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.Shoppingcar;
 import com.xiaohe.bean.ShoppingcarCustom;
 import com.xiaohe.bean.ShowMessage;
@@ -35,6 +38,8 @@ import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.ProducttransactionreportService;
+import com.xiaohe.service.ShippingAddressService;
+import com.xiaohe.service.UserService;
 
 
 @Controller
@@ -57,7 +62,13 @@ public class MallController {
 	@Qualifier("productTypeService")
 	private ProductTypeService productTypeService;
 	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 	
+	@Autowired
+	@Qualifier("shippingAddressService")
+	private ShippingAddressService shippingAddressService;
 	
 	
 	public User getUser(HttpServletRequest request){
@@ -395,7 +406,21 @@ public class MallController {
 		return data;
 	}
 	
-	
+	/**
+	 * 查看商品颜色或者口味
+	 * @return
+	 */
+	@RequestMapping("/updateColourOrTaste")
+	public @ResponseBody ShowMessage updateColourOrTaste(@RequestBody ShoppingcarCustom info){
+		ShowMessage message = new ShowMessage();
+		if(info == null) return null;
+		
+		if(productService.updateColourOrTasteByShopcarid(info)){
+			message.setMessage("ok");
+		}
+		
+		return message;
+	}
 	
 	
 	
@@ -530,4 +555,66 @@ public class MallController {
 		showMessage.setMessage(message);
 		return showMessage;
 	}
+	
+	/**
+	 * 获取到当前登录的用户详细信息
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getLoginUser")
+	public @ResponseBody UserCustom getLoginUser(HttpServletRequest request){
+		UserCustom user = (UserCustom) getUser(request);
+		if(user == null) return null;
+		user = userService.queryUserInfoById(user.getUserid());
+		
+		return user;
+	}
+	
+	/**
+	 * 更新当前登录的用户详细信息
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/updateUserInfo")
+	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload){
+		if(userService.UpdateUserInfoByUser(userInfo, pictureUpload)){
+		}
+		return "redirect:/jsp/mall/person/information.jsp";
+	}
+	
+	/**
+	 * 查询当前用户的收货地址
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/queryAllAddressByUserid")
+	public @ResponseBody ShippingAddVo queryAllAddressByUserid(HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		if(user.getUserid() == null) return null;
+		ShippingAddVo vo = new ShippingAddVo();
+		vo = userService.queryAllAddressByUserid(user.getUserid());
+		return vo;
+	}
+	
+	/**
+	 * 删除当前用户的收货地址
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/delShippingAddress")
+	public @ResponseBody ShowMessage delShippingAddress(@RequestBody Integer id){
+		ShowMessage message = new ShowMessage();
+		if(id == null) {
+			message.setFlag(false);
+			return message;
+		}
+		
+		if(shippingAddressService.deleteAddress(id)){
+			message.setFlag(true);
+		}
+		
+		return message;
+	}
+	
 }

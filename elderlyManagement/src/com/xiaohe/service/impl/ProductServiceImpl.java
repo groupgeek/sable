@@ -634,5 +634,15 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		return colourOrTaste;
 	}
 
+	public boolean updateColourOrTasteByShopcarid(ShoppingcarCustom info) {
+		
+		if(info == null) return false;
+		if(info.getShoppingcarid() == null) return false;
+		
+		if(shoppingcarMapper.updateByPrimaryKeySelective(info) < 0) return false;
+		
+		return true;
+	}
+
 
 }

@@ -23,44 +23,8 @@
 	<input id="root" type="hidden"
 		value="${pageContext.request.contextPath }">
 		<!--顶部导航条 -->
-		<div class="am-container header">
-			<!-- <ul class="message-l">
-				<div class="topMessage">
-					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
-					</div>
-				</div>
-			</ul> -->
-			<ul class="message-r">
-				<div class="topMessage home">
-					<div class="menu-hd"><a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">商城首页</a></div>
-				</div>
-				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-				</div>
-				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="${pageContext.request.contextPath }/jsp/mall/home/shopcart.jsp" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-				</div>
-			</ul>
-			</div>
+		<c:import url="/jsp/mall/head.jsp"></c:import>
 
-			<!--悬浮搜索框-->
-
-			<div class="nav white">
-				<div class="logo"><img src="../images/logo.png" /></div>
-				<div class="logoBig">
-					<li><img src="${pageContext.request.contextPath }/jsp/mall/images/logobig.png" /></li>
-				</div>
-
-				<div class="search-bar pr">
-					<a name="index_none_header_sysc" href="#"></a>
-					<form action="${pageContext.request.contextPath }/product/search" method="post">
-						<input id="searchInput" name="searchCondition" type="text" placeholder="搜索" autocomplete="off">
-						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-					</form>
-				</div>
-			</div>
 
 			<div class="clear"></div>
 
@@ -155,28 +119,7 @@
 
 				</div>
 
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
-						</p>
-					</div>
-				</div>
+				<c:import url="/jsp/mall/footer.jsp"></c:import>
 
 			</div>
 
@@ -195,27 +138,34 @@
 						<div class="theme-signin-left">
 							<ul>
 							<li class="theme-options">
-								<div class="cart-title">颜色：</div>
-								<ul id = "colour">
-									<li class="sku-line selected">12#川南玛瑙<i></i></li>
+								<div class="cart-title" id = "colour">颜色：</div>
+								<input type="hidden" id = "colourTempId">
+								<ul id = "colourList">
 								</ul>
 							</li>
 							<li class="theme-options">
-								<div class="cart-title">型号：</div>
-								<ul id = "size">
-									<li class="sku-line selected">包装：裸装<i></i></li>
+								<div class="cart-title" id = "size">型号：</div>
+								<input type="hidden" id = "sizeTempString" name = "sizeTempString"> 
+								<ul id = "sizeList">
+									
 								</ul>
 							</li>
 							<li class="theme-options">
-								<div class="cart-title">口味：</div>
-								<ul id = "taste">
+								<div class="cart-title" id = "taste">口味：</div>
+								<input type="hidden" id = "tasteTempId">
+								<ul id = "tasteList">
 									<li class="sku-line selected">包装：裸装<i></i></li>
 								</ul>
 							</li>
 							</ul>
 							<div class="clear"></div>
 							<div class="btn-op">
-								<div class="btn am-btn am-btn-warning">确认</div>
+								<input type="hidden" id = "producttype">
+								<input type="hidden" id = "shoppingcarid">
+								
+								
+								
+								<div class="btn close am-btn am-btn-warning save">确认</div>
 								<div class="btn close am-btn am-btn-warning">取消</div>
 							</div>
 

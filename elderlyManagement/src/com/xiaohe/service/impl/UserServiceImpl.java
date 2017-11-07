@@ -19,6 +19,8 @@ import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
 import com.xiaohe.bean.Returnvisit;
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
@@ -30,6 +32,7 @@ import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.mapper.LevelMapper;
 import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.ReturnvisitMapper;
+import com.xiaohe.mapper.ShippingaddressMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
@@ -75,6 +78,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("employeeMapper")
 	private EmployeeMapper employeeMapper;
+	
+	@Autowired
+	@Qualifier("shippingaddressMapper")
+	private ShippingaddressMapper shippingaddressMapper;
 	
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
@@ -217,14 +224,15 @@ public class UserServiceImpl implements UserService {
 	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload) {
 		if(userInfo == null) return false;
 		if(userInfo.getUserid() == null) return false;
-		
-		if(!pictureUpload.isEmpty()){
-			try {
-				userInfo.setAvatar(FileUpload.oneFileUpload(pictureUpload,userInfo.getAvatar(), "picture"));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+		if(pictureUpload != null){
+			if(!pictureUpload.isEmpty()){
+				try {
+					userInfo.setAvatar(FileUpload.oneFileUpload(pictureUpload,userInfo.getAvatar(), "picture"));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		//User user = new User();
@@ -241,10 +249,24 @@ public class UserServiceImpl implements UserService {
 		//if(levelMapper.updateByPrimaryKeySelective(level) < 0) return false;
 		//if(branchMapper.updateByPrimaryKeySelective(branch) < 0) return false;
 		//if(areaMapper.updateByPrimaryKeySelective(area) < 0) return false;
-		if(medicalrecordsMapper.updateByPrimaryKeySelective(med) <= 0) return false;
+		if(med != null){
+			if(medicalrecordsMapper.updateByPrimaryKeySelective(med) <= 0) return false;
+		}
 		//if(employeeMapper.updateByPrimaryKeySelective(manager) < 0) return false;
 		
 		return true;
+	}
+
+	public ShippingAddVo queryAllAddressByUserid(Integer userid) {
+		if(userid == null) return null;
+		ShippingAddVo vo = new ShippingAddVo();
+		List<ShippingAddressCustom> addresssList = new ArrayList<ShippingAddressCustom>();
+		UserCustom user = new UserCustom();
+		addresssList = shippingaddressMapper.selectAllAddressByUserid(userid);
+		user = userMapper.selectUserInfoById(userid);
+		vo.setAddresssList(addresssList);
+		vo.setUser(user);
+		return vo;
 	}
 	
 	
