@@ -34,41 +34,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href="${pageContext.request.contextPath }/ceo/index.action"><span>管理员界面</span></a>
-								
-				<!-- start: Header Menu -->
-				<div class="nav-no-collapse header-nav">
-					<ul class="nav pull-right">
-						<!-- start: User Dropdown -->
-						<li class="dropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${ceos.ceoid}
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-menu-title">
- 									<span>账户设置</span>
-								</li>
-								<li><a href="#"><i class="halflings-icon user"></i>账户信息</a></li>
-								<li><a href="${pageContext.request.contextPath }/jsp/AdminLogin/login.jsp"><i class="halflings-icon off"></i>注销</a></li>
-							</ul>
+    <!-- start: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="${pageContext.request.contextPath }/ceo/index.action"><i class="icon-bar-chart"></i><span class="hidden-tablet">	管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/ceo/messages.action"><i class="icon-envelope"></i><span class="hidden-tablet"> 用户留言</span></a></li>
+						<li>
+							<a href="${pageContext.request.contextPath }/ceo/branch.action"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> 分店信息 </a>
 						</li>
-						<!-- end: User Dropdown -->
+						<li><a href="${pageContext.request.contextPath }/ceo/chart.action"><i class="icon-list-alt"></i><span class="hidden-tablet"> 报表</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/ceo/gallery.action"><i class="icon-picture"></i><span class="hidden-tablet"> 活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/ceo/table.action"><i class="icon-align-justify"></i><span class="hidden-tablet"> 员工信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/ceo/usertable.action"><i class="icon-star"></i><span class="hidden-tablet"> 用户信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/ceo/producttable.action"><i class="icon-calendar"></i><span class="hidden-tablet"> 商品信息</span></a></li>
 					</ul>
 				</div>
-				<!-- end: Header Menu -->
-				
 			</div>
-		</div>
-	</div>
+	<!-- end: Main Menu -->
   </body>
 </html>

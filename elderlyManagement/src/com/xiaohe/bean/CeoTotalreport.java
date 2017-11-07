@@ -22,9 +22,10 @@ public class CeoTotalreport extends Totalreport{
 
     private Integer employeeid;
     
-    private BigDecimal sumBigDecimal;
+    private String sumBigDecimal;
     private String stringmoney;
     private String stringbigdecimal;
+    private String listbigdecimal;
     
     private BigDecimal sumtotalprice;
     
@@ -34,11 +35,11 @@ public class CeoTotalreport extends Totalreport{
 	private Integer pageNum;
 	private Integer pagesum;
 
-	public BigDecimal getSumBigDecimal() {
+	public String getSumBigDecimal() {
 		return sumBigDecimal;
 	}
 
-	public void setSumBigDecimal(BigDecimal sumBigDecimal) {
+	public void setSumBigDecimal(String sumBigDecimal) {
 		this.sumBigDecimal = sumBigDecimal;
 	}
 
@@ -184,6 +185,14 @@ public class CeoTotalreport extends Totalreport{
 
 	public void setStringmoney(String stringmoney) {
 		this.stringmoney = stringmoney;
+	}
+
+	public String getListbigdecimal() {
+		return listbigdecimal;
+	}
+
+	public void setListbigdecimal(String listbigdecimal) {
+		this.listbigdecimal = listbigdecimal;
 	}
 
 }

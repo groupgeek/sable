@@ -113,6 +113,7 @@
   
   <select id="QureyMessages" resultType="com.xiaohe.bean.MessageCustom">
   select m.*,username,email from user u,message m where u.userid = m.userid
+  ORDER BY messageTime DESC
   </select>
   
 	<select id="allMessages"  parameterType="com.xiaohe.bean.MessageVo" resultType="com.xiaohe.bean.MessageCustom">

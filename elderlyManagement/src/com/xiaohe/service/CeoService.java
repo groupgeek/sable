@@ -27,14 +27,14 @@ public interface CeoService {
 	 * @param totalreport
 	 * @return
 	 */
-	public BigDecimal findSumTotalreportMoney();
+	public List<String> findSumTotalreportMoney();
 	public List<BigDecimal> findSumTotalreportMoneyByTime();
 	/**
 	 * 查询商城总盈利额
 	 * @param producttransactionreport
 	 * @return
 	 */
-	public BigDecimal findSumProductMoney();
+	public List<String> findSumProductMoney();
 	public List<BigDecimal> findSumProductMoneyByTime();
 	/**
 	 * 根据分店id查询各分店的总盈利
@@ -47,8 +47,7 @@ public interface CeoService {
 	 * @param activity
 	 * @return
 	 */
-	public BigDecimal findSumActivityPrice();
-	public BigDecimal findSumregisteryFee();
+	public List<String> findBigDecimalsfromActivity();
 	/**
 	 * 根据时间查询活动的收入、支出
 	 * @param activity
@@ -66,7 +65,7 @@ public interface CeoService {
 	 * @param user
 	 * @return
 	 */
-	public int findAllUser();
+	public List<String> findAllUser();
 	public List<User> findAllUserByTime();
 	public List<UserCustom> findUserCustoms();
 	/**
@@ -98,6 +97,7 @@ public interface CeoService {
 	 * @return
 	 */
 	public List<Product> findHotProducts();
+	public List<ProductCustom> findProductCustoms();
 	public Product findProductById(Integer productid);
 	
 	public int findCountProduct();
