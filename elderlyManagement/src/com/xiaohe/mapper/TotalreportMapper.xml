@@ -95,7 +95,7 @@
   	from totalreport 
   </select>
   <select id="selectTotalreportSumByTime" resultType="DECIMAL">
-  	select sum(totalPrice - totalExpenditure)
+  	select sum(totalPrice - totalExpenditure) stringmoney
   	from totalreport
 	group by duringtime order by duringTime desc limit 15
   </select>

@@ -37,6 +37,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<jsp:include page="header.jsp"></jsp:include>
+  	<div class="container-fluid-full">
+	<div class="row-fluid">
+	<jsp:include page="menu.jsp"></jsp:include>
   	<!-- start: Content -->
 		<div id="content" class="span10">	
 			<ul class="breadcrumb">
@@ -90,6 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div><!--/span-->			
 			</div><!--/row-->		
 	</div><!--/.fluid-container-->	
+	</div>
+	</div>
 			<!-- end: Content -->	
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
@@ -117,8 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
-			<a>  使用者：${findCeoById.ceoid }</a>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
 		</p>
 
 	</footer>

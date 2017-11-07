@@ -619,4 +619,11 @@ AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 	<select id="selectHotProduct" resultMap="BaseResultMap">
 		select productId,productName from product order by buyNo desc limit 8
 	</select>
+	
+	<select id="selectAllProduct" resultType="com.xiaohe.bean.ProductCustom">
+	select p.productId,p.productName,py.productTypeName,b.branchName,p.inStock,p.buyNo 
+	from product p,producttype py,branch b
+	where p.productTypeId=py.productTypeId
+	and b.branchid=p.branchid
+	</select>
 </mapper>

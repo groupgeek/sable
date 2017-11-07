@@ -35,6 +35,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<jsp:include page="header.jsp"></jsp:include>
+  	<div class="container-fluid-full">
+	<div class="row-fluid">
+	<jsp:include page="menu.jsp"></jsp:include>
     <!-- start: Content -->
 			<div id="content" class="span10">
 			
@@ -54,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="boxchart">
 						<c:forEach items="${sumBigDecimalByTim }" var="a">${a },</c:forEach>
 					</div>
-					<div class="number">￥${sumAllBigDecimal }</div>									
+					<div class="number">￥${sumAllBigDecimal[0] }${sumAllBigDecimal[1] }</div>									
 					<div class="title">${sumBigDecimalByTim[0] }</div>			
 					<div class="footer">
 						<a>公司盈利总额</a>
@@ -64,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="boxchart">
 						<c:forEach items="${sumProductMoneyByTime }" var="b">${b },</c:forEach>
 					</div>
-					<div class="number" >￥${sumProductAllMoney }</div>
+					<div class="number" >￥${sumProductAllMoney[0] }${sumProductAllMoney[1] }</div>
 					<div class="title">${sumProductMoneyByTime[0] }</div>
 					<div class="footer">
 						<a>商城盈利总额</a>
@@ -74,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="boxchart">
 						<c:forEach items="${findSumActivities }" var="j">${j },</c:forEach>
 					</div>
-					<div class="number">￥${sumActivityregistery-sumActivityPrice }</div>
+					<div class="number">￥${sumActivityBigdecimal[0] }${sumActivityBigdecimal[1] }</div>
 					<div class="title">${findSumActivityregisteryFeeByTime[0] }</div>
 					<div class="footer">
 						<a>活动盈利总额</a>
@@ -84,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="boxchart">
 						<c:forEach items="${alluserByTime }" var="i">${i },</c:forEach>
 					</div>
-					<div class="number">${alluser }人</i></div>
+					<div class="number">${alluser[0] }${alluser[1] }人</i></div>
 					<div class="title">${alluserByTime[0] }</div>
 					<div class="footer">
 						<a>公司总用户量</a>
@@ -170,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="${pageContext.request.contextPath }/ceo/product.action?productid=${l.productid}">
 										<i class="icon-arrow-up green"></i>                               
 										<strong>${l.productid }</strong>
-										${l.productname }                                   
+										${l.productname } 							      
 									</a>
 								</li>
 							</c:forEach>
@@ -227,7 +230,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="box black span4 noMargin" onTablet="span12" onDesktop="span4">
 					<div class="box-header">
-						<h2><i class="icon-envelope-alt"></i><span class="break"></span>To Do List</h2>
+						<h2><i class="icon-envelope-alt"></i><span class="break"></span>新留言</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
@@ -287,7 +290,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="quick-button metro yellow span2">
 					<i class="icon-group"></i>
 					<p>用户</p>
-					<span class="badge">${alluser }</span>
+					<span class="badge">${alluser[0] }${alluser[1] }人</span>
 				</a>
 				<a class="quick-button metro red span2">
 					<i class="icon-comments-alt"></i>
@@ -300,7 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="badge">${allorders }</span>
 				</a>
 				<a class="quick-button metro green span2">
-					<i class="icon-barcode"></i>
+					<i class="icon-calendar"></i>
 					<p>商品</p>
 					<span class="badge">${findCountProduct }</span>
 				</a>
@@ -310,7 +313,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="badge">${findCountMessage }</span>
 				</a>
 				<a class="quick-button metro black span2">
-					<i class="icon-calendar"></i>
+					<i class="icon-barcode"></i>
 					<p>Calendar</p>
 				</a>
 				
@@ -354,8 +357,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
-			<a>  使用者：${findCeoById.ceoid }</a>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
 		</p>
 
 	</footer>

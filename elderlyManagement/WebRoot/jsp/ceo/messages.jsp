@@ -34,89 +34,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<jsp:include page="header.jsp"></jsp:include>
+  <jsp:include page="header.jsp"></jsp:include>
+  <div class="container-fluid-full">
+	<div class="row-fluid">
+	<jsp:include page="menu.jsp"></jsp:include>
   	<!-- start: Content -->
-			<div id="content" class="span10">
-			
-						
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
-					<i class="icon-angle-right"></i>
-				</li>
-				<li><a href="#">信息中心</a></li>
-			</ul>
-
-			<div class="row-fluid">
-				
-				<div class="span7">
-					<h1>留言板</h1>
-					
-					<ul class="messagesList">
-						<c:forEach items="${findMessageCustoms }" var="e">
-							<li>
-								<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${e.messageid }">
-									<span class="from"> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>
-								</a>
-							</li>
-						</c:forEach>
-					</ul>
-					<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-						<div class="modal-content">
-							<ul class="list-inline item-details">
-								<li><a href="#">Admin templates</a></li>
-								<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-							</ul>
-						</div>
-					</div>	
-				</div>
-				<div name="message" class="span5 noMarginLeft">
-					
-					<div class="message dark">
-						
-						<div class="header">
-							<h1>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.."</h1>
-							<div class="from"><i class="halflings-icon user"></i> <b>${findMessage.username }</b> / ${findMessage.email }</div>
-							<div class="date"><i class="halflings-icon time"></i> ${findMessage.stringDate }</div>
-							
-							<div class="menu"></div>
-							
-						</div>
-						
-						<div class="content">
-							<p>${findMessage.messagecontext }</p>	
-						</div>
-						
-						<form class="replyForm"method="post" action="">
-
-							<fieldset>
-								<textarea tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
-
-								<div class="actions">
-									
-									<button tabindex="3" type="submit" class="btn btn-success">Send message</button>
-									
-								</div>
-
-							</fieldset>
-
-						</form>	
-						
-					</div>	
-					
-				</div>
-						
+	<div id="content" class="span10">						
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home"></i>
+				<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
+				<i class="icon-angle-right"></i>
+			</li>
+			<li><a href="#">信息中心</a></li>
+		</ul>
+		<div class="row-fluid">
+			<div class="span7">
+				<h1>留言板</h1>					
+				<ul class="messagesList">
+					<c:forEach items="${findMessageCustoms }" var="e">
+						<li>
+							<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${e.messageid }">
+								<span class="from"> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>
+							</a>
+						</li>
+					</c:forEach>
+				</ul>
+				<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-content">
+						<ul class="list-inline item-details">
+							<li><a href="#">Admin templates</a></li>
+							<li><a href="http://themescloud.org">Bootstrap themes</a></li>
+						</ul>
+					</div>
+				</div>	
 			</div>
-			
-       
-
-	</div><!--/.fluid-container-->
-	
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
-		
+			<div name="message" class="span5 noMarginLeft">					
+				<div class="message dark">						
+					<div class="header">
+						<h1>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.."</h1>
+						<div class="from"><i class="halflings-icon user"></i> <b>${findMessage.username }</b> / ${findMessage.email }</div>
+						<div class="date"><i class="halflings-icon time"></i> ${findMessage.stringDate }</div>							
+						<div class="menu"></div>							
+					</div>						
+					<div class="content">
+						<p>${findMessage.messagecontext }</p>	
+					</div>						
+					<form class="replyForm"method="post" action="">
+						<fieldset>
+							<textarea tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
+							<div class="actions">									
+								<button tabindex="3" type="submit" class="btn btn-success">Send message</button>									
+							</div>
+						</fieldset>
+					</form>							
+				</div>						
+			</div>						
+		</div>
+	</div><!--/.fluid-container-->	
+	<!-- end: Content -->
+</div><!--/#content.span10-->
+</div><!--/fluid-row-->		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
@@ -129,17 +107,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a href="#" class="btn" data-dismiss="modal">Close</a>
 			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	
+	</div>	
+	<div class="clearfix"></div>	
 	<footer>
-
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
-			<a>  使用者：${findCeoById.ceoid }</a>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
 		</p>
-
 	</footer>
 	<!-- start: JavaScript-->
 

@@ -36,7 +36,7 @@ public class AdminLoginController {
 			System.out.println(admins.getAuthority()+"------------------------");
 			//编辑员跳转页面'
 			
-			return "null";
+			return  "redirect:/Commonsense/selectCommonsense";
 		}else if (admins.getAuthorityid()==3) {System.out.println(admins.getAuthorityid()+"dsds-----------------------");
 			//送货员跳转
 		return "redirect:/selectorder/selectorderbybranchid.action";
