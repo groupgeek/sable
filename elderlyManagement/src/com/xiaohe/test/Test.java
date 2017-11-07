@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xiaohe.bean.Area;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.TransactionCustom;
