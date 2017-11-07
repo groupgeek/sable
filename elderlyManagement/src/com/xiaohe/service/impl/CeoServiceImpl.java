@@ -6,12 +6,9 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
-import com.sun.org.apache.xml.internal.serialize.OutputFormat.DTD;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Branch;
@@ -24,12 +21,9 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
-import com.xiaohe.bean.Producttransactionreport;
-import com.xiaohe.bean.Totalreport;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
-import com.xiaohe.mapper.ActivityregisteryMapper;
 import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.CeoMapper;
 import com.xiaohe.mapper.EmployeeMapper;
