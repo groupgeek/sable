@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+
 import com.xiaohe.bean.Activity;
-import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.Ceo;
@@ -72,29 +73,47 @@ public class CeoServiceImpl implements CeoService{
 	/**
 	 * 实现公司总盈利额的查询
 	 */
-	public BigDecimal findSumTotalreportMoney() {
-		BigDecimal bigDecimal = totalreportMapper.selectTotalreportSum();
-		if (bigDecimal == null) {
-			bigDecimal = new BigDecimal("0.00");
-			return bigDecimal;
+	public List<String> findSumTotalreportMoney() {
+		BigDecimal bigdecimal = totalreportMapper.selectTotalreportSum();
+		List<String> list = new ArrayList<String>();
+		BigDecimal f = new BigDecimal("10000.00");
+		BigDecimal c = new BigDecimal("100000.00");
+		BigDecimal e = new BigDecimal("100000000.00");
+		if (bigdecimal.compareTo(c) == -1) {
+			list.add(bigdecimal.toString());
+			list.add(null);
+			return list;
+		}else if(bigdecimal.compareTo(e) == -1) {
+			BigDecimal d = bigdecimal.divide(f,2);
+			list.add(d.toString());
+			list.add("万");
+			return list;
 		}else {
-			return bigDecimal;
+			BigDecimal d = bigdecimal.divide(e,2);
+			list.add(d.toString());
+			list.add("亿");
+			return list;
 		}
 	}
 	public List<BigDecimal> findSumTotalreportMoneyByTime() {
-		return totalreportMapper.selectTotalreportSumByTime();
+			return totalreportMapper.selectTotalreportSumByTime();	
 	}
 	/**
 	 * 查询各分店的总盈利
 	 */
 	public List<CeoTotalreport> findTotalreportAndBranch(){
-		List<CeoTotalreport> bigdecimalCeoTotalreports = totalreportMapper.selectTotalreportAndBranch();
 		NumberFormat numberFormat = NumberFormat.getPercentInstance();
 		numberFormat.setMaximumFractionDigits(2);
-		BigDecimal bigDecimal1 = totalreportMapper.selectTotalreportSum();
+		List<CeoTotalreport> bigdecimalCeoTotalreports = totalreportMapper.selectTotalreportAndBranch();
+		BigDecimal sum = new BigDecimal("0.00");
+		for (int i = 0; i < bigdecimalCeoTotalreports.size(); i++) {
+			BigDecimal sum1 = new BigDecimal(bigdecimalCeoTotalreports.get(i).getSumBigDecimal());
+			sum = sum.add(sum1);
+		}
+		BigDecimal bigDecimal1 = sum;		
 		BigDecimal a = bigDecimal1.setScale(4);
 		for (CeoTotalreport totalreport : bigdecimalCeoTotalreports) {
-			BigDecimal bigDecimal2 = totalreport.getSumBigDecimal();
+			BigDecimal bigDecimal2 = new BigDecimal(totalreport.getSumBigDecimal());
 			BigDecimal b = bigDecimal2.setScale(4);
 			BigDecimal result = null;
 			result =  b.divide(a,4);
@@ -107,13 +126,26 @@ public class CeoServiceImpl implements CeoService{
 	/**
 	 * 实现商城总盈利额的查询
 	 */
-	public BigDecimal findSumProductMoney() {
+	public List<String> findSumProductMoney() {
 		BigDecimal bigDecimal = producttransactionreportMapper.selectSumproductAllMoney();
-		if (bigDecimal == null) {
-			bigDecimal = new BigDecimal("0.00");
-			return bigDecimal;
+		List<String> list = new ArrayList<String>();
+		BigDecimal a = new BigDecimal("10000.00");
+		BigDecimal b = new BigDecimal("100000.00");
+		BigDecimal c = new BigDecimal("100000000.00");
+		if (bigDecimal.compareTo(b) == -1) {
+			list.add(bigDecimal.toString());
+			list.add(null);
+			return list;
+		}else if(bigDecimal.compareTo(c) == -1) {
+			BigDecimal d = bigDecimal.divide(a,2);
+			list.add(d.toString());
+			list.add("万");
+			return list;
 		}else {
-			return bigDecimal;
+			BigDecimal d = bigDecimal.divide(c,2);
+			list.add(d.toString());
+			list.add("亿");
+			return list;
 		}
 	}
 	public List<BigDecimal> findSumProductMoneyByTime() {
@@ -122,22 +154,29 @@ public class CeoServiceImpl implements CeoService{
 	/**
 	 * 实现活动收入、支出的查询
 	 */
-	public BigDecimal findSumActivityPrice(){
-		BigDecimal bigDecimal = activityMapper.selectSumActivityPrice();
-		if (bigDecimal == null) {
-			bigDecimal = new BigDecimal("0.00");
-			return bigDecimal;
+	public List<String> findBigDecimalsfromActivity(){
+		BigDecimal bigDecimal1 = activityMapper.selectSumActivityPrice();
+		BigDecimal bigDecimal2 = activityMapper.selectSumregisteryFee();
+		BigDecimal bigDecimal = new BigDecimal("0.00");
+		bigDecimal = bigDecimal2.subtract(bigDecimal1);
+		List<String> list = new ArrayList<String>();
+		BigDecimal a = new BigDecimal("10000.00");
+		BigDecimal b = new BigDecimal("100000.00");
+		BigDecimal c = new BigDecimal("100000000.00");
+		if (bigDecimal.compareTo(b) == -1) {
+			list.add(bigDecimal.toString());
+			list.add(null);
+			return list;
+		}else if(bigDecimal.compareTo(c) == -1) {
+			BigDecimal d = bigDecimal.divide(a,2);
+			list.add(d.toString());
+			list.add("万");
+			return list;
 		}else {
-			return bigDecimal;
-		}
-	}
-	public BigDecimal findSumregisteryFee(){
-		BigDecimal bigDecimal = activityMapper.selectSumregisteryFee();
-		if (bigDecimal == null) {
-			bigDecimal = new BigDecimal("0.00");
-			return bigDecimal;
-		}else {
-			return bigDecimal;
+			BigDecimal d = bigDecimal.divide(c,2);
+			list.add(d.toString());
+			list.add("亿");
+			return list;
 		}
 	}
 	/**
@@ -152,9 +191,27 @@ public class CeoServiceImpl implements CeoService{
 	/**
 	 * 实现用户数量的查询
 	 */
-	public int findAllUser(){
+	public List<String> findAllUser(){
 		int sumuser = userMapper.selectAllUser();
-		return sumuser;
+		List<String> list = new ArrayList<String>();
+		int a = 10000;
+		int b = 100000;
+		int c = 100000000;
+		if (sumuser < b) {
+			list.add(String.valueOf(sumuser));
+			list.add(null);
+			return list;
+		}else if (sumuser < c) {
+			int d = sumuser/a;
+			list.add(String.valueOf(d));
+			list.add("万");
+			return list;
+		}else {
+			int d = sumuser/c;
+			list.add(String.valueOf(d));
+			list.add("亿");
+			return list;
+		}
 	}
 	public List<User> findAllUserByTime(){
 		List<User> list = userMapper.selectAllUserByTime();
@@ -203,6 +260,11 @@ public class CeoServiceImpl implements CeoService{
 			userCustom.setStringregistrationdate(format2);
 		}else {
 			userCustom.setStringregistrationdate(null);
+		}
+		if (userCustom.getOnline() == true) {
+			userCustom.setStringuser("正常");
+		}else {
+			userCustom.setStringuser("限制登录");
 		}
 		return userCustom;
 	}
@@ -271,6 +333,9 @@ public class CeoServiceImpl implements CeoService{
 	 */
 	public List<Product> findHotProducts(){
 		return productMapper.selectHotProduct();
+	}
+	public List<ProductCustom> findProductCustoms(){
+		return productMapper.selectAllProduct();
 	}
 	public Product findProductById(Integer productid){
 		return productMapper.selectByPrimaryKey(productid);

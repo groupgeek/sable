@@ -85,6 +85,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
+	<div class="container-fluid-full">
+	<div class="row-fluid">
+	<jsp:include page="menu.jsp"></jsp:include>
 			<!-- start: Content -->
 			<div id="content" class="span10">
 			
@@ -95,6 +98,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 	
 					<i class="icon-angle-right"></i>
 				</li>
+				<li>
+					<a href="${pageContext.request.contextPath }/ceo/producttable.action">商品信息</a> 	
+					<i class="icon-angle-right"></i>
+				</li>
 				<li><a>商品详细信息</a></li>
 			</ul>
 			
@@ -103,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>商品详情</h2>
 						<div class="box-icon">
-							<a href="${pageContext.request.contextPath }/ceo/index.action" ><i class="halflings-icon white remove"></i></a>
+							<a href="${pageContext.request.contextPath }/ceo/producttable.action" ><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
@@ -187,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 								<div id="footer">
 									<div class="control-group">
-										<label class="control-label" for="disabledInput">商品详情</label>
+										<label class="control-label" for="disabledInput">商品描述</label>
 										<div class="controls">
 							   				<input class="message" id="disabledInput" type="text" name="description" value="${findProductById.description }" disabled="">
 							  			</div>
@@ -209,32 +216,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  </form>
 					
 					</div>
-				</div><!--/span-->
-			
-			
-			
-			
-			</div>
-					
-					
-					
-					
-					
-					
-					
-				</div><!--/span-->
-
-			</div><!--/row-->
-
-			<!--/row-->
-			
-			<!--/row-->
-    
-
-	</div><!--/.fluid-container-->
-	
-			<!-- end: Content -->
-		
+				</div><!--/span-->												
+			</div>			
+		</div><!--/span-->
+	</div><!--/row-->
+	</div><!--/.fluid-container-->	
+			<!-- end: Content -->		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">Ã</button>
@@ -254,8 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
-			<a>  使用者：${findCeoById.ceoid }</a>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
 		</p>
 
 	</footer>

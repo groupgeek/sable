@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>管理员界面</title>
+	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -25,108 +25,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="${pageContext.request.contextPath }/jsp/ceo/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/ceo/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/ceo/css/style-responsive.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath }/jsp/ceo/newcss/table.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
-	
 	<!-- start: Favicon -->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/ceo/img/favicon.ico">
+	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-
+	
+		<style type="text/css">
+			body { background: url(${pageContext.request.contextPath }/jsp/ceo/img/bg-login.jpg) !important; }
+		</style>
   </head>
   
   <body>
-  	<jsp:include page="header.jsp"></jsp:include>
-  	<div class="container-fluid-full">
-	<div class="row-fluid">
-	<jsp:include page="menu.jsp"></jsp:include>
-  	<!-- start: Content -->
-		<div id="content" class="span10">	
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
-					<i class="icon-angle-right"></i>
-				</li>
-				<li><a>员工管理</a></li>
-			</ul>
-				
-			<div class="row-fluid sortable">		
-				<div class="box span12">
-					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>员工基本情况</h2>
-						
-					</div>
-					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-							  	  <th>员工账号</th>	
-								  <th>员工姓名</th>
-								  <th>员工性别</th>
-								  <th>员工地址</th>
-								  <th>员工电话</th>
-							  </tr>
-						  </thead>   
-							<c:forEach items = "${findEmployees }" var = "c">
-										
-								<tr>
-									<td>
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.accountnumber }</a>
-									</td>
-									<td class="center">
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.employeename }</a>
-									</td>
-									<td class="center">${c.sex }</td>
-									<td class="center">
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.address }</a>
-									</td>
-									<td class="center">${c.phone }</td>
-								</tr>						
-							</c:forEach>							
-						  </tbody>
-					  </table>            
-					</div>
-				</div><!--/span-->			
-			</div><!--/row-->		
-	</div><!--/.fluid-container-->	
-	</div>
-	</div>
-			<!-- end: Content -->	
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="clearfix"></div>
+    <div class="container-fluid-full">
+		<div class="row-fluid">					
+			<div class="row-fluid">
+				<div class="login-box">
+					<a href="${pageContext.request.contextPath }/jsp/AdminLogin/login.jsp">您还没有登录，暂时无法访问。请先登录</a>
+				</div><!--/span-->
+			</div><!--/row-->
+			
+
+	</div><!--/.fluid-container-->
 	
-	<footer>
-
-		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
-		</p>
-
-	</footer>
-	<!-- start: JavaScript-->
+		</div><!--/fluid-row-->
+	    <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-content">
+				<ul class="list-inline item-details">
+					<li><a href="#">Admin templates</a></li>
+					<li><a href="http://themescloud.org">Bootstrap themes</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- start: JavaScript-->
 
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	

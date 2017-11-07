@@ -48,43 +48,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a>员工管理</a></li>
+				<li><a>商品信息</a></li>
 			</ul>
 				
 			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>员工基本情况</h2>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>商品基本情况</h2>
 						
 					</div>
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-							  	  <th>员工账号</th>	
-								  <th>员工姓名</th>
-								  <th>员工性别</th>
-								  <th>员工地址</th>
-								  <th>员工电话</th>
+							  	  <th>商品名称</th>	
+								  <th>商品类型</th>
+								  <th>存货分店</th>
+								  <th>存货量</th>
+								  <th>销售量</th>
 							  </tr>
 						  </thead>   
-							<c:forEach items = "${findEmployees }" var = "c">
+							<c:forEach items = "${findProductCustoms }" var = "product">
 										
 								<tr>
 									<td>
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.accountnumber }</a>
+										<a href="${pageContext.request.contextPath }/ceo/product.action?productid=${product.productid}">
+										${product.productname }</a>
 									</td>
 									<td class="center">
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.employeename }</a>
+										<a href="${pageContext.request.contextPath }/ceo/product.action?productid=${product.productid}">
+										${product.producttypename }</a>
 									</td>
-									<td class="center">${c.sex }</td>
+									<td class="center">${product.branchname }</td>
 									<td class="center">
-										<a href="${pageContext.request.contextPath }/ceo/employee.action?employeeid=${c.employeeid}">
-										${c.address }</a>
+										<a href="${pageContext.request.contextPath }/ceo/product.action?productid=${product.productid}">
+										${product.instock }</a>
 									</td>
-									<td class="center">${c.phone }</td>
+									<td class="center">${product.buyno }</td>
 								</tr>						
 							</c:forEach>							
 						  </tbody>
