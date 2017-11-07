@@ -15,10 +15,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.xiaohe.bean.Area;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.TransactionCustom;
+import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.mapper.TransactionMapper;
+import com.xiaohe.service.BranchAdminService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:config/spring/applicationContext.xml")
@@ -28,7 +31,15 @@ public class Test {
 	private TransactionMapper transactionMapper;
 	
 	@Autowired
+	private BranchAdminService brancService;
+	
+	@Autowired
 	private ProducttransactionreportMapper producttransactionreportMapper;
+	
+	@Autowired
+	private AreaMapper areaMapper;
+	
+	
 	@org.junit.Test
 	public void demo1(){
 		System.out.println(1);
@@ -70,9 +81,6 @@ public class Test {
 		date2.setDate(20);
 		producttransactionreportCustom.setStartingTime(date1);
 		producttransactionreportCustom.setEndTime(date2);
-		
-		
-		
  		producttransactionreportCustoms = producttransactionreportMapper.selectBranchByCondition(producttransactionreportCustom);
  		System.out.println(producttransactionreportCustoms);
 	}
@@ -93,5 +101,33 @@ public class Test {
 		System.out.println(transactionMapper.insertSelective(custom));
 	}
 	
+	@org.junit.Test
+	public void demo5(){
+		String name = "xiaohe";
+		int a = 3;
+		int sum = brancService.countEmpl();
+		if(sum<10){
+			name+=a+"00000"+sum;
+		}if(sum<100&&sum>10){
+			name+=a+"0000"+sum;
+		}
+		if(sum<1000&&sum>100){
+			name+=a+"000"+sum;
+		}
+		if(sum<10000&&sum>1000){
+			name+=a+"00"+sum;
+		}
+		if(sum<100000&&sum>10000){
+			name+=a+"0"+sum;
+		}
+		System.out.println(name);
+	}
+	
+	@org.junit.Test
+	public void demo7(){
+		Area area = new Area();
+		area = areaMapper.oneAreaByEmpId(2);
+		System.out.println(area.getAreaid());
+	}
 	
 }

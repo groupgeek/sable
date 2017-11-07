@@ -186,11 +186,10 @@ public interface ProductMapper {
 	 */
 	List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid);
     
-    
-    
-    
-    
+    /**
+     * 查询所有商品
+     * @return
+     */
+    List<ProductCustom> selectAllProduct();
 
-    
-    
 }

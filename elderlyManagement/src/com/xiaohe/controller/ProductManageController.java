@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -73,7 +73,7 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		System.out.println(admins.getAuthority()+"------------------------");
 		//编辑员跳转页面'
 		
-		return "null";
+		return "redirect:/Commonsense/selectCommonsense";
 	}else if (admins.getAuthorityid()==3) {System.out.println(admins.getAuthorityid()+"dsds-----------------------");
 		//送货员跳转
 		return null;

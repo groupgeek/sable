@@ -1,6 +1,5 @@
 package com.xiaohe.test;
 
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.xiaohe.bean.UserCustom;
 import com.xiaohe.service.CeoService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +20,7 @@ public class CeoTest {
 	
 	@Test
 	public void findUserCustoms(){
+		
 		System.out.println(ceoService.findUserCustoms().get(0).getStringuser());
 	}
 	
@@ -32,7 +31,7 @@ public class CeoTest {
 	
 	@Test
 	public void findSumTotalreportMoneyByTime(){
-		System.out.println(ceoService.findSumTotalreportMoneyByTime());
+		System.out.println(ceoService.findSumTotalreportMoneyByTime().get(0));
 	}
 	
 	@Test
@@ -63,4 +62,8 @@ public class CeoTest {
 		System.out.println(ceoService.findMessage(1).getStringDate());
 	}
 	
+	@Test
+	public void findSumProductMoney(){
+		System.out.println(ceoService.findSumProductMoney());
+	}
 }

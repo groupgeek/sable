@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>添加活动信息</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -81,8 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i>个人中心</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/vip.action"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/logout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -160,12 +160,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group">
 							  <label class="control-label" for="typeahead">活动名称 </label>
 							  <div class="controls">
-								<input type="text" name="activityname" class="span6 typeahead" id="typeahead">
+								<input type="text" name="activityname" onkeyup="long()" class="span6 typeahead" id="typeahead">
 							  </div>
 					</div>
 					
 					<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
+							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">活动日期</label>
 							  <div class="controls">
 								<input name="activitydate" onClick="laydate()"><br /><br />
 								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
@@ -223,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
+									<input class="appendedPrependedInput" id="appendedPrependedInput" oninput="xixi(this.value)" name="activityprice" size="16" type="text">
 								  </div>
 								</div>
 					</div>
@@ -233,7 +233,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
+									<input class="appendedPrependedInput2" id="appendedPrependedInput2" oninput="xixi2(this.value)" name="registeryfee" size="16" type="text">
 								  </div>
 								</div>
 				    </div>
@@ -241,7 +241,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">活动描述</label>
 							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
+								<!-- <textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea> -->
+								<textarea style="width: 320px;height: 100px" id="subject" name="activitydetails" maxlength="120" onkeyup="checkLength(this)" accesskey="1" tabindex="11"></textarea>
+								<span id="subjectchk">还可输入
+  							    <strong id="checklen" style="color: #FF0000">120</strong>个字符
+   								</span>
+   								<span id="postNameRule" class="spn_flag_1" style="display: none"></span>
 							  </div>
 					</div>
 					
@@ -255,116 +260,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</fieldset>
 			</form>
 					
-					
-					
-					
-					
-					
-					
-					
-						<%-- <form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
-						 <!--  <fieldset> -->
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">活动名称 </label>
-							  <div class="controls">
-								<input type="text" name="activityname" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-								<!-- <p class="help-block">Start typing to activate auto complete!</p> -->
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
-							  <div class="controls">
-								<input name="activitydate" onClick="laydate()"><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
-							  </div>
-							</div>
-
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入视频</label>
-							  <div class="controls">
-								<input class="input-file uniform_on" name="video" id="fileInput" type="file">
-							  </div>
-							</div>  
-							
-							
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入图片</label>
-							  <div class="controls">
-							  <input type="file" name="activitypicture">
-								<!-- <input class="input-file uniform_on" name="activitypicture1" id="fileInput" type="file"> -->
-							  </div>
-							</div> 
-							      
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动状态</label>
-								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
-								</div>
-							</div>  
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动类型</label>
-								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
-								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">线上线下</label>
-								<div class="controls">
-									<select id="selectError3" name="online">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</select>
-								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动经费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
-								  </div>
-								</div>
-							  </div>
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
-								  </div>
-								</div>
-							  </div>
-							
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">活动描述</label>
-							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
-							  </div>
-							</div>
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">提交信息</button>
-							</div>
-						 <!--  </fieldset> -->
-						</form>   --%>
-						
-						<%-- <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
-						 <input type="file" name="file" multiple>
-						 <input type="submit" value="提交">
-						</form>  --%>
-
 					</div>
 				</div><!--/span-->
 
@@ -465,7 +360,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
 		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
 	<!-- end: JavaScript-->
+
 	
 </body>
 </html>

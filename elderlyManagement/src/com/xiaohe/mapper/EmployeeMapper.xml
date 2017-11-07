@@ -462,4 +462,8 @@
 	and b.areaId=e.areaId
 	order by b.branchid asc
   </select>
+  
+  <select id="countEmpl" resultType="java.lang.Integer">
+  select count(*) from employee
+  </select>
 </mapper>

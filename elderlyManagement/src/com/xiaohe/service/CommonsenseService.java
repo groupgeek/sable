@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Commonsense;
 import com.xiaohe.bean.CommonsenseCustom;
+import com.xiaohe.mapper.CommonsenseMapper;
 
 
 /**
  * 小常识处理
- * @author asus
+ * @author
  *
  */
 @Transactional
@@ -20,6 +22,12 @@ public interface CommonsenseService {
 	 * @return CommonsenseCustom集合
 	 */
 	public List<CommonsenseCustom> queryCommonsenseByCondition(CommonsenseCustom commonsenseCustom);
-	
 
+    public int deleteCommonsense(Integer commonsenseid);
+
+    public int insertCommonsense(Commonsense record);	
+    
+    public int updateCommonsense(Commonsense record); 
+    
+    public Commonsense selectByPrimaryKey(Integer commonsenseid);
 }

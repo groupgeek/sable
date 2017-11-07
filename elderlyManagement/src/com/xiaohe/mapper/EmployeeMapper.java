@@ -89,4 +89,11 @@ public interface EmployeeMapper {
      * @return
      */
     List<CeoEmployee> selectBranchEmployee();
+    
+    /**
+     * 全部员工
+     * @return
+     */
+    int countEmpl();
+    
 }

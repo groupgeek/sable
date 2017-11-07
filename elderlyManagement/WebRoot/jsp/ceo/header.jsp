@@ -70,24 +70,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid-full">
-		<div class="row-fluid">	
-			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="span2">
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="${pageContext.request.contextPath }/ceo/index.action"><i class="icon-bar-chart"></i><span class="hidden-tablet">	管理中心</span></a></li>	
-						<li><a href="${pageContext.request.contextPath }/ceo/messages.action"><i class="icon-envelope"></i><span class="hidden-tablet"> 用户留言</span></a></li>
-						<li>
-							<a href="${pageContext.request.contextPath }/ceo/branch.action"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> 分店信息 </a>
-						</li>
-						<li><a href="${pageContext.request.contextPath }/ceo/chart.action"><i class="icon-list-alt"></i><span class="hidden-tablet"> 报表</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/ceo/gallery.action"><i class="icon-picture"></i><span class="hidden-tablet"> 活动信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/ceo/table.action"><i class="icon-align-justify"></i><span class="hidden-tablet"> 员工信息</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/ceo/usertable.action"><i class="icon-star"></i><span class="hidden-tablet"> 用户信息</span></a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- end: Main Menu -->
   </body>
 </html>

@@ -10,7 +10,9 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.Activityrecommend;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activitytype;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Area;
 import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.AuthorityCustom;
 import com.xiaohe.bean.Branch;
@@ -359,6 +361,45 @@ public interface BranchAdminService {
 	 */
 	public List<Authority> authoritys();
 	
+	/**
+	 * 更新管理员信息
+	 * @param employeeCustom
+	 * @return
+	 */
 	public int updateEmpl(EmployeeCustom employeeCustom);
+	
+	/**
+	 * 根据活动id查到活动类型id查到活动类型的名字
+	 * @param id
+	 * @return
+	 */
+	public Activitytype oneActivitytype(Integer id);
 
+	/**
+	 * 插入员工
+	 * @param employee
+	 * @return
+	 */
+	public int insertEmpl(Employee employee);
+	
+	/**
+	 * 查询全部的员工数
+	 * @return
+	 */
+	public int countEmpl();
+	
+	/**
+	 * 根据管理员id查到他的地区
+	 * @param id
+	 * @return
+	 */
+	public Area oneArea(Integer id);
+	
+	/**
+	 * 根据用户id删除病例
+	 * @param id
+	 * @return
+	 */
+	public int delMed(Integer id);
+	
 }
