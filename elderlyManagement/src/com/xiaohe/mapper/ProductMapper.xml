@@ -559,7 +559,7 @@
   </select>
   
   <select id="countBranchProduct" parameterType="com.xiaohe.bean.ProductCustom" resultType="com.xiaohe.bean.ProductCustom">
-  select count(totalPrice) countPrice,count(countBuy) countBuy from producttransactionreport p,branch b
+  select SUM(totalPrice) countPrice,SUM(countBuy) countBuy from producttransactionreport p,branch b
 		where p.branchId = b.branchId
 		and b.branchId = #{branchid}
 		and b.employeeId = #{employeeid}
@@ -625,5 +625,13 @@ AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 	from product p,producttype py,branch b
 	where p.productTypeId=py.productTypeId
 	and b.branchid=p.branchid
+	</select>
+	
+	<select id="branchProductCondition" parameterType="com.xiaohe.bean.ProductCustom" resultType="com.xiaohe.bean.ProductCustom">
+	select SUM(totalPrice) countPrice,SUM(countBuy) countBuy from producttransactionreport p,branch b
+		where p.branchId = b.branchId
+		and b.branchId = #{branchid}
+		and b.employeeId = #{employeeid}
+		and p.productId = #{productid}
 	</select>
 </mapper>

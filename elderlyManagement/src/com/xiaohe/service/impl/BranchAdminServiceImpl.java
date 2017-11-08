@@ -224,10 +224,10 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public List<ProducttransactionreportCustom> selectByCondition(
 			ProducttransactionreportCustom producttransactionreportCustom) {
-		return producttransactionreportMapper.selectBranchByCondition(producttransactionreportCustom);
+		return producttransactionreportMapper.BranchProductTransation(producttransactionreportCustom);
 	}
 	public ProductCustom BranchProductCustom(ProductCustom productCustom) {
-		return productMapper.countBranchProduct(productCustom);
+		return productMapper.branchProductCondition(productCustom);
 	}
 	public int insertMed(MedicalrecordsWithBLOBsCustom medicalrecordsWithBLOBsCustom) {
 		return medicalrecordsMapper.insert(medicalrecordsWithBLOBsCustom);
@@ -263,5 +263,9 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	public int delMed(Integer id) {
 		medicalrecordsMapper.deleteByPrimaryKey(id);
 		return 0;
+	}
+	public ProducttransactionreportCustom oneTransation(
+			ProducttransactionreportCustom producttransactionreportCustom) {
+		return producttransactionreportMapper.oneDayTransation(producttransactionreportCustom);
 	}
 }

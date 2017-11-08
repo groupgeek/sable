@@ -1,10 +1,10 @@
 package com.xiaohe.bean;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 
 public class ProducttransactionreportCustom extends Producttransactionreport {
-	
 	private String sort;//排序的方式
 	private Integer totalCount;//总的购买次数
 	private BigDecimal totalMoney;//总的钱
@@ -16,8 +16,102 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private Integer employeeid;
 	private String productname;
 	private Integer pagesum;
+	private String buy;//String类型的购买时间
+	
+	private Integer currentPage; //当前页
+	private Integer sum;
+	
+	private Integer productid;
+	
+	private String []buyTime;
+	private Integer []buyNo;
+	private Date time;
+	private Date nextDay;
+	private Date start;
+	private Date end;
 	
 	
+	
+	public Date getStart() {
+		return start;
+	}
+
+	public void setStart(Date start) {
+		this.start = start;
+	}
+
+	public Date getEnd() {
+		return end;
+	}
+
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+
+	public Date getNextDay() {
+		return nextDay;
+	}
+
+	public void setNextDay(Date nextDay) {
+		this.nextDay = nextDay;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public String[] getBuyTime() {
+		return buyTime;
+	}
+
+	public void setBuyTime(String[] buyTime) {
+		this.buyTime = buyTime;
+	}
+
+	public Integer[] getBuyNo() {
+		return buyNo;
+	}
+
+	public void setBuyNo(Integer[] buyNo) {
+		this.buyNo = buyNo;
+	}
+
+	public Integer getProductid() {
+		return productid;
+	}
+
+	public void setProductid(Integer productid) {
+		this.productid = productid;
+	}
+
+	public Integer getSum() {
+		return sum;
+	}
+
+	public void setSum(Integer sum) {
+		this.sum = sum;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public String getBuy() {
+		return buy;
+	}
+
+	public void setBuy(String buy) {
+		this.buy = buy;
+	}
+
 	public Integer getPagesum() {
 		return pagesum;
 	}

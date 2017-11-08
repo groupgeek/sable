@@ -191,5 +191,12 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> selectAllProduct();
+    
+    /**
+     * 查询分店的商品销售（分店）
+     * @param productCustom
+     * @return
+     */
+    ProductCustom branchProductCondition(ProductCustom productCustom);
 
 }
