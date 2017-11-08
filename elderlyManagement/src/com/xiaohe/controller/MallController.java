@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.map.JsonDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -617,4 +618,73 @@ public class MallController {
 		return message;
 	}
 	
+	/**
+	 * 修改当前用户的默认地址
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/updateDefaultAddress")
+	public @ResponseBody ShippingAddressCustom updateDefaultAddress(@RequestBody ShippingAddressCustom condition, HttpServletRequest request){
+		User user = getUser(request);
+		ShippingAddressCustom  record = new ShippingAddressCustom();
+		if(user == null) return null;
+		condition.setUserid(user.getUserid());
+		
+		record = userService.updateDefaultReturnOld(condition);
+		
+		return record;
+	}
+	
+	/**
+	 * 修改当前用户的默认地址
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/addAddress")
+	public @ResponseBody ShippingAddressCustom addAddress(@RequestBody ShippingAddressCustom condition, HttpServletRequest request){
+		User user = getUser(request);
+		ShippingAddressCustom  record = new ShippingAddressCustom();
+		if(user == null) return null;
+		condition.setUserid(user.getUserid());
+		
+		record = userService.addAddressReturnAddress(condition);
+		
+		return record;
+	}
+	
+	/**
+	 * 根据标识查询订单
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/queryOrders")
+	public @ResponseBody List<OrdersCustom> queryOrders(@RequestBody String logo , HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		logo = logo.substring(1,logo.length()-1);
+		
+		List<OrdersCustom> list = new ArrayList<OrdersCustom>();
+		list = userService.queryOrdersByLogo(logo, user);
+		
+		return list;
+	}
+	
+	/**
+	 * 查询订单总数
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/queryCountByOrders")
+	public @ResponseBody Integer queryCountByOrders(@RequestBody String logo , HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		logo = logo.substring(1,logo.length()-1);
+		
+		Integer sum = 0;
+		
+		
+		sum = userService.queryCountByLogo(logo,user);
+		
+		return sum;
+	}
 }

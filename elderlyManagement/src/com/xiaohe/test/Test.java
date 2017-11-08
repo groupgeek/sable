@@ -1,26 +1,26 @@
 package com.xiaohe.test;
 
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.logging.log4j.core.config.Order;
 import org.junit.runner.RunWith;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xiaohe.bean.Area;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.TransactionCustom;
+import com.xiaohe.bean.User;
 import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.service.BranchAdminService;
+import com.xiaohe.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:config/spring/applicationContext.xml")
@@ -37,6 +37,10 @@ public class Test {
 	
 	@Autowired
 	private AreaMapper areaMapper;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 	
 	
 	@org.junit.Test
@@ -127,6 +131,16 @@ public class Test {
 		Area area = new Area();
 		area = areaMapper.oneAreaByEmpId(2);
 		System.out.println(area.getAreaid());
+	}
+	
+	@org.junit.Test
+	public void demo8(){
+		User user = new User();
+		user.setUserid(12);
+		String logo = "#pending-payment";
+		
+		List<OrdersCustom> list = userService.queryOrdersByLogo(logo, user);
+		System.out.println(list.toArray());
 	}
 	
 }

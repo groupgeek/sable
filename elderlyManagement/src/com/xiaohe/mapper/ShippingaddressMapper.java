@@ -25,5 +25,11 @@ public interface ShippingaddressMapper {
      */
     List<ShippingAddressCustom> selectAllAddressByUserid(Integer userid);
     
+    /**
+     * 查询用户的默认地址
+     * @param userid
+     * @return
+     */
+    ShippingAddressCustom selectDefaultAddressByByUserid(Integer userid);
     
 }

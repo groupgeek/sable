@@ -537,13 +537,27 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			info.setOrdertime(new Date());
 			info.setPhone(user.getPhone());
 			
+			
+			//添加颜色型号口味或者其他
+			Producttaste producttaste = producttasteMapper.selectByPrimaryKey(car.getTaste());
+			Productcolour productcolour = productcolourMapper.selectByPrimaryKey(car.getColour());
+			if(producttaste != null)
+			info.setTaste(producttaste.getProducttaste());
+			
+			if(productcolour != null)
+			info.setColour(productcolour.getProductcolour());
+			
+			info.setSize(car.getSziestring());
+			
+			
 			//查询用户分店
 			Branch branch = new Branch();
 			branch = branchMapper.selectBranchByUserid(user.getUserid());
 			info.setBranchid(branch.getBranchid());
 			info.setOrderstatus("未付款");
-			info.setProductstatus("未发货");
-			
+			//info.setProductstatus("未发货");
+			//info.setSignstatus("未签收");
+			//info.setEvaluationstatus(false);
 			if(ordersMapper.insertSelective(info) < 0) return null;
 			ordersId[index] = orderid;
 			index++;

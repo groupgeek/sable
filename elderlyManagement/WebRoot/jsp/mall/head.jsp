@@ -48,8 +48,8 @@
 		<!--悬浮搜索框-->
 		<div class="nav white">
 			<div class="logo">
-				<img
-					src="${pageContext.request.contextPath }/jsp/mall/images/logo.png" />
+				<%-- <img
+					src="${pageContext.request.contextPath }/jsp/mall/images/logo.png" /> --%>
 			</div>
 			<div class="logoBig">
 				<li><img

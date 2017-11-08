@@ -16,10 +16,20 @@
     <result column="orderStatus" property="orderstatus" jdbcType="VARCHAR" />
     <result column="productStatus" property="productstatus" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="signStatus" property="signstatus" jdbcType="VARCHAR" />
+    <result column="evaluationStatus" property="evaluationstatus" jdbcType="BIT" />
+    <result column="paymentTime" property="paymenttime" jdbcType="TIMESTAMP" />
+    <result column="timeOfArrival" property="timeofarrival" jdbcType="TIMESTAMP" />
+    <result column="submissionTime" property="submissiontime" jdbcType="TIMESTAMP" />
+    <result column="taste" property="taste" jdbcType="VARCHAR" />
+    <result column="colour" property="colour" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     orderId, productId, userId, productName, userName, resAddress, productNumber, totalPrice, 
-    price, orderTime, branchId, orderStatus, productStatus, phone
+    price, orderTime, branchId, orderStatus, productStatus, phone, signStatus, evaluationStatus, 
+    paymentTime, timeOfArrival, submissionTime, taste, colour, size, other
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -29,19 +39,25 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from orders
-    where orderId = #{id,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Orders" >
     insert into orders (orderId, productId, userId, 
       productName, userName, resAddress, 
       productNumber, totalPrice, price, 
       orderTime, branchId, orderStatus, 
-      productStatus, phone)
+      productStatus, phone, signStatus, 
+      evaluationStatus, paymentTime, timeOfArrival, 
+      submissionTime, taste, colour, 
+      size, other)
     values (#{orderid,jdbcType=VARCHAR}, #{productid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
       #{productname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{resaddress,jdbcType=VARCHAR}, 
       #{productnumber,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
       #{ordertime,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{orderstatus,jdbcType=VARCHAR}, 
-      #{productstatus,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+      #{productstatus,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{signstatus,jdbcType=VARCHAR}, 
+      #{evaluationstatus,jdbcType=BIT}, #{paymenttime,jdbcType=TIMESTAMP}, #{timeofarrival,jdbcType=TIMESTAMP}, 
+      #{submissiontime,jdbcType=TIMESTAMP}, #{taste,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Orders" >
     insert into orders
@@ -88,6 +104,33 @@
       <if test="phone != null" >
         phone,
       </if>
+      <if test="signstatus != null" >
+        signStatus,
+      </if>
+      <if test="evaluationstatus != null" >
+        evaluationStatus,
+      </if>
+      <if test="paymenttime != null" >
+        paymentTime,
+      </if>
+      <if test="timeofarrival != null" >
+        timeOfArrival,
+      </if>
+      <if test="submissiontime != null" >
+        submissionTime,
+      </if>
+      <if test="taste != null" >
+        taste,
+      </if>
+      <if test="colour != null" >
+        colour,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderid != null" >
@@ -131,6 +174,33 @@
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="signstatus != null" >
+        #{signstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationstatus != null" >
+        #{evaluationstatus,jdbcType=BIT},
+      </if>
+      <if test="paymenttime != null" >
+        #{paymenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeofarrival != null" >
+        #{timeofarrival,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submissiontime != null" >
+        #{submissiontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taste != null" >
+        #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null" >
+        #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -176,6 +246,33 @@
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
+      <if test="signstatus != null" >
+        signStatus = #{signstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationstatus != null" >
+        evaluationStatus = #{evaluationstatus,jdbcType=BIT},
+      </if>
+      <if test="paymenttime != null" >
+        paymentTime = #{paymenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeofarrival != null" >
+        timeOfArrival = #{timeofarrival,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submissiontime != null" >
+        submissionTime = #{submissiontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taste != null" >
+        taste = #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null" >
+        colour = #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
     </set>
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
@@ -193,15 +290,77 @@
       branchId = #{branchid,jdbcType=INTEGER},
       orderStatus = #{orderstatus,jdbcType=VARCHAR},
       productStatus = #{productstatus,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR}
+      phone = #{phone,jdbcType=VARCHAR},
+      signStatus = #{signstatus,jdbcType=VARCHAR},
+      evaluationStatus = #{evaluationstatus,jdbcType=BIT},
+      paymentTime = #{paymenttime,jdbcType=TIMESTAMP},
+      timeOfArrival = #{timeofarrival,jdbcType=TIMESTAMP},
+      submissionTime = #{submissiontime,jdbcType=TIMESTAMP},
+      taste = #{taste,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
-        <!-- 自定义sql -->
+  
+  
+              <!-- 自定义sql -->
  <!--  <select id="branchIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
   SELECT sum(o.totalPrice) from orders o,branch b 
   where o.branchId = b.branchId 
   and b.employeeId =  #{employeeid,jdbcType=INTEGER}
   </select> -->
+  
+  <sql id="ordersCondition">
+  		 <if test="userid != null" >
+	        AND userId = #{userid,jdbcType=INTEGER}
+	      </if>
+	  	  <if test="orderid != null" >
+	        AND orderId = #{orderid,jdbcType=VARCHAR}
+	      </if>
+	      <if test="productid != null" >
+	        AND productId = #{productid,jdbcType=INTEGER}
+	      </if>
+	      <if test="productname != null" >
+	        AND productName = #{productname,jdbcType=VARCHAR}
+	      </if>
+	      <if test="username != null" >
+	        AND userName = #{username,jdbcType=VARCHAR}
+	      </if>
+	      <if test="resaddress != null" >
+	        AND resAddress = #{resaddress,jdbcType=VARCHAR}
+	      </if>
+	      <if test="productnumber != null" >
+	        AND productNumber = #{productnumber,jdbcType=INTEGER}
+	      </if>
+	      <if test="totalprice != null" >
+	        AND totalPrice = #{totalprice,jdbcType=DECIMAL}
+	      </if>
+	      <if test="price != null" >
+	        AND price = #{price,jdbcType=DECIMAL}
+	      </if>
+	      <if test="ordertime != null" >
+	        AND orderTime = #{ordertime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="branchid != null" >
+	        AND branchId = #{branchid,jdbcType=INTEGER}
+	      </if>
+	      <if test="orderstatus != null" >
+	        AND orderStatus = #{orderstatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="productstatus != null" >
+	        AND productStatus = #{productstatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="phone != null" >
+	        AND phone = #{phone,jdbcType=VARCHAR}
+	      </if>
+	       <if test="signstatus != null" >
+	        AND signStatus = #{signstatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="evaluationstatus != null" >
+	        AND evaluationStatus = #{evaluationstatus,jdbcType=VARCHAR}
+	      </if>
+  </sql>
   
   <select id="queryBranchOderIncome" resultType="DECIMAL" parameterType="java.lang.Integer">
   select sum(o.totalPrice) from orders o,employee e,branch b 
@@ -294,5 +453,20 @@
 	DELETE FROM orders WHERE orderId = #{id}
   </delete>
   
+  <select id="selectOrdersByLogo" parameterType="OrdersCustom" resultType="OrdersCustom">
+  	SELECT orders.* , product.picture FROM orders , product
+  	  <where>
+	  	  <include refid="ordersCondition"/>
+  	  </where>
+  	  AND product.productId = orders.productId
+  	 
+  </select>
+  
+  <select id="selectCountByLogo" resultType="OrdersCustom" parameterType="Integer">
+  	SELECT COUNT(*) FROM orders 
+	  <where>
+			<include refid="ordersCondition"/>
+	  </where>
+  </select>
   
 </mapper>

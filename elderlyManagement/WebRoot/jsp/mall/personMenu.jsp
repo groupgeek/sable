@@ -17,7 +17,7 @@
 <aside class="menu">
 				<ul>
 					<li class="person active">
-						<a href="index.html">个人中心</a>
+						<a href="${pageContext.request.contextPath }/jsp/mall/person/index.jsp">个人中心</a>
 					</li>
 					<li class="person">
 						<a href="javascript:;">个人资料</a>
@@ -30,7 +30,7 @@
 					<li class="person">
 						<a href="javascript:;">我的交易</a>
 						<ul>
-							<li><a href="order.html">订单管理</a></li>
+							<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp">订单管理</a></li>
 							<li> <a href="change.html">退款售后</a></li>
 						</ul>
 					</li>

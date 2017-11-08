@@ -32,6 +32,24 @@ public class Orders {
 
     private String phone;
 
+    private String signstatus;
+
+    private Boolean evaluationstatus;
+
+    private Date paymenttime;
+
+    private Date timeofarrival;
+
+    private Date submissiontime;
+
+    private String taste;
+
+    private String colour;
+
+    private String size;
+
+    private String other;
+
     public String getOrderid() {
         return orderid;
     }
@@ -142,5 +160,77 @@ public class Orders {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getSignstatus() {
+        return signstatus;
+    }
+
+    public void setSignstatus(String signstatus) {
+        this.signstatus = signstatus == null ? null : signstatus.trim();
+    }
+
+    public Boolean getEvaluationstatus() {
+        return evaluationstatus;
+    }
+
+    public void setEvaluationstatus(Boolean evaluationstatus) {
+        this.evaluationstatus = evaluationstatus;
+    }
+
+    public Date getPaymenttime() {
+        return paymenttime;
+    }
+
+    public void setPaymenttime(Date paymenttime) {
+        this.paymenttime = paymenttime;
+    }
+
+    public Date getTimeofarrival() {
+        return timeofarrival;
+    }
+
+    public void setTimeofarrival(Date timeofarrival) {
+        this.timeofarrival = timeofarrival;
+    }
+
+    public Date getSubmissiontime() {
+        return submissiontime;
+    }
+
+    public void setSubmissiontime(Date submissiontime) {
+        this.submissiontime = submissiontime;
+    }
+
+    public String getTaste() {
+        return taste;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste == null ? null : taste.trim();
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour == null ? null : colour.trim();
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size == null ? null : size.trim();
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other == null ? null : other.trim();
     }
 }

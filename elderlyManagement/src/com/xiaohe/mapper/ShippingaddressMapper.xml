@@ -31,6 +31,9 @@
       #{receiver,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Shippingaddress" >
+  	<selectKey keyProperty="shippingaddressid" order="AFTER" resultType="Integer">
+  		SELECT LAST_INSERT_ID();
+  	</selectKey>
     insert into shippingaddress
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="shippingaddressid != null" >
@@ -106,4 +109,10 @@
   <select id="selectAllAddressByUserid" parameterType="Integer" resultType="ShippingAddressCustom">
   	SELECT * FROM shippingAddress WHERE userId = #{id}
   </select>
+  
+  <select id="selectDefaultAddressByByUserid" parameterType="Integer" resultType="ShippingAddressCustom">
+  	SELECT * FROM `shippingaddress`
+	WHERE userId = #{id} AND defaultAddress = 1
+  </select>
+  
 </mapper>

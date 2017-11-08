@@ -67,9 +67,9 @@
 										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
 								</div>
 								<div class="new-addr-btn">
-									<a href="javascript:;" onclick="updateClick(this);"><i class="am-icon-edit"></i>编辑</a>
+									<a href="javascript:;"><i class="am-icon-edit"></i>编辑</a>
 									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
+									<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>
 									<input type="hidden" name = "shippingaddressid">
 								</div>
 							</li>

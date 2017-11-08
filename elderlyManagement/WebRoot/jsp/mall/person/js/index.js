@@ -19,6 +19,20 @@ $(document).ready(function(){
 		}
 	});
 	
+	//订单数量显示
+	
+		$.ajax({
+			type:"post",
+			contentType:"application/json;charset=utf-8",
+			url:root+"/product/",
+			
+			success:function(data){
+				$("#orderMenu li")
+				
+			}
+			
+		});
+		
 	
 	
 	
