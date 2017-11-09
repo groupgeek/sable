@@ -1,5 +1,7 @@
 package com.xiaohe.bean;
 
+import java.math.BigDecimal;
+
 public class EvaluationCustom extends Evaluation {
 	private String praiseOf;
 	private Integer praise;
@@ -16,6 +18,39 @@ public class EvaluationCustom extends Evaluation {
 	private Integer begin;
 	private Integer pageNum;
 	private Integer currentPage;
+	
+	
+	private String productname;
+	private String description;
+	private String productpicture;
+	private BigDecimal price;
+	
+	
+	
+	public BigDecimal getPrice() {
+		return price;
+	}
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+	public String getProductpicture() {
+		return productpicture;
+	}
+	public void setProductpicture(String productpicture) {
+		this.productpicture = productpicture;
+	}
+	public String getProductname() {
+		return productname;
+	}
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public Integer getCurrentPage() {
 		return currentPage;
 	}

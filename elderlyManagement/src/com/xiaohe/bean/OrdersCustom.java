@@ -8,7 +8,6 @@ public class OrdersCustom extends Orders {
 	private ProductcolourCustom productcolourInfo;
 	private Integer type;//商品分类
 	
-	private String pictire;
 	
 	
 	private String paymenttimeString;
@@ -25,12 +24,6 @@ public class OrdersCustom extends Orders {
 	
 	
 	
-	public String getPictire() {
-		return pictire;
-	}
-	public void setPictire(String pictire) {
-		this.pictire = pictire;
-	}
 	public String getPaymenttimeString() {
 		return paymenttimeString;
 	}

@@ -311,7 +311,7 @@
 						<div class="recommendationMain one">
 							<a
 								href="${pageContext.request.contextPath }/product/productInfo?id=${productrecommend.productid }"><img
-								src="${pageContext.request.contextPath }/jsp/mall/images/tj.png "></img>
+								src="/upload/${productrecommend.picture }"></img>
 							</a>
 						</div>
 					</div>
@@ -332,12 +332,13 @@
 						<div class="am-u-sm-3 ">
 							<div class="icon-sale two "></div>
 							<h4>特惠</h4>
-							<div class="activityMain ">
+							<div class="activityMain">
 								<a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }"><img
-									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg "></img></a>
+									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg"></img></a>
 							</div>
-							<div class="info ">
-								<h3><a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }">${productDiscount.productname }</a></h3>
+							<div class="info" style="opacity : 0.5;">
+								<h3><a 
+								href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }">${productDiscount.productname }</a></h3>
 							</div>
 						</div>
 
@@ -378,7 +379,7 @@
 								</a>
 							</div> -->
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[0].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
+								src="/upload/${oneTypeProducts.value[0].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[0].productname }</div>
 									<div class="title ">${oneTypeProducts.value[0].price }</div>
@@ -387,7 +388,7 @@
 						</div>
 						<div class="am-u-sm-4 text-four">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[1].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
+								src="/upload/${oneTypeProducts.value[1].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[1].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[1].price }</div>
@@ -396,7 +397,7 @@
 						</div>
 						<div class="am-u-sm-4 text-four sug">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[2].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
+								src="/upload/${oneTypeProducts.value[2].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[2].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[2].price }</div>
@@ -406,7 +407,7 @@
 	
 						<div class="am-u-sm-6 am-u-md-3 text-five big ">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[3].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
+								src="/upload/${oneTypeProducts.value[3].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[3].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[3].price }</div>
@@ -415,7 +416,7 @@
 						</div>
 						<div class="am-u-sm-6 am-u-md-3 text-five ">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[4].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
+								src="/upload/${oneTypeProducts.value[4].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[4].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[4].price }</div>
@@ -424,7 +425,7 @@
 						</div>
 						<div class="am-u-sm-6 am-u-md-3 text-five sug">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[5].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
+								src="/upload/${oneTypeProducts.value[5].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[5].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[5].price }</div>
@@ -433,7 +434,7 @@
 						</div>
 						<div class="am-u-sm-6 am-u-md-3 text-five big">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[6].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
+								src="/upload/${oneTypeProducts.value[6].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[6].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[6].price }</div>

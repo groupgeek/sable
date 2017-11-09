@@ -462,7 +462,7 @@
   	 
   </select>
   
-  <select id="selectCountByLogo" resultType="OrdersCustom" parameterType="Integer">
+  <select id="selectCountByLogo" resultType="Integer" parameterType="OrdersCustom">
   	SELECT COUNT(*) FROM orders 
 	  <where>
 			<include refid="ordersCondition"/>

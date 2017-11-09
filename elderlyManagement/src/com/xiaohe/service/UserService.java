@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.OrdersCountVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ShippingAddVo;
 import com.xiaohe.bean.ShippingAddressCustom;
@@ -88,5 +90,12 @@ public interface UserService {
 	 * @param condition
 	 * @return
 	 */
-	public Integer queryCountByLogo(String logo , User user);
+	public OrdersCountVo queryCountByLogo(User user);
+	
+	/**
+	 * 根据当前用户查询出评价
+	 * @param userid
+	 * @return
+	 */
+	public List<EvaluationCustom> queryAllEvaluationByUserid(Integer userid);
 }

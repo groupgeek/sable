@@ -40,4 +40,18 @@ public interface EvaluationMapper {
      * @return
      */
     Integer selectEvaluationSum(Integer id);
+    
+    /**
+     * 更具用户id查询评价
+     * @param userid
+     * @return
+     */
+    List<EvaluationCustom> selectAllByUserId(Integer userid);
+    
+    /**
+     * 更具评价id查询评价
+     * @param evaluationid
+     * @return
+     */
+    EvaluationCustom selectOneByEvaluationId(Integer evaluationid);
 }

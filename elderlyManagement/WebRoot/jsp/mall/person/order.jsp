@@ -9,8 +9,8 @@
 
 		<title>订单管理</title>
 
-		<link href="${pageContext.request.contextPath }/jsp/mall/UI//assets/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="${pageContext.request.contextPath }/jsp/mall/UI//assets/css/amazeui.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/admin.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/orstyle.css" rel="stylesheet" type="text/css">

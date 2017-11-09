@@ -238,4 +238,15 @@ public interface ProductService {
 	 */
 	public boolean updateColourOrTasteByShopcarid(ShoppingcarCustom info);
 	
+	/**
+	 * 查询出一件热门的商品 某用户
+	 * @return
+	 */
+	public ProductCustom queryPersonHotProduct(Integer userid);
+	
+	/**
+	 * 查询出一件推荐商品（个人中心）某用户
+	 * @return
+	 */
+	public ProductCustom queryPersonProductrecommend(Integer userid);
 }

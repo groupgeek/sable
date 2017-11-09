@@ -23,6 +23,8 @@ public class Evaluation {
 
     private String size;
 
+    private String orderid;
+
     private String evaluationcontent;
 
     public Integer getEvaluationid() {
@@ -103,6 +105,14 @@ public class Evaluation {
 
     public void setSize(String size) {
         this.size = size == null ? null : size.trim();
+    }
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid == null ? null : orderid.trim();
     }
 
     public String getEvaluationcontent() {

@@ -146,6 +146,7 @@ $(document).ready(function(){
 				else if(data[i].evaluationstatus == false){
 					em.find("p[class=Mystatus]").text(data[i].evaluationstatus);
 					em.find("a[class=operate]").find("div").text("去评价");
+					em.find("a[class=operate]").attr("href",root+'/jsp/mall/person/evaluation.jsp');
 				}else{
 					em.find("p[class=Mystatus]").text("完成交易");
 					em.find("a[class=operate]").find("div").text("删除");

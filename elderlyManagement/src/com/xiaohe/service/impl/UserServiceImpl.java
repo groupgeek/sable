@@ -16,8 +16,11 @@ import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
+import com.xiaohe.bean.OrdersCountVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.ShippingAddVo;
@@ -30,6 +33,8 @@ import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.EmployeeMapper;
+import com.xiaohe.mapper.EvaluationMapper;
+import com.xiaohe.mapper.IntegralMapper;
 import com.xiaohe.mapper.LevelMapper;
 import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.OrdersMapper;
@@ -89,6 +94,14 @@ public class UserServiceImpl implements UserService {
 	@Qualifier("ordersMapper")
 	private OrdersMapper ordersMapper;
 	
+	@Autowired
+	@Qualifier("evaluationMapper")
+	private EvaluationMapper evaluationMapper;
+	
+	@Autowired
+	@Qualifier("integralMapper")
+	private IntegralMapper integralMapper;
+	
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
 		if(userMapper.selectUserByPhone(userCustom.getPhone()) == null){
@@ -124,6 +137,15 @@ public class UserServiceImpl implements UserService {
 				returnvisit.setUserid(user.getUserid());
 				returnvisit.setUsername(user.getUsername());
 				returnvisitMapper.insertSelective(returnvisit);
+				
+				//赠送积分
+				IntegralCustom integral = new IntegralCustom();
+				integral.setChange(10);
+				integral.setDetails("用户注册赠送");
+				integral.setUserid(user.getUserid());
+				integral.setChangetime(new Date());
+				integral.setRemainingpoints(10);
+				integralMapper.insertSelective(integral);
 				
 				//创建用户病例表
 				MedicalrecordsWithBLOBs userMed = new MedicalrecordsWithBLOBs();
@@ -339,33 +361,55 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
-	public Integer queryCountByLogo(String logo , User user) {
+	public OrdersCountVo queryCountByLogo(User user) {
+		OrdersCountVo sum = new OrdersCountVo();
 		
-		Integer sum = 0;
-		if(logo == null) return 0;
-		if(user == null) return 0;
-		if(user.getUserid() == null) return 0;
+		Integer pendingPayment = 0;
+		Integer tobeDelivered = 0;
+		Integer tobeReceived = 0;
+		Integer beEvaluated = 0;
+		
+		if(user == null) return null;
+		if(user.getUserid() == null) return null;
 		OrdersCustom condition = new OrdersCustom();
 		condition.setUserid(user.getUserid());
-		if("pendingPayment".equals(logo)){
+		//condition.setUserid(12);
 			condition.setOrderstatus("未付款");
-		}
-		
-		if("tobeDelivered".equals(logo)){
+			pendingPayment = ordersMapper.selectCountByLogo(condition);
+			condition.setOrderstatus(null);
+			
 			condition.setProductstatus("未发货");
-		}
-		
-		if("tobeReceived".equals(logo)){
+			tobeDelivered = ordersMapper.selectCountByLogo(condition);
+			condition.setProductstatus(null);
+			
 			condition.setSignstatus("未签收");
-		}
-		
-		if("beEvaluated".equals(logo)){
+			tobeReceived = ordersMapper.selectCountByLogo(condition);
+			condition.setSignstatus(null);
+			
 			condition.setEvaluationstatus(false);
+			beEvaluated = ordersMapper.selectCountByLogo(condition);
+			condition.setEvaluationstatus(null);
+		
+			sum.setPendingPayment(pendingPayment);
+			sum.setTobeDelivered(tobeDelivered);
+			sum.setTobeReceived(tobeReceived);
+			sum.setBeEvaluated(beEvaluated);
+			
+			
+		return sum;
+	}
+
+	public List<EvaluationCustom> queryAllEvaluationByUserid(Integer userid) {
+		if(userid == null) return null;
+		
+		List<EvaluationCustom> all = new ArrayList<EvaluationCustom>();
+		all = evaluationMapper.selectAllByUserId(userid);
+		
+		for(EvaluationCustom temp : all){
+			temp.setStringDate(GetStringByDate.getString(temp.getCommentdate()));
 		}
 		
-		sum = ordersMapper.selectCountByLogo(condition);
-		
-		return sum;
+		return all;
 	}
 	
 	

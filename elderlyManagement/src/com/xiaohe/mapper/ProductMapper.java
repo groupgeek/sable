@@ -191,5 +191,18 @@ public interface ProductMapper {
      * @return
      */
     List<ProductCustom> selectAllProduct();
+    
+    /**
+	 * 查询出一件热门的商品 某用户
+	 * @return
+	 */
+    ProductCustom selectPersonHotProduct(Integer userid);
+    
+    /**
+	 * 查询出一件推荐商品（个人中心）某用户
+	 * @return
+	 */
+    ProductCustom selectPersonProductrecommend(Integer userid);
+    
 
 }

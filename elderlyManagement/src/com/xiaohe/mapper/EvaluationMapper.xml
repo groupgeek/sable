@@ -12,13 +12,14 @@
     <result column="taste" property="taste" jdbcType="VARCHAR" />
     <result column="colour" property="colour" jdbcType="VARCHAR" />
     <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="orderid" property="orderid" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Evaluation" extends="BaseResultMap" >
     <result column="evaluationContent" property="evaluationcontent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     evaluationid, userId, productId, evaluationLeval, picture, video, commentDate, taste, 
-    colour, size
+    colour, size, orderid
   </sql>
   <sql id="Blob_Column_List" >
     evaluationContent
@@ -39,11 +40,13 @@
     insert into evaluation (evaluationid, userId, productId, 
       evaluationLeval, picture, video, 
       commentDate, taste, colour, 
-      size, evaluationContent)
+      size, orderid, evaluationContent
+      )
     values (#{evaluationid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, 
       #{evaluationleval,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, 
       #{commentdate,jdbcType=TIMESTAMP}, #{taste,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, 
-      #{size,jdbcType=VARCHAR}, #{evaluationcontent,jdbcType=LONGVARCHAR})
+      #{size,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, #{evaluationcontent,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Evaluation" >
     insert into evaluation
@@ -77,6 +80,9 @@
       </if>
       <if test="size != null" >
         size,
+      </if>
+      <if test="orderid != null" >
+        orderid,
       </if>
       <if test="evaluationcontent != null" >
         evaluationContent,
@@ -113,6 +119,9 @@
       <if test="size != null" >
         #{size,jdbcType=VARCHAR},
       </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
       <if test="evaluationcontent != null" >
         #{evaluationcontent,jdbcType=LONGVARCHAR},
       </if>
@@ -148,6 +157,9 @@
       <if test="size != null" >
         size = #{size,jdbcType=VARCHAR},
       </if>
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=VARCHAR},
+      </if>
       <if test="evaluationcontent != null" >
         evaluationContent = #{evaluationcontent,jdbcType=LONGVARCHAR},
       </if>
@@ -165,6 +177,7 @@
       taste = #{taste,jdbcType=VARCHAR},
       colour = #{colour,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
+      orderid = #{orderid,jdbcType=VARCHAR},
       evaluationContent = #{evaluationcontent,jdbcType=LONGVARCHAR}
     where evaluationid = #{evaluationid,jdbcType=INTEGER}
   </update>
@@ -178,12 +191,13 @@
       commentDate = #{commentdate,jdbcType=TIMESTAMP},
       taste = #{taste,jdbcType=VARCHAR},
       colour = #{colour,jdbcType=VARCHAR},
-      size = #{size,jdbcType=VARCHAR}
+      size = #{size,jdbcType=VARCHAR},
+      orderid = #{orderid,jdbcType=VARCHAR}
     where evaluationid = #{evaluationid,jdbcType=INTEGER}
   </update>
   
   
-  <select id="selectEvaluationsByProdutId" parameterType="EvaluationCustom" resultType="EvaluationCustom">
+   <select id="selectEvaluationsByProdutId" parameterType="EvaluationCustom" resultType="EvaluationCustom">
   
   	SELECT e.*,u.userName,u.avatar FROM evaluation e, user u 
   	WHERE e.productId = #{productid} AND u.userId = e.userId ORDER 
@@ -206,6 +220,17 @@
   	SELECT COUNT(*) sum FROM evaluation WHERE productId = #{id}
   </select>
   
+  <select id="selectAllByUserId" parameterType="Integer" resultType="EvaluationCustom">
+  	SELECT e.*,p.productName , p.description ,p.picture productPicture
+  	FROM `evaluation` e , product p
+	WHERE e.userId = #{id} AND p.productId = e.productId
+	ORDER BY commentDate DESC
+  </select>
   
+  <select id="selectOneByEvaluationId" parameterType="Integer" resultType="EvaluationCustom">
+  	SELECT e.*,p.productName , p.description ,p.picture productPicture , p.price
+  	FROM `evaluation` e , product p
+	WHERE e.evaluationid = #{id} AND p.productId = e.productId
+  </select>
   
 </mapper>

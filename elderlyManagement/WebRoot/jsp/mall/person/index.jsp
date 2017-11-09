@@ -15,7 +15,9 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/systyle.css" rel="stylesheet" type="text/css">
 		
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.min.js"></script>
+		<style type="text/css">
 		
+		</style>
 		
 	</head>
 
@@ -65,7 +67,7 @@
 											<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
 										</div>
 										<div class="m-address">
-											<a href="address.html" class="i-trigger">我的收货地址</a>
+											<a href="${pageContext.request.contextPath }/jsp/mall/person/shippingAddress.jsp" class="i-trigger">我的收货地址</a>
 										</div>
 									</div>
 								</div>
@@ -119,10 +121,10 @@
 									<a class="i-load-more-item-shadow" href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "allOrders">全部订单</a>
 								</div>
 								<ul id = "orderMenu">
-									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "pendingPayment"><i><img src="../images/pay.png"/></i><span>待付款</span></a></li>
-									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "tobeDelivered"><i><img src="../images/send.png"/></i><span>待发货<em class="m-num">1</em></span></a></li>
-									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "tobeReceived"><i><img src="../images/receive.png"/></i><span>待收货</span></a></li>
-									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "beEvaluated"><i><img src="../images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
+									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "pendingPayment"><i><img src="../images/pay.png"/></i><span>待付款<em class="m-num"></em></span></a></li>
+									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "tobeDelivered"><i><img src="../images/send.png"/></i><span>待发货<em class="m-num"></em></span></a></li>
+									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "tobeReceived"><i><img src="../images/receive.png"/></i><span>待收货<em class="m-num"></em></span></a></li>
+									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "beEvaluated"><i><img src="../images/comment.png"/></i><span>待评价<em class="m-num"></em></span></a></li>
 									<li><a href="change.html"><i><img src="../images/refund.png"/></i><span>退换货</span></a></li>
 								</ul>
 							</div>
@@ -133,78 +135,10 @@
 								<div class="s-bar">
 									<i class="s-icon"></i>我的物流
 								</div>
+								
 								<div class="s-content">
 									<ul class="lg-list">
-
-										<li class="lg-item">
-											<div class="item-info">
-												<a href="#">
-													<img src="../images/65.jpg_120x120xz.jpg" alt="抗严寒冬天保暖隔凉羊毛毡底鞋垫超薄0.35厘米厚吸汗排湿气舒适">
-												</a>
-
-											</div>
-											<div class="lg-info">
-
-												<p>快件已从 义乌 发出</p>
-												<time>2015-12-20 17:58:05</time>
-
-												<div class="lg-detail-wrap">
-													<a class="lg-detail i-tip-trigger" href="logistics.html">查看物流明细</a>
-													<div class="J_TipsCon hide">
-														<div class="s-tip-bar">中通快递&nbsp;&nbsp;&nbsp;&nbsp;运单号：373269427686</div>
-														<div class="s-tip-content">
-															<ul>
-																<li>快件已从 义乌 发出2015-12-20 17:58:05</li>
-																<li>义乌 的 义乌总部直发车 已揽件2015-12-20 17:54:49</li>
-																<li class="s-omit"><a data-spm-anchor-id="a1z02.1.1998049142.3" target="_blank" href="#">··· 查看全部</a></li>
-																<li>您的订单开始处理2015-12-20 08:13:48</li>
-
-															</ul>
-														</div>
-													</div>
-												</div>
-
-											</div>
-											<div class="lg-confirm">
-												<a class="i-btn-typical" href="#">确认收货</a>
-											</div>
-										</li>
-										<div class="clear"></div>
-
-										<li class="lg-item">
-											<div class="item-info">
-												<a href="#">
-													<img src="../images/88.jpg_120x120xz.jpg" alt="礼盒袜子女秋冬 纯棉袜加厚 女式中筒袜子 韩国可爱 女袜 女棉袜">
-												</a>
-
-											</div>
-											<div class="lg-info">
-
-												<p>已签收,签收人是青年城签收</p>
-												<time>2015-12-19 15:35:42</time>
-
-												<div class="lg-detail-wrap">
-													<a class="lg-detail i-tip-trigger" href="logistics.html">查看物流明细</a>
-													<div class="J_TipsCon hide">
-														<div class="s-tip-bar">天天快递&nbsp;&nbsp;&nbsp;&nbsp;运单号：666287461069</div>
-														<div class="s-tip-content">
-															<ul>
-
-																<li>已签收,签收人是青年城签收2015-12-19 15:35:42</li>
-																<li>【光谷关山分部】的派件员【关山代派】正在派件 电话:*2015-12-19 14:27:28</li>
-																<li class="s-omit"><a data-spm-anchor-id="a1z02.1.1998049142.7" target="_blank" href="//wuliu.taobao.com/user/order_detail_new.htm?spm=a1z02.1.1998049142.7.8BJBiJ&amp;trade_id=1479374251166800&amp;seller_id=1651462988&amp;tracelog=yimaidaologistics">··· 查看全部</a></li>
-																<li>您的订单开始处理2015-12-17 14:27:50</li>
-
-															</ul>
-														</div>
-													</div>
-												</div>
-
-											</div>
-											<div class="lg-confirm">
-												<a class="i-btn-typical" href="#">确认收货</a>
-											</div>
-										</li>
+										
 
 									</ul>
 
@@ -232,37 +166,36 @@
 								</div>
 							</div>
 						</div>
-						<!--新品 -->
-						<div class="new-goods">
-							<div class="s-bar">
-								<i class="s-icon"></i>今日新品
-								<a class="i-load-more-item-shadow">15款新品</a>
-							</div>
-							<div class="new-goods-info">
-								<a class="shop-info" href="#" target="_blank">
-									<div class="face-img-panel">
-										<img src="../images/imgsearch1.jpg" alt="">
-									</div>
-									<span class="new-goods-num ">4</span>
-									<span class="shop-title">剥壳松子</span>
-								</a>
-								<a class="follow " target="_blank">关注</a>
-							</div>
-						</div>
-
 						<!--热卖推荐 -->
-						<div class="new-goods">
+						<div class="new-goods" id = "hot">
 							<div class="s-bar">
 								<i class="s-icon"></i>热卖推荐
 							</div>
 							<div class="new-goods-info">
-								<a class="shop-info" href="#" target="_blank">
-									<div >
-										<img src="../images/imgsearch1.jpg" alt="">
+								<a class="shop-info" href="javascript:;" target="_blank">
+									<div class="face-img-panel">
+										<img src="" alt="">
 									</div>
-                                    <span class="one-hot-goods">￥9.20</span>
+									<span class="shop-title"></span>
+								</a>
+								<a class="follow" target="_blank"></a>
+							</div>
+						</div>
+
+						<!--猜你喜欢 -->
+						<div class="new-goods" id = "rec">
+							<div class="s-bar">
+								<i class="s-icon"></i>猜你喜欢
+							</div>
+							<div class="new-goods-info">
+								<a class="shop-info" href="javascript:;" target="_blank">
+									<div>
+										<img src="" alt="">
+									</div>
+                                    <span class="one-hot-goods"></span>
 								</a>
 							</div>
+							<a class="follow" target="_blank"></a>
 						</div>
 
 					</div>

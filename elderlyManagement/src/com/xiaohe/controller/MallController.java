@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.EvaluationVo;
+import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.MessageCustom;
+import com.xiaohe.bean.OrdersCountVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductrecommendCustom;
@@ -36,6 +38,8 @@ import com.xiaohe.bean.ShowMessage;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ProducttypeMapper;
+import com.xiaohe.service.EvaluationService;
+import com.xiaohe.service.IntegralService;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.ProducttransactionreportService;
@@ -70,6 +74,14 @@ public class MallController {
 	@Autowired
 	@Qualifier("shippingAddressService")
 	private ShippingAddressService shippingAddressService;
+	
+	@Autowired
+	@Qualifier("evaluationService")
+	private EvaluationService evaluationService;
+	
+	@Autowired
+	@Qualifier("integralService")
+	private IntegralService integralService;
 	
 	
 	public User getUser(HttpServletRequest request){
@@ -660,7 +672,7 @@ public class MallController {
 	@RequestMapping("/queryOrders")
 	public @ResponseBody List<OrdersCustom> queryOrders(@RequestBody String logo , HttpServletRequest request){
 		User user = getUser(request);
-		if(user == null) return null;
+		if(user == null || logo == null) return null;
 		logo = logo.substring(1,logo.length()-1);
 		
 		List<OrdersCustom> list = new ArrayList<OrdersCustom>();
@@ -675,16 +687,116 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/queryCountByOrders")
-	public @ResponseBody Integer queryCountByOrders(@RequestBody String logo , HttpServletRequest request){
+	public @ResponseBody OrdersCountVo queryCountByOrders(HttpServletRequest request){
 		User user = getUser(request);
 		if(user == null) return null;
-		logo = logo.substring(1,logo.length()-1);
 		
-		Integer sum = 0;
+		OrdersCountVo sum = new OrdersCountVo();;
 		
 		
-		sum = userService.queryCountByLogo(logo,user);
+		sum = userService.queryCountByLogo(user);
 		
 		return sum;
+	}
+	
+	/**
+	 * 查询全部评价
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("/queryAllEvaluation")
+	public @ResponseBody List<EvaluationCustom> queryAllEvaluation(HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		
+		List<EvaluationCustom> all = new ArrayList<EvaluationCustom>();
+		all = userService.queryAllEvaluationByUserid(user.getUserid());
+		
+		return all;
+	}
+	
+	@RequestMapping("/queryOneEvaluation")
+	public @ResponseBody EvaluationCustom queryEvaluationById(@RequestBody Integer evaluationid,HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		if(evaluationid == null) return null;
+		EvaluationCustom info = new EvaluationCustom();
+		info = evaluationService.queryEvaluationByPrimaryKey(evaluationid);
+		
+		return info;
+	}
+	
+	@RequestMapping("/addEvaluatiao")
+	public @ResponseBody ShowMessage addEvaluationByUser(@RequestBody EvaluationCustom info ,HttpServletRequest request){
+		User user = getUser(request);
+		ShowMessage message = new ShowMessage();
+		if(user == null || info == null){
+			message.setFlag(false);
+			return message;
+		}
+		info.setUserid(user.getUserid());
+		message.setFlag(true);
+		if(!evaluationService.addEvaluationByUser(info)){
+			message.setFlag(false);
+		}
+		
+		return message;
+	}
+	
+	/**
+	 * 查询当前用户的最新记录
+	 * @return
+	 */
+	@RequestMapping("/queryUserUpToDate")
+	public @ResponseBody IntegralCustom queryUserUpToDate(HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		IntegralCustom condition = new IntegralCustom();
+		IntegralCustom info = new IntegralCustom();
+		condition.setUserid(user.getUserid());
+		info = integralService.queryUpToDateRecord(condition);
+		
+		return info;
+	}
+	
+	/**
+	 * 查询当前用户的全部积分记录
+	 * @return
+	 */
+	@RequestMapping("/queryUserAllRecord")
+	public @ResponseBody List<IntegralCustom> queryUserAllRecord(HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		IntegralCustom condition = new IntegralCustom();
+		List<IntegralCustom> info = new ArrayList<IntegralCustom>();
+		condition.setUserid(user.getUserid());
+		info = integralService.queryAllByCondition(condition);
+		return info;
+	}
+	
+	/**
+	 * 查询出一件热门的商品 某用户
+	 * @return
+	 */
+	@RequestMapping("/queryPersonHotProduct")
+	public @ResponseBody ProductCustom queryPersonHotProduct(HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		ProductCustom info = new ProductCustom();
+		info = productService.queryPersonHotProduct(user.getUserid());
+		return info;
+	}
+	
+	/**
+	 * 查询出一件推荐商品（个人中心）某用户
+	 * @return
+	 */
+	@RequestMapping("/queryPersonProductrec")
+	public @ResponseBody ProductCustom queryPersonProductrecommend(HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return null;
+		ProductCustom info = new ProductCustom();
+		info = productService.queryPersonProductrecommend(user.getUserid());
+		return info;
 	}
 }

@@ -182,6 +182,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		List<EvaluationCustom> evaluationList = evaluationMapper.selectEvaluationsByProdutId(condition);
 		for(EvaluationCustom evaluation : evaluationList){
+			if(evaluation.getCommentdate() == null) continue;
 			String fmt = dt.format(evaluation.getCommentdate());
 			evaluation.setStringDate(fmt);
 		}
@@ -190,17 +191,21 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public EvaluationCustom queryEvaluationLevalByProductId(Integer id) {
+		if(id == null) return null;
 		List<EvaluationCustom> evaluation = evaluationMapper.selectEvaluationLevalSum(id);
+		
+		if(evaluation == null) return null;
 		Integer badReview = 0;
 		Integer average = 0;
 		Integer praise = 0;
 		String praiseOf;
 		EvaluationCustom evaluationCustom = new EvaluationCustom();
 		for(EvaluationCustom temp : evaluation){
-			if(temp.getEvaluationleval() == 1 || temp.getEvaluationleval() == 2){
+			if(temp.getEvaluationleval() == null) continue;
+			if(temp.getEvaluationleval() == 1){
 				
 				badReview +=  temp.getEvaluationLevalSum();
-			}else if(temp.getEvaluationleval() == 3){
+			}else if(temp.getEvaluationleval() == 2){
 				
 				average +=  temp.getEvaluationLevalSum();
 			}else{
@@ -658,5 +663,15 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		return true;
 	}
 
+	public ProductCustom queryPersonHotProduct(Integer userid) {
+		if(userid == null) return null;
+		return productMapper.selectPersonHotProduct(userid);
+	}
 
+	public ProductCustom queryPersonProductrecommend(Integer userid) {
+		if(userid == null) return null;
+		return productMapper.selectPersonProductrecommend(userid);
+	}
+
+	
 }

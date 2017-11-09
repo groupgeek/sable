@@ -626,4 +626,18 @@ AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 	where p.productTypeId=py.productTypeId
 	and b.branchid=p.branchid
 	</select>
+	
+	<select id="selectPersonHotProduct" parameterType="Integer" resultType="ProductCustom">
+		SELECT p.* FROM product p ,branch b , `user` u
+		WHERE u.userId = #{id}
+		AND b.areaId = u.areaId AND p.branchId = b.branchId
+		ORDER BY buyNo DESC LIMIT 0,1
+	</select>
+	
+	<select id="selectPersonProductrecommend" parameterType="Integer" resultType="ProductCustom">
+		SELECT p.* FROM product p ,branch b , `user` u , productrecommend pd
+		WHERE u.userId = #{id}
+		AND b.areaId = u.areaId AND pd.branchId = b.branchId AND p.productId = pd.productId AND pd.productShow = TRUE
+		LIMIT 0,1
+	</select>
 </mapper>
