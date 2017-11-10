@@ -5,23 +5,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
 <head>
+	
+	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>分店商品信息</title>
+	<title>商品报表</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<!-- start: CSS -->
 	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	<!-- end: CSS -->
+	
+
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link id="ie-style" href="css/ie.css" rel="stylesheet">
+	<![endif]-->
+	
+	<!--[if IE 9]>
+		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+		
+	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
+	<!-- end: Favicon -->
+	
+		
+		
+		
 </head>
 
 <body>
@@ -29,10 +54,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
 				<a class="brand" href="index.html"><span>XIAOHE-Admin</span></a>
+								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
+						
+						<!-- start: Notifications Dropdown -->
+						
+						<!-- end: Notifications Dropdown -->
+						<!-- start: Message Dropdown -->
+						
+						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -51,6 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</ul>
 				</div>
 				<!-- end: Header Menu -->
+				
 			</div>
 		</div>
 	</div>
@@ -75,53 +114,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<!-- end: Main Menu -->
+			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+			
 			<!-- start: Content -->
 			<div id="content" class="span10">
+			
+			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">XIAOHE</a> 
-					<i class="icon-angle-right"></i>
+					<a href="index.html">XIAOHE</a>
+					<i class="icon-angle-right"></i> 
 				</li>
-				<li><a href="#">商品信息</a></li>
+				<li>
+					<i class="icon-edit"></i>
+					<a href="#">商品报表</a>
+				</li>
 			</ul>
-
 			
-			<div class="row-fluid sortable">		
+			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>商品信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>报表详情</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
+					
+					<!-- ----------处理前面jsp传过来的productid------------ -->
+					<%
+					String id = request.getParameter("id");
+					int a = Integer.valueOf(id);
+					%>
+					 <input type="hidden" value="<%=a%>" id="productId"> 
+					 <input type="hidden" value="${pageContext.request.contextPath }" id="root">
+					 <!-- ------------------------------------------- -->
+					 
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							  <tr><th>商品名字</th>
-								  <th>购买数量</th>
-								  <th>商品库存</th>
-								  <th>商品进价</th>
-								  <th>商品售价</th>
-						  </thead>   
-						  <tbody>
-						  <c:forEach items="${products }" var="products">
-						  <tr>
-						  <td>${products.productname }</td>
-						  <td>${products.buyno }</td>
-						  <td>${products.instock }</td>
-						  <td>${products.purchaseprice }</td>
-						  <td>${products.price }</td>
-						  </tr>
-						  </c:forEach>
-							
-						  </tbody>
-					  </table>            
+					<div class="control-group" style=" position:relative;left:30px; top:10px" >
+							  <h3>销售间隔：</h3>
+							  <div class="controls">
+								从：<input name="activitydate" type="text" onClick="laydate()" id="begin">&nbsp&nbsp&nbsp&nbsp
+								至：<input name="activitydate" type="text" onClick="laydate()" id="end">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								 <a class="btn btn-info" onclick="xixi()" style="margin-top: -10px">
+										<i class="icon-ok-sign"></i> 确认查询                                
+									</a>
+							  </div>
 					</div>
-				</div>
-       
+					<!-- <input type="button" id = "haha()" onclick="haha()" value="测试数据">
+					<input type="button" onclick="xixi()" value="测试图表">
+					<input type="button" onclick="productEchart2()" value="图表案例"> -->
+					
+					<div id="product" style="width: 900px;height: 400px;background-image:7.jpg ;margin-left: 44px"></div>
+					</div>
+				</div><!--/span-->
+
+			</div><!--/row-->
+
+			<!--/row-->
+			
+			<!--/row-->
+    
 
 	</div><!--/.fluid-container-->
 	
@@ -131,7 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
+			<button type="button" class="close" data-dismiss="modal">Ã</button>
 			<h3>Settings</h3>
 		</div>
 		<div class="modal-body">
@@ -156,8 +217,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: JavaScript-->
 
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
 	
@@ -174,10 +235,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
@@ -210,7 +271,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/charts/echarts.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/charts/myecharts.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/productJS/product.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/productJS/test.js"></script>
 	<!-- end: JavaScript-->
+
 	
 </body>
 </html>

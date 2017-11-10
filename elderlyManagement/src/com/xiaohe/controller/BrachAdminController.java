@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -13,6 +16,8 @@ import java.util.UUID;
 import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 
+import org.aspectj.weaver.patterns.IfPointcut.IfFalsePointcut;
+import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.aop.IntroductionAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
@@ -46,6 +51,7 @@ import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
+import com.xiaohe.bean.productTranctionReportVo;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.ActivitytypeService;
@@ -53,6 +59,7 @@ import com.xiaohe.service.BranchAdminService;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
+import com.xiaohe.util.GetStringByDate;
 
 
 @Controller
@@ -673,56 +680,141 @@ public class BrachAdminController {
 	public String charts(HttpServletRequest request,Model model){
 		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
 		Branch branch = new Branch();
-		branch = branchService.oneBranch(a);
+		branch = branchService.oneBranch(a);  //根据管理员id查到对应的分店
 		List<ProductCustom> products = new ArrayList<ProductCustom>();
-		products = branchService.quertyAllProduct(branch.getBranchid());
-		
-		ProductCustom productCustom1 = new ProductCustom();
+		products = branchService.quertyAllProduct(branch.getBranchid());  //根据管理员查到的分店id查询到全部的（分店商品）
+		ProductCustom productCustom = new ProductCustom();
+		for(int i=0;i<products.size();i++){
+			productCustom = branchService.BranchProductCustom(products.get(i));
+			System.out.println(productCustom);
+			if(productCustom/*.getCountBuy()*/==null/*||productCustom.getCountPrice()==null*/){
+				products.get(i).setCountBuy(0);
+				products.get(i).setCountPrice(new BigDecimal(0.00));
+			}else {
+				int c = (branchService.BranchProductCustom(products.get(i))).getCountBuy();
+				BigDecimal d = (branchService.BranchProductCustom(products.get(i))).getCountPrice();
+				products.get(i).setCountBuy(c);
+				products.get(i).setCountPrice(d);
+			}
+		}
+		model.addAttribute("products",products);//这个是分店所有的商品
+		/*ProductCustom productCustom1 = new ProductCustom();
 		ProductCustom productCustom2 = new ProductCustom();
 		productCustom1.setEmployeeid(a);
+		productCustom1.setBranchid(branch.getBranchid());
 		productCustom1.setProductid(products.get(0).getProductid());
 		productCustom2 = branchService.BranchProductCustom(productCustom1);
-		model.addAttribute("productCus", productCustom2);//这个是销售情况（包括，总销售量和总销售额）
-		model.addAttribute("products",products);//这个是分店所有的商品
-		return "brach/chart";
+		model.addAttribute("productCustom2", productCustom2);//这个是销售情况（包括，总销售量和总销售额）
+*/		return "brach/chart";
 	}
 	
+	/*public @ResponseBody */
+	
 	@RequestMapping(value="/requestProduct")
-	public @ResponseBody List<ProducttransactionreportCustom> product(Model model,@RequestBody ProducttransactionreportCustom products,HttpServletRequest request){
-		/*ProducttransactionreportCustom pro = new ProducttransactionreportCustom();*/
+	public @ResponseBody productTranctionReportVo product(Model model,@RequestBody ProducttransactionreportCustom products,HttpServletRequest request){
+		productTranctionReportVo allTranctions = new productTranctionReportVo();
+		List<ProducttransactionreportCustom> pro = new ArrayList<ProducttransactionreportCustom>();
+		Integer sum = 0;    //总条数
+		Integer pageNum = 0;//总页数
+		/*-----------分页条件-------------*/
 		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
-		int a = (products.getStartingTime()).compareTo(products.getEndTime());
+		int a = (products.getStartingTime()).compareTo(products.getEndTime());//比较时间，开始时间小于结束时间返回-1，商品的id不可为空
 		if (a < 0 && products.getProductid() != null) {
 			products.setEmployeeid(x);
-			List<ProducttransactionreportCustom> requestProducts = new ArrayList<ProducttransactionreportCustom>();
-			requestProducts = branchService.selectByCondition(products);
-			for(int i=0;i<requestProducts.size();i++){
-				ProductCustom productCustom = new ProductCustom();
-				ProductCustom productCustom2 = new ProductCustom();
-				productCustom.setProductid(requestProducts.get(i).getProductid());
-				productCustom2 = branchService.BranchProductCustom(productCustom);
-				products.setProductname(productCustom2.getProductname());
-			}
-			System.out.println(requestProducts.get(0).getProductid());
-			System.out.println(branchService.selectByCondition(products));
-			/*---------分页-----------*/
-			List<ProducttransactionreportCustom> pro = new ArrayList<ProducttransactionreportCustom>();
-			products.setPageNum(10);    											//每页显示的数据数量
-			if(pro.size()>0 && (pro.size())%(products.getPageNum())!=0){
-				products.setPagesum(((pro.size())/(products.getPageNum()))+1);       //总页数
-			}else if(pro.size()>0 && (pro.size())%(products.getPageNum())==0){
-				products.setPagesum((pro.size())/(products.getPageNum()));
-			}else{
-				products.setPagesum(0);
-			}
-			
-			products.setBegin(0);													//起始数据
 			pro = branchService.selectByCondition(products);
-			
-			return pro;
+			for(int i=0;i<pro.size();i++){
+				String buy = GetStringByDate.getString(pro.get(i).getBuytime());
+				pro.get(i).setBuy(buy);
+			}
+			/*---------分页-----------*/
+			/*if(products.getCurrentPage() >= 1){
+				Integer tempBegin = (products.getCurrentPage()-1) * products.getPageNum();
+				products.setBegin(tempBegin);
+			}else{
+				products.setBegin(0);
+			}
+			sum = pro.size(); 
+			pageNum = sum / products.getPageNum();
+			if(sum % products.getPageNum() != 0){
+				pageNum +=  1;
+			}
+			allTranctions.setSum(sum);
+			allTranctions.setPageSum(pageNum);*/
+			allTranctions.setList(pro);
+			/*---------------------------*/
+			return allTranctions;
 		} else {
 			return null;
 		}
 		
 	}
+	
+	@RequestMapping(value="/productChart")
+	public @ResponseBody ProducttransactionreportCustom productCharts(@RequestBody ProducttransactionreportCustom productTranctionReportCustom,HttpServletRequest request) throws ParseException{
+		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		int a = productTranctionReportCustom.getStartingTime().compareTo(productTranctionReportCustom.getEndTime());
+		productTranctionReportCustom.setEmployeeid(x);
+		
+		
+		if(a<=0){ //判断传进来的时间，开始时间小于结束时间
+			List<ProducttransactionreportCustom> pro = new ArrayList<ProducttransactionreportCustom>();
+			Date date1 = new Date();
+			GetStringByDate calTime = new GetStringByDate(); 
+			/*date1 = calTime.addDate(productTranctionReportCustom.getStartingTime(), -1); //开始时间减1天
+			productTranctionReportCustom.setStartingTime(date1);*/
+			pro = branchService.selectByCondition(productTranctionReportCustom);    //这里可以得到单个商品时间段内的销售情况
+			/*查询时间段内一天的商品销售情况*/
+			//查询时间间隔天数
+			int days = calTime.calculateDate(productTranctionReportCustom.getStartingTime(),productTranctionReportCustom.getEndTime());
+			date1 = productTranctionReportCustom.getStartingTime();
+			ProducttransactionreportCustom oneDayProduct = new ProducttransactionreportCustom();
+			Integer countBuy[] = new Integer[days+1];
+			String buyTime[] = new String[days+1];
+			for(int i=0;i<=days;i++){ //循环查询每天的销售情况
+				Date date = new Date();
+				Date date2 = new Date();
+				Date start = new Date();
+				
+				Date end = new Date(); 
+				date1 = calTime.addDate(productTranctionReportCustom.getStartingTime(), i); //这个时间是从开始时间循环到结束时间
+				date2 = calTime.addDate(productTranctionReportCustom.getStartingTime(), i);
+				date1.setHours(0);date.setMinutes(0);date.setSeconds(0);
+				start = date1;
+				date2.setHours(23);date2.setMinutes(59);date2.setSeconds(59);
+				end = date2;
+				productTranctionReportCustom.setStart(start); //得到第一天的开始
+				productTranctionReportCustom.setEnd(end);     //得到第一天的结束
+				/*String buyTime = calTime.getTime(productTranctionReportCustom.getBuytime());
+				SimpleDateFormat smp = new SimpleDateFormat("yyyy-MM-dd"); 
+				productTranctionReportCustom.setBuytime(smp.parse(buyTime)); //处理购买时间为'2017-1-1'格式*/		
+				oneDayProduct = branchService.oneTransation(productTranctionReportCustom);
+				if(oneDayProduct!= null){
+					countBuy[i] = oneDayProduct.getTotalCount();
+				}else{
+					countBuy[i] = 0;
+				}
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(start);
+				String time = cal.get(Calendar.YEAR)+"年"+(cal.get(Calendar.MONTH)+1)+"月"+cal.get(Calendar.DATE)+"日";
+				buyTime[i] = time;
+				productTranctionReportCustom.setBuyNo(countBuy);
+				productTranctionReportCustom.setBuyTime(buyTime);
+		}//查询一天的循环结束
+			for(int i=0;i<buyTime.length;i++){
+				System.out.println(buyTime[i]);
+				System.out.println(countBuy[i]);
+			}
+		}
+		System.out.println(productTranctionReportCustom);
+		return productTranctionReportCustom;
+	}
+	
+	
+	@RequestMapping(value="/oneProductChart")
+	public String charts(Integer id){
+		return "brach/oneProductChart";
+	}
+	
+	
+	
 }
