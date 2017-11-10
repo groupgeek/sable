@@ -231,4 +231,11 @@ public interface ProductService {
 	 */
 	public ProductCustom queryColourOrTasteByProductid(Integer pid);
 	
+	/**
+	 * 根据购物车id更新购物车
+	 * @param info
+	 * @return
+	 */
+	public boolean updateColourOrTasteByShopcarid(ShoppingcarCustom info);
+	
 }

@@ -36,62 +36,7 @@
 <body>
 	<div class="hmtop">
 		<!--顶部导航条 -->
-		<div class="am-container header">
-			<ul class="message-r">
-			<div class="topMessage home">
-					<div class="menu-hd">
-						<a href="${pageContext.request.contextPath }/branch/index" target="_top" class="h">官网首页</a>
-					</div>
-				</div>
-				<div class="topMessage home">
-					<div class="menu-hd">
-						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">商城首页</a>
-					</div>
-				</div>
-				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng">
-						<a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
-					</div>
-				</div>
-				<div class="topMessage mini-cart">
-					<div class="menu-hd">
-						<a id="mc-menu-hd" href="${pageContext.request.contextPath }/jsp/mall/home/shopcart.jsp" target="_top"><i
-							class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
-							id="J_MiniCartNum" class="h">0</strong> </a>
-					</div>
-				</div>
-				<div class="topMessage favorite">
-					<div class="menu-hd">
-						<a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>安全退出<%-- ${user.username } --%></span>
-						</a>
-					</div>
-			</ul>
-		</div>
-
-		<!--悬浮搜索框-->
-
-		<div class="nav white">
-			<div class="logo">
-				<img
-					src="${pageContext.request.contextPath }/jsp/mall/images/logo.png" />
-			</div>
-			<div class="logoBig">
-				<li><img
-					src="${pageContext.request.contextPath }/jsp/mall/images/logobig.png" />
-				</li>
-			</div>
-
-			<div class="search-bar pr">
-				<a name="index_none_header_sysc" href="#"></a>
-				<form action="${pageContext.request.contextPath }/product/search" method="post">
-					<!--商品搜索  -->
-					<input id="searchInput" name="searchCondition" type="text"
-						placeholder="搜索" autocomplete="off"> <input
-						id="ai-topsearch" class="submit am-btn" value="搜索" index="1"
-						type="submit">
-				</form>
-			</div>
-		</div>
+		<c:import url="/jsp/mall/head.jsp"></c:import>
 
 		<div class="clear"></div>
 	</div>
@@ -503,23 +448,7 @@
 			</c:forEach>
 
 
-			<div class="footer ">
-				<div class="footer-hd ">
-					<p>
-						<a href="# ">恒望科技</a> <b>|</b> <a href="# ">商城首页</a> <b>|</b> <a
-							href="# ">支付宝</a> <b>|</b> <a href="# ">物流</a>
-					</p>
-				</div>
-				<div class="footer-bd ">
-					<p>
-						<a href="# ">关于恒望</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a>
-						<a href="# ">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有. 更多模板
-							<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
-							- Collect from <a href="http://www.cssmoban.com/" title="网页模板"
-							target="_blank">网页模板</a> </em>
-					</p>
-				</div>
-			</div>
+			<c:import url="/jsp/mall/footer.jsp"></c:import>
 
 		</div>
 	</div>

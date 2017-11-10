@@ -64,4 +64,18 @@ public interface OrdersMapper {
 	 */
 	int deleteOrdersById(String id);
 	
+	/**
+	 * 根据logo查询相应的订单
+	 * @param condition
+	 * @return
+	 */
+	List<OrdersCustom> selectOrdersByLogo(OrdersCustom condition);
+	
+	/**
+	 * 计算某一状态或者其他条件 总数
+	 * @param condition
+	 * @return
+	 */
+	Integer selectCountByLogo(OrdersCustom condition);
+	
 }

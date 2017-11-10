@@ -43,4 +43,5 @@ public interface ProducttasteMapper {
     List<ProducttasteCustom> selectasteByProductid(Integer productid);
     
     
+    
 }

@@ -1,15 +1,60 @@
 package com.xiaohe.bean;
 
+import java.util.Date;
+
 public class OrdersCustom extends Orders {
 	private ProductCustom productInfo;
 	private ProducttasteCustom producttasteInfo;
 	private ProductcolourCustom productcolourInfo;
 	private Integer type;//商品分类
 	
+	private String pictire;
 	
 	
-	private String picture;
+	private String paymenttimeString;
+
+    private String timeofarrivalString;
+
+    private String submissiontimeString;
+    
+    private String ordertimeString;
+    
+	
+    private String picture;
 	private String description;
+	
+	
+	
+	public String getPictire() {
+		return pictire;
+	}
+	public void setPictire(String pictire) {
+		this.pictire = pictire;
+	}
+	public String getPaymenttimeString() {
+		return paymenttimeString;
+	}
+	public void setPaymenttimeString(String paymenttimeString) {
+		this.paymenttimeString = paymenttimeString;
+	}
+	public String getTimeofarrivalString() {
+		return timeofarrivalString;
+	}
+	public void setTimeofarrivalString(String timeofarrivalString) {
+		this.timeofarrivalString = timeofarrivalString;
+	}
+	public String getSubmissiontimeString() {
+		return submissiontimeString;
+	}
+	public void setSubmissiontimeString(String submissiontimeString) {
+		this.submissiontimeString = submissiontimeString;
+	}
+	public String getOrdertimeString() {
+		return ordertimeString;
+	}
+	public void setOrdertimeString(String ordertimeString) {
+		this.ordertimeString = ordertimeString;
+	}
 	
 	
 	public String getPicture() {
