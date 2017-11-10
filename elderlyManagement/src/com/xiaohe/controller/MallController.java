@@ -23,10 +23,13 @@ import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.EvaluationVo;
 import com.xiaohe.bean.IntegralCustom;
+import com.xiaohe.bean.IntegraltoarticleCuntom;
+import com.xiaohe.bean.IntegraltoarticleVo;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.OrdersCountVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
@@ -40,6 +43,7 @@ import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.EvaluationService;
 import com.xiaohe.service.IntegralService;
+import com.xiaohe.service.IntegraltoarticleService;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.ProducttransactionreportService;
@@ -83,6 +87,10 @@ public class MallController {
 	@Qualifier("integralService")
 	private IntegralService integralService;
 	
+	@Autowired
+	@Qualifier("integraltoarticleService")
+	private IntegraltoarticleService integraltoarticleService;
+	
 	
 	public User getUser(HttpServletRequest request){
 		
@@ -95,7 +103,9 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("mallIndex")
-	public String mallIndex(Model model){
+	public String mallIndex(Model model,HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null) return "redirect:/jsp/logReg/login.jsp";
 		/**
 		 * 变量区
 		 * 产品类型 productTypes
@@ -113,15 +123,16 @@ public class MallController {
 		productTypes = productTypeService.querySimallProducttype();
 		
 		//查询推荐商品
-		productrecommends = productService.queryProductrecommend(3);
+		productrecommends = productService.queryProductrecommend(user.getUserid());
 		
 		//查询优惠商品
-		productDiscounts = productService.queryDiscountProduct(4);
+		productDiscounts = productService.queryDiscountProduct(user.getUserid());
 		
 		//开始查询所有分类的产品
 		ProductCustom condition = new ProductCustom();
 		condition.setBegin(0);
 		condition.setTotal(7);
+		condition.setUserid(user.getUserid());
 		allTypeProducts = productService.queryProductByAllType(condition);
 		
 		
@@ -335,12 +346,17 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/quereyProduct_json")
-	public @ResponseBody List<ProductCustom> quereyProductByProductTypeId_json(@RequestBody ProducttypeCustom producttype){
+	public @ResponseBody List<ProductCustom> quereyProductByProductTypeId_json(@RequestBody ProducttypeCustom producttype , HttpServletRequest request){
+		User user = new User();
+		user = getUser(request);
+		if(user == null || producttype == null) return null;
+		if(producttype.getProducttypeid() == null) return null;
 		List<ProductCustom> pList = new ArrayList<ProductCustom>();
 		ProductCustom condition = new ProductCustom();
 		condition.setBegin(0);
 		condition.setTotal(20);
 		condition.setProducttypeid(producttype.getProducttypeid());
+		condition.setUserid(user.getUserid());
 		pList = productService.queryProductByTypeId(condition);
 		return pList;
 	}
@@ -365,8 +381,10 @@ public class MallController {
 		shoppingcar.setUserid(user.getUserid());		
 		if(productService.addShopCart(shoppingcar)){
 			message = "添加成功";
+			showMessage.setFlag(true);
 		}else{
 			message = "添加失败,登录失效,请重新 登录";
+			showMessage.setFlag(false);
 		}
 		
 		showMessage.setMessage(message);
@@ -436,12 +454,20 @@ public class MallController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 立即购买
+	 * @return
+	 */
+	@RequestMapping("/buyNow")
+	public @ResponseBody String buyNow(@RequestBody ProductCustom info,HttpServletRequest request){
+		User user = getUser(request);
+		if(info == null || user == null) return null;
+		if(user.getUserid() == null || info.getProductid() == null) return null;
+		info.setUserid(user.getUserid());
+		String orderId = productService.buyNow(info);
+		
+		return orderId;
+	}
 	
 	
 	
@@ -798,5 +824,54 @@ public class MallController {
 		ProductCustom info = new ProductCustom();
 		info = productService.queryPersonProductrecommend(user.getUserid());
 		return info;
+	}
+	
+	
+	/**
+	 * 查询出某一类所有商品 某分店
+	 * @return
+	 */
+	@RequestMapping("/queryAllProduct")
+	public @ResponseBody ProductVo queryAllProduct(@RequestBody ProductCustom condition,HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null || condition == null) return null;
+		ProductVo vo = new ProductVo();
+		condition.setUserid(user.getUserid());
+		
+		vo = productService.queryAllProductByProductTypeId(condition);
+		return vo;
+	}
+	
+	/**
+	 * 查询出积分所有商品 某分店
+	 * @return
+	 */
+	@RequestMapping("/queryAllIntegralProduct")
+	public @ResponseBody IntegraltoarticleVo queryAllIntegralProduct(@RequestBody IntegraltoarticleCuntom condition,HttpServletRequest request){
+		User user = getUser(request);
+		if(user == null || condition == null) return null;
+		IntegraltoarticleVo vo = new IntegraltoarticleVo();
+		condition.setUserid(user.getUserid());
+		
+		vo = integraltoarticleService.queryAllProductIntegralByProductTypeId(condition);
+		return vo;
+	}
+	
+	/**
+	 * 购买积分商品
+	 * @return
+	 */
+	@RequestMapping("/addIntegralOrder")
+	public String addIntegralOrder(IntegraltoarticleCuntom info,HttpServletRequest request,Model model){
+		User user = getUser(request);
+		if(user == null || info == null) return null;
+		if(integraltoarticleService.addIntegralOrder(info)){
+			model.addAttribute("message", "交易成功");
+		}else{
+			model.addAttribute("message", "交易失败");
+		}
+		
+		
+		return "redirect:/jsp/mall/person/pointsMall.jsp";
 	}
 }

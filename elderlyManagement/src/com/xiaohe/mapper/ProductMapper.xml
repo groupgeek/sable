@@ -507,11 +507,11 @@
 	
 	<select id="selectProductBytypeId" parameterType="productCustom" resultType="productCustom">
 	
-		SELECT * FROM `product`
-		
-		<if test="producttypeid != null">
-			WHERE productTypeId = #{producttypeid}
-		</if>
+		SELECT p.* FROM `product` p ,`user` u , branch b
+		WHERE u.userId = #{userid} 
+		AND b.areaId = u.areaId
+		AND p.branchId = b.branchId  
+		AND p.productTypeId = #{producttypeid} 
 		<if test="sort != null">
 			ORDER BY #{sort} DESC 
 		</if>
@@ -640,4 +640,30 @@ AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 		AND b.areaId = u.areaId AND pd.branchId = b.branchId AND p.productId = pd.productId AND pd.productShow = TRUE
 		LIMIT 0,1
 	</select>
+	
+	<select id="selectAllProductByTypeId" parameterType="productCustom" resultType="productCustom">
+  
+	  	SELECT p.* FROM `product` p , `user` u , branch b
+		WHERE u.userId = #{userid}
+		AND b.areaId = u.areaId AND p.branchId = b.branchId 
+		AND p.productTypeId = #{producttypeid} AND p.shelves = TRUE
+		<!-- ORDER BY #{sort} DESC -->
+		<if test="sort != null" >
+		  	ORDER BY #{sort} DESC
+	  	</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllProductSumByTypeId" parameterType="productCustom" resultType="Integer">
+  
+	  	SELECT COUNT(*) FROM `product` p , `user` u , branch b
+		WHERE u.userId = #{userid}
+		AND b.areaId = u.areaId AND p.branchId = b.branchId 
+		AND p.productTypeId = #{producttypeid} AND p.shelves = TRUE
+  </select>
 </mapper>

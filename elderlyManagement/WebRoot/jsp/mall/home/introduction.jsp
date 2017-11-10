@@ -257,7 +257,12 @@
 
 							<div class="tb-booth tb-pic tb-s310">
 							<!--商品图片  -->
-								<a href="${pageContext.request.contextPath }/jsp/mall/images/01.jpg"><img src="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" alt="细节展示放大镜特效" rel="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" class="jqzoom" /></a>
+								<%-- <a href="${pageContext.request.contextPath }/jsp/mall/images/01.jpg">
+								<img src="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" 
+								alt="细节展示放大镜特效" rel="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" class="jqzoom" /></a> --%>
+								<a href="/upload/${productInfo.picture }">
+								<img src="/upload/${productInfo.picture }" 
+								alt="细节展示放大镜特效" rel="/upload/${productInfo.picture }" class="jqzoom" /></a>
 							</div>
 <%-- 							<ul class="tb-thumb" id="thumblist">
 								<li class="tb-selected">

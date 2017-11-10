@@ -52,7 +52,7 @@
 						<hr/>
 						<div class="pointsTitle">
 						   <div class="usable">可用积分<span>0</span></div>
-						   <div class="pointshop"><a href="#"><i><img src="../images/u5.png" /></i>积分商城</a></div>
+						   <div class="pointshop"><a href="${pageContext.request.contextPath }/jsp/mall/person/pointsMall.jsp"><i><img src="../images/u5.png" /></i>积分商城</a></div>
 						   <div class="signIn"><a href="#"><i class="am-icon-calendar"></i><em>+2</em>每日签到</a></div>
 						</div>
 						<div class="pointlist am-tabs" data-am-tabs>

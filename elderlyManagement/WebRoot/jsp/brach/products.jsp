@@ -87,7 +87,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 
 			
-			<div class="box span12">
+			<div class="row-fluid sortable">		
+				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white user"></i><span class="break"></span>商品信息</h2>
 						<div class="box-icon">

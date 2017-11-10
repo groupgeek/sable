@@ -1,7 +1,8 @@
-#Fri Nov 10 17:10:45 CST 2017
+#Sat Nov 11 17:20:42 CST 2017
 eclipse.preferences.version=1
 encoding//WebRoot/jsp/admin/footer.jsp=UTF-8
 encoding//WebRoot/jsp/index/index.jsp=UTF-8
+encoding//WebRoot/jsp/mall/home/allProduct.jsp=UTF-8
 encoding//WebRoot/jsp/mall/home/shopcart.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/evaluation.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/index.jsp=UTF-8
@@ -11,3 +12,4 @@ encoding//WebRoot/jsp/mall/person/points.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/shippingAddress.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/userComment.jsp=UTF-8
 encoding//WebRoot/jsp/test/jquery.jsp=UTF-8
+encoding//WebRoot/jsp/util/Popupbox.jsp=UTF-8

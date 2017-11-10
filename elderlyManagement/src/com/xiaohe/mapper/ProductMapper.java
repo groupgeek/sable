@@ -204,5 +204,17 @@ public interface ProductMapper {
 	 */
     ProductCustom selectPersonProductrecommend(Integer userid);
     
-
+    /**
+     * 查询某地区某一类商品信息
+     * @param condition
+     * @return
+     */
+    List<ProductCustom> selectAllProductByTypeId(ProductCustom condition);
+    
+    /**
+     * 查询某地区某一类商品数量 同上
+     * @param condition
+     * @return
+     */
+    Integer selectAllProductSumByTypeId(ProductCustom condition);
 }

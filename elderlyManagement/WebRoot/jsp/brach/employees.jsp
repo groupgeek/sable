@@ -161,7 +161,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  </thead>   
 						  <tbody>
 							<c:forEach items="${employees }" var="employees">
-					<tr>
+						  <c:if test="${admins.employeeid != employees.employeeid}">
+						<tr>
 						<td class="center">${employees.employeename }</td>
 						<td class="center">${employees.sex }</td>
 						<td class="center">
@@ -177,8 +178,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 						</td>
 					</tr>
+							</c:if>
 				</c:forEach>
-							
 						  </tbody>
 					  </table>            
 					</div>

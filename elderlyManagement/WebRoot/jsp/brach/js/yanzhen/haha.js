@@ -1,8 +1,8 @@
 function haha(){
-	 var str = document.getElementById('str').value.trim();    
+	 var str = document.getElementById('str').value.trim();  
 	    if(str.length!=0){    
 	        var reg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/;     
-	        var r = str.match(reg);     
+	        var r = str.match(reg);  
 	        if(r==null)
 	            alert('对不起，您输入的日期格式不正确!');
 	        }

@@ -402,4 +402,10 @@ public interface BranchAdminService {
 	 */
 	public int delMed(Integer id);
 	
+	/**
+	 * 查询商品一天的销售情况（分店）
+	 * @param producttransactionreportCustom
+	 * @return
+	 */
+	public ProducttransactionreportCustom oneTransation(ProducttransactionreportCustom producttransactionreportCustom);
 }

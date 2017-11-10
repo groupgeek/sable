@@ -70,13 +70,13 @@
 				<span class="all-goods">全部分类</span>
 			</div>
 			<div class="nav-cont">
-				<ul>
+				<!-- <ul>
 					<li class="index"><a href="#">首页</a></li>
 					<li class="qc"><a href="#">闪购</a></li>
 					<li class="qc"><a href="#">限时抢</a></li>
 					<li class="qc"><a href="#">团购</a></li>
 					<li class="qc last"><a href="#">大包装</a></li>
-				</ul>
+				</ul> -->
 			<!-- 	<div class="nav-extra">
 					<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
 					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
@@ -329,7 +329,7 @@
 				</div>
 				<div class="am-g am-g-fixed ">
 					<c:forEach items="${productDiscounts }" var="productDiscount">
-						<div class="am-u-sm-3 ">
+						<div class="am-u-sm-3 " style="padding: 6px;margin: 0px;">
 							<div class="icon-sale two "></div>
 							<h4>特惠</h4>
 							<div class="activityMain">
@@ -357,11 +357,11 @@
 					<div class="am-container ">
 						<div class="shopTitle ">
 							<h4>${oneTypeProducts.key.producttypename }</h4>
-							<div class="today-brands ">
+							<!-- <div class="today-brands ">
 								<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
 									href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-							</div>
-							<span class="more "> <a href="# ">更多美味<i
+							</div> -->
+							<span class="more "> <a href="${pageContext.request.contextPath }/jsp/mall/home/allProduct.jsp?producttypeid=${oneTypeProducts.key.producttypeid }&producttypename=${oneTypeProducts.key.producttypename } " target="_black">更多<i
 									class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
 						</div>
 					</div>

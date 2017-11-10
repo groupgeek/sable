@@ -31,6 +31,8 @@ import com.xiaohe.bean.Producttaste;
 import com.xiaohe.bean.ProducttasteCustom;
 import com.xiaohe.bean.Producttype;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.Shoppingcar;
 import com.xiaohe.bean.ShoppingcarCustom;
 import com.xiaohe.bean.User;
@@ -46,6 +48,8 @@ import com.xiaohe.mapper.ProducttasteMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.mapper.ShoppingcarMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ShippingAddressService;
+import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
 
 @Repository("productService")
@@ -91,6 +95,14 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("ordersMapper")
 	private OrdersMapper ordersMapper;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
+	
+	@Autowired
+	@Qualifier("shippingAddressService")
+	private ShippingAddressService shippingAddressService;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -102,12 +114,12 @@ public class ProductServiceImpl implements ProductService {
 		return producttypeMapper.selectProductTypeBycondition(producttype);
 	}
 
-	public List<ProductCustom> queryProductrecommend(Integer total) {
-		return productrecommendMapper.selectProductrecommend(total);
+	public List<ProductCustom> queryProductrecommend(Integer userid) {
+		return productrecommendMapper.selectProductrecommend(userid);
 	}
 
-	public List<ProductCustom> queryDiscountProduct(Integer total) {
-		return discountMapper.selectDiscountProducts(total);
+	public List<ProductCustom> queryDiscountProduct(Integer usetid) {
+		return discountMapper.selectDiscountProducts(usetid);
 	}
 
 	public List<ProductCustom> queryProductByBlurry(String condition) {
@@ -495,6 +507,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		Shoppingcar car = new ShoppingcarCustom(); 
 		List<Shoppingcar> listShop = new ArrayList<Shoppingcar>();
 		OrdersCustom info = new OrdersCustom();
+		ShippingAddressCustom shippingAddress = new ShippingAddressCustom();
 		
 		
 		
@@ -509,6 +522,11 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		if(user.getUserid() == null || user.getUserid() < 0) return null;
 		if(shoppingcarCustoms == null) return null;
 		
+		//查询默认地址
+		ShippingAddVo svo = userService.queryAllAddressByUserid(user.getUserid());
+		for(ShippingAddressCustom temp : svo.getAddresssList()){
+			if(temp.getDefaultaddress()) shippingAddress = temp;
+		}
 		
 		//返回值 返回订单id
 		String[] ordersId = new String[shoppingcarCustoms.length];
@@ -530,8 +548,8 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			info.setUserid(user.getUserid());
 			info.setProductid(car.getProductid());
 			info.setProductname(car.getProductname());
-			info.setUsername(user.getUsername());
-			info.setResaddress(user.getAddress());
+			info.setUsername(shippingAddress.getReceiver());
+			info.setResaddress(shippingAddress.getShippingaddress());
 			info.setProductnumber(car.getNumber());
 			info.setPrice(car.getPrice());
 			//运算总价
@@ -540,7 +558,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			totalprice = number.multiply(car.getPrice());
 			info.setTotalprice(totalprice);
 			info.setOrdertime(new Date());
-			info.setPhone(user.getPhone());
+			info.setPhone(shippingAddress.getPhone()+"");
 			
 			
 			//添加颜色型号口味或者其他
@@ -671,6 +689,96 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 	public ProductCustom queryPersonProductrecommend(Integer userid) {
 		if(userid == null) return null;
 		return productMapper.selectPersonProductrecommend(userid);
+	}
+
+	public ProductVo queryAllProductByProductTypeId(ProductCustom condition) {
+		if(condition == null) return null;
+		if(condition.getUserid() == null) return null;
+		if(condition.getProducttypeid() == null) return null;
+		ProductVo productVo = new ProductVo();
+		List<ProductCustom> allProducts = new ArrayList<ProductCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		
+			
+		if(condition.getCurrentPage() >= 1){
+			Integer tempBegin = (condition.getCurrentPage()-1) * condition.getPageNum();
+			condition.setBegin(tempBegin);
+		}else{
+			condition.setBegin(0);
+		}
+			
+		
+		
+		allProducts = productMapper.selectAllProductByTypeId(condition);
+		sum = productMapper.selectAllProductSumByTypeId(condition);
+		pageSum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageSum += 1;
+		}
+		productVo.setProductList(allProducts);
+		productVo.setProductSum(sum);
+		productVo.setPageSum(pageSum);
+		return productVo;
+	}
+
+	public String buyNow(ProductCustom info) {
+		UserCustom user = new UserCustom();
+		OrdersCustom orders = new OrdersCustom();
+		ShippingAddressCustom shippingAddress = new ShippingAddressCustom();
+		
+		
+		//查询用户以及默认地址
+		ShippingAddVo svo = userService.queryAllAddressByUserid(info.getUserid());
+		user = svo.getUser();
+		for(ShippingAddressCustom temp : svo.getAddresssList()){
+			if(temp.getDefaultaddress()) shippingAddress = temp;
+		}
+		
+		
+		//生成订单
+		DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+		String orderid = df.format(new Date())+(ordersMapper.selectCountOrder()+1) + UUID.randomUUID().toString().split("-")[0];
+		
+		orders.setOrderid(orderid);
+		orders.setUserid(user.getUserid());
+		orders.setProductid(info.getProductid());//
+		orders.setProductname(info.getProductname());//
+		orders.setUsername(shippingAddress.getReceiver());
+		orders.setResaddress(shippingAddress.getShippingaddress());
+		orders.setProductnumber(1);
+		orders.setPrice(info.getPrice());//
+		//运算总价
+		//BigDecimal number = new BigDecimal(car.getNumber());
+		//BigDecimal totalprice = new BigDecimal(0);
+		//totalprice = number.multiply(car.getPrice());
+		orders.setTotalprice(info.getPrice());
+		orders.setOrdertime(new Date());
+		orders.setPhone(shippingAddress.getPhone()+"");
+		
+		
+		//添加颜色型号口味或者其他
+		Producttaste producttaste = producttasteMapper.selectByPrimaryKey(info.getTaste());//
+		Productcolour productcolour = productcolourMapper.selectByPrimaryKey(info.getColour());//
+		if(producttaste != null)
+			orders.setTaste(producttaste.getProducttaste());
+		
+		if(productcolour != null)
+			orders.setColour(productcolour.getProductcolour());
+		
+		orders.setSize(info.getSizeString());//
+		
+		
+		//查询用户分店
+		Branch branch = new Branch();
+		branch = branchMapper.selectBranchByUserid(user.getUserid());
+		orders.setBranchid(branch.getBranchid());
+		orders.setOrderstatus("未付款");
+		//info.setProductstatus("未发货");
+		//info.setSignstatus("未签收");
+		//info.setEvaluationstatus(false);
+		if(ordersMapper.insertSelective(orders) < 0) return null;
+		return orderid;
 	}
 
 	

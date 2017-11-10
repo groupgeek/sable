@@ -249,4 +249,17 @@ public interface ProductService {
 	 * @return
 	 */
 	public ProductCustom queryPersonProductrecommend(Integer userid);
+	
+	 /**
+     * 查询某地区某一类商品信息
+     * @param condition
+     * @return
+     */
+	public ProductVo queryAllProductByProductTypeId(ProductCustom condition);
+	
+	/**
+	 * 立即购买
+	 * @return info 产品
+	 */
+	public String buyNow(ProductCustom info);
 }

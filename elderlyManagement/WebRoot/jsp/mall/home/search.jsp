@@ -108,7 +108,7 @@
 										<li>
 										<a href = "${pageContext.request.contextPath }/product/productInfo?id=${blurryProductCustom.productid}">
 											<div class="i-pic limit">
-												<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />											
+												<img src="/upload/${blurryProductCustom.picture }" />											
 												<p class="title fl">${blurryProductCustom.productname }</p>
 												<p class="price fl">
 													<b>¥</b>
@@ -506,7 +506,7 @@
 						        					'<li>'+
 						        						'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
 															'<div class="i-pic limit">'+
-																'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+																'<img src="/upload/'+data[i].picture+'" />'+
 																'<p class="title fl">'+data[i].productname+'</p>'+
 																'<p class="price fl">'+
 																	'<b>¥</b>'+
@@ -623,7 +623,7 @@
 						        					'<li>'+
 					        							'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
 															'<div class="i-pic limit">'+
-																'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+																'<img src="/upload/'+data[i].picture+'" />'+
 																'<p class="title fl">'+data[i].productname+'</p>'+
 																'<p class="price fl">'+
 																	'<b>¥</b>'+
@@ -741,7 +741,7 @@
 						        					'<li>'+
 					        							'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
 															'<div class="i-pic limit">'+
-																'<img src="${pageContext.request.contextPath }/jsp/mall/images/imgsearch1.jpg" />'+
+																'<img src="/upload/'+data[i].picture+'" />'+
 																'<p class="title fl">'+data[i].productname+'</p>'+
 																'<p class="price fl">'+
 																	'<b>¥</b>'+
