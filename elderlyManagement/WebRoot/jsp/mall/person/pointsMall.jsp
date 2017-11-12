@@ -315,9 +315,9 @@
 						<form action="${pageContext.request.contextPath }/product/addIntegralOrder" method="post" id="editForm">
 								<input type="hidden" id = "articleid" name="articleid"/>
 							<ul class="editInfos">
-								<li><label><font color="#ff0000">* </font>手机：<input type="text" id = "phone" name="phone" required  class="ipt" /></label></li>
-								<li><label><font color="#ff0000">* </font>密码：<input type="text" id = "password" name="password" required  class="ipt" /></label></li>
-								<li><label><font color="#ff0000">* </font>地址：<input type="text" id = "resaddress" name="resaddress" required  class="ipt" /></label></li>
+								<li><label><font color="#ff0000">* </font>手机：<input type="text" id = "phone" name="phone" required  class="ipt" placeholder="手机号码"/></label></li>
+								<li><label><font color="#ff0000">* </font>密码：<input type="password" id = "password" name="password" required  class="ipt" placeholder="密码"/></label></li>
+								<li><label><font color="#ff0000">* </font>地址：<textarea id = "resaddress" name="resaddress" required  class="ipt"  rows="3" cols="3" style="height: 50px;" placeholder="收货地址"></textarea></label></li>
 								<li><input type="submit" value="确认提交" class="submitBtn" /></li>
 							</ul>
 						</form>

@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
 				
 				//赠送积分
 				IntegralCustom integral = new IntegralCustom();
-				integral.setChange(10);
+				integral.setChangeintegral(10);
 				integral.setDetails("用户注册赠送");
 				integral.setUserid(user.getUserid());
 				integral.setChangetime(new Date());

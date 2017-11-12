@@ -9,7 +9,7 @@ public class Integral {
 
     private String details;
 
-    private Integer change;
+    private Integer changeintegral;
 
     private Date changetime;
 
@@ -39,12 +39,12 @@ public class Integral {
         this.details = details == null ? null : details.trim();
     }
 
-    public Integer getChange() {
-        return change;
+    public Integer getChangeintegral() {
+        return changeintegral;
     }
 
-    public void setChange(Integer change) {
-        this.change = change;
+    public void setChangeintegral(Integer changeintegral) {
+        this.changeintegral = changeintegral;
     }
 
     public Date getChangetime() {

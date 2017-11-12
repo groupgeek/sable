@@ -20,7 +20,7 @@ $(document).ready(function(){
 		em.append(
 			'<tr>'+
 				'<td class="pointType">'+data.details+'</td>'+
-				'<td class="pointNum">'+data.change+'</td>'+
+				'<td class="pointNum">'+data.changeintegral+'</td>'+
 				'<td class="pointTime">'+data.changetimeString+'</td>'+
 			'</tr>'
 					
@@ -41,13 +41,14 @@ $(document).ready(function(){
 				
 				//支出数据
 				for(var i in data){
-					if(data[i].change > 0)
-					createTable(data[i],$("#get tbody"));
+					if(data[i].changeintegral > 0){
+						createTable(data[i],$("#get tbody"));
+					}
 				}
 				
 				//获取数据
 				for(var i in data){
-					if(data[i].change < 0)
+					if(data[i].changeintegral < 0)
 					createTable(data[i],$("#expenditure tbody"));
 				}
 			}

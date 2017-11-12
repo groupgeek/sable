@@ -865,6 +865,7 @@ public class MallController {
 	public String addIntegralOrder(IntegraltoarticleCuntom info,HttpServletRequest request,Model model){
 		User user = getUser(request);
 		if(user == null || info == null) return null;
+		info.setUserid(user.getUserid());
 		if(integraltoarticleService.addIntegralOrder(info)){
 			model.addAttribute("message", "交易成功");
 		}else{
