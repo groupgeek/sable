@@ -72,7 +72,7 @@
 
 				<!-- Start Sign In Form -->
 				<form id="register"
-					action="${pageContext.request.contextPath }/logReg/register.action"
+					action="${pageContext.request.contextPath }/logReg/register.action" method="post"
 					class="fh5co-form animate-box" data-animate-effect="fadeIn">
 					<h2>注册</h2>
 					<!-- <div class="form-group">

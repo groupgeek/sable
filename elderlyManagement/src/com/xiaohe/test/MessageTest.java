@@ -10,7 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xiaohe.bean.Message;
+import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.mapper.MessageMapper;
+import com.xiaohe.service.MessageService;
 
 
 
@@ -20,6 +22,9 @@ public class MessageTest {
 	@Autowired
 	@Qualifier("messageMapper")
 	private MessageMapper messageMapper;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	@Test
 	public void haha(){
@@ -32,7 +37,15 @@ public class MessageTest {
 		
 	}
 	
-	
-	public void demo(){}
+	@Test
+	public void demo(){
+		MessageCustom condition = new MessageCustom();
+		condition.setCurrentPage(1);
+		condition.setPageNum(1);
+		condition.setSort("messageTime");
+		messageService.queryAllMessageByCondition(condition);
+		/*condition.setBegin(0);
+		messageMapper.selectAllMessageByCondition(condition);*/
+	}
 
 }

@@ -11,6 +11,8 @@ public class Positional {
 
     private String positionname;
 
+    private Integer minauthority;
+
     public Integer getPositionid() {
         return positionid;
     }
@@ -41,5 +43,13 @@ public class Positional {
 
     public void setPositionname(String positionname) {
         this.positionname = positionname == null ? null : positionname.trim();
+    }
+
+    public Integer getMinauthority() {
+        return minauthority;
+    }
+
+    public void setMinauthority(Integer minauthority) {
+        this.minauthority = minauthority;
     }
 }

@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.Integral;
 import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.IntegralorderCuntom;
+import com.xiaohe.bean.Integraltoarticle;
 import com.xiaohe.bean.IntegraltoarticleCuntom;
 import com.xiaohe.bean.IntegraltoarticleVo;
 import com.xiaohe.bean.User;
+import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.IntegralMapper;
 import com.xiaohe.mapper.IntegralorderMapper;
 import com.xiaohe.mapper.IntegraltoarticleMapper;
@@ -83,13 +86,13 @@ public class IntegraltoarticleServiceImpl implements IntegraltoarticleService {
 		if(info.getArticleid() == null) return false;
 		if(info.getPassword() == null) return false;
 		
-		User user = new User();
+		UserCustom user = new UserCustom();
 		IntegralCustom integral = new IntegralCustom();
-		IntegraltoarticleCuntom integraltoarticle = new IntegraltoarticleCuntom();
+		Integraltoarticle integraltoarticle = new IntegraltoarticleCuntom();
 		IntegralorderCuntom order = new IntegralorderCuntom();
 		
 		//查询用户
-		user = userMapper.selectByPrimaryKey(user.getUserid());
+		user = userMapper.selectUserInfoById(info.getUserid());
 		if(user == null) return false;
 		if(!info.getPassword().equals(user.getPassword())) return false;
 		
@@ -99,7 +102,7 @@ public class IntegraltoarticleServiceImpl implements IntegraltoarticleService {
 		if(integral == null) return false;
 		
 		//查询商品情况
-		integraltoarticle = (IntegraltoarticleCuntom) integraltoarticleMapper.selectByPrimaryKey(info.getArticleid());
+		integraltoarticle = integraltoarticleMapper.selectByPrimaryKey(info.getArticleid());
 		
 		//判断积分是否足够
 		if(integraltoarticle.getIntegral() > integral.getRemainingpoints() || integral.getRemainingpoints() == null) return false;
@@ -117,21 +120,22 @@ public class IntegraltoarticleServiceImpl implements IntegraltoarticleService {
 		//order.setPrice(integraltoarticle.getIntegral());
 		order.setOrdertime(new Date());
 		order.setBranchid(integraltoarticle.getBranchid());
+		order.setIntegral(integraltoarticle.getIntegral());
 		
 		order.setOrderstatus("已付款");
-		order.setProductstatus("位发货");
+		order.setProductstatus("未发货");
 		//order.setSignstatus("未签收");
 		if(integralorderMapper.insertSelective(order) <= 0) return false;
 		
 		//扣除积分
-		IntegralCustom integralCustom = new IntegralCustom();
-		integralCustom.setUserid(user.getUserid());
-		integralCustom.setDetails("兑换商品，单号："+orderid);
-		integralCustom.setChange(integraltoarticle.getIntegral());
-		integralCustom.setRemainingpoints(integral.getRemainingpoints() - integraltoarticle.getIntegral());
-		integralCustom.setChangetime(new Date());
+		Integral integralInfo = new Integral();
+		integralInfo.setUserid(user.getUserid());
+		integralInfo.setDetails("兑换商品，单号："+orderid);
+		integralInfo.setChangeintegral(0-integraltoarticle.getIntegral());
+		integralInfo.setRemainingpoints(integral.getRemainingpoints() - integraltoarticle.getIntegral());
+		integralInfo.setChangetime(new Date());
 		
-		if(integralMapper.insertSelective(integralCustom) <= 0) return false; 
+		if(integralMapper.insertSelective(integralInfo) <= 0) return false; 
 		
 		return true;
 	}

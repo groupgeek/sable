@@ -6,9 +6,10 @@
     <result column="MinWage" property="minwage" jdbcType="DECIMAL" />
     <result column="MaxWage" property="maxwage" jdbcType="DECIMAL" />
     <result column="positionName" property="positionname" jdbcType="VARCHAR" />
+    <result column="minAuthority" property="minauthority" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    positionId, MinWage, MaxWage, positionName
+    positionId, MinWage, MaxWage, positionName, minAuthority
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Positional" >
     insert into positional (positionId, MinWage, MaxWage, 
-      positionName)
+      positionName, minAuthority)
     values (#{positionid,jdbcType=INTEGER}, #{minwage,jdbcType=DECIMAL}, #{maxwage,jdbcType=DECIMAL}, 
-      #{positionname,jdbcType=VARCHAR})
+      #{positionname,jdbcType=VARCHAR}, #{minauthority,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Positional" >
     insert into positional
@@ -41,6 +42,9 @@
       <if test="positionname != null" >
         positionName,
       </if>
+      <if test="minauthority != null" >
+        minAuthority,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="positionid != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="positionname != null" >
         #{positionname,jdbcType=VARCHAR},
+      </if>
+      <if test="minauthority != null" >
+        #{minauthority,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="positionname != null" >
         positionName = #{positionname,jdbcType=VARCHAR},
       </if>
+      <if test="minauthority != null" >
+        minAuthority = #{minauthority,jdbcType=INTEGER},
+      </if>
     </set>
     where positionId = #{positionid,jdbcType=INTEGER}
   </update>
@@ -76,10 +86,10 @@
     update positional
     set MinWage = #{minwage,jdbcType=DECIMAL},
       MaxWage = #{maxwage,jdbcType=DECIMAL},
-      positionName = #{positionname,jdbcType=VARCHAR}
+      positionName = #{positionname,jdbcType=VARCHAR},
+      minAuthority = #{minauthority,jdbcType=INTEGER}
     where positionId = #{positionid,jdbcType=INTEGER}
   </update>
-  
   <select id="selectAll" resultType="positionalCustom">
   
   	SELECT * FROM positional

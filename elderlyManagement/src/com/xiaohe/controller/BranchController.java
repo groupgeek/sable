@@ -61,13 +61,17 @@ public class BranchController {
 	
 	@RequestMapping("/index")
 	public String index(Model model,HttpServletRequest request){
+		
+		User user = getUser(request);
+		if(user == null) return "redirect:/jsp/logReg/login.jsp";
+		
 		List<ActivityCustom> activities = new ArrayList<ActivityCustom>();
 		List<ProductCustom> productCustoms = new ArrayList<ProductCustom>();
 		List<CommonsenseCustom> commonsenseCustoms = new ArrayList<CommonsenseCustom>();//小常识
 		List<CommonsenseCustom> heartCustoms = new ArrayList<CommonsenseCustom>();//心灵鸡汤
 		
 		//根据用户地区id查询分店信息 
-		Branch branch = branchService.queryBranchById(getUser(request).getAreaid());
+		Branch branch = branchService.queryBranchById(user.getAreaid());
 		/**
 		 * 开始查询推荐活动
 		 */
@@ -81,7 +85,7 @@ public class BranchController {
 		 * 推荐的商品 根据商品的购买次数推荐
 		 */
 		ProductCustom productCustom = new ProductCustom();
-		productCustom.setAreaid(getUser(request).getAreaid());
+		productCustom.setAreaid(user.getAreaid());
 		//productCustom.setAreaid(1);
 		productCustom.setBegin(0);
 		productCustom.setTotal(3);

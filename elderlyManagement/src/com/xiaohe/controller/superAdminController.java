@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ import com.xiaohe.bean.AreaCustom;
 import com.xiaohe.bean.AuthorityCustom;
 import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.BranchVo;
+import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.bean.LevelCustom;
@@ -127,6 +131,31 @@ public class superAdminController {
 		return text;
 	}
 
+	public Employee getAdmin(HttpServletRequest request){
+		return (Employee) request.getSession().getAttribute("admins");
+	}
+	
+	/**
+	 * 检查当前是否登录
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/getSuperAdmin")
+	public @ResponseBody Employee getSuperAdmin(HttpServletRequest request){
+		Employee admin = new EmployeeCustom();
+		admin = getAdmin(request);
+		return admin;
+	}
+	
+	//退出
+		@RequestMapping("/logout")
+		public String logout(HttpSession session)throws Exception{
+			
+			//session过期
+			session.invalidate();
+			
+			return "redirect:/jsp/AdminLogin/login.jsp";
+		}
 	
 	/**
 	 * 查询所有用户
@@ -517,12 +546,14 @@ public class superAdminController {
 	}
 	
 	@RequestMapping("/updateMessageInfo")
-	public @ResponseBody String updateMessageInfo(@RequestBody MessageCustom messageInfo){
-		String message = null;
+	public @ResponseBody ShowMessage updateMessageInfo(@RequestBody MessageCustom messageInfo){
+		ShowMessage message = new ShowMessage();
 		if(messageService.updateMessage(messageInfo)){
-			message = "更新成功";
+			message.setMessage("更新成功");
+			message.setFlag(true);
 		}else{
-			message = "更新失败";
+			message.setMessage("更新失败");
+			message.setFlag(false);
 		}
 		return message;
 	}

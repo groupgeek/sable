@@ -196,7 +196,7 @@
 
 	<!-- start: JavaScript-->
 
-	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/jquery-migrate-1.0.0.min.js"></script>

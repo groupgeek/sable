@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.AuthorityCustom;
 import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.service.AuthorityService;
@@ -20,6 +21,13 @@ public class AuthorityServiceImpl implements AuthorityService {
 	public List<AuthorityCustom> queryAll() {
 		
 		return authorityMapper.selectAll();
+	}
+
+	public Authority queryByAuthorityId(Integer aid) {
+		if(aid == null) return null;
+		Authority info = new Authority();
+		info =  authorityMapper.selectByPrimaryKey(aid);
+		return info;
 	}
 
 }

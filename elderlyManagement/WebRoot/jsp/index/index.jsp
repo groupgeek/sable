@@ -355,6 +355,7 @@
 
             <!-- Main Scripts-->
             <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
+            <%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script> --%>
             <script src="${pageContext.request.contextPath }/jsp/index/js/bootstrap.js"></script>
             <script src="${pageContext.request.contextPath }/jsp/index/js/custom.js"></script>
             <script src="${pageContext.request.contextPath }/jsp/index/js/jquery.nav.js"></script>

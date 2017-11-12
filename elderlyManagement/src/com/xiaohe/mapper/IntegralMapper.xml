@@ -5,12 +5,12 @@
     <id column="integralId" property="integralid" jdbcType="INTEGER" />
     <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="details" property="details" jdbcType="VARCHAR" />
-    <result column="change" property="change" jdbcType="INTEGER" />
+    <result column="changeIntegral" property="changeintegral" jdbcType="INTEGER" />
     <result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
     <result column="remainingPoints" property="remainingpoints" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    integralId, userId, details, change, changeTime, remainingPoints
+    integralId, userId, details, changeIntegral, changeTime, remainingPoints
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,10 +24,10 @@
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Integral" >
     insert into integral (integralId, userId, details, 
-      change, changeTime, remainingPoints
+      changeIntegral, changeTime, remainingPoints
       )
     values (#{integralid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{details,jdbcType=VARCHAR}, 
-      #{change,jdbcType=INTEGER}, #{changetime,jdbcType=TIMESTAMP}, #{remainingpoints,jdbcType=INTEGER}
+      #{changeintegral,jdbcType=INTEGER}, #{changetime,jdbcType=TIMESTAMP}, #{remainingpoints,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Integral" >
@@ -42,8 +42,8 @@
       <if test="details != null" >
         details,
       </if>
-      <if test="change != null" >
-        change,
+      <if test="changeintegral != null" >
+        changeIntegral,
       </if>
       <if test="changetime != null" >
         changeTime,
@@ -62,8 +62,8 @@
       <if test="details != null" >
         #{details,jdbcType=VARCHAR},
       </if>
-      <if test="change != null" >
-        #{change,jdbcType=INTEGER},
+      <if test="changeintegral != null" >
+        #{changeintegral,jdbcType=INTEGER},
       </if>
       <if test="changetime != null" >
         #{changetime,jdbcType=TIMESTAMP},
@@ -82,8 +82,8 @@
       <if test="details != null" >
         details = #{details,jdbcType=VARCHAR},
       </if>
-      <if test="change != null" >
-        change = #{change,jdbcType=INTEGER},
+      <if test="changeintegral != null" >
+        changeIntegral = #{changeintegral,jdbcType=INTEGER},
       </if>
       <if test="changetime != null" >
         changeTime = #{changetime,jdbcType=TIMESTAMP},
@@ -98,13 +98,13 @@
     update integral
     set userId = #{userid,jdbcType=INTEGER},
       details = #{details,jdbcType=VARCHAR},
-      change = #{change,jdbcType=INTEGER},
+      changeIntegral = #{changeintegral,jdbcType=INTEGER},
       changeTime = #{changetime,jdbcType=TIMESTAMP},
       remainingPoints = #{remainingpoints,jdbcType=INTEGER}
     where integralId = #{integralid,jdbcType=INTEGER}
   </update>
   
-  <sql id="integralSql">
+   <sql id="integralSql">
   	<if test="integralid != null" >
         AND integralId = #{integralid,jdbcType=INTEGER}
       </if>
@@ -114,8 +114,8 @@
       <if test="details != null" >
         AND details = #{details,jdbcType=VARCHAR}
       </if>
-      <if test="change != null" >
-        AND change = #{change,jdbcType=INTEGER}
+      <if test="changeintegral != null" >
+        AND changeIntegral = #{changeintegral,jdbcType=INTEGER}
       </if>
       <if test="changetime != null" >
         AND changeTime = #{changetime,jdbcType=TIMESTAMP}

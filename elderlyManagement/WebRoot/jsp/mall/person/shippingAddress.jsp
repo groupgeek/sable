@@ -14,9 +14,9 @@
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/addstyle.css" rel="stylesheet" type="text/css">
-		<script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js" type="text/javascript"></script>
+		<%-- <script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js" type="text/javascript"></script> --%>
 		<script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/amazeui.js"></script>
-
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 	</head>
 
 	<body>

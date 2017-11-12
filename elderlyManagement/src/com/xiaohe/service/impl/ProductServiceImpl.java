@@ -150,6 +150,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public Integer queryProductSumByCondition(ProductCustom condition) {
+		if(condition == null) return null;
 
 		if(condition.getProducttypename() == "" || "null".equals(condition.getProducttypename())  ){
 			condition.setProducttypename(null);
@@ -162,7 +163,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public ProductCustom queryProductInfoById(Integer id) {
-		
+		if(id == null) return null;
 		ProductCustom product= new ProductCustom();
 		Product temp = productMapper.selectByPrimaryKey(id);
 		if(temp != null){
@@ -183,6 +184,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<EvaluationCustom> queryEvaluationByProductId(EvaluationCustom condition) {
+		if(condition == null) return null;
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		condition.setPageNum(3);
 		if(condition.getCurrentPage() > 0){
@@ -241,7 +243,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public Integer queryEvaluationSum(Integer id) {
-		
+		if(id == null) return null;
 		Integer sum = evaluationMapper.selectEvaluationSum(id);
 		Integer pageSum = sum / 3;
 		if(sum % 3 != 0){
@@ -251,7 +253,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<ProductCustom> querySimilarProductsByProductId(ProductCustom condition) {
-		
+		if(condition == null) return null;
 		Product product = productMapper.selectByPrimaryKey(condition.getProductid());
 		if(product != null){
 			condition.setProducttypeid(product.getProducttypeid());

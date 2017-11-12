@@ -77,7 +77,16 @@ public class LogRegController {
 			return "redirect:/branch/index.action";
 		}
 
+	}//退出
+	@RequestMapping("/logout")
+	public String logout(HttpSession session)throws Exception{
+		
+		//session过期
+		session.invalidate();
+		
+		return "redirect:/jsp/logReg/login.jsp";
 	}
+
 	
 	
 }

@@ -1,6 +1,10 @@
 package com.xiaohe.service.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,10 +88,20 @@ public class ReturnvisitCustomImpl implements ReturnvisitService {
 		if(info.getReturnvisitid() == null || info.getReturnvisitid() < 0) return false;
 		if(info.getUserid() == null || info.getUserid() < 0) return false;
 		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		try {
+			date = df.parse(info.getLastvisttimeString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		info.setLastvisttime(date);
 		if(returnvisitMapper.updateByPrimaryKeySelective(info) < 0) return false;
 		UserCustom user = new UserCustom();
 		user.setUserid(info.getUserid());
 		user.setAddress(info.getAddress());
+		
+		
 		
 		if(userMapper.updateByPrimaryKeySelective(user) < 0) return false;
 		

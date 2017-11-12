@@ -2,7 +2,6 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
-import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 

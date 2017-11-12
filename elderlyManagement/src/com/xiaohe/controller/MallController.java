@@ -251,6 +251,12 @@ public class MallController {
 		 * salesThisMonth 本月销量
 		 * sales 总销量
 		 */
+		/**
+		 * 后面更改到错误页面
+		 */
+		if(id == null) return "mall/home/introduction";
+		
+		
 		ProductCustom productInfo = new ProductCustom();
 		
 		List<ProductCustom> similarProducts = new ArrayList<ProductCustom>();
@@ -865,6 +871,7 @@ public class MallController {
 	public String addIntegralOrder(IntegraltoarticleCuntom info,HttpServletRequest request,Model model){
 		User user = getUser(request);
 		if(user == null || info == null) return null;
+		info.setUserid(user.getUserid());
 		if(integraltoarticleService.addIntegralOrder(info)){
 			model.addAttribute("message", "交易成功");
 		}else{

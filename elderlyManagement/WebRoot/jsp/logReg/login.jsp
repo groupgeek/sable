@@ -69,7 +69,7 @@
 
 				<!-- Start Sign In Form -->
 				<form id="login"
-					action="${pageContext.request.contextPath }/logReg/login.action"
+					action="${pageContext.request.contextPath }/logReg/login.action" method="post"
 					class="fh5co-form animate-box" data-animate-effect="fadeIn">
 					<h2>登录</h2>
 					<div class="form-group">

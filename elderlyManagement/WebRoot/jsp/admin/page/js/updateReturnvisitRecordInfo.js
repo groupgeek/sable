@@ -30,18 +30,27 @@ $(document).ready(function(){
 		var countvisit = $("#countvisit input").attr("value");
 		var userid = $("#userid").attr("value");
 		var returnvisitid = $("#returnvisitid").attr("value");
+
+		var info = new Object();
+		info.address = address;
+		info.lastvisttimeString = lastvisttime;
+		info.countvisit = countvisit;
+		info.userid = userid;
+		info.returnvisitid = returnvisitid;
+		
 		$.ajax({
 			
 			type:"post",
 			contentType:"application/json;charset=utf-8",
 			url:root+"/superAdmin/updateReturnRecord",
-			data:'{"address"'+':'+'"'+address+'"'+','
+			/*data:'{"address"'+':'+'"'+address+'"'+','
 				+'"lastvisttime"'+':'+'"'+lastvisttime+'"'+','
 				+'"returnvisitid"'+':'+'"'+returnvisitid+'"'+','
 				+'"userid"'+':'+'"'+userid+'"'+','
 				+'"countvisit"'+':'+'"'+countvisit+'"'
         		+'}',
-	    	
+	    	*/
+			data:JSON.stringify(info),
 			success:function(data){
 				alert(data.message);
 			}

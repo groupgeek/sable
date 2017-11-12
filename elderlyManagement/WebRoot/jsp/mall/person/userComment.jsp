@@ -14,7 +14,8 @@
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/appstyle.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/jquery-1.7.2.min.js"></script>
+		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/jquery-1.7.2.min.js"></script> --%>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 	</head>
 
 	<body>

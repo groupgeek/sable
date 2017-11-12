@@ -14,7 +14,7 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/systyle.css" rel="stylesheet" type="text/css">
 		
-		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 		<style type="text/css">
 		
 		</style>

@@ -48,7 +48,7 @@ public class AdminLoginController {
 			return"redirect:/brach/index.action";
 		}else if (admins.getAuthorityid()==7) {
 		//超级管理员跳转
-		return "admin/index";
+		return "redirect:/jsp/admin/index.jsp";
 	}
 		}
 		if (mark==0) {

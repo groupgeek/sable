@@ -16,7 +16,7 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/jsstyle.css" rel="stylesheet" type="text/css" />
 		
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/address.js"></script>
-
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 	</head>
 
 	<body>

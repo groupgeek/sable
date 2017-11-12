@@ -1,6 +1,10 @@
 package com.xiaohe.service.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +81,15 @@ public class MessageServiceImpl implements MessageService {
 		if(messageInfo == null) return false;
 		if(messageInfo.getMessageid() == null || messageInfo.getMessageid() < 0) return false;
 		if(messageInfo.getUserid() == null || messageInfo.getUserid() < 0) return false;
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		try {
+			date = df.parse(messageInfo.getMessagetimeString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		messageInfo.setMessagetime(date);
 		if(messageMapper.updateByPrimaryKeySelective(messageInfo) < 0) return false;
 		return true;
 	}

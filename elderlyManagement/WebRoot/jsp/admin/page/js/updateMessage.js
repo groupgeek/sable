@@ -15,7 +15,7 @@ $(document).ready(function(){
     			+'}',
 		success:function(data){
 			$("#username input").attr("value",data.username);
-			$("#messagetime input").attr("value",data.messagetime);
+			$("#messagetime input").attr("value",data.messagetimeString);
 			$("#messagecontext textarea").text(data.messagecontext);
 			$("#userid").attr("value",data.userid);
 			$("#messageid").attr("value",data.messageid);
@@ -33,10 +33,10 @@ $(document).ready(function(){
 			type:"post",
 			contentType:"application/json;charset=utf-8",
 			url:root+"/superAdmin/updateMessageInfo",
-			dataType:'text',
+			dataType:'json',
 			data:'{"messageid"'+':'+'"'+messageid+'"'+','
 				+'"username"'+':'+'"'+username+'"'+','
-				+'"messagetime"'+':'+'"'+messagetime+'"'+','
+				+'"messagetimeString"'+':'+'"'+messagetime+'"'+','
 				+'"messagecontext"'+':'+'"'+messagecontext+'"'+','
 				+'"userid"'+':'+'"'+userid+'"'
 	    			+'}',
@@ -44,7 +44,9 @@ $(document).ready(function(){
 	    		alert("更新失败");
 	    	},
 			success:function(data){
-				alert("更新成功");
+				if(data.flag){
+					alert(data.message);
+				}
 			}
 		});
 		

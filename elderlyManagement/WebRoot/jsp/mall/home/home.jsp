@@ -26,8 +26,9 @@
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath }/jsp/mall/css/skin.css"
 	rel="stylesheet" type="text/css" />
-<script
-	src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
+<%-- <script
+	src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js"></script> --%>
 <script
 	src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/amazeui.min.js"></script>
 

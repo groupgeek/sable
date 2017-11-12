@@ -43,13 +43,35 @@
 
 	<!-- springmvc 拦截器的配置 -->
 	<mvc:interceptors>
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/logReg/login.action" />
+			<bean class="com.xiaohe.controller.interceptor.UserLoginInterceptor"></bean>
+		</mvc:interceptor> -->
+		<!-- 用户登录拦截 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.xiaohe.controller.interceptor.LoginInterceptor">
-			</bean>
+			<mvc:mapping path="/branch/*" />
+			<mvc:mapping path="/product/*" />
+			<bean class="com.xiaohe.controller.interceptor.UserLoginInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<!-- 管理员登录拦截 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/superAdmin/*" />
+			<!-- 管理员2登录拦截 -->
+			<!-- 管理员3登录拦截 -->
+			<bean class="com.xiaohe.controller.interceptor.AdminLoginInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<!-- 管理员权限拦截 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/superAdmin/*" />
+			<!-- 管理员2权限拦截 -->
+			<!-- 管理员3权限拦截 -->
+			<bean class="com.xiaohe.controller.interceptor.AdminAuthorityInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
-
+		<!-- ceo登录拦截 -->
+		<!-- ceo权限拦截 -->
 
 
 	<bean id="multipartResolver"

@@ -84,7 +84,8 @@
 
 	<!-- start: JavaScript-->
 
-	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
+	<%-- <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>
+	<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script> --%>
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/jquery-migrate-1.0.0.min.js"></script>
@@ -172,7 +173,6 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-
 
 
 

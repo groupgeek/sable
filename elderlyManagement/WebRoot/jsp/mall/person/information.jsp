@@ -16,9 +16,9 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/infstyle.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/css/ssi-uploader.css" rel="stylesheet" type="text/css">
 		<script src="${pageContext.request.contextPath }/jsp/js/ssi-uploader.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js" type="text/javascript"></script>
+		<%-- <script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js" type="text/javascript"></script> --%>
 		<script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/amazeui.js" type="text/javascript"></script>
-		
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 	</head>
 
 	<body>

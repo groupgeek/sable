@@ -38,7 +38,7 @@
 			$("#manager span").text(data.manager.employeename);
 			$("#authoritylevel span").text(data.authority.authoritylevel);
 			$("#areaaddress span").text(data.area.areaaddress);
-			$("#online span").text(data.online);
+			//$("#online span").text(data.online);
 			
 			$("#nowmedicalrecords textarea").attr("value",data.med.nowmedicalrecords);
 			$("#beforemedicalrecords textarea").attr("value",data.med.beforemedicalrecords);

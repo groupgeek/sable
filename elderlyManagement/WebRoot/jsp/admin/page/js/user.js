@@ -13,7 +13,7 @@ $(document).ready(function(){
 						'<tr>'+
 							'<td>'+ (data.userList)[i].username +'</td>'+
 							'<td class="center">'+(data.userList)[i].dateStringRegistrationdate+
-							'<td class="center">'+ (data.userList)[i].online +'</td>'+
+							'<td class="center">'+ (data.userList)[i].phone +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.userList)[i].status +'</span>'+
 							'</td>'+

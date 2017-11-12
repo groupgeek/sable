@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title>Attorney - Personal Portfolio, Blog Template</title>
+    <title>官网</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -82,8 +82,8 @@
                                     <li><a href="${pageContext.request.contextPath }/product/mallIndex" title="商城">商城</a></li>
                                     <li><a href="" title="">教育中心</a></li>
                                     <li><a href="" title="">健康中心</a></li>
-                                    <li><a href="" title="">个人中心</a></li>
-                                    <li><a href="" title="">安全退出${user.username }</a></li>
+                                    <li><a href="" title="">${user.username }的个人中心</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/logReg/logout" title="">安全退出</a></li>
                                 </ul>
                             </div><!-- end navbar-collapse collapse -->
                         </div><!-- nav -->
@@ -338,6 +338,7 @@
 
             <!-- Main Scripts-->
             <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
+            <%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script> --%>
             <script src="${pageContext.request.contextPath }/jsp/index/js/bootstrap.js"></script>
             <script src="${pageContext.request.contextPath }/jsp/index/js/custom.js"></script>
             <script src="${pageContext.request.contextPath }/jsp/index/js/jquery.nav.js"></script>

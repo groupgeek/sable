@@ -11,7 +11,7 @@ $(document).ready(function(){
 				$("#box tbody").append(
 						'<tr>'+
 							'<td>'+ (data.branchList)[i].branchname +'</td>'+
-							'<td class="center">'+(data.branchList)[i].employeename+
+							'<td class="center"><a href="'+root+'/jsp/admin/page/employeeInfo.jsp?employeeid='+(data.branchList)[i].employeeid+'">'+ (data.branchList)[i].employeename +'</a></td>'+
 							'<td class="center">'+ (data.branchList)[i].areaaddress +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.branchList)[i].profit +'</span>'+
