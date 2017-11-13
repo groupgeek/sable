@@ -23,14 +23,38 @@ $(document).ready(function(){
 								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateActivity.jsp?activityid='+ (data.activityList)[i].activityid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
-								'<a class="btn btn-danger" href="#">'+
+								'<a class="btn btn-danger" href="javascript:;" name="drop">'+
 									'<i class="halflings-icon white trash"></i>'+
 								'</a>'+
+								'<input type="hidden" value="'+ (data.activityList)[i].activityid +'">'+
 							'</td>'+
 						'</tr>'
 					);
 				
 			}
+			
+			//添加删除事件
+			$("#box tbody td").find("a[name=drop]").click(function(){
+				myself = $(this);
+				var activityid = myself.next().val();
+				myself.parent().parent().remove();
+				$.ajax({
+					
+					type:"post",
+					contentType:"application/json;charset=utf-8",
+					url:root+"/superAdmin/deleteActivity",
+					data:JSON.stringify(activityid),
+					success:function(data){
+						if(data.flag){
+							myself.parent().parent().remove();
+						}else{
+							alert(data.message);
+						}
+					}
+				});
+				
+				
+			});
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");

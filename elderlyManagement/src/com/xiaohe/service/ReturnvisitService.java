@@ -29,5 +29,12 @@ public interface ReturnvisitService {
 	 * @return
 	 */
 	public boolean updateRecordInfoById(ReturnvisitCustom info);
+	
+	/**
+	 * 删除回访就记录
+	 * @param returnvisitid
+	 * @return
+	 */
+	public boolean deleteRecord(Integer returnvisitid);
 
 }

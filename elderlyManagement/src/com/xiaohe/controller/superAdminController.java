@@ -46,6 +46,7 @@ import com.xiaohe.bean.TransactionVo;
 import com.xiaohe.bean.UpdateActivityVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
+import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.ActivitytypeService;
 import com.xiaohe.service.AreaService;
@@ -282,6 +283,22 @@ public class superAdminController {
 	}
 	
 	/**
+	 * 删除客户
+	 * @return
+	 */
+	@RequestMapping("/deleteUser")
+	public @ResponseBody ShowMessage deleteUser(@RequestBody Integer userid){
+		ShowMessage message = new ShowMessage();
+		if(userService.deleteUser(userid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
+	}
+	
+	/**
 	 * 查询所有员工
 	 * @param condition
 	 * @return
@@ -406,6 +423,22 @@ public class superAdminController {
 	}
 	
 	/**
+	 * 删除员工
+	 * @return
+	 */
+	@RequestMapping("/deleteEmployee")
+	public @ResponseBody ShowMessage deleteEmployee(@RequestBody Integer employeeid){
+		ShowMessage message = new ShowMessage();
+		if(employeeService.deleteEmployee(employeeid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
+	}
+	
+	/**
 	 * 查询所有活动
 	 * @param condition
 	 * @return
@@ -507,6 +540,23 @@ public class superAdminController {
 		}
 		return "admin/page/addActivity";
 	};
+	
+	/**
+	 * 删除活动
+	 * @return
+	 */
+	@RequestMapping("/deleteActivity")
+	public @ResponseBody ShowMessage deleteActivity(@RequestBody Integer activityid){
+		ShowMessage message = new ShowMessage();
+		if(activityService.deleteActivity(activityid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
+	}
+	
 	
 	/**
 	 * 查询所有分店
@@ -764,6 +814,22 @@ public class superAdminController {
 	}
 	
 	/**
+	 * 删除商品
+	 * @return
+	 */
+	@RequestMapping("/deleteProduct")
+	public @ResponseBody ShowMessage deleteProduct(@RequestBody Integer productid){
+		ShowMessage message = new ShowMessage();
+		if(productService.deleteProduct(productid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
+	}
+	
+	/**
 	 * 查询用户交易表
 	 * @return
 	 */
@@ -810,6 +876,22 @@ public class superAdminController {
 	}
 	
 	/**
+	 * 删除用户交易表
+	 * @return
+	 */
+	@RequestMapping("/deleteTransation")
+	public @ResponseBody ShowMessage deleteTransation(@RequestBody Integer transactionid){
+		ShowMessage message = new ShowMessage();
+		if(transactionService.deleteRecord(transactionid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
+	}
+	
+	/**
 	 * 查询所有回访记录
 	 * @return
 	 */
@@ -851,5 +933,43 @@ public class superAdminController {
 		}
 		showMessage.setMessage(message);
 		return showMessage;
+	}
+	
+	/**
+	 * 删除回访记录
+	 * @return
+	 */
+	@RequestMapping("/deleteReturnRecord")
+	public @ResponseBody ShowMessage deleteReturnRecord(@RequestBody Integer returnvisitid){
+		ShowMessage message = new ShowMessage();
+		if(returnvisitService.deleteRecord(returnvisitid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 未启用
+	 * 删除用户留言
+	 * @return
+	 */
+	@RequestMapping("/deleteMessage")
+	public @ResponseBody ShowMessage deleteMessage(@RequestBody Integer messageid){
+		ShowMessage message = new ShowMessage();
+		if(messageService.deleteMessage(messageid)){
+			message.setFlag(true);
+		}else{
+			message.setFlag(false);
+			message.setMessage("删除失败");
+		}
+		return message;
 	}
 }

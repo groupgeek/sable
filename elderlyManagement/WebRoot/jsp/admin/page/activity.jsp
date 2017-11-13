@@ -110,7 +110,7 @@
 								</div>
 								<select id="selectSort">
 									<!-- <option>排序方式</option> -->
-									<option value="activitydate">时间</option>
+									<option value="activityDate">时间</option>
 									<!-- <option>0.0</option> -->
 								</select> 
 								<select id="activitystatus">

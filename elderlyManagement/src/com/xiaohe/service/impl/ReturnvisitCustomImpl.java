@@ -109,4 +109,13 @@ public class ReturnvisitCustomImpl implements ReturnvisitService {
 		
 	}
 
+	public boolean deleteRecord(Integer returnvisitid) {
+		
+		if(returnvisitid == null) return false;
+		
+		if(returnvisitMapper.deleteByPrimaryKey(returnvisitid) <= 0) return false;
+		
+		return true;
+	}
+
 }

@@ -111,7 +111,7 @@
 								</div>
 								<select id="selectSort">
 									<!-- <option>排序方式</option> -->
-									<option value="registrationdate">时间</option>
+									<option value="registrationDate">时间</option>
 									<!-- <option>0.0</option> -->
 								</select> <input type="text" id="search" placeholder="搜索">
 

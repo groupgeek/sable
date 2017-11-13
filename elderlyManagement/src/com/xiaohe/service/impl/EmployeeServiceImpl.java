@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.EmployeeMapper;
 import com.xiaohe.service.EmployeeService;
+import com.xiaohe.util.DeleteFile;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetAge;
 import com.xiaohe.util.GetStringByDate;
@@ -141,8 +143,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}else{
 			accountNumber += sum+1;
 		}
-		
 		employee.setAccountnumber(accountNumber);
+		employee.setEntrytime(new Date());
 		if(employeeMapper.insertSelective(employee) <= 0) return null;
 		
 		return accountNumber;
@@ -158,6 +160,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		all = employeeMapper.selectAllEmployeeByPosition(custom);
 		
 		return all;
+	}
+
+	public boolean deleteEmployee(Integer employeeid) {
+		if(employeeid == null) return false;
+		
+		Employee employee = new Employee();
+		employee = employeeMapper.selectByPrimaryKey(employeeid);
+		
+		if(employeeMapper.deleteByPrimaryKey(employeeid) <= 0) return false;
+		if(!DeleteFile.deleteFile(employee.getAvatar())) return false;
+		
+		return true;
 	}
 
 }

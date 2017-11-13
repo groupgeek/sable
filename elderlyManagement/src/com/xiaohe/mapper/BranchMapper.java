@@ -64,7 +64,7 @@ public interface BranchMapper {
      * @param ceoBranchCustom
      * @return
      */
-    List<BranchCustom> selectBranchs(BranchCustom branchCustom);
+    List<BranchCustom> selectBranchs();
     
     /**
      * 根据用户id查询分店

@@ -40,14 +40,37 @@ $(document).ready(function(){
 								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateProduct.jsp?productid='+ (data.productList)[i].productid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
-								'<a class="btn btn-danger" href="#">'+
+								'<a class="btn btn-danger" href="javascript:;" name="drop">'+
 									'<i class="halflings-icon white trash"></i>'+
 								'</a>'+
+								'<input type="hidden" value="'+ (data.productList)[i].productid +'">'+
 							'</td>'+
 						'</tr>'
 					);
 				
 			}
+			
+			//添加删除事件
+			$("#box tbody td").find("a[name=drop]").click(function(){
+				myself = $(this);
+				var productid = myself.next().val();
+				$.ajax({
+					
+					type:"post",
+					contentType:"application/json;charset=utf-8",
+					url:root+"/superAdmin/deleteProduct",
+					data:JSON.stringify(productid),
+					success:function(data){
+						if(data.flag){
+							myself.parent().parent().remove();
+						}else{
+							alert(data.message);
+						}
+					}
+				});
+				
+				
+			});
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");
@@ -94,6 +117,7 @@ $(document).ready(function(){
         			+'}',
 			success:function(data){
 				//alert(data.pageSum);
+				$("#addProductUrl").attr("href",root+"/jsp/admin/page/addProduct.jsp?branchid="+(data.productList)[0].branchid);
 				$("#box tbody").html("");
 				$("#home").attr("value",1);
 				$("#previousPage").attr("value",1);

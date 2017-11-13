@@ -170,6 +170,14 @@ public class ActivityServiceImpl implements ActivityService {
 		if(activityMapper.insertSelective(activity) < 0) return false;
 		return true;
 	}
+
+	public boolean deleteActivity(Integer activityid) {
+		
+		if(activityid == null) return false;
+		if(activityMapper.deleteByPrimaryKey(activityid) <= 0) return false;
+		
+		return true;
+	}
 	
 
 	

@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>Ceo管理员系统</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -132,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  			
 									</div>
 									<div id="section">
-										<div id="section1"><img class="image1" src="img/avatar.jpg"></div>
+										<div id="section1"><img class="image1" src="${pageContext.request.contextPath }/ceo/img/gallery/photo5.jpg"></div>
 							
 									</div>
 								</div>

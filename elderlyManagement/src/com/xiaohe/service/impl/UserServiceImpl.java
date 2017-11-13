@@ -43,6 +43,7 @@ import com.xiaohe.mapper.ShippingaddressMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
+import com.xiaohe.util.DeleteFile;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetStringByDate;
 
@@ -139,12 +140,26 @@ public class UserServiceImpl implements UserService {
 				returnvisitMapper.insertSelective(returnvisit);
 				
 				//赠送积分
+				
+				IntegralCustom condetion = new IntegralCustom();
+				condetion.setCurrentPage(1);
+				condetion.setPageNum(1);
+				condetion.setUserid(user.getUserid());
+				
 				IntegralCustom integral = new IntegralCustom();
-				integral.setChangeintegral(10);
-				integral.setDetails("用户注册赠送");
 				integral.setUserid(user.getUserid());
 				integral.setChangetime(new Date());
-				integral.setRemainingpoints(10);
+				IntegralCustom temp = integralMapper.selectUpToDateRecord(condetion);
+				if(temp == null){
+					integral.setChangeintegral(10);
+					integral.setDetails("用户注册赠送");
+					integral.setRemainingpoints(10);
+					
+				}else{
+					integral.setChangeintegral(Integer.parseInt(userCustom.getIntegral()));
+					integral.setDetails("管理员赠送");
+					integral.setRemainingpoints(Integer.parseInt(userCustom.getIntegral()) + temp.getRemainingpoints());
+				}
 				integralMapper.insertSelective(integral);
 				
 				//创建用户病例表
@@ -410,6 +425,16 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return all;
+	}
+
+	public boolean deleteUser(Integer userid) {
+		if(userid == null) return false;
+		UserCustom user = new UserCustom();
+		user = userMapper.selectUserById(userid);
+		if(userMapper.deleteByPrimaryKey(userid) <= 0) return false;
+		if(!DeleteFile.deleteFile(user.getAvatar())) return false;
+		
+		return true;
 	}
 	
 	

@@ -41,6 +41,12 @@ public interface EmployeeService {
 	public String addEmployee(EmployeeCustom employee);
 	
 	/**
+	 * 删除员工
+	 * @param employeeid
+	 * @return
+	 */
+	public boolean deleteEmployee(Integer employeeid);
+	/**
 	 * 获取到某职位的所有员工
 	 * @param positionid
 	 * @return

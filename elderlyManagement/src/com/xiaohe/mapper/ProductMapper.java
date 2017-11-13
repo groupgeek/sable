@@ -217,4 +217,7 @@ public interface ProductMapper {
      * @return
      */
     Integer selectAllProductSumByTypeId(ProductCustom condition);
+    
+    
+    
 }

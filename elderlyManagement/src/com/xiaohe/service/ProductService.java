@@ -262,4 +262,12 @@ public interface ProductService {
 	 * @return info 产品
 	 */
 	public String buyNow(ProductCustom info);
+	
+	
+	/**
+	 * 删除商品
+	 * @param productid
+	 * @return
+	 */
+	public boolean deleteProduct(Integer productid);
 }

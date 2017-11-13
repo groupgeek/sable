@@ -126,7 +126,7 @@
 	  		AND u.username LIKE '%${search}%'
 	  	</if>
 	  	<if test="sort != null" >
-		    ORDER BY #{sort} DESC  
+		    ORDER BY ${sort} DESC  
 		</if>
 	   	<if test="begin != null" >
 		  <if test="pageNum != null" >

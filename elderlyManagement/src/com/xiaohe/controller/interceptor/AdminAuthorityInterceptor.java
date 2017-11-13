@@ -42,7 +42,6 @@ public class AdminAuthorityInterceptor implements HandlerInterceptor{
 			if(Integer.parseInt(auth.getAuthoritylevel()) < posi.getMinauthority()){
 				String XRequested =request.getHeader("X-Requested-With");
 			      if("XMLHttpRequest".equals(XRequested)){
-			    	  
 			        response.getWriter().write("IsAjaxAuthAdmin");
 			      }else{
 			    	request.getRequestDispatcher("/jsp/AdminLogin/login.jsp").forward(request, response);

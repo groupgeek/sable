@@ -64,6 +64,9 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Product" >
+  	<selectKey keyProperty="productId" order="AFTER" resultType="Integer">
+  		SELECT LAST_INSERT_ID();
+  	</selectKey>
     insert into product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="productid != null" >
@@ -535,6 +538,9 @@
 	  	<if test="producttypeid != null" >
 		    AND productTypeId = #{producttypeid}
 		</if>
+		<if test="branchid != null" >
+		  	AND branchId = #{branchid}
+	  	</if>
 	  	<if test="sort != null" >
 		    ORDER BY #{sort} DESC  
 		</if>
@@ -556,6 +562,9 @@
   		<if test="producttypeid != null" >
 		    AND productTypeId = #{producttypeid}
 		</if>
+		<if test="branchid != null" >
+		  	AND branchId = #{branchid}
+	  	</if>
   </select>
   
   <select id="countBranchProduct" parameterType="com.xiaohe.bean.ProductCustom" resultType="com.xiaohe.bean.ProductCustom">

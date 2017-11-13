@@ -23,14 +23,38 @@ $(document).ready(function(){
 								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateBranch.jsp?branchid='+ (data.branchList)[i].branchid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
-								'<a class="btn btn-danger" href="#">'+
+								'<a class="btn btn-danger" href="javascript:;" name="drop">'+
 									'<i class="halflings-icon white trash"></i>'+
 								'</a>'+
+								'<input type="hidden" value="'+ (data.branchList)[i].branchid +'">'+
 							'</td>'+
 						'</tr>'
 					);
 				
 			}
+			
+			//添加删除事件
+			$("#box tbody td").find("a[name=drop]").click(function(){
+				myself = $(this);
+				var branchid = myself.next().val();
+				myself.parent().parent().remove();
+				$.ajax({
+					
+					type:"post",
+					contentType:"application/json;charset=utf-8",
+					url:root+"/superAdmin/",
+					data:JSON.stringify(branchid),
+					success:function(data){
+						if(data.flag){
+							myself.parent().parent().remove();
+						}else{
+							//alert(data.message);
+						}
+					}
+				});
+				
+				
+			});
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");

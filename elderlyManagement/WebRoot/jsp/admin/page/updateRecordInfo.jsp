@@ -73,7 +73,7 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/activity.jsp">客户关系管理</a>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/customerRelations.jsp">客户关系管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li><a href="#">交易记录修改</a></li>

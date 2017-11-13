@@ -97,7 +97,7 @@
 					<div class="box-content">
 						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/addProduct" method="post" enctype="multipart/form-data">
 							<fieldset>
-							  
+							  <input name = "branchid" type="hidden" value="" id = "branchid">
 							  <div class="control-group" id = "producPpicture">
 								<label class="control-label">添加图片</label>
 								<div class="controls">

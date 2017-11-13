@@ -46,13 +46,27 @@
 						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">分店管理</span>
 						</a>
-						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-dashboard"></i><span
+						<li><a href="${pageContext.request.contextPath }/jsp/admin/page/message.jsp"><i class="icon-folder-open"></i><span
 								class="hidden-tablet">留言管理</span>
 						</a>
 						</li>
-						<li><a href="javaScript:;" id = "demo"><i class="icon-dashboard"></i><span
+						<%-- <li><a href="${pageContext.request.contextPath }/jsp/admin/page/report.jsp" id = "report"><i class="icon-calendar"></i><span
 								class="hidden-tablet">报表统计</span>
 						</a>
+						</li> --%>
+						<li>
+							<a class="dropmenu" href="javascript:;"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">报表统计</span><span class="label label-important"> 3 </span></a>
+							<ul>
+								<li>
+									<a class="submenu" href="${pageContext.request.contextPath }/jsp/admin/page/mallReport.jsp"><i class="icon-file-alt"></i><span class="hidden-tablet"> 商城报表</span></a>
+								</li>
+								<li>
+									<a class="submenu" href="javascript:;"><i class="icon-file-alt"></i><span class="hidden-tablet"> 活动</span></a>
+								</li>
+								<li>
+									<a class="submenu" href="javascript:;"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a>
+								</li>
+							</ul>	
 						</li>
 
 					</ul>

@@ -32,5 +32,12 @@ public interface MessageService {
 	 * @return
 	 */
 	public boolean updateMessage (MessageCustom messageInfo);
+	
+	/**
+	 * 删除留言
+	 * @param messgaeid
+	 * @return
+	 */
+	public boolean deleteMessage(Integer messageid);
 
 }

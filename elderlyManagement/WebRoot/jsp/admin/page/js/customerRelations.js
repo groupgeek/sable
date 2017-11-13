@@ -43,14 +43,37 @@ $(document).ready(function(){
 								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateRecordInfo.jsp?transactionid='+ (data.transactionList)[i].transactionid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
-								'<a class="btn btn-danger" href="#">'+
+								'<a class="btn btn-danger" href="javascript:;" name="drop">'+
 									'<i class="halflings-icon white trash"></i>'+
 								'</a>'+
+								'<input type="hidden" value="'+ (data.transactionList)[i].transactionid +'">'+
 							'</td>'+
 						'</tr>'
 					);
 				
 			}
+			
+			//添加删除事件
+			$("#box tbody").find("a[name=drop]").click(function(){
+				myself = $(this);
+				var transactionid = myself.next().val();
+				$.ajax({
+					
+					type:"post",
+					contentType:"application/json;charset=utf-8",
+					url:root+"/superAdmin/deleteTransation",
+					data:JSON.stringify(transactionid),
+					success:function(data){
+						if(data.flag){
+							myself.parent().parent().remove();
+						}else{
+							alert(data.message);
+						}
+					}
+				});
+				
+				
+			});
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");
@@ -118,7 +141,7 @@ $(document).ready(function(){
 		});
 		
 		//排序
-		$("#sort").change(function(){
+		$("#selectSort").change(function(){
 			queryData();
 		});
 		//状态

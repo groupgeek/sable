@@ -79,5 +79,13 @@ public interface ActivityService {
 	 * @return
 	 */
 	public boolean addActivity(ActivityCustom activity,MultipartFile videoUpload,MultipartFile pictureUpload);
+	
+	
+	/**
+	 * 删除活动
+	 * @param activityid
+	 * @return
+	 */
+	public boolean deleteActivity(Integer activityid);
 
 }

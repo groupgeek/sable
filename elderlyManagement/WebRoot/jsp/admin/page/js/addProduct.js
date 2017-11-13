@@ -1,5 +1,8 @@
  $(document).ready(function(){
 	var root =  $("#root").attr("value");
+	var val = window.location.href.split("?")[1];
+	var branchid = val.split("=")[1];
+	$("#branchid").val(branchid);
 	var k = 0;
 	$.ajax({
 		

@@ -95,7 +95,7 @@
 								<span class="break"></span>商品数量<span id="productSum"></span>件
 							</h2>
 							<h2>
-								<span class="break"></span><a href="${pageContext.request.contextPath }/jsp/admin/page/addProduct.jsp" style="color: white; text-decoration: none;">添加商品</a>
+								<span class="break"></span><a href="" id = "addProductUrl" style="color: white; text-decoration: none;">添加商品</a>
 							</h2>
 							<div class="box-icon">
 								<a href="#" class="btn-minimize"><i

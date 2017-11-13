@@ -307,7 +307,9 @@ public class ProductServiceImpl implements ProductService {
 			}
 			
 		}
-		
+		if(condition.getBranchid() == -1){
+			condition.setBranchid(null);
+		}
 		allProducts = productMapper.selectAllProductByCondition(condition);
 		sum = productMapper.selectAllProductSumByCondition(condition);
 		pageSum = sum / condition.getPageNum();
@@ -402,7 +404,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		
 		if(productInfo.getTasteString() != null){
 			if(producttasteMapper.deleteProducttasteByProductid(record.getProductid()) < 0) return false;
-			for(String temp : productInfo.getTasteString().split(",")){
+			for(String temp : productInfo.getTasteString().split(" ")){
 				record.setProducttaste(temp);
 				if(producttasteMapper.insertSelective(record) < 0) return false;
 			}
@@ -412,7 +414,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		recordColor.setProductid(productInfo.getProductid());
 		if(productInfo.getColorString() != null){
 			if(productcolourMapper.deleteColorByProductId(recordColor.getProductid()) < 0) return false;
-			for(String temp : productInfo.getColorString().split(",")){
+			for(String temp : productInfo.getColorString().split(" ")){
 				recordColor.setProductcolour(temp);
 				if(productcolourMapper.insert(recordColor) < 0) return false;
 			}
@@ -441,7 +443,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		record.setProductid(productInfo.getProductid());
 		
 		if(productInfo.getTasteString() != null ||  !"".endsWith(productInfo.getTasteString())){
-			for(String temp : productInfo.getTasteString().split(",")){
+			for(String temp : productInfo.getTasteString().split(" ")){
 				record.setProducttaste(temp);
 				if(producttasteMapper.insertSelective(record) < 0) return false;
 			}
@@ -450,7 +452,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		Productcolour recordColor = new Productcolour();
 		recordColor.setProductid(productInfo.getProductid());
 		if(productInfo.getColorString() != null || !"".endsWith(productInfo.getColorString())){
-			for(String temp : productInfo.getColorString().split(",")){
+			for(String temp : productInfo.getColorString().split(" ")){
 				recordColor.setProductcolour(temp);
 				if(productcolourMapper.insert(recordColor) < 0) return false;
 			}
@@ -783,5 +785,15 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		return orderid;
 	}
 
+	public boolean deleteProduct(Integer productid) {
+		
+		if(productid == null) return false;
+		
+		if(productMapper.deleteByPrimaryKey(productid) <= 0) return false;
+		
+		return true;
+	}
+
+	
 	
 }

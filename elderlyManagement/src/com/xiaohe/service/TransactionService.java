@@ -28,4 +28,11 @@ public interface TransactionService {
 	 * @return
 	 */
 	public boolean updateRecordInfoById(TransactionCustom info);
+	
+	/**
+	 * 删除用户交易表记录
+	 * @param transactionid
+	 * @return
+	 */
+	public boolean deleteRecord(Integer transactionid);
 }

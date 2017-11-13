@@ -161,5 +161,15 @@ public interface ActivityMapper {
      * @return
      */
     int selectCountActivity();
+    /**
+     * 按月份查询一年内的活动支出
+     * @return
+     */
+    List<CeoActivity> CeoActivityByTime();
+    /**
+     * 按月份查询一年内的活动收入
+     * @return
+     */
+    List<CeoActivity> CeoRegisteryFeeByTime();
    
 }

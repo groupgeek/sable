@@ -11,11 +11,15 @@ import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
+import com.xiaohe.bean.CeoProducttransactionreport;
+import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.Producttransactionreport;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 
@@ -56,6 +60,11 @@ public interface CeoService {
 	public List<Activity> findSumActivityByTime();
 	public List<CeoActivity> findSumActivitieregisteryFeeByTime();
 	/**
+	 * 做盈利额图表的方法
+	 * @return
+	 */
+	public CeoSelectVo findBigDecimal();
+	/**
 	 * 查询活动的总数量
 	 * @return
 	 */
@@ -68,6 +77,13 @@ public interface CeoService {
 	public List<String> findAllUser();
 	public List<User> findAllUserByTime();
 	public List<UserCustom> findUserCustoms();
+	/**
+	 * 测试方法
+	 * @param id
+	 * @return
+	 */
+	public List<UserCustom> findUserTest(Integer id);
+	public List<CeoProducttransactionreport> findProducttransactionreportTest(Integer id);
 	/**
 	 * 查询新注册的4名用户
 	 * @param user
@@ -97,98 +113,94 @@ public interface CeoService {
 	 * @return
 	 */
 	public List<Product> findHotProducts();
+	/**
+	 * 查询商品信息
+	 * @return
+	 */
 	public List<ProductCustom> findProductCustoms();
-	public Product findProductById(Integer productid);
-	
+	public Product findProductById(Integer productid);	
 	public int findCountProduct();
-	
+	/**
+	 * 查询订单数量
+	 * @return
+	 */
 	public int findCountOrder();
-		
+	/**
+	 * 查询留言信息	
+	 * @return
+	 */
 	public List<MessageCustom> findAllUserMessageCustoms();
 	public int findCountMessage();
 	public List<MessageCustom> findNewMessages();
-	public MessageCustom findMessage(Integer id);
-	
+	public MessageCustom findMessage(Integer id);	
 	/**
 	 * 查询分店的热销商品
 	 * @param id
 	 * @return
 	 */
-	public List<ProductCustom> branchHotProduct(Integer id);
-	
+	public List<ProductCustom> branchHotProduct(Integer id);	
 	/**
 	 * 查询分店教育的总收入
 	 * @return
 	 */
-	public BigDecimal totalEduIncome(Integer id);
-	
+	public BigDecimal totalEduIncome(Integer id);	
 	/**
 	 * 查询分店活动的总收入
 	 * @return
 	 */
-	public BigDecimal totalHealIncome(Integer id);
-	
+	public BigDecimal totalHealIncome(Integer id);	
 	/**
 	 * 查询分店总收入
 	 * @return
 	 */
-	public BigDecimal totalOderIncome(Integer id);
-	
+	public BigDecimal totalOderIncome(Integer id);	
 	/**
 	 * 查询分店总订单数
 	 * @param id
 	 * @return
 	 */
-	public int brachCountOrders(Integer id);
-	
+	public int brachCountOrders(Integer id);	
 	/**
 	 * 查询分店信息的总条数
 	 * @return
 	 */
-	public int branchMessagesCount(Integer id);
-	
+	public int branchMessagesCount(Integer id);	
 	/**
 	 * 查询分店总活动数
 	 * @param id
 	 * @return
 	 */
-	public int branchCountActivities(Integer id);
-	
+	public int branchCountActivities(Integer id);	
 	/**
 	 * 查询分店总商品数
 	 * @param id
 	 * @return
 	 */
-	public int branchCountProducts(Integer id);
-	
+	public int branchCountProducts(Integer id);	
 	/**
 	 * 查询分店总用户数
 	 * @param id
 	 * @return
 	 */
-	public int branchCountUsers(Integer id);
-	
+	public int branchCountUsers(Integer id);	
 	/**
 	 * 通过id查询分店
 	 * @param branchid
 	 * @return
 	 */
-	public Branch findBrachById(Integer branchid);
-	
+	public Branch findBrachById(Integer branchid);	
 	/**
 	 * 查询所有分店
 	 * @param branch
 	 * @return
 	 */
-	public List<Branch> findAllBranchName();
-	
+	public List<Branch> findAllBranchName();	
 	/**
 	 * 查询分店并关联查询分店的管理员和地址
 	 * @param ceoBranchCustom
 	 * @return
 	 */
-	public List<BranchCustom> findBranchCustoms(BranchCustom branchCustom);
-	
+	public List<BranchCustom> findBranchCustoms();	
 	/**
 	 * 查询各分店的收入和支出
 	 * @param branchid

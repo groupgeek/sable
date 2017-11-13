@@ -40,14 +40,37 @@ $(document).ready(function(){
 								'<a class="btn btn-info" href="'+root+'/jsp/admin/page/updateReturnvisitRecordInfo.jsp?returnvisitid='+ (data.returnvisitList)[i].returnvisitid +'">'+
 									'<i class="halflings-icon white edit"></i>'+  
 								'</a>'+
-								'<a class="btn btn-danger" href="#">'+
+								'<a class="btn btn-danger" href="javascript:;" name="drop">'+
 									'<i class="halflings-icon white trash"></i>'+
 								'</a>'+
+								'<input type="hidden" value="'+ (data.returnvisitList)[i].returnvisitid +'">'+
 							'</td>'+
 						'</tr>'
 					);
 				
 			}
+			//添加删除事件
+			$("#box tbody").find("a[name=drop]").click(function(){
+				myself = $(this);
+				var returnvisitid = myself.next().val();
+				$.ajax({
+					
+					type:"post",
+					contentType:"application/json;charset=utf-8",
+					url:root+"/superAdmin/deleteReturnRecord",
+					data:JSON.stringify(returnvisitid),
+					success:function(data){
+						if(data.flag){
+							myself.parent().parent().remove();
+						}else{
+							alert(data.message);
+						}
+					}
+				});
+				
+				
+			});
+			
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");

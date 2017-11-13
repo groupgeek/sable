@@ -68,4 +68,12 @@ public class TransactionServiceImpl implements TransactionService {
 		return true;
 	}
 
+	public boolean deleteRecord(Integer transactionid) {
+		
+		if(transactionid == null) return false;
+		if(transactionMapper.deleteByPrimaryKey(transactionid) <= 0) return false;
+		
+		return true;
+	}
+
 }

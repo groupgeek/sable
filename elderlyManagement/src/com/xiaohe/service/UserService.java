@@ -98,4 +98,11 @@ public interface UserService {
 	 * @return
 	 */
 	public List<EvaluationCustom> queryAllEvaluationByUserid(Integer userid);
+	
+	/**
+	 * 删除用户
+	 * @param userid
+	 * @return
+	 */
+	public boolean deleteUser(Integer userid);
 }

@@ -94,4 +94,13 @@ public class MessageServiceImpl implements MessageService {
 		return true;
 	}
 
+	public boolean deleteMessage(Integer messageid) {
+		
+		if(messageid == null) return false;
+		if(messageMapper.deleteByPrimaryKey(messageid) <= 0) return false;
+		
+		
+		return true;
+	}
+
 }
