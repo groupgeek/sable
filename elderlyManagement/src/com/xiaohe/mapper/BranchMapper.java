@@ -64,5 +64,5 @@ public interface BranchMapper {
      * @param ceoBranchCustom
      * @return
      */
-    List<BranchCustom> selectBranchs(BranchCustom branchCustom);
+    List<BranchCustom> selectBranchs();
 }

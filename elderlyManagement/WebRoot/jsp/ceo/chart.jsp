@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>Ceo管理员系统</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -268,10 +268,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 	
 		function productReport() {
-			//var select = document.getElementById("activitystatus").value;
-			//alert(select);
-			//var begin = document.getElementById("begin").value;
-			//var end = document.getElementById("end").value;
+			var select = document.getElementById("activitystatus").value;
+			alert(select);
+			var begin = document.getElementById("begin").value;
+			var end = document.getElementById("end").value;
 			$.ajax({
 						type : 'post',
 						url : '${pageContext.request.contextPath}/ceo/requestchart.action',

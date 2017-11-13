@@ -454,4 +454,10 @@
   	select u.*,b.* from user u,branch b
   	where u.areaId= b.areaId 
   </select>
+  
+  <select id="selectUserTest" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom">
+  	select userid,count(*) usernumber,registrationDate from user
+  	where userid = #{userid,jdbcType=INTEGER}
+  	group by registrationDate
+  </select>
 </mapper>

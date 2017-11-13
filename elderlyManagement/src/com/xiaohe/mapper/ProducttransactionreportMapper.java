@@ -54,5 +54,17 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     List<BigDecimal> selectSumproductMoney();
+    /**
+     * 按月份查询一年内的商城盈利
+     * @return
+     */
+    List<ProducttransactionreportCustom> CeoProductByTime();
+    
+    /**
+     * 测试用
+     * @param id
+     * @return
+     */
+    List<ProducttransactionreportCustom> selectProductTest(Integer id);
     
 }

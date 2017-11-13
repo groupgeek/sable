@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>管理员界面</title>
+	<title>Ceo管理员系统</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -28,9 +28,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
 	<!-- start: Favicon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-	<!-- end: Favicon -->
-
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }img/favicon.ico">
+	<!-- end: Favicon -->	
+	<style type="text/css">
+		#header{
+			padding:20px;
+			height:500px;
+			width:100%;			
+		}
+		#chartmain{			
+			padding:20px;
+			float:left;
+		}
+		
+		
+	</style>
   </head>
   
   <body>
@@ -39,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="row-fluid">
 	<jsp:include page="menu.jsp"></jsp:include>
     <!-- start: Content -->
+    
 			<div id="content" class="span10">
 			
 			
@@ -94,10 +107,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>	
 				
-			</div>		
-				
-			<div class="row-fluid">
-				
+			</div>
+						
+			<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+    		<div id="header">
+    			<div id="chartmain" style="width:90%;height:100%;"></div>
+    		</div>
+    		
+			<div class="row-fluid">			
 				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
 					
 					<h2><span class="glyphicons globe"><i></i></span>分店总盈利前十名</h2>
@@ -363,7 +380,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</footer>
 	
 	<!-- start: JavaScript-->
-
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/js/echarts.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -394,6 +411,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/myChart.js"></script>
 	<!-- end: JavaScript-->
   </body>
 </html>

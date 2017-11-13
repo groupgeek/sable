@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>管理员界面</title>
+	<title>Ceo管理员系统</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="${pageContext.request.contextPath }/ceo/branch.action">分店管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">分店详情</a></li>
+				<li><a href="#">${findBranch.branchname }详情</a></li>
 			</ul>
 			<div class="row-fluid">
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">

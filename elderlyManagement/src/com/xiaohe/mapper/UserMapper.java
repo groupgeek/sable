@@ -101,6 +101,7 @@ public interface UserMapper {
      * @return
      */
     List<User> selectAllUserByTime();
+    List<UserCustom> selectUserTest(Integer id);
 
     /**
      * 查询用户人数最多的前十个分店

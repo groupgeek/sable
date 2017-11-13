@@ -470,5 +470,16 @@
   <select id="selectCountActivity" resultType="java.lang.Integer">
   	select count(*) from activity
   </select>
-  
+  <select id="CeoActivityByTime" resultType="com.xiaohe.bean.CeoActivity">
+  	select sum(activityPrice) sumactivityPrice,activityDate from activity
+	where activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
+	group by date_format(activityDate,'%Y-%m')
+  </select>
+  <select id="CeoRegisteryFeeByTime" resultType="com.xiaohe.bean.CeoActivity">
+  	select sum(registeryFee) sumregisteryFee,activityDate from activityregistery act,activity a
+	where a.activityId=act.activityId 
+	and activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+	and registery="报名"
+	group by date_format(activityDate,'%Y-%m')
+  </select>
 </mapper>

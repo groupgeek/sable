@@ -217,4 +217,16 @@
   	select sum(countBuy*(totalPrice-totalExpenditure)) from producttransactionreport
 	group by BuyTime order by BuyTime desc limit 15
   </select>
+  <select id="CeoProductByTime" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) summoney,BuyTime from producttransactionreport
+	where BuyTime>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
+	group by date_format(BuyTime,'%Y-%m')
+  </select>
+  
+  <select id="selectProductTest" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+		select productId,sum(totalPrice) getprice,sum(totalExpenditure) toprice,BuyTime 
+		from producttransactionreport
+		where productId=#{productId,jdbcType=INTEGER}
+		group by date_format(producttransactionreport.BuyTime,'%Y-%m')
+	</select>
 </mapper>

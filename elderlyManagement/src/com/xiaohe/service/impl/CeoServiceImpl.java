@@ -5,6 +5,9 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +20,14 @@ import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
+import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.Producttransactionreport;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
@@ -113,13 +119,17 @@ public class CeoServiceImpl implements CeoService{
 		BigDecimal bigDecimal1 = sum;		
 		BigDecimal a = bigDecimal1.setScale(4);
 		for (CeoTotalreport totalreport : bigdecimalCeoTotalreports) {
-			BigDecimal bigDecimal2 = new BigDecimal(totalreport.getSumBigDecimal());
-			BigDecimal b = bigDecimal2.setScale(4);
-			BigDecimal result = null;
-			result =  b.divide(a,4);
-			double c = result.doubleValue();
-			String bigDecimal = numberFormat.format(c);
-			totalreport.setStringbigdecimal(bigDecimal);
+			if (totalreport.getSumBigDecimal() != null) {
+				BigDecimal bigDecimal2 = new BigDecimal(totalreport.getSumBigDecimal());
+				BigDecimal b = bigDecimal2.setScale(4);
+				BigDecimal result = null;
+				result =  b.divide(a,4);
+				double c = result.doubleValue();
+				String bigDecimal = numberFormat.format(c);
+				totalreport.setStringbigdecimal(bigDecimal);
+			}else {
+				totalreport.setStringbigdecimal(null);
+			}
 		}		
 		return bigdecimalCeoTotalreports;
 	}
@@ -189,6 +199,104 @@ public class CeoServiceImpl implements CeoService{
 		return activityMapper.selectSumregisteryFeeByTime();
 	}
 	/**
+	 * 实现盈利图表的方法
+	 */
+	public CeoSelectVo findBigDecimal(){
+		CeoSelectVo ceoSelectVo = new CeoSelectVo();
+		List<CeoTotalreport> tList = totalreportMapper.CeoTotalreportByTime();
+		List<String> newtList = new ArrayList<String>();
+		for(int t = 0;t<12;t++ ){
+			newtList.add("0");
+		}
+		List<ProducttransactionreportCustom> pList = producttransactionreportMapper.CeoProductByTime();
+		List<String> newpList = new ArrayList<String>();
+		for (int p = 0; p < 12; p++) {
+			newpList.add("0");
+		}
+		List<CeoActivity> aList = activityMapper.CeoActivityByTime();
+		List<String> newaList = new ArrayList<String>();
+		for (int ar = 0; ar < 12; ar++) {
+			newaList.add("0");
+		}
+		List<CeoActivity> actList = activityMapper.CeoRegisteryFeeByTime();
+		List<String> newactList = new ArrayList<String>();
+		for (int act = 0; act < 12; act++) {
+			newactList.add("0");
+		}
+		List<String> list = new ArrayList<String>();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+		Date now = new Date();
+		String formact = dateFormat.format(now);
+		list.add(formact);
+		for (int i = 1; i <12; i++) {
+			Calendar rightNow = Calendar.getInstance();
+			rightNow.setTime(now);
+			rightNow.add(Calendar.MONTH, -i);
+			Date date = rightNow.getTime();
+			String dString = dateFormat.format(date);
+			list.add(dString);			
+		}
+		Collections.reverse(list);
+		if (tList != null) {
+			for (CeoTotalreport cTotalreport : tList) {
+				String dString = dateFormat.format(cTotalreport.getDuringtime());
+				cTotalreport.setStringDate(dString);
+			}
+			for(int a=0;a<12;a++){
+				for(int b=0;b<tList.size();b++){					
+					if (list.get(a).equals(tList.get(b).getStringDate())) {							
+						newtList.set(a, tList.get(b).getBigdecimals());
+					}					
+				}
+			}
+		}
+		if (pList != null) {
+			for (ProducttransactionreportCustom pCustom : pList) {
+				String dString = dateFormat.format(pCustom.getBuytime());
+				pCustom.setStringTime(dString);				
+			}
+			for(int a=0;a<12;a++){
+				for(int b=0;b<pList.size();b++){					
+					if (list.get(a).equals(pList.get(b).getStringTime())) {							
+						newpList.set(a, pList.get(b).getSummoney());
+					}					
+				}
+			}
+		}
+		if (aList != null) {
+			for (CeoActivity cActivity : aList) {
+				String dString = dateFormat.format(cActivity.getActivitydate());
+				cActivity.setStringDate(dString);
+			}
+			for(int a=0;a<12;a++){
+				for(int b=0;b<aList.size();b++){					
+					if (list.get(a).equals(aList.get(b).getStringDate())) {							
+						newaList.set(a, aList.get(b).getSumactivityPrice());
+					}					
+				}
+			}
+		}
+		if (actList != null) {
+			for (CeoActivity ceoActivity : actList) {
+				String dString = dateFormat.format(ceoActivity.getActivitydate());
+				ceoActivity.setStringTime(dString);
+			}
+			for(int a=0;a<12;a++){
+				for(int b=0;b<actList.size();b++){					
+					if (list.get(a).equals(actList.get(b).getStringTime())) {							
+						newactList.set(a, actList.get(b).getSumregisteryFee());
+					}					
+				}
+			}
+		}
+		ceoSelectVo.setListCeoTotalreports(newtList);
+		ceoSelectVo.setListPCustoms(newpList);
+		ceoSelectVo.setListActivities(newaList);
+		ceoSelectVo.setListregisery(newactList);
+		ceoSelectVo.setListStrings(list);
+		return ceoSelectVo;
+	}
+	/**
 	 * 实现用户数量的查询
 	 */
 	public List<String> findAllUser(){
@@ -217,32 +325,61 @@ public class CeoServiceImpl implements CeoService{
 		List<User> list = userMapper.selectAllUserByTime();
 		return list;
 	}
+	
+	
+	/**
+	 * 测试用的方法
+	 */
+	public List<UserCustom> findUserTest(Integer id){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		List<UserCustom> list = userMapper.selectUserTest(id);
+		for (UserCustom userCustom : list) {
+			String fString = dateFormat.format(userCustom.getRegistrationdate());
+			userCustom.setStringregistrationdate(fString);
+		}
+		return list;
+	}
+	public List<ProducttransactionreportCustom> findProducttransactionreportTest(Integer id){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+		List<ProducttransactionreportCustom> list = producttransactionreportMapper.selectProductTest(id);
+		for (ProducttransactionreportCustom pCustom : list) {
+			String fString = dateFormat.format(pCustom.getBuytime());
+			pCustom.setStringTime(fString);
+		}
+		return list;
+	}
+	
+	
 	public List<UserCustom> findUserCustoms(){
 		NumberFormat numberFormat = NumberFormat.getPercentInstance();
 		numberFormat.setMaximumFractionDigits(2);
 		Integer user1 = userMapper.selectAllUser();
-		List<UserCustom> user2 = userMapper.selectCountUserByBranch();
-		if (user1 != null && user2 != null) {
-			for (UserCustom userCustom : user2) {
+		List<UserCustom> user2 = userMapper.selectCountUserByBranch();		
+		for (UserCustom userCustom : user2) {
+			if (user1 != null && user2 != null && user1 != 0) {
 				Integer user = userCustom.getUsernumber();
 				float user3 = (float)user/(float)user1;
 				String unmber = numberFormat.format(user3);
 				userCustom.setStringuser(unmber);
-			}
-			return user2;
-		}else {
-			return user2;
-		}	
+			}else {
+				userCustom.setStringuser(null);
+			}		
+		}
+		return user2;
 	}
 	/**
-	 * 实现新注册用户的查询
+	 * 实现用户信息的查询
 	 */
 	public List<UserCustom> findfourUserByTime(){
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		List<UserCustom> userCustom = userMapper.selectfourUserByTime();
 		for (UserCustom uCustom : userCustom) {
-			String format = dt.format(uCustom.getRegistrationdate());
-			uCustom.setStringregistrationdate(format);
+			if (uCustom.getRegistrationdate() != null) {
+				String format = dt.format(uCustom.getRegistrationdate());
+				uCustom.setStringregistrationdate(format);
+			}else {
+				uCustom.setStringregistrationdate(null);
+			}			
 		}				
 		return userCustom;
 	}
@@ -261,11 +398,13 @@ public class CeoServiceImpl implements CeoService{
 		}else {
 			userCustom.setStringregistrationdate(null);
 		}
-		if (userCustom.getOnline() == true) {
-			userCustom.setStringuser("正常");
-		}else {
-			userCustom.setStringuser("限制登录");
-		}
+		if (userCustom.getStatus() != null) {
+			if (userCustom.getStatus() == true) {
+				userCustom.setStringuser("正常");
+			}else {
+				userCustom.setStringuser("限制登录");
+			}
+		}		
 		return userCustom;
 	}
 	public List<UserCustom> findAllUserAndBranch(){
@@ -305,38 +444,53 @@ public class CeoServiceImpl implements CeoService{
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 		List<CeoActivity> activitiesList = activityMapper.selectAllActivity();
 		for (CeoActivity activity : activitiesList) {
-			String format = dt.format(activity.getActivitydate());
-			activity.setStringDate(format);
+			if (activity.getActivitydate() != null) {
+				String format = dt.format(activity.getActivitydate());
+				activity.setStringDate(format);
+			}else {
+				activity.setStringDate(null);
+			}
 		}
 		return activitiesList;
 	}
 	public CeoActivity findCeoActivity(Integer activityid){
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 		CeoActivity activity = activityMapper.selectCeoActivity(activityid);
-		String format = dt.format(activity.getActivitydate());
-		activity.setStringDate(format);
-		if (activity.getOnline()==false) {
-			String line = "否";
-			activity.setStringline(line);
-			return activity;
+		if (activity.getActivitydate() != null) {
+			String format = dt.format(activity.getActivitydate());
+			activity.setStringDate(format);
 		}else {
-			String line = "是";
-			activity.setStringline(line);
+			activity.setStringDate(null);
+		}
+		if (activity.getOnline() != null) {
+			if (activity.getOnline()==false) {
+				String line = "否";
+				activity.setStringline(line);
+				return activity;
+			}else {
+				String line = "是";
+				activity.setStringline(line);
+				return activity;
+			}
+		}else {
 			return activity;
 		}
+		
 	}
 	public int findCountActivity(){
 		return activityMapper.selectCountActivity();
 	}
 	/**
-	 * 查询热销商品
+	 * 实现商品部分的查询
 	 */
 	public List<Product> findHotProducts(){
 		return productMapper.selectHotProduct();
 	}
+
 	public List<ProductCustom> findProductCustoms(){
 		return productMapper.selectAllProduct();
 	}
+	
 	public Product findProductById(Integer productid){
 		return productMapper.selectByPrimaryKey(productid);
 	}
@@ -347,7 +501,9 @@ public class CeoServiceImpl implements CeoService{
 	public int findCountOrder(){
 		return ordersMapper.selectCountOrder();
 	}
-
+	/**
+	 * 实现留言部分的查询
+	 */
 	public List<MessageCustom> findAllUserMessageCustoms() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		List<MessageCustom> messageCustoms = messageMapper.QureyMessages();
@@ -379,61 +535,52 @@ public class CeoServiceImpl implements CeoService{
 			id = 1;
 		}
 		MessageCustom messageCustom = messageMapper.oneMessage(id);			
-			if (messageCustom.getMessagetime() != null) {
-				String format = dateFormat.format(messageCustom.getMessagetime());
-				messageCustom.setStringDate(format);
-			}else {
-				messageCustom.setStringDate(null);
-			}
-			return messageCustom;
+		if (messageCustom.getMessagetime() != null) {
+			String format = dateFormat.format(messageCustom.getMessagetime());
+			messageCustom.setStringDate(format);
+		}else {
+			messageCustom.setStringDate(null);
+		}
+		return messageCustom;
 	}
-
+	/**
+	 * 实现分店信息的查询
+	 */
 	public List<ProductCustom> branchHotProduct(Integer id) {
 		return productMapper.branchHotProduct(id);
 	}
-
 	public BigDecimal totalEduIncome(Integer id) {
 		return activityMapper.branchEduIncome(id);
 	}
-
 	public BigDecimal totalHealIncome(Integer id) {
 		return activityMapper.branchHealIncome(id);
 	}
-
 	public BigDecimal totalOderIncome(Integer id) {
 		return ordersMapper.queryBranchOderIncome(id);
 	}
-
 	public int brachCountOrders(Integer id) {
 		return ordersMapper.branchCountOrders(id);
 	}
-
 	public int branchMessagesCount(Integer id) {
 		return messageMapper.branchMessagesCount(id);
 	}
-
 	public int branchCountActivities(Integer id) {
 		return activityMapper.branchCountActivity(id);
 	}
-
 	public int branchCountProducts(Integer id) {
 		return productMapper.branchCountProducts(id);
 	}
-
 	public int branchCountUsers(Integer id) {
 		return userMapper.countBranchUser(id);
-	}
-
+	}	
 	public List<Branch> findAllBranchName() {
 		return branchMapper.selectAllBranchName();
 	}
-
 	public Branch findBrachById(Integer branchid) {
 		return branchMapper.selectByPrimaryKey(branchid);
 	}
-
-	public List<BranchCustom> findBranchCustoms(BranchCustom branchCustom) {
-		return branchMapper.selectBranchs(branchCustom);
+	public List<BranchCustom> findBranchCustoms() {
+		return branchMapper.selectBranchs();
 	}
 	
 	public List<CeoTotalreport> findBranchTotalreport(Integer branchid){

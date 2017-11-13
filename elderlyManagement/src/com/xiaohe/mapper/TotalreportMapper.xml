@@ -144,4 +144,9 @@
 	where b.branchId=t.branchId
 	and b.branchId=#{branchid,jdbcType=INTEGER}
   </select>
+  <select id="CeoTotalreportByTime" resultType="com.xiaohe.bean.CeoTotalreport">
+  	SELECT sum(totalPrice-totalExpenditure) bigdecimals,duringTime FROM totalreport
+	where duringTime>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
+	group by date_format(duringTime,'%Y-%m')
+  </select>
 </mapper>

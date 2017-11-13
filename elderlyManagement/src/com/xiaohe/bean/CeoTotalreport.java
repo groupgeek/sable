@@ -17,6 +17,7 @@ public class CeoTotalreport extends Totalreport{
 	private Date startingTime;
 	private Date endTime;
     private String branchname;
+    private String stringDate;
 
     private Integer areaid;
 
@@ -34,6 +35,24 @@ public class CeoTotalreport extends Totalreport{
 	private Integer begin;
 	private Integer pageNum;
 	private Integer pagesum;
+	
+	private String bigdecimals;
+
+	public String getStringDate() {
+		return stringDate;
+	}
+
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
+	}
+
+	public String getBigdecimals() {
+		return bigdecimals;
+	}
+
+	public void setBigdecimals(String bigdecimals) {
+		this.bigdecimals = bigdecimals;
+	}
 
 	public String getSumBigDecimal() {
 		return sumBigDecimal;

@@ -16,8 +16,43 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private Integer employeeid;
 	private String productname;
 	private Integer pagesum;
-	
-	
+	private BigDecimal getprice;
+	private BigDecimal toprice;
+	private String stringTime;
+	private String summoney;
+
+	public String getSummoney() {
+		return summoney;
+	}
+
+	public void setSummoney(String summoney) {
+		this.summoney = summoney;
+	}
+
+	public String getStringTime() {
+		return stringTime;
+	}
+
+	public void setStringTime(String stringTime) {
+		this.stringTime = stringTime;
+	}
+
+	public BigDecimal getGetprice() {
+		return getprice;
+	}
+
+	public void setGetprice(BigDecimal getprice) {
+		this.getprice = getprice;
+	}
+
+	public BigDecimal getToprice() {
+		return toprice;
+	}
+
+	public void setToprice(BigDecimal toprice) {
+		this.toprice = toprice;
+	}
+
 	public Integer getPagesum() {
 		return pagesum;
 	}
