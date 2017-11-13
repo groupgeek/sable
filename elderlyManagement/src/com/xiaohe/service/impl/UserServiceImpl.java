@@ -16,9 +16,15 @@ import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
+import com.xiaohe.bean.OrdersCountVo;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Returnvisit;
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
@@ -27,9 +33,13 @@ import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.EmployeeMapper;
+import com.xiaohe.mapper.EvaluationMapper;
+import com.xiaohe.mapper.IntegralMapper;
 import com.xiaohe.mapper.LevelMapper;
 import com.xiaohe.mapper.MedicalrecordsMapper;
+import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ReturnvisitMapper;
+import com.xiaohe.mapper.ShippingaddressMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
@@ -76,6 +86,22 @@ public class UserServiceImpl implements UserService {
 	@Qualifier("employeeMapper")
 	private EmployeeMapper employeeMapper;
 	
+	@Autowired
+	@Qualifier("shippingaddressMapper")
+	private ShippingaddressMapper shippingaddressMapper;
+	
+	@Autowired
+	@Qualifier("ordersMapper")
+	private OrdersMapper ordersMapper;
+	
+	@Autowired
+	@Qualifier("evaluationMapper")
+	private EvaluationMapper evaluationMapper;
+	
+	@Autowired
+	@Qualifier("integralMapper")
+	private IntegralMapper integralMapper;
+	
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
 		if(userMapper.selectUserByPhone(userCustom.getPhone()) == null){
@@ -111,6 +137,15 @@ public class UserServiceImpl implements UserService {
 				returnvisit.setUserid(user.getUserid());
 				returnvisit.setUsername(user.getUsername());
 				returnvisitMapper.insertSelective(returnvisit);
+				
+				//赠送积分
+				IntegralCustom integral = new IntegralCustom();
+				integral.setChangeintegral(10);
+				integral.setDetails("用户注册赠送");
+				integral.setUserid(user.getUserid());
+				integral.setChangetime(new Date());
+				integral.setRemainingpoints(10);
+				integralMapper.insertSelective(integral);
 				
 				//创建用户病例表
 				MedicalrecordsWithBLOBs userMed = new MedicalrecordsWithBLOBs();
@@ -217,14 +252,15 @@ public class UserServiceImpl implements UserService {
 	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload) {
 		if(userInfo == null) return false;
 		if(userInfo.getUserid() == null) return false;
-		
-		if(!pictureUpload.isEmpty()){
-			try {
-				userInfo.setAvatar(FileUpload.oneFileUpload(pictureUpload,userInfo.getAvatar(), "picture"));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+		if(pictureUpload != null){
+			if(!pictureUpload.isEmpty()){
+				try {
+					userInfo.setAvatar(FileUpload.oneFileUpload(pictureUpload,userInfo.getAvatar(), "picture"));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		//User user = new User();
@@ -241,10 +277,139 @@ public class UserServiceImpl implements UserService {
 		//if(levelMapper.updateByPrimaryKeySelective(level) < 0) return false;
 		//if(branchMapper.updateByPrimaryKeySelective(branch) < 0) return false;
 		//if(areaMapper.updateByPrimaryKeySelective(area) < 0) return false;
-		if(medicalrecordsMapper.updateByPrimaryKeySelective(med) <= 0) return false;
+		if(med != null){
+			if(medicalrecordsMapper.updateByPrimaryKeySelective(med) <= 0) return false;
+		}
 		//if(employeeMapper.updateByPrimaryKeySelective(manager) < 0) return false;
 		
 		return true;
+	}
+
+	public ShippingAddVo queryAllAddressByUserid(Integer userid) {
+		if(userid == null) return null;
+		ShippingAddVo vo = new ShippingAddVo();
+		List<ShippingAddressCustom> addresssList = new ArrayList<ShippingAddressCustom>();
+		UserCustom user = new UserCustom();
+		addresssList = shippingaddressMapper.selectAllAddressByUserid(userid);
+		user = userMapper.selectUserInfoById(userid);
+		vo.setAddresssList(addresssList);
+		vo.setUser(user);
+		return vo;
+	}
+
+	public ShippingAddressCustom updateDefaultReturnOld(ShippingAddressCustom condition) {
+		if(condition == null) return null;
+		ShippingAddressCustom  record = new ShippingAddressCustom();
+		ShippingAddressCustom old = shippingaddressMapper.selectDefaultAddressByByUserid(condition.getUserid());
+		
+		if(old == null) return null;
+		
+		//更新原来的默认地址
+		record.setShippingaddressid(old.getShippingaddressid());
+		record.setDefaultaddress(false);
+		if(shippingaddressMapper.updateByPrimaryKeySelective(record) < 0) return null;
+		
+		//更新现在的默认地址
+		record.setShippingaddressid(condition.getShippingaddressid());
+		record.setDefaultaddress(true);
+		if(shippingaddressMapper.updateByPrimaryKeySelective(record) < 0) return null;
+		
+		return old;
+	}
+
+	public ShippingAddressCustom addAddressReturnAddress(
+			ShippingAddressCustom addressInfo) {
+		
+		//添加
+		if(shippingaddressMapper.insertSelective(addressInfo) < 0) return null;
+		
+		return addressInfo;
+	}
+
+	public List<OrdersCustom> queryOrdersByLogo(String logo, User user) {
+		if(logo == null || user == null) return null;
+		List<OrdersCustom> list = new ArrayList<OrdersCustom>();
+		OrdersCustom condition = new OrdersCustom();
+		condition.setUserid(user.getUserid());
+		if("pendingPayment".equals(logo)){
+			condition.setOrderstatus("未付款");
+		}
+		
+		if("tobeDelivered".equals(logo)){
+			condition.setProductstatus("未发货");
+		}
+		
+		if("tobeReceived".equals(logo)){
+			condition.setSignstatus("未签收");
+		}
+		
+		if("beEvaluated".equals(logo)){
+			condition.setEvaluationstatus(false);
+		}
+		
+		list = ordersMapper.selectOrdersByLogo(condition);
+		
+		//时间处理
+		
+		for(OrdersCustom info : list){
+			info.setOrdertimeString(GetStringByDate.getString(info.getOrdertime()));
+			info.setPaymenttimeString(GetStringByDate.getString(info.getPaymenttime()));
+			info.setTimeofarrivalString(GetStringByDate.getString(info.getTimeofarrival()));
+			info.setSubmissiontimeString(GetStringByDate.getString(info.getSubmissiontime()));
+		}
+		
+		return list;
+	}
+
+	public OrdersCountVo queryCountByLogo(User user) {
+		OrdersCountVo sum = new OrdersCountVo();
+		
+		Integer pendingPayment = 0;
+		Integer tobeDelivered = 0;
+		Integer tobeReceived = 0;
+		Integer beEvaluated = 0;
+		
+		if(user == null) return null;
+		if(user.getUserid() == null) return null;
+		OrdersCustom condition = new OrdersCustom();
+		condition.setUserid(user.getUserid());
+		//condition.setUserid(12);
+			condition.setOrderstatus("未付款");
+			pendingPayment = ordersMapper.selectCountByLogo(condition);
+			condition.setOrderstatus(null);
+			
+			condition.setProductstatus("未发货");
+			tobeDelivered = ordersMapper.selectCountByLogo(condition);
+			condition.setProductstatus(null);
+			
+			condition.setSignstatus("未签收");
+			tobeReceived = ordersMapper.selectCountByLogo(condition);
+			condition.setSignstatus(null);
+			
+			condition.setEvaluationstatus(false);
+			beEvaluated = ordersMapper.selectCountByLogo(condition);
+			condition.setEvaluationstatus(null);
+		
+			sum.setPendingPayment(pendingPayment);
+			sum.setTobeDelivered(tobeDelivered);
+			sum.setTobeReceived(tobeReceived);
+			sum.setBeEvaluated(beEvaluated);
+			
+			
+		return sum;
+	}
+
+	public List<EvaluationCustom> queryAllEvaluationByUserid(Integer userid) {
+		if(userid == null) return null;
+		
+		List<EvaluationCustom> all = new ArrayList<EvaluationCustom>();
+		all = evaluationMapper.selectAllByUserId(userid);
+		
+		for(EvaluationCustom temp : all){
+			temp.setStringDate(GetStringByDate.getString(temp.getCommentdate()));
+		}
+		
+		return all;
 	}
 	
 	

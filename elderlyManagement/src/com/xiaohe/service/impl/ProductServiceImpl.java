@@ -1,14 +1,17 @@
 package com.xiaohe.service.impl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +19,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.AddShopCartVo;
+import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
@@ -26,10 +31,16 @@ import com.xiaohe.bean.Producttaste;
 import com.xiaohe.bean.ProducttasteCustom;
 import com.xiaohe.bean.Producttype;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
 import com.xiaohe.bean.Shoppingcar;
 import com.xiaohe.bean.ShoppingcarCustom;
+import com.xiaohe.bean.User;
+import com.xiaohe.bean.UserCustom;
+import com.xiaohe.mapper.BranchMapper;
 import com.xiaohe.mapper.DiscountMapper;
 import com.xiaohe.mapper.EvaluationMapper;
+import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.mapper.ProductcolourMapper;
 import com.xiaohe.mapper.ProductrecommendMapper;
@@ -37,6 +48,8 @@ import com.xiaohe.mapper.ProducttasteMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.mapper.ShoppingcarMapper;
 import com.xiaohe.service.ProductService;
+import com.xiaohe.service.ShippingAddressService;
+import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
 
 @Repository("productService")
@@ -74,6 +87,22 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("shoppingcarMapper")
 	private ShoppingcarMapper shoppingcarMapper;
+	
+	@Autowired
+	@Qualifier("branchMapper")
+	private BranchMapper branchMapper;
+	
+	@Autowired
+	@Qualifier("ordersMapper")
+	private OrdersMapper ordersMapper;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
+	
+	@Autowired
+	@Qualifier("shippingAddressService")
+	private ShippingAddressService shippingAddressService;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -85,12 +114,12 @@ public class ProductServiceImpl implements ProductService {
 		return producttypeMapper.selectProductTypeBycondition(producttype);
 	}
 
-	public List<ProductCustom> queryProductrecommend(Integer total) {
-		return productrecommendMapper.selectProductrecommend(total);
+	public List<ProductCustom> queryProductrecommend(Integer userid) {
+		return productrecommendMapper.selectProductrecommend(userid);
 	}
 
-	public List<ProductCustom> queryDiscountProduct(Integer total) {
-		return discountMapper.selectDiscountProducts(total);
+	public List<ProductCustom> queryDiscountProduct(Integer usetid) {
+		return discountMapper.selectDiscountProducts(usetid);
 	}
 
 	public List<ProductCustom> queryProductByBlurry(String condition) {
@@ -165,6 +194,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		List<EvaluationCustom> evaluationList = evaluationMapper.selectEvaluationsByProdutId(condition);
 		for(EvaluationCustom evaluation : evaluationList){
+			if(evaluation.getCommentdate() == null) continue;
 			String fmt = dt.format(evaluation.getCommentdate());
 			evaluation.setStringDate(fmt);
 		}
@@ -173,17 +203,21 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public EvaluationCustom queryEvaluationLevalByProductId(Integer id) {
+		if(id == null) return null;
 		List<EvaluationCustom> evaluation = evaluationMapper.selectEvaluationLevalSum(id);
+		
+		if(evaluation == null) return null;
 		Integer badReview = 0;
 		Integer average = 0;
 		Integer praise = 0;
 		String praiseOf;
 		EvaluationCustom evaluationCustom = new EvaluationCustom();
 		for(EvaluationCustom temp : evaluation){
-			if(temp.getEvaluationleval() == 1 || temp.getEvaluationleval() == 2){
+			if(temp.getEvaluationleval() == null) continue;
+			if(temp.getEvaluationleval() == 1){
 				
 				badReview +=  temp.getEvaluationLevalSum();
-			}else if(temp.getEvaluationleval() == 3){
+			}else if(temp.getEvaluationleval() == 2){
 				
 				average +=  temp.getEvaluationLevalSum();
 			}else{
@@ -426,9 +460,11 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 	public boolean addShopCart(Shoppingcar shoppingcar) {
 		if(shoppingcar == null) return false;
 		if(shoppingcar.getProductid() == null || shoppingcar.getProductid() < 0 ) return false;
+		Product product = new ProductCustom();
+		product = productMapper.selectByPrimaryKey(shoppingcar.getProductid());
 		
-		shoppingcar.setPrice(productMapper.selectByPrimaryKey(shoppingcar.getProductid()).getPrice());
-		
+		shoppingcar.setPrice(product.getPrice());
+		shoppingcar.setProductname(product.getProductname());
 		if(shoppingcarMapper.insertSelective(shoppingcar) < 0) return false;
 		
 		
@@ -461,5 +497,289 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		return all;
 	}
 
+	public String[] addOrders(Map<UserCustom, ShoppingcarCustom[]> shoppingcar) {
+		if(shoppingcar == null) return null;
+		if(shoppingcar.isEmpty()) return null;
+		ShoppingcarCustom[] shoppingcarCustoms = null;
+		
+		
+		UserCustom user = new UserCustom();
+		Shoppingcar car = new ShoppingcarCustom(); 
+		List<Shoppingcar> listShop = new ArrayList<Shoppingcar>();
+		OrdersCustom info = new OrdersCustom();
+		ShippingAddressCustom shippingAddress = new ShippingAddressCustom();
+		
+		
+		
+		
+		Iterator<UserCustom> it =  shoppingcar.keySet().iterator();
+		while (it.hasNext()){
+			user = it.next();
+			shoppingcarCustoms = shoppingcar.get(user);
+		}
+		
+		if(user == null) return null;
+		if(user.getUserid() == null || user.getUserid() < 0) return null;
+		if(shoppingcarCustoms == null) return null;
+		
+		//查询默认地址
+		ShippingAddVo svo = userService.queryAllAddressByUserid(user.getUserid());
+		for(ShippingAddressCustom temp : svo.getAddresssList()){
+			if(temp.getDefaultaddress()) shippingAddress = temp;
+		}
+		
+		//返回值 返回订单id
+		String[] ordersId = new String[shoppingcarCustoms.length];
+		int index = 0;
+				
+		for(ShoppingcarCustom one : shoppingcarCustoms){
+			if(one.getShoppingcarid() == null) return null;
+			//更新数量
+			shoppingcarMapper.updateByPrimaryKeySelective(one);
+			//查询购物车
+			car = shoppingcarMapper.selectByPrimaryKey(one.getShoppingcarid());
+			if(car.getUserid() != user.getUserid()) return null;
+			
+			//生成订单
+			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+			String orderid = df.format(new Date())+(ordersMapper.selectCountOrder()+1) + UUID.randomUUID().toString().split("-")[0];
+			
+			info.setOrderid(orderid);
+			info.setUserid(user.getUserid());
+			info.setProductid(car.getProductid());
+			info.setProductname(car.getProductname());
+			info.setUsername(shippingAddress.getReceiver());
+			info.setResaddress(shippingAddress.getShippingaddress());
+			info.setProductnumber(car.getNumber());
+			info.setPrice(car.getPrice());
+			//运算总价
+			BigDecimal number = new BigDecimal(car.getNumber());
+			BigDecimal totalprice = new BigDecimal(0);
+			totalprice = number.multiply(car.getPrice());
+			info.setTotalprice(totalprice);
+			info.setOrdertime(new Date());
+			info.setPhone(shippingAddress.getPhone()+"");
+			
+			
+			//添加颜色型号口味或者其他
+			Producttaste producttaste = producttasteMapper.selectByPrimaryKey(car.getTaste());
+			Productcolour productcolour = productcolourMapper.selectByPrimaryKey(car.getColour());
+			if(producttaste != null)
+			info.setTaste(producttaste.getProducttaste());
+			
+			if(productcolour != null)
+			info.setColour(productcolour.getProductcolour());
+			
+			info.setSize(car.getSziestring());
+			
+			
+			//查询用户分店
+			Branch branch = new Branch();
+			branch = branchMapper.selectBranchByUserid(user.getUserid());
+			info.setBranchid(branch.getBranchid());
+			info.setOrderstatus("未付款");
+			//info.setProductstatus("未发货");
+			//info.setSignstatus("未签收");
+			//info.setEvaluationstatus(false);
+			if(ordersMapper.insertSelective(info) < 0) return null;
+			ordersId[index] = orderid;
+			index++;
+			
+			//删除购物车
+			if(shoppingcarMapper.deleteByPrimaryKey(one.getShoppingcarid()) <= 0) return null;
+		}
+		
+		
+		
+		return ordersId;
+	}
 
+	public List<OrdersCustom> queryAllOrdersByOrdersId(
+			Map<User, String[]> orders) {
+		if(orders == null) return null;
+		if(orders.isEmpty()) return null;
+		
+		User user = new User();//key
+		String[] value = null;//value
+		OrdersCustom ordersData = new OrdersCustom();//单条订单
+		List<OrdersCustom> all = new ArrayList<OrdersCustom>();//订单集合
+		
+		Iterator<User> it = orders.keySet().iterator();
+		while(it.hasNext()){
+			user = it.next();
+			value = orders.get(user);
+		}
+		
+		if(user == null) return null;
+		if(user.getUserid() == null) return null;
+		
+		
+		
+		for(String id : value){
+			ordersData = ordersMapper.selectOrdersByOrdersId(id);
+			if(ordersData == null) return null;
+			if(user.getUserid() != ordersData.getUserid()) return null;
+			all.add(ordersData);
+		}
+		
+		return all;
+	}
+
+	public boolean updateOrderById(OrdersCustom info) {
+		
+		if(info == null) return false;
+		if(info.getUserid() == null) return false;
+		if(ordersMapper.updateByUseridSelective(info) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean updateOrderNumberById(OrdersCustom orderInfo) {
+		
+		if(orderInfo == null) return false;
+		if(orderInfo.getOrderid() == null) return false;
+		
+		if(ordersMapper.updateByPrimaryKeySelective(orderInfo) < 0) return false;
+		
+		return true;
+	}
+
+	public boolean deleteOrderByOid(String oid) {
+		if(oid == null) return false;
+		
+		if(ordersMapper.deleteOrdersById(oid) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean deleteShoppingcarById(Integer id) {
+		if(id == null) return false;
+		if(shoppingcarMapper.deleteByPrimaryKey(id) <= 0) return false;
+		return true;
+	}
+
+	public ProductCustom queryColourOrTasteByProductid(Integer pid) {
+		if(pid == null) return null;
+		ProductCustom colourOrTaste = new ProductCustom();
+		List<ProducttasteCustom> tasteList = new ArrayList<ProducttasteCustom>();
+	    List<ProductcolourCustom> colourList = new ArrayList<ProductcolourCustom>();
+	    tasteList = producttasteMapper.selectasteByProductid(pid);
+	    colourList = productcolourMapper.selectColourByProductid(pid);
+	    if(tasteList != null) colourOrTaste.setTasteList(tasteList);
+	    if(colourList != null) colourOrTaste.setColourList(colourList);
+		
+		return colourOrTaste;
+	}
+
+	public boolean updateColourOrTasteByShopcarid(ShoppingcarCustom info) {
+		
+		if(info == null) return false;
+		if(info.getShoppingcarid() == null) return false;
+		
+		if(shoppingcarMapper.updateByPrimaryKeySelective(info) < 0) return false;
+		
+		return true;
+	}
+
+	public ProductCustom queryPersonHotProduct(Integer userid) {
+		if(userid == null) return null;
+		return productMapper.selectPersonHotProduct(userid);
+	}
+
+	public ProductCustom queryPersonProductrecommend(Integer userid) {
+		if(userid == null) return null;
+		return productMapper.selectPersonProductrecommend(userid);
+	}
+
+	public ProductVo queryAllProductByProductTypeId(ProductCustom condition) {
+		if(condition == null) return null;
+		if(condition.getUserid() == null) return null;
+		if(condition.getProducttypeid() == null) return null;
+		ProductVo productVo = new ProductVo();
+		List<ProductCustom> allProducts = new ArrayList<ProductCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		
+			
+		if(condition.getCurrentPage() >= 1){
+			Integer tempBegin = (condition.getCurrentPage()-1) * condition.getPageNum();
+			condition.setBegin(tempBegin);
+		}else{
+			condition.setBegin(0);
+		}
+			
+		
+		
+		allProducts = productMapper.selectAllProductByTypeId(condition);
+		sum = productMapper.selectAllProductSumByTypeId(condition);
+		pageSum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageSum += 1;
+		}
+		productVo.setProductList(allProducts);
+		productVo.setProductSum(sum);
+		productVo.setPageSum(pageSum);
+		return productVo;
+	}
+
+	public String buyNow(ProductCustom info) {
+		UserCustom user = new UserCustom();
+		OrdersCustom orders = new OrdersCustom();
+		ShippingAddressCustom shippingAddress = new ShippingAddressCustom();
+		
+		
+		//查询用户以及默认地址
+		ShippingAddVo svo = userService.queryAllAddressByUserid(info.getUserid());
+		user = svo.getUser();
+		for(ShippingAddressCustom temp : svo.getAddresssList()){
+			if(temp.getDefaultaddress()) shippingAddress = temp;
+		}
+		
+		
+		//生成订单
+		DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+		String orderid = df.format(new Date())+(ordersMapper.selectCountOrder()+1) + UUID.randomUUID().toString().split("-")[0];
+		
+		orders.setOrderid(orderid);
+		orders.setUserid(user.getUserid());
+		orders.setProductid(info.getProductid());//
+		orders.setProductname(info.getProductname());//
+		orders.setUsername(shippingAddress.getReceiver());
+		orders.setResaddress(shippingAddress.getShippingaddress());
+		orders.setProductnumber(1);
+		orders.setPrice(info.getPrice());//
+		//运算总价
+		//BigDecimal number = new BigDecimal(car.getNumber());
+		//BigDecimal totalprice = new BigDecimal(0);
+		//totalprice = number.multiply(car.getPrice());
+		orders.setTotalprice(info.getPrice());
+		orders.setOrdertime(new Date());
+		orders.setPhone(shippingAddress.getPhone()+"");
+		
+		
+		//添加颜色型号口味或者其他
+		Producttaste producttaste = producttasteMapper.selectByPrimaryKey(info.getTaste());//
+		Productcolour productcolour = productcolourMapper.selectByPrimaryKey(info.getColour());//
+		if(producttaste != null)
+			orders.setTaste(producttaste.getProducttaste());
+		
+		if(productcolour != null)
+			orders.setColour(productcolour.getProductcolour());
+		
+		orders.setSize(info.getSizeString());//
+		
+		
+		//查询用户分店
+		Branch branch = new Branch();
+		branch = branchMapper.selectBranchByUserid(user.getUserid());
+		orders.setBranchid(branch.getBranchid());
+		orders.setOrderstatus("未付款");
+		//info.setProductstatus("未发货");
+		//info.setSignstatus("未签收");
+		//info.setEvaluationstatus(false);
+		if(ordersMapper.insertSelective(orders) < 0) return null;
+		return orderid;
+	}
+
+	
 }

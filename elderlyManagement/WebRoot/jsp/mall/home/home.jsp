@@ -36,62 +36,7 @@
 <body>
 	<div class="hmtop">
 		<!--顶部导航条 -->
-		<div class="am-container header">
-			<ul class="message-r">
-			<div class="topMessage home">
-					<div class="menu-hd">
-						<a href="${pageContext.request.contextPath }/branch/index" target="_top" class="h">官网首页</a>
-					</div>
-				</div>
-				<div class="topMessage home">
-					<div class="menu-hd">
-						<a href="${pageContext.request.contextPath }/product/mallIndex" target="_top" class="h">商城首页</a>
-					</div>
-				</div>
-				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng">
-						<a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
-					</div>
-				</div>
-				<div class="topMessage mini-cart">
-					<div class="menu-hd">
-						<a id="mc-menu-hd" href="#" target="_top"><i
-							class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
-							id="J_MiniCartNum" class="h">0</strong> </a>
-					</div>
-				</div>
-				<div class="topMessage favorite">
-					<div class="menu-hd">
-						<a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>安全退出<%-- ${user.username } --%></span>
-						</a>
-					</div>
-			</ul>
-		</div>
-
-		<!--悬浮搜索框-->
-
-		<div class="nav white">
-			<div class="logo">
-				<img
-					src="${pageContext.request.contextPath }/jsp/mall/images/logo.png" />
-			</div>
-			<div class="logoBig">
-				<li><img
-					src="${pageContext.request.contextPath }/jsp/mall/images/logobig.png" />
-				</li>
-			</div>
-
-			<div class="search-bar pr">
-				<a name="index_none_header_sysc" href="#"></a>
-				<form action="${pageContext.request.contextPath }/product/search.action" method="post">
-					<!--商品搜索  -->
-					<input id="searchInput" name="searchCondition" type="text"
-						placeholder="搜索" autocomplete="off"> <input
-						id="ai-topsearch" class="submit am-btn" value="搜索" index="1"
-						type="submit">
-				</form>
-			</div>
-		</div>
+		<c:import url="/jsp/mall/head.jsp"></c:import>
 
 		<div class="clear"></div>
 	</div>
@@ -125,13 +70,13 @@
 				<span class="all-goods">全部分类</span>
 			</div>
 			<div class="nav-cont">
-				<ul>
+				<!-- <ul>
 					<li class="index"><a href="#">首页</a></li>
 					<li class="qc"><a href="#">闪购</a></li>
 					<li class="qc"><a href="#">限时抢</a></li>
 					<li class="qc"><a href="#">团购</a></li>
 					<li class="qc last"><a href="#">大包装</a></li>
-				</ul>
+				</ul> -->
 			<!-- 	<div class="nav-extra">
 					<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
 					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
@@ -366,7 +311,7 @@
 						<div class="recommendationMain one">
 							<a
 								href="${pageContext.request.contextPath }/product/productInfo?id=${productrecommend.productid }"><img
-								src="${pageContext.request.contextPath }/jsp/mall/images/tj.png "></img>
+								src="/upload/${productrecommend.picture }"></img>
 							</a>
 						</div>
 					</div>
@@ -384,15 +329,16 @@
 				</div>
 				<div class="am-g am-g-fixed ">
 					<c:forEach items="${productDiscounts }" var="productDiscount">
-						<div class="am-u-sm-3 ">
+						<div class="am-u-sm-3 " style="padding: 6px;margin: 0px;">
 							<div class="icon-sale two "></div>
 							<h4>特惠</h4>
-							<div class="activityMain ">
+							<div class="activityMain">
 								<a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }"><img
-									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg "></img></a>
+									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg"></img></a>
 							</div>
-							<div class="info ">
-								<h3><a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }">${productDiscount.productname }</a></h3>
+							<div class="info" style="opacity : 0.5;">
+								<h3><a 
+								href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }">${productDiscount.productname }</a></h3>
 							</div>
 						</div>
 
@@ -411,11 +357,11 @@
 					<div class="am-container ">
 						<div class="shopTitle ">
 							<h4>${oneTypeProducts.key.producttypename }</h4>
-							<div class="today-brands ">
+							<!-- <div class="today-brands ">
 								<a href="# ">腰果</a> <a href="# ">松子</a> <a href="# ">夏威夷果 </a> <a
 									href="# ">碧根果</a> <a href="# ">开心果</a> <a href="# ">核桃仁</a>
-							</div>
-							<span class="more "> <a href="# ">更多美味<i
+							</div> -->
+							<span class="more "> <a href="${pageContext.request.contextPath }/jsp/mall/home/allProduct.jsp?producttypeid=${oneTypeProducts.key.producttypeid }&producttypename=${oneTypeProducts.key.producttypename } " target="_black">更多<i
 									class="am-icon-angle-right" style="padding-left:10px ;"></i> </a> </span>
 						</div>
 					</div>
@@ -433,7 +379,7 @@
 								</a>
 							</div> -->
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[0].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/act1.png " />
+								src="/upload/${oneTypeProducts.value[0].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[0].productname }</div>
 									<div class="title ">${oneTypeProducts.value[0].price }</div>
@@ -442,7 +388,7 @@
 						</div>
 						<div class="am-u-sm-4 text-four">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[1].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/6.jpg" />
+								src="/upload/${oneTypeProducts.value[1].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[1].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[1].price }</div>
@@ -451,7 +397,7 @@
 						</div>
 						<div class="am-u-sm-4 text-four sug">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[2].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/7.jpg" />
+								src="/upload/${oneTypeProducts.value[2].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[2].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[2].price }</div>
@@ -461,7 +407,7 @@
 	
 						<div class="am-u-sm-6 am-u-md-3 text-five big ">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[3].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
+								src="/upload/${oneTypeProducts.value[3].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[3].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[3].price }</div>
@@ -470,7 +416,7 @@
 						</div>
 						<div class="am-u-sm-6 am-u-md-3 text-five ">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[4].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/8.jpg" />
+								src="/upload/${oneTypeProducts.value[4].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[4].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[4].price }</div>
@@ -479,7 +425,7 @@
 						</div>
 						<div class="am-u-sm-6 am-u-md-3 text-five sug">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[5].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/9.jpg" />
+								src="/upload/${oneTypeProducts.value[5].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[5].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[5].price }</div>
@@ -488,7 +434,7 @@
 						</div>
 						<div class="am-u-sm-6 am-u-md-3 text-five big">
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[6].productid }"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/10.jpg" />
+								src="/upload/${oneTypeProducts.value[6].picture }" />
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[6].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[6].price }</div>
@@ -503,23 +449,7 @@
 			</c:forEach>
 
 
-			<div class="footer ">
-				<div class="footer-hd ">
-					<p>
-						<a href="# ">恒望科技</a> <b>|</b> <a href="# ">商城首页</a> <b>|</b> <a
-							href="# ">支付宝</a> <b>|</b> <a href="# ">物流</a>
-					</p>
-				</div>
-				<div class="footer-bd ">
-					<p>
-						<a href="# ">关于恒望</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a>
-						<a href="# ">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有. 更多模板
-							<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
-							- Collect from <a href="http://www.cssmoban.com/" title="网页模板"
-							target="_blank">网页模板</a> </em>
-					</p>
-				</div>
-			</div>
+			<c:import url="/jsp/mall/footer.jsp"></c:import>
 
 		</div>
 	</div>
@@ -561,7 +491,7 @@
 
 				</div>
 				<div id="shopCart " class="item ">
-					<a href="# "> <span class="message "></span> </a>
+					<a href="${pageContext.request.contextPath }/jsp/mall/home/shopcart.jsp"> <span class="message "></span> </a>
 					<p>购物车</p>
 					<p class="cart_num ">0</p>
 				</div>

@@ -5,6 +5,12 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.OrdersCountVo;
+import com.xiaohe.bean.OrdersCustom;
+import com.xiaohe.bean.ShippingAddVo;
+import com.xiaohe.bean.ShippingAddressCustom;
+import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
 
@@ -51,4 +57,45 @@ public interface UserService {
 	 * @return
 	 */
 	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload);
+	
+	/**
+	 * 查询出某用户的所有收货地址
+	 * @param userid
+	 * @return
+	 */
+	public ShippingAddVo queryAllAddressByUserid(Integer userid);
+	
+	/**
+	 * 更新默认地址并且返回原来的默认地址
+	 * @return
+	 */
+	public ShippingAddressCustom updateDefaultReturnOld(ShippingAddressCustom condition);
+	
+	/**
+	 * 添加地址并且返回地址
+	 * @return
+	 */
+	public ShippingAddressCustom addAddressReturnAddress(ShippingAddressCustom addressInfo);
+	
+	/**
+	 * 根据logo查询订单
+	 * @param logo
+	 * @param user
+	 * @return
+	 */
+	public List<OrdersCustom> queryOrdersByLogo(String logo , User user);
+	
+	/**
+	 * 计算某一状态或者其他条件 总数
+	 * @param condition
+	 * @return
+	 */
+	public OrdersCountVo queryCountByLogo(User user);
+	
+	/**
+	 * 根据当前用户查询出评价
+	 * @param userid
+	 * @return
+	 */
+	public List<EvaluationCustom> queryAllEvaluationByUserid(Integer userid);
 }

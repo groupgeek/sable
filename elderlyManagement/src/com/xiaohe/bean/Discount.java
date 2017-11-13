@@ -11,6 +11,8 @@ public class Discount {
 
     private String discountreason;
 
+    private Integer branchid;
+
     public Integer getDiscountid() {
         return discountid;
     }
@@ -41,5 +43,13 @@ public class Discount {
 
     public void setDiscountreason(String discountreason) {
         this.discountreason = discountreason == null ? null : discountreason.trim();
+    }
+
+    public Integer getBranchid() {
+        return branchid;
+    }
+
+    public void setBranchid(Integer branchid) {
+        this.branchid = branchid;
     }
 }

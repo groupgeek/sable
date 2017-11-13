@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var root = $("#root").attr("value");
 		var search = "";
 		var currentPage = 1;
-		var pageNum = $("#selectPageNum").attr("value");;
+		var pageNum = $("#selectPageNum").attr("value");
 		var sort = $("#selectSort").val();
 		var activitystatus = $("#activitystatus").attr("value");
 		

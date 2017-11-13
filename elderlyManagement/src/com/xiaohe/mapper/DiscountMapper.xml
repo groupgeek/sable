@@ -6,9 +6,10 @@
     <result column="productId" property="productid" jdbcType="INTEGER" />
     <result column="discount" property="discount" jdbcType="DECIMAL" />
     <result column="discountReason" property="discountreason" jdbcType="VARCHAR" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    discountId, productId, discount, discountReason
+    discountId, productId, discount, discountReason, branchId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Discount" >
     insert into discount (discountId, productId, discount, 
-      discountReason)
+      discountReason, branchId)
     values (#{discountid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, 
-      #{discountreason,jdbcType=VARCHAR})
+      #{discountreason,jdbcType=VARCHAR}, #{branchid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Discount" >
     insert into discount
@@ -41,6 +42,9 @@
       <if test="discountreason != null" >
         discountReason,
       </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="discountid != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="discountreason != null" >
         #{discountreason,jdbcType=VARCHAR},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="discountreason != null" >
         discountReason = #{discountreason,jdbcType=VARCHAR},
       </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
     </set>
     where discountId = #{discountid,jdbcType=INTEGER}
   </update>
@@ -76,12 +86,17 @@
     update discount
     set productId = #{productid,jdbcType=INTEGER},
       discount = #{discount,jdbcType=DECIMAL},
-      discountReason = #{discountreason,jdbcType=VARCHAR}
+      discountReason = #{discountreason,jdbcType=VARCHAR},
+      branchId = #{branchid,jdbcType=INTEGER}
     where discountId = #{discountid,jdbcType=INTEGER}
   </update>
-  
-  
-  <select id="selectDiscountProducts" parameterType="Integer" resultType="ProductCustom">
+  <!-- <select id="selectDiscountProducts" parameterType="Integer" resultType="ProductCustom">
   	SELECT p.* FROM product p , discount d WHERE p.productId = d.productId LIMIT #{id}
+  </select> -->
+  <select id="selectDiscountProducts" parameterType="Integer" resultType="ProductCustom">
+  	SELECT p.* FROM product p , discount d ,`user` u , branch b
+	WHERE u.userId = #{id} AND b.areaId = u.areaId
+	AND  d.branchId = b.branchId AND p.productId = d.productId 
+	LIMIT 4
   </select>
 </mapper>

@@ -91,4 +91,8 @@
   	delete from producttaste
     where productId = #{id}
   </delete>
+  
+  <select id="selectasteByProductid" parameterType="Integer" resultType="ProducttasteCustom">
+  	SELECT * FROM producttaste WHERE productId = #{id}
+  </select>
 </mapper>

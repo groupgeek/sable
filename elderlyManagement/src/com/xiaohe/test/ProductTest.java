@@ -2,6 +2,7 @@ package com.xiaohe.test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,14 +11,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
+import com.xiaohe.bean.User;
 import com.xiaohe.mapper.ProductMapper;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProducttransactionreportService;
+import com.xiaohe.service.UserService;
 
 /**
  * 测试
@@ -39,6 +43,10 @@ public class ProductTest {
 	
 	@Autowired
 	private ProducttransactionreportMapper producttransactionreportMapper;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 	
 
 	@org.junit.Test
@@ -163,6 +171,14 @@ public class ProductTest {
 		
 		
 	}
-	
+	@org.junit.Test
+	public void demo8(){
+		User user = new User();
+		user.setUserid(12);
+		String logo = "#pending-payment";
+		
+		List<OrdersCustom> list = userService.queryOrdersByLogo(logo, user);
+		System.out.println(list.toArray());
+	}
 	
 }

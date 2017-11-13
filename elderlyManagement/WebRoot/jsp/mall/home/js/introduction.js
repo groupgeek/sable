@@ -72,7 +72,21 @@ $(document).ready(function(){
 					
 				}
 				if($(this).attr("id") == "buy"){
-					window.open(root+"/jsp/mall/home/pay.jsp?"+data);
+					var info = new Object();
+					info.productid = productid;
+					info.price = $("#price").text();
+					info.productname = $("#productName").text();
+					info.taste = taste;
+					
+					$.ajax({
+						type:"post",
+						contentType:"application/json;charset=utf-8",
+						url:root+"/product/buyNow",
+						data:JSON.stringify(info),
+						success:function(data){
+							window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
+						}
+					});
 				}
 				
 
@@ -89,7 +103,7 @@ $(document).ready(function(){
 						type:"post",
 						contentType:"application/json;charset=utf-8",
 						url:root+"/product/addShopCart",
-						data:'{"type"'+':'+'"'+1+'"'+','
+						data:'{"type"'+':'+'"'+2+'"'+','
 						+'"productid"'+':'+'"'+productid+'"'+','
 						+'"number"'+':'+'"'+$("#text_box").attr("value")+'"'+','
 						+'"colour"'+':'+'"'+colour+'"'+','
@@ -101,7 +115,23 @@ $(document).ready(function(){
 					});
 				}
 				if($(this).attr("id") == "buy"){
-					window.open(root+"/jsp/mall/home/pay.jsp?"+data);
+					var info = new Object();
+					info.productid = productid;
+					info.price = $("#price").text();
+					info.productname = $("#productName").text();
+					info.colour = colour;
+					info.sizeString = size;
+					
+					$.ajax({
+						type:"post",
+						contentType:"application/json;charset=utf-8",
+						url:root+"/product/buyNow",
+						data:JSON.stringify(info),
+						success:function(data){
+							window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
+						}
+					});
+					
 				}
 				
 

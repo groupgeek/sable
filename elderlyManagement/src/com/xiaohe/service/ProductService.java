@@ -3,19 +3,18 @@ package com.xiaohe.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.print.attribute.HashAttributeSet;
-
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.EvaluationCustom;
-import com.xiaohe.bean.Product;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.bean.Shoppingcar;
 import com.xiaohe.bean.ShoppingcarCustom;
+import com.xiaohe.bean.User;
+import com.xiaohe.bean.UserCustom;
 
 @Transactional
 public interface ProductService {
@@ -183,4 +182,84 @@ public interface ProductService {
 	 */
 	public List<ShoppingcarCustom> queryAllShopCart(Integer userid);
 	
+	/**
+	 * 删除一条数据
+	 * @param id
+	 * @return
+	 */
+	public boolean deleteShoppingcarById(Integer id);
+	
+	/**
+	 * 添加订单
+	 * @param ordersInfo
+	 * @return
+	 */
+	public String[] addOrders(Map<UserCustom, ShoppingcarCustom[]> shoppingcar);
+	
+	/**
+	 * 根据用户和订单id查询订单
+	 * @param Orders
+	 * @return
+	 */
+	public List<OrdersCustom> queryAllOrdersByOrdersId(Map<User, String[]> orders);
+	
+	/**
+	 * 更新订单
+	 * @param info 用户id 更新信息
+	 * @return
+	 */
+	public boolean updateOrderById(OrdersCustom info);
+	
+	/**
+	 * 跟新订单(产品数量)
+	 * @param orderInfo 订单id 产品数量
+	 * @return
+	 */
+	public boolean updateOrderNumberById(OrdersCustom orderInfo);
+	
+	/**
+	 * 删除某一个订单
+	 * @param oid
+	 * @return
+	 */
+	public boolean deleteOrderByOid(String oid);
+	
+	/**
+	 * 查询商品的颜色或者口味
+	 * @param Pid
+	 * @return
+	 */
+	public ProductCustom queryColourOrTasteByProductid(Integer pid);
+	
+	/**
+	 * 根据购物车id更新购物车
+	 * @param info
+	 * @return
+	 */
+	public boolean updateColourOrTasteByShopcarid(ShoppingcarCustom info);
+	
+	/**
+	 * 查询出一件热门的商品 某用户
+	 * @return
+	 */
+	public ProductCustom queryPersonHotProduct(Integer userid);
+	
+	/**
+	 * 查询出一件推荐商品（个人中心）某用户
+	 * @return
+	 */
+	public ProductCustom queryPersonProductrecommend(Integer userid);
+	
+	 /**
+     * 查询某地区某一类商品信息
+     * @param condition
+     * @return
+     */
+	public ProductVo queryAllProductByProductTypeId(ProductCustom condition);
+	
+	/**
+	 * 立即购买
+	 * @return info 产品
+	 */
+	public String buyNow(ProductCustom info);
 }

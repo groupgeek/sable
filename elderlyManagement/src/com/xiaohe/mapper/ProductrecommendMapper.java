@@ -20,10 +20,10 @@ public interface ProductrecommendMapper {
     
     /**
      * 查询商品推荐表
-     * @param total
+     * @param userid
      * @return 商品集合
      */
-    List<ProductCustom> selectProductrecommend(Integer total);
+    List<ProductCustom> selectProductrecommend(Integer userid);
     /**
      * 
      * @param branchid分店ID

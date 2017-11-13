@@ -88,4 +88,10 @@
   </select>
   
   
+  <select id="oneAreaByEmpId" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Area"> 
+  select * from area a,branch b
+	where a.areaId = b.areaId
+	and b.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

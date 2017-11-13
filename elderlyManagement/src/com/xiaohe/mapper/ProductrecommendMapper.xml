@@ -91,11 +91,20 @@
     where productRecommendId = #{productrecommendid,jdbcType=INTEGER}
   </update>
   
-  <select id="selectProductrecommend" parameterType="Integer" resultType="productCustom">
+<!--   <select id="selectProductrecommend" parameterType="Integer" resultType="productCustom">
   	
   	SELECT p.* FROM productrecommend pre , product p WHERE p.productId = pre.productId LIMIT #{id}
   
+  </select> -->
+  <select id="selectProductrecommend" parameterType="Integer" resultType="productCustom">
+  	
+  	SELECT p.* FROM productrecommend pre , product p ,`user` u , branch b
+	WHERE u.userId = #{id} AND b.areaId = u.areaId
+	AND pre.branchId = b.branchId AND p.productId = pre.productId 
+	LIMIT 3
+  
   </select>
+  
   
   <select id="quertyRecommendProdcut" parameterType="Integer" resultType="productCustom">
   	

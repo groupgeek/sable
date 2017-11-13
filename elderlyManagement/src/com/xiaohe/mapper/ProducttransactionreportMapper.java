@@ -67,4 +67,24 @@ public interface ProducttransactionreportMapper {
      */
     List<ProducttransactionreportCustom> selectProductTest(Integer id);
     
+    /**
+     * 查询分店的商品销售情况（分店）
+     * @param producttransactionreportCustom
+     * @return
+     */
+    List<ProducttransactionreportCustom> BranchProductTransation(ProducttransactionreportCustom producttransactionreportCustom);
+    
+    /**
+     * 根据传入的数据，查询商品一天的销售情况(分店)
+     * @param producttransactionreportCustom
+     * @return
+     */
+    ProducttransactionreportCustom oneDayTransation(ProducttransactionreportCustom producttransactionreportCustom);
+    
+    /**
+     * 传入一个时间，处理成 2017-1-1 0:0:0格式
+     * @param date
+     * @return
+     */
+    ProducttransactionreportCustom calTime(ProducttransactionreportCustom date);
 }

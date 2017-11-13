@@ -20,8 +20,8 @@ public interface DiscountMapper {
     
     /**
      * 查询优惠商品
-     * @param total 条数
+     * @param userid 用戶id
      * @return 集合
      */
-    List<ProductCustom> selectDiscountProducts(Integer total);
+    List<ProductCustom> selectDiscountProducts(Integer userid);
 }

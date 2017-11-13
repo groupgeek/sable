@@ -15,6 +15,8 @@ public class Integraltoarticle {
 
     private String picture;
 
+    private Integer branchid;
+
     private String detail;
 
     public Integer getArticleid() {
@@ -63,6 +65,14 @@ public class Integraltoarticle {
 
     public void setPicture(String picture) {
         this.picture = picture == null ? null : picture.trim();
+    }
+
+    public Integer getBranchid() {
+        return branchid;
+    }
+
+    public void setBranchid(Integer branchid) {
+        this.branchid = branchid;
     }
 
     public String getDetail() {

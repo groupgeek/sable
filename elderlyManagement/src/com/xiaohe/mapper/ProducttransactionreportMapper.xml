@@ -217,16 +217,47 @@
   	select sum(countBuy*(totalPrice-totalExpenditure)) from producttransactionreport
 	group by BuyTime order by BuyTime desc limit 15
   </select>
-  <select id="CeoProductByTime" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
-  	select sum(countBuy*(totalPrice-totalExpenditure)) summoney,BuyTime from producttransactionreport
-	where BuyTime>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
-	group by date_format(BuyTime,'%Y-%m')
+  
+  
+  <select id="BranchProductTransation" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+  
+  	SELECT * FROM producttransactionreport p,branch b,product s
+  	
+  	<where>
+  			p.branchId = b.branchId
+  			and p.productId = s.productId
+  		<if test="employeeid != null">
+  			AND b.employeeid = #{employeeid}
+  		</if>
+  		<if test="productid != null">
+  			AND p.productid = #{productid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND BuyTime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  	
   </select>
   
-  <select id="selectProductTest" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
-		select productId,sum(totalPrice) getprice,sum(totalExpenditure) toprice,BuyTime 
-		from producttransactionreport
-		where productId=#{productId,jdbcType=INTEGER}
-		group by date_format(producttransactionreport.BuyTime,'%Y-%m')
-	</select>
+  <select id="oneDayTransation" parameterType="com.xiaohe.bean.ProducttransactionreportCustom" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+  SELECT SUM(totalPrice) totalMoney,SUM(countBuy) totalCount from producttransactionreport
+   where productId = #{productid,jdbcType=INTEGER}
+	and BuyTime BETWEEN #{start} and #{end}
+  </select>
+  
+  <select id="calTime" parameterType="com.xiaohe.bean.ProducttransactionreportCustom" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+  select STR_TO_DATE(#{buytime},'%Y-%m-%d') time
+  </select>
 </mapper>

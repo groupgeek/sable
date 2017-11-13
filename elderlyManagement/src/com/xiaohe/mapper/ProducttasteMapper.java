@@ -34,4 +34,14 @@ public interface ProducttasteMapper {
      * 根据产品id删除口味
      */
     int deleteProducttasteByProductid(Integer productid);
+    
+    /**
+     * 查询口味
+     * @param productid
+     * @return
+     */
+    List<ProducttasteCustom> selectasteByProductid(Integer productid);
+    
+    
+    
 }

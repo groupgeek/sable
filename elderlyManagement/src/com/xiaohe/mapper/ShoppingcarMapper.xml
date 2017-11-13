@@ -165,7 +165,7 @@
   	
   	<association property="productcolourInfo" javaType="ProductcolourCustom">
   		<id column="productColourId" property="productcolourid"></id>
-  		<result column="productcolourid" property="productcolour"/>
+  		<result column="productColour" property="productcolour"/>
   	</association>
   
   </resultMap>
@@ -176,7 +176,7 @@
 	AND p.productId = s.productId AND pt.productTasteId = s.taste
   </select>
   <select id="selectAllShopCartClothesByUserid" parameterType="Integer" resultMap="ShoppingcarInfoMap">
-  	SELECT s.* ,p.picture , p.description , p.price, pc.productcolour ,pc.productColourId
+  	SELECT s.* ,p.picture , p.description , p.price, pc.productColour ,pc.productColourId
 	FROM `shoppingcar` s , product p , productcolour pc
 	WHERE userId = #{id} 
 	AND p.productId = s.productId AND pc.productColourId = s.colour

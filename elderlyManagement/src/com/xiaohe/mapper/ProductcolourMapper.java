@@ -26,4 +26,10 @@ public interface ProductcolourMapper {
      * @return
      */
     int deleteColorByProductId(Integer productId);
+    
+    /**
+     * 查询商品的颜色
+     * @return
+     */
+    List<ProductcolourCustom> selectColourByProductid(Integer productId);
 }
