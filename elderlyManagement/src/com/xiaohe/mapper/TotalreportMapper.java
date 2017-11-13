@@ -45,6 +45,11 @@ public interface TotalreportMapper {
      * @return
      */
     List<CeoTotalreport> selectBranchTotalreport(Integer branchid);
+    /**
+     * 按月份查询一年内的盈利
+     * @return
+     */
+    List<CeoTotalreport> CeoTotalreportByTime();
     
     List<CeoTotalreport> selectTotalreports(CeoTotalreport ceoTotalreport);
     CeoTotalreport selectBranchMoney(CeoTotalreport ceoTotalreport);

@@ -41,7 +41,7 @@ public class CeoTest {
 	
 	@Test
 	public void findTotalreportAndBranch(){
-		System.out.println(ceoService.findTotalreportAndBranch().get(0).getStringbigdecimal());
+		System.out.println(ceoService.findTotalreportAndBranch().get(0).getSumBigDecimal());
 	}
 	
 	@Test
@@ -66,4 +66,16 @@ public class CeoTest {
 	public void findSumProductMoney(){
 		System.out.println(ceoService.findSumProductMoney());
 	}
+	
+	@Test
+	public void findProducttransactionreportTest(){
+		System.out.println(ceoService.findProducttransactionreportTest(1).get(0).getStringTime());
+	}
+	
+	@Test
+	public void findBigDecimal(){
+		
+		System.out.println(ceoService.findBigDecimal().getListPCustoms());
+	}
+	
 }

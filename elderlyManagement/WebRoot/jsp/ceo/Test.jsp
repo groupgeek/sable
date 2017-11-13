@@ -3,98 +3,189 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'test.jsp' starting page</title>
+    <title>My JSP 'Test.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/js/echarts.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
+	<style type="text/css">
+		#header{
+			padding-top:20px;
+			height:500px;
+			width:100%;
+			
+		}
+		#chartmain{
+			
+			padding:20px;
+			height:100%;
+			width:47%;
+			float:left;
+		}
+		#main{
+			padding:20px;
+			height:100%;
+			width:47%;
+			float:left;
+		}
+		
+	</style>
+	
   </head>
   
   <body>
-  
-  
-						  
-    <ul class="messagesList">
-						<c:forEach items="${acts }" var="acts">
-							<tr>
-							<td>${acts.activityid}</td>
-							<td>${acts.activityname }</td>
-							<td>${acts.activitystatus }</td>
-							<td>${acts.registeryfee }</td>
-							<td><a href="${pageContext.request.contextPath }/brach/oneActCus.action?id=${ acts.activityid}">详情</a></td>
-							</tr>
-						</c:forEach>
-	</ul>
-	管理员姓名：${employee.employeename }<br>
-	<table>
-	<tr>
-		<td>教育收入</td>
-		<td>健康收入</td>
-		<td>商城收入</td>
-		<td>总收入</td>
-	</tr>
-	<tr> 
-			<td>${arr[0] }</td>
-		    <td>${arr[1] }</td>
-		 	<td>${arr[2] }</td>
-			<td>${arr[3] }</td>
-	</tr>
-	
-	</table>
-	<a href="${pageContext.request.contextPath }/brach/log.action">登陆成功</a><br>
-	<a href="${pageContext.request.contextPath }/brach/index.action">首页测试</a>
-	<a href="${pageContext.request.contextPath }/brach/users.action">信息展示</a>
-	<a href="${pageContext.request.contextPath }/brach/fenyeMessage.action">留言信息</a>
-	<a href="${pageContext.request.contextPath }/brach/branchTran.action">客户关系</a>
-	<a href="${pageContext.request.contextPath }/brach/branchVist.action">客户回访</a>
-	<a href="${pageContext.request.contextPath }/brach/allActs.action">所有活动</a>
-	<a href="${pageContext.request.contextPath }/brach/allActTypes.action">添加活动</a>
-	<br>
-	
-	<input type="button" onclick="hello()" value="json请求"/>
-	
-	<p class="zb">你好啊  ！</p>
-	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
-	
-	<script type="text/javascript">
-	function hello(){
-	$.ajax({
-		type : 'post',
-		/*${pageContext.request.contextPath }/*/
-		url : 'brach/demo.action',
-		//data:'username = "1"&password = "123"',
-		//数据格式是json串
-		contentType : 'application/json;charset=utf-8',
-		//data:'{"username":"zhangbiao","password":"123"}',
-		data:'{"userid":"1"}',
-		success : function(data) {
-			alert(data.username);
-			alert(data.password);
-			$("#zb").html(data.username+""+data.password);
-		}
-	});
+  		<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+  		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
+    <div id="header">
+    	<div id="chartmain"></div>
+    	<div id="main"></div>
+    </div>
+    <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:[]
+    },
+    series: [
+        {
+            name:'盈利占比',
+            type:'pie',
+            selectedMode: 'single',
+            radius: [0, '30%'],
 
-
-}
-	
-	
-	
-	
-	
-	</script>
+            label: {
+                normal: {
+                    position: 'inner'
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[]
+        },
+         {
+            name:'访问来源',
+            type:'pie',
+            radius: ['40%', '55%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#eee',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    // padding: [0, 7],
+                    rich: {
+                        a: {
+                            color: '#999',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        // abg: {
+                        //     backgroundColor: '#333',
+                        //     width: '100%',
+                        //     align: 'right',
+                        //     height: 22,
+                        //     borderRadius: [4, 4, 0, 0]
+                        // },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:[
+                {value:335, name:'直达'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1048, name:'百度'},
+                {value:251, name:'谷歌'},
+                {value:147, name:'必应'},
+                {value:102, name:'其他'}
+            ]
+        } 
+    ]
+};
+		myChart.showLoading();	
+		var times=[];    //类别数组（实际用来盛放X轴坐标值）
+     	/* var bigdecimal=[]; */
+     	/* var money=[];
+     	var toprices=[];
+        var getprices=[]; */    //销量数组（实际用来盛放Y坐标值）
+       /*  var root = $("#root").val(); */
+        $.ajax({
+        type : 'post',
+        async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : '${pageContext.request.contextPath }/ceo/Test.action',    
+        data : '{}',
+        contentType : 'application/json;charset=utf-8',        //返回数据形式为json
+        success : function(result) {
+             //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+             		
+                    for(var i=0;i<result.length;i++){       
+                       times.push({
+                       value:result[i].sumBigDecimal,
+                       name:result[i].branchname                      
+                       });    
+                     }                                        
+                    myChart.hideLoading();      //隐藏加载动画 
+                    myChart.setOption({        //加载数据图表
+                       	
+                        series: [
+                        {
+                        	data:times
+                        }
+                        ]
+                    });                   
+             }         
+        },
+         error : function(errorMsg) {
+             //请求失败时执行该函数
+         alert("图表请求数据失败!");
+         myChart.hideLoading();
+         }
+    	});
+    myChart.setOption(option);
+    </script>
   </body>
 </html>

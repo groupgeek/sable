@@ -37,8 +37,38 @@ public class CeoActivity extends Activity{
     
     private String stringDate;
     
+    private String stringTime;
+    
     private String stringline;
     
+    private String sumactivityPrice;
+    
+    private String sumregisteryFee;
+
+	public String getStringTime() {
+		return stringTime;
+	}
+
+	public void setStringTime(String stringTime) {
+		this.stringTime = stringTime;
+	}
+
+	public String getSumactivityPrice() {
+		return sumactivityPrice;
+	}
+
+	public void setSumactivityPrice(String sumactivityPrice) {
+		this.sumactivityPrice = sumactivityPrice;
+	}
+
+	public String getSumregisteryFee() {
+		return sumregisteryFee;
+	}
+
+	public void setSumregisteryFee(String sumregisteryFee) {
+		this.sumregisteryFee = sumregisteryFee;
+	}
+
 	public String getRegistery() {
 		return registery;
 	}
