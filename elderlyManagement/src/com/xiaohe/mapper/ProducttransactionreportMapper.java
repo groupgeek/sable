@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.xiaohe.bean.CeoProducttransactionreport;
 import com.xiaohe.bean.Producttransactionreport;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 
@@ -58,14 +59,14 @@ public interface ProducttransactionreportMapper {
      * 按月份查询一年内的商城盈利
      * @return
      */
-    List<ProducttransactionreportCustom> CeoProductByTime();
+    List<CeoProducttransactionreport> CeoProductByTime();
     
     /**
      * 测试用
      * @param id
      * @return
      */
-    List<ProducttransactionreportCustom> selectProductTest(Integer id);
+    List<CeoProducttransactionreport> selectProductTest(Integer id);
     
     /**
      * 查询分店的商品销售情况（分店）

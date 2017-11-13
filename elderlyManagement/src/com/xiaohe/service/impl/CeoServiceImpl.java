@@ -20,6 +20,7 @@ import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
+import com.xiaohe.bean.CeoProducttransactionreport;
 import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
@@ -208,7 +209,8 @@ public class CeoServiceImpl implements CeoService{
 		for(int t = 0;t<12;t++ ){
 			newtList.add("0");
 		}
-		List<ProducttransactionreportCustom> pList = producttransactionreportMapper.CeoProductByTime();
+
+		List<CeoProducttransactionreport> pList = producttransactionreportMapper.CeoProductByTime();
 		List<String> newpList = new ArrayList<String>();
 		for (int p = 0; p < 12; p++) {
 			newpList.add("0");
@@ -251,7 +253,7 @@ public class CeoServiceImpl implements CeoService{
 			}
 		}
 		if (pList != null) {
-			for (ProducttransactionreportCustom pCustom : pList) {
+			for (CeoProducttransactionreport pCustom : pList) {
 				String dString = dateFormat.format(pCustom.getBuytime());
 				pCustom.setStringTime(dString);				
 			}
@@ -339,10 +341,10 @@ public class CeoServiceImpl implements CeoService{
 		}
 		return list;
 	}
-	public List<ProducttransactionreportCustom> findProducttransactionreportTest(Integer id){
+	public List<CeoProducttransactionreport> findProducttransactionreportTest(Integer id){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
-		List<ProducttransactionreportCustom> list = producttransactionreportMapper.selectProductTest(id);
-		for (ProducttransactionreportCustom pCustom : list) {
+		List<CeoProducttransactionreport> list = producttransactionreportMapper.selectProductTest(id);
+		for (CeoProducttransactionreport pCustom : list) {
 			String fString = dateFormat.format(pCustom.getBuytime());
 			pCustom.setStringTime(fString);
 		}

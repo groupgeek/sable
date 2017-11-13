@@ -30,8 +30,6 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private Date start;
 	private Date end;
 	
-	
-	
 	public Date getStart() {
 		return start;
 	}

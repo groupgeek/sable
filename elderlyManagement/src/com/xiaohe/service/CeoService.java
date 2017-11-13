@@ -11,6 +11,7 @@ import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoEmployee;
+import com.xiaohe.bean.CeoProducttransactionreport;
 import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
@@ -82,7 +83,7 @@ public interface CeoService {
 	 * @return
 	 */
 	public List<UserCustom> findUserTest(Integer id);
-	public List<ProducttransactionreportCustom> findProducttransactionreportTest(Integer id);
+	public List<CeoProducttransactionreport> findProducttransactionreportTest(Integer id);
 	/**
 	 * 查询新注册的4名用户
 	 * @param user
