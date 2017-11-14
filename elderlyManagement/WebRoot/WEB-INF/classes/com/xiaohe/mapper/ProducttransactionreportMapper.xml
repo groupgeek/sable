@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ProducttransactionreportMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Producttransactionreport" >
+    <id column="transactionId" property="transactionid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="countBuy" property="countbuy" jdbcType="INTEGER" />
+    <result column="BuyTime" property="buytime" jdbcType="TIMESTAMP" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    transactionId, userId, productId, countBuy, BuyTime, totalPrice, totalExpenditure, 
+    branchId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from producttransactionreport
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from producttransactionreport
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    insert into producttransactionreport (transactionId, userId, productId, 
+      countBuy, BuyTime, totalPrice, 
+      totalExpenditure, branchId)
+    values (#{transactionid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, 
+      #{countbuy,jdbcType=INTEGER}, #{buytime,jdbcType=TIMESTAMP}, #{totalprice,jdbcType=DECIMAL}, 
+      #{totalexpenditure,jdbcType=DECIMAL}, #{branchid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    insert into producttransactionreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transactionid != null" >
+        transactionId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="countbuy != null" >
+        countBuy,
+      </if>
+      <if test="buytime != null" >
+        BuyTime,
+      </if>
+      <if test="totalprice != null" >
+        totalPrice,
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transactionid != null" >
+        #{transactionid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="countbuy != null" >
+        #{countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="buytime != null" >
+        #{buytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalexpenditure != null" >
+        #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    update producttransactionreport
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="countbuy != null" >
+        countBuy = #{countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="buytime != null" >
+        BuyTime = #{buytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Producttransactionreport" >
+    update producttransactionreport
+    set userId = #{userid,jdbcType=INTEGER},
+      productId = #{productid,jdbcType=INTEGER},
+      countBuy = #{countbuy,jdbcType=INTEGER},
+      BuyTime = #{buytime,jdbcType=TIMESTAMP},
+      totalPrice = #{totalprice,jdbcType=DECIMAL},
+      totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      branchId = #{branchid,jdbcType=INTEGER}
+    where transactionId = #{transactionid,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectByCondition" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+  
+  	SELECT * FROM producttransactionreport 
+  	
+  	<where>
+  		<if test="productid != null">
+  			AND productId = #{productid}
+  		</if>
+  		<if test="productid != null">
+  			AND userId = #{userid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND BuyTime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  	
+  </select>
+  
+  <select id="selectSumByCondition" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+  	SELECT SUM(countBuy) totalCount , SUM(totalPrice) totalMoney , SUM(totalExpenditure) totalExpenses 
+	FROM producttransactionreport
+  	<where>
+  		<if test="productid != null">
+  			AND productId = #{productid}
+  		</if>
+  		<if test="userid != null">
+  			AND userId = #{userid}
+  		</if>
+  		<if test="startingTime != null">
+				<if test="endTime != null">
+					AND BuyTime BETWEEN #{startingTime} AND #{endTime}
+				</if>
+		</if>
+  	</where>
+  </select>
+  
+  
+  
+   <select id="selectBranchByCondition" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+  
+  	SELECT * FROM producttransactionreport p,branch b
+  	
+  	<where>
+  			p.branchId = b.branchId
+  		<if test="employeeid != null">
+  			AND b.employeeid = #{employeeid}
+  		</if>
+  		<if test="productid != null">
+  			AND p.productid = #{productid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND BuyTime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  	
+  </select>
+  <select id="selectSumproductAllMoney" resultType="DECIMAL">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) money from producttransactionreport
+  </select>
+  
+  <select id="selectSumproductMoney" resultType="DECIMAL">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) from producttransactionreport
+	group by BuyTime order by BuyTime desc limit 15
+  </select>
+  
+  
+  <select id="BranchProductTransation" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+  
+  	SELECT * FROM producttransactionreport p,branch b,product s
+  	
+  	<where>
+  			p.branchId = b.branchId
+  			and p.productId = s.productId
+  		<if test="employeeid != null">
+  			AND b.employeeid = #{employeeid}
+  		</if>
+  		<if test="productid != null">
+  			AND p.productid = #{productid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND BuyTime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  	
+  </select>
+  
+  <select id="oneDayTransation" parameterType="com.xiaohe.bean.ProducttransactionreportCustom" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+  SELECT SUM(totalPrice) totalMoney,SUM(countBuy) totalCount from producttransactionreport
+   where productId = #{productid,jdbcType=INTEGER}
+	and BuyTime BETWEEN #{start} and #{end}
+  </select>
+  
+  <select id="calTime" parameterType="com.xiaohe.bean.ProducttransactionreportCustom" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+  select STR_TO_DATE(#{buytime},'%Y-%m-%d') time
+  </select>
+  
+  <select id="CeoProductByTime" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+  	select sum(countBuy*(totalPrice-totalExpenditure)) summoney,BuyTime from producttransactionreport
+	where BuyTime>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
+	group by date_format(BuyTime,'%Y-%m')
+  </select>
+  
+  <select id="selectProductTest" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select productId,sum(totalPrice) getprice,sum(totalExpenditure) toprice,BuyTime 
+		from producttransactionreport
+		where productId=#{productId,jdbcType=INTEGER}
+		group by date_format(producttransactionreport.BuyTime,'%Y-%m')
+	</select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.IntegralreportMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Integralreport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="MaxIntegral" property="maxintegral" jdbcType="INTEGER" />
+    <result column="MinIntegral" property="minintegral" jdbcType="INTEGER" />
+    <result column="countPerson" property="countperson" jdbcType="INTEGER" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, MaxIntegral, MinIntegral, countPerson, branchId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from integralreport
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from integralreport
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Integralreport" >
+    insert into integralreport (id, MaxIntegral, MinIntegral, 
+      countPerson, branchId)
+    values (#{id,jdbcType=INTEGER}, #{maxintegral,jdbcType=INTEGER}, #{minintegral,jdbcType=INTEGER}, 
+      #{countperson,jdbcType=INTEGER}, #{branchid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Integralreport" >
+    insert into integralreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="maxintegral != null" >
+        MaxIntegral,
+      </if>
+      <if test="minintegral != null" >
+        MinIntegral,
+      </if>
+      <if test="countperson != null" >
+        countPerson,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="maxintegral != null" >
+        #{maxintegral,jdbcType=INTEGER},
+      </if>
+      <if test="minintegral != null" >
+        #{minintegral,jdbcType=INTEGER},
+      </if>
+      <if test="countperson != null" >
+        #{countperson,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Integralreport" >
+    update integralreport
+    <set >
+      <if test="maxintegral != null" >
+        MaxIntegral = #{maxintegral,jdbcType=INTEGER},
+      </if>
+      <if test="minintegral != null" >
+        MinIntegral = #{minintegral,jdbcType=INTEGER},
+      </if>
+      <if test="countperson != null" >
+        countPerson = #{countperson,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Integralreport" >
+    update integralreport
+    set MaxIntegral = #{maxintegral,jdbcType=INTEGER},
+      MinIntegral = #{minintegral,jdbcType=INTEGER},
+      countPerson = #{countperson,jdbcType=INTEGER},
+      branchId = #{branchid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

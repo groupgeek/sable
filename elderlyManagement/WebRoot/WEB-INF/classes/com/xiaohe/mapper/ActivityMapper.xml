@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Activity" >
+    <id column="activityId" property="activityid" jdbcType="INTEGER" />
+    <result column="activityName" property="activityname" jdbcType="VARCHAR" />
+    <result column="activityTypeID" property="activitytypeid" jdbcType="INTEGER" />
+    <result column="onLine" property="online" jdbcType="BIT" />
+    <result column="activityPicture" property="activitypicture" jdbcType="VARCHAR" />
+    <result column="activityStatus" property="activitystatus" jdbcType="VARCHAR" />
+    <result column="activityDate" property="activitydate" jdbcType="TIMESTAMP" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="registeryFee" property="registeryfee" jdbcType="DECIMAL" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="activityPrice" property="activityprice" jdbcType="DECIMAL" />
+    <result column="maxNum" property="maxnum" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Activity" extends="BaseResultMap" >
+    <result column="activityDetails" property="activitydetails" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    activityId, activityName, activityTypeID, onLine, activityPicture, activityStatus, 
+    activityDate, branchId, registeryFee, video, activityPrice, maxNum
+  </sql>
+  <sql id="Blob_Column_List" >
+    activityDetails
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity
+    where activityId = #{activityid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity
+    where activityId = #{activityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Activity" >
+    insert into activity (activityId, activityName, activityTypeID, 
+      onLine, activityPicture, activityStatus, 
+      activityDate, branchId, registeryFee, 
+      video, activityPrice, maxNum, 
+      activityDetails)
+    values (#{activityid,jdbcType=INTEGER}, #{activityname,jdbcType=VARCHAR}, #{activitytypeid,jdbcType=INTEGER}, 
+      #{online,jdbcType=BIT}, #{activitypicture,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, 
+      #{activitydate,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{registeryfee,jdbcType=DECIMAL}, 
+      #{video,jdbcType=VARCHAR}, #{activityprice,jdbcType=DECIMAL}, #{maxnum,jdbcType=INTEGER}, 
+      #{activitydetails,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Activity" >
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityid != null" >
+        activityId,
+      </if>
+      <if test="activityname != null" >
+        activityName,
+      </if>
+      <if test="activitytypeid != null" >
+        activityTypeID,
+      </if>
+      <if test="online != null" >
+        onLine,
+      </if>
+      <if test="activitypicture != null" >
+        activityPicture,
+      </if>
+      <if test="activitystatus != null" >
+        activityStatus,
+      </if>
+      <if test="activitydate != null" >
+        activityDate,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="registeryfee != null" >
+        registeryFee,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="activityprice != null" >
+        activityPrice,
+      </if>
+      <if test="maxnum != null" >
+        maxNum,
+      </if>
+      <if test="activitydetails != null" >
+        activityDetails,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityid != null" >
+        #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="activityname != null" >
+        #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytypeid != null" >
+        #{activitytypeid,jdbcType=INTEGER},
+      </if>
+      <if test="online != null" >
+        #{online,jdbcType=BIT},
+      </if>
+      <if test="activitypicture != null" >
+        #{activitypicture,jdbcType=VARCHAR},
+      </if>
+      <if test="activitystatus != null" >
+        #{activitystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="activitydate != null" >
+        #{activitydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="registeryfee != null" >
+        #{registeryfee,jdbcType=DECIMAL},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="activityprice != null" >
+        #{activityprice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxnum != null" >
+        #{maxnum,jdbcType=INTEGER},
+      </if>
+      <if test="activitydetails != null" >
+        #{activitydetails,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Activity" >
+    update activity
+    <set >
+      <if test="activityname != null" >
+        activityName = #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytypeid != null" >
+        activityTypeID = #{activitytypeid,jdbcType=INTEGER},
+      </if>
+      <if test="online != null" >
+        onLine = #{online,jdbcType=BIT},
+      </if>
+      <if test="activitypicture != null" >
+        activityPicture = #{activitypicture,jdbcType=VARCHAR},
+      </if>
+      <if test="activitystatus != null" >
+        activityStatus = #{activitystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="activitydate != null" >
+        activityDate = #{activitydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="registeryfee != null" >
+        registeryFee = #{registeryfee,jdbcType=DECIMAL},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="activityprice != null" >
+        activityPrice = #{activityprice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxnum != null" >
+        maxNum = #{maxnum,jdbcType=INTEGER},
+      </if>
+      <if test="activitydetails != null" >
+        activityDetails = #{activitydetails,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where activityId = #{activityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Activity" >
+    update activity
+    set activityName = #{activityname,jdbcType=VARCHAR},
+      activityTypeID = #{activitytypeid,jdbcType=INTEGER},
+      onLine = #{online,jdbcType=BIT},
+      activityPicture = #{activitypicture,jdbcType=VARCHAR},
+      activityStatus = #{activitystatus,jdbcType=VARCHAR},
+      activityDate = #{activitydate,jdbcType=TIMESTAMP},
+      branchId = #{branchid,jdbcType=INTEGER},
+      registeryFee = #{registeryfee,jdbcType=DECIMAL},
+      video = #{video,jdbcType=VARCHAR},
+      activityPrice = #{activityprice,jdbcType=DECIMAL},
+      maxNum = #{maxnum,jdbcType=INTEGER},
+      activityDetails = #{activitydetails,jdbcType=LONGVARCHAR}
+    where activityId = #{activityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Activity" >
+    update activity
+    set activityName = #{activityname,jdbcType=VARCHAR},
+      activityTypeID = #{activitytypeid,jdbcType=INTEGER},
+      onLine = #{online,jdbcType=BIT},
+      activityPicture = #{activitypicture,jdbcType=VARCHAR},
+      activityStatus = #{activitystatus,jdbcType=VARCHAR},
+      activityDate = #{activitydate,jdbcType=TIMESTAMP},
+      branchId = #{branchid,jdbcType=INTEGER},
+      registeryFee = #{registeryfee,jdbcType=DECIMAL},
+      video = #{video,jdbcType=VARCHAR},
+      activityPrice = #{activityprice,jdbcType=DECIMAL},
+      maxNum = #{maxnum,jdbcType=INTEGER}
+    where activityId = #{activityid,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  <sql id="contidion">
+      <if test="activityid != null" >
+        AND activityId = #{activityid,jdbcType=INTEGER}
+      </if>
+      <if test="activitytypeid != null" >
+        AND activityTypeID = #{activitytypeid,jdbcType=INTEGER}
+      </if>
+      <if test="online != null" >
+        AND onLine = #{online,jdbcType=BIT}
+      </if>
+      <if test="activitypicture != null" >
+        AND activityPicture = #{activitypicture,jdbcType=VARCHAR}
+      </if>
+      <if test="activitystatus != null" >
+        AND activityStatus = #{activitystatus,jdbcType=VARCHAR}
+      </if>
+      <if test="activitydate != null" >
+        AND activityDate = #{activitydate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="branchid != null" >
+        AND branchId = #{branchid,jdbcType=INTEGER}
+      </if>
+      <if test="registeryfee != null" >
+        AND registeryFee = #{registeryfee,jdbcType=DECIMAL}
+      </if>
+      <if test="activityprice != null" >
+        AND activityPrice = #{activityprice,jdbcType=DECIMAL}
+      </if>
+      <if test="maxnum != null" >
+        AND maxNum = #{maxnum,jdbcType=INTEGER}
+      </if>
+      <if test="activitydetails != null" >
+        AND activityDetails = #{activitydetails}#
+      </if>
+      <if test="activityname != null" >
+        AND activityName LIKE '%${activityname}%'
+      </if>
+  </sql>
+  <sql id="activitySql">
+      <if test="activityid != null" >
+        AND activityId = #{activityid,jdbcType=INTEGER}
+      </if>
+      <if test="activitytypeid != null" >
+        AND activityTypeID = #{activitytypeid,jdbcType=INTEGER}
+      </if>
+      <if test="online != null" >
+        AND onLine = #{online,jdbcType=BIT}
+      </if>
+      <if test="activitypicture != null" >
+        AND activityPicture = #{activitypicture,jdbcType=VARCHAR}
+      </if>
+      <if test="activitystatus != null" >
+        AND activityStatus = #{activitystatus,jdbcType=VARCHAR}
+      </if>
+      <if test="activitydate != null" >
+        AND activityDate = #{activitydate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="branchid != null" >
+        AND branchId = #{branchid,jdbcType=INTEGER}
+      </if>
+      <if test="registeryfee != null" >
+        AND registeryFee = #{registeryfee,jdbcType=DECIMAL}
+      </if>
+      <if test="activityprice != null" >
+        AND activityPrice = #{activityprice,jdbcType=DECIMAL}
+      </if>
+      <if test="maxnum != null" >
+        AND maxNum = #{maxnum,jdbcType=INTEGER}
+      </if>
+  </sql>
+  
+  <select id="selectActivitiesByCondition" parameterType="activityCustom" resultType="activityCustom">
+	SELECT * FROM activity
+	<where>
+		<include refid="contidion"/>
+	</where>
+	ORDER BY activityDate DESC
+	<if test="begin != null">
+        <if test="total != null">
+        	 LIMIT #{begin} , #{total};
+        </if>
+      </if>  
+  </select>
+  
+  <select id="selectActivityrecommendByCondition" parameterType="activityrecommendCustom" resultType="ActivityCustom">
+  	SELECT a.* ,ac.websiteType FROM activityrecommend ac , activity a  
+  	<where>
+  		<if test="branchid != null">
+  			AND ac.branchId = #{branchid}
+  		</if>
+  		
+  		<if test="activityid != null">
+  			AND ac.activityId = #{activityid}
+  		</if>
+  		
+  		<if test="websitetype != null">
+  			AND ac.websiteType = #{websitetype}
+  		</if>
+  		
+  		<if test="true">
+  			AND a.activityId = ac.activityId
+  		</if>
+  		
+  	</where>
+  	
+  		
+  </select>
+  
+  <select id="branchHealIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
+  SELECT sum(a.registeryFee) from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=1
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  <select id="branchEduIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
+  	SELECT sum(a.registeryFee) from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=2
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="branchCountActivity" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  SELECT COUNT(*)from activity a,employee e,branch b
+	where a.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="branchActs" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
+  select a.* from activity a,employee e,branch b
+	where a.branchId = b.branchId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countActUsers" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(*) from activity a,user u,branch b
+	where a.branchId = b.branchId
+	and b.areaId = u.areaId
+	and a.activityId = #{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="oneActivity">
+  select a.* from activity a,user u,branch b
+	where a.branchId = b.branchId
+	and b.areaId = u.areaId
+	and a.activityId = #{activityid,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="oneActivityCustom" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
+  select count(*) countUsers,a.* from activity a,user u,branch b
+	where a.branchId = b.branchId
+	and b.areaId = u.areaId
+	and a.activityId = #{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="Acts" resultType="com.xiaohe.bean.ActivityCustom">
+  select * from activity
+  </select>
+  
+  <select id="oneAct" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Activity">
+  select * from activity where activityid = #{activityid,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+    <select id="selectAllActivityByCondition" parameterType="ActivityCustom" resultType="ActivityCustom">
+  
+	  	SELECT a.* , b.branchName FROM `activity` a , branch b
+	  	WHERE b.branchId = a. branchId
+	  	<include refid="activitySql"/>
+	  	<if test="activitydetails != null">
+	  		<if test="activityname != null">
+	  			AND (activityDetails LIKE '%${activitydetails}%'
+		    	OR activityName LIKE '%${activityname}%')
+	  		</if>
+	  	</if>
+	  	<if test="sort != null" >
+		    ORDER BY ${sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllActivitySumByCondition" parameterType="ActivityCustom" resultType="Integer">
+  
+  		SELECT COUNT(*) FROM `activity` a , branch b
+	  	WHERE b.branchId = a. branchId
+	  	<include refid="activitySql"/>
+	  	<if test="activitydetails != null">
+	  		<if test="activityname != null">
+	  			AND (activityDetails LIKE '%${activitydetails}%'
+		    	OR activityName LIKE '%${activityname}%')
+	  		</if>
+	  	</if>
+  
+  </select>
+  
+  <select id="selectActivityInfoById" parameterType="Integer" resultType="activityCustom">
+  	SELECT a.* ,b.branchName , ac1.activityTypeName,ac1.fatherTypeID , ac2.activityTypeName fatherTypeName
+		FROM activity a, branch b ,activitytype ac1, activitytype ac2 
+		WHERE a.activityId = #{id} AND
+		b.branchId = a.branchId AND ac1.activityTypeID = a.activityTypeID AND
+		ac2.activityTypeID = ac1.fatherTypeID
+		  
+  </select>
+  
+  <select id="selectAllActivity" resultType="com.xiaohe.bean.CeoActivity">
+  	select * from activity
+  </select>
+  
+  <select id="selectCeoActivity" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoActivity">
+  	select a.*,act.activityTypeName,b.branchName from activity a,activitytype act,branch b
+	where act.activityTypeID=a.activityTypeID
+	and b.branchId=a.branchId
+	and a.activityid=#{activityid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectSumActivityPrice" resultType="DECIMAL">
+  	select sum(activityPrice) from activity
+  </select>
+  
+  <select id="selectSumregisteryFee" resultType="DECIMAL">
+  	select sum(registeryFee) from activity a,activityregistery act
+	where a.activityId=act.activityId
+	and act.registery="报名"
+  </select>
+  
+  <select id="selectSumActivityByTime" resultType="DECIMAL">
+  	select sum(activityPrice) from activity
+	where activityDate = date_format(activityDate,'%Y-%m-%d') 
+	group by activityDate 
+	order by activityDate desc limit 15
+  </select>
+  
+  <select id="selectSumregisteryFeeByTime" resultType="DECIMAL">
+  	select sum(a.registeryFee) from activity a,activityregistery act
+	where a.activityId=act.activityId
+	and act.registery="报名"
+	and a.activityDate = date_format(a.activityDate,'%Y-%m-%d') 
+	group by a.activityDate
+	order by a.activityDate desc
+  </select>
+  
+  <select id="selectCountActivity" resultType="java.lang.Integer">
+  	select count(*) from activity
+  </select>
+  <select id="CeoActivityByTime" resultType="com.xiaohe.bean.CeoActivity">
+  	select sum(activityPrice) sumactivityPrice,activityDate from activity
+	where activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
+	group by date_format(activityDate,'%Y-%m')
+  </select>
+  <select id="CeoRegisteryFeeByTime" resultType="com.xiaohe.bean.CeoActivity">
+  	select sum(registeryFee) sumregisteryFee,activityDate from activityregistery act,activity a
+	where a.activityId=act.activityId 
+	and activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+	and registery="报名"
+	group by date_format(activityDate,'%Y-%m')
+  </select>
+  
+  <select id="queryActivityByUserId" resultType="com.xiaohe.bean.Activity" parameterType="int">
+	  	SELECT * 
+		FROM  activity
+		INNER JOIN activityregistery 
+		ON activityregistery.activityId=activity.activityId
+		WHERE activityregistery.userId=#{id};
+  </select>
+     
+     <select id="getpicture" resultType="com.xiaohe.bean.Activity">
+        select *FROM activity
+     </select>
+     
+     <select id="getonline" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='1'
+     </select>
+     
+     <select id="getjiangzuo" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='5'
+     </select>
+     
+     <select id="gethuodong" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='4'
+     </select>
+     
+     <select id="getzhibo" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='6'
+     </select> 
+     <insert id="insertactivityid" parameterType="com.xiaohe.bean.Activity" >
+     INSERT INTO activityregistery (activityId,userId) VALUES(#{0},#{1} )
+     </insert>
+      <select id="getactivityid" resultType="com.xiaohe.bean.Activity" parameterType="int">
+     SELECT *FROM activity WHERE activityid=#{id}
+     </select>
+      <delete id="delectactivityid" parameterType="int"> 
+      DELETE FROM activityregistery WHERE activityid=#{0} AND userid=#{1}
+      </delete>
+    
+</mapper>
