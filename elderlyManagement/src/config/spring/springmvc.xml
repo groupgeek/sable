@@ -51,6 +51,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/branch/*" />
 			<mvc:mapping path="/product/*" />
+			<mvc:mapping path="/user/*"/>
 			<bean class="com.xiaohe.controller.interceptor.UserLoginInterceptor"></bean>
 		</mvc:interceptor>
 		

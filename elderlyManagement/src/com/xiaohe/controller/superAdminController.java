@@ -1,9 +1,11 @@
 package com.xiaohe.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,6 +39,7 @@ import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
+import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.bean.ReturnvisitCustom;
 import com.xiaohe.bean.ReturnvisitVo;
@@ -58,6 +61,7 @@ import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProductTypeService;
+import com.xiaohe.service.ReportService;
 import com.xiaohe.service.ReturnvisitService;
 import com.xiaohe.service.TransactionService;
 import com.xiaohe.service.UserService;
@@ -121,6 +125,10 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("returnvisitService")
 	private ReturnvisitService returnvisitService;
+	
+	@Autowired
+	@Qualifier("reportService")
+	private ReportService reportService;
 	
 	
 	
@@ -971,5 +979,21 @@ public class superAdminController {
 			message.setMessage("删除失败");
 		}
 		return message;
+	}
+	
+	
+	/**
+	 * 查询商品的报表
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryProductReport")
+	public @ResponseBody Map<String, String[]> queryProductReport(@RequestBody ProducttransactionreportCustom condition){
+		
+		Map<String, String[]> map = new TreeMap<String, String[]>();
+		
+		map = reportService.queryProductReportByTimeInterval(condition);
+		
+		return map;
 	}
 }

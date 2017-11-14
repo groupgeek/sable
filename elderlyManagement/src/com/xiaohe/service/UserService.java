@@ -105,4 +105,11 @@ public interface UserService {
 	 * @return
 	 */
 	public boolean deleteUser(Integer userid);
+	
+	/**
+	 * 修改用户密码
+	 * @param info
+	 * @return
+	 */
+	public boolean updateUserPassword(UserCustom info);
 }

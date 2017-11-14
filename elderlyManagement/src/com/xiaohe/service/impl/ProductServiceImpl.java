@@ -307,6 +307,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 			
 		}
+		if(condition.getBranchid() != null)
 		if(condition.getBranchid() == -1){
 			condition.setBranchid(null);
 		}

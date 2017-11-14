@@ -436,6 +436,28 @@ public class UserServiceImpl implements UserService {
 		
 		return true;
 	}
+
+	public boolean updateUserPassword(UserCustom info) {
+		
+		if(info == null) return false;
+		if(info.getUserid() == null) return false;
+		
+		UserCustom user = new UserCustom();
+		user = userMapper.selectUserById(info.getUserid());
+		
+		if(user == null) return false;
+		if(user.getPassword() == null) return false;
+		//判断密码
+		if(!user.getPassword().equals(info.getOldPassword())) return false;
+		
+		//更新密码
+		info.setPassword(info.getNewPassword());
+		if(userMapper.updateByPrimaryKeySelective(info) <= 0) return false;
+		
+		
+		
+		return true;
+	}
 	
 	
 }
