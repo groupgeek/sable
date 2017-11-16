@@ -17,7 +17,6 @@ $(document).ready(function(){
 		data:JSON.stringify(orderid),
 		success:function(data){
 			//alert(data);
-			
 			var total = 0;
 			for(var i in data){
 				total += data[i].totalprice;
@@ -38,12 +37,13 @@ $(document).ready(function(){
 										'</div>'+
 									'</div>'+
 								'</li>'+
-								/*'<li class="td td-info">'+
+								'<li class="td td-info">'+
 									'<div class="item-props">'+
-										'<span class="sku-line">颜色：10#蜜橘色+17#樱花粉</span>'+
-										'<span class="sku-line">包装：两支手袋装（送彩带）</span>'+
+										'<span class="sku-line">颜色：'+data[i].colour+'</span>'+
+										'<span class="sku-line">型号：'+data[i].size+'</span>'+
+										'<span class="sku-line">口味：'+data[i].taste+'</span>'+
 									'</div>'+
-								'</li>'+*/
+								'</li>'+
 								'<li class="td td-price">'+
 									'<div class="item-price price-promo-promo">'+
 										'<div class="price-content">'+
@@ -87,6 +87,25 @@ $(document).ready(function(){
 					'</div>'
 				
 				);
+				
+				var em = $("#ordersData ul").find('input[value='+data[i].orderid+']').parent().parent().parent().parent().parent();
+				var temp = em.find("div[class=item-props]");
+				
+				//alert(em.attr("class"))
+				//alert(temp.find("span").first().val())
+				//alert($("#ordersData ul").find('input[value='+data[i].orderid+']').val());
+				//alert(temp.find("span").first().text())
+//				alert(temp.find("span").first().next().text())
+//				alert(temp.find("span").last().text())
+//				alert(data[i].taste == null)
+				if(data[i].colour == null){
+					temp.find("span").first().hide();
+					temp.find("span").first().next().hide();
+				}
+				if(data[i].taste == null){
+					temp.find("span").last().hide();
+				}
+				
 			}
 			
 			$(".buy-user").text(data[0].username);

@@ -111,6 +111,7 @@ $(document).ready(function(){
 				    			+'}',
 					success:function(data){
 						alert(data.message);
+						$(".cart_num ").text(parseInt($(".cart_num ").text()) + 1);
 						}
 					});
 				}

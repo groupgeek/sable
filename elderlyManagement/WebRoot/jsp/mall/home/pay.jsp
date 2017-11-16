@@ -148,7 +148,7 @@
 							<div class="clear"></div>
 							<div class="pay-total">
 						<!--留言-->
-							<div class="order-extra">
+							<!-- <div class="order-extra">
 								<div class="order-user-info">
 									<div id="holyshit257" class="memo">
 										<label>买家留言：</label>
@@ -159,7 +159,7 @@
 									</div>
 								</div>
 
-							</div>
+							</div> -->
 							<div class="clear"></div>
 							</div>
 							<!--含运费小计 -->
@@ -203,7 +203,7 @@
 
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a id="J_Go" href="${pageContext.request.contextPath }/jsp/mall/home/success.jsp" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 										</div>
 									</div>
 									<div class="clear"></div>
@@ -215,13 +215,12 @@
 					</div>
 				</div>
 				<c:import url="/jsp/mall/footer.jsp"></c:import>
-			</div>
 			<div class="theme-popover-mask"></div>
 			<div class="theme-popover">
 
 				<!--标题 -->
 				<div class="am-cf am-padding">
-					<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> / <small>Add address</small></div>
+					<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong></div>
 				</div>
 				<hr/>
 

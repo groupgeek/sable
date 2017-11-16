@@ -188,4 +188,10 @@
 	AND p.productId = s.productId AND taste = NULL AND colour = NULL
   </select>
   
+  <select id="selectCartCount" parameterType="Integer" resultType="Integer">
+  
+  	SELECT COUNT(*) FROM shoppingcar WHERE userid = #{id}
+  </select>
+  
+  
 </mapper>

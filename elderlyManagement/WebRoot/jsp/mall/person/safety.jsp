@@ -94,7 +94,7 @@
 										</a>
 									</div>
 								</li>
-								<li>
+								<!-- <li>
 									<i class="i-safety-wallet"></i>
 									<div class="m-left">
 										<div class="fore1">支付密码</div>
@@ -153,7 +153,7 @@
 											<div class="am-btn am-btn-secondary">认证</div>
 										</a>
 									</div>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 
