@@ -95,4 +95,11 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     List<ProducttransactionreportCustom> selectPtByTimeInterval(ProducttransactionreportCustom condition);
+
+    /**
+     * 查询分店商品的销售情况（可以传商品id，也可以不传）
+     * @param producttransactionreportCustom
+     * @return
+     */
+    ProducttransactionreportCustom BranchOneProductTransation(ProducttransactionreportCustom producttransactionreportCustom);
 }

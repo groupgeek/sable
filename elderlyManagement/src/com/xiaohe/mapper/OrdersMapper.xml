@@ -469,4 +469,20 @@
 	  </where>
   </select>
   
+    <select id="orderReport" parameterType="com.xiaohe.bean.OrdersCustom" resultType="com.xiaohe.bean.OrdersCustom">
+  select sum(o.totalPrice) totalIncome,sum(p.price) totalexl from orders o,employee e,branch b,product p 
+   <where>
+  e.employeeId = b.employeeId 
+  and p.productId = o.productId
+  and b.branchId = o.branchId 
+  and o.orderstatus = '已付款'
+  and e.employeeId = #{employeeid,jdbcType=INTEGER}
+ 
+  <if test="start !=null">
+  	<if test="end !=null">
+  	and o.ordertime BETWEEN #{start} AND #{end}
+  </if>
+  </if>
+  </where>
+  </select>
 </mapper>

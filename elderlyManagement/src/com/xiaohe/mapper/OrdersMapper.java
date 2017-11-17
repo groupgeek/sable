@@ -78,4 +78,10 @@ public interface OrdersMapper {
 	 */
 	Integer selectCountByLogo(OrdersCustom condition);
 	
+	/**
+	 * 查询分店阶段的收入情况(分店商品总报表)
+	 * @param ordersCustom
+	 * @return
+	 */
+	OrdersCustom orderReport(OrdersCustom ordersCustom);
 }

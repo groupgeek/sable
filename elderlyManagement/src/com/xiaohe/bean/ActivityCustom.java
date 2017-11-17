@@ -1,5 +1,8 @@
 package com.xiaohe.bean;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class ActivityCustom extends Activity {
 
 	/**
@@ -25,10 +28,92 @@ public class ActivityCustom extends Activity {
 	private String activitytypename;
 	
 	private String activitydateString;
+	private String registery;
+	private BigDecimal totalReg;   //总报名费（报表）
+	private BigDecimal totalExpend;  //总支出费用（报表）
 	
+	private Date start;
+	private Date end;
+	public String getRegistery() {
+		return registery;
+	}
+	public void setRegistery(String registery) {
+		this.registery = registery;
+	}
+	public BigDecimal getTotalReg() {
+		return totalReg;
+	}
+	public void setTotalReg(BigDecimal totalReg) {
+		this.totalReg = totalReg;
+	}
+	public BigDecimal getTotalExpend() {
+		return totalExpend;
+	}
+	public void setTotalExpend(BigDecimal totalExpend) {
+		this.totalExpend = totalExpend;
+	}
+	public Date getStart() {
+		return start;
+	}
+	public void setStart(Date start) {
+		this.start = start;
+	}
+	public Date getEnd() {
+		return end;
+	}
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+	public BigDecimal[] getIncomeReport() {
+		return incomeReport;
+	}
+	public void setIncomeReport(BigDecimal[] incomeReport) {
+		this.incomeReport = incomeReport;
+	}
+	public Integer getEmployeeid() {
+		return employeeid;
+	}
+	public void setEmployeeid(Integer employeeid) {
+		this.employeeid = employeeid;
+	}
+	public BigDecimal getDemo1() {
+		return demo1;
+	}
+	public void setDemo1(BigDecimal demo1) {
+		this.demo1 = demo1;
+	}
+	public BigDecimal getDemo2() {
+		return demo2;
+	}
+	public void setDemo2(BigDecimal demo2) {
+		this.demo2 = demo2;
+	}
+	public BigDecimal getTotalexl() {
+		return totalexl;
+	}
+	public void setTotalexl(BigDecimal totalexl) {
+		this.totalexl = totalexl;
+	}
+	public BigDecimal getTotalIncome() {
+		return totalIncome;
+	}
+	public void setTotalIncome(BigDecimal totalIncome) {
+		this.totalIncome = totalIncome;
+	}
+	private BigDecimal[] incomeReport;
+	private Integer employeeid;
+	private BigDecimal demo1;
+	private BigDecimal demo2;
+	private BigDecimal totalexl;     //总支出
+	private BigDecimal totalIncome;  //总收入
+	private int countReg;   //总报名人数
 	
-	
-	
+	public int getCountReg() {
+		return countReg;
+	}
+	public void setCountReg(int countReg) {
+		this.countReg = countReg;
+	}
 	public String getActivitydateString() {
 		return activitydateString;
 	}

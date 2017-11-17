@@ -22,6 +22,7 @@ import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
@@ -408,4 +409,40 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public ProducttransactionreportCustom oneTransation(ProducttransactionreportCustom producttransactionreportCustom);
+	
+	/**
+	 * 查询分店商品的销售情况（可以传商品id，也可以不传）
+	 * @param producttransactionreportCustom
+	 * @return
+	 */
+	public ProducttransactionreportCustom BranchOneProductTransation(ProducttransactionreportCustom producttransactionreportCustom);
+
+	/**
+	 * 查询活动的销售情况（分店活动报表）
+	 * @param activityCustom
+	 * @return
+	 */
+	public ActivityCustom branchActivityCondition(ActivityCustom activityCustom);
+	
+	/**
+	 * 分店的健康收支情况（分店的活动总报表）
+	 * @param activityCustom
+	 * @return
+	 */
+	public ActivityCustom healthIncome(ActivityCustom activityCustom);
+	
+	/**
+	 * 分店的健康收支情况（分店的活动总报表）
+	 * @param activityCustom
+	 * @return
+	 */
+	public ActivityCustom eduIncome(ActivityCustom activityCustom);
+	
+	/**
+	 * 分店的商品收支情况（分店的商品总报表）
+	 * @param ordersCustom
+	 * @return
+	 */
+	public OrdersCustom orderIncome(OrdersCustom ordersCustom);
+	
 }
