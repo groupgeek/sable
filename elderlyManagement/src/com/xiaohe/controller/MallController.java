@@ -44,6 +44,7 @@ import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.EvaluationService;
 import com.xiaohe.service.IntegralService;
 import com.xiaohe.service.IntegraltoarticleService;
+import com.xiaohe.service.OrdersService;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ProductTypeService;
 import com.xiaohe.service.ProducttransactionreportService;
@@ -90,6 +91,11 @@ public class MallController {
 	@Autowired
 	@Qualifier("integraltoarticleService")
 	private IntegraltoarticleService integraltoarticleService;
+	
+	
+	@Autowired
+	@Qualifier("ordersService")
+	private OrdersService ordersService;
 	
 	
 	public User getUser(HttpServletRequest request){
@@ -881,4 +887,28 @@ public class MallController {
 		
 		return "redirect:/jsp/mall/person/pointsMall.jsp";
 	}
+	
+	
+	
+	/**
+	 * 更新订单(地址，电话 ，名字)
+	 * @return
+	 */
+	@RequestMapping("/submitOrder")
+	public @ResponseBody ShowMessage submitOrder(@RequestBody OrdersCustom orderInfo,HttpServletRequest request){
+		ShowMessage showMessage = new ShowMessage();
+		String message = null;
+		if(ordersService.submitOrder(orderInfo)){
+			
+			showMessage.setFlag(true);
+		}else{
+			
+			showMessage.setFlag(false);
+		}
+		
+		showMessage.setMessage(message);
+		return showMessage;
+	}
+	
+	
 }

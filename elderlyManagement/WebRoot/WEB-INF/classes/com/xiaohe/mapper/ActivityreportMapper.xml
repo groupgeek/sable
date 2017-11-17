@@ -3,6 +3,7 @@
 <mapper namespace="com.xiaohe.mapper.ActivityreportMapper" >
   <resultMap id="BaseResultMap" type="com.xiaohe.bean.Activityreport" >
     <id column="ActivityReporId" property="activityreporid" jdbcType="INTEGER" />
+    <result column="activityId" property="activityid" jdbcType="INTEGER" />
     <result column="activityTypeID" property="activitytypeid" jdbcType="INTEGER" />
     <result column="countActivity" property="countactivity" jdbcType="INTEGER" />
     <result column="onLine" property="online" jdbcType="BIT" />
@@ -13,8 +14,8 @@
     <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ActivityReporId, activityTypeID, countActivity, onLine, AveragePeople, branchId, 
-    DuringTime, totalPrice, totalExpenditure
+    ActivityReporId, activityId, activityTypeID, countActivity, onLine, AveragePeople, 
+    branchId, DuringTime, totalPrice, totalExpenditure
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -27,11 +28,11 @@
     where ActivityReporId = #{activityreporid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Activityreport" >
-    insert into activityreport (ActivityReporId, activityTypeID, 
+    insert into activityreport (ActivityReporId, activityId, activityTypeID, 
       countActivity, onLine, AveragePeople, 
       branchId, DuringTime, totalPrice, 
       totalExpenditure)
-    values (#{activityreporid,jdbcType=INTEGER}, #{activitytypeid,jdbcType=INTEGER}, 
+    values (#{activityreporid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, #{activitytypeid,jdbcType=INTEGER}, 
       #{countactivity,jdbcType=INTEGER}, #{online,jdbcType=BIT}, #{averagepeople,jdbcType=INTEGER}, 
       #{branchid,jdbcType=INTEGER}, #{duringtime,jdbcType=TIMESTAMP}, #{totalprice,jdbcType=DECIMAL}, 
       #{totalexpenditure,jdbcType=DECIMAL})
@@ -41,6 +42,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="activityreporid != null" >
         ActivityReporId,
+      </if>
+      <if test="activityid != null" >
+        activityId,
       </if>
       <if test="activitytypeid != null" >
         activityTypeID,
@@ -71,6 +75,9 @@
       <if test="activityreporid != null" >
         #{activityreporid,jdbcType=INTEGER},
       </if>
+      <if test="activityid != null" >
+        #{activityid,jdbcType=INTEGER},
+      </if>
       <if test="activitytypeid != null" >
         #{activitytypeid,jdbcType=INTEGER},
       </if>
@@ -100,6 +107,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Activityreport" >
     update activityreport
     <set >
+      <if test="activityid != null" >
+        activityId = #{activityid,jdbcType=INTEGER},
+      </if>
       <if test="activitytypeid != null" >
         activityTypeID = #{activitytypeid,jdbcType=INTEGER},
       </if>
@@ -129,7 +139,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Activityreport" >
     update activityreport
-    set activityTypeID = #{activitytypeid,jdbcType=INTEGER},
+    set activityId = #{activityid,jdbcType=INTEGER},
+      activityTypeID = #{activitytypeid,jdbcType=INTEGER},
       countActivity = #{countactivity,jdbcType=INTEGER},
       onLine = #{online,jdbcType=BIT},
       AveragePeople = #{averagepeople,jdbcType=INTEGER},
