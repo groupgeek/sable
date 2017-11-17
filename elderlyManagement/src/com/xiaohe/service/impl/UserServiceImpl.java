@@ -29,6 +29,8 @@ import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
+import com.xiaohe.bean.Verificationcode;
+import com.xiaohe.bean.VerificationcodeCustom;
 import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
@@ -43,10 +45,13 @@ import com.xiaohe.mapper.ShippingaddressMapper;
 import com.xiaohe.mapper.ShoppingcarMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
+import com.xiaohe.mapper.VerificationcodeMapper;
 import com.xiaohe.service.UserService;
 import com.xiaohe.util.DeleteFile;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetStringByDate;
+import com.xiaohe.util.VCode;
+import com.xiaohe.util.sms.httpApiDemo.IndustrySMS;
 
 
 @Repository("userService")//注册服务
@@ -107,6 +112,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("shoppingcarMapper")
 	private ShoppingcarMapper shoppingcarMapper;
+
+	@Autowired
+	@Qualifier("verificationcodeMapper")
+	private VerificationcodeMapper verificationcodeMapper;
 	
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
@@ -471,6 +480,91 @@ public class UserServiceImpl implements UserService {
 		Integer num = shoppingcarMapper.selectCartCount(userid);
 		
 		return num;
+	}
+
+	public String sendUserVCode(String phone) {
+		
+		if(phone == null || phone == "") return null;
+		phone = phone.substring(1,phone.length()-1);
+		//验证手机号
+		UserCustom user = new UserCustom();
+		user = userMapper.selectUserByPhone(phone);
+		if(user == null) return null;
+		
+		
+		String to = phone;
+		String vcode = VCode.getRandNum(6);
+		String param = vcode+",5";
+		
+		
+		String result = "";
+		 try {
+			result = IndustrySMS.execute(to,param);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		 if(result == null || result == "") return null;
+		 
+		 String flag = result.split(",")[0].split(":")[1];
+		 flag = flag.substring(1,flag.length()-1);
+		
+		 /**
+		  * result:{"respCode":"00141","respDesc":"一小时内发送给单个手机次数超过限制(验证类短信：同一签名同一手机号码1小时内发送次应小于等于4, 手机号=18584430401, 签名=孝和集团)"}
+		  */
+		 if(!"00000".equals(flag)) return null;
+		 
+		 Verificationcode record = new Verificationcode();
+		 record.setPhone(phone);
+		 record.setDate(new Date());
+		 record.setVerificationcode(vcode);
+		 record.setStatus(false);
+		 
+		 //查询是否有之前的记录 有就删掉
+		 if(verificationcodeMapper.selectByPrimaryKey(phone) != null){
+			 verificationcodeMapper.deleteByPrimaryKey(phone);
+		 }
+		//记录到数据库
+		 if(verificationcodeMapper.insertSelective(record) <= 0) return null;
+		 
+		 
+		return vcode;
+	}
+	
+	
+	public boolean updateVcodeStasus(String phone){
+		
+		if(phone == null) return false;
+		phone = phone.substring(1,phone.length()-1);
+		
+		Verificationcode record = new Verificationcode();
+		record.setPhone(phone);
+		record.setStatus(true);
+		
+		if(verificationcodeMapper.updateByPrimaryKeySelective(record) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean retrieveThePassword(UserCustom info) {
+		if(info == null) return false;
+		if(info.getPhone() == null || info.getNewPassword() == null) return false;
+		
+		//判断号码是否通过短信验证
+		Verificationcode record = new Verificationcode();
+		
+		record = verificationcodeMapper.selectByPrimaryKey(info.getPhone());
+		if(record == null) return false;
+		
+		if(!record.getStatus()) return false;
+		
+		if(userMapper.retrieveThePassword(info) <= 0) return false;
+		
+		//删除短信记录
+		verificationcodeMapper.deleteByPrimaryKey(info.getPhone());
+		
+		return true;
 	}
 	
 	

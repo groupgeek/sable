@@ -161,6 +161,10 @@ $(document).ready(function(){
 						alert(data.flag)
 						if(data.flag){
 							father.remove();
+							for(var i in orderid){
+								if(oid == orderid[i]) orderid[i] = "";
+							}
+							
 						}
 					}
 				});
@@ -208,16 +212,17 @@ $(document).ready(function(){
 	
 	$("#save").click(function(){
 		
-		var user_name = $("#user-name").attr("value");
-		var user_phone = $("#user-phone").attr("value");
-		var province = $("#province").attr("value");
-		var city = $("#city").attr("value");
-		var county = $("#county").attr("value");
-		var user_address = $("#user-address").attr("value");
+		var user_name = $("#user-name").val();
+		var user_phone = $("#user-phone").val();
+		var province = $("#province").val();
+		var city = $("#city").val();
+		var county = $("#county").val();
+		var user_address = $("#user-address").val();
 		var info = new Object();
 		info.username = user_name;
 		info.phone = user_phone;
 		info.resaddress = province + city + county + user_address;
+		info.ordersid = orderid;
 		
 		$.ajax({
 			type:"post",
@@ -237,7 +242,27 @@ $(document).ready(function(){
 		
 	});
 	
-       
+    //提交订单 付款
+	$("#J_Go").click(function(){
+		var orderInfo = new Object();
+		orderInfo.ordersid = orderid;
+		orderInfo.paymentMethod = "wexin";
+		$.ajax({
+			type:"post",
+			contentType:"application/json;charset=utf-8",
+			url:root+"/product/submitOrder",
+			data:JSON.stringify(orderInfo),
+			success:function(data){
+				if(data.flag){
+					window.location.href = root+"/jsp/mall/home/success.jsp"+orderid;
+				}
+			}
+		});
+		
+		
+		
+		
+	});
 	
 	
 });

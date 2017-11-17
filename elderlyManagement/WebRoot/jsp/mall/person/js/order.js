@@ -142,6 +142,7 @@ $(document).ready(function(){
 				else if(data[i].signstatus == "未签收"){
 					em.find("p[class=Mystatus]").text(data[i].signstatus);
 					em.find("a[class=operate]").find("div").text("去签收");
+					sign(em.find("a[class=operate]").find("div"),myself.find("a[name="+data[i].orderid+"]"));
 				}
 				else if(data[i].evaluationstatus == false){
 					em.find("p[class=Mystatus]").text(data[i].evaluationstatus);
@@ -213,14 +214,83 @@ $(document).ready(function(){
 			data:JSON.stringify(logo),
 			success:function(data){
 				createUl(data,myself,father);
-				
 			}
 			
 		});
 		
 	});
 	
+	function sign(e,a){
+			
+		//弹窗
+		var w,h,className;
+		function getSrceenWH(){
+			w = $(window).width();
+			h = $(window).height();
+			$('#dialogBg').width(w).height(h);
+		}
+		
+		window.onresize = function(){  
+			getSrceenWH();
+		};
+		$(window).resize();  
+		
+		$(function(){
+			getSrceenWH();
+			
+			//显示弹框
+			e.click(function(){
+				//info.articleid = $(this).prev().val();
+				//$('#articleid').val($(this).prev().val());orderid
+				$('#message').hide();
+				$('#orderid').val(a.attr("name"));
+				$('#showOrderid').text("单号： "+a.attr("name"));
+				
+				className = $(this).attr('class');
+				$('#dialogBg').fadeIn(300);
+				$('#dialog').removeAttr('class').addClass('animated '+className+'').fadeIn();
+			});
+			
+			//关闭弹窗
+			$('.claseDialogBtn').click(function(){
+				$('#dialogBg').fadeOut(300,function(){
+					$('#dialog').addClass('bounceOutUp').fadeOut();
+				});
+			});
+		});
+		
+		
+	}
 	
 	
-	
+	//签收事件
+	$(".submitBtn").click(function(){
+		//alert(orderid)
+		//var userPhone = $("#phone").val();
+		var userPassword = $("#password").val();
+		
+		var user = new Object();
+		user.password = userPassword;
+		user.orderid = $("#orderid").val();
+		//alert($("#orderid").val())
+		
+		$.ajax({
+			
+			type:"post",
+			contentType:"application/json;charset=utf-8",
+			url:root+"/product/productReceipt",
+			data:JSON.stringify(user),
+			success:function(data){
+				if(data.flasg){
+					$('#message').hide();
+					$('#dialogBg').fadeOut(300,function(){
+						$('#dialog').addClass('bounceOutUp').fadeOut();
+					});
+				}
+				else{
+					$('#message').show();
+				}
+			}
+		});
+	});
 });

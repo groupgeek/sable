@@ -119,4 +119,25 @@ public interface UserService {
 	 * @return
 	 */
 	public Integer queryCartNum(Integer userid);
+	
+	/**
+	 * 发送手机短信验证码
+	 * @param phon
+	 * @return
+	 */
+	public String sendUserVCode(String phone);
+	
+	/**
+	 * 更改短信验证码状态
+	 * @param phone
+	 * @return
+	 */
+	public boolean updateVcodeStasus(String phone);
+	
+	/**
+	 * 重置密码
+	 * @param info
+	 * @return
+	 */
+	public boolean retrieveThePassword(UserCustom info);
 }

@@ -50,7 +50,8 @@
 				<div class="main-wrap">
 
 					<div class="am-cf am-padding">
-						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改密码</strong></div>
+						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改密码</strong>&nbsp;&nbsp;/&nbsp;&nbsp;
+						<a href = "${pageContext.request.contextPath }/jsp/logReg/forgot.jsp">忘记密码?</a></div>
 					</div>
 					<hr/>
 					<!--进度条-->

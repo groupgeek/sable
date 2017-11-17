@@ -127,4 +127,11 @@ public interface UserMapper {
      */
     List<UserCustom> selectAlluserandbranch();
     
+    /**
+     * 根据电话号码更新密码（密码重置）
+     * @param info
+     * @return
+     */
+    Integer retrieveThePassword(UserCustom info);
+    
 }
