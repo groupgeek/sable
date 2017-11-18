@@ -168,9 +168,10 @@
 	                            <div class="caption8 ctn_blue">
 	                                <h3>${product.productname }</h3>
 	                                <p>${product.description }.</p>
-	                                <a href="#" class="pf_button green">详细</a>
+	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button green">详细</a>
 	                            </div>
-	                            <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" />
+	                            <img class="img-responsive"  src="/upload/${product.picture }" alt="" style="min-height: 350px; max-height: 350px;"/>
+	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
 	                        </li>
 	                    </ul>
 	                        </div>

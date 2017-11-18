@@ -1,12 +1,16 @@
 package com.xiaohe.bean;
 
-import java.util.Date;
 
 public class OrdersCustom extends Orders {
 	private ProductCustom productInfo;
 	private ProducttasteCustom producttasteInfo;
 	private ProductcolourCustom productcolourInfo;
 	private Integer type;//商品分类
+	
+	private String[] ordersid;//订单id数组
+	
+	private String paymentMethod;//支付方式
+	
 	
 	
 	
@@ -24,6 +28,19 @@ public class OrdersCustom extends Orders {
 	
 	
 	
+	
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+	public String[] getOrdersid() {
+		return ordersid;
+	}
+	public void setOrdersid(String[] ordersid) {
+		this.ordersid = ordersid;
+	}
 	public String getPaymenttimeString() {
 		return paymenttimeString;
 	}

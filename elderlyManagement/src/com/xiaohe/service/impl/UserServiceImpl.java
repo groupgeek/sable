@@ -40,6 +40,7 @@ import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ReturnvisitMapper;
 import com.xiaohe.mapper.ShippingaddressMapper;
+import com.xiaohe.mapper.ShoppingcarMapper;
 import com.xiaohe.mapper.TransactionMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.UserService;
@@ -102,6 +103,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("integralMapper")
 	private IntegralMapper integralMapper;
+	
+	@Autowired
+	@Qualifier("shoppingcarMapper")
+	private ShoppingcarMapper shoppingcarMapper;
 	
 	public Boolean registerUser(UserCustom userCustom) {
 		//如果手机号没有被注册 那么就注册该手机号
@@ -435,6 +440,37 @@ public class UserServiceImpl implements UserService {
 		if(!DeleteFile.deleteFile(user.getAvatar())) return false;
 		
 		return true;
+	}
+
+	public boolean updateUserPassword(UserCustom info) {
+		
+		if(info == null) return false;
+		if(info.getUserid() == null) return false;
+		
+		UserCustom user = new UserCustom();
+		user = userMapper.selectUserById(info.getUserid());
+		
+		if(user == null) return false;
+		if(user.getPassword() == null) return false;
+		//判断密码
+		if(!user.getPassword().equals(info.getOldPassword())) return false;
+		
+		//更新密码
+		info.setPassword(info.getNewPassword());
+		if(userMapper.updateByPrimaryKeySelective(info) <= 0) return false;
+		
+		
+		
+		return true;
+	}
+
+	public Integer queryCartNum(Integer userid) {
+		
+		if(userid == null) return null;
+		
+		Integer num = shoppingcarMapper.selectCartCount(userid);
+		
+		return num;
 	}
 	
 	

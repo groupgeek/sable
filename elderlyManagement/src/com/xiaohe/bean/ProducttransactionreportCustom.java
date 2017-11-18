@@ -21,7 +21,6 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private Integer currentPage; //当前页
 	private Integer sum;
 	
-	private Integer productid;
 	
 	private String []buyTime;
 	private Integer []buyNo;
@@ -30,7 +29,28 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private Date start;
 	private Date end;
 	
+	//用来接收时间的字符串
+	private String startDateString;
+	private String endDateString;
 	
+	
+	
+	public String getStartDateString() {
+		return startDateString;
+	}
+
+	public void setStartDateString(String startDateString) {
+		this.startDateString = startDateString;
+	}
+
+	public String getEndDateString() {
+		return endDateString;
+	}
+
+	public void setEndDateString(String endDateString) {
+		this.endDateString = endDateString;
+	}
+
 	public Date getStart() {
 		return start;
 	}
@@ -79,13 +99,6 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 		this.buyNo = buyNo;
 	}
 
-	public Integer getProductid() {
-		return productid;
-	}
-
-	public void setProductid(Integer productid) {
-		this.productid = productid;
-	}
 
 	public Integer getSum() {
 		return sum;

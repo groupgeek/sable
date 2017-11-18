@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Orders;
+import com.xiaohe.bean.OrdersCustom;
 @Transactional
 public interface OrdersService {
 	/**
@@ -29,4 +30,13 @@ public interface OrdersService {
 	/*public void deleteByBranchId(Integer branchid) throws Exception;*/
 	
 	Orders selectByPrimaryKey2(String orderid) throws Exception;
+	
+	
+	/**
+	 * 提交订单
+	 * @param info
+	 * @return
+	 */
+	boolean submitOrder(OrdersCustom info);
+	
 }

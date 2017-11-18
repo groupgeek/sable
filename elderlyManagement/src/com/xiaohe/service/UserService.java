@@ -105,4 +105,18 @@ public interface UserService {
 	 * @return
 	 */
 	public boolean deleteUser(Integer userid);
+	
+	/**
+	 * 修改用户密码
+	 * @param info
+	 * @return
+	 */
+	public boolean updateUserPassword(UserCustom info);
+	
+	/**
+	 * 查询用户购物车里面的商品数量
+	 * @param userid
+	 * @return
+	 */
+	public Integer queryCartNum(Integer userid);
 }

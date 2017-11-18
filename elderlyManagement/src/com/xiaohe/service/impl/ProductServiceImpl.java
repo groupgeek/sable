@@ -307,6 +307,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 			
 		}
+		if(condition.getBranchid() != null)
 		if(condition.getBranchid() == -1){
 			condition.setBranchid(null);
 		}
@@ -632,8 +633,15 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 	public boolean updateOrderById(OrdersCustom info) {
 		
 		if(info == null) return false;
-		if(info.getUserid() == null) return false;
-		if(ordersMapper.updateByUseridSelective(info) <= 0) return false;
+		if(info.getUserid() == null || info.getOrdersid() == null) return false;
+		
+		//if(ordersMapper.updateByUseridSelective(info) <= 0) return false;
+		//更新订单
+		for(String oid : info.getOrdersid()){
+			if("".equals(oid) || oid == null) continue;
+			info.setOrderid(oid);
+			if(ordersMapper.updateByPrimaryKeySelective(info) <= 0) return false;
+		}
 		
 		return true;
 	}

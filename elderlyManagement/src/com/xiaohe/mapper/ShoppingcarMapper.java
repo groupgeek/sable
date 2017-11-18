@@ -38,4 +38,11 @@ public interface ShoppingcarMapper {
      * @return
      */
     List<ShoppingcarCustom> selectAllShopCartOtherByUserid(Integer userid);
+    
+    /**
+     * 查询用户购物车里面的商品数量
+     * @param userid
+     * @return
+     */
+    Integer selectCartCount(Integer userid);
 }

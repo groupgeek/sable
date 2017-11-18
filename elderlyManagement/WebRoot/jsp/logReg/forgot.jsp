@@ -68,12 +68,22 @@
 							<input type="text" class="form-control" id="email" 
 							minlength=11 maxlength=11 digits=true
 							placeholder="请输入手机号码" autocomplete="off" required>
+							<br/>
+							<input type="button" value="发送验证码" class="btn">
+							<span>fsdf</span>
+						</div>
+						<div class="form-group">
+							<label for="email" class="sr-only">验证码</label>
+							<!-- <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off"> -->
+							<input type="text" class="form-control" id="email" 
+							minlength=11 maxlength=11 digits=true
+							placeholder="请输入收到的验证码" autocomplete="off" required>
 						</div>
 						<div class="form-group">
 							<p><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a> or <a href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="发送" class="btn btn-primary">
+							<input type="submit" value="下一步" class="btn btn-primary">
 						</div>
 					</form>
 					<!-- END Sign In Form -->

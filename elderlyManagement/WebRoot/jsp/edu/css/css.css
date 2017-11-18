@@ -486,7 +486,7 @@ left;margin:10px 0 0 0;}
 .buy-nav{font-size:14px;}
 .buy-nav li{height:40px; }
 .buy-nav li a{ display:block;height:40px;padding-left:50px;width:140px;line-height:40px;background-image:url(../images/buy-vip.png);background-repeat:no-repeat;}
-.buy-nav li a:hover,.buy-nav li.buy-navCur a{ background-color:#ededed;}
+
 .buy-nav .buy-nav1 a{ background-position:6px 14px; }
 .buy-nav .buy-nav2 a{ background-position:6px -33px; }
 .buy-nav .buy-nav3 a{ background-position:6px -82px; }

@@ -273,4 +273,14 @@
 		where productId=#{productId,jdbcType=INTEGER}
 		group by date_format(producttransactionreport.BuyTime,'%Y-%m')
 	</select>
+	
+	<select id="selectPtByTimeInterval" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+	
+		SELECT * FROM `producttransactionreport`
+		WHERE productId = #{productid}
+		AND BuyTime BETWEEN #{startingTime} AND #{endTime}
+	
+	</select>
+	
+	
 </mapper>

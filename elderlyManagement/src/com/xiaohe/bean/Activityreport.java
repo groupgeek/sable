@@ -6,6 +6,8 @@ import java.util.Date;
 public class Activityreport {
     private Integer activityreporid;
 
+    private Integer activityid;
+
     private Integer activitytypeid;
 
     private Integer countactivity;
@@ -28,6 +30,14 @@ public class Activityreport {
 
     public void setActivityreporid(Integer activityreporid) {
         this.activityreporid = activityreporid;
+    }
+
+    public Integer getActivityid() {
+        return activityid;
+    }
+
+    public void setActivityid(Integer activityid) {
+        this.activityid = activityid;
     }
 
     public Integer getActivitytypeid() {

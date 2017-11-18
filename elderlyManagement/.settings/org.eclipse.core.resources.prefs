@@ -1,14 +1,20 @@
-#Sat Nov 11 17:20:42 CST 2017
+#Thu Nov 16 12:31:15 CST 2017
 eclipse.preferences.version=1
 encoding//WebRoot/jsp/admin/footer.jsp=UTF-8
 encoding//WebRoot/jsp/index/index.jsp=UTF-8
 encoding//WebRoot/jsp/mall/home/allProduct.jsp=UTF-8
+encoding//WebRoot/jsp/mall/home/homeMenu.jsp=UTF-8
 encoding//WebRoot/jsp/mall/home/shopcart.jsp=UTF-8
+encoding//WebRoot/jsp/mall/home/success.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/evaluation.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/index.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/information.jsp=UTF-8
+encoding//WebRoot/jsp/mall/person/js/password.js=UTF-8
 encoding//WebRoot/jsp/mall/person/order.jsp=UTF-8
+encoding//WebRoot/jsp/mall/person/orderinfo.jsp=UTF-8
+encoding//WebRoot/jsp/mall/person/password.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/points.jsp=UTF-8
+encoding//WebRoot/jsp/mall/person/safety.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/shippingAddress.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/userComment.jsp=UTF-8
 encoding//WebRoot/jsp/test/jquery.jsp=UTF-8

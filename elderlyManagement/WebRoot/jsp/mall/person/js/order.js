@@ -36,7 +36,7 @@ $(document).ready(function(){
 					'<div class="order-list">'+
 						'<div class="order-status1">'+
 							'<div class="order-title">'+
-								'<div class="dd-num">编号：<a href="javascript:;" name="'+data[i].orderid+'">'+data[i].orderid+'</a></div>'+
+								'<div class="dd-num">编号：<a href="'+root+'/jsp/mall/person/orderinfo.jsp?ordersid='+data[i].orderid+'" name="'+data[i].orderid+'">'+data[i].orderid+'</a></div>'+
 								'<span>成交时间：'+data[i].ordertimeString+'</span>'+
 								'<!--    <em>店铺：小桔灯</em>-->'+
 							'</div>'+
@@ -47,13 +47,13 @@ $(document).ready(function(){
 									'<ul class="item-list">'+
 										'<li class="td td-item">'+
 											'<div class="item-pic">'+
-												'<a href="#" class="J_MakePoint">'+
+												'<a href="'+root+'/jsp/mall/person/orderinfo.jsp?ordersid='+data[i].orderid+'" class="J_MakePoint">'+
 													'<img src="/upload/'+data[i].picture+'">'+
 												'</a>'+
 											'</div>'+
 											'<div class="item-info">'+
 												'<div class="item-basic-info">'+
-													'<a href="JavaScript:;">'+
+													'<a href="'+root+'/jsp/mall/person/orderinfo.jsp?ordersid='+data[i].orderid+'">'+
 														'<p>'+data[i].productname+'</p>'+
 														'<p class="info-little" name="colour">颜色： </p>'+
 														'<p class="info-little" name="sizeOrTaste">型号： </p>'+
@@ -93,7 +93,7 @@ $(document).ready(function(){
 										'<li class="td td-status">'+
 											'<div class="item-status">'+
 												'<p class="Mystatus" id = "'+data[i].orderid+'"></p>'+
-												'<p class="order-info"><a href="#">取消订单</a></p>'+
+												'<p class="order-info"><a href="javascript:;"></a></p>'+
 												'<input type="hidden" name="'+data[i].orderid+'">'+
 											'</div>'+
 										'</li>'+

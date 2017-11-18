@@ -104,12 +104,20 @@
 							<div id = "report1">
 								<!-- 时间选择框 -->
 								<div style="text-align: center;">
-									<input name = "start" onClick="laydate()" type="text" value="" placeholder="开始时间">
+									<input id = "start" onClick="laydate()" type="text" value="" placeholder="开始时间">
 									<i class = "icon-arrow-right" style="position: relative;top: -5px;"></i>
-									<input name = "end" onClick="laydate()" type="text" value="" placeholder="结束时间">
+									<input id = "end" onClick="laydate()" type="text" value="" placeholder="结束时间">
+									<input id = "submit" type="button" value="查询"
+									 style="position: relative;top: -5px; height: 28px;background-color:white;border: 1px;border-color:gray;">
+									 
 								</div>
 								<!-- 开始报表展示 -->
+								
 								<div id = "buyNoAndProfit" style="height: 300px;"></div>
+								
+								<div style="position: relative; top: -300px;left: 473px;display: none;" id = "hideDiv">
+									<p style="color: red;">时间不能为空</p>
+								</div>
 							</div>
 
 					</div>

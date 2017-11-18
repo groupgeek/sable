@@ -301,13 +301,13 @@
 
                                 <div class="clearfix"></div>
 
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <textarea class="form-control" name="comments" required="required" id="comments" rows="6" placeholder="Message"></textarea>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <button type="submit" value="SEND" id="submit" class="btn btn-lg btn-primary">SEND</button>
-                                </div>
+                                </div> -->
                             </form>
                         </div> <!-- end contact_widget -->
                     </div><!-- end widget -->
@@ -321,7 +321,7 @@
                             <li><i class="fa fa-mobile-phone"></i> <span>(+ 00) 1-714-252-0026</span></li>
                             <li><i class="fa fa-envelope"></i> <span>support@law.com</span></li>
                         </ul>
-                        <div class="social pull-left">
+                       <!--  <div class="social pull-left">
                             <span><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></span>
                             <span><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></span>
                             <span><a title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a></span>
@@ -329,7 +329,7 @@
                             <span><a title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a></span>
                             <span><a title="Youtube" href="#"><i class="fa fa-youtube"></i></a></span>
                             <span><a title="Pinterest" href="#"><i class="fa fa-pinterest"></i></a></span>
-                        </div><!-- end social -->
+                        </div> --><!-- end social -->
                     </div><!-- end widget -->
                 </div><!-- end container -->
             </footer><!-- end footer -->

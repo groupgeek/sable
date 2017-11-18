@@ -64,7 +64,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Product" >
-  	<selectKey keyProperty="productId" order="AFTER" resultType="Integer">
+  	<selectKey keyProperty="productid" order="AFTER" resultType="Integer">
   		SELECT LAST_INSERT_ID();
   	</selectKey>
     insert into product
