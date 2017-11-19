@@ -14,8 +14,8 @@ function sailProduct(){
 		contentType : 'application/json;charset=utf-8',
 		data : JSON.stringify(productTranctionReportCustom),
 		success : function(data) {
-			myChart.hideLoading();      //隐藏加载动画
-            myChart.setOption({ //加载数据图表
+			myChart121.hideLoading();      //隐藏加载动画
+            myChart121.setOption({ //加载数据图表
             	 xAxis: {
                      data: data.buyTime
                  },
@@ -27,8 +27,8 @@ function sailProduct(){
 		},
 	});
 	
-	var myChart = echarts.init(document.getElementById('product'));
-    var option = {
+	var myChart121 = echarts.init(document.getElementById('productChart'));
+    var option121 = {
     		title: {
     	        text: '产品日销量统计图'
     	    },
@@ -68,9 +68,9 @@ function sailProduct(){
 		        }
 		    ]
 		};	
-      myChart.showLoading();
+      myChart121.showLoading();
       // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+      myChart121.setOption(option121);
 }
 
 function line(){
@@ -89,8 +89,8 @@ function line(){
 		contentType : 'application/json;charset=utf-8',
 		data : JSON.stringify(productTranctionReportCustom),
 		success : function(data) {
-			myChart.hideLoading();      //隐藏加载动画
-            myChart.setOption({ //加载数据图表
+			myChart122.hideLoading();      //隐藏加载动画
+            myChart122.setOption({ //加载数据图表
             	 xAxis: {
                      data: data.buyTime
                  },
@@ -102,8 +102,8 @@ function line(){
 		},
 	});
 	
-	var myChart = echarts.init(document.getElementById('line'));
-	var option = {
+	var myChart122 = echarts.init(document.getElementById('lineChart'));
+	var option122 = {
 		    backgroundColor: '#FFFFFF',
 		    title: {
     	        text: '产品销量走势'
@@ -202,9 +202,9 @@ function line(){
 		        data: []     //动态传值
 		    }, ]
 		};;
-		  myChart.showLoading();
+		  myChart122.showLoading();
 	      // 使用刚指定的配置项和数据显示图表。
-	      myChart.setOption(option);
+	      myChart122.setOption(option122);
 }
 
 function pie(){
@@ -218,10 +218,10 @@ function pie(){
 	productTranctionReportCustom.startingTime = startingTime;
 	productTranctionReportCustom.endTime = endTime;
 	
-	 var myChart = echarts.init(document.getElementById('pie1'));
-	 var myChart2 = echarts.init(document.getElementById('pie2'));
-	 myChart.showLoading();
-	 
+	 var myChart123 = echarts.init(document.getElementById('pie1Chart'));
+	 var myChart124 = echarts.init(document.getElementById('pie2Chart'));
+	 myChart123.showLoading();
+	 myChart124.showLoading();
 	 $.ajax({
 			type : 'post',
 			url : root+'/brach/pie.action',
@@ -229,12 +229,12 @@ function pie(){
 			data : JSON.stringify(productTranctionReportCustom),
 			success : function(data) {
 				/*data.oneSail;data.totalSail;*/
-				haha(data);
-				haha1(data);
-				myChart.setOption(option);
-				myChart.hideLoading();
-				myChart2.setOption(option1);
-				myChart2.hideLoading();
+				haha123(data);
+				myChart123.setOption(option123);
+				myChart123.hideLoading();
+				haha124(data);
+				myChart124.setOption(option124);
+				myChart124.hideLoading();
 			}
 	        }) ;
 			}
@@ -242,10 +242,10 @@ function pie(){
 	 
 	
 	
-	 function haha(data){
+	 function haha123(data){
 		var a= data.totalSail - data.oneSail;
 	     // 使用刚指定的配置项和数据显示图表。
-		 option = {
+		 option123 = {
 				    title: {
 				        text: '商品销售占比',
 				        subtext: '所选区间',
@@ -296,13 +296,12 @@ function pie(){
 				};
 	 }
 	
-	 myChart.hideLoading();      //隐藏加载动画
-     myChart.setOption(option); //加载数据图表
+	 
 	
-     function haha1(data){
+     function haha124(data){
  		var a= data.totalprice - data.oneSail;
  	     // 使用刚指定的配置项和数据显示图表。
- 		 option1 = {
+ 		 option124 = {
  				    title: {
  				        text: '商品销售占比',
  				        subtext: '所选商品',

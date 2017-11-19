@@ -1,0 +1,566 @@
+@charset "utf-8";
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Microsoft yahei' /*'SimSun'*/;
+}
+body, html {
+	width: 100%;
+	height: 100%;
+	font-size: 12px;
+}
+a {
+	text-decoration: none;
+}
+ul li {
+	list-style-type: none;
+}
+img {
+	border: none;
+}
+.clear{
+	clear:both;
+}
+#header{
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	background-color: #222c38;
+	overflow: hidden;
+}
+div.content {				/*public 全局公共属性*/
+	width: 1200px;
+	min-width: 1200px;
+	height: 100%;
+	margin: 0px auto;
+}
+#header div.content a {
+	display: block;			/*在header里面的所有a标签全部升级为块级元素*/
+}
+#header div.content div.logo {
+	width: 154px;
+	height: 100%;
+	float: left;
+	padding: 10px 20px 0px 0px;
+}
+#header div.content div.meun {
+	position:relative;
+	float: left;
+}
+#header div.content div.meun div.hover{
+	position:absolute;
+	left:0px;
+	width:100px;
+	height:70px;
+	top:0px;
+	background-color:#070E2A;
+}
+#header div.content div.meun ul{
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:2;
+	width:500px;
+}
+#header div.content div.meun ul li {
+	float: left;
+	width:100px;
+	text-align:center;
+}
+#header div.content div.meun ul li a {
+/*	padding: 0px 30px;*/
+	margin: 0px 3px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+}
+#header div.content div.meun ul li a:hover {
+	background-color:#070E2A;
+}
+#header div.content div.search {
+	width: 250px;
+	height: 100%;
+	margin: 0px 15px;
+	float: right;
+}
+#header div.content div.search div.search-con {
+	width: 220px;
+	height: 28px;	/*search public 高度*/
+	margin-top: 20px;
+	position: relative;
+	border: 1px solid #323744;
+	border-radius: 3px;
+}
+#header div.content div.search div.search-con form input.info:hover {
+	border: 1px solid #818997;
+	border-radius: 1px;
+}
+#header div.content div.search div.search-con form input.info {
+	width: 192px;
+	height: 100%;
+	background-color: #323744;
+	color: #fff;
+	padding-right: 30px;
+	border: 1px solid #323744;
+	border-radius: 1px;
+	overflow: hidden;
+	font-size: 14px;
+	text-indent: 1em;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#header div.content div.search div.search-con form input.sub {
+	width: 30px;
+	height: 100%;
+	background-color: #323744;
+	background-image: url("../image/tz/icon.png");
+	background-position: -363px 5px;
+	border: none;
+	position: absolute;
+	top: 1px;
+	left: 190px;
+}
+#header div.content div.user {
+	width: 170px;		/*设置它的宽度 初始值是200，为了效果设置了170px*/
+	height: 100%;
+	float: right;
+	overflow: hidden;/*解决文本溢出的问题，当内容超出盒子后会隐藏*/
+}
+#header div.content div.user ul li {
+	float: left;
+	height: 70px;
+	padding: 0px 15px;
+}
+#header div.content div.user ul li a {
+	
+	position: relative;
+}
+#header div.content div.user ul li a.msg, a.e-mail {
+	
+	height: 40px;
+	
+	background-position: -20px 3px;
+	font-size: 14px;
+	font-color:#fff;
+}
+#header div.content div.user ul li a.e-mail {
+	background-position: -63px 5px;
+}
+#header div.content div.user ul li:hover a.msg {
+	background-position: -40px 3px;
+}
+#header div.content div.user ul li:hover a.e-mail {
+	background-position: -85px 5px;
+}
+#header div.content div.user ul li a.users {
+	width: 30px;
+	height: 30px;
+	
+	margin-top: 17px;
+	border-radius: 30px;
+}
+
+#header div.content div.user ul li a span {
+	display: none;
+}
+#header div.content div.user ul li a span.msg-new, span.e-mail-new, span.user-new {
+	width: 4px;
+	height: 4px;
+	border-radius: 4px;
+	border: 1px solid #ff0000;
+	
+	position: absolute;
+	top: 0px;
+	right: -4px;
+}
+/*最新消息提醒小红点 单个是否展示 改变span.里面的类属性 */
+#header div.content div.user ul li a span.msg-new {
+	display: block;
+}
+/*图标轮播界面开始*/
+div.banner div.content {
+	position: relative;
+	width: 1200px;
+	height: 384px;
+	overflow: hidden;
+}
+div.banner div.content ul {
+	position:absolute;
+	width: 300%;
+	height: 384px;
+	left:0px;
+	top:0px;
+}
+div.banner div.content ul li{
+	float:left;
+}
+div.banner div.content a.conn {
+	padding: 15px;
+	border-radius: 58px;
+	background: #818997;
+	display: block;
+}
+div.banner div.content a.conn:hover {
+	background-color: #000;
+}
+div.banner a.but-left {
+	position: absolute;
+	top: 170px;
+	left: 3px;
+}
+div.banner a.but-right {
+	position: absolute;
+	top: 170px;
+	right: 3px;
+}
+div.banner a.conn em {
+	width: 28px;
+	height: 28px;
+	display: block;
+	background-image: url("../image/tz/kc_icon.png");
+}
+div.banner a.but-left em {
+	background-position: -153px 248px;
+}
+div.banner a.but-right em {
+	background-position: -172px 248px;
+}
+#new-list {
+	height: 100px;
+}
+#new-list dl {
+	width: 216px;
+	height: 80px;
+	margin: 12px 0px 0px 20px;
+	float: left;
+	border-right: 1px solid #bbb;
+}
+#new-list dl.none {
+	border: none;
+}
+#new-list dt {
+	font-size: 18px;
+	color: #5580fb;
+	padding-bottom: 10px;
+}
+#new-list dd {
+	float: left;
+	margin-right: 10px;
+}
+#new-list dd a {
+	
+	line-height: 20px;
+}
+#new-list dd a:hover {
+	color: #5580fb;
+}
+div.Notice {
+	width: 100%;
+	height: 45px;
+	margin: 1px 0px;
+	line-height: 45px;
+	border: 1px solid #bbb;
+}
+div.Notice div.content em {
+	width: 12px;
+	height: 14px;
+	padding-top: 2px;
+	display: inline-block;
+	background-image: url("../image/tz/gonggao.png");
+	background-repeat: no-repeat;
+}
+div.Notice div.content span {
+	padding-left: 10px;
+	display: inline-block;
+}
+#pro {
+	width: 100%;
+	margin: 10px 0px;
+	background-color: #eeeff3;
+	border-top: 1px solid #bbb;
+}
+#pro div.content {
+	overflow: hidden; /*解决div id="pro" 里面的子元素添加浮动后不能自适应问题*/
+}
+#pro div.content ul li {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	padding: 20px 0px 0px 0px;
+	border-bottom: 1px solid #bbb;
+}
+#pro div.content ul li.padding-none {
+	padding-top: 0px;
+}
+#pro div.content ul li.none {
+	border: none;
+}
+#pro div.content ul li div {	/*公共的div*/
+	width: 225px;
+	height: 185px;
+	margin: 0px 7px 20px 7px;
+	font-size: 14px;
+	position: relative;
+	float: left;
+	text-align: center;
+}
+#pro div.content ul li div.soft {
+	background-color: #0033ff;
+	color: #fff;
+}
+#pro div.content ul li div.Occupation {
+	background-color: #7784a9;
+}
+#pro div.content ul li div.Language {
+	background-color: #3faa77;
+}
+#pro div.content ul li div.edu {
+	background-color: #6a9a36;
+}
+#pro div.content ul li div.soft h2 {
+	padding-top: 50px;
+	font-size: 24px;
+	font-weight: 500;
+}
+#pro div.content ul li div.soft p {
+	line-height: 36px;
+}
+#pro div.content ul li div.soft a {
+	
+}
+pro div.content ul li div.soft a span {
+	font-family: "SimSun";
+}
+#pro div.content ul li div.pro-list p a {
+	
+}
+#pro div.content ul li div.pro-list p a:hover {
+	color: #6633ff;
+}
+#pro div.content ul li div.pro-list:hover div.submit {	/*个人感觉这里不好 hover=div 不兼容 带修正*/
+	display: block;
+}
+#pro div.content ul li div.pro-list div.submit {
+	width: 100%;
+	height: 145px;
+	background-color: rgba(0,0,0,0.5);
+	font-size: 12px;
+	color: #fff;/*submit 字体全局颜色*/
+	text-align: left;
+	padding-left: 15px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+#pro div.content ul li div.pro-list div.submit p.sub-title {
+	font-size: 14px;
+	padding-top: 15px;
+}
+#pro div.content ul li div.pro-list div.submit p {
+	line-height: 24px;
+}
+#pro div.content ul li div.pro-list div.submit a {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #5580fb;
+	display: block;
+	
+	font-size: 14px;
+	margin: 10px auto;
+	border-radius: 2px;
+}
+div.Lecturer {
+ background:;
+	overflow: hidden;
+}
+div.Lecturer div.content {
+}
+div.Lecturer div.content ul {
+	float: left;
+}
+div.Lecturer div.content ul li {
+	width: 100%;
+	float: left;
+	clear: both;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #d9dce1;
+}
+div.Lecturer div.content h2 {
+	font-size: 24px;
+	color: #666;
+	font-weight: 500;
+	line-height: 70px;
+}
+div.Lecturer div.content dl {
+	width: 240px;
+	height: 66px;
+	margin: 10px 0px;
+	float: left;
+}
+div.Lecturer div.content dt {
+	float: left;
+}
+div.Lecturer div.content dd {
+	float: left;
+	padding-left: 15px;
+	line-height: 23px;
+}
+div.Lecturer div.content dd h4 {
+	font-size: 14px;
+	color: #3333ff;
+}
+div.Lecturer div.content ul li div.L-Details {
+	width: 216px;
+	height: 280px;
+	margin-right: 24px;
+	position: relative;
+	float: left;
+}
+div.Lecturer div.content ul li div.L-Details:hover div.L-submit {
+	display: block;
+}
+div.Lecturer div.content ul li div.L-Details div.L-submit {
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+	background-color: rgba(0,0,0,.5);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+div.Lecturer div.content ul li div.L-Details div.L-submit p {
+	padding: 10px 30px;
+	color: #fff;
+	line-height: 26px;
+	font-size: 14px;
+}
+div.Lecturer div.content ul li div.L-Details div.L-submit p.title {
+	font-size: 18px;
+	font-weight: 500;
+}
+div.Lecturer div.content ul li div.L-Details div.L-submit a {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	margin: auto;
+	border-radius: 60px;
+	display: block;
+	background: #5580fb;
+	
+}
+div.Lecturer div.content ul li div.links {
+	color: #ccc;
+}
+div.Lecturer div.content ul li div.links a {
+	padding: 0px 10px;
+	line-height: 30px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #8e949f;
+}
+div.Lecturer div.content ul li div.links a.pd {
+	padding: 0px 10px 0px 0px;
+}
+div.Lecturer div.content ul li div.links a:hover {
+	color: #0099ff;
+}
+div.footer {
+	width: 100%;
+	padding: 40px 0px 0px 0px;
+	float: left;
+	color: #51555d;
+	font-size: 14px;
+	background-color: #15171f;
+}
+div.footer div.content div.left {
+	width: 700px;
+	float: left;
+}
+div.footer div.content div.left dl {
+	float: left;
+	margin-right: 80px;
+	color: #51555d;
+}
+div.footer div.content div.left dl dt {
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 7px;
+}
+div.footer div.content div.left dl dd a {
+	font-size: 14px;
+	line-height: 30px;
+	color: #51555d;
+}
+div.footer div.content div.left dl dd a.icon {
+	width: 35px;
+	height: 34px;
+	border-radius: 34px;
+	display: block;
+	float: left;
+	margin-right: 5px;
+	background-image: url("../image/tz/icon.png");
+	background-repeat: no-repeat;
+}
+div.footer div.content div.left dl dd a.sina {
+	background-position: -228px -77px;
+}
+div.footer div.content div.left dl dd a.sina:hover {
+	background-position: -228px -113px;
+}
+div.footer div.content div.left dl dd a.qzone {
+	background-position: -266px -77px;
+}
+div.footer div.content div.left dl dd a.qzone:hover {
+	background-position: -266px -113px;
+}
+div.footer div.content div.left dl dd a:hover {
+	color: #ffffff;
+}
+div.footer div.content div.right {
+	width: 200px;
+	float: right;
+	margin-right: 100px;
+	text-align: center;
+}
+div.footer div.content div.right p {
+	font-size: 14px;
+	color: #51555d;
+}
+div.footer div.content div.right p.title {
+	font-size: 18px;
+	font-weight: 600;
+	color: #fff;
+	margin: 5px 0px;
+}
+div.footer div.content div.right p.H24 a {
+	width: 150px;
+	height: 40px;
+	display: block;
+	color: #51555d;
+	text-align: center;
+	line-height: 40px;
+	margin: 10px auto;
+	border: 1px solid #292c35;
+	border-radius: 19px;
+}
+div.footer div.content div.right p.H24 a:hover {
+	background-color: #0099cc;
+	
+}
+div.Copyright div.content {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	text-align: center;
+	background-color: #191b24;
+}
+div.Copyright div.content a {
+	color: #51555d;
+}

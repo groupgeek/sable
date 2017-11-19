@@ -37,30 +37,36 @@ function long()
 }
 
 function IsString()     
-{     	var obj = document.getElementById('pass2');
+{
+	var check = false;
+	var obj = document.getElementById('pass2');
         var str = document.getElementById('pass').value.trim();    
         if(str.length!=0){ 
-        	 
-        	 obj.innerText="密码是15位以下的英文字母或数字";
+        	 obj.innerText="密码是6-15的英文字母或数字";
+        	 check = true;
         reg=/^[a-zA-Z0-9_]+$/; 
-        re=/^.{1,15}$/;
+        re=/^.{6,15}$/;
         if(!re.test(str)){    
-            alert("输入密码过长");//请将“字符串类型”要换成你要验证的那个属性名称！    
-            document.getElementById("pass").value="";
+            /*alert("输入密码过长");//请将“字符串类型”要换成你要验证的那个属性名称！    
+            document.getElementById("pass").value="";*/
+        	check = false;
         } 
         if(!reg.test(str)){    
-            alert("密码是15位以下的数字或者英文字母");//请将“字符串类型”要换成你要验证的那个属性名称！    
+            alert("密码是6-15的数字或者英文字母");//请将“字符串类型”要换成你要验证的那个属性名称！    
             document.getElementById("pass").value="";
         }    
         }  
         else{
         	obj.innerText="员工密码不能为空，否则导致添加失败！";
+        	check = false;
         }
+        return check;
 }  
 
 
 function IsEmail()     
 {     
+	var check = false;
 		var obj = document.getElementById('mail');
         var str = document.getElementById('email').value.trim(); 
         if(str.length!=0){
@@ -72,14 +78,17 @@ function IsEmail()
         }
         if(!reg.test(str)){
             obj.innerText="邮箱格式错误,邮箱格式为 xxx@163.com";
+            check = false;
         } 
         if(reg.test(str)){
         	obj.innerText="OK!";
+        	check = true;
         }
         }  
         else{
         	obj.innerText="邮箱格式为xxx@163.com";
         }
+        return check;
 }
 
 function IsPhone()     
@@ -124,28 +133,31 @@ function add()
 }
 
 function bank(v)     
-{    	var n = /^[1-9]\d*$|^0$/; 
+{    	
+	var check = false;
+	var n = /^[1-9]\d*$|^0$/; 
 		var obj = document.getElementById('bank');
         var str = document.getElementById('bankno').value.trim(); 
         if(!n.test(v)){
-        	alert("只可以输数字哦");
-        	document.getElementById("bankno").value="";
-        	return false;
+        	check = false;
         	}
         if(str.length!=0){    
-        reg=/^\d{19,21}$/;  
-        re=/^.{1,25}$/;
+        reg=/^\d{19,20}$/;  
+        re=/^.{1,20}$/;
         if(!re.test(str)){    
             alert("你的银行卡账号过长！");//请将“字符串类型”要换成你要验证的那个属性名称！    
             document.getElementById("bankno").value="";
         } 
         if(!reg.test(str)){    
         	obj.innerText="你输入的银行卡信息有误";
+        	check = false;
         } 
         if(reg.test(str)){    
         	obj.innerText="银行卡正确！";
+        	check = true;
         }
-        }    
+        }
+        return check;
 }
 
 function xixi(v){
@@ -190,3 +202,13 @@ function xixi2(v){
 }
 	        }
 
+
+function check(){
+	var check = IsString()&&IsEmail()&&bank();
+	if(check==false){
+		alert("仔细核对输入信息");
+	}else{
+		alert("操作成功");
+	}
+	return check;
+}

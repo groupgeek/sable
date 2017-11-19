@@ -180,6 +180,37 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 	
 
+	public List<Activity> queryActivityByUserId(int id) {
+		return activityMapper.queryActivityByUserId(id);
+	}
 	
-
+	public List<Activity> getpicture(){
+		return activityMapper.getpicture();
+	}
+	
+	public List<Activity> getonline(){
+		return activityMapper.getonline();
+	}
+	
+	public List<Activity> getjiangzuo(){
+		return activityMapper.getjiangzuo();
+    }
+	
+	public List<Activity> gethuodong(){
+		return activityMapper.gethuodong();
+    }
+	public List<Activity> getzhibo(){
+		return activityMapper.getzhibo();
+    }
+	 public Activity getactivityid(int id){
+		 return activityMapper.getactivityid(id);
+	 }
+    
+	 public void insertactivityid(int activityid,int userid ){
+		 activityMapper.insertactivityid(activityid,userid);
+	 }
+	 
+	 public void delectactivityid(int activityid,int userid ){
+		 activityMapper.delectactivityid(activityid,userid);
+	 }
 }

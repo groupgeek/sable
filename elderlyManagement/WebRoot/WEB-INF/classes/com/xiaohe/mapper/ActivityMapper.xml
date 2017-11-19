@@ -526,4 +526,42 @@
   </where>
 	
   </select>
+   
+   <select id="queryActivityByUserId" resultType="com.xiaohe.bean.Activity" parameterType="int">
+	  	SELECT * 
+		FROM  activity
+		INNER JOIN activityregistery 
+		ON activityregistery.activityId=activity.activityId
+		WHERE activityregistery.userId=#{id};
+  </select>
+     
+     <select id="getpicture" resultType="com.xiaohe.bean.Activity">
+        select *FROM activity
+     </select>
+     
+     <select id="getonline" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='1'
+     </select>
+     
+     <select id="getjiangzuo" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='5'
+     </select>
+     
+     <select id="gethuodong" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='4'
+     </select>
+     
+     <select id="getzhibo" resultType="com.xiaohe.bean.Activity">
+     SELECT *FROM activity WHERE activityTypeID='6'
+     </select> 
+     <insert id="insertactivityid" parameterType="com.xiaohe.bean.Activity" >
+     INSERT INTO activityregistery (activityId,userId) VALUES(#{0},#{1} )
+     </insert>
+      <select id="getactivityid" resultType="com.xiaohe.bean.Activity" parameterType="int">
+     SELECT *FROM activity WHERE activityid=#{id}
+     </select>
+      <delete id="delectactivityid" parameterType="int"> 
+      DELETE FROM activityregistery WHERE activityid=#{0} AND userid=#{1}
+      </delete>
+    
 </mapper>

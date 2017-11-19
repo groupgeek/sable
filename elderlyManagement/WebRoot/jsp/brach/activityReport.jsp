@@ -119,11 +119,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       myChart.showLoading();
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
-	
-
-	
-	
-	
 	</script>	
 		
 		
@@ -251,13 +246,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="button" onclick="xixi()" value="测试图表">
 					<input type="button" onclick="productEchart2()" value="图表案例"> -->
 					<div class="chart">
-					<div class="product" id="activity"></div> <!-- 柱状图 -->
-					<div class="line" id="line"></div> <!-- 折线图 -->
-					<div class="pie1" id="pie1"></div> <!-- 饼图 -->
-					<div class="pie2" id="pie2"></div> <!-- 饼图 -->
+					<div class="productChart" id="activity"></div> <!-- 柱状图 -->
+					
 					</div>
 					
-					<div class="pie" id="pie" style="width: 700px;height: 400px;"></div>
+					
 					</div>
 				</div><!--/span-->
 

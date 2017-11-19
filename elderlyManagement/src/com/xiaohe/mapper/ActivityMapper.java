@@ -193,4 +193,52 @@ public interface ActivityMapper {
      */
     ActivityCustom branchEduIncomeReport(ActivityCustom activityCustom);
    
+    /**
+     * 通过用户id 查询对应课程
+     * @param id
+     * @return
+     */
+    public List<Activity> queryActivityByUserId(int id);
+    
+    /**
+     * 查询所有活动
+     * @return
+     */
+    public List<Activity> getpicture();
+    /**
+     * 查询activitytypeId=1的活动
+     */
+    public List<Activity> getonline();
+    
+    /**
+     * 查询activitytypeId=5的活动
+     */
+    public List<Activity> getjiangzuo();
+    
+    /**
+     * 查询activitytypeId=4的活动
+     */
+    public List<Activity> gethuodong();
+    /**
+     * 查询activitytypeId=6的直播
+     */
+    public List<Activity> getzhibo();
+    /**
+     * 获取activvityid
+     * 
+     */
+    public Activity getactivityid(int id );
+    /**
+     * 
+     * @param 根据userid插入activityid
+     * 
+     */
+    public void insertactivityid(int activityid,int userid );
+     /**
+      * 
+      * @param删除userid 和 activityid
+      * 
+      */
+    public void delectactivityid(int activityid,int userid );
+
 }
