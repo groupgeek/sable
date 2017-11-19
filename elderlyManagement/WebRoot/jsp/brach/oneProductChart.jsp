@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/brach/css/mybranch/haha.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
@@ -158,22 +159,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 <input type="hidden" value="${pageContext.request.contextPath }" id="root">
 					 <!-- ------------------------------------------- -->
 					 
-					<div class="box-content">
-					<div class="control-group" style=" position:relative;left:30px; top:10px" >
+					<div class="box-content" >
+					<div class="control-group" id="control-group">
 							  <h3>销售间隔：</h3>
 							  <div class="controls">
 								从：<input name="activitydate" type="text" onClick="laydate()" id="begin">&nbsp&nbsp&nbsp&nbsp
 								至：<input name="activitydate" type="text" onClick="laydate()" id="end">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								 <a class="btn btn-info" onclick="xixi()" style="margin-top: -10px">
-										<i class="icon-ok-sign"></i> 确认查询                                
-									</a>
+									<input class="btn btn-info" onclick="total()" style="margin-top: -10px" value="查询">       
 							  </div>
 					</div>
 					<!-- <input type="button" id = "haha()" onclick="haha()" value="测试数据">
 					<input type="button" onclick="xixi()" value="测试图表">
 					<input type="button" onclick="productEchart2()" value="图表案例"> -->
 					
-					<div id="product" style="width: 900px;height: 400px;background-image:7.jpg ;margin-left: 44px"></div>
+					<div class="chart">
+					<div class="product" id="product"></div> <!-- 柱状图 -->
+					<div class="line" id="line"></div> <!-- 折线图 -->
+					<div class="pie1" id="pie1"></div> <!-- 饼图 -->
+					<div class="pie2" id="pie2"></div> <!-- 饼图 -->
+					</div>
+					
+					<div class="pie" id="pie" style="width: 700px;height: 400px;"></div>
 					</div>
 				</div><!--/span-->
 

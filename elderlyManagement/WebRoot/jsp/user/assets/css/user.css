@@ -1,0 +1,41 @@
+.form-all{
+	margin-left: 200px;
+	width: 800px;
+	/* background:url(../img/7.jpg); */
+}
+.form-inner{
+	padding-left: 100px;
+}
+.control-group{
+	margin-top: 30px;
+}
+.sub-change{
+	margin-top: 30px;
+	padding-left: 600px
+}
+.form-name{
+	border: 1px solid #ccc;
+	padding: 7px 0px; 
+	border-radius: 3px;
+	width: 200px;
+}
+.form-text{
+	margin-left: 130px;
+	margin-top: -30px
+}
+.sub{
+	width:100px;
+	margin-top: 30px;
+	margin-left: 100px;
+}
+.panel panel-default{
+	margin-top: 30px;
+}
+.sub-changeMed{
+	pading-left: 900px;
+	margin-top: 100px
+}
+
+.form{
+	background-color: gray;
+}

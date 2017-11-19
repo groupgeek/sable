@@ -21,6 +21,7 @@ import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
@@ -29,6 +30,7 @@ import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityrecommendMapper;
+import com.xiaohe.mapper.ActivityreportMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
 import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.AuthorityMapper;
@@ -47,6 +49,8 @@ import com.xiaohe.service.BranchAdminService;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
+	@Autowired
+	private ActivityreportMapper activityreportMapper;
 	@Autowired
 	private AreaMapper areaMapper;
 	@Autowired
@@ -267,5 +271,21 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	public ProducttransactionreportCustom oneTransation(
 			ProducttransactionreportCustom producttransactionreportCustom) {
 		return producttransactionreportMapper.oneDayTransation(producttransactionreportCustom);
+	}
+	public ProducttransactionreportCustom BranchOneProductTransation(
+			ProducttransactionreportCustom producttransactionreportCustom) {
+		return producttransactionreportMapper.BranchOneProductTransation(producttransactionreportCustom);
+	}
+	public ActivityCustom branchActivityCondition(ActivityCustom activityCustom) {
+		return activityreportMapper.activityCondition(activityCustom);
+	}
+	public ActivityCustom healthIncome(ActivityCustom activityCustom) {
+		return activityMapper.branchHealIncomeReport(activityCustom);
+	}
+	public ActivityCustom eduIncome(ActivityCustom activityCustom) {
+		return activityMapper.branchEduIncomeReport(activityCustom);
+	}
+	public OrdersCustom orderIncome(OrdersCustom ordersCustom) {
+		return ordersMapper.orderReport(ordersCustom);
 	}
 }

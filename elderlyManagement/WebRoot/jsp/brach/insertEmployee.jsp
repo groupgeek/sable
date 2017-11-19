@@ -182,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  <label class="control-label" for="typeahead">员工密码</label>
 							  <div class="controls">
 								<input type="text" name="password" onkeyup="IsString()" class="span6 typeahead" id="pass">
-								<p id="pass2"></p>
+								<p id="pass2" style="color:gray">员工密码不可以为空，否则添加失败</p>
 							  </div>
 					</div>
 					
@@ -191,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="typeahead">员工邮箱</label>
 								<div class="controls">
 								<input type="text" name="email" class="span6 typeahead" onkeyup="IsEmail()" id="email">
-								<p id="mail">邮箱格式为 xxx@163.com</p>
+								<p id="mail" style="color:gray">邮箱格式为 xxx@163.com</p>
 								</div>
 					</div>
 					
@@ -199,6 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="typeahead">员工电话</label>
 								<div class="controls">
 								<input type="text" name="phone" class="span6 typeahead" onkeyup="IsPhone()" id="phone">
+								<p id="phoneNo" style="color:gray">格式不对会，添加不成功</p>
 								</div>
 					</div>
 					

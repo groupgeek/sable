@@ -1,3 +1,9 @@
+function total(){
+	/*var pass = document.getElementById("")
+	if(){
+		
+	}*/
+}
 function haha(){
 	 var str = document.getElementById('str').value.trim();    
 	    if(str.length!=0){    
@@ -31,9 +37,11 @@ function long()
 }
 
 function IsString()     
-{     
+{     	var obj = document.getElementById('pass2');
         var str = document.getElementById('pass').value.trim();    
-        if(str.length!=0){    
+        if(str.length!=0){ 
+        	 
+        	 obj.innerText="密码是15位以下的英文字母或数字";
         reg=/^[a-zA-Z0-9_]+$/; 
         re=/^.{1,15}$/;
         if(!re.test(str)){    
@@ -44,7 +52,10 @@ function IsString()
             alert("密码是15位以下的数字或者英文字母");//请将“字符串类型”要换成你要验证的那个属性名称！    
             document.getElementById("pass").value="";
         }    
-        }    
+        }  
+        else{
+        	obj.innerText="员工密码不能为空，否则导致添加失败！";
+        }
 }  
 
 
@@ -63,25 +74,40 @@ function IsEmail()
             obj.innerText="邮箱格式错误,邮箱格式为 xxx@163.com";
         } 
         if(reg.test(str)){
-        	obj.innerText="邮箱格式正确";
+        	obj.innerText="OK!";
         }
-        }    
+        }  
+        else{
+        	obj.innerText="邮箱格式为xxx@163.com";
+        }
 }
 
 function IsPhone()     
 {     
-	var str = document.getElementById('phone').value.trim();    
+	var str = document.getElementById('phone').value.trim();  
+	var obj = document.getElementById("phoneNo");
     if(str.length!=0){    
     reg=/^[0-9]+$/;
     re=/^.{1,11}$/;
+    res=/^\d{11,12}$/;
+    if(res.test(str)){
+    	obj.innerText="OK!";
+    }
+    else{
+    	obj.innerText="例：139xxxx0000";
+    }
     if(!re.test(str)){    
         alert("大陆电话号是11位以下的数字");//请将“字符串类型”要换成你要验证的那个属性名称！    
         document.getElementById("phone").value="";
-    } 
+    } else{
+    	/*obj.innerText="例：139xxxx0000";*/
+    }
     if(!reg.test(str)){    
         alert("大陆电话号是11位以下的数字");//请将“字符串类型”要换成你要验证的那个属性名称！    
         document.getElementById("phone").value="";
-    }    
+    }
+    else{
+    }
     }     
 }
 
