@@ -432,17 +432,20 @@
 	
 <!-- 	管理员信息查询       -->
  
-  <select id="selectAdminCustom" parameterType="Integer" resultType="EmployeeCustom">
+  <select id="selectAdminCustom" parameterType="String" resultType="EmployeeCustom">
 <!--  SELECT * FROM employee,branch WHERE employee.employeeId = branch.employeeId AND employee.employeeId=#{employeeid} -->
- SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.employeeId=#{employeeid}
+<!--  SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.employeeId=#{employeeid} -->
+SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.accountNumber=#{accountNumber}
  </select>
 		
 <select id="selectProductByCondition" parameterType="productCustom" resultType="productCustom">
-		SELECT * FROM product WHERE
-			(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+		SELECT p.* FROM product p,`user` u ,branch b WHERE
+		u.userId = #{userid}
+		AND b.areaId = u.areaId AND p.branchId = b.branchId
+		AND (p.productName LIKE '%${search}%' OR p.description LIKE '%${search}%')
 		<if test="producttypename != null">
 			
-			AND productTypeId = (SELECT producttypeid FROM producttype WHERE producttypename = #{producttypename})
+			AND p.productTypeId = (SELECT producttypeid FROM producttype WHERE producttypename = #{producttypename})
 		</if>
 		
 		<if test="sort != null">
@@ -458,11 +461,13 @@
 	
 	</select>
 	<select id="selectProductSumByCondition" parameterType="productCustom" resultType="Integer">
-		SELECT COUNT(*) FROM product WHERE
-			(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+		SELECT COUNT(*) FROM product p,`user` u ,branch b WHERE
+		u.userId = #{userid}
+		AND b.areaId = u.areaId AND p.branchId = b.branchId
+		AND (productName LIKE '%${search}%' OR description LIKE '%${search}%')
 		<if test="producttypename != null">
 			
-			AND productTypeId = (SELECT producttypeid FROM producttype WHERE producttypename = #{producttypename})
+			AND p.productTypeId = (SELECT producttypeid FROM producttype WHERE producttypename = #{producttypename})
 		</if>
 	</select>
 	

@@ -155,8 +155,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户详情</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
@@ -224,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label">客户生日</label>
 								<div class="controls">
 								<a name="birthday" value="${user.birthday }"></a>
-								  <span class="input-xlarge uneditable-input" disabled="" value="${user.birthday }">${user.birthday }</span>
+								  <span class="input-xlarge uneditable-input" disabled="" value="${user.birthday }"><fmt:formatDate value="${user.birthday }" pattern="yyyy-MM-dd"/></span>
 								</div>
 							  </div>
 							  

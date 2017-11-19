@@ -8,13 +8,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
 		<title>订单管理</title>
-
+		
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/orstyle.css" rel="stylesheet" type="text/css">
-
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/util/css/common.css"/>
 		<%-- <script src="${pageContext.request.contextPath }/jsp/mall/UI//assets/js/jquery.min.js"></script> --%>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/mall/UI//assets/js/amazeui.js"></script>
@@ -103,6 +103,38 @@
 			<!-- 菜单 -->
 			<c:import url="/jsp/mall/personMenu.jsp"></c:import>
 		</div>
+		
+		
+	
+			
+			<div id="wrapper">
+			
+				
+				<div class="box">
+					<div class="demo">
+						<!-- <a href="javascript:;" class="rollIn">DEMO2</a> -->
+					</div>
+					
+					<div id="dialogBg"></div>
+					<div id="dialog" class="animated" style="height: 230px;">
+						<img class="dialogIco" width="50" height="50" src="${pageContext.request.contextPath }/jsp/util/images/ico.png" alt="" />
+						<div class="dialogTop">
+							<a href="javascript:;" class="claseDialogBtn">关闭</a>
+						</div>
+						<form method="post" id="editForm">
+								<input type="hidden" id = "articleid" name="articleid"/>
+							<ul class="editInfos">
+								<li><label><input type="hidden" id = "orderid" name="orderid"/></label></li>
+								<li><label id = "message" style="color: red;">密码错误</label></li>
+								<li><label id = "showOrderid" style="color: black;"></label></li>
+								<li><label style="color: black;">密码：<input type="password" id = "password" name="password" required  class="ipt" placeholder="密码"style="color: black;"/></label></li>
+								<li><input type="button" value="确认提交" class="submitBtn" /></li>
+							</ul>
+						</form>
+					</div>
+				</div>
+				
+			</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/person/js/order.js"></script>
 	</body>

@@ -2,7 +2,9 @@ package com.xiaohe.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +15,11 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activityregistery;
+import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.mapper.ActivityMapper;
+import com.xiaohe.mapper.ActivityregisteryMapper;
+import com.xiaohe.mapper.ActivitytypeMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetStringByDate;
@@ -24,6 +30,14 @@ public class ActivityServiceImpl implements ActivityService {
 	@Autowired
 	@Qualifier("activityMapper")
 	private ActivityMapper activityMapper;
+	
+	@Autowired
+	@Qualifier("activitytypeMapper")
+	private ActivitytypeMapper activitytypeMapper;
+	
+	@Autowired
+	@Qualifier("activityregisteryMapper")
+	private ActivityregisteryMapper activityregisteryMapper;
 	
 	/**
 	 * 给Introduction字段赋值 (活动描述里面的值的一部分)
@@ -183,34 +197,135 @@ public class ActivityServiceImpl implements ActivityService {
 	public List<Activity> queryActivityByUserId(int id) {
 		return activityMapper.queryActivityByUserId(id);
 	}
-	
-	public List<Activity> getpicture(){
-		return activityMapper.getpicture();
+
+	public List<ActivitytypeCustom> queryAllEduType() {
+		
+		List<ActivitytypeCustom> allType = new ArrayList<ActivitytypeCustom>();
+		
+		allType = activitytypeMapper.selectAllEduType();
+		
+		return allType;
+	}
+
+	public Map<String, List<ActivityCustom>> queryEduRecordByUserid(
+			Integer userid) {
+		if(userid == null) return null;
+		
+		Map<String, List<ActivityCustom>> all = new HashMap<String, List<ActivityCustom>>();
+		List<ActivitytypeCustom> allType = new ArrayList<ActivitytypeCustom>();
+		List<ActivityCustom> allAct = new ArrayList<ActivityCustom>();
+		ActivityCustom condition = new ActivityCustom();
+		condition.setUserid(userid);
+		condition.setPageNum(3);
+		condition.setBegin(0);
+		//查询所有分类
+		allType = activitytypeMapper.selectAllEduType();
+		
+		if(allType == null) return null;
+		
+		for(ActivitytypeCustom record : allType){
+			condition.setActivitytypeid(record.getActivitytypeid());
+			allAct = activityMapper.selectActivityByTypeAndUserid(condition);
+			
+			all.put(record.getActivitytypename(), allAct);
+		}
+		
+		
+		return all;
+	}
+
+	public ActivityVo queryEduAllTypeActByCondition(ActivityCustom condition) {
+		if(condition == null) return null;
+		if(condition.getCurrentPage() == null) return null;
+		
+		condition.setPageNum(1);///////////////////////////////////
+		
+		ActivityVo activityVo = new ActivityVo();
+		List<ActivityCustom> allActivity = new ArrayList<ActivityCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		
+		
+		if(condition.getCurrentPage() >= 1){
+			Integer tempBegin = (condition.getCurrentPage()-1) * condition.getPageNum();
+			condition.setBegin(tempBegin);
+		}else{
+			condition.setBegin(0);
+		}
+			
+		
+		allActivity = activityMapper.selectActivityByTypeAndUserid(condition);
+		for(ActivityCustom activityCustom : allActivity){
+			activityCustom.setActivitydateString(GetStringByDate.getString(activityCustom.getActivitydate()));
+		}
+		sum = activityMapper.selectActivitySumByTypeAndUserid(condition);
+		pageSum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageSum += 1;
+		}
+		
+		activityVo.setActivityList(allActivity);
+		activityVo.setActivitySum(sum);
+		activityVo.setPageSum(pageSum);
+		
+		
+		
+		return activityVo;
+	}
+
+	public ActivityCustom oneAct(Integer id) {
+		return activityMapper.oneActivityCustom(id);
+	}
+
+	public Integer countPeople(ActivityCustom activityCustom) {
+		return activityMapper.countActNo(activityCustom);
 	}
 	
-	public List<Activity> getonline(){
-		return activityMapper.getonline();
+	public List<ActivityCustom> quertyActivityArea(String phone) {
+	 	
+		return activityMapper.quertyActivityArea(phone);
+	}
+
+	public Activity quertyUserActivity(Integer activityid) {
+		
+		return activityMapper.selectByPrimaryKey(activityid);
+	}
+
+	
+	public void insertUserRegistery(Activityregistery activityregistery) {
+	
+		activityregisteryMapper.insert(activityregistery);
+	}
+
+	public boolean quertyIfUsetRegistery(Activityregistery activityregistery ) {
+		Activityregistery acrg=new Activityregistery();
+		acrg=activityregisteryMapper.selectUserActivityregistery(activityregistery);
+		if (acrg!=null) {
+			if (acrg.getActivityid().equals(activityregistery.getActivityid())) {
+				if (acrg.getUserid().equals(activityregistery.getUserid())) {
+					if (acrg.getRegistery().equals("报名")) {
+						return false;
+					}return true;
+				}return true;
+			}return true;
+		}
+		
+		return true;
+	}
+
+	public int insertActRec(Activityregistery activityregistery) {
+		activityregisteryMapper.insert(activityregistery);
+		return 0;
+	}
+
+	public Activityregistery oneActreg(Activityregistery activityregistery) {
+		return activityregisteryMapper.selectByPrimaryKey(activityregistery);
+	}
+
+	public Activityregistery oneUserAct(Activityregistery activityregistery) {
+		return activityregisteryMapper.oneUserAct(activityregistery);
 	}
 	
-	public List<Activity> getjiangzuo(){
-		return activityMapper.getjiangzuo();
-    }
 	
-	public List<Activity> gethuodong(){
-		return activityMapper.gethuodong();
-    }
-	public List<Activity> getzhibo(){
-		return activityMapper.getzhibo();
-    }
-	 public Activity getactivityid(int id){
-		 return activityMapper.getactivityid(id);
-	 }
     
-	 public void insertactivityid(int activityid,int userid ){
-		 activityMapper.insertactivityid(activityid,userid);
-	 }
-	 
-	 public void delectactivityid(int activityid,int userid ){
-		 activityMapper.delectactivityid(activityid,userid);
-	 }
 }

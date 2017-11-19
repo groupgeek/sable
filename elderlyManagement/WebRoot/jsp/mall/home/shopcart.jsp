@@ -14,6 +14,7 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/cartstyle.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/optstyle.css" rel="stylesheet" type="text/css" />
+		
 
 		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/jquery.js"></script> --%>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
@@ -71,15 +72,6 @@
 							</div>
 							<div class="clear"></div>
 							<div class="bundle-main" id = "data">
-								
-								
-								
-								
-								
-													
-								
-								
-								
 							</div>
 						</div>
 					</tr>
@@ -182,6 +174,7 @@
 			<li class="active"><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
 			<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>					
 		</div>
+		
 		
 		
 		<script type="text/javascript"

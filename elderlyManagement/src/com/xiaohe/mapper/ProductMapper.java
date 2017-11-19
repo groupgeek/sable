@@ -56,7 +56,7 @@ public interface ProductMapper {
     List<ProductCustom> quertyAllProduct(Integer branchid);
     
     //分店管理员查询
-    EmployeeCustom selectAdminCustom(Integer employeeid);
+    EmployeeCustom selectAdminCustom(String accountNumber);
     
     /**
      * 根据商品分类进行查询，可分页，模糊，根据购买次数，好评，价格排序

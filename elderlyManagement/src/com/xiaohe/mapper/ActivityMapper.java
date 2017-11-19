@@ -6,6 +6,7 @@ import java.util.List;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.EmployeeCustom;
 
@@ -198,47 +199,40 @@ public interface ActivityMapper {
      * @param id
      * @return
      */
-    public List<Activity> queryActivityByUserId(int id);
+    List<Activity> queryActivityByUserId(int id);
     
     /**
-     * 查询所有活动
+     * 根据类型和分店查询活动，分店重userid里面查
      * @return
      */
-    public List<Activity> getpicture();
-    /**
-     * 查询activitytypeId=1的活动
-     */
-    public List<Activity> getonline();
+    List<ActivityCustom> selectActivityByTypeAndUserid(ActivityCustom condition);
+    
     
     /**
-     * 查询activitytypeId=5的活动
+     * 查询教育下某一类活动信息
+     * @param condition
+     * @return
      */
-    public List<Activity> getjiangzuo();
+    List<ActivityCustom> selectEduAllTypeActByCondition(ActivityCustom condition);
     
     /**
-     * 查询activitytypeId=4的活动
+     *查询教育下某一类活动数量
+     * @param condition
+     * @return
      */
-    public List<Activity> gethuodong();
+    Integer selectActivitySumByTypeAndUserid(ActivityCustom condition);
     /**
-     * 查询activitytypeId=6的直播
+     * 		地区活动查询
+     * @param phone
+     * @return
      */
-    public List<Activity> getzhibo();
+    List<ActivityCustom> quertyActivityArea(String phone);   
+    
     /**
-     * 获取activvityid
-     * 
+     * 查看活动的八名人数
+     * @param activityCustom
+     * @return
      */
-    public Activity getactivityid(int id );
-    /**
-     * 
-     * @param 根据userid插入activityid
-     * 
-     */
-    public void insertactivityid(int activityid,int userid );
-     /**
-      * 
-      * @param删除userid 和 activityid
-      * 
-      */
-    public void delectactivityid(int activityid,int userid );
-
+    Integer countActNo(ActivityCustom activityCustom);
+    
 }

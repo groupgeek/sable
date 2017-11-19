@@ -1,6 +1,9 @@
 package com.xiaohe.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,121 +11,112 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.HttpServerErrorException;
 
-import com.xiaohe.bean.Activity;
-import com.xiaohe.bean.Employee;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.xiaohe.bean.ActivityCustom;
+import com.xiaohe.bean.ActivityVo;
+import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activityregistery;
+import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.BranchAdminService;
 
 @Controller
-@RequestMapping("gggg")
+@RequestMapping("edu")
 public class ActivityController {
 	@Autowired
 	@Qualifier("activityService")
 	private ActivityService activityService;
 	
-	@RequestMapping(value="queryActivityByUserId")
-	public String queryActivityByUserId(Model model,HttpServletRequest request){
-		int id =((User)request.getSession().getAttribute("user")).getUserid();
-		List<Activity> activitys=activityService.queryActivityByUserId(id);
-		//model回显到页面
-		
-		System.out.println(activitys);
-		model.addAttribute("activitys", activitys);
-		return "edu/vip";
-	}
-	@RequestMapping(value="getpicture")
-	public String  getpicture(Model model,HttpServletRequest request){
-		
-		List<Activity> onlines=activityService.getonline();
-		List<Activity> jiangzuos=activityService.getjiangzuo();
-		List<Activity> huodongs=activityService.gethuodong();
-		List<Activity> zhibos=activityService.getzhibo();
-		
-		//model回显到页面
-		
-		//System.out.println(activitys);
-		model.addAttribute("onlines", onlines);
-		model.addAttribute("jiangzuos", jiangzuos);
-		model.addAttribute("huodongs", huodongs);
-		model.addAttribute("zhibos", zhibos);
+	@Autowired
+	private BranchAdminService branchAdminService;
 	
-		return "edu/edu";
-	}
-		
-		
-		@RequestMapping(value="getonline")
-		public String  getonline(Model model,HttpServletRequest request){
-			
-			List<Activity> activitys=activityService.getonline();
-			//model回显到页面
-			
-			System.out.println(activitys);
-			model.addAttribute("activitys", activitys);
-			return "edu/kecheng";
-	}
-		
-		@RequestMapping(value="getjiangzuo")
-		public String  getjiangzuo(Model model,HttpServletRequest request){
-			
-			List<Activity> activitys=activityService.getjiangzuo();
-			//model回显到页面
-			
-			System.out.println(activitys);
-			model.addAttribute("activitys", activitys);
-			return "edu/jiangzuo";
-	}
-		
-		@RequestMapping(value="gethuodong")
-		public String  gethuodong(Model model,HttpServletRequest request){
-			
-			List<Activity> activitys=activityService.gethuodong();
-			//model回显到页面
-			
-			System.out.println(activitys);
-			model.addAttribute("activitys", activitys);
-			return "edu/huodong";
-		}
-			
-			@RequestMapping(value="getzhibo")
-			public String  getzhibo(Model model,HttpServletRequest request){
-				
-				List<Activity> activitys=activityService.getzhibo();
-				//model回显到页面
-				
-				System.out.println(activitys);
-				model.addAttribute("activitys", activitys);
-				return "edu/zhibo";
-	     }
 	
-		@RequestMapping(value="getactivityid")
-		public String  getactivityid(Model model,int id,HttpServletRequest request){
-			
-			Activity activity=activityService.getactivityid(id );
-			//model回显到页面
-			
-			System.out.println(activity);
-			model.addAttribute("activity", activity);
-			return "edu/buyinfo";
-		}
+	public User getUser(HttpServletRequest request){
+		return (User) request.getSession().getAttribute("user");
+	}
+	
+	/**
+	 * 查询教育类型的活动
+	 * @return
+	 */
+	@RequestMapping("/allEduType")
+	public @ResponseBody List<ActivitytypeCustom> allEduType(){
+		List<ActivitytypeCustom> allType = new ArrayList<ActivitytypeCustom>();
+		allType = activityService.queryAllEduType();
+		return allType;
+	}
+	
+	/**
+	 * 查询某分店的教育类型下小类型的活动(主页)
+	 * @return
+	 */
+	@RequestMapping("/queryAllEduRecord")
+	public @ResponseBody Map<String, List<ActivityCustom>> queryAllEduRecord(HttpServletRequest request){
+		User user = getUser(request);
 		
-		@RequestMapping(value="InsertactivityId")
-		public String  InsertactivityId(Model model,int activityid,HttpServletRequest request){
-			int userid =((User)request.getSession().getAttribute("user")).getUserid();
-			activityService.insertactivityid(activityid,userid);
-			//model回显到页面
-			
-			return "edu/succ";
-		}
+		Map<String, List<ActivityCustom>> all = new HashMap<String, List<ActivityCustom>>();
 		
-		@RequestMapping(value="delectactivityid")
-		public String  delectactivityid(Model model,int activityid,HttpServletRequest request){
-			int userid =((User)request.getSession().getAttribute("user")).getUserid();
-			activityService.delectactivityid(activityid,userid);
-			//model回显到页面
-			return "forward:/gggg/queryActivityByUserId.action";
+		all = activityService.queryEduRecordByUserid(user.getUserid());
+		
+		return all;
+	}
+	
+	/**
+	 * 查询某分店的教育类型下小类型的活动
+	 * @return
+	 */
+	@RequestMapping("/queryAllEduActivity")
+	public @ResponseBody ActivityVo queryAllEduActivity(@RequestBody ActivityCustom condition , HttpServletRequest request){
+		ActivityVo vo = new ActivityVo();
+		User user = getUser(request);
+		condition.setUserid(user.getUserid());
+		condition.setSort("activityDate");
+		
+		vo = activityService.queryEduAllTypeActByCondition(condition);
+		
+		return vo;
+	}
+	
+	@RequestMapping(value="/actInfo")
+	public String actInfo(Integer id,Model model,HttpServletRequest request){
+		User user = getUser(request);
+		List<ActivityrecommendCustom> allActRec = new ArrayList<ActivityrecommendCustom>();
+		ActivityCustom act = new ActivityCustom();
+		act = activityService.oneAct(id);
+		allActRec = branchAdminService.branchActRec(act.getBranchid());
+		int a = activityService.countPeople(act);
+		
+		Activityregistery activityregistery = new Activityregistery();
+		activityregistery.setUserid(user.getUserid());
+		activityregistery.setActivityid(id);
+		activityregistery = activityService.oneUserAct(activityregistery);
+		
+		model.addAttribute("activityregistery", activityregistery);
+		model.addAttribute("allActRec", allActRec);
+		model.addAttribute("act", act);
+		model.addAttribute("a", a);
+		return "edu/actInfo";
+	}
+	
+	@RequestMapping(value="/regAct")   //活动报名
+	public @ResponseBody Activityregistery insertAct(@RequestBody ActivityrecommendCustom activityrecommendCustom,HttpServletRequest request){
+		User user = getUser(request);
+		Activityregistery activityregistery = new Activityregistery();
+		Activityregistery actreg = new Activityregistery();
+		activityregistery.setUserid(user.getUserid());
+		activityregistery.setActivityid(activityrecommendCustom.getActivityid());
+		activityregistery.setRegistery("报名");
+		actreg = activityService.oneActreg(activityregistery);
+		if(actreg==null){
+			activityService.insertActRec(activityregistery);
+			return activityregistery;
+		}else{
+			return null;
 		}
+	}
 }

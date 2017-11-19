@@ -8,7 +8,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Minimal and Clean Sign up / Login and Forgot Form by FreeHTML5.co</title>
+	<title>密码找回</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -45,7 +45,8 @@
 
 	</head>
 	<body>
-
+<input id="root" type="hidden"
+		value="${pageContext.request.contextPath }">
 		<div class="container">
 			<div class="row">
 				<div style="height: 100px;">
@@ -63,27 +64,29 @@
 							<div class="alert alert-success" role="alert">Your email has been sent.</div>
 						</div> -->
 						<div class="form-group">
-							<label for="email" class="sr-only">手机号码</label>
+							<label for="" class="sr-only">手机号码</label>
 							<!-- <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off"> -->
-							<input type="text" class="form-control" id="email" 
+							<input type="text" class="form-control" id="phone" 
 							minlength=11 maxlength=11 digits=true
 							placeholder="请输入手机号码" autocomplete="off" required>
 							<br/>
-							<input type="button" value="发送验证码" class="btn">
-							<span>fsdf</span>
+							<input type="button" value="发送验证码" class="btn" id = "vcode">
+							<span id = "phoneError"></span>
 						</div>
 						<div class="form-group">
-							<label for="email" class="sr-only">验证码</label>
+							<label for="" class="sr-only">验证码</label>
 							<!-- <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off"> -->
-							<input type="text" class="form-control" id="email" 
-							minlength=11 maxlength=11 digits=true
+							<input type="text" class="form-control" id="vcodeval"
+							minlength=6 maxlength=6 digits=true
 							placeholder="请输入收到的验证码" autocomplete="off" required>
+							<br/>
+							<span id = "message"></span>
 						</div>
 						<div class="form-group">
 							<p><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a> or <a href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="下一步" class="btn btn-primary">
+							<input type="button" value="下一步" class="btn btn-primary">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
@@ -97,7 +100,7 @@
 		</div>
 	
 	<!-- jQuery -->
-	<script src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 	<!-- Bootstrap -->
 	<script src="${pageContext.request.contextPath }/jsp/logReg/js/bootstrap.min.js"></script>
 	<!-- Placeholder -->
@@ -106,6 +109,9 @@
 	<script src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
 	<script src="${pageContext.request.contextPath }/jsp/logReg/js/main.js"></script>
+	
+	<script src="${pageContext.request.contextPath }/jsp/logReg/js/forgot.js"></script>
+	
 	
 	<script
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.1.8.1.min.js"></script>

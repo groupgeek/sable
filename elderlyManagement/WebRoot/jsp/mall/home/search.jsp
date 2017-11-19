@@ -15,8 +15,8 @@
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/seastyle.css" rel="stylesheet" type="text/css" />
 
-		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/basic/js/jquery-1.7.min.js"></script> --%>
-		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/basic/js/jquery-1.7.min.js"></script>
+		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script> --%>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/script.js"></script>
 	</head>
 
@@ -32,7 +32,7 @@
 			<div class="nav-table">
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
-							<ul>
+							<!-- <ul>
 								<li class="index"><a href="#" id = "hah">首页</a></li>
                                 <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
@@ -42,7 +42,7 @@
 						    <div class="nav-extra">
 						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
 						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
+						    </div> -->
 						</div>
 			</div>
 			
@@ -51,11 +51,16 @@
 						<div class="am-u-sm-12 am-u-md-12">
 	                  	<div class="theme-popover">														
 							<div class="searchAbout">
-								<span class="font-pale">相关搜索：</span>
+								<!-- <span class="font-pale">相关搜索：</span>
 								<a title="坚果" href="#">坚果</a>
 								<a title="瓜子" href="#">瓜子</a>
 								<a title="鸡腿" href="#">豆干</a>
-
+ -->
+ 									<%-- <ol class="am-breadcrumb am-breadcrumb-slash">
+									<li><a href="${pageContext.request.contextPath }/product/mallIndex">首页</a></li>
+									<li><a href="${pageContext.request.contextPath }/product/search">分类</a></li>
+									<li class="am-active">内容</li>
+									</ol> --%>
 							</div>
 							<ul class="select">
 								<p class="title font-normal">
@@ -130,46 +135,28 @@
 								<div class="side-title">
 									经典搭配
 								</div>
-
-								<li>
-									<div class="i-pic check">
-										<img src="${pageContext.request.contextPath }/jsp/mall/images/cp.jpg" />
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>29.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
-								<li>
-									<div class="i-pic check">
-										<img src="${pageContext.request.contextPath }/jsp/mall/images/cp2.jpg" />
-										<p class="check-title">ZEK 原味海苔</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>8.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
-								<li>
-									<div class="i-pic check">
-										<img src="${pageContext.request.contextPath }/jsp/mall/images/cp.jpg" />
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>29.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
+								<c:forEach items="${productCustoms }" var="productCustom">
+									
+									<ul>
+										<li>
+											<div class="i-pic check">
+												<img src="/upload/${productCustom.picture }" />
+												<p class="check-title">${productCustom.productname }</p>
+												<p class="price fl">
+													<b>¥</b>
+													<strong>${productCustom.price }</strong>
+												</p>
+												<p class="number fl">
+													销量<span>${productCustom.buyno }</span>
+												</p>
+											</div>
+										</li>
+									</ul>
+								
+								</c:forEach>
+								
+								
+								
 
 							</div>
 							<div class="clear"></div>

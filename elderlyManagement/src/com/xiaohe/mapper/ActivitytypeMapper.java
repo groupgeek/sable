@@ -42,4 +42,10 @@ public interface ActivitytypeMapper {
      * @return
      */
     List<ActivitytypeCustom> selectAllSonByFatherId(Integer id);
+    
+    /**
+     * 查询教育下的所有小分类
+     * @return
+     */
+    List<ActivitytypeCustom> selectAllEduType();
 }

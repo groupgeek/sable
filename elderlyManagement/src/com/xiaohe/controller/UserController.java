@@ -82,7 +82,7 @@ public class UserController {
 		UserCustom user = new UserCustom();
 		user = userService.userInfo(x);
 		Level level = new Level();
-		level = userService.onelevel(user.getLevelid());
+		level = userService.onelevel(user.getUserid());
 		model.addAttribute("level", level);
 		model.addAttribute("user", user);
 		return "user/userInfo";
@@ -109,7 +109,6 @@ public class UserController {
 		List<ActivityCustom> allActs = new ArrayList<ActivityCustom>();
 		allActs = userService.userActs(id);
 		model.addAttribute("allActs", allActs);
-		System.out.println(allActs.get(0));
 		return "user/actInfo";
 	}
 	

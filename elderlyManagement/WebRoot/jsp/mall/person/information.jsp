@@ -130,11 +130,11 @@
 							
 								</div>
 								<div class="am-form-group">
-									<label for="user-phone" class="am-form-label">电话(账号)</label>
+									<label for="user-phone" class="am-form-label">手机(账号)</label>
 									<div class="am-form-content">
 										<input id="user-phone" placeholder="电话号码" type="text" readonly="readonly" name="phone">
-										<span id = "updatePhone"><a href="javascript:;">点击修改</a></span>
-									<label for="update-phone-label" class="update-phone-label" style="color: red;">请谨慎修改</label>
+										<!-- <span id = "updatePhone"><a href="javascript:;">点击修改</a></span>
+									<label for="update-phone-label" class="update-phone-label" style="color: red;">请谨慎修改</label> -->
 									</div>
 								</div>
 								<div class="am-form-group">

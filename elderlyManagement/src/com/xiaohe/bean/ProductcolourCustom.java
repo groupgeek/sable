@@ -6,6 +6,15 @@ public class ProductcolourCustom extends Productcolour {
 	private String productName;
 	private Double price;
 	 private String picture;
+	 private String size;
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
 	public String getPicture() {
 		return picture;
 	}

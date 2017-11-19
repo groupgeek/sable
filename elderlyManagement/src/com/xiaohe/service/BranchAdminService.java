@@ -25,6 +25,8 @@ import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.Productrecommend;
+import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
@@ -444,5 +446,53 @@ public interface BranchAdminService {
 	 * @return
 	 */
 	public OrdersCustom orderIncome(OrdersCustom ordersCustom);
+	
+	/**
+	 * 根据分店id查询到分店对应的推荐商品（分店）
+	 * @param id
+	 * @return
+	 */
+	public List<ProductCustom> aueryAllBranchProductRec(Integer id);
+	
+	/**
+	 * 插入分店的推荐商品（分店）
+	 * @param productCustom
+	 * @return
+	 */
+	public int insertProductRec(Productrecommend product);
+	
+	/**
+	 * 根据推荐活动id删除
+	 * @param id
+	 * @return
+	 **/
+	public int delProductRec(Integer id);
+	
+	/**
+	 * 查询单个推荐活动（传入分店id和活动id）
+	 * @param productCustom
+	 * @return
+	 */
+	public ProductrecommendCustom oneProductRec(ProductrecommendCustom productCustom);
+	
+	/**
+	 * 查询分店推荐商品数量
+	 * @return
+	 */
+	public int countBranchProductRec(Integer id);
+	
+	/**
+	 * index
+	 * @param producttransactionreportCustom
+	 * @return
+	 */
+	public ProducttransactionreportCustom onedaySail(ProducttransactionreportCustom producttransactionreportCustom);
+	
+	/**
+	 * index
+	 * @param producttransactionreportCustom
+	 * @return
+	 */
+	public ProducttransactionreportCustom onedayAct(ProducttransactionreportCustom producttransactionreportCustom);
 	
 }

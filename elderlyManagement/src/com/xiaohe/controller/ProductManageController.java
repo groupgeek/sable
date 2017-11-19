@@ -60,39 +60,7 @@ public EmployeeCustom getAdmins(HttpServletRequest request){
 		return (EmployeeCustom) request.getSession().getAttribute("admins");
 	}
 	
-	
-@RequestMapping(value="productAdminLogin")
-public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServletRequest request, Model model) throws Exception {
-		EmployeeCustom  admins = productManageService.productManageAdminsLogin(employeeCustom);
-		request.getSession().setAttribute("admins", admins);
-		model.addAttribute("admins", admins);
-	if (admins == null) {
-		return "productmanage/login/login";
-	} else if (admins
-			.getAuthorityid()==2) {
-		System.out.println(admins.getAuthority()+"------------------------");
-		//编辑员跳转页面'
-		
-		return "redirect:/Commonsense/selectCommonsense";
-	}else if (admins.getAuthorityid()==3) {System.out.println(admins.getAuthorityid()+"dsds-----------------------");
-		//送货员跳转
-		return null;
-	}else if (admins.getAuthorityid()==4) {System.out.println(admins.getAuthorityid()+"----adada--------------------");
-		//商品管理跳转
-		return"redirect:/productmanage/quertyProduct.action";
-	}else if (admins.getAuthorityid()==5) {System.out.println(admins.getAuthorityid()+"-----adas-------------------");
-		//分店管理跳转
-		return"redirect:/brach/index.action";
-	}else if (admins.getAuthorityid()==6) {System.out.println(admins.getAuthorityid()+"----adad--------------------");
-		//ECO跳转
-		return"redirect:/ceo/index.action";
-	}else if (admins.getAuthorityid()==7) {System.out.println(admins.getAuthorityid()+"----faefawef--------------------");
-		//超级管理员跳转
-		return"null";
-	}
 
-	return null;
-		}
 	
 
 	@RequestMapping(value="quertyProduct")
@@ -113,15 +81,23 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		return"redirect:/productmanage/quertyProduct.action";
 	}
 	
-	@RequestMapping(value="insertproduct")
-	public String  insertProduct(Product product,HttpServletRequest request,Model model, MultipartFile pictureUpload) throws Exception{
-			product.setBranchid(getAdmins(request).getBranchId());
+	public String addProduct(Model model,MultipartFile pictureUpload,HttpServletRequest request, @Validated ProductCustom productInfo,BindingResult bindingResult ){
 		
-		
-			productManageService.insertProduct(product,pictureUpload);
+		if(productInfo == null) return "productmanage/page/insertproduct";
+				productInfo.setBranchid(( getAdmins(request)).getBranchId());
+				
+			if(productService.addProduct(productInfo, pictureUpload)){
+				
+				model.addAttribute("message", "修改成功");
+				
+			}else{
+				model.addAttribute("message", "修改失败");
+			}
 			
 			return"redirect:/productmanage/quertyProduct.action";
-	}
+		}
+	
+	
 	
 	@RequestMapping(value="producttype")
 	public String  productType(Model model){
@@ -188,16 +164,23 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 	
 	
 	//商品推荐
-	@RequestMapping("productRecommend")
-	public String productRecommed(Integer productid,HttpServletRequest request){
-		Productrecommend productrecommend = new Productrecommend();
-		productrecommend.setBranchid(( getAdmins(request)).getBranchId());
-		productrecommend.setProductshow(true);
-		productrecommend.setProductid(productid);
-		System.out.println(productid);
-		productRecommendService.insertProductRecommend(productrecommend);
-		return"redirect:/productmanage/NoproductRecommend.action";
-	}
+		@RequestMapping("productRecommend")
+		public String productRecommed(Integer productid,HttpServletRequest request) throws Exception{
+				//首次进入无任何推荐商品
+			if (productRecommendService.sumProductRecommend((getAdmins(request)).getBranchId())==0) {
+				Productrecommend productrecommend = new Productrecommend();
+				productrecommend.setBranchid(( getAdmins(request)).getBranchId());
+				productrecommend.setProductshow(true);
+				productrecommend.setProductid(productid);
+				productRecommendService.insertProductRecommend(productrecommend);
+			}else if (productRecommendService.sumProductRecommend((getAdmins(request)).getBranchId())>=3){
+		
+			
+			}
+			return"redirect:/productmanage/NoproductRecommend.action";
+			
+			
+		}
 	
 	//本店推荐查询
 	
@@ -209,13 +192,25 @@ public String  productManageAdminsLogin(EmployeeCustom employeeCustom,HttpServle
 		
 	}
 	
-	//分店非推荐商品查询
-	@RequestMapping(value="/NoproductRecommend")
-	public String noProductRecommdend(Model model,HttpServletRequest request){
-		List<ProductCustom>  recommendproduct = productService.quertyNoBranchRecommendProduct(( getAdmins(request)).getBranchId());
+@RequestMapping(value="/NoproductRecommend")
+	
+	public String noProductRecommdend(Model model,HttpServletRequest request) throws Exception{
+		
+		if (productRecommendService.sumProductRecommend((getAdmins(request)).getBranchId())==0) {
+			List<ProductCustom> recommendproduct = productManageService.quertyAllProduct(( getAdmins(request)).getBranchId());
+			model.addAttribute("recommendproduct", recommendproduct);
+			return"/productmanage/page/recommendproduct";
+		}else if (productRecommendService.sumProductRecommend((getAdmins(request)).getBranchId())>=3) {
+			List<ProductCustom>  recommendproduct =productManageService.quertyRecommendProduct(( getAdmins(request)).getBranchId());
+	/*	List<ProductCustom>  recommendproduct = productService.quertyNoBranchRecommendProduct(( getAdmins(request)).getBranchId());*/
 		model.addAttribute("recommendproduct", recommendproduct);
 		return"/productmanage/page/recommendproduct";
+		}
+		List<ProductCustom> recommendproduct = productManageService.quertyAllProduct(( getAdmins(request)).getBranchId());
+		return "/productmanage/page/recommendproduct";
+		
 	}
+	
 	
 	@RequestMapping("/loginout")
 	public String logOut(HttpSession session){

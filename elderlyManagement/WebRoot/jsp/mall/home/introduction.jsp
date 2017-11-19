@@ -14,7 +14,8 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" href="${pageContext.request.contextPath }/jsp/mall/css/optstyle.css" rel="stylesheet" />
 		<link type="text/css" href="${pageContext.request.contextPath }/jsp/mall/css/style.css" rel="stylesheet" />
-
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/jsp/mall/css/showBo.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/home/js/showBo.js"></script>
 
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/basic/js/jquery-1.7.min.js"></script> --%>
@@ -194,8 +195,8 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="#">首页</a></li>
-                                <!-- <li class="qc"><a href="#">闪购</a></li>
+								<!-- <li class="index"><a href="#">首页</a></li>
+                                <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
                                 <li class="qc last"><a href="#">大包装</a></li> -->
@@ -207,8 +208,8 @@
  -->						</div>
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
-					<li><a href="#">首页</a></li>
-					<li><a href="#">分类</a></li>
+					<li><a href="${pageContext.request.contextPath }/product/mallIndex">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/product/search">分类</a></li>
 					<li class="am-active">内容</li>
 				</ol>
 				<script type="text/javascript">
@@ -240,11 +241,15 @@
 					</section>
 				</div> --%>
 
+<%-- <a href="/upload/${productInfo.picture }">
+								<img src="/upload/${productInfo.picture }" 
+								alt="细节展示放大镜特效" rel="/upload/${productInfo.picture }" class="jqzoom" /></a> --%>
 				<!--放大镜-->
 
 				<div class="item-inform">
 					<div class="clearfixLeft" id="clearcontent">
 
+						
 						<div class="box">
 							<script type="text/javascript">
 								$(document).ready(function() {
@@ -258,32 +263,11 @@
 							</script>
 
 							<div class="tb-booth tb-pic tb-s310">
-							<!--商品图片  -->
-								<%-- <a href="${pageContext.request.contextPath }/jsp/mall/images/01.jpg">
-								<img src="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" 
-								alt="细节展示放大镜特效" rel="${pageContext.request.contextPath }/jsp/mall/images/01.jpg" class="jqzoom" /></a> --%>
 								<a href="/upload/${productInfo.picture }">
 								<img src="/upload/${productInfo.picture }" 
 								alt="细节展示放大镜特效" rel="/upload/${productInfo.picture }" class="jqzoom" /></a>
 							</div>
-<%-- 							<ul class="tb-thumb" id="thumblist">
-								<li class="tb-selected">
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/01_small.jpg" mid="${pageContext.request.contextPath }/jsp/mall/images/01.jpg"></a>
-									</div>
-								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/02_small.jpg" mid="${pageContext.request.contextPath }/jsp/mall/images/02_mid.jpg" big="${pageContext.request.contextPath }/jsp/mall/images/02.jpg"></a>
-									</div>
-								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="${pageContext.request.contextPath }/jsp/mall/images/03_small.jpg" mid="${pageContext.request.contextPath }/jsp/mall/images/03_mid.jpg" big="${pageContext.request.contextPath }/jsp/mall/images/03.jpg"></a>
-									</div>
-								</li>
-							</ul>
- --%>						</div>
+						</div>
 
 						<div class="clear"></div>
 					</div>
@@ -530,7 +514,8 @@
 						     	<c:forEach items="${similarProducts }" var="similarProduct">
 							      <li>
 							      	<div class="p-img">                    
-							      		<a  href="${pageContext.request.contextPath }/product/productInfo?id=${similarProduct.productid }"> <img class="" src="${pageContext.request.contextPath }/jsp/mall/images/browse1.jpg"> </a>               
+							      		<a  href="${pageContext.request.contextPath }/product/productInfo?id=${similarProduct.productid }"> 
+							      		<img class="" src="/upload/${similarProduct.picture }" style="max-height: 200px;"> </a>               
 							      	</div>
 							      	<div class="p-name"><a href="${pageContext.request.contextPath }/product/productInfo?id=${similarProduct.productid }">
 							      		${similarProduct.productname }
@@ -696,7 +681,9 @@
 				</div>
 			</div>
 			<!-- 菜單 -->
-			<c:import url="homeMenu.jsp"></c:import>
+			<!-- <c:import url="homeMenu.jsp"></c:import> -->
+
+
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/home/js/introduction.js"></script>

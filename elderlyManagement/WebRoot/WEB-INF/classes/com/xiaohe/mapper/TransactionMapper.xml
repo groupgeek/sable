@@ -159,4 +159,35 @@
   		AND transactionId = #{id,jdbcType=INTEGER}
   </select>
   
+  <update id="updateRecordByUserId" parameterType="TransactionCustom">
+  	UPDATE transaction
+  	
+	<set >
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=REAL},
+      </if>
+      <if test="frequency != null" >
+        frequency = #{frequency,jdbcType=REAL},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="countbuy != null" >
+        countBuy = #{countbuy,jdbcType=INTEGER},
+      </if>
+    </set>
+  	WHERE userId = #{userid,jdbcType=INTEGER}
+  	
+	<!-- countBuy = countBuy + 1,cycle = 2 , frequency = 2 , totalPrice = 200
+	WHERE userId = 12 -->
+  
+  </update>
+  
+  
+  <select id="selectTransactionByUserId" parameterType="Integer" resultType="TransactionCustom">
+  	
+  	SELECT * FROM `transaction`
+	WHERE userId = #{userid,jdbcType=INTEGER}
+  
+  </select>
 </mapper>

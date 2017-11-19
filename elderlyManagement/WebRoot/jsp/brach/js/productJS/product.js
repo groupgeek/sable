@@ -843,4 +843,238 @@ function allChart(){
 						    }]
 						};
 		}
+			 
+			 
+		/*$("#index").click(function(){
+			alert(6);
+			indexChart1 = echarts.init(document.getElementById('actAndPro1'));
+			index();
+		});*/
 
+function index(){
+	var root = $("#root").val();
+	var productTranctionReportCustom = new Object();
+	var indexChart = echarts.init(document.getElementById("actAndPro"));
+	indexChart.showLoading();
+	 $.ajax({
+			type : 'post',
+			url : root+'/brach/indexChart.action',
+			contentType : 'application/json;charset=utf-8',
+			data : JSON.stringify(productTranctionReportCustom),
+			success : function(data) {
+				indexline(data);
+				indexChart.setOption(indexoption);
+				indexChart.hideLoading();
+			}
+	 });
+	
+}
+
+function indexline(data){
+	var all = data.oneSail+data.totalprice;
+	indexoption = {
+		    backgroundColor: "#404A59",
+		    color: ['#ffd285', '#ff733f', '#ec4863'],
+
+		    title: [{
+		        text: '近期分店活动和商城盈利情况',
+		        left: '1%',
+		        top: '6%',
+		        textStyle: {
+		            color: '#fff'
+		        }
+		    }, {
+		        text: '盈利占比',
+		        left: '83%',
+		        top: '6%',
+		        textAlign: 'center',
+		        textStyle: {
+		            color: '#fff'
+		        }
+		    }],
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+		    legend: {
+		        x: 300,
+		        top: '7%',
+		        textStyle: {
+		            color: '#ffd285',
+		        },
+		        data: ['活动盈利情况', '商城盈利情况']
+		    },
+		    grid: {
+		        left: '1%',
+		        right: '35%',
+		        top: '16%',
+		        bottom: '6%',
+		        containLabel: true
+		    },
+		    toolbox: {
+		        "show": false,
+		        feature: {
+		            saveAsImage: {}
+		        }
+		    },
+		    xAxis: {
+		        type: 'category',
+		        "axisLine": {
+		            lineStyle: {
+		                color: '#FF4500'
+		            }
+		        },
+		        "axisTick": {
+		            "show": false
+		        },
+		        axisLabel: {
+		            textStyle: {
+		                color: '#fff'
+		            }
+		        },
+		        boundaryGap: false,
+		        data: data.buyTime
+		    },
+		    yAxis: {
+		        "axisLine": {
+		            lineStyle: {
+		                color: '#fff'
+		            }
+		        },
+		        splitLine: {
+		            show: true,
+		            lineStyle: {
+		                color: '#fff'
+		            }
+		        },
+		        "axisTick": {
+		            "show": false
+		        },
+		        axisLabel: {
+		            textStyle: {
+		                color: '#fff'
+		            }
+		        },
+		        type: 'value'
+		    },
+		    series: [{
+		        name: '活动盈利情况',
+		        smooth: true,
+		        type: 'line',
+		        symbolSize: 8,
+		      	symbol: 'circle',
+		        data: data.countSail
+		    }, {
+		        name: '商城盈利情况',
+		        type: 'line',
+		        symbolSize: 8,
+		      	symbol: 'circle',
+		        data: data.countBuy
+		    }, 
+		    {
+	            type: 'pie',
+	            center: ['83%', '35%'],
+	            radius: ['25%', '30%'],
+	            tooltip: {
+	                trigger: 'item',
+	                formatter: "{a} <br/>{b} : {c} ({d}%)"
+	            },
+	            label: {
+	                normal: {
+	                    position: 'center'
+	                }
+	            },
+	            data: [{
+	                value: data.oneSail,
+	                name: '活动盈利占比 ',
+	                itemStyle: {
+	                    normal: {
+	                        color: '#ffd285'
+	                    }
+	                },
+	                label: {
+	                    normal: {
+	                        formatter: '{d} %',
+	                        textStyle: {
+	                            color: '#ffd285',
+	                            fontSize: 20
+
+	                        }
+	                    }
+	                }
+	            }, {
+	                value: data.totalprice,
+	               
+	                tooltip: {
+	                    show: false
+	                },
+	                itemStyle: {
+	                    normal: {
+	                        color: '#404A59'
+	                    }
+	                },
+	                label: {
+	                    normal: {
+	                        textStyle: {
+	                            color: '#ffd285',
+	                        },
+	                        formatter: '\n活动盈利比例 '
+	                    }
+	                }
+	            }]
+	        }, 
+
+
+	        {
+	            type: 'pie',
+	            center: ['83%', '75%'],
+	            radius: ['25%', '30%'],
+	            tooltip: {
+	                trigger: 'item',
+	                formatter: "{a} <br/>{b} : {c} ({d}%)"
+	            },
+	            label: {
+	                normal: {
+	                    position: 'center'
+	                }
+	            },
+	            data: [{
+	                value: data.totalprice,
+	                name: '商城盈利占比 ',
+	                itemStyle: {
+	                    normal: {
+	                        color: '#ff733f'
+	                    }
+	                },
+	                label: {
+	                    normal: {
+	                        formatter: '{d} %',
+	                        textStyle: {
+	                            color: '#ff733f',
+	                            fontSize: 20
+
+	                        }
+	                    }
+	                }
+	            }, {
+	                value: data.oneSail,
+	               
+	                tooltip: {
+	                    show: false
+	                },
+	                itemStyle: {
+	                    normal: {
+	                        color: '#404A59'
+	                    }
+	                },
+	                label: {
+	                    normal: {
+	                        textStyle: {
+	                            color: '#ff733f',
+	                        },
+	                        formatter: '\n商城盈利比例 '
+	                    }
+	                }
+	            }]
+	        }]
+		};
+}

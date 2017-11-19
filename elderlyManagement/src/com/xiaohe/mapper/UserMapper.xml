@@ -460,4 +460,9 @@
   	where userid = #{userid,jdbcType=INTEGER}
   	group by registrationDate
   </select>
+  
+  <update id="retrieveThePassword" parameterType="userCustom">
+  		UPDATE user SET password = #{newPassword} WHERE phone = #{phone}
+  
+  </update>
 </mapper>

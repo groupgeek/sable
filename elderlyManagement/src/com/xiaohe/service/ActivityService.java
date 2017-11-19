@@ -1,6 +1,7 @@
 package com.xiaohe.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,6 +10,8 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activityregistery;
+import com.xiaohe.bean.ActivitytypeCustom;
 
 /**
  * 活动处理
@@ -93,40 +96,83 @@ public interface ActivityService {
 	 * @return
 	 */
 	public List<Activity> queryActivityByUserId(int id);
+	
+    /**
+     * 查询教育的所有的小分类
+     * @return
+     */
+	public List<ActivitytypeCustom> queryAllEduType();
+	
 	/**
-	 * 查询所有活动
+	 * 根据用户查询出用户所在地区的有关教育所有类型的活动
+	 * @param userid
+	 * @return Map<ActivitytypeCustom, List<ActivityCustom>>
+	 */
+	public Map<String, List<ActivityCustom>> queryEduRecordByUserid(Integer userid);
+	
+	
+	/**
+	 * 查询教育里面的某一类所有活动
+	 * @param condition
 	 * @return
 	 */
-	public List<Activity> getpicture();
-	 /**
-     * 查询activitytypeId=1的活动
-     */
-    public List<Activity> getonline();
-    /**
-     * 查询activitytypeId=5的活动
-     */
-    public List<Activity> getjiangzuo();
-    
-    /**
-     * 查询activitytypeId=4的活动
-     */
-    public List<Activity> gethuodong();
-    /**
-     * 查询activitytypeId=6的直播
-     */
-    public List<Activity> getzhibo();
-    /**
-     * 
-     */
-    public Activity getactivityid(int id );
-    /**
-     * 
-     * 
-     */
-    public void insertactivityid(int activityid,int userid );
-    /**
-     * 
-     */
-    public void delectactivityid(int activityid,int userid );
-    
+	public ActivityVo queryEduAllTypeActByCondition(ActivityCustom condition);
+	/**
+	 * 	查询某用户所在地区所有活动
+	 * @return List<ActivityCustom>
+	 */
+	public List<ActivityCustom> quertyActivityArea(String phone);
+	/**
+	 * 	用户活动查询（根据用户点击活动）
+	 * @param id
+	 * @return
+	 */
+	public Activity quertyUserActivity(Integer activityid);
+	
+	/**
+	 * 	用户报名插入信息
+	 * @param activityregistery
+	 */
+	public void  insertUserRegistery(Activityregistery activityregistery);
+	/**
+	 * 	查询用户是否已经报名该活动
+	 * @param userid
+	 * @return boolean
+	 */
+	public boolean quertyIfUsetRegistery(Activityregistery activityregistery);
+	
+	/**
+	 * 根据活动id查询到对应的活动
+	 * @param id
+	 * @return
+	 */
+	public ActivityCustom oneAct(Integer id);
+	
+	/**
+	 * 根据活动id查询到总报名人数
+	 * @param id
+	 * @return
+	 */
+	public Integer countPeople(ActivityCustom activityCustom);
+	
+	/**
+	 * 插入活动报名信息
+	 * @param activityregistery
+	 * @return
+	 */
+	public int insertActRec(Activityregistery activityregistery);
+	
+	/**
+	 * 查询一个报名的活动
+	 * @param activityregistery
+	 * @return
+	 */
+	public Activityregistery oneActreg(Activityregistery activityregistery);
+	
+	/**
+	 * 查询用户的报名情况
+	 * @param activityregistery
+	 * @return
+	 */
+	public Activityregistery oneUserAct(Activityregistery activityregistery);
 }

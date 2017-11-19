@@ -10,6 +10,16 @@ public class UserCustom extends User{
 	private String search;
 	private Integer onLineNum;//在线人数
 	private String sort;
+
+	public Integer getBranchid() {
+		return branchid;
+	}
+
+	public void setBranchid(Integer branchid) {
+		this.branchid = branchid;
+	}
+
+	private Integer branchid;//分店id
 	
 	private AuthorityCustom authority;
 	private LevelCustom level;
@@ -32,9 +42,21 @@ public class UserCustom extends User{
     private String oldPassword;
     private String newPassword;
     
+    //签收
+    private String orderid;
     
     
     
+    
+    
+	public String getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+
 	public String getOldPassword() {
 		return oldPassword;
 	}

@@ -48,6 +48,7 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
@@ -239,10 +240,6 @@ public class BrachAdminController {
 		
 		model.addAttribute("incomeArr", incomeArr);
 		//查询分店的总支出，总活动支出，总健康支出，商城支出(bigdecimal)
-		
-		
-		
-		
 		return "brach/index";
 	}
 	
@@ -490,10 +487,10 @@ public class BrachAdminController {
 		ActivityrecommendCustom act5 = new ActivityrecommendCustom();
 		act3.setActivityid(activityrecommendCustom.getActivityid());
 		act3.setBranchid(branch.getBranchid());
-		act3.setWebsitetype("测试");
+		act3.setWebsitetype("分店官网");
 		act4.setActivityid(activityrecommendCustom.getActivityidRec());
 		act4.setBranchid(branch.getBranchid());
-		act4.setWebsitetype("测试数据");
+		act4.setWebsitetype("分店官网");
 		act2 = branchService.oneActRecById(act3);//这个活动推荐是通过选中的
 		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
 		if(act2 == null&& act5 == null){
@@ -533,13 +530,75 @@ public class BrachAdminController {
 		/*acts = branchService.oneActRecById(acts);*/
 	}
 	
+	@RequestMapping(value="/RequestBranchProductRec")    //添加分店推荐商品
+	public @ResponseBody ProductrecommendCustom requestBranchRec(@RequestBody ProductCustom productCustom,HttpServletRequest request){
+		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		Branch branch = new Branch();
+		branch = branchService.oneBranchByEmployeeId(a);
+		int b = branchService.countBranchProductRec(branch.getBranchid());
+		
+		ProductrecommendCustom acts = new ProductrecommendCustom();
+		ProductrecommendCustom act2 = new ProductrecommendCustom();
+		ProductrecommendCustom act3 = new ProductrecommendCustom();
+		ProductrecommendCustom act4 = new ProductrecommendCustom();
+		ProductrecommendCustom act5 = new ProductrecommendCustom();
+		act3.setProductid(productCustom.getUserid());
+		act3.setBranchid(branch.getBranchid());
+		act3.setType("商城");
+		
+		act4.setProductid(productCustom.getProductid());
+		act4.setBranchid(branch.getBranchid());
+		act4.setType("商城");
+		
+		act2 = branchService.oneProductRec(act3);//这个活动推荐是通过选中的
+		act5 = branchService.oneProductRec(act4);//这个是后台原本传过去的活动
+		
+		if(act2 == null&& act5 == null){
+			acts.setBranchid(branch.getBranchid());
+			acts.setProductid(productCustom.getProductid());
+			acts.setType("商城");
+			branchService.insertProductRec(acts);
+		}else if(act2 == null && act5!=null){
+			if(b>=3){
+				branchService.delProductRec(act5.getProductrecommendid());
+				branchService.insertProductRec(act3);
+			}else{
+				branchService.insertProductRec(act3);
+			}
+		}else if(act2 != null && act5!=null){
+			if(branchService.oneProductRec(act2)!=null){
+				branchService.delProductRec(act2.getProductrecommendid());
+				branchService.insertProductRec(act2);
+			}else{
+				if(b>=3){
+					branchService.delProductRec(act5.getProductrecommendid());
+					branchService.insertProductRec(act2);
+				}else{
+					branchService.insertProductRec(act2);
+				}
+			}
+		}else if(act5==null&&act2!=null){
+			if(branchService.oneProductRec(act2)!=null){
+				branchService.delProductRec(act2.getProductrecommendid());
+				branchService.insertProductRec(act2);
+			}else{
+				branchService.insertProductRec(act2);
+			}
+		}
+		return act2;
+	}
+	
 	@RequestMapping(value="/products")
 	public String products(Model model,HttpServletRequest request){
 		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
 		Branch branch = new Branch();
 		branch = branchService.oneBranch(a);
+		List<ProductCustom> productRecomend = new ArrayList<ProductCustom>(); 
 		List<ProductCustom> products = new ArrayList<ProductCustom>();
 		products = branchService.quertyAllProduct(branch.getBranchid());
+		productRecomend = branchService.aueryAllBranchProductRec(branch.getBranchid());
+		
+		model.addAttribute("productRecomend", productRecomend);
 		model.addAttribute("products", products);
 		return "brach/products";
 	}
@@ -855,7 +914,6 @@ public class BrachAdminController {
 				productTranctionReportCustom.setBuyTime(buyTime);
 		}//查询一天的循环结束
 		}
-		
 		return productTranctionReportCustom;
 	}
 	
@@ -1044,5 +1102,84 @@ public class BrachAdminController {
 		}
 		return act;
 	}
+	
+	
+	@RequestMapping(value="/indexChart")
+	public @ResponseBody ProducttransactionreportCustom indexChart(@RequestBody ProducttransactionreportCustom producttransactionreportCustom,HttpServletRequest request){
+		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		ProducttransactionreportCustom all = new ProducttransactionreportCustom();
+		ProducttransactionreportCustom pro = new ProducttransactionreportCustom();
+		ProducttransactionreportCustom act = new ProducttransactionreportCustom();
+		Branch branch = new Branch();
+		branch = branchService.oneBranch(x);
+		producttransactionreportCustom.setBranchid(branch.getBranchid());
+		Date date = new Date();
+		Date start = new Date();
+		Date end = new Date();
+		BigDecimal big = new BigDecimal(0);
+		GetStringByDate calTime = new GetStringByDate();  
+		start = calTime.addDate(date, -10);                //开始时间5天前
+		end = calTime.addDate(date, -10);                //开始时间5天前
+		ProducttransactionreportCustom demo = new ProducttransactionreportCustom();
+		ProducttransactionreportCustom demo1 = new ProducttransactionreportCustom();
+		ProducttransactionreportCustom demo2 = new ProducttransactionreportCustom();
+		demo.setBranchid(branch.getBranchid());
+		demo.setStart(start);
+		demo.setEnd(date);
+		demo2 = branchService.onedayAct(demo);
+		demo1 = branchService.onedaySail(demo);
+		
+		
+		BigDecimal countBuy[] = new BigDecimal[10];	  //存销售量的数组
+		String buyTime[] = new String[10];			  //存时间的数组
+		BigDecimal actcount[] = new BigDecimal[10];   //存活动销售的数组
+		for(int i=0;i<10;i++){
+			Date begin = new Date();
+			Date last = new Date();
+			start = calTime.addDate(start, 1);             //当前天0.00
+			end = calTime.addDate(end, 1);                //当前天23.59
+			start.setHours(0);start.setMinutes(0);start.setSeconds(0);
+			begin = start;
+			end.setHours(23);end.setMinutes(59);end.setSeconds(59);
+			last = end;
+			producttransactionreportCustom.setStart(begin);   //当天的开始
+			producttransactionreportCustom.setEnd(last);	  //当天的结束
+			pro = branchService.onedaySail(producttransactionreportCustom);
+			act = branchService.onedayAct(producttransactionreportCustom);
+			
+			if(pro!= null&&pro.getTotalMoney()!=null){
+				countBuy[i] = pro.getTotalMoney();      //一天商品的总销售额
+			}else{
+				countBuy[i] = big;
+			}
+			if(act!= null&&act.getTotalMoney()!=null){
+				actcount[i] = act.getTotalMoney();      //一天活动的总销售额
+			}else{
+				actcount[i] = big;
+			}
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(start);
+			String time = cal.get(Calendar.YEAR)+"年"+(cal.get(Calendar.MONTH)+1)+"月"+cal.get(Calendar.DATE)+"日";
+			buyTime[i] = time;
+			all.setBuyTime(buyTime); 	 //得到销售时间数组
+			all.setCountSail(actcount);  //得到活动销售的数组
+			all.setCountBuy(countBuy);   //得到销售额数组
+			if(demo1!=null&&demo1.getTotalMoney()!=null){
+			all.setOneSail(demo1.getTotalMoney());   //商城
+			}
+			else{
+				all.setOneSail(big);
+			}
+			if(demo2!=null&&demo2.getTotalMoney()!=null){
+				all.setTotalprice(demo2.getTotalMoney());//活动
+			}else{
+				all.setTotalprice(big);
+			}
+		}
+		
+		return all;
+	}
+	
+	
 	
 }

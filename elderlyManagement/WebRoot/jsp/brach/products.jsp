@@ -92,8 +92,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white user"></i><span class="break"></span>商品信息</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
@@ -121,6 +121,111 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  </table>            
 					</div>
 				</div>
+       
+       <input type="hidden" value="${pageContext.request.contextPath }" id="root">
+       <div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>设置商城推荐商品</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							 
+							 
+							 
+							 <div class="control-group">
+								<label class="control-label" for="selectError3" name="">推荐商品1</label>
+								<input type="hidden" value="${productRecomend[0].productid }" id="productRecomend1">
+								<div class="controls">
+									<select id="selectError1" name="product">
+									<c:if test="${productRecomend[0] ==null}">
+									<option name="22" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${productRecomend[0] !=null}">
+										<option selected="true" name="productid">${ productRecomend[0].productname}</option>
+									</c:if>
+									
+									<c:forEach items="${products }" var="products">
+										<option name="productid"  value="${products.productid }">${products.productname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="changeProductRec()">
+										<i class="icon-ok-sign"></i>                                            
+									</a></div>
+							</div> 
+							
+							
+							
+							
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐商品2</label>
+								<input type="hidden" value="${productRecomend[1].productid }" id = "productRecomend2">
+								<div class="controls">
+									
+									<select id="selectError2" name="product" >
+									<c:if test="${productRecomend[1] ==null}">
+									<option name="pro" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${productRecomend[1] !=null}">
+										<option selected="true" name="activityid">${ productRecomend[1].productname}</option>
+									</c:if>
+									<c:forEach items="${products }" var="products">
+										<option name="productid"  value="${products.productid }">${products.productname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="changeProductRec2()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐商品3</label>
+								<input type="hidden" value="${productRecomend[2].productid }" id = "productRecomend3">
+								<div class="controls">
+									<select id="selectError3" name="product" >
+									<c:if test="${productRecomend[2] ==null}">
+									<option name="22" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${productRecomend[2] !=null}">
+										<option selected="true" name="activityid">${ productRecomend[2].productname}</option>
+									</c:if>
+									<c:forEach items="${products }" var="products">
+										<option name="productid"  value="${products.productid }">${products.productname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="changeProductRec3()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> 
+									<!-- <button type="submit" class="btn btn-info" onclick="insertRecAct()"><i class="icon-ok-sign"></i> </button> -->
+									<%-- <c:if test="${allBranchActRec[2].activityid ==null}">
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/insertRecAct.action">
+										<i class="icon-ok-sign"></i>                                            
+									</a>
+									</c:if> --%>
+								</div>
+							</div> 
+							
+							
+							
+							
+							<!-- <div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Save changes</button>
+							  <button type="reset" class="btn">Cancel</button>
+							</div> -->
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div>
+       
+       
+       
        
 
 	</div><!--/.fluid-container-->
@@ -210,6 +315,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/productJS/productRecomend.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

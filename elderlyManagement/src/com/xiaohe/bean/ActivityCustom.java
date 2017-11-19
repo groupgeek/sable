@@ -16,8 +16,22 @@ public class ActivityCustom extends Activity {
 	private String websitetype;
 	private Integer countUsers;
 	private String branchname;
+	private String username;
+	private String avatar;
 	
 
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	private Integer currentPage;
 	private Integer pageNum;//每一页的数量
 	private String sort;
@@ -32,8 +46,19 @@ public class ActivityCustom extends Activity {
 	private BigDecimal totalReg;   //总报名费（报表）
 	private BigDecimal totalExpend;  //总支出费用（报表）
 	
+	private Integer userid;
+	
 	private Date start;
 	private Date end;
+	
+	
+	
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 	public String getRegistery() {
 		return registery;
 	}

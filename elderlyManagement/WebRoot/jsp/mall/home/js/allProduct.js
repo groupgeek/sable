@@ -142,8 +142,7 @@ $(document).ready(function(){
 			$("#previousPage").attr("value",$(this).attr("value"));
 			
 		}
-		currentPage = $(this).attr("value");
-		
+		currentPage = parseInt($(this).attr("value"));
 		condition.producttypeid = producttypeid;
 		condition.currentPage = currentPage;
 		condition.pageNum = pageNum;

@@ -68,4 +68,16 @@
     where activityId = #{activityid,jdbcType=INTEGER}
       and userId = #{userid,jdbcType=INTEGER}
   </update>
+<!--   //用户活动查询 -->
+  <select id="selectUserActivityregistery" parameterType="com.xiaohe.bean.Activityregistery" resultType="com.xiaohe.bean.Activityregistery">
+  SELECT * FROM activityregistery WHERE userId=#{userid} and activityId=#{activityid}
+  </select>
+  
+  <select id="oneUserAct" parameterType="com.xiaohe.bean.Activityregistery" resultType="com.xiaohe.bean.Activityregistery">
+  SELECT a.* from activityregistery a,user b,activity c
+	where a.activityId = c.activityId
+	and a.userId = b.userId
+	and c.activityid = #{activityid,jdbcType=INTEGER}
+	and b.userId = #{userid,jdbcType=INTEGER}
+  </select>
 </mapper>

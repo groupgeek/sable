@@ -88,4 +88,8 @@
   <select id="selectAllSonByFatherId" parameterType="Integer" resultType="activitytypeCustom">
   	SELECT * FROM activitytype WHERE fatherTypeID = #{id}
   </select>
+  
+  <select id="selectAllEduType" resultType="ActivitytypeCustom">
+  	SELECT * FROM activitytype WHERE fatherTypeID = 2
+  </select>
 </mapper>
