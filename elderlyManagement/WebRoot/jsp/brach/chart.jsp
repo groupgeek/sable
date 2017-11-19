@@ -86,6 +86,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li><a href="#">商品报表</a></li>
 			</ul>
 
+			<div class="form-actions">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/jsp/brach/allProductChart.jsp"><i class=" icon-plus-sign"></i>  商品总报表</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/jsp/brach/allActivityChart.jsp"><i class=" icon-plus-sign"></i>  活动总报表</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/jsp/brach/allChart.jsp"><i class=" icon-plus-sign"></i>  总报表</a>
+			</div><br><br>
 			
 			<div class="row-fluid sortable">		
 				<div class="box span12">
@@ -98,6 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
+					
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr><th>商品名字</th>
@@ -127,6 +133,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div><!--/span-->
 			
 			</div>
+			
+			
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>活动报表</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr><th>活动名字</th>
+								  <th>报名费</th>
+								  <th>报名人数</th>
+								  <th>总报名费</th>
+								  <th>查看活动报表</th>
+								  </tr>
+						  </thead>   
+						  <tbody>
+						 <c:forEach items="${acts }" var="acts">
+							<tr>
+								<td class="center">${acts.activityname }</td>
+								<td class="center">${acts.registeryfee }</td>
+								<td class="center">${acts.countReg }</td>
+								<td class="center">${acts.totalReg }</td>
+								<td class="center">
+								<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/activityReport.action?id=${ acts.activityid}" onclick="tab()">
+								 Look!  <i class="icon-hand-right"></i>                             
+							    </a>
+								</td>
+							</tr>
+							</c:forEach>
+						  </tbody>
+					  </table>            
+					</div>
+				</div><!--/span-->
+			
+			</div>
+			
+			
+			
 		</div><!--/fluid-row-->
 		
 	<div class="modal hide fade" id="myModal">

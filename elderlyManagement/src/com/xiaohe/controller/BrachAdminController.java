@@ -45,6 +45,7 @@ import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
+import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
@@ -69,16 +70,7 @@ public class BrachAdminController {
 	@Autowired
 	private BranchAdminService branchService;
 	
-	@Autowired
-	private EmployeeService employeeService;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ActivityService activityService;
-	
-	@RequestMapping(value="/log")
+	@RequestMapping(value="/log")    //模拟登陆
 	public String log(HttpServletRequest request){
 		Employee employee = new Employee();
 		employee = branchService.onEmployee(1);
@@ -185,6 +177,7 @@ public class BrachAdminController {
 	@RequestMapping(value="/index")
 	public String totalIncome(HttpServletRequest request,Model model){
 		int a =((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		Branch branch = branchService.oneBranch(a);
 		List<ProductCustom> products = new ArrayList<ProductCustom>();
 		products = branchService.branchHotProduct(a);
 		BigDecimal b = branchService.totalEduIncome(a);
@@ -230,6 +223,25 @@ public class BrachAdminController {
 		model.addAttribute("ar", ar);
 		model.addAttribute("arr", arr);
 		model.addAttribute("db", db);
+		
+		//查询分店的总收入，总教育收入，总健康收入，商城收入（bigdecimal）
+		BigDecimal totalHealthIncome = branchService.totalHealIncome(a);
+		BigDecimal totalEduIncome = branchService.totalEduIncome(a);
+		BigDecimal totalOrderIncome = branchService.totalOderIncome(a);
+		// BigDecimal totalIncome = totalEduIncome.add(totalHealthIncome).add(totalOrderIncome);
+		BigDecimal []incomeArr = new BigDecimal[4];
+		//分别把不同的收入数据传入incomeArr数组，给饼图做准备
+		// incomeArr[0].add(totalIncome);
+		// incomeArr[1].add(totalEduIncome);
+		// incomeArr[2].add(totalHealthIncome);
+		// incomeArr[3].add(totalOrderIncome);
+		
+		model.addAttribute("incomeArr", incomeArr);
+		//查询分店的总支出，总活动支出，总健康支出，商城支出(bigdecimal)
+		
+		
+		
+		
 		return "brach/index";
 	}
 	
@@ -621,6 +633,7 @@ public class BrachAdminController {
 	@RequestMapping(value="/insertEmpl")
 	public String insertEmployee(EmployeeCustom employee,MultipartFile file,HttpServletRequest request){
 		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		
 		Area area = new Area();
 		area = branchService.oneArea(x);
 		String name = "xiaohe";
@@ -697,6 +710,38 @@ public class BrachAdminController {
 				products.get(i).setCountPrice(d);
 			}
 		}
+		
+		List<ActivityCustom> acts = new ArrayList<ActivityCustom>(); 
+		acts = branchService.branchActs(a);
+		ActivityCustom act = new ActivityCustom();
+		ActivityCustom act2 = new ActivityCustom();
+		for(int i=0;i<acts.size();i++){
+			act2.setActivityid(acts.get(i).getActivityid());
+			act = branchService.branchActivityCondition(act2);
+			if(act!=null){
+				if(act.getCountReg()!=0){
+					acts.get(i).setCountReg(act.getCountReg());//总报名人数
+				}else{
+					acts.get(i).setCountReg(0);
+				}
+				if(act.getTotalReg()!=null){
+					acts.get(i).setTotalReg(act.getTotalReg());//总报名费
+				}else{
+					acts.get(i).setTotalReg(new BigDecimal(0));
+				}if(act.getTotalExpend()!=null){
+					acts.get(i).setTotalExpend(act.getTotalExpend());//总支出
+				}else {
+					acts.get(i).setTotalExpend(new BigDecimal(0));
+				}
+			}else {
+				acts.get(i).setCountReg(0);
+				acts.get(i).setTotalReg(new BigDecimal(0));
+				acts.get(i).setTotalExpend(new BigDecimal(0));
+			}
+		}
+		
+		model.addAttribute("acts", acts);
+		System.out.println(acts.get(0).getTotalReg());
 		model.addAttribute("products",products);//这个是分店所有的商品
 		/*ProductCustom productCustom1 = new ProductCustom();
 		ProductCustom productCustom2 = new ProductCustom();
@@ -800,12 +845,7 @@ public class BrachAdminController {
 				productTranctionReportCustom.setBuyNo(countBuy);
 				productTranctionReportCustom.setBuyTime(buyTime);
 		}//查询一天的循环结束
-			for(int i=0;i<buyTime.length;i++){
-				System.out.println(buyTime[i]);
-				System.out.println(countBuy[i]);
-			}
 		}
-		System.out.println(productTranctionReportCustom);
 		return productTranctionReportCustom;
 	}
 	
@@ -815,6 +855,174 @@ public class BrachAdminController {
 		return "brach/oneProductChart";
 	}
 	
+	@RequestMapping(value="/activityReport")
+	public String activityReport(){
+		return "brach/activityReport";
+	}
 	
+	@RequestMapping(value="/actReportCondition")
+	public @ResponseBody ActivityCustom activityCondition(@RequestBody ActivityCustom activityCustom){
+		ActivityCustom oneact = new ActivityCustom();
+		oneact = branchService.branchActivityCondition(activityCustom);
+		return oneact;
+	}
+	
+	@RequestMapping(value="/pie")
+	public @ResponseBody ProducttransactionreportCustom productCondition(@RequestBody ProducttransactionreportCustom producttransactionreportCustom,HttpServletRequest request){
+		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		ProducttransactionreportCustom producttransaction = new ProducttransactionreportCustom();
+		Branch branch = new Branch();
+		branch = branchService.oneBranch(x);
+		
+		producttransactionreportCustom.setProductid(producttransactionreportCustom.getProductid());
+		producttransactionreportCustom.setBranchid(branch.getBranchid());
+		ProducttransactionreportCustom pro = new ProducttransactionreportCustom(); 
+		ProducttransactionreportCustom pro2 = new ProducttransactionreportCustom();
+		ProducttransactionreportCustom pro3 = new ProducttransactionreportCustom();
+		
+		pro = branchService.BranchOneProductTransation(producttransactionreportCustom);  //单个商品
+		if(pro!=null&&pro.getTotalSail()!=null){
+		producttransaction.setOneSail(pro.getTotalSail());
+		}else{
+			producttransaction.setOneSail(new BigDecimal(0.00));
+		}
+		
+		/*producttransactionreportCustom.setProductid(null); //总的商品*/
+		ProducttransactionreportCustom p = new ProducttransactionreportCustom();
+		p.setStartingTime(producttransactionreportCustom.getStartingTime());
+		p.setEndTime(producttransactionreportCustom.getEndTime());
+		pro2 = branchService.BranchOneProductTransation(p);
+		if(pro2!=null&&pro2.getTotalSail()!=null){
+		producttransaction.setTotalSail(pro2.getTotalSail());
+		}else {
+			producttransaction.setTotalSail(new BigDecimal(0.00));
+		}
+		
+		ProducttransactionreportCustom pros = new ProducttransactionreportCustom();
+		pros.setProductid(producttransactionreportCustom.getProductid());
+		pro3 = branchService.BranchOneProductTransation(pros);
+		if(pro3!=null&&pro3.getTotalSail()!=null){
+			producttransaction.setTotalprice(pro3.getTotalSail());
+			}else {
+				producttransaction.setTotalprice(new BigDecimal(0.00));
+			}
+		return producttransaction;
+	}
+	
+	/*@RequestMapping(value="/activityReport")
+	public @ResponseBody ActivityCustom oneActConditionCustom(@RequestBody ActivityCustom activityCustom){
+		ActivityCustom act = new ActivityCustom();
+		act = branchService.branchActivityCondition(activityCustom);
+		return act;
+	} */
+	
+	@RequestMapping(value="/orderReportCondition")
+	public @ResponseBody OrdersCustom orderIncomeReport(@RequestBody OrdersCustom ordersCustom,HttpServletRequest request){
+		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		OrdersCustom ords = new OrdersCustom();
+		ordersCustom.setEmployeeid(x);
+		ords = branchService.orderIncome(ordersCustom);
+		if(ords==null){
+			OrdersCustom ords2 = new OrdersCustom();
+			ords2.setTotalIncome(new BigDecimal(0));
+			ords2.setTotalexl(new BigDecimal(0));
+			System.out.println(ords);
+			return ords2;
+		}else{
+		return ords;
+		}
+	}
+	
+	@RequestMapping(value="/allActReport")
+	public @ResponseBody ActivityCustom actIncomeReport(@RequestBody ActivityCustom activityCustom,HttpServletRequest request){
+		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		activityCustom.setEmployeeid(x);
+		ActivityCustom act = new ActivityCustom(); 
+		ActivityCustom act1 = new ActivityCustom();   //健康
+		ActivityCustom act2 = new ActivityCustom();	  //教育
+		act1 = branchService.healthIncome(activityCustom);
+		act2 = branchService.eduIncome(activityCustom);
+		if(act1!=null){
+			act.setActivityprice(act1.getTotalIncome());  //健康的总收入
+			act.setRegisteryfee(act1.getTotalexl());   //健康的总支出
+		}else {
+			act.setActivityprice(new BigDecimal(0));
+			act.setRegisteryfee(new BigDecimal(0));
+		}
+		if(act2!=null){
+			act.setTotalReg(act2.getTotalIncome());     //教育的总收入
+			act.setTotalExpend(act2.getTotalexl());  //教育的总支出
+		}else {
+			act.setTotalReg(new BigDecimal(0));
+			act.setTotalExpend(new BigDecimal(0));
+		}if(act1!=null&&act2!=null){
+			act.setTotalexl(act1.getTotalexl().add(act2.getTotalexl()));   //总支出 
+			act.setTotalIncome(act1.getTotalIncome().add(act2.getTotalIncome()));  //总收入
+		}else if(act1!=null&&act2==null){
+			act.setTotalexl(act.getTotalexl().add(new BigDecimal(0)));
+			act.setTotalIncome(act.getTotalIncome().add(new BigDecimal(0)));
+		}else if(act1==null&&act2!=null){
+			act.setTotalexl(act2.getTotalexl().add(new BigDecimal(0)));
+			act.setTotalIncome(act2.getTotalIncome().add(new BigDecimal(0)));
+		}else{
+			act.setTotalexl(new BigDecimal(0));
+			act.setTotalIncome(new BigDecimal(0));
+		}
+		return act;
+	}
+	
+	@RequestMapping(value="/allChart")
+	public @ResponseBody ActivityCustom allChart(@RequestBody ActivityCustom activityCustom,HttpServletRequest request){
+		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		activityCustom.setEmployeeid(x);
+		ActivityCustom act = new ActivityCustom(); 
+		ActivityCustom act1 = new ActivityCustom();   //健康
+		ActivityCustom act2 = new ActivityCustom();	  //教育
+		act1 = branchService.healthIncome(activityCustom);
+		act2 = branchService.eduIncome(activityCustom);
+		if(act1!=null){
+			act.setActivityprice(act1.getTotalIncome());  //健康的总收入
+			act.setRegisteryfee(act1.getTotalexl());   //健康的总支出
+		}else {
+			act.setActivityprice(new BigDecimal(0));
+			act.setRegisteryfee(new BigDecimal(0));
+		}
+		if(act2!=null){
+			act.setTotalReg(act2.getTotalIncome());     //教育的总收入
+			act.setTotalExpend(act2.getTotalexl());  //教育的总支出
+		}else {
+			act.setTotalReg(new BigDecimal(0));
+			act.setTotalExpend(new BigDecimal(0));
+		}if(act1!=null&&act2!=null){
+			act.setTotalexl(act1.getTotalexl().add(act2.getTotalexl()));   			//总支出 
+			act.setTotalIncome(act1.getTotalIncome().add(act2.getTotalIncome()));  //总收入
+		}else if(act1!=null&&act2==null){
+			act.setTotalexl(act.getTotalexl().add(new BigDecimal(0)));
+			act.setTotalIncome(act.getTotalIncome().add(new BigDecimal(0)));
+		}else if(act1==null&&act2!=null){
+			act.setTotalexl(act2.getTotalexl().add(new BigDecimal(0)));
+			act.setTotalIncome(act2.getTotalIncome().add(new BigDecimal(0)));
+		}else{
+			act.setTotalexl(new BigDecimal(0));
+			act.setTotalIncome(new BigDecimal(0));
+		}
+		
+		OrdersCustom ordersCustom = new OrdersCustom();
+		if(activityCustom!=null){
+			ordersCustom.setStart(activityCustom.getStart());
+			ordersCustom.setEnd(activityCustom.getEnd());
+		}
+		OrdersCustom ords = new OrdersCustom();
+		ordersCustom.setEmployeeid(x);
+		ords = branchService.orderIncome(ordersCustom);
+		if(ords==null){
+			act.setDemo1(new BigDecimal(0));
+			act.setDemo2(new BigDecimal(0));
+		}else {
+			act.setDemo1(ords.getTotalexl());
+			act.setDemo2(ords.getTotalIncome());
+		}
+		return act;
+	}
 	
 }

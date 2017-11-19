@@ -21,10 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+<link href="${pageContext.request.contextPath }/jsp/brach/css/mybranch/haha.css" rel="stylesheet">
   </head>
   
-  <body>
+  <body style="background: url(/img/7.jpg)">
   
   
 						  
@@ -70,6 +70,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<br>
 	
 	<input type="button" onclick="hello()" value="json请求"/>
+	<div class="product"></div>
+	
+	
+	
+	
+	
+	
+	
 	
 	<p class="zb">你好啊  ！</p>
 	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>

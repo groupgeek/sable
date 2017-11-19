@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.Level;
+import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.OrdersCountVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.ShippingAddVo;
@@ -119,4 +122,48 @@ public interface UserService {
 	 * @return
 	 */
 	public Integer queryCartNum(Integer userid);
+	
+	/**
+	 * 根据用户电话号码查询到用户
+	 * @param phone
+	 * @return
+	 */
+	public UserCustom userInfo(String phone);
+	
+	/**
+	 * 根据等级id查询到等级信息
+	 * @param id
+	 * @return
+	 */
+	public Level onelevel(Integer id);
+	
+	/**
+	 * 用户更新用户信息
+	 * @param user
+	 * @return
+	 */
+	public int updateUser(UserCustom user,MultipartFile file);
+	
+	/**
+	 * 根据用户id查询到对应的病历
+	 * @param id
+	 * @return
+	 */
+	public MedicalrecordsWithBLOBsCustom oneMed(Integer id);
+	
+	/**
+	 * 根据用户id查询所有活动
+	 * @param id
+	 * @return
+	 */
+	public List<ActivityCustom> userActs(Integer id);
+	
+	/**
+	 * 更新用户的病历信息
+	 * @param medicalrecordsWithBLOBsCustom
+	 * @return
+	 */
+	public int updatemed(MedicalrecordsWithBLOBsCustom medicalrecordsWithBLOBsCustom);
+	
+	
 }

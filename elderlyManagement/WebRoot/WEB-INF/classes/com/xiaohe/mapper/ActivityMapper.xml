@@ -483,41 +483,47 @@
 	group by date_format(activityDate,'%Y-%m')
   </select>
   
-  <select id="queryActivityByUserId" resultType="com.xiaohe.bean.Activity" parameterType="int">
-	  	SELECT * 
-		FROM  activity
-		INNER JOIN activityregistery 
-		ON activityregistery.activityId=activity.activityId
-		WHERE activityregistery.userId=#{id};
+  <select id="allActs" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
+  SELECT * from activity a,activityregistery b
+	where a.activityId = b.activityId
+	and b.userId = #{userid,jdbcType=INTEGER}
+	ORDER BY a.activityDate DESC
   </select>
-     
-     <select id="getpicture" resultType="com.xiaohe.bean.Activity">
-        select *FROM activity
-     </select>
-     
-     <select id="getonline" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='1'
-     </select>
-     
-     <select id="getjiangzuo" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='5'
-     </select>
-     
-     <select id="gethuodong" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='4'
-     </select>
-     
-     <select id="getzhibo" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='6'
-     </select> 
-     <insert id="insertactivityid" parameterType="com.xiaohe.bean.Activity" >
-     INSERT INTO activityregistery (activityId,userId) VALUES(#{0},#{1} )
-     </insert>
-      <select id="getactivityid" resultType="com.xiaohe.bean.Activity" parameterType="int">
-     SELECT *FROM activity WHERE activityid=#{id}
-     </select>
-      <delete id="delectactivityid" parameterType="int"> 
-      DELETE FROM activityregistery WHERE activityid=#{0} AND userid=#{1}
-      </delete>
-    
+  
+   <select id="branchHealIncomeReport" parameterType="com.xiaohe.bean.ActivityCustom" resultType="com.xiaohe.bean.ActivityCustom">
+  SELECT sum(a.registeryFee) totalIncome,sum(a.activityprice) totalexl from activity a,activitytype b,activityregistery c,branch d
+	 <where>
+	 a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=1
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  		<if test="start !=null">
+  			<if test="end !=null">
+  				and a.activitydate BETWEEN #{start} AND #{end}
+  </if>
+  </if>
+  </where>
+	
+  </select>
+  
+  <select id="branchEduIncomeReport" parameterType="com.xiaohe.bean.ActivityCustom" resultType="com.xiaohe.bean.ActivityCustom">
+  SELECT sum(a.registeryFee) totalIncome,sum(a.activityprice) totalexl 
+  from activity a,activitytype b,activityregistery c,branch d
+<where>
+	a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=2
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  		<if test="start !=null">
+  			<if test="end !=null">
+  				and a.activitydate BETWEEN #{start} AND #{end}
+  </if>
+  </if>
+  </where>
+	
+  </select>
 </mapper>

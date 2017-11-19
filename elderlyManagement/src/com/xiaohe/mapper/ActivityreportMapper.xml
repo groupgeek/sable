@@ -150,4 +150,13 @@
       totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL}
     where ActivityReporId = #{activityreporid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="activityCondition" parameterType="com.xiaohe.bean.ActivityCustom" resultType="com.xiaohe.bean.ActivityCustom">
+  select count(a.activityId) countReg,SUM(b.totalPrice) totalReg,SUM(b.totalExpenditure) totalExpend,c.activityname activityname
+	from activityreport b,activityregistery a,activity c
+	where a.activityId = b.activityId
+	and a.activityId = c.activityId
+	and a.activityId = #{activityid,jdbcType=INTEGER}
+  </select>
 </mapper>
