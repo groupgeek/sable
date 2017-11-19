@@ -910,5 +910,27 @@ public class MallController {
 		return showMessage;
 	}
 	
+	/**
+	 * 产品签收
+	 * @return
+	 */
+	@RequestMapping("/productReceipt")
+	public @ResponseBody ShowMessage productReceipt(@RequestBody UserCustom userInfo,HttpServletRequest request){
+		User user = getUser(request);
+		userInfo.setUserid(user.getUserid());
+		ShowMessage showMessage = new ShowMessage();
+		String message = null;
+		if(productService.productReceipt(userInfo)){
+			
+			showMessage.setFlag(true);
+		}else{
+			
+			showMessage.setFlag(false);
+		}
+		
+		showMessage.setMessage(message);
+		return showMessage;
+		
+	}
 	
 }

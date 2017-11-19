@@ -71,15 +71,6 @@
 							</div>
 							<div class="clear"></div>
 							<div class="bundle-main" id = "data">
-								
-								
-								
-								
-								
-													
-								
-								
-								
 							</div>
 						</div>
 					</tr>

@@ -16,6 +16,7 @@ public interface ActivityreportMapper {
 
     int updateByPrimaryKey(Activityreport record);
     
+    
     /**
      * 查询活动的开展情况（总报名人数，总报名费）（报表）
      * @param activityCustom
