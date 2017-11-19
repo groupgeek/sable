@@ -483,7 +483,51 @@
 	group by date_format(activityDate,'%Y-%m')
   </select>
   
-  <select id="queryActivityByUserId" resultType="com.xiaohe.bean.Activity" parameterType="int">
+  <select id="allActs" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
+  SELECT * from activity a,activityregistery b
+	where a.activityId = b.activityId
+	and b.userId = #{userid,jdbcType=INTEGER}
+	ORDER BY a.activityDate DESC
+  </select>
+  
+   <select id="branchHealIncomeReport" parameterType="com.xiaohe.bean.ActivityCustom" resultType="com.xiaohe.bean.ActivityCustom">
+  SELECT sum(a.registeryFee) totalIncome,sum(a.activityprice) totalexl from activity a,activitytype b,activityregistery c,branch d
+	 <where>
+	 a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=1
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  		<if test="start !=null">
+  			<if test="end !=null">
+  				and a.activitydate BETWEEN #{start} AND #{end}
+  </if>
+  </if>
+  </where>
+	
+  </select>
+  
+  <select id="branchEduIncomeReport" parameterType="com.xiaohe.bean.ActivityCustom" resultType="com.xiaohe.bean.ActivityCustom">
+  SELECT sum(a.registeryFee) totalIncome,sum(a.activityprice) totalexl 
+  from activity a,activitytype b,activityregistery c,branch d
+<where>
+	a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=2
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  		<if test="start !=null">
+  			<if test="end !=null">
+  				and a.activitydate BETWEEN #{start} AND #{end}
+  </if>
+  </if>
+  </where>
+	
+  </select>
+   
+   <select id="queryActivityByUserId" resultType="com.xiaohe.bean.Activity" parameterType="int">
 	  	SELECT * 
 		FROM  activity
 		INNER JOIN activityregistery 

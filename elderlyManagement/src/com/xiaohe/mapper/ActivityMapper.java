@@ -171,6 +171,28 @@ public interface ActivityMapper {
      * @return
      */
     List<CeoActivity> CeoRegisteryFeeByTime();
+    
+    /**
+     * 根据用户id查询到所有的活动
+     * @param id
+     * @return
+     */
+    List<ActivityCustom> allActs(Integer id);
+    
+    /**
+     * 查询健康的收支情况（分店总活动报表）
+     * @param activityCustom
+     * @return
+     */
+    ActivityCustom branchHealIncomeReport(ActivityCustom activityCustom);
+    
+    /**
+     * 查询教育的收支情况（分店总活动报表）
+     * @param activityCustom
+     * @return
+     */
+    ActivityCustom branchEduIncomeReport(ActivityCustom activityCustom);
+   
     /**
      * 通过用户id 查询对应课程
      * @param id
@@ -218,4 +240,5 @@ public interface ActivityMapper {
       * 
       */
     public void delectactivityid(int activityid,int userid );
+
 }

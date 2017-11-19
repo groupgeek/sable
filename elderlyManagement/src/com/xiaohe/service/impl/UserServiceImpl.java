@@ -1,5 +1,6 @@
  package com.xiaohe.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.Area;
 import com.xiaohe.bean.Authority;
 import com.xiaohe.bean.Branch;
@@ -20,6 +22,7 @@ import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
+import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.OrdersCountVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Returnvisit;
@@ -29,6 +32,7 @@ import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
+import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.AreaMapper;
 import com.xiaohe.mapper.AuthorityMapper;
 import com.xiaohe.mapper.BranchMapper;
@@ -52,6 +56,8 @@ import com.xiaohe.util.GetStringByDate;
 @Repository("userService")//注册服务
 public class UserServiceImpl implements UserService {
 	
+	@Autowired
+	private ActivityMapper activityMapper;
 	@Autowired
 	@Qualifier("userMapper")
 	private UserMapper userMapper;
@@ -472,6 +478,61 @@ public class UserServiceImpl implements UserService {
 		
 		return num;
 	}
+	
+	public UserCustom userInfo(String phone) {
+		return userMapper.selectUserByPhone(phone);
+	}
+
+	public Level onelevel(Integer id) {
+		return levelMapper.oneLev(id);
+	}
+
+	public int updateUser(UserCustom user,MultipartFile file){
+		UserCustom userCustom = new UserCustom();
+		userCustom = userMapper.selectUserByPhone(user.getPhone());
+		String avater = userCustom.getAvatar();
+		String path = "D:\\code\\web\\upload\\";
+		String filename = null;
+		
+		if(!file.isEmpty()){
+			File avaterFile = new File(path+avater);
+			if(avaterFile.exists()){
+				if(avaterFile.isFile()){
+					avaterFile.delete();
+				}
+			}
+			try {
+				filename = FileUpload.oneFileUpload(file, null, "picture");
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else{
+			filename = user.getAvatar();
+		}
+		
+		if(filename!=null){
+			user.setAvatar(filename);
+			}
+		userMapper.updateByPrimaryKeySelective(user);
+		return 0;
+	}
+
+	public MedicalrecordsWithBLOBsCustom oneMed(Integer id) {
+		return medicalrecordsMapper.oneMedicalrecordsWithBLOBsCustom(id);
+	}
+
+	public List<ActivityCustom> userActs(Integer id) {
+		return activityMapper.allActs(id);
+	}
+
+	public int updatemed(
+			MedicalrecordsWithBLOBsCustom medicalrecordsWithBLOBsCustom) {
+		medicalrecordsMapper.updateByPrimaryKeySelective(medicalrecordsWithBLOBsCustom);
+		return 0;
+	}
+	
 	
 	
 }

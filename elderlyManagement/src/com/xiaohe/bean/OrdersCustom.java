@@ -1,5 +1,7 @@
 package com.xiaohe.bean;
 
+import java.math.BigDecimal;
+import java.util.Date;
 
 public class OrdersCustom extends Orders {
 	private ProductCustom productInfo;
@@ -26,7 +28,49 @@ public class OrdersCustom extends Orders {
     private String picture;
 	private String description;
 	
+	private Date start;
+	private Date end;
 	
+	private BigDecimal totalexl;     //总支出
+	private BigDecimal totalIncome;  //总收入
+	public BigDecimal getTotalexl() {
+		return totalexl;
+	}
+	public void setTotalexl(BigDecimal totalexl) {
+		this.totalexl = totalexl;
+	}
+	public BigDecimal getTotalIncome() {
+		return totalIncome;
+	}
+	public void setTotalIncome(BigDecimal totalIncome) {
+		this.totalIncome = totalIncome;
+	}
+	public Date getStart() {
+		return start;
+	}
+	public void setStart(Date start) {
+		this.start = start;
+	}
+	public Date getEnd() {
+		return end;
+	}
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+	public BigDecimal[] getIncomeReport() {
+		return incomeReport;
+	}
+	public void setIncomeReport(BigDecimal[] incomeReport) {
+		this.incomeReport = incomeReport;
+	}
+	public Integer getEmployeeid() {
+		return employeeid;
+	}
+	public void setEmployeeid(Integer employeeid) {
+		this.employeeid = employeeid;
+	}
+	private BigDecimal[] incomeReport; 
+	private Integer employeeid;
 	
 	
 	public String getPaymentMethod() {

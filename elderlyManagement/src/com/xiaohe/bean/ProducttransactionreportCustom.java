@@ -33,8 +33,25 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	private String startDateString;
 	private String endDateString;
 	
+	private BigDecimal totalSail; //总销售额
+	private BigDecimal oneSail;   //单个商品销售额
 	
-	
+	public BigDecimal getTotalSail() {
+		return totalSail;
+	}
+
+	public void setTotalSail(BigDecimal totalSail) {
+		this.totalSail = totalSail;
+	}
+
+	public BigDecimal getOneSail() {
+		return oneSail;
+	}
+
+	public void setOneSail(BigDecimal oneSail) {
+		this.oneSail = oneSail;
+	}
+
 	public String getStartDateString() {
 		return startDateString;
 	}

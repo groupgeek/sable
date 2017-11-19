@@ -282,5 +282,33 @@
 	
 	</select>
 	
-	
+	<select id="BranchOneProductTransation" parameterType="ProducttransactionreportCustom" resultType="ProducttransactionreportCustom">
+  
+  	SELECT SUM(p.totalPrice) totalSail FROM producttransactionreport p
+  	
+  	<where>
+  		<if test="productid != null">
+  			AND p.productid = #{productid}
+  		</if>
+  		<if test="branchid != null">
+  			AND p.branchid = #{branchid}
+  		</if>
+  		
+  		<if test="startingTime != null">
+			<if test="endTime != null">
+				AND p.BuyTime BETWEEN #{startingTime} AND #{endTime}
+			</if>
+		</if>
+  	</where>
+  	
+  	<if test="sort != null">
+  		    ORDER BY #{sort}
+  	</if>
+  	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT #{begin} , #{pageNum};
+		</if>
+	</if>
+  	
+  </select>
 </mapper>
