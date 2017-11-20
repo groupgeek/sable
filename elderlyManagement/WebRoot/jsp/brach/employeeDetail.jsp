@@ -161,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateEmpl.action">
+						<form class="form-horizontal" onsubmit="return check()" action="${pageContext.request.contextPath }/brach/updateEmpl.action">
 							<fieldset>
 							
 							<div style="padding-left: 35%;padding-bottom: 30px">
@@ -204,13 +204,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								<input type="text" name="password" 
 								class="span6 typeahead" id="pass" onkeyup="IsString()" value="${employee.password }">
+								<p id="pass2" style="color:gray">员工密码不可以为空，否则添加失败</p>
 							  </div>
 							  </div>
 							  
 							   <div class="control-group">
-								<label class="control-label" for="disabledInput">员工生日</label>
+								<label class="control-label" for="disabledInput" onkeyup="haha2()">员工生日</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="birthday" value=<fmt:formatDate value="${employee.birthday }" pattern="yyyy-MM-dd"/> disabled="">
+								  <input class="input-xlarge disabled" onClick="laydate()" id="str2" id="disabledInput" type="text" name="birthday" value=<fmt:formatDate value="${employee.birthday }" pattern="yyyy-MM-dd"/>>
 								</div>
 							  </div>
 							  
@@ -241,14 +242,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  <div class="control-group">
 								<label class="control-label" for="disabledInput">入职时间</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="entrytime" value=<fmt:formatDate value="${employee.entrytime }" pattern="yyyy-MM-dd"/> disabled="">
+								  <input class="input-xlarge disabled" onClick="laydate()" id="disabledInput" type="text" name="entrytime" value=<fmt:formatDate value="${employee.entrytime }" pattern="yyyy-MM-dd"/>>
 								</div>
 							  </div>
 							  
 							  <div class="control-group">
 								<label class="control-label" for="disabledInput">银行卡号</label>
 								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${employee.bankcardno }" disabled="">
+								  <input class="input-xlarge disabled"  name="bankcardno"  onkeyup="bank(this.value)" id="bankno" type="text" placeholder="${employee.bankcardno }">
+								<p id="bank"></p>
 								</div>
 							  </div>
 							 
@@ -272,7 +274,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="totalbonus" oninput="xixi2(this.value)" size="16" type="text" value="${employee.totalbonus }">
+									<input id="appendedPrependedInput2" name="totalbonus" oninput="xixi2(this.value)" size="16" type="text" value="${employee.totalbonus }">
 								  </div>
 								</div>
 				   				</div>
@@ -393,6 +395,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/xixi.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

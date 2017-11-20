@@ -109,7 +109,6 @@ public class UserController {
 		List<ActivityCustom> allActs = new ArrayList<ActivityCustom>();
 		allActs = userService.userActs(id);
 		model.addAttribute("allActs", allActs);
-		System.out.println(allActs.get(0));
 		return "user/actInfo";
 	}
 	

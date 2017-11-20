@@ -13,7 +13,7 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/systyle.css" rel="stylesheet" type="text/css">
-		
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/util/css/common.css"/>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 		<style type="text/css">
 		
@@ -54,17 +54,17 @@
 								<div class="m-bg"></div>
 								<div class="m-userinfo">
 									<div class="m-baseinfo">
-										<a href="information.html" id = "userAvatar">
+										<a href="${pageContext.request.contextPath }/jsp/mall/person/information.jsp" id = "userAvatar">
 											<img src="../images/getAvatar.do.jpg">
 										</a>
 										<div class="s-prestige am-btn am-round">
-										<em class="s-name">0.0<span class="vip1"></span></em>
+										<em class="s-name">0.0<!-- <span class="vip1"></span> --></em>
 										</div>
 											
 									</div>
 									<div class="m-right">
 										<div class="m-new">
-											<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
+											<a href="javascript:;"><i class="am-icon-bell-o"></i>0.0</a>
 										</div>
 										<div class="m-address">
 											<a href="${pageContext.request.contextPath }/jsp/mall/person/shippingAddress.jsp" class="i-trigger">我的收货地址</a>
@@ -209,8 +209,40 @@
 			<c:import url="/jsp/mall/personMenu.jsp"></c:import>
 			
 		</div>
+		
+		<div id="wrapper">
+			
+				
+				<div class="box">
+					<div class="demo">
+						<!-- <a href="javascript:;" class="rollIn">DEMO2</a> -->
+					</div>
+					
+					<div id="dialogBg"></div>
+					<div id="dialog" class="animated" style="height: 230px;">
+						<img class="dialogIco" width="50" height="50" src="${pageContext.request.contextPath }/jsp/util/images/ico.png" alt="" />
+						<div class="dialogTop">
+							<a href="javascript:;" class="claseDialogBtn">关闭</a>
+						</div>
+						<form method="post" id="editForm">
+								<input type="hidden" id = "articleid" name="articleid"/>
+							<ul class="editInfos">
+								<li><label><input type="hidden" id = "orderid" name="orderid"/></label></li>
+								<li><label id = "message" style="color: red;">密码错误</label></li>
+								<li><label id = "showOrderid" style="color: black;"></label></li>
+								<li><label style="color: black;">密码：<input type="password" id = "password" name="password" required  class="ipt" placeholder="密码"style="color: black;"/></label></li>
+								<li><input type="button" value="确认提交" class="submitBtn" /></li>
+							</ul>
+						</form>
+					</div>
+				</div>
+				
+			</div>
 		<!-- js -->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/person/js/index.js"></script>
+		
+		
+		<!-- <c:import url="/jsp/util/animeMove.jsp"></c:import> -->
 	</body>
 
 </html>

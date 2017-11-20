@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<c:import url="/jsp/util/animeMove.jsp"></c:import>
 			<div class="am-container header">
 			<ul class="message-r">
 			<div class="topMessage home">

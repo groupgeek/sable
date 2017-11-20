@@ -64,29 +64,28 @@
 							<div class="alert alert-success" role="alert">Your email has been sent.</div>
 						</div> -->
 						<div class="form-group">
-							<label for="" class="sr-only">手机号码</label>
+							<label for="" class="sr-only">请输入新密嘛</label>
 							<!-- <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off"> -->
-							<input type="text" class="form-control" id="phone" 
-							minlength=11 maxlength=11 digits=true
-							placeholder="请输入手机号码" autocomplete="off" required>
+							<input type="password" class="form-control" id="user-new-password" 
+							minlength=6 maxlength=15
+							placeholder="请输入新密码" autocomplete="off" required>
 							<br/>
-							<input type="button" value="发送验证码" class="btn" id = "vcode">
-							<span id = "phoneError"></span>
+							<span id = "newPasswordError"></span>
 						</div>
 						<div class="form-group">
-							<label for="" class="sr-only">验证码</label>
+							<label for="" class="sr-only">请再次输入密码</label>
 							<!-- <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off"> -->
-							<input type="text" class="form-control" id="vcodeval"
-							minlength=6 maxlength=6 digits=true
-							placeholder="请输入收到的验证码" autocomplete="off" required>
+							<input type="password" class="form-control" id="user-again-password"
+							minlength=6 maxlength=15
+							placeholder="请再次输入密码" autocomplete="off" required>
 							<br/>
-							<span id = "message"></span>
+							<span id = "againPasswordError"></span>
 						</div>
 						<div class="form-group">
 							<p><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a> or <a href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a></p>
 						</div>
 						<div class="form-group">
-							<input type="button" value="下一步" class="btn btn-primary">
+							<input type="button" value="确定" class="btn btn-primary" id="submit">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
@@ -110,7 +109,7 @@
 	<!-- Main JS -->
 	<script src="${pageContext.request.contextPath }/jsp/logReg/js/main.js"></script>
 	
-	<script src="${pageContext.request.contextPath }/jsp/logReg/js/forgot.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/logReg/js/updatePassword.js"></script>
 	
 	
 	<script

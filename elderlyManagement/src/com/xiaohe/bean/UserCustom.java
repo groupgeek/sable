@@ -32,9 +32,21 @@ public class UserCustom extends User{
     private String oldPassword;
     private String newPassword;
     
+    //签收
+    private String orderid;
     
     
     
+    
+    
+	public String getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+
 	public String getOldPassword() {
 		return oldPassword;
 	}

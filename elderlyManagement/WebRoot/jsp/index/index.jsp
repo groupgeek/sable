@@ -49,7 +49,7 @@
 
 </head>
 <body id="custom">
-
+	<c:import url="/jsp/util/animeMove.jsp"></c:import>
     <div class="animationload">
     <div class="loader">Loading...</div>
     </div>

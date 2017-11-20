@@ -119,7 +119,7 @@
 															</dl>
 
 														</div>
-														<div class="brand-side">
+														<!-- <div class="brand-side">
 															<dl class="dl-sort">
 																<dt>
 																	<span>实力商家</span>
@@ -139,7 +139,7 @@
 																	</a>
 																</dd>
 															</dl>
-														</div>
+														</div> -->
 													</div>
 												</div>
 											</div>

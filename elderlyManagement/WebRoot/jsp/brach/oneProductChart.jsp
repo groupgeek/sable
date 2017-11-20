@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 </head>
 
-<body>
+<body onload="total()">
 		<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -173,10 +173,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="button" onclick="productEchart2()" value="图表案例"> -->
 					
 					<div class="chart">
-					<div class="product" id="product"></div> <!-- 柱状图 -->
-					<div class="line" id="line"></div> <!-- 折线图 -->
-					<div class="pie1" id="pie1"></div> <!-- 饼图 -->
-					<div class="pie2" id="pie2"></div> <!-- 饼图 -->
+					<div class="product" id="productChart"></div> <!-- 柱状图 -->
+					<div class="line" id="lineChart"></div> <!-- 折线图 -->
+					<div class="pie1" id="pie1Chart"></div> <!-- 饼图 -->
+					<div class="pie2" id="pie2Chart"></div> <!-- 饼图 -->
 					</div>
 					
 					<div class="pie" id="pie" style="width: 700px;height: 400px;"></div>

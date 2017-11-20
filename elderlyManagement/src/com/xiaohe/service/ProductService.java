@@ -270,4 +270,11 @@ public interface ProductService {
 	 * @return
 	 */
 	public boolean deleteProduct(Integer productid);
+	
+	/**
+	 * 商品签收
+	 * @param user
+	 * @return
+	 */
+	public boolean productReceipt(UserCustom user);
 }

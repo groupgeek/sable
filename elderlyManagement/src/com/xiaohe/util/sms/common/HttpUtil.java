@@ -43,7 +43,7 @@ public class HttpUtil
 	 * @return
 	 * @throws IOException
 	 */
-	public static String post(String url, String body)
+	public static String post(String url, String body) throws Exception
 	{
 		System.out.println("url:" + System.getProperty("line.separator") + url);
 		System.out.println("body:" + System.getProperty("line.separator") + body);

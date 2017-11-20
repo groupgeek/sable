@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.OrderComparator;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,6 +48,7 @@ import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.mapper.ProducttasteMapper;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.mapper.ShoppingcarMapper;
+import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ShippingAddressService;
 import com.xiaohe.service.UserService;
@@ -103,6 +105,10 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("shippingAddressService")
 	private ShippingAddressService shippingAddressService;
+	
+	@Autowired
+	@Qualifier("userMapper")
+	private UserMapper userMapper;
 
 	public List<ProductCustom> queryPopularProductByCondition(ProductCustom productCustom) {
 		
@@ -798,6 +804,28 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		if(productid == null) return false;
 		
 		if(productMapper.deleteByPrimaryKey(productid) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean productReceipt(UserCustom userInfo) {
+		if(userInfo == null) return false;
+		if(userInfo.getUserid() == null || userInfo.getPassword() == null || userInfo.getOrderid() == null) return false;
+		
+		UserCustom user = new UserCustom();
+		user = userMapper.selectUserById(userInfo.getUserid());
+		
+		if(user == null) return false;
+		if(!userInfo.getPassword().equals(user.getPassword())) return false;
+		
+		//修改订单
+		OrdersCustom order = new OrdersCustom();
+		order = ordersMapper.selectOrdersByOrdersId(userInfo.getOrderid());
+		if(order == null) return false;
+		
+		order.setSignstatus("已签收");
+		order.setSubmissiontime(new Date());
+		if(ordersMapper.updateByPrimaryKeySelective(order) <= 0) return false;
 		
 		return true;
 	}
