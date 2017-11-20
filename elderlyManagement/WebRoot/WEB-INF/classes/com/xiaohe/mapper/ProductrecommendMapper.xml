@@ -112,4 +112,14 @@
   
   </select>
   
+  <select id="oneProductRec" parameterType="ProductrecommendCustom" resultType="ProductrecommendCustom">
+  select * from productrecommend 
+  where branchId = #{branchid,jdbcType=INTEGER}
+  AND productId = #{productid,jdbcType=INTEGER}
+  </select>
+  <select id="countProductRec" parameterType="Integer" resultType="java.lang.Integer" >
+     select count(p.productRecommendId) from productrecommend p,product a
+		where p.productId = a.productId
+		and a.branchId = #{branchid,jdbcType=INTEGER}
+      </select>
 </mapper>

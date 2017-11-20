@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.Productrecommend;
+import com.xiaohe.bean.ProductrecommendCustom;
 
 public interface ProductrecommendMapper {
     int deleteByPrimaryKey(Integer productrecommendid);
@@ -30,5 +31,18 @@ public interface ProductrecommendMapper {
      * @return 本店商品推荐
      */
     List<ProductCustom> quertyRecommendProdcut(Integer branchid);
+    
+    /**
+     * 根据分店id和商品id查到对应的推荐商品
+     * @param productCustom
+     * @return
+     */
+    ProductrecommendCustom oneProductRec(ProductrecommendCustom productCustom);
+    
+    /**
+     * 查询推荐商品数量
+     * @return
+     */
+    int countProductRec(Integer id);
     
 }

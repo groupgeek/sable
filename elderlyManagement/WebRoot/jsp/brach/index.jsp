@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 </head>
 
-<body>
+<body onload="index()">
 		<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -148,18 +148,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>		
 
 				<!-- 中间的报表 -->
-			<div class="row-fluid">
+			<!-- <div class="row-fluid">
 				<div class="span8 widget blue" onTablet="span7" onDesktop="span8">
 					<div id="stats-chart2"  style="height:282px" ></div>
 				</div>
-				<!-- End .sparkStats -->
-			</div>
+				End .sparkStats
+			</div> -->
+			<input type="hidden" value="${pageContext.request.contextPath }" id="root"> 
+			<div id="actAndPro" class="actAndPro" style="width: 900px;height: 400px;margin-left: 100px"></div>
 			
 		
 						
 			<div class="row-fluid">
 				
-				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
+				<%-- <div class="widget blue span5" onTablet="span6" onDesktop="span5">
 					
 					<h2><span class="glyphicons globe"><i></i></span> 销量前十产品</h2>
 					
@@ -184,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					</div>
 					
-				</div>
+				</div> --%>
 				<!-- <div class="widget blue span5" onTablet="span6" onDesktop="span5">
 					
 					<h2><span class="glyphicons globe"><i></i></span>活动收入前十</h2>
@@ -355,7 +357,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			</div>
 			
-			<div class="row-fluid">	
+			<div class="row-fluid" style="margin-top: 30px">	
 
 				<a class="quick-button metro yellow span2">
 					<i class="icon-group"></i>
@@ -480,6 +482,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/productJS/product.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/charts/echarts.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

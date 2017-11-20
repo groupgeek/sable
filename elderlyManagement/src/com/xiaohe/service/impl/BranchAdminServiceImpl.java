@@ -22,7 +22,10 @@ import com.xiaohe.bean.MedicalrecordsWithBLOBsCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.OrdersCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.Productrecommend;
+import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.TransactionCustom;
@@ -41,6 +44,7 @@ import com.xiaohe.mapper.MedicalrecordsMapper;
 import com.xiaohe.mapper.MessageMapper;
 import com.xiaohe.mapper.OrdersMapper;
 import com.xiaohe.mapper.ProductMapper;
+import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.mapper.ProducttransactionreportMapper;
 import com.xiaohe.mapper.ReturnvisitMapper;
 import com.xiaohe.mapper.TransactionMapper;
@@ -49,6 +53,9 @@ import com.xiaohe.service.BranchAdminService;
 
 @Repository("branchAdminService")
 public class BranchAdminServiceImpl implements BranchAdminService{
+	
+	@Autowired
+	private ProductrecommendMapper productrecommendMapper;
 	@Autowired
 	private ActivityreportMapper activityreportMapper;
 	@Autowired
@@ -287,5 +294,30 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 	}
 	public OrdersCustom orderIncome(OrdersCustom ordersCustom) {
 		return ordersMapper.orderReport(ordersCustom);
+	}
+	public List<ProductCustom> aueryAllBranchProductRec(Integer id) {
+		return productrecommendMapper.quertyRecommendProdcut(id);
+	}
+	public int insertProductRec(Productrecommend product) {
+		productrecommendMapper.insert(product);
+		return 0;
+	}
+	public int delProductRec(Integer id) {
+		productrecommendMapper.deleteByPrimaryKey(id);
+		return 0;
+	}
+	public ProductrecommendCustom oneProductRec(ProductrecommendCustom productCustom) {
+		return productrecommendMapper.oneProductRec(productCustom);
+	}
+	public int countBranchProductRec(Integer id) {
+		return productrecommendMapper.countProductRec(id);
+	}
+	public ProducttransactionreportCustom onedaySail(
+			ProducttransactionreportCustom producttransactionreportCustom) {
+		return producttransactionreportMapper.oneDayAllSail(producttransactionreportCustom);
+	}
+	public ProducttransactionreportCustom onedayAct(
+			ProducttransactionreportCustom producttransactionreportCustom) {
+		return producttransactionreportMapper.onedayAllAct(producttransactionreportCustom);
 	}
 }

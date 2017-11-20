@@ -28,10 +28,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">个人中心</a> 
+               <a class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action" style="background-color:#333333;">XIAOHE</a> 
+                <a class="navbar-brand" href="#" style="background-color: #696969;	">个人中心</a>
             </div>
   <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
-  <a href="${pageContext.request.contextPath }/user/logout.action" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <a style="background-color: #696969;" href="${pageContext.request.contextPath }/user/logout.action" class="btn btn-danger square-btn-adjust">安全退出</a> </div>
         </nav>   
                 <nav class="navbar-default navbar-side" role="navigation">
            		<div class="sidebar-collapse">
@@ -63,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>活动信息</h2>
+                     <!-- <h2>活动信息</h2> -->
                          <h4>欢迎回来！</h4><h3>${user.username }</h3>
                        
                     </div>

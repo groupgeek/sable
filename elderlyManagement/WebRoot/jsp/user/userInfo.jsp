@@ -29,10 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">个人中心</a> 
+                <a class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action" style="background-color:#333333;">XIAOHE</a> 
+                <a class="navbar-brand" href="#" style="background-color: #696969;	">个人中心</a> 
             </div>
   <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
-  <a href="${pageContext.request.contextPath }/user/logout.action" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <a style="background-color: #696969;" href="${pageContext.request.contextPath }/user/logout.action" class="btn btn-danger square-btn-adjust">安全退出</a> </div>
         </nav>   
                 <nav class="navbar-default navbar-side" role="navigation">
            		<div class="sidebar-collapse">
@@ -61,12 +62,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12" style="width: 500px">
-                     <h2>个人信息</h2>
+                    <!--  <h2>个人信息</h2> -->
                         <h4>欢迎回来！</h4><h3>${user.username }</h3>
                     </div>
                     
                     <div class="sub-changeMed" style="margin-left: 800px;margin-top: 70px">
-                <a href="#" class="btn btn-primary btn-lg" id="sub-changeMed" onclick="change()">修改信息</a>
+                <a href="#" style="background-color:#696969;border: #696969; " class="btn btn-primary btn-lg" id="sub-changeMed" onclick="change()" >修改信息</a>
            			 </div>
                 </div><hr />
                
@@ -76,13 +77,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="form-inner">
                  <div class="form-group" style="width: 300px">
                  <input type="hidden" name="userid" value="${user.userid }">
-                  <input type="hidden" name="phone" value="${user.phone }">
+                  <%-- <input type="hidden" name="phone" value="${user.phone }"> --%>
                  
                  	 <div class="form-lab">
                      <label for="disabledSelect">手机号（账号）：</label>
                      </div>
                      <div class="form-text">
-                     <input class="form-name" id="form-name" name="accountnumber"  onkeyup="IsPhone()"  type="text" value="${user.accountnumber }" readonly="readonly"/>
+                     <input class="form-name" id="form-name" name="phone" onkeyup="IsPhone()"  type="text" value="${user.phone }" readonly="readonly"/>
                      <p id="p-phone" style="font-size: 3px;width: 300px"></p>
                      </div>
                  </div>
@@ -172,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div>
                      <label for="disabledSelect">健康状况：</label></div>
                      <div class="form-text">
-                     <input class="form-name" id="health" name="healthstatus0" type="text" value="${user.healthstatus }" readonly="readonly"/>
+                     <input class="form-name" id="health" name="healthstatus99" type="text" value="${user.healthstatus }" readonly="readonly"/>
                      
                      
                      <select id="health2" name="healthstatus" class="form-name">
@@ -190,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div>
                      <label for="disabledSelect">等级：</label></div>
                      <div class="form-text">
-                     <input class="form-name" id="level" name="levelid" type="text" value="${level.level }" readonly="readonly"/></div>
+                     <input class="form-name" id="level" name="99" type="text" value="${level.level }" readonly="readonly"/></div>
                  </div>
                  
                  <div class="form-group" style="width: 300px">

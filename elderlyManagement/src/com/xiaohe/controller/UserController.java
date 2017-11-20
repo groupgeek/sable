@@ -82,7 +82,7 @@ public class UserController {
 		UserCustom user = new UserCustom();
 		user = userService.userInfo(x);
 		Level level = new Level();
-		level = userService.onelevel(user.getLevelid());
+		level = userService.onelevel(user.getUserid());
 		model.addAttribute("level", level);
 		model.addAttribute("user", user);
 		return "user/userInfo";

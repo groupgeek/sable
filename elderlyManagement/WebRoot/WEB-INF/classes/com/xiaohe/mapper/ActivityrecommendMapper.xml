@@ -75,6 +75,7 @@
 	where e.employeeId = b.employeeId
 	and b.branchId = a.branchId
 	and a.activityId = c.activityId
+	and a.websiteType = '分店官网'
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -104,6 +105,8 @@
 	and b.branchId = a.branchId
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
+      
+      
       
       
 </mapper>

@@ -29,10 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">个人中心</a> 
+                <a class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action" style="background-color:#333333;">XIAOHE</a> 
+                <a class="navbar-brand" href="#" style="background-color: #696969;	">个人中心</a>
             </div>
   <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
-  <a href="${pageContext.request.contextPath }/user/logout.action" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <a style="background-color: #696969;" href="${pageContext.request.contextPath }/user/logout.action" class="btn btn-danger square-btn-adjust">安全退出</a> </div>
         </nav>   
                 <nav class="navbar-default navbar-side" role="navigation">
            		<div class="sidebar-collapse">
@@ -63,11 +64,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12" style="width: 500px">
-                     <h2>病历信息</h2>
+                     <!-- <h2>病历信息</h2> -->
                         <h4>欢迎回来！</h4><h3>${user.username }</h3>
                     </div>
                     <div class="sub-changeMed" style="margin-left: 800px;margin-top: 70px">
-                <a href="#" class="btn btn-primary btn-lg" id="sub-changeMeds" >修改信息</a>
+                <a href="#" style="background-color:#696969;border: #696969; " class="btn btn-primary btn-lg" id="sub-changeMeds" >修改信息</a>
            			 </div>
                     
                 	</div>
@@ -78,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div class="panel panel-default" style="margin-top: 30px" id="med1">
                         <div class="panel-heading">
                              <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">以往病历</a>
+                                 <a data-toggle="collapse" data-parent="#accordion" href="">以往病历</a>
                              </h4>
                         </div>
                        <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
@@ -91,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="panel panel-default" id="med2">
                         <div class="panel-heading">
                              <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">近期病历</a>
+                                 <a data-toggle="collapse" data-parent="#accordion" href="">近期病历</a>
                              </h4>
                         </div>
                        <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
@@ -104,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="panel panel-default" id="med4">
                         <div class="panel-heading">
                              <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">个人史（饮食习惯，爱好。。）</a>
+                                 <a data-toggle="collapse" data-parent="#accordion" href="">个人史（饮食习惯，爱好。。）</a>
                              </h4>
                         </div>
                        <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
@@ -117,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="panel panel-default" id="med3">
                         <div class="panel-heading">
                              <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">家族病史</a>
+                                 <a data-toggle="collapse" data-parent="#accordion" href="">家族病史</a>
                              </h4>
                         </div>
                        <div id="collapseTwo" class="panel-collapse in" style="height: auto;">

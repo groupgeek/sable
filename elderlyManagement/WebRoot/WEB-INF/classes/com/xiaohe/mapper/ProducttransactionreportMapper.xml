@@ -311,4 +311,19 @@
 	</if>
   	
   </select>
+  
+  <select id="oneDayAllSail" parameterType="com.xiaohe.bean.ProducttransactionreportCustom" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+   SELECT SUM(totalPrice) totalMoney from producttransactionreport
+   where BuyTime BETWEEN #{start} and #{end}
+   and branchId = #{branchid}
+	</select>
+	
+  <select id="onedayAllAct" parameterType="com.xiaohe.bean.ProducttransactionreportCustom" resultType="com.xiaohe.bean.ProducttransactionreportCustom">
+	 SELECT SUM(a.totalPrice) totalMoney from activityreport a,activity b,activityregistery c
+   		where a.DuringTime BETWEEN #{start} and #{end}
+   		and b.branchId = #{branchid}
+		and c.registery = '报名'
+		and a.activityId = c.activityId
+		and a.activityId = b.activityId
+	</select>
 </mapper>
