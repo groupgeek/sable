@@ -31,21 +31,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="hover"></div>
 			<ul>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getpicture.action">首页</a>
+					<a href="${pageContext.request.contextPath }/edu/getpicture.action">首页</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getonline.action">课程</a>
+					<a href="${pageContext.request.contextPath }/edu/getonline.action">在线课程</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getjiangzuo.action">讲座</a>
+					<a href="${pageContext.request.contextPath }/edu/getlecture.action">讲座</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/gethuodong.action">活动</a>
+					<a href="${pageContext.request.contextPath }/edu/getactivity.action">活动</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getzhibo.action">直播</a>
+					<a href="${pageContext.request.contextPath }/edu/getLive.action">直播</a>
 				</li>
-
+				
 				<div class="clear"></div>
 				<!--流体布局，无固定宽度，最大可设置6个li标签-->
 			</ul>
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!--这是一个权限，布局，当用户登录后显示-->
 			<ul>
 				<li>
-					<a class="msg" href="${pageContext.request.contextPath }/gggg/queryActivityByUserId.action">
+					<a class="msg" href="${pageContext.request.contextPath }/edu/queryActivityByUserId.action">
 					我的课程
 					</a>
 				</li>
@@ -82,11 +82,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <h3 class="vipName">${sessionScope.user.username }</h3>
    <ul class="buy-nav">
     <li class="buy-nav1"><a href="vip-sell.html">官网首页</a></li>
-    <li class="buy-nav2"><a href="${pageContext.request.contextPath }/gggg/getpicture.action">教育首页</a></li>
-    <li class="buy-nav3 buy-navCur"><a href="${pageContext.request.contextPath }/gggg/getonline.action">在线课程</a></li>
-    <li class="buy-nav4"><a href="pageContext.request.contextPath }/gggg/gethuodong.action">活动</a></li>
-    <li class="buy-nav5"><a href="${pageContext.request.contextPath }/gggg/getjiangzuo.action">讲座</a></li>
-    <li class="buy-nav6"><a href="${pageContext.request.contextPath }/gggg/getzhibo.action">直播</a></li>
+    <li class="buy-nav2"><a href="${pageContext.request.contextPath }/edu/getpicture.action">教育首页</a></li>
+    <li class="buy-nav3 buy-navCur"><a href="${pageContext.request.contextPath }/edu/getonline.action">在线课程</a></li>
+    <li class="buy-nav4"><a href="${pageContext.request.contextPath }/edu/getactivity.action">活动</a></li>
+    <li class="buy-nav5"><a href="${pageContext.request.contextPath }/edu/getlecture.action">讲座</a></li>
+    <li class="buy-nav6"><a href="${pageContext.request.contextPath }/edu/geLive.action">直播</a></li>
     <li class="buy-nav7"><a href="#">商城</a></li>
    </ul><!--buy-nav/-->
   </div><!--vipLeft/-->
@@ -103,12 +103,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </tr>
     <c:forEach items="${activitys}" var="activity">
 	    <tr>
-	     <td align="center"><img src="${pageContext.request.contextPath }/jsp/edu/images/${activity.activitypicture }" width="119" height="79" /></td>
+	     <td align="center"><img src="$/upload/${activity.activitypicture }" width="119" height="79" /></td>
 	     <td align="center">${activity.activityname }</td>
 	     <td align="center"><strong class="sellName">${activity.activityid }</strong></td>
 	     <td align="center">${activity.activityprice }</td>
 	     <td align="center">${activity.maxnum }</td>
-	     <td align="center"><a href="${pageContext.request.contextPath }/gggg/delectactivityid.action?activityid=${activity.activityid }" class="shan">删除</a></td>
+	     <td align="center"><a href="${pageContext.request.contextPath }/edu/delectactivityid.action?activityid=${activity.activityid }" class="shan">删除</a></td>
 	    </tr>
     </c:forEach>
    </table><!--vip-proList/-->

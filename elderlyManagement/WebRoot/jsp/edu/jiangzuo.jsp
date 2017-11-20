@@ -29,20 +29,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="hover"></div>
 			<ul>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getpicture.action">首页</a>
+					<a href="${pageContext.request.contextPath }/edu/getpicture.action">首页</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getonline.action">课程</a>
+					<a href="${pageContext.request.contextPath }/edu/getonline.action">在线课程</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getjiangzuo.action">讲座</a>
+					<a href="${pageContext.request.contextPath }/edu/getlecture.action">讲座</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/gethuodong.action">活动</a>
+					<a href="${pageContext.request.contextPath }/edu/getactivity.action">活动</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getzhibo.action">直播</a>
+					<a href="${pageContext.request.contextPath }/edu/getLive.action">直播</a>
 				</li>
+				
 				<div class="clear"></div>
 				<!--流体布局，无固定宽度，最大可设置6个li标签-->
 			</ul>
@@ -51,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!--这是一个权限，布局，当用户登录后显示-->
 			<ul>
 				<li>
-					<a class="msg" href="${pageContext.request.contextPath }/gggg/queryActivityByUserId.action">
+					<a class="msg" href="${pageContext.request.contextPath }/edu/queryActivityByUserId.action">
 					我的课程
 					</a>
 				</li>
@@ -93,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<p>讲师：<span>arry</span></p>
 						<!--在p标签中加span是方便以后做为动态的时候调用-->
 						<p>容量：<span>3000</span></p>
-						<a href="${pageContext.request.contextPath }/gggg/getactivityid.action?id=${activity.activityid }">查看详情</a>
+						<a href="${pageContext.request.contextPath }/edu/getactivityid.action?id=${activity.activityid }">查看详情</a>
 						<!--关于submit在div标签中 待改进的问题-->
 					</div>
 				</div>
@@ -113,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h2>讲师团队</h2>
 		<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -128,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t2.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t2.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -143,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -158,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 				<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -173,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t2.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t2.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -188,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -203,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -218,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t2.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t2.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>

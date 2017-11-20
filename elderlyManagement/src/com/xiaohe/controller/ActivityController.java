@@ -18,7 +18,7 @@ import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.BranchAdminService;
 
 @Controller
-@RequestMapping("gggg")
+@RequestMapping("edu")
 public class ActivityController {
 	@Autowired
 	@Qualifier("activityService")
@@ -38,17 +38,16 @@ public class ActivityController {
 	public String  getpicture(Model model,HttpServletRequest request){
 		
 		List<Activity> onlines=activityService.getonline();
-		List<Activity> jiangzuos=activityService.getjiangzuo();
-		List<Activity> huodongs=activityService.gethuodong();
-		List<Activity> zhibos=activityService.getzhibo();
+		List<Activity> lectures=activityService.getlecture();
+		List<Activity> activitys=activityService.getactivity();
+		List<Activity> Lives=activityService.getLive();
 		
 		//model回显到页面
 		
-		//System.out.println(activitys);
 		model.addAttribute("onlines", onlines);
-		model.addAttribute("jiangzuos", jiangzuos);
-		model.addAttribute("huodongs", huodongs);
-		model.addAttribute("zhibos", zhibos);
+		model.addAttribute("lectures", lectures);
+		model.addAttribute("activitys", activitys);
+		model.addAttribute("Lives", Lives);
 	
 		return "edu/edu";
 	}
@@ -65,10 +64,10 @@ public class ActivityController {
 			return "edu/kecheng";
 	}
 		
-		@RequestMapping(value="getjiangzuo")
-		public String  getjiangzuo(Model model,HttpServletRequest request){
+		@RequestMapping(value="getlecture")
+		public String  getlecture(Model model,HttpServletRequest request){
 			
-			List<Activity> activitys=activityService.getjiangzuo();
+			List<Activity> activitys=activityService.getlecture();
 			//model回显到页面
 			
 			System.out.println(activitys);
@@ -76,10 +75,10 @@ public class ActivityController {
 			return "edu/jiangzuo";
 	}
 		
-		@RequestMapping(value="gethuodong")
-		public String  gethuodong(Model model,HttpServletRequest request){
+		@RequestMapping(value="getactivity")
+		public String  getactivity(Model model,HttpServletRequest request){
 			
-			List<Activity> activitys=activityService.gethuodong();
+			List<Activity> activitys=activityService.getactivity();
 			//model回显到页面
 			
 			System.out.println(activitys);
@@ -87,10 +86,10 @@ public class ActivityController {
 			return "edu/huodong";
 		}
 			
-			@RequestMapping(value="getzhibo")
-			public String  getzhibo(Model model,HttpServletRequest request){
+			@RequestMapping(value="getLive")
+			public String  getLive(Model model,HttpServletRequest request){
 				
-				List<Activity> activitys=activityService.getzhibo();
+				List<Activity> activitys=activityService.getLive();
 				//model回显到页面
 				
 				System.out.println(activitys);
@@ -123,6 +122,17 @@ public class ActivityController {
 			int userid =((User)request.getSession().getAttribute("user")).getUserid();
 			activityService.delectactivityid(activityid,userid);
 			//model回显到页面
-			return "forward:/gggg/queryActivityByUserId.action";
+			return "forward:/edu/queryActivityByUserId.action";
+		}
+		
+		@RequestMapping(value="getvideo")
+		public String  getvideo(Model model,int id,HttpServletRequest request){
+			
+			Activity activity=activityService.getactivityid(id );
+			//model回显到页面
+			
+			System.out.println(activity);
+			model.addAttribute("activity", activity);
+			return "edu/video";
 		}
 }

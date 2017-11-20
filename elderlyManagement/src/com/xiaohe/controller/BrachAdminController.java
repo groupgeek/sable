@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.stream.events.EndDocument;
 
 import org.aspectj.weaver.patterns.IfPointcut.IfFalsePointcut;
 import org.omg.CORBA.PRIVATE_MEMBER;
@@ -797,10 +798,18 @@ public class BrachAdminController {
 	@RequestMapping(value="/productChart")
 	public @ResponseBody ProducttransactionreportCustom productCharts(@RequestBody ProducttransactionreportCustom productTranctionReportCustom,HttpServletRequest request) throws ParseException{
 		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
-		int a = productTranctionReportCustom.getStartingTime().compareTo(productTranctionReportCustom.getEndTime());
 		productTranctionReportCustom.setEmployeeid(x);
-		
-		
+		if(productTranctionReportCustom.getStartingTime()==null||productTranctionReportCustom.getEndTime()==null){
+			Date date = new Date();
+			Date start = new Date();
+			Date end = new Date();
+			GetStringByDate calTime = new GetStringByDate(); 
+			start = calTime.addDate(date, -5);
+			end = calTime.addDate(date, 5);
+			productTranctionReportCustom.setStartingTime(start);
+			productTranctionReportCustom.setEndTime(end);
+		}
+		int a = productTranctionReportCustom.getStartingTime().compareTo(productTranctionReportCustom.getEndTime());
 		if(a<=0){ //判断传进来的时间，开始时间小于结束时间
 			List<ProducttransactionreportCustom> pro = new ArrayList<ProducttransactionreportCustom>();
 			Date date1 = new Date();
@@ -846,6 +855,7 @@ public class BrachAdminController {
 				productTranctionReportCustom.setBuyTime(buyTime);
 		}//查询一天的循环结束
 		}
+		
 		return productTranctionReportCustom;
 	}
 	
@@ -871,6 +881,16 @@ public class BrachAdminController {
 	public @ResponseBody ProducttransactionreportCustom productCondition(@RequestBody ProducttransactionreportCustom producttransactionreportCustom,HttpServletRequest request){
 		int x = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
 		ProducttransactionreportCustom producttransaction = new ProducttransactionreportCustom();
+		if(producttransactionreportCustom.getStartingTime()==null||producttransactionreportCustom.getEndTime()==null){
+			Date date = new Date();
+			Date start = new Date();
+			Date end = new Date();
+			GetStringByDate calTime = new GetStringByDate();
+			start = calTime.addDate(date, -5);
+			end = calTime.addDate(date, 5);
+			producttransactionreportCustom.setStartingTime(start);
+			producttransactionreportCustom.setEndTime(end);
+		}
 		Branch branch = new Branch();
 		branch = branchService.oneBranch(x);
 		

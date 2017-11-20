@@ -34,19 +34,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="hover"></div>
 			<ul>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getpicture.action">首页</a>
+					<a href="${pageContext.request.contextPath }/edu/getpicture.action">首页</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getonline.action">在线课程</a>
+					<a href="${pageContext.request.contextPath }/edu/getonline.action">在线课程</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getjiangzuo.action">讲座</a>
+					<a href="${pageContext.request.contextPath }/edu/getlecture.action">讲座</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/gethuodong.action">活动</a>
+					<a href="${pageContext.request.contextPath }/edu/getactivity.action">活动</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/gggg/getzhibo.action">直播</a>
+					<a href="${pageContext.request.contextPath }/edu/getLive.action">直播</a>
 				</li>
 				
 				<div class="clear"></div>
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!--这是一个权限，布局，当用户登录后显示-->
 			<ul>
 				<li>
-					<a class="msg" href="${pageContext.request.contextPath }/gggg/queryActivityByUserId.action">
+					<a class="msg" href="${pageContext.request.contextPath }/edu/queryActivityByUserId.action">
 					我的课程
 					</a>
 				</li>
@@ -239,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<p>讲师：<span>arry</span></p>
 								<!--在p标签中加span是方便以后做为动态的时候调用-->
 								<p>容量：<span>${online.registeryfee }</span></p>
-								<a href="${pageContext.request.contextPath }/gggg/getactivityid.action?id=${online.activityid }">查看详情</a>
+								<a href="${pageContext.request.contextPath }/edu/getactivityid.action?id=${online.activityid }">查看详情</a>
 								<!--关于submit在div标签中 待改进的问题-->
 							</div>
 						</div>
@@ -251,18 +251,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>(20门课程)</p>
 					<a href="#">查看更多<span>&gt;&gt;</span></a>
 				</div>
-				<c:forEach items="${jiangzuos}" var="jiangzuo" begin="0" end="13">
+				<c:forEach items="${lectures}" var="lecture" begin="0" end="13">
 						<div class="pro-list">
-						<img src="/upload/${jiangzuo.activitypicture }" width="222" height="145" alt="" />
+						<img src="/upload/${lecture.activitypicture }" width="222" height="145" alt="" />
 							<p>
-								<a href="#">${jiangzuo.activityname }</a>
+								<a href="#">${lecture.activityname }</a>
 							</p>
 							<div class="submit">
-								<p class="sub-title">${jiangzuo.activityname }</p>
+								<p class="sub-title">${lecture.activityname }</p>
 								<p>讲师：<span>arry</span></p>
 								<!--在p标签中加span是方便以后做为动态的时候调用-->
-								<p>容量：<span>${jiangzuo.registeryfee }</span></p>
-								<a href="${pageContext.request.contextPath }/gggg/getactivityid.action?id=${jiangzuo.activityid }">查看详情</a>
+								<p>容量：<span>${lecture.registeryfee }</span></p>
+								<a href="${pageContext.request.contextPath }/edu/getactivityid.action?id=${jiangzuo.activityid }">查看详情</a>
 								<!--关于submit在div标签中 待改进的问题-->
 							</div>
 						</div>
@@ -274,18 +274,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>(20门课程)</p>
 					<a href="#">查看更多<span>&gt;&gt;</span></a>
 				</div>
-				<c:forEach items="${huodongs}" var="huodong" begin="0" end="13">
+				<c:forEach items="${activitys}" var="activity" begin="0" end="13">
 						<div class="pro-list">
-						<img src="/upload/${huodong.activitypicture }" width="222" height="145" alt="" />
+						<img src="/upload/${activity.activitypicture }" width="222" height="145" alt="" />
 							<p>
-								<a href="#">${huodong.activityname }</a>
+								<a href="#">${activity.activityname }</a>
 							</p>
 							<div class="submit">
-								<p class="sub-title">${huodong.activityname }</p>
+								<p class="sub-title">${activity.activityname }</p>
 								<p>讲师：<span>arry</span></p>
 								<!--在p标签中加span是方便以后做为动态的时候调用-->
-								<p>容量：<span>${huodong.registeryfee }</span></p>
-								<a href="${pageContext.request.contextPath }/gggg/getactivityid.action?id=${huodong.activityid }">查看详情</a>
+								<p>容量：<span>${activity.registeryfee }</span></p>
+								<a href="${pageContext.request.contextPath }/edu/getactivityid.action?id=${huodong.activityid }">查看详情</a>
 								<!--关于submit在div标签中 待改进的问题-->
 							</div>
 						</div>
@@ -297,18 +297,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>(20门课程)</p>
 					<a href="#">查看更多<span>&gt;&gt;</span></a>
 				</div>
-				<c:forEach items="${zhibos}" var="zhibo" begin="0" end="13">
+				<c:forEach items="${Lives}" var="Live" begin="0" end="13">
 						<div class="pro-list">
-						<img src="/upload/${zhibo.activitypicture }" width="222" height="145" alt="" />
+						<img src="/upload/${Live.activitypicture }" width="222" height="145" alt="" />
 							<p>
-								<a href="#">${zhibo.activityname }</a>
+								<a href="#">${Live.activityname }</a>
 							</p>
 							<div class="submit">
-								<p class="sub-title">${zhibo.activityname }</p>
+								<p class="sub-title">${Live.activityname }</p>
 								<p>讲师：<span>arry</span></p>
 								<!--在p标签中加span是方便以后做为动态的时候调用-->
-								<p>容量：<span>${zhibo.registeryfee }</span></p>
-								<a href="${pageContext.request.contextPath }/gggg/getactivityid.action?id=${zhibo.activityid }">查看详情</a>
+								<p>容量：<span>${Live.registeryfee }</span></p>
+								<a href="${pageContext.request.contextPath }/edu/getactivityid.action?id=${zhibo.activityid }">查看详情</a>
 								<!--关于submit在div标签中 待改进的问题-->
 							</div>
 						</div>
@@ -371,7 +371,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 				<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -386,7 +386,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t2.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t2.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -401,7 +401,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -416,7 +416,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t1.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t1.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>
@@ -431,7 +431,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dl>
 		<dl>
 			<dt>
-				<img src="image/tz/t2.jpg" width="66" height="66" alt=""/>
+				<img src="${pageContext.request.contextPath }/jsp/edu/image/tz/t2.jpg" width="66" height="66" alt=""/>
 			</dt>
 			<dd>
 				<h4>

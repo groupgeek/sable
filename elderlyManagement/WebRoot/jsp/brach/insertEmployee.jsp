@@ -155,7 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					
 					
-			<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertEmpl.action" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" onsubmit="return check()" action="${pageContext.request.contextPath }/brach/insertEmpl.action" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<div class="control-group">
 							  <label class="control-label" for="typeahead">员工姓名 </label>
@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label" for="typeahead">员工电话</label>
 								<div class="controls">
 								<input type="text" name="phone" class="span6 typeahead" onkeyup="IsPhone()" id="phone">
-								<p id="phoneNo" style="color:gray">格式不对会，添加不成功</p>
+								<p id="phoneNo" style="color:gray"></p>
 								</div>
 					</div>
 					

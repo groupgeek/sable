@@ -50,7 +50,7 @@
 			<ul>
 				<!--li a标签下面的span是最新信息提醒的预留设置,给的固定宽度,最多3个li标签-->
 				<li>
-					<a class="msg" href="${pageContext.request.contextPath }/gggg/queryActivityByUserId.action">
+					<a class="msg" href="${pageContext.request.contextPath }/edu/queryActivityByUserId.action">
 					我的课程
 					</a>
 				</li>
@@ -120,8 +120,8 @@
      </tr>
     </table><!--buyTable/-->
     <div class="goumai">
-     <a href="${pageContext.request.contextPath }/gggg/InsertactivityId.action?activityid=${activity.activityid }" class="buy-mai">报名</a>
-     <a href="${pageContext.request.contextPath }/jsp/edu/video.jsp" class="buy-mai">观看</a>
+     <a href="${pageContext.request.contextPath }/edu/InsertactivityId.action?activityid=${activity.activityid }" class="buy-mai">报名</a>
+     <a href="${pageContext.request.contextPath }/edu/getvideo.action?activityid=${activity.activityid }" class="buy-mai">观看</a>
     </div><!--goumai/-->
    </div><!--buyDtlRight/-->
    <div class="clears"></div>
