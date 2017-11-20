@@ -496,9 +496,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public int updateUser(UserCustom user,MultipartFile file){
-		UserCustom userCustom = new UserCustom();
-		userCustom = userMapper.selectUserByPhone(user.getPhone());
-		String avater = userCustom.getAvatar();
+		String avater = user.getAvatar();
 		String path = "D:\\code\\web\\upload\\";
 		String filename = null;
 		
