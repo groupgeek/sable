@@ -15,8 +15,8 @@
 
 		<link href="${pageContext.request.contextPath }/jsp/mall/css/seastyle.css" rel="stylesheet" type="text/css" />
 
-		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/basic/js/jquery-1.7.min.js"></script> --%>
-		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/basic/js/jquery-1.7.min.js"></script>
+		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script> --%>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/js/script.js"></script>
 	</head>
 
@@ -135,46 +135,28 @@
 								<div class="side-title">
 									经典搭配
 								</div>
-
-								<li>
-									<div class="i-pic check">
-										<img src="${pageContext.request.contextPath }/jsp/mall/images/cp.jpg" />
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>29.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
-								<li>
-									<div class="i-pic check">
-										<img src="${pageContext.request.contextPath }/jsp/mall/images/cp2.jpg" />
-										<p class="check-title">ZEK 原味海苔</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>8.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
-								<li>
-									<div class="i-pic check">
-										<img src="${pageContext.request.contextPath }/jsp/mall/images/cp.jpg" />
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>29.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
+								<c:forEach items="${productCustoms }" var="productCustom">
+									
+									<ul>
+										<li>
+											<div class="i-pic check">
+												<img src="/upload/${productCustom.picture }" />
+												<p class="check-title">${productCustom.productname }</p>
+												<p class="price fl">
+													<b>¥</b>
+													<strong>${productCustom.price }</strong>
+												</p>
+												<p class="number fl">
+													销量<span>${productCustom.buyno }</span>
+												</p>
+											</div>
+										</li>
+									</ul>
+								
+								</c:forEach>
+								
+								
+								
 
 							</div>
 							<div class="clear"></div>

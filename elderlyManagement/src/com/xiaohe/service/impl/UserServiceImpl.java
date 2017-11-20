@@ -402,7 +402,7 @@ public class UserServiceImpl implements UserService {
 		Integer tobeDelivered = 0;
 		Integer tobeReceived = 0;
 		Integer beEvaluated = 0;
-		
+		Integer all = 0;
 		if(user == null) return null;
 		if(user.getUserid() == null) return null;
 		OrdersCustom condition = new OrdersCustom();
@@ -428,7 +428,7 @@ public class UserServiceImpl implements UserService {
 			sum.setTobeDelivered(tobeDelivered);
 			sum.setTobeReceived(tobeReceived);
 			sum.setBeEvaluated(beEvaluated);
-			
+			sum.setAll(pendingPayment + tobeDelivered + tobeReceived + beEvaluated);
 			
 		return sum;
 	}

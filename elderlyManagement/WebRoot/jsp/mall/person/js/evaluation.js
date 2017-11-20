@@ -22,9 +22,9 @@ $(document).ready(function(){
 		//创建列表
 		
 		em.append(
-				'<li class="td td-item">'+
+			'<li class="td td-item">'+
 				'<div class="item-pic">'+
-					'<a href="javascript:;" class="J_MakePoint">'+
+					'<a href="'+root+'/product/productInfo?id='+data.productid+'" class="J_MakePoint">'+
 						'<img src="/upload/'+data.productpicture+'" class="itempic">'+
 					'</a>'+
 				'</div>'+
@@ -34,22 +34,23 @@ $(document).ready(function(){
 				'<div class="item-title">'+
 					'<div class="item-opinion">好评</div>'+
 					'<div class="item-name">'+
-						'<a href="javascript:;">'+
+						'<a href="'+root+'/product/productInfo?id='+data.productid+'">'+
 							'<p class="item-basic-info">'+data.productname+'</p>'+
 						'</a>'+
 					'</div>'+
 				'</div>'+
-				'<div class="item-comment" style="min-height: 120px;">'+data.evaluationcontent+
+				'<div class="item-comment" style="min-height: 120px;">'+data.evaluationcontent+'<p class="info-time" style="color:gray;"><br/>'+data.stringDate+'</p>'+
 				'</div>'+
 				'<div class="item-info">'+
 					'<div>'+
 						'<input type = "hidden" name = "'+data.evaluationid+'">'+
 						'<p class="info-little"><span>1</span> <span>1</span> </p>'+
-						'<p class="info-time">'+data.stringDate+'</p>'+
+						/*'<p class="info-time">'+data.stringDate+'</p>'+*/
 
 					'</div>'+
 				'</div>'+
-			'</li>'
+			 '</li>'
+			
 		);
 		var span = em.find('input[name='+data.evaluationid+']').next().find("span");
 		var evaluationcontent = em.find('input[name='+data.evaluationid+']').parent().parent().prev();
@@ -109,6 +110,8 @@ $(document).ready(function(){
 			
 		}
 	});
+	
+	
 	
 	
 });

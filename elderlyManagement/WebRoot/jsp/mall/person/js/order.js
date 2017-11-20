@@ -281,7 +281,7 @@ $(document).ready(function(){
 			url:root+"/product/productReceipt",
 			data:JSON.stringify(user),
 			success:function(data){
-				if(data.flasg){
+				if(data.flag){
 					$('#message').hide();
 					$('#dialogBg').fadeOut(300,function(){
 						$('#dialog').addClass('bounceOutUp').fadeOut();

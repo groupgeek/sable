@@ -2,6 +2,7 @@ package com.xiaohe.service.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,7 @@ public class OrdersServiceImpl implements OrdersService{
 		//更新数据库
 		info.setOrderstatus("已付款");
 		info.setProductstatus("未发货");
+		info.setPaymenttime(new Date());
 		for(String oid : info.getOrdersid()){
 			if("".equals(oid) || oid == null) continue;
 			info.setOrderid(oid);
