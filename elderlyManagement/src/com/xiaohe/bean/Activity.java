@@ -28,6 +28,10 @@ public class Activity {
 
     private Integer maxnum;
 
+    private Integer principalid;
+
+    private Integer lecturerid;
+
     private String activitydetails;
 
     public Integer getActivityid() {
@@ -124,6 +128,22 @@ public class Activity {
 
     public void setMaxnum(Integer maxnum) {
         this.maxnum = maxnum;
+    }
+
+    public Integer getPrincipalid() {
+        return principalid;
+    }
+
+    public void setPrincipalid(Integer principalid) {
+        this.principalid = principalid;
+    }
+
+    public Integer getLecturerid() {
+        return lecturerid;
+    }
+
+    public void setLecturerid(Integer lecturerid) {
+        this.lecturerid = lecturerid;
     }
 
     public String getActivitydetails() {

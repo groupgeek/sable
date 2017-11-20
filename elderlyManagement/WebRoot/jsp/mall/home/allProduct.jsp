@@ -56,8 +56,8 @@
 						</div>
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash" id = "productSum">
-					<li><a href="#">首页</a></li>
-					<li><a href="#">分类</a></li>
+					<li><a href="${pageContext.request.contextPath }/product/mallIndex">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/product/search">分类</a></li>
 					<li class="am-active">内容</li>
 					<li>共搜素到商品<strong>1</strong>件</li>
 				</ol>
@@ -118,10 +118,10 @@
 									<!--分页 -->
 									<p style="float: right; height: 10px;">当前为第<strong id = "productCurrentPage">1</strong>页</p>
 									<ul class="am-pagination am-pagination-right" id = "ull">
-										<li id = "home"><a href="javascript:;">首页</a></li>
-										<li id = "previousPage"><a href="javascript:;">&laquo;</a></li>
-										<li id = "nextPage"><a href="javascript:;">&raquo;</a></li>
-										<li id = "lastPage"><a href="javascript:;">尾页</a></li>
+										<li value = 0 id = "home"><a href="javascript:;">首页</a></li>
+										<li value = 0 id = "previousPage"><a href="javascript:;">&laquo;</a></li>
+										<li value = 0 id = "nextPage"><a href="javascript:;">&raquo;</a></li>
+										<li value = 0 id = "lastPage"><a href="javascript:;">尾页</a></li>
 									</ul>
 									<div class="clear"></div>
 
@@ -139,7 +139,6 @@
 				</div>
 			</div>
 			<!-- 菜單 -->
-			<c:import url="homeMenu.jsp"></c:import>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/home/js/allProduct.js"></script>
 	</body>

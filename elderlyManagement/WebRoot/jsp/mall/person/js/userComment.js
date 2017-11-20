@@ -20,6 +20,10 @@ $(document).ready(function(){
 			$(".item-info div").first().append('<span>口味：'+data.taste+'</span>');
 			
 			$(".item-info div").find("strong").text(data.price+"元");
+			
+			
+			$("#orderid").attr("value",data.orderid);
+			
 		}
 	});
 	
@@ -28,13 +32,14 @@ $(document).ready(function(){
 	//发表评价
 	$(".info-btn").click(function(){
 		
-		var evaluationcontent = $(".item-comment textarea").attr("value");
-		var evaluationleval = $("#evaluationOption").attr("value");
-		
+		var evaluationcontent = $(".item-comment textarea").val();
+		var evaluationleval = $("#evaluationOption").val();
+		var orderid = $("#orderid").val();
 		var info = new Object();
 		info.evaluationcontent = evaluationcontent;
 		info.evaluationleval = parseInt(evaluationleval);
 		info.evaluationid = evaluationid;
+		info.orderid = orderid;
 		$.ajax({
 			type:"post",
 			contentType:"application/json;charset=utf-8",

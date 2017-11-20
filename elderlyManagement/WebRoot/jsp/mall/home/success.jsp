@@ -42,12 +42,12 @@
 			<h2>您已成功付款</h2>
 			<div class="successInfo">
 				<ul>
-					<li>付款金额<em id = "total">¥9.90</em>
+					<li>付款金额<em id = "total">¥</em>
 					</li>
 					<div class="user-info">
-						<p id = "name">收货人：艾迪</p>
-						<p id = "phone">联系电话：15871145629</p>
-						<p id = "address">收货地址：湖北省 武汉市 武昌区 东湖路75号众环大厦</p>
+						<p id = "name">收货人：</p>
+						<p id = "phone">联系电话：</p>
+						<p id = "address">收货地址：</p>
 					</div>
 					<li>请认真核对您的收货信息，如有错误请联系客服</li>
 

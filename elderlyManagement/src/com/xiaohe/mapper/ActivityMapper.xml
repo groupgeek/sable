@@ -8,19 +8,22 @@
     <result column="onLine" property="online" jdbcType="BIT" />
     <result column="activityPicture" property="activitypicture" jdbcType="VARCHAR" />
     <result column="activityStatus" property="activitystatus" jdbcType="VARCHAR" />
-    <result column="activityDate" property="activitydate" jdbcType="TIMESTAMP" />
+    <result column="activityDate" property="activitydate" jdbcType="DATE" />
     <result column="branchId" property="branchid" jdbcType="INTEGER" />
     <result column="registeryFee" property="registeryfee" jdbcType="DECIMAL" />
     <result column="video" property="video" jdbcType="VARCHAR" />
     <result column="activityPrice" property="activityprice" jdbcType="DECIMAL" />
     <result column="maxNum" property="maxnum" jdbcType="INTEGER" />
+    <result column="principalId" property="principalid" jdbcType="INTEGER" />
+    <result column="lecturerId" property="lecturerid" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Activity" extends="BaseResultMap" >
     <result column="activityDetails" property="activitydetails" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     activityId, activityName, activityTypeID, onLine, activityPicture, activityStatus, 
-    activityDate, branchId, registeryFee, video, activityPrice, maxNum
+    activityDate, branchId, registeryFee, video, activityPrice, maxNum, principalId, 
+    lecturerId
   </sql>
   <sql id="Blob_Column_List" >
     activityDetails
@@ -42,12 +45,14 @@
       onLine, activityPicture, activityStatus, 
       activityDate, branchId, registeryFee, 
       video, activityPrice, maxNum, 
-      activityDetails)
+      principalId, lecturerId, activityDetails
+      )
     values (#{activityid,jdbcType=INTEGER}, #{activityname,jdbcType=VARCHAR}, #{activitytypeid,jdbcType=INTEGER}, 
       #{online,jdbcType=BIT}, #{activitypicture,jdbcType=VARCHAR}, #{activitystatus,jdbcType=VARCHAR}, 
-      #{activitydate,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{registeryfee,jdbcType=DECIMAL}, 
+      #{activitydate,jdbcType=DATE}, #{branchid,jdbcType=INTEGER}, #{registeryfee,jdbcType=DECIMAL}, 
       #{video,jdbcType=VARCHAR}, #{activityprice,jdbcType=DECIMAL}, #{maxnum,jdbcType=INTEGER}, 
-      #{activitydetails,jdbcType=LONGVARCHAR})
+      #{principalid,jdbcType=INTEGER}, #{lecturerid,jdbcType=INTEGER}, #{activitydetails,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Activity" >
     insert into activity
@@ -88,6 +93,12 @@
       <if test="maxnum != null" >
         maxNum,
       </if>
+      <if test="principalid != null" >
+        principalId,
+      </if>
+      <if test="lecturerid != null" >
+        lecturerId,
+      </if>
       <if test="activitydetails != null" >
         activityDetails,
       </if>
@@ -112,7 +123,7 @@
         #{activitystatus,jdbcType=VARCHAR},
       </if>
       <if test="activitydate != null" >
-        #{activitydate,jdbcType=TIMESTAMP},
+        #{activitydate,jdbcType=DATE},
       </if>
       <if test="branchid != null" >
         #{branchid,jdbcType=INTEGER},
@@ -128,6 +139,12 @@
       </if>
       <if test="maxnum != null" >
         #{maxnum,jdbcType=INTEGER},
+      </if>
+      <if test="principalid != null" >
+        #{principalid,jdbcType=INTEGER},
+      </if>
+      <if test="lecturerid != null" >
+        #{lecturerid,jdbcType=INTEGER},
       </if>
       <if test="activitydetails != null" >
         #{activitydetails,jdbcType=LONGVARCHAR},
@@ -153,7 +170,7 @@
         activityStatus = #{activitystatus,jdbcType=VARCHAR},
       </if>
       <if test="activitydate != null" >
-        activityDate = #{activitydate,jdbcType=TIMESTAMP},
+        activityDate = #{activitydate,jdbcType=DATE},
       </if>
       <if test="branchid != null" >
         branchId = #{branchid,jdbcType=INTEGER},
@@ -170,6 +187,12 @@
       <if test="maxnum != null" >
         maxNum = #{maxnum,jdbcType=INTEGER},
       </if>
+      <if test="principalid != null" >
+        principalId = #{principalid,jdbcType=INTEGER},
+      </if>
+      <if test="lecturerid != null" >
+        lecturerId = #{lecturerid,jdbcType=INTEGER},
+      </if>
       <if test="activitydetails != null" >
         activityDetails = #{activitydetails,jdbcType=LONGVARCHAR},
       </if>
@@ -183,12 +206,14 @@
       onLine = #{online,jdbcType=BIT},
       activityPicture = #{activitypicture,jdbcType=VARCHAR},
       activityStatus = #{activitystatus,jdbcType=VARCHAR},
-      activityDate = #{activitydate,jdbcType=TIMESTAMP},
+      activityDate = #{activitydate,jdbcType=DATE},
       branchId = #{branchid,jdbcType=INTEGER},
       registeryFee = #{registeryfee,jdbcType=DECIMAL},
       video = #{video,jdbcType=VARCHAR},
       activityPrice = #{activityprice,jdbcType=DECIMAL},
       maxNum = #{maxnum,jdbcType=INTEGER},
+      principalId = #{principalid,jdbcType=INTEGER},
+      lecturerId = #{lecturerid,jdbcType=INTEGER},
       activityDetails = #{activitydetails,jdbcType=LONGVARCHAR}
     where activityId = #{activityid,jdbcType=INTEGER}
   </update>
@@ -199,12 +224,14 @@
       onLine = #{online,jdbcType=BIT},
       activityPicture = #{activitypicture,jdbcType=VARCHAR},
       activityStatus = #{activitystatus,jdbcType=VARCHAR},
-      activityDate = #{activitydate,jdbcType=TIMESTAMP},
+      activityDate = #{activitydate,jdbcType=DATE},
       branchId = #{branchid,jdbcType=INTEGER},
       registeryFee = #{registeryfee,jdbcType=DECIMAL},
       video = #{video,jdbcType=VARCHAR},
       activityPrice = #{activityprice,jdbcType=DECIMAL},
-      maxNum = #{maxnum,jdbcType=INTEGER}
+      maxNum = #{maxnum,jdbcType=INTEGER},
+      principalId = #{principalid,jdbcType=INTEGER},
+      lecturerId = #{lecturerid,jdbcType=INTEGER}
     where activityId = #{activityid,jdbcType=INTEGER}
   </update>
   
@@ -212,6 +239,7 @@
   
   
   
+   
   <sql id="contidion">
       <if test="activityid != null" >
         AND activityId = #{activityid,jdbcType=INTEGER}
@@ -563,5 +591,4 @@
       <delete id="delectactivityid" parameterType="int"> 
       DELETE FROM activityregistery WHERE activityid=#{0} AND userid=#{1}
       </delete>
-    
 </mapper>

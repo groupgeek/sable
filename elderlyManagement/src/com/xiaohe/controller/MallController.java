@@ -157,16 +157,18 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/search")
-	public String search(Model model,String searchCondition){
-		
+	public String search(Model model,String searchCondition,HttpServletRequest request){
+		User user = getUser(request);
 		/**
 		 * 变量
 		 * 模糊查询商品 blurryProductCustoms
 		 * 产品类型 producttypeCustoms
+		 * 推荐产品productCustoms
 		 * 当前页 currentPage
 		 */
 		List<ProductCustom> blurryProductCustoms = new ArrayList<ProductCustom>();
 		List<ProducttypeCustom> producttypeCustoms = new ArrayList<ProducttypeCustom>();
+		List<ProductCustom> productCustoms = new ArrayList<ProductCustom>();
 		Integer currentPage = 1;
 		
 		
@@ -175,6 +177,7 @@ public class MallController {
 		condition.setSearch(searchCondition);
 		condition.setTotal(1);
 		condition.setCurrentPage(currentPage);
+		condition.setUserid(user.getUserid());
 		int tempSum = productService.queryProductSumByCondition(condition);
 		int sum = tempSum / condition.getTotal();
 		
@@ -190,9 +193,18 @@ public class MallController {
 		producttype.setFatherid(0);
 		producttypeCustoms = productService.queryProductTypeByCondition(producttype);
 		
+		//推荐产品
+		ProductCustom productCustom = new ProductCustom();
+		productCustom.setAreaid(user.getAreaid());
+		//productCustom.setAreaid(1);
+		productCustom.setBegin(0);
+		productCustom.setTotal(3);
+		productCustoms = productService.queryPopularProductByCondition(productCustom);
+		
 		
 		
 		model.addAttribute("blurryProductCustoms", blurryProductCustoms);
+		model.addAttribute("productCustoms", productCustoms);
 		//传递模糊查询参数
 		model.addAttribute("searchCondition", searchCondition);
 		model.addAttribute("producttypeCustoms", producttypeCustoms);
@@ -219,7 +231,9 @@ public class MallController {
 	 * @return json数据 
 	 */
 	@RequestMapping("/queryProduct_json")
-	public @ResponseBody List<ProductCustom> queryProduct_json(@RequestBody ProductCustom condition){
+	public @ResponseBody List<ProductCustom> queryProduct_json(@RequestBody ProductCustom condition , HttpServletRequest request){
+		User user = getUser(request);
+		condition.setUserid(user.getUserid());
 		condition.setTotal(1);
 		List<ProductCustom> products = productService.queryProductByCondition(condition);
 		return products;
@@ -231,7 +245,9 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/queryProductSum_json")
-	public @ResponseBody int  queryProductSum(@RequestBody ProductCustom condition){
+	public @ResponseBody int  queryProductSum(@RequestBody ProductCustom condition , HttpServletRequest request){
+		User user = getUser(request);
+		condition.setUserid(user.getUserid());
 		condition.setTotal(1);
 		int tempSum = productService.queryProductSumByCondition(condition);
 		int sum = tempSum / condition.getTotal();
@@ -884,14 +900,16 @@ public class MallController {
 	
 	
 	/**
-	 * 更新订单(地址，电话 ，名字)
+	 * 提交订单(地址，电话 ，名字)
 	 * @return
 	 */
 	@RequestMapping("/submitOrder")
 	public @ResponseBody ShowMessage submitOrder(@RequestBody OrdersCustom orderInfo,HttpServletRequest request){
+		User user = getUser(request);
 		ShowMessage showMessage = new ShowMessage();
 		String message = null;
-		if(ordersService.submitOrder(orderInfo)){
+		
+		if(ordersService.submitOrder(orderInfo,user)){
 			
 			showMessage.setFlag(true);
 		}else{

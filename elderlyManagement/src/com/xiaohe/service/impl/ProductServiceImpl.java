@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.Branch;
+import com.xiaohe.bean.Evaluation;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
@@ -829,7 +830,23 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		
 		order.setSignstatus("已签收");
 		order.setSubmissiontime(new Date());
+		order.setEvaluationstatus(false);
 		if(ordersMapper.updateByPrimaryKeySelective(order) <= 0) return false;
+		
+		//生成评价表
+		Evaluation record = new Evaluation();
+		record.setUserid(user.getUserid());
+		record.setProductid(order.getProductid());
+		
+		if(order.getTaste() != null) record.setTaste(order.getTaste());
+		if(order.getColour() != null){
+			record.setColour(order.getColour());
+			record.setSize(order.getSize());
+		}
+		
+		record.setOrderid(order.getOrderid());
+		
+		if(evaluationMapper.insertSelective(record) <= 0) return false;
 		
 		return true;
 	}
