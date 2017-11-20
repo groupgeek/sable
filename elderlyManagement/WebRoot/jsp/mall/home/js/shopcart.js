@@ -537,7 +537,8 @@ $(document).ready(function(){
 				url:root+"/product/addOrders",
 				data:JSON.stringify(payArr),
 				success:function(data){
-					
+					//alert(data)
+					if(data != null || data != "")
 					window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
 					
 				}

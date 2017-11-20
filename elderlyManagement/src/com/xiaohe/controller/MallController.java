@@ -583,17 +583,10 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/deleteOrder")
-	public @ResponseBody ShowMessage deleteOrder(@RequestBody String oid,HttpServletRequest request){
+	public @ResponseBody ShowMessage deleteOrder(@RequestBody String oid){
 		
-		User user = getUser(request);
 		ShowMessage showMessage = new ShowMessage();
 		String message = null;
-		if(user == null){
-			message = "未登录";
-			showMessage.setFlag(false);
-			showMessage.setMessage(message);
-			return showMessage;
-		}
 		
 		if(productService.deleteOrderByOid(oid)){
 			message = "删除成功";
@@ -932,5 +925,7 @@ public class MallController {
 		return showMessage;
 		
 	}
+	
+	
 	
 }

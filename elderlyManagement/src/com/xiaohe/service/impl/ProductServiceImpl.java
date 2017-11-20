@@ -53,6 +53,7 @@ import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ShippingAddressService;
 import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
+import com.xiaohe.util.GetStringByDate;
 
 @Repository("productService")
 public class ProductServiceImpl implements ProductService {
@@ -549,6 +550,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			shoppingcarMapper.updateByPrimaryKeySelective(one);
 			//查询购物车
 			car = shoppingcarMapper.selectByPrimaryKey(one.getShoppingcarid());
+			if(car == null) return null;
 			if(car.getUserid() != user.getUserid()) return null;
 			
 			//生成订单
@@ -630,6 +632,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			ordersData = ordersMapper.selectOrdersByOrdersId(id);
 			if(ordersData == null) return null;
 			if(user.getUserid() != ordersData.getUserid()) return null;
+			ordersData.setOrdertimeString(GetStringByDate.getString(ordersData.getOrdertime()));
 			all.add(ordersData);
 		}
 		
@@ -664,6 +667,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 
 	public boolean deleteOrderByOid(String oid) {
 		if(oid == null) return false;
+		oid = oid.substring(1, oid.length()-1);
 		
 		if(ordersMapper.deleteOrdersById(oid) <= 0) return false;
 		

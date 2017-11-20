@@ -37,7 +37,7 @@ $(document).ready(function(){
 						'<div class="order-status1">'+
 							'<div class="order-title">'+
 								'<div class="dd-num">编号：<a href="'+root+'/jsp/mall/person/orderinfo.jsp?ordersid='+data[i].orderid+'" name="'+data[i].orderid+'">'+data[i].orderid+'</a></div>'+
-								'<span>成交时间：'+data[i].ordertimeString+'</span>'+
+								'<span>订单生成时间：'+data[i].ordertimeString+'</span>'+
 								'<!--    <em>店铺：小桔灯</em>-->'+
 							'</div>'+
 							'<div class="order-content">'+
