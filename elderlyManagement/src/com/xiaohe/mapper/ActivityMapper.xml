@@ -543,15 +543,15 @@
      SELECT *FROM activity WHERE activityTypeID='1'
      </select>
      
-     <select id="getjiangzuo" resultType="com.xiaohe.bean.Activity">
+     <select id="getlecture" resultType="com.xiaohe.bean.Activity">
      SELECT *FROM activity WHERE activityTypeID='5'
      </select>
      
-     <select id="gethuodong" resultType="com.xiaohe.bean.Activity">
+     <select id="getactivity" resultType="com.xiaohe.bean.Activity">
      SELECT *FROM activity WHERE activityTypeID='4'
      </select>
      
-     <select id="getzhibo" resultType="com.xiaohe.bean.Activity">
+     <select id="getLive" resultType="com.xiaohe.bean.Activity">
      SELECT *FROM activity WHERE activityTypeID='6'
      </select> 
      <insert id="insertactivityid" parameterType="com.xiaohe.bean.Activity" >

@@ -213,16 +213,16 @@ public interface ActivityMapper {
     /**
      * 查询activitytypeId=5的活动
      */
-    public List<Activity> getjiangzuo();
+    public List<Activity> getlecture();
     
     /**
      * 查询activitytypeId=4的活动
      */
-    public List<Activity> gethuodong();
+    public List<Activity> getactivity();
     /**
      * 查询activitytypeId=6的直播
      */
-    public List<Activity> getzhibo();
+    public List<Activity> getLive();
     /**
      * 获取activvityid
      * 

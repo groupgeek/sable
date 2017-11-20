@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div  style="width: 200;height: 200;margin-left: 600;margin-top: 200;">
    <h2> 报名成功</h2><br>
     <div >
-     <a href="${pageContext.request.contextPath }/gggg/queryActivityByUserId.action">我的课程</a>
-     <a href="${pageContext.request.contextPath }/gggg/getpicture.action">返回首页</a>
+     <a href="${pageContext.request.contextPath }/edu/queryActivityByUserId.action">我的课程</a>
+     <a href="${pageContext.request.contextPath }/edu/getpicture.action">返回首页</a>
     </div>
   </div>
   </body>

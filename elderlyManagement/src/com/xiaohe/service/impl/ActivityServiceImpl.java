@@ -192,15 +192,15 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityMapper.getonline();
 	}
 	
-	public List<Activity> getjiangzuo(){
-		return activityMapper.getjiangzuo();
+	public List<Activity> getlecture(){
+		return activityMapper.getlecture();
     }
 	
-	public List<Activity> gethuodong(){
-		return activityMapper.gethuodong();
+	public List<Activity> getactivity(){
+		return activityMapper.getactivity();
     }
-	public List<Activity> getzhibo(){
-		return activityMapper.getzhibo();
+	public List<Activity> getLive(){
+		return activityMapper.getLive();
     }
 	 public Activity getactivityid(int id){
 		 return activityMapper.getactivityid(id);
