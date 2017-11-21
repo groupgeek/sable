@@ -563,32 +563,30 @@
 		WHERE activityregistery.userId=#{id};
   </select>
      
-     <select id="getpicture" resultType="com.xiaohe.bean.Activity">
-        select *FROM activity
-     </select>
-     
-     <select id="getonline" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='1'
-     </select>
-     
-     <select id="getlecture" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='5'
-     </select>
-     
-     <select id="getactivity" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='4'
-     </select>
-     
-     <select id="getLive" resultType="com.xiaohe.bean.Activity">
-     SELECT *FROM activity WHERE activityTypeID='6'
-     </select> 
-     <insert id="insertactivityid" parameterType="com.xiaohe.bean.Activity" >
-     INSERT INTO activityregistery (activityId,userId) VALUES(#{0},#{1} )
-     </insert>
-      <select id="getactivityid" resultType="com.xiaohe.bean.Activity" parameterType="int">
-     SELECT *FROM activity WHERE activityid=#{id}
-     </select>
-      <delete id="delectactivityid" parameterType="int"> 
-      DELETE FROM activityregistery WHERE activityid=#{0} AND userid=#{1}
-      </delete>
+  <select id="selectActivityByTypeAndUserid" parameterType="ActivityCustom" resultType="ActivityCustom">
+	  SELECT a.* FROM activity a , `user` u ,branch b
+		WHERE u.userId = #{userid}
+		AND b.areaId = u.areaId AND a.branchId = b.branchId 
+		AND a.activityTypeID = #{activitytypeid}
+		
+		<if test="sort != null" >
+		    ORDER BY ${sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+  </select>
+  
+  
+  <select id="selectActivitySumByTypeAndUserid" parameterType="ActivityCustom" resultType="Integer">
+  
+	  	SELECT  COUNT(*) FROM activity a , `user` u ,branch b
+		WHERE u.userId = #{userid}
+		AND b.areaId = u.areaId AND a.branchId = b.branchId 
+		AND a.activityTypeID = #{activitytypeid}
+  
+  </select>
+  
 </mapper>

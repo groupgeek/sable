@@ -32,8 +32,19 @@ public class ActivityCustom extends Activity {
 	private BigDecimal totalReg;   //总报名费（报表）
 	private BigDecimal totalExpend;  //总支出费用（报表）
 	
+	private Integer userid;
+	
 	private Date start;
 	private Date end;
+	
+	
+	
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 	public String getRegistery() {
 		return registery;
 	}

@@ -1,6 +1,7 @@
 package com.xiaohe.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,6 +10,7 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.ActivitytypeCustom;
 
 /**
  * 活动处理
@@ -94,5 +96,24 @@ public interface ActivityService {
 	 */
 	public List<Activity> queryActivityByUserId(int id);
 	
-    
+    /**
+     * 查询教育的所有的小分类
+     * @return
+     */
+	public List<ActivitytypeCustom> queryAllEduType();
+	
+	/**
+	 * 根据用户查询出用户所在地区的有关教育所有类型的活动
+	 * @param userid
+	 * @return Map<ActivitytypeCustom, List<ActivityCustom>>
+	 */
+	public Map<String, List<ActivityCustom>> queryEduRecordByUserid(Integer userid);
+	
+	
+	/**
+	 * 查询教育里面的某一类所有活动
+	 * @param condition
+	 * @return
+	 */
+	public ActivityVo queryEduAllTypeActByCondition(ActivityCustom condition);
 }
