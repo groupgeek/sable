@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.AddShopCartVo;
 import com.xiaohe.bean.Branch;
+import com.xiaohe.bean.Evaluation;
 import com.xiaohe.bean.EvaluationCustom;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
@@ -53,6 +54,7 @@ import com.xiaohe.service.ProductService;
 import com.xiaohe.service.ShippingAddressService;
 import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
+import com.xiaohe.util.GetStringByDate;
 
 @Repository("productService")
 public class ProductServiceImpl implements ProductService {
@@ -549,6 +551,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			shoppingcarMapper.updateByPrimaryKeySelective(one);
 			//查询购物车
 			car = shoppingcarMapper.selectByPrimaryKey(one.getShoppingcarid());
+			if(car == null) return null;
 			if(car.getUserid() != user.getUserid()) return null;
 			
 			//生成订单
@@ -630,6 +633,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 			ordersData = ordersMapper.selectOrdersByOrdersId(id);
 			if(ordersData == null) return null;
 			if(user.getUserid() != ordersData.getUserid()) return null;
+			ordersData.setOrdertimeString(GetStringByDate.getString(ordersData.getOrdertime()));
 			all.add(ordersData);
 		}
 		
@@ -664,6 +668,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 
 	public boolean deleteOrderByOid(String oid) {
 		if(oid == null) return false;
+		oid = oid.substring(1, oid.length()-1);
 		
 		if(ordersMapper.deleteOrdersById(oid) <= 0) return false;
 		
@@ -825,7 +830,23 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		
 		order.setSignstatus("已签收");
 		order.setSubmissiontime(new Date());
+		order.setEvaluationstatus(false);
 		if(ordersMapper.updateByPrimaryKeySelective(order) <= 0) return false;
+		
+		//生成评价表
+		Evaluation record = new Evaluation();
+		record.setUserid(user.getUserid());
+		record.setProductid(order.getProductid());
+		
+		if(order.getTaste() != null) record.setTaste(order.getTaste());
+		if(order.getColour() != null){
+			record.setColour(order.getColour());
+			record.setSize(order.getSize());
+		}
+		
+		record.setOrderid(order.getOrderid());
+		
+		if(evaluationMapper.insertSelective(record) <= 0) return false;
 		
 		return true;
 	}

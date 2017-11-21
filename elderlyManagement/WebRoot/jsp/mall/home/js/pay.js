@@ -158,7 +158,7 @@ $(document).ready(function(){
 					url:root+"/product/deleteOrder",
 					data:JSON.stringify(oid),
 					success:function(data){
-						alert(data.flag)
+						//alert(data.flag)
 						if(data.flag){
 							father.remove();
 							for(var i in orderid){
@@ -254,7 +254,7 @@ $(document).ready(function(){
 			data:JSON.stringify(orderInfo),
 			success:function(data){
 				if(data.flag){
-					window.location.href = root+"/jsp/mall/home/success.jsp"+orderid;
+					window.location.href = root+"/jsp/mall/home/success.jsp?orderid="+orderid;
 				}
 			}
 		});

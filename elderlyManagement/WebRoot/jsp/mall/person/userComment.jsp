@@ -92,7 +92,8 @@
 									</ul>
 								</div>
 							</div>
-								<input type="hidden" id = evaluationOption value="">
+								<input type="hidden" id = "evaluationOption" value="">
+								<input type="hidden" id = "orderid" value="">
 								<div class="info-btn">
 									<div class="am-btn am-btn-danger">发表评论</div>
 								</div>							

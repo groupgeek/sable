@@ -42,4 +42,17 @@ public interface TransactionMapper {
      */
     TransactionCustom selectRecordById(Integer id);
     
+    /**
+     * 跟新用户交易表 根据userid
+     * @param record
+     * @return
+     */
+    Integer updateRecordByUserId(TransactionCustom record);
+    
+    /**
+     * 根据用户id查询心记录
+     * @param userid
+     * @return
+     */
+    TransactionCustom selectTransactionByUserId(Integer userid);
 }

@@ -459,6 +459,7 @@
 	  	  <include refid="ordersCondition"/>
   	  </where>
   	  AND product.productId = orders.productId
+  	  ORDER BY orderTime DESC
   	 
   </select>
   

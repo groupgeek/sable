@@ -94,6 +94,7 @@ $(document)
 									"em").text(data.tobeReceived);
 							$("#orderMenu").find("a[name=beEvaluated]").find(
 									"em").text(data.beEvaluated);
+							$("#orderMenu").find("a[name=all]").find("em").text(data.all);
 						}
 
 					});
@@ -250,7 +251,7 @@ $(document)
 							url:root+"/product/productReceipt",
 							data:JSON.stringify(user),
 							success:function(data){
-								if(data.flasg){
+								if(data.flag){
 									$('#message').hide();
 									$('#dialogBg').fadeOut(300,function(){
 										$('#dialog').addClass('bounceOutUp').fadeOut();

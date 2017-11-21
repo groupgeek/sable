@@ -184,33 +184,5 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityMapper.queryActivityByUserId(id);
 	}
 	
-	public List<Activity> getpicture(){
-		return activityMapper.getpicture();
-	}
-	
-	public List<Activity> getonline(){
-		return activityMapper.getonline();
-	}
-	
-	public List<Activity> getlecture(){
-		return activityMapper.getlecture();
-    }
-	
-	public List<Activity> getactivity(){
-		return activityMapper.getactivity();
-    }
-	public List<Activity> getLive(){
-		return activityMapper.getLive();
-    }
-	 public Activity getactivityid(int id){
-		 return activityMapper.getactivityid(id);
-	 }
     
-	 public void insertactivityid(int activityid,int userid ){
-		 activityMapper.insertactivityid(activityid,userid);
-	 }
-	 
-	 public void delectactivityid(int activityid,int userid ){
-		 activityMapper.delectactivityid(activityid,userid);
-	 }
 }
