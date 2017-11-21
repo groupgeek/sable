@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.LecturerMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Lecturer" >
+    <id column="lecturerId" property="lecturerid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="work" property="work" jdbcType="VARCHAR" />
+    <result column="attention" property="attention" jdbcType="INTEGER" />
+    <result column="like" property="like" jdbcType="INTEGER" />
+    <result column="avater" property="avater" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    lecturerId, name, work, attention, like, avater
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lecturer
+    where lecturerId = #{lecturerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lecturer
+    where lecturerId = #{lecturerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Lecturer" >
+    insert into lecturer (lecturerId, name, work, 
+      attention, like, avater
+      )
+    values (#{lecturerid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{work,jdbcType=VARCHAR}, 
+      #{attention,jdbcType=INTEGER}, #{like,jdbcType=INTEGER}, #{avater,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Lecturer" >
+    insert into lecturer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lecturerid != null" >
+        lecturerId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="work != null" >
+        work,
+      </if>
+      <if test="attention != null" >
+        attention,
+      </if>
+      <if test="like != null" >
+        like,
+      </if>
+      <if test="avater != null" >
+        avater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lecturerid != null" >
+        #{lecturerid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="work != null" >
+        #{work,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=INTEGER},
+      </if>
+      <if test="like != null" >
+        #{like,jdbcType=INTEGER},
+      </if>
+      <if test="avater != null" >
+        #{avater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Lecturer" >
+    update lecturer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="work != null" >
+        work = #{work,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        attention = #{attention,jdbcType=INTEGER},
+      </if>
+      <if test="like != null" >
+        like = #{like,jdbcType=INTEGER},
+      </if>
+      <if test="avater != null" >
+        avater = #{avater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lecturerId = #{lecturerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Lecturer" >
+    update lecturer
+    set name = #{name,jdbcType=VARCHAR},
+      work = #{work,jdbcType=VARCHAR},
+      attention = #{attention,jdbcType=INTEGER},
+      like = #{like,jdbcType=INTEGER},
+      avater = #{avater,jdbcType=VARCHAR}
+    where lecturerId = #{lecturerid,jdbcType=INTEGER}
+  </update>
+</mapper>

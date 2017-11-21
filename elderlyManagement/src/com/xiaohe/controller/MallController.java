@@ -900,14 +900,16 @@ public class MallController {
 	
 	
 	/**
-	 * 更新订单(地址，电话 ，名字)
+	 * 提交订单(地址，电话 ，名字)
 	 * @return
 	 */
 	@RequestMapping("/submitOrder")
 	public @ResponseBody ShowMessage submitOrder(@RequestBody OrdersCustom orderInfo,HttpServletRequest request){
+		User user = getUser(request);
 		ShowMessage showMessage = new ShowMessage();
 		String message = null;
-		if(ordersService.submitOrder(orderInfo)){
+		
+		if(ordersService.submitOrder(orderInfo,user)){
 			
 			showMessage.setFlag(true);
 		}else{
