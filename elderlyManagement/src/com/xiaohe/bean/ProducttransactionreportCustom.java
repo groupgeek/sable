@@ -35,7 +35,25 @@ public class ProducttransactionreportCustom extends Producttransactionreport {
 	
 	private BigDecimal totalSail; //总销售额
 	private BigDecimal oneSail;   //单个商品销售额
+	public BigDecimal[] getCountBuy() {
+		return countBuy;
+	}
+
+	public void setCountBuy(BigDecimal[] countBuy) {
+		this.countBuy = countBuy;
+	}
+
+	private BigDecimal []countBuy;  //销售额数组
+	private BigDecimal []countSail; //第二个销售额数组
 	
+	public BigDecimal[] getCountSail() {
+		return countSail;
+	}
+
+	public void setCountSail(BigDecimal[] countSail) {
+		this.countSail = countSail;
+	}
+
 	public BigDecimal getTotalSail() {
 		return totalSail;
 	}

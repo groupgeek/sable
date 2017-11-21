@@ -56,4 +56,6 @@ public interface ActivityrecommendMapper {
      * @return
      */
     int countActRec(Integer emid);
+    
+    
 }

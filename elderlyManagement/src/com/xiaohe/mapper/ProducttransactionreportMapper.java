@@ -102,4 +102,20 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     ProducttransactionreportCustom BranchOneProductTransation(ProducttransactionreportCustom producttransactionreportCustom);
+    
+    /**
+     * 分店管理员主页用的销售情况
+     * @param producttransactionreportCustom
+     * @return
+     */
+    ProducttransactionreportCustom oneDayAllSail(ProducttransactionreportCustom producttransactionreportCustom);
+    
+    
+    /**
+     * 分店管理员主页用的销售情况
+     * @param producttransactionreportCustom
+     * @return
+     */
+    ProducttransactionreportCustom onedayAllAct(ProducttransactionreportCustom producttransactionreportCustom);
+    
 }
