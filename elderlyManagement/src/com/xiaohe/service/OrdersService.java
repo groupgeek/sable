@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Orders;
 import com.xiaohe.bean.OrdersCustom;
+import com.xiaohe.bean.User;
 @Transactional
 public interface OrdersService {
 	/**
@@ -37,6 +38,6 @@ public interface OrdersService {
 	 * @param info
 	 * @return
 	 */
-	boolean submitOrder(OrdersCustom info);
+	boolean submitOrder(OrdersCustom info,User user);
 	
 }

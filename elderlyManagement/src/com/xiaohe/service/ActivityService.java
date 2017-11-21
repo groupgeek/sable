@@ -93,40 +93,6 @@ public interface ActivityService {
 	 * @return
 	 */
 	public List<Activity> queryActivityByUserId(int id);
-	/**
-	 * 查询所有活动
-	 * @return
-	 */
-	public List<Activity> getpicture();
-	 /**
-     * 查询activitytypeId=1的活动
-     */
-    public List<Activity> getonline();
-    /**
-     * 查询activitytypeId=5的活动
-     */
-    public List<Activity> getlecture();
-    
-    /**
-     * 查询activitytypeId=4的活动
-     */
-    public List<Activity> getactivity();
-    /**
-     * 查询activitytypeId=6的直播
-     */
-    public List<Activity> getLive();
-    /**
-     * 
-     */
-    public Activity getactivityid(int id );
-    /**
-     * 
-     * 
-     */
-    public void insertactivityid(int activityid,int userid );
-    /**
-     * 
-     */
-    public void delectactivityid(int activityid,int userid );
+	
     
 }

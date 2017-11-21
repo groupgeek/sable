@@ -5,6 +5,15 @@ public class OrdersCountVo {
 	private Integer tobeDelivered;
 	private Integer tobeReceived;
 	private Integer beEvaluated;
+	private Integer all;
+	
+	
+	public Integer getAll() {
+		return all;
+	}
+	public void setAll(Integer all) {
+		this.all = all;
+	}
 	public Integer getPendingPayment() {
 		return pendingPayment;
 	}

@@ -14,7 +14,8 @@
 		<link href="${pageContext.request.contextPath }/jsp/mall/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" href="${pageContext.request.contextPath }/jsp/mall/css/optstyle.css" rel="stylesheet" />
 		<link type="text/css" href="${pageContext.request.contextPath }/jsp/mall/css/style.css" rel="stylesheet" />
-
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/jsp/mall/css/showBo.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/home/js/showBo.js"></script>
 
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 		<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/basic/js/jquery-1.7.min.js"></script> --%>
@@ -681,6 +682,8 @@
 			</div>
 			<!-- 菜單 -->
 			<!-- <c:import url="homeMenu.jsp"></c:import> -->
+
+
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/home/js/introduction.js"></script>

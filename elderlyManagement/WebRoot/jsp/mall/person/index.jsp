@@ -121,11 +121,12 @@
 									<a class="i-load-more-item-shadow" href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "allOrders">全部订单</a>
 								</div>
 								<ul id = "orderMenu">
+									<!-- <li><a href="change.html"><i><img src="../images/refund.png"/></i><span>所有订单</span></a></li> -->
+									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "all"><i><img src="../images/refund.png"/></i><span>所有订单<em class="m-num"></em></span></a></li>
 									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "pendingPayment"><i><img src="../images/pay.png"/></i><span>待付款<em class="m-num"></em></span></a></li>
 									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "tobeDelivered"><i><img src="../images/send.png"/></i><span>待发货<em class="m-num"></em></span></a></li>
 									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "tobeReceived"><i><img src="../images/receive.png"/></i><span>待收货<em class="m-num"></em></span></a></li>
 									<li><a href="${pageContext.request.contextPath }/jsp/mall/person/order.jsp" name = "beEvaluated"><i><img src="../images/comment.png"/></i><span>待评价<em class="m-num"></em></span></a></li>
-									<li><a href="change.html"><i><img src="../images/refund.png"/></i><span>退换货</span></a></li>
 								</ul>
 							</div>
 							<!--九宫格-->
