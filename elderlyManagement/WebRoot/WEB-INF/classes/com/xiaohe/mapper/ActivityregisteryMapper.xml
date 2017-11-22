@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ActivityregisteryMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Activityregistery" >
+    <id column="activityId" property="activityid" jdbcType="INTEGER" />
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="registery" property="registery" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    activityId, userId, registery
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.xiaohe.bean.ActivityregisteryKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from activityregistery
+    where activityId = #{activityid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.xiaohe.bean.ActivityregisteryKey" >
+    delete from activityregistery
+    where activityId = #{activityid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Activityregistery" >
+    insert into activityregistery (activityId, userId, registery
+      )
+    values (#{activityid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{registery,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Activityregistery" >
+    insert into activityregistery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityid != null" >
+        activityId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="registery != null" >
+        registery,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityid != null" >
+        #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="registery != null" >
+        #{registery,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Activityregistery" >
+    update activityregistery
+    <set >
+      <if test="registery != null" >
+        registery = #{registery,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activityId = #{activityid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Activityregistery" >
+    update activityregistery
+    set registery = #{registery,jdbcType=VARCHAR}
+    where activityId = #{activityid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </update>
+<!--   //用户活动查询 -->
+  <select id="selectUserActivityregistery" parameterType="com.xiaohe.bean.Activityregistery" resultType="com.xiaohe.bean.Activityregistery">
+  SELECT * FROM activityregistery WHERE userId=#{userid} and activityId=#{activityid}
+  </select>
+</mapper>

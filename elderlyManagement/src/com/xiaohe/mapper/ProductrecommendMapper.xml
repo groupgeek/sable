@@ -122,4 +122,16 @@
 		where p.productId = a.productId
 		and a.branchId = #{branchid,jdbcType=INTEGER}
       </select>
+      
+      <!--   用户分店信息 -->
+  <select id="quertyuserProduct" parameterType="String" resultType="UserCustom">
+SELECT * FROM `user` u,branch b WHERE b.areaId=u.areaId AND u.phone=#{phone}
+  </select>
+   <select id="sumRecommendProduct" parameterType="integer" resultType="integer">
+  	select COUNT(*) from productrecommend   WHERE productShow=1 and  branchId=#{branchId} GROUP BY branchId
+  </select>
+  
+  <select id="quertyRecommendingProduct" parameterType="integer" resultType="ProductCustom" >
+  select * from productrecommend pr,product p   WHERE  pr.productId=p.productId AND and prodcutShow=1 p.branchId=#{branchId}
+  </select>
 </mapper>

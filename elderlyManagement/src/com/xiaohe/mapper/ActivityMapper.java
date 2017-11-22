@@ -221,5 +221,11 @@ public interface ActivityMapper {
      * @return
      */
     Integer selectActivitySumByTypeAndUserid(ActivityCustom condition);
+    /**
+     * 		地区活动查询
+     * @param phone
+     * @return
+     */
+    List<ActivityCustom> quertyActivityArea(String phone);   
     
 }
