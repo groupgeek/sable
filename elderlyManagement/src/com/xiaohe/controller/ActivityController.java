@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,5 +76,19 @@ public class ActivityController {
 		return vo;
 	}
 	
+	@RequestMapping(value="/actInfo")
+	public String actInfo(Integer id,Model model){
+		id = 1;
+		ActivityCustom act = new ActivityCustom();
+		act = activityService.oneAct(id);
+		int a = activityService.countPeople(id);
+		model.addAttribute("act", act);
+		model.addAttribute("a", a);
+		return "edu/actInfo";
+	}
 	
+	@RequestMapping(value="/regAct")   //活动报名
+	public String insertAct(){
+		return "";
+	}
 }

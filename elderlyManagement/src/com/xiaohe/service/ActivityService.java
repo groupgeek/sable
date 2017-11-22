@@ -116,4 +116,18 @@ public interface ActivityService {
 	 * @return
 	 */
 	public ActivityVo queryEduAllTypeActByCondition(ActivityCustom condition);
+	
+	/**
+	 * 根据活动id查询到单个活动
+	 * @param id
+	 * @return
+	 */
+	public ActivityCustom oneAct(Integer id);
+	
+	/**
+	 * 根据活动id查询活动总人数
+	 * @param id
+	 * @return
+	 */
+	public Integer countPeople(Integer id);
 }

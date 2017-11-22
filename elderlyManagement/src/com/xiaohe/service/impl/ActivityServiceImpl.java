@@ -266,6 +266,16 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		return activityVo;
 	}
+
+	public ActivityCustom oneAct(Integer id) {
+		// TODO Auto-generated method stub
+		return activityMapper.oneActivityCustom(id);
+	}
+
+	public Integer countPeople(Integer id) {
+		// TODO Auto-generated method stub
+		return activityMapper.countActUsers(id);
+	}
 	
     
 }

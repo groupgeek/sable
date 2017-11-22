@@ -8,6 +8,7 @@
 </head>
 <body>
 <input type = "hidden" id = "root" value = "${pageContext.request.contextPath }">
+<c:import url="/jsp/util/animeMove.jsp"></c:import>
 <nav id="top">
 		<div class="container">
 			<div class="row">
@@ -19,7 +20,7 @@
 				<div class="col-xs-6">
 					<ul class="top-link">
 						<li><a href="${pageContext.request.contextPath }/user/oneUser"><span class="glyphicon glyphicon-user"></span> 个人中心</a></li>
-						<li><a href="javascript:;"><span class="glyphicon glyphicon-envelope"></span> 安全退出</a></li>
+						<li><a href="${pageContext.request.contextPath }/user/logout"><span class="glyphicon glyphicon-envelope"></span> 安全退出</a></li>
 					</ul>
 				</div>
 			</div>
