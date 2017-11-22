@@ -2,7 +2,9 @@ package com.xiaohe.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +15,9 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.mapper.ActivityMapper;
+import com.xiaohe.mapper.ActivitytypeMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetStringByDate;
@@ -24,6 +28,10 @@ public class ActivityServiceImpl implements ActivityService {
 	@Autowired
 	@Qualifier("activityMapper")
 	private ActivityMapper activityMapper;
+	
+	@Autowired
+	@Qualifier("activitytypeMapper")
+	private ActivitytypeMapper activitytypeMapper;
 	
 	/**
 	 * 给Introduction字段赋值 (活动描述里面的值的一部分)
@@ -182,6 +190,81 @@ public class ActivityServiceImpl implements ActivityService {
 
 	public List<Activity> queryActivityByUserId(int id) {
 		return activityMapper.queryActivityByUserId(id);
+	}
+
+	public List<ActivitytypeCustom> queryAllEduType() {
+		
+		List<ActivitytypeCustom> allType = new ArrayList<ActivitytypeCustom>();
+		
+		allType = activitytypeMapper.selectAllEduType();
+		
+		return allType;
+	}
+
+	public Map<String, List<ActivityCustom>> queryEduRecordByUserid(
+			Integer userid) {
+		if(userid == null) return null;
+		
+		Map<String, List<ActivityCustom>> all = new HashMap<String, List<ActivityCustom>>();
+		List<ActivitytypeCustom> allType = new ArrayList<ActivitytypeCustom>();
+		List<ActivityCustom> allAct = new ArrayList<ActivityCustom>();
+		ActivityCustom condition = new ActivityCustom();
+		condition.setUserid(userid);
+		condition.setPageNum(3);
+		condition.setBegin(0);
+		//查询所有分类
+		allType = activitytypeMapper.selectAllEduType();
+		
+		if(allType == null) return null;
+		
+		for(ActivitytypeCustom record : allType){
+			condition.setActivitytypeid(record.getActivitytypeid());
+			allAct = activityMapper.selectActivityByTypeAndUserid(condition);
+			
+			all.put(record.getActivitytypename(), allAct);
+		}
+		
+		
+		return all;
+	}
+
+	public ActivityVo queryEduAllTypeActByCondition(ActivityCustom condition) {
+		if(condition == null) return null;
+		if(condition.getCurrentPage() == null) return null;
+		
+		condition.setPageNum(1);///////////////////////////////////
+		
+		ActivityVo activityVo = new ActivityVo();
+		List<ActivityCustom> allActivity = new ArrayList<ActivityCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		
+		
+		if(condition.getCurrentPage() >= 1){
+			Integer tempBegin = (condition.getCurrentPage()-1) * condition.getPageNum();
+			condition.setBegin(tempBegin);
+		}else{
+			condition.setBegin(0);
+		}
+			
+		
+		allActivity = activityMapper.selectActivityByTypeAndUserid(condition);
+		for(ActivityCustom activityCustom : allActivity){
+			activityCustom.setActivitydateString(GetStringByDate.getString(activityCustom.getActivitydate()));
+		}
+		sum = activityMapper.selectActivitySumByTypeAndUserid(condition);
+		pageSum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageSum += 1;
+		}
+		
+		activityVo.setActivityList(allActivity);
+		activityVo.setActivitySum(sum);
+		activityVo.setPageSum(pageSum);
+		
+		
+		
+		return activityVo;
 	}
 	
     
