@@ -21,7 +21,7 @@ import com.xiaohe.util.sms.entity.ReceNoticeResp;
  * @Description: 短信回执推送
  *
  */
-@WebServlet("/xxxx")
+/*@WebServlet("/xxxx")*/
 public class ReceNotice extends HttpServlet
 {
 

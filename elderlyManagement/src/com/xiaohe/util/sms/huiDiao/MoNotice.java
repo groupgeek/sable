@@ -21,7 +21,7 @@ import com.xiaohe.util.sms.entity.MoNoticeResp;
  * @Description: 上行短信接口
  *
  */
-@WebServlet("/xxxx")
+/*@WebServlet("/xxxx")*/
 public class MoNotice extends HttpServlet
 {
 	private static final long serialVersionUID = -2119868200097964820L;

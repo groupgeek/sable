@@ -20,12 +20,12 @@ public class FileUpload {
 	private static String objectkey  = "";
 	
 	public static String oneFileUpload(MultipartFile newFile,String oldFile,String type) throws IllegalStateException, IOException{
-		OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
 		
 		
 				if(newFile.isEmpty()){
 					return null;
 				}
+				OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
 				//开始上传文件的处理
 				//原始文件名称
 				String file_name =  newFile.getOriginalFilename();
@@ -43,13 +43,13 @@ public class FileUpload {
 				ossClient.putObject(bucketName, objectkey , newFile.getInputStream());
 				
 				//开始删除原来文件的处理
-				if(oldFile == null){
+				if(oldFile == null || "".equals(oldFile)){
+					ossClient.shutdown();
 					return objectkey;
 				}
 				//删除
-				System.out.println(oldFile);
 				ossClient.deleteObject(bucketName, oldFile);
-				
+				ossClient.shutdown();
 				return objectkey;
 	}
 	
