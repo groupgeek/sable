@@ -15,4 +15,10 @@ public interface ActivityregisteryMapper {
     int updateByPrimaryKeySelective(Activityregistery record);
 
     int updateByPrimaryKey(Activityregistery record);
+    /**
+     * 	用户活动查询
+     * @param activityregistery
+     * @return
+     */
+    Activityregistery  selectUserActivityregistery(Activityregistery activityregistery);
 }

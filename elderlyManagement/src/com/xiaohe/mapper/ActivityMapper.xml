@@ -588,5 +588,9 @@
 		AND a.activityTypeID = #{activitytypeid}
   
   </select>
+  <!--   健康管理首页信息活动 -->
+<select id="quertyActivityArea" parameterType="String" resultType="ActivityCustom">
+SELECT a.*,u.userName ,u.avatar FROM activity a,branch b, `user` u WHERE a.branchId=b.branchId AND b.areaId=u.areaId AND u.phone=#{phone}
+</select>
   
 </mapper>

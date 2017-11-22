@@ -55,7 +55,7 @@ public class ProductManageServiceImpl implements ProductManageService {
 	}
 
 public EmployeeCustom productManageAdminsLogin(EmployeeCustom employeeCustom)throws Exception {
-		EmployeeCustom admin = productMapper.selectAdminCustom(employeeCustom.getEmployeeid());
+		EmployeeCustom admin = productMapper.selectAdminCustom(employeeCustom.getAccountnumber());
 		if(admin == null){
 			
 			return null;

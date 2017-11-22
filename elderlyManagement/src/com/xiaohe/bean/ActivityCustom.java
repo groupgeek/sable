@@ -16,8 +16,22 @@ public class ActivityCustom extends Activity {
 	private String websitetype;
 	private Integer countUsers;
 	private String branchname;
+	private String username;
+	private String avatar;
 	
 
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	private Integer currentPage;
 	private Integer pageNum;//每一页的数量
 	private String sort;

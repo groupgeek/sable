@@ -432,9 +432,10 @@
 	
 <!-- 	管理员信息查询       -->
  
-  <select id="selectAdminCustom" parameterType="Integer" resultType="EmployeeCustom">
+  <select id="selectAdminCustom" parameterType="String" resultType="EmployeeCustom">
 <!--  SELECT * FROM employee,branch WHERE employee.employeeId = branch.employeeId AND employee.employeeId=#{employeeid} -->
- SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.employeeId=#{employeeid}
+<!--  SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.employeeId=#{employeeid} -->
+SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.accountNumber=#{accountNumber}
  </select>
 		
 <select id="selectProductByCondition" parameterType="productCustom" resultType="productCustom">

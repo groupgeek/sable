@@ -105,7 +105,7 @@ with (thisform)
 					<h2>登录</h2>
 					<div class="form-group">
 						<label for="employeeid" class="sr-only" >员工账号</label> <input
-							type="text" class="form-control" id="id" name="id" digits=true  maxlength = 10
+							type="text" class="form-control" id="id" name="id" digits=true  
 							placeholder="员工账号" autocomplete="off" required>
 					</div>
 					<div class="form-group">
