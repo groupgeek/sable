@@ -57,9 +57,13 @@ $(document).ready(function(){
 	});
 	
 	
-	//分页事件
+	//分页事件active
 	$("#pageUl li").click(function(){
-		
+		$("#previousPage").removeClass("active");
+		$("#nextPage").removeClass("active");
+		$("#home").removeClass("active");
+		$("#lastPage").removeClass("active");
+		$(this).addClass("active");
 		if("previousPage" == $(this).attr("id")){
 			if(currentPage > 1){
 				$(this).attr("value",currentPage-1);

@@ -58,23 +58,8 @@
 						<div class="col-md-12">
 							<div class="products">
 								
+								<!-- 数据 -->
 								
-								
-								<div class="col-lg-4 col-md-4 col-xs-12">
-									<div class="product">
-										<div class="image"><a href="product.html"><img src="images/galaxy-note.jpg" /></a></div>
-										<div class="buttons">
-											<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-											<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
-											<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
-										</div>
-										<div class="caption">
-											<div class="name"><h3><a href="product.html">Aliquam erat volutpat</a></h3></div>
-											<div class="price">$122<span>$98</span></div>
-											<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>
-										</div>
-									</div>
-								</div>
 								
 								
 							</div>
