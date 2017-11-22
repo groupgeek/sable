@@ -30,12 +30,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	   <img  id = "elementId" src="${pageContext.request.contextPath }/jsp/picture/1.jpg">
 	  	   
 
-  <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
-   <input type="file" name="file" multiple>
+  <form action="${pageContext.request.contextPath }/upload" method="post" enctype="multipart/form-data">
+   <input type="file" name="file" id = "heihei"onchange="h()" multiple>
   <input type="submit" value="提交">
   
   </form>
+  <span id = "haha">s</span>
+  <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
   
+  <script type="text/javascript">
+  	function h(){
+  		$("#haha").text($("#heihei").val());
+  	}
   
+  </script>
   </body>
 </html>

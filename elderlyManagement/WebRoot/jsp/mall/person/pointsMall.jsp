@@ -57,10 +57,10 @@
 						</div>
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash" id = "productSum">
-					<li><a href="#">首页</a></li>
-					<li><a href="#">个人中心</a></li>
-					<li><a href="#">积分商城</a></li>
-					<li class="am-active">内容</li>
+					<li><a href="${pageContext.request.contextPath }/product/mallIndex">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/jsp/mall/person/index.jsp">个人中心</a></li>
+					<li><a href="${pageContext.request.contextPath }/jsp/mall/person/pointsMall.jsp">积分商城</a></li>
+					<li class="am-active">商品</li>
 					<li>共搜素到商品<strong>1</strong>件</li>
 				</ol>
 				<script type="text/javascript">

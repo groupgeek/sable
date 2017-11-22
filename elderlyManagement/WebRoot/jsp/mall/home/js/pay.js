@@ -29,7 +29,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" class="J_MakePoint">'+
-											'<img src="/upload/'+data[i].picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].picture+'" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+

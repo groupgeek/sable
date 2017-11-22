@@ -114,7 +114,7 @@
 										<li>
 										<a href = "${pageContext.request.contextPath }/product/productInfo?id=${blurryProductCustom.productid}">
 											<div class="i-pic limit">
-												<img src="/upload/${blurryProductCustom.picture }" />											
+												<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${blurryProductCustom.picture }" />											
 												<p class="title fl">${blurryProductCustom.productname }</p>
 												<p class="price fl">
 													<b>¥</b>
@@ -140,7 +140,7 @@
 									<ul>
 										<li>
 											<div class="i-pic check">
-												<img src="/upload/${productCustom.picture }" />
+												<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productCustom.picture }" />
 												<p class="check-title">${productCustom.productname }</p>
 												<p class="price fl">
 													<b>¥</b>
@@ -329,7 +329,7 @@
 						        					'<li>'+
 						        						'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
 															'<div class="i-pic limit">'+
-																'<img src="/upload/'+data[i].picture+'" />'+
+																'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].picture+'" />'+
 																'<p class="title fl">'+data[i].productname+'</p>'+
 																'<p class="price fl">'+
 																	'<b>¥</b>'+
@@ -446,7 +446,7 @@
 						        					'<li>'+
 					        							'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
 															'<div class="i-pic limit">'+
-																'<img src="/upload/'+data[i].picture+'" />'+
+																'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].picture+'" />'+
 																'<p class="title fl">'+data[i].productname+'</p>'+
 																'<p class="price fl">'+
 																	'<b>¥</b>'+
@@ -564,7 +564,7 @@
 						        					'<li>'+
 					        							'<a href = "${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'">'+	
 															'<div class="i-pic limit">'+
-																'<img src="/upload/'+data[i].picture+'" />'+
+																'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].picture+'" />'+
 																'<p class="title fl">'+data[i].productname+'</p>'+
 																'<p class="price fl">'+
 																	'<b>¥</b>'+

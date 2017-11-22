@@ -47,6 +47,7 @@ import com.xiaohe.bean.ShowMessage;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.TransactionVo;
 import com.xiaohe.bean.UpdateActivityVo;
+import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
 import com.xiaohe.mapper.UserMapper;
@@ -239,7 +240,8 @@ public class superAdminController {
 	 * @return
 	 */
 	@RequestMapping("/updateUserInfo")
-	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload,Model model){
+	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload,Model model,HttpServletRequest request){
+		
 		String message = null;
 		if(userService.UpdateUserInfoByUser(userInfo,pictureUpload)){
 			message = "修改成功";

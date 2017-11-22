@@ -31,7 +31,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="/upload/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -96,7 +96,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="/upload/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -162,7 +162,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="/upload/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+

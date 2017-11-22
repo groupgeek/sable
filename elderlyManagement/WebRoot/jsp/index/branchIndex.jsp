@@ -170,7 +170,7 @@
 	                                <p>${product.description }.</p>
 	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button green">详细</a>
 	                            </div>
-	                            <img class="img-responsive"  src="/upload/${product.picture }" alt="" style="min-height: 350px; max-height: 350px;"/>
+	                            <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="min-height: 350px; max-height: 350px;"/>
 	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
 	                        </li>
 	                    </ul>

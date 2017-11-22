@@ -11,7 +11,7 @@ $(document).ready(function(){
 				$(".update-phone-label").hide();
 				$("#userid").attr("value",data.userid);
 				$(".info-m b i").text(""+data.username+"");
-				$(".filePic img").attr("src","/upload/"+data.avatar);
+				$(".filePic img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.avatar);
 				$(".u-level a").text(data.level.level);
 				$("#user-name").attr("value",data.username);
 				if(data.sex == "男"){
@@ -75,7 +75,7 @@ $(document).ready(function(){
 					$("#updatePhone").show();
 					
 					$(".info-m b i").text(""+username+"");
-					//$(".filePic img").attr("src","/upload/"+data.avatar);
+					//$(".filePic img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.avatar);
 					//$(".u-level a").text(data.level.level);
 					$("#user-name").attr("value",username);
 					if(sex == "男"){

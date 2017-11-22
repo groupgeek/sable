@@ -104,7 +104,7 @@
 										</c:when>
 									
 										<c:otherwise>
-											<img  id = "" src="/upload/${userInfo.avatar }" style="width: 100px;">
+											<img  id = "" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${userInfo.avatar }" style="width: 100px;">
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -113,6 +113,7 @@
 								<label class="control-label">更改头像</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
+								  <input type = "hidden" name = "avatar" value ="${userInfo.avatar }">
 								</div>
 							  </div>
 							  <div class="control-group" id="username">

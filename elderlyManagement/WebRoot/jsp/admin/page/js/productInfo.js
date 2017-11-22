@@ -15,10 +15,10 @@
 								'<span class="break"></span><a href="'+root+'/jsp/admin/page/employeeInfo.jsp?employeeid='+ data.employeeid +'" style="color: white; text-decoration: none;">商城管理员'+data.employeename+'</a>'
 						);
 			
-			if(data.avatar == null){
+			if(data.picture == null){
 				$("#picture div").html("空");
 			}else{
-				$("#picture img").attr("src","/upload/"+data.picture);
+				$("#picture img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.picture);
 			}
 			
 			$("#productname span").text(data.productname);
