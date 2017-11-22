@@ -15,8 +15,10 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.mapper.ActivityMapper;
+import com.xiaohe.mapper.ActivityregisteryMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.util.FileUpload;
@@ -32,6 +34,10 @@ public class ActivityServiceImpl implements ActivityService {
 	@Autowired
 	@Qualifier("activitytypeMapper")
 	private ActivitytypeMapper activitytypeMapper;
+	
+	@Autowired
+	@Qualifier("activityregisteryMapper")
+	private ActivityregisteryMapper activityregisteryMapper;
 	
 	/**
 	 * 给Introduction字段赋值 (活动描述里面的值的一部分)
@@ -276,6 +282,39 @@ public class ActivityServiceImpl implements ActivityService {
 		// TODO Auto-generated method stub
 		return activityMapper.countActUsers(id);
 	}
+	
+	public List<ActivityCustom> quertyActivityArea(String phone) {
+	 	
+		return activityMapper.quertyActivityArea(phone);
+	}
+
+	public Activity quertyUserActivity(Integer activityid) {
+		
+		return activityMapper.selectByPrimaryKey(activityid);
+	}
+
+	
+	public void insertUserRegistery(Activityregistery activityregistery) {
+	
+		activityregisteryMapper.insert(activityregistery);
+	}
+
+	public boolean quertyIfUsetRegistery(Activityregistery activityregistery ) {
+		Activityregistery acrg=new Activityregistery();
+		acrg=activityregisteryMapper.selectUserActivityregistery(activityregistery);
+		if (acrg!=null) {
+			if (acrg.getActivityid().equals(activityregistery.getActivityid())) {
+				if (acrg.getUserid().equals(activityregistery.getUserid())) {
+					if (acrg.getRegistery().equals("报名")) {
+						return false;
+					}return true;
+				}return true;
+			}return true;
+		}
+		
+		return true;
+	}
+	
 	
     
 }

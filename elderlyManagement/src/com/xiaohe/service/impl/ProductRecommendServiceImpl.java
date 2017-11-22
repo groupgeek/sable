@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.xiaohe.bean.Productrecommend;
+import com.xiaohe.bean.UserCustom;
 import com.xiaohe.mapper.ProductrecommendMapper;
 import com.xiaohe.service.ProductRecommendService;
 @Repository("productRecommendService")
@@ -18,9 +19,17 @@ public class ProductRecommendServiceImpl implements ProductRecommendService {
 		productrecommendMapper.insertSelective(productrecommend);
 	}
 
-	public int sumProductRecommend() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int sumProductRecommend(Integer branchid) {
+		Integer p= productrecommendMapper.sumRecommendProduct(branchid);
+		if (p==null) {
+			return 0;
+		}
+		return p;
+	}
+
+	public UserCustom quertyCustoms(String phone) {
+		
+		return productrecommendMapper.quertyuserProduct(phone);
 	}
 
 }

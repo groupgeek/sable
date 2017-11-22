@@ -10,6 +10,7 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.ActivitytypeCustom;
 
 /**
@@ -116,18 +117,28 @@ public interface ActivityService {
 	 * @return
 	 */
 	public ActivityVo queryEduAllTypeActByCondition(ActivityCustom condition);
-	
 	/**
-	 * 根据活动id查询到单个活动
+	 * 	查询某用户所在地区所有活动
+	 * @return List<ActivityCustom>
+	 */
+	public List<ActivityCustom> quertyActivityArea(String phone);
+	/**
+	 * 	用户活动查询（根据用户点击活动）
 	 * @param id
 	 * @return
 	 */
-	public ActivityCustom oneAct(Integer id);
+	public Activity quertyUserActivity(Integer activityid);
 	
 	/**
-	 * 根据活动id查询活动总人数
-	 * @param id
-	 * @return
+	 * 	用户报名插入信息
+	 * @param activityregistery
 	 */
-	public Integer countPeople(Integer id);
+	public void  insertUserRegistery(Activityregistery activityregistery);
+	/**
+	 * 	查询用户是否已经报名该活动
+	 * @param userid
+	 * @return boolean
+	 */
+	public boolean quertyIfUsetRegistery(Activityregistery activityregistery);
+
 }
