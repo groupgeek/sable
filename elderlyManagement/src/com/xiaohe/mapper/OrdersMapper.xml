@@ -486,4 +486,12 @@
   </if>
   </where>
   </select>
+  <select id="CeoBranchOrderIncome" parameterType="java.lang.Integer" resultType="OrdersCustom">
+  	select sum(o.totalPrice) sumorderIncome,o.orderTime from orders o,employee e,branch b 
+  	where e.employeeId = b.employeeId 
+  	and b.branchId = o.branchId 
+  	and o.orderTime>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+  	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  	group by date_format(o.orderTime,'%Y-%m')
+  </select>
 </mapper>

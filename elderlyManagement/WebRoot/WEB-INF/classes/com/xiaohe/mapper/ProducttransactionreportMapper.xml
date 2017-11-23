@@ -326,4 +326,94 @@
 		and a.activityId = c.activityId
 		and a.activityId = b.activityId
 	</select>
+	<select id="ceoProductByTime" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+  		select sum(countBuy*(totalPrice-totalExpenditure)) summoney,BuyTime from producttransactionreport
+		where BuyTime>DATE_SUB(CURDATE(), INTERVAL 1 YEAR) 
+		group by date_format(BuyTime,'%Y-%m')
+  	</select>
+  	<select id="ceoProductByIdinmonth" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(countBuy) sumBuy,sum(totalPrice) sumgetprice,sum(totalExpenditure) sumtoprice,BuyTime 
+		from producttransactionreport
+		where productId = #{productid,jdbcType=INTEGER}
+		group by date_format(BuyTime,'%Y-%m-%d')
+	</select>
+	<select id="ceoProductByIdinyear" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(countBuy) buynum,sum(totalPrice) getpricenum,sum(totalExpenditure) topricenum,BuyTime 
+		from producttransactionreport
+		where BuyTime>date_sub(curdate(), interval 1 year)
+		and productId = #{productid,jdbcType=INTEGER}
+		group by date_format(BuyTime,'%Y-%m')
+	</select>
+	<select id="ceoProductByIdAllyear" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(countBuy) buyString,sum(totalPrice) sumtotalPrice,sum(totalExpenditure) sumtotalExpenditure,BuyTime from producttransactionreport
+		where productId = #{productid,jdbcType=INTEGER}
+		group by date_format(BuyTime,'%Y')
+	</select>
+	<select id="ceoproductChartOfBranch" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select p.productid,p.productName,p.price,sum(pt.countBuy) buynum,sum(pt.totalPrice) getprice,pt.BuyTime,b.branchname
+		from producttransactionreport pt,branch b,product p
+		where pt.branchId=b.branchId
+		and pt.productId=p.productId
+		and b.branchId=#{branchid,jdbcType=INTEGER}
+		group by pt.productid
+	</select>
+	<select id="ceoproductAllchart" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select p.productid,p.productName,p.price,sum(pt.countBuy) buynum,sum(pt.totalPrice) getprice,pt.BuyTime,b.branchname
+		from producttransactionreport pt,product p,branch b	
+		<where>
+		 	pt.productId=p.productId
+			and b.branchId=pt.branchId
+			<if test="branchid != null">
+				and b.branchId = #{branchid,jdbcType=INTEGER}
+			</if>
+			<if test="productname != null">
+				and p.productName like '%${productname}%'
+			</if>
+		</where>		
+		group by pt.productid
+		<if test="sort != null">
+			order by ${sort} desc
+		</if>
+		<if test="begin != null">
+			<if test="pageNum != null">
+				limit #{begin} , #{pageNum}
+			</if>
+		</if>
+	</select>
+	<select id="ceoproductchartByCondition" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="java.lang.Integer">
+		select count(distinct pt.productId)
+		from producttransactionreport pt,product p,branch b	
+		<where>
+			pt.productId=p.productId
+			and b.branchId=pt.branchId
+			<if test="productname != null">
+				and p.productName like '%${productname}%'
+			</if>
+		</where>
+	</select>
+	<select id="ceofindproductchart" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select p.productid,p.productName,sum(pt.totalExpenditure) toprice,sum(pt.countBuy) buynum,sum(pt.totalPrice) getprice,pt.BuyTime 
+		from producttransactionreport pt,product p
+		where pt.productId=p.productId
+		group by pt.productid
+		order by pt.BuyTime asc
+	</select>
+	<select id="ceofindproductchartByYear" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(totalExpenditure) sumtoprice,sum(totalPrice) sumgetprice,BuyTime 
+		from producttransactionreport
+		where BuyTime>DATE_SUB(CURDATE(), INTERVAL 1 year)
+	</select>
+	<select id="ceofindproductchartAll" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(totalExpenditure) sumtotalExpenditure,sum(totalPrice) sumtotalPrice,BuyTime 
+		from producttransactionreport
+	</select>
+	<select id="ceodfindproductchartOfbranch" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select p.productid,p.productName,sum(pt.totalExpenditure) toprice,sum(pt.countBuy) buynum,sum(pt.totalPrice) getprice,pt.BuyTime,b.branchname 
+		from producttransactionreport pt,product p,branch b
+		where pt.productId=p.productId
+    	and pt.branchId=b.branchId
+    	and b.branchId=#{b.branchid,jdbcType=INTEGER}
+		group by pt.productid
+		order by pt.BuyTime asc
+	</select>
 </mapper>

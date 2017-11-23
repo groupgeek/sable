@@ -1,15 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5 Transitional//EN">
-<html lang="en">
-<head>
-	
-	<!-- start: Meta -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
+<html>
+  <head>
+    <!-- start: Meta -->
 	<meta charset="utf-8">
 	<title>Ceo管理员系统</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
@@ -22,160 +21,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
-	<link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/brach/css/user_employee.css"
-	rel="stylesheet">
-	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/ceo/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/ceo/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="${pageContext.request.contextPath }/jsp/ceo/css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/ceo/css/style-responsive.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/jsp/ceo/newcss/table.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
-	<!-- start: Favicon -->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
-	<!-- end: Favicon -->
 	
-		
-		
-		
-</head>
+	<!-- start: Favicon -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/ceo/img/favicon.ico">
+	<!-- end: Favicon -->
 
-<body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<div class="container-fluid-full">
+  </head>
+  
+  <body>
+  	<jsp:include page="header.jsp"></jsp:include>
+  	<div class="container-fluid-full">
 	<div class="row-fluid">
-	<jsp:include page="menu.jsp"></jsp:include>		
-			<!-- start: Content -->
-			<div id="content" class="span10">
-			
-						
+	<jsp:include page="menu.jsp"></jsp:include>
+  	<!-- start: Content -->
+		<div id="content" class="span10">	
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
 					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">报表</a></li>
+				<li>					
+					<a href="${pageContext.request.contextPath }/ceo/index.action">报表</a> 
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a>商品报表</a></li>
 			</ul>
-
-			<div>
-
-					<div class="control-group" style="margin-top: 30px" >
-						<h3>选择分店：</h3>
-						<div class="controls">
-							<select id="activitystatus">
-								<c:forEach items="${findBranchs }" var="branch">
-									<option value="${branch.branchid }">${branch.branchname }</option>
-								</c:forEach>
-							</select>
-						</div>
-					</div>
-					
-					<div class="control-group" style=" position: absolute;left:300px; top:70px" >
-					
-							  <h3>运营间隔：</h3>
-							  <div class="controls">
-								从：<input name="activitydate" onClick="laydate()" id="begin">&nbsp&nbsp&nbsp&nbsp
-								至：<input name="activitydate" onClick="laydate()" id="end">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								 <a class="btn btn-info" href="javaScript:;" onclick="productReport()">
-										<i class="icon-ok-sign"></i>            确认查询                                
-									</a>
-							  </div>
-					</div>
-					
-					</div>
-					
-					
-
-			<div class="row-fluid sortable">
-			
-			
-			<div class="box span12">
+			<div class="row-fluid sortable">		
+				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>分店收益报表</h2>
+						<h2><i class="halflings-icon white user"></i><span class="break">&nbsp;&nbsp;${productname.productname }&nbsp;的销售报表</span></h2>	
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content" id="ddd">
-						<table class="table table-striped table-bordered bootstrap-datatable " >
-						  <thead>
-						  <tr>
-							  	<th>分店名字</th>
-								<th>总收入</th>
-								<th>总支出</th>
-								<td>合计</td>
-						 </tr>
-						 <tr>
-							   <td>${findBranchs[0].branchname }</td>
-							   <td>${branchtTotalreport.sumtotalprice }</td>
-							   <td>${branchtTotalreport.sumtotalexpenditure }</td>
-							   <td>${branchtTotalreport.sumtotalprice-branchtTotalreport.sumtotalexpenditure }</td>
-						 </tr>
-							</thead>
-							
-							<tr>
-							  	<th>商城收入</th>
-								<th>消费人数</th>
-								<th>活动收入</th>
-								<th>参与人数</th>
-							  </tr>
-							  <tbody>
-							  </tbody>
-							 
-						 
-						 
-					  </table> 
-					  
-					  <div class="page">
-								<div id="userPage">
-									<p>
-										当前为第<strong id="currentPage">1</strong>页,共<strong id="pageSum">0</strong>页
-									</p>
-								</div>
-
-								<ul class="am-pagination am-pagination-right" id="pageUl">
-									<li value=1 id="home"><a href="javascript:;">首页</a></li>
-									<li id="previousPage"><a href="javascript:;">&laquo;</a></li>
-									<li id="nextPage"><a href="javascript:;">&raquo;</a></li>
-									<li id="lastPage"><a href="javascript:;">尾页</a></li>
-								</ul>
-							</div>
-					             
-					</div>
-				</div>
-
-					<!-- <div class="box span6">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>商品收支百分比饼图</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
+							<a href="${pageContext.request.contextPath }/ceo/allchart.action" ><i class="halflings-icon white remove"></i></a>
+						</div>					
 					</div>
 					<div class="box-content">
-					custom.js 1627行代码
-							<div id="piechart" style="height:300px"></div>
+						<%
+						String id = request.getParameter("id");
+						int a = Integer.valueOf(id);
+						%>
+					 	<input type="hidden" value="<%=a%>" id="productId"> 
+						<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+						<div id="product" style="padding:50px;width:90%;height:500px;"></div>
+						<div id="centertable" style="padding-top:20px;width:100%;height:500px;">
+							<div id="onecenter" style="padding:10px;width:47%;height:100%;float:left;"></div>
+							<div id="twocenter" style="padding:10px;width:47%;height:100%;float:left;"></div>
+						</div>				         
 					</div>
-				</div> -->
-			</div><!--/row-->
-		
-			<hr>
-		
-			
-			
-		
-		
-
-	</div><!--/.fluid-container-->
-	
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
-		
+				</div><!--/span-->			
+			</div><!--/row-->		
+	</div><!--/.fluid-container-->	
+	</div>
+	</div>
+			<!-- end: Content -->	
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
@@ -197,7 +102,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 	</div>
-	
 	<div class="clearfix"></div>
 	
 	<footer>
@@ -207,130 +111,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</p>
 
 	</footer>
-	
 	<!-- start: JavaScript-->
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/modernizr.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/bootstrap.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cookie.js"></script>
-	
-		<script src='${pageContext.request.contextPath }/jsp/brach/js/fullcalendar.min.js'></script>
-	
-		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
-
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uniform.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.cleditor.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.noty.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.elfinder.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.raty.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.gritter.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.imagesloaded.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.masonry.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.knob.modified.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.sparkline.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/counter.js"></script>
-	
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
-
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/js/echarts.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.ui.touch-punch.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/modernizr.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/bootstrap.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.cookie.js"></script>	
+		<script src='${pageContext.request.contextPath }/jsp/ceo/js/fullcalendar.min.js'></script>	
+		<script src='${pageContext.request.contextPath }/jsp/ceo/js/jquery.dataTables.min.js'></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/excanvas.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.pie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.stack.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.flot.resize.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.chosen.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.uniform.min.js"></script>		
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.cleditor.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.noty.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.elfinder.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.raty.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.iphone.toggle.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.uploadify-3.1.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.gritter.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.imagesloaded.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.masonry.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.knob.modified.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.sparkline.min.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/product.js"></script>
 	<!-- end: JavaScript-->
-	<script type="text/javascript">
-	
-		function productReport() {
-			var select = document.getElementById("activitystatus").value;
-			alert(select);
-			var begin = document.getElementById("begin").value;
-			var end = document.getElementById("end").value;
-			$.ajax({
-						type : 'post',
-						url : '${pageContext.request.contextPath}/ceo/requestchart.action',
-						contentType : 'application/json;charset=utf-8',
-						data : '{"branchid"' + ':' + '"' + select + '"'+','+'"startingTime"'+':'+'"'+begin+'"'+','+'"endTime"'+':'+'"'+end+'"'+'}',
-						success : function(data) {
-							//alert("查询成功");
-							$("#ddd tbody").html("");
-							createbranchTable(data);
-						},
-						error : function() {
-							$("#ddd tbody").html("");
-							alert("没有查询到任何数据！");
-						}
-
-					});
-			
-			function createbranchTable(data){
-			//alert("start");
-			for(var i in data){
-				$("#ddd tbody").append(
-							'<tr>'+
-							'<td class="center">'+ data[i].branchname +'</td>'+
-							'<td class="center">'+'<fmt:formatDate value="${data[i].duringtime }" pattern="yyyy-MM-dd"/> '+'</td>'+
-							'<td class="center">'+ data[i].sumtotalprice+'</td>'+
-							'<td class="center">'+ data[i].sumtotalexpenditure +'</td>'+
-							'</tr>'
-							);
-					}
-		}
-			
-		function queryData(){
-			pageNum = $("#selectPageNum").attr("value");//每页的条数
-			currentPage = 1;//当前页
-			$.ajax({
-				type:"post",
-				contentType:"application/json;charset=utf-8",
-				url:root+"/superAdmin/queryAllUser",
-				data:'{"currentPage"'+':'+'"'+currentPage+'"'+','
-				+'"pageNum"'+':'+'"'+pageNum+'"'+'}',
-				success:function(data){
-					//alert(data.pageSum);
-					//alert("ok");
-					$("#box tbody").html("");
-					$("#home").attr("value",1);
-					$("#previousPage").attr("value",1);
-					$("#nextPage").attr("value",1);
-					$("#lastPage").attr("value",data.pageSum);
-					$("#pageSum").text(data.pageSum);
-					$("#currentPage").text(currentPage);
-					createUserTable(data);
-				}
-			});
-		}			
-
-		}
-	</script>
-	
-	
-	
-</body>
+  </body>
 </html>

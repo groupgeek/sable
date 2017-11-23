@@ -603,5 +603,26 @@ and c.areaId = d.areaId
 and d.branchId = a.branchId
 and b.registery='报名'
 </select>
-  
+   <select id="CeoBranchEduIncome" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoActivity">
+  	SELECT sum(a.registeryFee) sumEduIncome,a.activityDate from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=1
+	and a.activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  	group by date_format(a.activityDate,'%Y-%m')
+  </select>
+  <select id="CeoBranchHealIncome" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.CeoActivity">
+  	SELECT sum(a.registeryFee) sumHealIncome,a.activityDate from activity a,activitytype b,activityregistery c,branch d
+	where a.activityTypeID = b.activityTypeID
+	and a.branchId = d.branchId
+	and c.activityId = a.activityId
+	and c.registery = '报名'
+	and b.activityTypeID=2
+	and a.activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+	and d.employeeId = #{employeeid,jdbcType=INTEGER}
+  	group by date_format(a.activityDate,'%Y-%m')
+  </select>
 </mapper>

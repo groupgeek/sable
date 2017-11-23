@@ -163,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td class="center">${acts.activityname }</td>
 						<td class="center">${acts.activitystatus }</td>
 						<td class="center">${acts.registeryfee }</td>
-						<td class="center"><fmt:formatDate value="${acts.activitydate }"pattern="yyyy-MM-dd" /></td>
+						<td class="center"><fmt:formatDate value="${acts.activitydate }" pattern="yyyy-MM-dd" /></td>
 						<%-- <td><a href="${pageContext.request.contextPath }/admin/deletUser.action?id=${ allUsers.userid}">删除</a></td> --%>
 						<td class="center">
 						<%-- <a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a> --%>

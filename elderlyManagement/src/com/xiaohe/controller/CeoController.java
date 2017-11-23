@@ -18,7 +18,12 @@ import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.CeoActivity;
+import com.xiaohe.bean.CeoActivityreport;
+import com.xiaohe.bean.CeoActivityreportVo;
+import com.xiaohe.bean.CeoBranchChartVo;
 import com.xiaohe.bean.CeoEmployee;
+import com.xiaohe.bean.CeoProducttransactionreport;
+import com.xiaohe.bean.CeoProducttransactionreportVo;
 import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
@@ -59,10 +64,7 @@ public class CeoController {
 		List<CeoActivity> findSumActivityregisteryFeeByTime = ceoService.findSumActivitieregisteryFeeByTime();
 		//用户数量查询
 		List<String> alluser = ceoService.findAllUser();
-		List<User> alluserByTime = ceoService.findAllUserByTime();
-		//盈利和用户前十分店的查询
-		List<CeoTotalreport> findTotalreportandBranch = ceoService.findTotalreportAndBranch();
-		List<UserCustom> findUserCustoms = ceoService.findUserCustoms();
+		List<User> alluserByTime = ceoService.findAllUserByTime();		
 		//热销商品、新用户、新留言查询
 		List<UserCustom> findFourUser = ceoService.findfourUserByTime();
 		List<Product> findHotProduct = ceoService.findHotProducts();
@@ -83,8 +85,6 @@ public class CeoController {
 		model.addAttribute("allActivity",allActivity);
 		model.addAttribute("alluser",alluser);
 		model.addAttribute("alluserByTime",alluserByTime);
-		model.addAttribute("findTotalreportandBranch",findTotalreportandBranch);
-		model.addAttribute("findUserCustoms",findUserCustoms);
 		model.addAttribute("findFourUser",findFourUser);
 		model.addAttribute("findHotProduct",findHotProduct);
 		model.addAttribute("findCountProduct",findCountProduct);
@@ -99,6 +99,17 @@ public class CeoController {
 		ceoSelectVo = ceoService.findBigDecimal();			
 		return ceoSelectVo;
 	}
+	@RequestMapping(value = "/twoindexchart")
+	public @ResponseBody List<CeoTotalreport> findTotalreportandBranch(){
+		List<CeoTotalreport> findTotalreportandBranch = ceoService.findTotalreportAndBranch();
+		return findTotalreportandBranch;
+	}
+	@RequestMapping(value = "/threeindexchart")
+	public @ResponseBody List<UserCustom> findUserCustoms(){
+		List<UserCustom> findUserCustoms = ceoService.findUserCustoms();
+		return findUserCustoms;
+	}
+	/*-------------------------------------------------------------------------------------*/
 	/**
 	 * 所有用户
 	 * @param request
@@ -131,6 +142,7 @@ public class CeoController {
 		
 		return "ceo/user";
 	}
+	/*-------------------------------------------------------------------------------------*/
 	/**
 	 * 全部商品
 	 * @param request
@@ -162,6 +174,8 @@ public class CeoController {
 		model.addAttribute("findProductById",findProductById);		
 		return "ceo/product";
 	}
+	/*-------------------------------------------------------------------------------------*/
+	
 	/**
 	 * 所有员工
 	 * @param request
@@ -196,6 +210,7 @@ public class CeoController {
 		model.addAttribute("findEmployeeAllMessage",findEmployeeAllMessage);		
 		return "ceo/employee";
 	}
+	/*-------------------------------------------------------------------------------------*/
 	/**
 	 * 所有活动
 	 * @param request
@@ -211,6 +226,8 @@ public class CeoController {
 		model.addAttribute("findAllActivitie",findAllActivitie);		
 		return "ceo/gallery";
 	}
+	
+	/*-------------------------------------------------------------------------------------*/
 	/**
 	 * 活动的详细信息
 	 * @param request
@@ -240,11 +257,20 @@ public class CeoController {
 			return "ceo/error";
 		}
 		List<MessageCustom> findMessageCustoms = ceoService.findAllUserMessageCustoms();
-		MessageCustom findMessage = ceoService.findMessage(id);
-		model.addAttribute("findMessageCustoms",findMessageCustoms);
-		model.addAttribute("findMessage",findMessage);		
+		model.addAttribute("findMessageCustoms",findMessageCustoms);		
 		return "ceo/messages";
 	}
+	@RequestMapping(value = "/newmessage")
+	public @ResponseBody MessageCustom newmessage(@RequestBody MessageCustom messageCustom){
+		messageCustom = ceoService.findMessage(messageCustom.getMessageid());
+		return messageCustom;
+	}
+	@RequestMapping(value = "/readmessage")
+	public @ResponseBody MessageCustom onemesage(@RequestBody MessageCustom messageCustom){
+		messageCustom = ceoService.findMessage(messageCustom.getMessageid());
+		return messageCustom;
+	}
+	/*-------------------------------------------------------------------------------------*/
 	/**
 	 * 所有分店
 	 * @param request
@@ -273,92 +299,152 @@ public class CeoController {
 		if (request.getSession().getAttribute("ceos") == null) {
 			return "ceo/error";
 		}
-		Branch findBranch = ceoService.findBrachById(branchid);
-		List<ProductCustom> products = new ArrayList<ProductCustom>();
-		products = ceoService.branchHotProduct(branchid);
-		BigDecimal b = ceoService.totalEduIncome(branchid);
-		if(b == null){
-			b = new BigDecimal("0.00");
-		}
-		BigDecimal c = ceoService.totalHealIncome(branchid);
-		if(c==null){
-			c =new BigDecimal("0.00");
-		}
-		BigDecimal d = ceoService.totalOderIncome(branchid);
-		if(d==null){
-			d =new BigDecimal("0.00");
-		}
-		BigDecimal e = b.add(d).add(c);
-		BigDecimal []arr = new BigDecimal[]{b,c,d,e};
-		int o=ceoService.brachCountOrders(branchid);
-		int m=ceoService.branchMessagesCount(branchid);
-		int ac=ceoService.branchCountActivities(branchid);
-		int p=ceoService.branchCountProducts(branchid);
-		int u=ceoService.branchCountUsers(branchid);
-		int []ar = new int[]{u,ac,o,p,m};
-		model.addAttribute("products", products);
+		Branch findBranch = ceoService.findBrachById(branchid);		
+		List<String> arr = ceoService.arr(branchid);
+		List<Integer> ar = ceoService.intlList(branchid);		
 		model.addAttribute("ar", ar);
 		model.addAttribute("arr", arr);
-		model.addAttribute("findBranch",findBranch);
-		
-		//model.addAttribute("branch",branch);
+		model.addAttribute("findBranch",findBranch);		
 		
 		return "ceo/branchtask";
+	}	
+	@RequestMapping(value = "/branchchart")
+	public @ResponseBody CeoBranchChartVo listchart(@RequestBody Integer id){
+		CeoBranchChartVo ceoBranchChartVo = ceoService.listchart(id);
+		return ceoBranchChartVo;
 	}
-		
-	@RequestMapping(value = "/chart")
-	public String dochart(HttpServletRequest request,Model model){
+	@RequestMapping(value = "/branchtwochart")
+	public @ResponseBody List<ProductCustom> products(@RequestBody Integer id){
+		List<ProductCustom> products = ceoService.branchHotProduct(id);
+		return products;
+	}
+	@RequestMapping(value = "/branchthreechart")
+	public @ResponseBody List<UserCustom> listuser(@RequestBody Integer id){
+		List<UserCustom> usernumber = ceoService.listusernumber(id);
+		return usernumber;
+	}
+	/*-------------------------------------------------------------------------------------*/
+	/**
+	 * 报表
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/allchart")
+	public String allchart(HttpServletRequest request, Model model){
 		if (request.getSession().getAttribute("ceos") == null) {
 			return "ceo/error";
 		}
-		List<Branch> findBranchs = ceoService.findAllBranchName();
-		
-		CeoTotalreport ceoTotalreport = new CeoTotalreport();
-		CeoTotalreport ceoTotalreport2 = new CeoTotalreport();
-		ceoTotalreport.setBranchid(findBranchs.get(0).getBranchid());
-		ceoTotalreport2 = ceoService.findBranchMoney(ceoTotalreport);
-		model.addAttribute("findBranchs",findBranchs);
-		model.addAttribute("branchtTotalreport",ceoTotalreport2);
-		
+		List<CeoActivityreport> ceoActivityreports = ceoService.allActivityreports();
+		List<BranchCustom> branchCustoms = ceoService.findBranchCustoms();
+		model.addAttribute("branchCustoms",branchCustoms);
+		model.addAttribute("ceoActivityreports",ceoActivityreports);
+		return "ceo/allchart";
+	}
+	@RequestMapping(value = "/allchartofproduct")
+	public @ResponseBody CeoProducttransactionreportVo allproductchart(@RequestBody CeoProducttransactionreport condition){
+		CeoProducttransactionreportVo ceoProducttransactionreportVo = ceoService.productallchart(condition);
+		return ceoProducttransactionreportVo;
+	}
+	@RequestMapping(value = "/productchart")
+	public @ResponseBody List<CeoProducttransactionreport> productchartofbranch(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		List<CeoProducttransactionreport> productchart = ceoService.productchartofbranch(ceoProducttransactionreport.getBranchid());
+		return productchart;
+	}
+	/**
+	 * 商品报表
+	 * @param ceoProducttransactionreport
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/oneproduct")
+	public @ResponseBody List<CeoProducttransactionreport> oneProducttransactionreports(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		List<CeoProducttransactionreport> list = ceoService.ceoProductList(ceoProducttransactionreport);
+		return list;
+	}
+	@RequestMapping(value = "/threeproduct")
+	public @ResponseBody List<CeoProducttransactionreport> threeProducttransactionreports(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		List<CeoProducttransactionreport> list = ceoService.ceoProducttransactionreports(ceoProducttransactionreport);
+		return list;
+	}
+	@RequestMapping(value = "/fourproduct")
+	public @ResponseBody List<CeoProducttransactionreport> fourProducttransactionreports(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		List<CeoProducttransactionreport> list = ceoService.cProducttransactionreports(ceoProducttransactionreport);
+		return list;
+	}
+	@RequestMapping(value = "/chart")
+	public String productchart(HttpServletRequest request,Model model,Integer id){
+		Product productname = ceoService.findProductById(id);
+		model.addAttribute("productname",productname);
 		return "ceo/chart";
 	}
-	
-	@RequestMapping(value = "/requestchart")
-	public @ResponseBody List<CeoTotalreport> branch(Model model,@RequestBody CeoTotalreport totalreport,HttpServletRequest request){
-		int a = (totalreport.getStartingTime()).compareTo(totalreport.getEndTime());
-		if (a < 0 && totalreport.getBranchid() != null) {
-			List<CeoTotalreport> resquesTotalreports = new ArrayList<CeoTotalreport>();
-			resquesTotalreports = ceoService.findCeoTotalreports(totalreport);
-			for(int i=0;i<resquesTotalreports.size();i++){
-				CeoTotalreport ceoTotalreport = new CeoTotalreport();
-				CeoTotalreport ceoTotalreport2 = new CeoTotalreport();
-				ceoTotalreport.setBranchid(resquesTotalreports.get(i).getBranchid());
-				ceoTotalreport2 = ceoService.findBranchMoney(ceoTotalreport);
-				totalreport.setBranchname(ceoTotalreport2.getBranchname());
-			}
-			List<CeoTotalreport> pro = new ArrayList<CeoTotalreport>();
-			totalreport.setPageNum(10);    											//每页显示的数据数量
-			if(pro.size()>0 && (pro.size())%(totalreport.getPageNum())!=0){
-				totalreport.setPagesum(((pro.size())/(totalreport.getPageNum()))+1);       //总页数
-			}else if(pro.size()>0 && (pro.size())%(totalreport.getPageNum())==0){
-				totalreport.setPagesum((pro.size())/(totalreport.getPageNum()));
-			}else{
-				totalreport.setPagesum(0);
-			}
-			
-			totalreport.setBegin(0);													//起始数据
-			pro = ceoService.findCeoTotalreports(totalreport);
-			
-			return pro;
-		} else {
-			return null;
-		}
+	@RequestMapping(value = "/allproductcharts")
+	public @ResponseBody List<CeoProducttransactionreport> productchart(){
+		List<CeoProducttransactionreport> pCeoProducttransactionreports = ceoService.findceoproductchart();
+		return pCeoProducttransactionreports;
 	}
+	@RequestMapping(value = "/productchartofyear")
+	public @ResponseBody List<CeoProducttransactionreport> clist(){
+		List<CeoProducttransactionreport> cList = ceoService.findproductchartofyear();
+		System.out.println(cList.get(0).getSumgetprice());
+		return cList;
+	}
+	@RequestMapping(value = "/allproductchartsOfbranch")
+	public @ResponseBody List<CeoProducttransactionreport> productchartsofbranch(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		List<CeoProducttransactionreport> productchartsofbranch = ceoService.findceoproductchatOfbranch(ceoProducttransactionreport.getBranchid());
+		return productchartsofbranch;
+	}
+	/**
+	 * 活动报表
+	 * @param ceoActivityreport
+	 * @return
+	 */
+	@RequestMapping(value = "/allactivitychart")
+	public @ResponseBody List<CeoActivityreport> activitychart(){
+		List<CeoActivityreport> ceoActivityreports = ceoService.ceoActivityreportschart();
+		return ceoActivityreports;
+	}
+	@RequestMapping(value = "/actcharts")
+	public @ResponseBody CeoActivityreportVo actchart(@RequestBody CeoActivityreport ceoActivityreport){
+		CeoActivityreportVo actchart = ceoService.activitychart(ceoActivityreport);
+		return actchart;
+	}
+	@RequestMapping(value = "/activitychart")
+	public String activityString(Integer id,Model model){
+		List<CeoActivityreport> oneList = ceoService.findActivityreportById(id);
+		model.addAttribute("oneList",oneList);
+		return "ceo/activitychart";
+	}
+	@RequestMapping(value = "/oneactivitychart")
+	public @ResponseBody List<CeoActivityreport> oneactivityreport(@RequestBody CeoActivityreport ceoActivityreport){
+		List<CeoActivityreport> oneactivityreport = ceoService.findActivityreportById(ceoActivityreport.getActivityid());
+		return oneactivityreport;
+	}
+	@RequestMapping(value = "/twoactivitychart")
+	public @ResponseBody CeoActivityreport twoactivityreport(@RequestBody CeoActivityreport ceoActivityreport){
+		CeoActivityreport twoActivityreport = ceoService.findCeoActivityreportById(ceoActivityreport.getActivityid());
+		return twoActivityreport;
+	}
+	@RequestMapping(value = "/allactivitychartsOfbranch")
+	public @ResponseBody List<CeoActivityreport> activitychartsofbranch(@RequestBody CeoActivityreport ceoActivityreport){
+		List<CeoActivityreport> findactivitychartsofbranch = ceoService.findceoactivitychartOfbranch(ceoActivityreport.getBranchid());
+		return findactivitychartsofbranch;
+	}
+	@RequestMapping(value = "/activitychartByYear")
+	public @ResponseBody List<CeoActivityreport> acList(){
+		List<CeoActivityreport> caList = ceoService.ceoactivitychartByYear();
+		return caList;
+	}
+	/*-------------------------------------------------------------------------------------*/
 	//ceo信息查询
 		public String quertyCEO() {
 			return"";
 		}
 		
+		/**
+		 * 测试
+		 * @param request
+		 * @return
+		 */
 		@RequestMapping(value = "/Test")
 		public @ResponseBody List<CeoTotalreport> findTotalreportAndBranch(HttpServletRequest request){
 			List<CeoTotalreport> ceoTotalreport = ceoService.findTotalreportAndBranch();			

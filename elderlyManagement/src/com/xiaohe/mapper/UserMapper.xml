@@ -465,4 +465,12 @@
   		UPDATE user SET password = #{newPassword} WHERE phone = #{phone}
   
   </update>
+  <select id="CeoUsernumberofmonth" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.UserCustom">
+    select count(*) usernumber,registrationDate from user,branch,area
+  	where user.registrationDate>DATE_SUB(CURDATE(), INTERVAL 1 month)  	
+    and user.areaId=branch.areaId
+    and branch.areaId=area.areaId
+    and branch.branchId=#{branchid,jdbcType=INTEGER}
+  	group by date_format(registrationDate,'%Y-%m-%d')
+  </select>
 </mapper>

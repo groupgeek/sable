@@ -84,4 +84,10 @@ public interface OrdersMapper {
 	 * @return
 	 */
 	OrdersCustom orderReport(OrdersCustom ordersCustom);
+	/**
+	 * 按月份查询分店一年的订单收入
+	 * @param id
+	 * @return
+	 */
+	List<OrdersCustom> CeoBranchOrderIncome(Integer id);
 }

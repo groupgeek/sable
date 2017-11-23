@@ -234,5 +234,16 @@ public interface ActivityMapper {
      * @return
      */
     Integer countActNo(ActivityCustom activityCustom);
-    
+    /**
+     * 按月份查询分店一年的教育收入
+     * @param id
+     * @return
+     */
+    List<CeoActivity> CeoBranchEduIncome(Integer id);
+    /**
+     * 按月份查询分店一年的健康收入
+     * @param id
+     * @return
+     */
+    List<CeoActivity> CeoBranchHealIncome(Integer id);
 }
