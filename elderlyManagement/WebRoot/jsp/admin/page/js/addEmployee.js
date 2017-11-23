@@ -30,6 +30,7 @@ $(document).ready(function(){
 	var message = $("#message").attr("value");
 	if(message != ""){
 
+		
 		$("#showMessage").text(message);
 		$('#messageNotification').fadeIn(2000);
 		getSrceenWH();
