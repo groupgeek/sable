@@ -204,4 +204,13 @@
 	where user.userId= message.userId 
 	order by messageTime desc limit 8
   </select>
+  <select id="selectAllMessageByCeo" resultType="com.xiaohe.bean.MessageCustom">
+  	select m.*,username,email from user u,message m where u.userid = m.userid
+	ORDER BY m.messageTime DESC limit 30
+  </select>
+   <select id="selectOnemessage" resultType = "com.xiaohe.bean.MessageCustom">
+  	select message.*,user.userName from message,user
+	where user.userId= message.userId 
+	order by messageTime desc limit 1
+  </select>
 </mapper>

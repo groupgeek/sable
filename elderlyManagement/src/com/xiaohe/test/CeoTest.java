@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xiaohe.bean.CeoProducttransactionreport;
 import com.xiaohe.service.CeoService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,10 +35,6 @@ public class CeoTest {
 		System.out.println(ceoService.findSumTotalreportMoneyByTime().get(0));
 	}
 	
-	@Test
-	public void findBranchTotalreport(){
-		System.out.println(ceoService.findBranchTotalreport(1));
-	}
 	
 	@Test
 	public void findTotalreportAndBranch(){
@@ -77,5 +74,44 @@ public class CeoTest {
 		
 		System.out.println(ceoService.findBigDecimal().getListPCustoms());
 	}
+	@Test
+	public void arr(){
+		System.out.println(ceoService.arr(1));
+	}
+	@Test
+	public void intlList(){
+		System.out.println(ceoService.intlList(1));
+	}
 	
+	@Test
+	public void listchart(){
+		System.out.println(ceoService.listchart(1).getListHealIncome());
+	}
+	@Test
+	public void branchHotProduct(){
+		System.out.println(ceoService.branchHotProduct(1));
+	}
+	@Test
+	public void ceoActivityreportschart(){
+		System.out.println(ceoService.ceoActivityreportschart().get(0).getStringDate());
+	}
+	@Test
+	public void findBranchCustoms(){
+		System.out.println(ceoService.findBranchCustoms());
+	}
+	@Test
+	public void findCeoActivityreportById(){
+		System.out.println(ceoService.findCeoActivityreportById(1).getOnlyget());
+	}
+	
+	@Test
+	public void productallchart(){
+		CeoProducttransactionreport condition = new CeoProducttransactionreport();
+		condition.setSearch("");
+		condition.setSort("price");
+		condition.setCurrentPage(1);
+		condition.setPageNum(10);
+		condition.setBranchname("贵阳分店");
+		System.out.println(ceoService.productallchart(condition).getLisproductchart().get(0).getProductname());
+	}
 }

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Message" >
+    <id column="messageId" property="messageid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="messageTime" property="messagetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Message" extends="BaseResultMap" >
+    <result column="messageContext" property="messagecontext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    messageId, userId, messageTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    messageContext
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Message" >
+    insert into message (messageId, userId, messageTime, 
+      messageContext)
+    values (#{messageid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{messagetime,jdbcType=TIMESTAMP}, 
+      #{messagecontext,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageid != null" >
+        messageId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="messagetime != null" >
+        messageTime,
+      </if>
+      <if test="messagecontext != null" >
+        messageContext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageid != null" >
+        #{messageid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="messagetime != null" >
+        #{messagetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messagecontext != null" >
+        #{messagecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Message" >
+    update message
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="messagetime != null" >
+        messageTime = #{messagetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messagecontext != null" >
+        messageContext = #{messagecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Message" >
+    update message
+    set userId = #{userid,jdbcType=INTEGER},
+      messageTime = #{messagetime,jdbcType=TIMESTAMP},
+      messageContext = #{messagecontext,jdbcType=LONGVARCHAR}
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Message" >
+    update message
+    set userId = #{userid,jdbcType=INTEGER},
+      messageTime = #{messagetime,jdbcType=TIMESTAMP}
+    where messageId = #{messageid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 自定义sql -->
+  
+  <sql id="messageSql">
+  
+  	  <if test="messageid != null" >
+        AND messageId = #{messageid,jdbcType=INTEGER}
+      </if>
+  	  <if test="userid != null" >
+        AND userId = #{userid,jdbcType=INTEGER}
+      </if>
+      <if test="messagetime != null" >
+        AND messageTime = #{messagetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="messagecontext != null" >
+        AND messageContext = #{messagecontext,jdbcType=LONGVARCHAR}
+      </if>
+  </sql>
+  
+  <select id="QureyMessages" resultType="com.xiaohe.bean.MessageCustom">
+  select m.*,username,email from user u,message m where u.userid = m.userid
+  ORDER BY messageTime DESC
+  </select>
+  
+	<select id="allMessages"  parameterType="com.xiaohe.bean.MessageVo" resultType="com.xiaohe.bean.MessageCustom">
+  	SELECT m.*,u.username,u.email 
+  	from message m,user u 
+  	WHERE u.userId = m.userId  
+  	ORDER BY messageTime DESC 
+  	LIMIT #{start},#{size}
+ 	</select>
+  
+  <select id="somecount" resultType="java.lang.Integer">
+  select count(*) from message
+  </select>
+  
+  <select id="oneMessage" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.MessageCustom">
+  select m.*,username,email from user u,message m where u.userid = m.userid and m.messageid = #{messageid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="branchMessages" parameterType="com.xiaohe.bean.MessageVo" resultType="com.xiaohe.bean.MessageCustom">
+ 	SELECT m.*,u.username,u.email from message m,branch b,employee e,user u
+	where m.userId = u.userId
+	and u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+	ORDER BY messageTime DESC
+	LIMIT #{start},#{size}
+  </select>
+  
+  <select id="branchMessagesCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  	SELECT count(m.messageId) from message m,branch b,employee e,user u
+	where m.userId = u.userId
+	and u.areaId = b.areaId
+	and b.employeeId = e.employeeId
+	and e.employeeId =#{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <select id="selectAllMessageByCondition" parameterType="MessageCustom" resultType="MessageCustom">
+  
+	  	SELECT m.* ,u.userName ,b.branchId ,b.branchName
+			FROM `message` m , `user` u ,branch b ,area ar
+			WHERE u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
+		  	
+		  <if test="branchid != null" >
+	        AND b.branchId = #{branchid,jdbcType=TIMESTAMP}
+	      </if>
+	  	<if test="search != null">
+	  			AND (userName LIKE '%${search}%'
+		    	OR messageContext LIKE '%${search}%')
+	  	</if>
+	  	<if test="sort != null" >
+		    ORDER BY ${sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+	    
+  </select>
+  
+  <select id="selectAllMessageSumByCondition" parameterType="MessageCustom" resultType="Integer">
+  
+  		SELECT COUNT(*)
+			FROM `message` m , `user` u ,branch b ,area ar
+			WHERE u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
+		  	
+		  <if test="branchid != null" >
+	        AND b.branchId = #{branchid,jdbcType=TIMESTAMP}
+	      </if>
+	  	<if test="search != null">
+	  			AND (userName LIKE '%${search}%'
+		    	OR messageContext LIKE '%${search}%')
+	  	</if>
+  
+  </select>
+  
+  <select id="selectMessageInfoById" parameterType="Integer" resultType="MessageCustom">
+  	
+	SELECT m.* ,u.userName ,b.branchId ,b.branchName
+			FROM `message` m , `user` u ,branch b ,area ar
+			WHERE m.messageId = #{id} AND u.userId = m.userId AND ar.areaId = u.areaId AND b.areaId = ar.areaId 
+		  
+  </select>
+  <select id="selectNewMessage" resultType = "com.xiaohe.bean.MessageCustom">
+  	select message.*,user.userName from message,user
+	where user.userId= message.userId 
+	order by messageTime desc limit 8
+  </select>
+  <select id="selectAllMessageByCeo" resultType="com.xiaohe.bean.MessageCustom">
+  	select m.*,username,email from user u,message m where u.userid = m.userid
+	ORDER BY m.messageTime DESC limit 30
+  </select>
+   <select id="selectOnemessage" resultType = "com.xiaohe.bean.MessageCustom">
+  	select message.*,user.userName from message,user
+	where user.userId= message.userId 
+	order by messageTime desc limit 1
+  </select>
+</mapper>

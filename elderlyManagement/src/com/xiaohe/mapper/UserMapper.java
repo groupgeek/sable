@@ -133,5 +133,10 @@ public interface UserMapper {
      * @return
      */
     Integer retrieveThePassword(UserCustom info);
-    
+    /**
+     * 查询一个月内用户的日注册量
+     * @param id
+     * @return
+     */
+    List<UserCustom> CeoUsernumberofmonth(Integer id);
 }

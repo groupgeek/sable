@@ -21,4 +21,11 @@ public interface ActivityregisteryMapper {
      * @return
      */
     Activityregistery  selectUserActivityregistery(Activityregistery activityregistery);
+    
+    /**
+     * 根据用户id查询到用户的报名情况
+     * @param id
+     * @return
+     */
+    Activityregistery oneUserAct(Activityregistery activityregistery);
 }

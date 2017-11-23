@@ -33,6 +33,22 @@ public class OrdersCustom extends Orders {
 	
 	private BigDecimal totalexl;     //总支出
 	private BigDecimal totalIncome;  //总收入
+	
+	private String stringDate;
+	private String sumorderIncome;
+	
+	public String getStringDate() {
+		return stringDate;
+	}
+	public void setStringDate(String stringDate) {
+		this.stringDate = stringDate;
+	}
+	public String getSumorderIncome() {
+		return sumorderIncome;
+	}
+	public void setSumorderIncome(String sumorderIncome) {
+		this.sumorderIncome = sumorderIncome;
+	}
 	public BigDecimal getTotalexl() {
 		return totalexl;
 	}

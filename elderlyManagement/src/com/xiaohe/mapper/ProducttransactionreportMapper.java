@@ -117,5 +117,65 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     ProducttransactionreportCustom onedayAllAct(ProducttransactionreportCustom producttransactionreportCustom);
-    
+    /**
+     * 按月份查询一年内的商城盈利
+     * @return
+     */
+    List<CeoProducttransactionreport> ceoProductByTime();
+    /**
+     * 按天查询一月内单个商品的销售情况
+     * @param id
+     * @return
+     */
+    List<CeoProducttransactionreport> ceoProductByIdinmonth(CeoProducttransactionreport ceoProducttransactionreport);
+    /**
+     * 按月查询一年内单个商品的销售情况
+     * @param ceoProducttransactionreport
+     * @return
+     */
+    List<CeoProducttransactionreport> ceoProductByIdinyear(CeoProducttransactionreport ceoProducttransactionreport);
+    /**
+     * 按年份查询单个商品的销售情况
+     * @param ceoProducttransactionreport
+     * @return
+     */
+    List<CeoProducttransactionreport> ceoProductByIdAllyear(CeoProducttransactionreport ceoProducttransactionreport);
+    /**
+     * 按分店查询商品的报表
+     * @param id
+     * @return
+     */
+    List<CeoProducttransactionreport> ceoproductChartOfBranch(Integer id);
+    /**
+     * 查询所有商品的报表
+     * @return
+     */
+    List<CeoProducttransactionreport> ceoproductAllchart(CeoProducttransactionreport condition);
+    /**
+     * 查询报表的数目
+     * @param condition
+     * @return
+     */
+    Integer ceoproductchartByCondition(CeoProducttransactionreport condition);
+    /**
+     * 查询所有商品的报表（做图用）
+     * @return
+     */
+    List<CeoProducttransactionreport> ceofindproductchart();
+    /**
+     * 查询一年内的商品报表（做饼图用）
+     * @return
+     */
+    CeoProducttransactionreport ceofindproductchartByYear();
+    /**
+     * 查询全部的商品报表（做饼图用）
+     * @return
+     */
+    CeoProducttransactionreport ceofindproductchartAll();
+    /**
+     * 查询分店所有商品的报表（做图用）
+     * @param id
+     * @return
+     */
+    List<CeoProducttransactionreport> ceodfindproductchartOfbranch(Integer id);
 }

@@ -45,10 +45,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath }/ceo/index.action">管理中心</a> 
+					<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">活动中心</a></li>
+				<li><a href="#">活动信息</a></li>
 			</ul>
 
 			<div class="row-fluid sortable">
@@ -91,15 +91,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 						  </tbody>
 					  </table>            
-					</div>
-					<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-						<div class="modal-content">
-							<ul class="list-inline item-details">
-								<li><a href="#">Admin templates</a></li>
-								<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-							</ul>
-						</div>
-					</div>
+					</div>			
+					<hr>					
+							
 				</div><!--/span-->
 			
 			</div><!--/row-->
@@ -135,7 +129,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</footer>
 	<!-- start: JavaScript-->
-
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>

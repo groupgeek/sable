@@ -2,6 +2,7 @@ $(document).ready(function(){
 var myChart = echarts.init(document.getElementById('chartmain'));
    		
    		var option = {
+   			backgroundColor: "#EDEDED",
     		title : {
         		text: '公司年收入情况'
     		},
@@ -176,4 +177,167 @@ var myChart = echarts.init(document.getElementById('chartmain'));
     	});	 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+   //==================================================================
+        
+    	var twoChart = echarts.init(document.getElementById('branchto'));
+
+        var option = {
+        		backgroundColor: "#EDEDED",
+        		title : {
+            		text: '分店总盈利比重'
+        		},
+        		tooltip: {
+            		trigger: 'item',
+            		formatter: "{a} <br/>{b}: {c} ({d}%)"
+        		},
+        		legend: {
+            		orient: 'vertical',
+            		x: 'right',
+            		data:[]
+        		},
+        		series: [
+            	{
+                	name:'总盈利',
+                	type:'pie',
+                	radius: ['50%', '70%'],
+                	avoidLabelOverlap: false,
+                	label: {
+                    	normal: {
+                        	show: false,
+                        	position: 'center'
+                    	},
+                    	emphasis: {
+                        	show: true,
+                        	textStyle: {
+                            	fontSize: '30',
+                            	fontWeight: 'bold'
+                        	}
+                    	}
+                	},
+                	labelLine: {
+                    	normal: {
+                        	show: false
+                    	}
+                	},
+                	data:[]
+            	}
+       	 	]
+    	};
+        twoChart.showLoading();	
+    		var branchname=[];   
+            var sumbig=[];            
+            var root = $("#root").val();
+            $.ajax({
+            type : 'post',
+            async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : root+'/ceo/twoindexchart.action',    
+            data : '{}',
+            contentType : 'application/json;charset=utf-8',        //返回数据形式为json
+            success : function(result) {
+                 //请求成功时执行该函数内容，result即为服务器返回的json对象
+                if (result) {
+                 		
+                       for(var i=0;i<result.length;i++){       
+                           branchname.push(result[i].branchname);    
+                         }                                        
+                         for(var i=0;i<result.length;i++){       
+                            sumbig.push({
+                            	name:result[i].branchname,
+                            	value:result[i].sumBigDecimal
+                            }); 
+                          }
+                         twoChart.hideLoading();      //隐藏加载动画 
+                         twoChart.setOption({        //加载数据图表
+                           	legend: [{
+                           		data: branchname
+                           	}],
+                            series: [
+                            {
+                            	name: '总盈利',
+                            	data : sumbig
+                            }
+                            ]
+                        });                      
+                 }         
+            },
+             error : function(errorMsg) {
+                 //请求失败时执行该函数
+             alert("图表请求数据失败!");
+             twoChart.hideLoading();
+             }
+        	});
+            twoChart.setOption(option);
+     //==============================================================
+            var threeChart = echarts.init(document.getElementById('userChart'));
+            
+            var option = {
+
+            		color: ['#ffffff'],
+            	    tooltip : {
+            	        trigger: 'axis'
+            	    },
+            	    grid: {
+            	        left: '3%',
+            	        right: '4%',
+            	        bottom: '3%',
+            	        containLabel: true
+            	    },
+            	    xAxis : [
+            	        {
+            	            type : 'category',
+            	            data : []
+            	        }
+            	    ],
+            	    yAxis : [
+            	        {
+            	            type : 'value'
+            	        }
+            	    ],
+            	    series : [
+            	        {
+            	            name:'用户数量',
+            	            type:'bar',
+            	            barMaxWidth: 60,
+            	            data:[]
+            	        }
+            	    ]
+            };
+            var branchname=[];
+            var usernum=[];
+            var root = $("#root").val();           
+            $.ajax({
+            type : 'post',
+            async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : root+'/ceo/threeindexchart.action',    
+            data : '{}',
+            contentType : 'application/json;charset=utf-8',        //返回数据形式为json
+            success : function(result) {
+                 //请求成功时执行该函数内容，result即为服务器返回的json对象
+                if (result) {
+                 		
+                       for(var i=0;i<result.length;i++){       
+                    	   branchname.push(result[i].branchname);    
+                         }    
+                        for(var i=0;i<result.length;i++){
+                        	usernum.push(result[i].usernumber);
+                 		}    
+                        threeChart.setOption({        //加载数据图表
+                           	xAxis: {                          	
+                                data: branchname
+                            },
+                            series: [
+                            {
+                            	name: '用户数量',
+                            	data : usernum
+                            }
+                            ]
+                        });                      
+                 }         
+            },
+             error : function(errorMsg) {
+                 //请求失败时执行该函数
+             alert("图表请求数据失败!");
+             }
+        	});
+            threeChart.setOption(option);
 });

@@ -47,35 +47,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/ceo/branch.action">分店管理</a>
+					<a href="${pageContext.request.contextPath }/ceo/branch.action">分店信息</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li><a href="#">${findBranch.branchname }详情</a></li>
 			</ul>
 			<div class="row-fluid">
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<div class="number">￥${arr[3] }<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[6] }${arr[7] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						总收入
 					</div>	
 				</div>
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
-					<div class="number">￥${arr[2] }<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[4] }${arr[5] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						商城收入
 					</div>
 				</div>
 				<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-					<div class="number">￥${arr[1] }<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[0] }${arr[1] }<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						健康收入
 					</div>
 				</div>
 				<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-					<div class="number">￥${arr[0] }<i class="icon-arrow-up"></i></div>
+					<div class="number">￥${arr[2] }${arr[3]}<i class="icon-arrow-up"></i></div>
 					<div class="title"></div>
 					<div class="footer">
 						教育收入
@@ -84,211 +84,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>		
 
 				<!-- 中间的报表 -->
-			<div class="row-fluid">
-				<div class="span8 widget blue" onTablet="span7" onDesktop="span8">
-					<div id="stats-chart2"  style="height:282px" ></div>
-				</div>
-				<!-- End .sparkStats -->
+				
+			<%
+			String id = request.getParameter("branchid");
+			int a = Integer.valueOf(id);
+			%>
+			<input type="hidden" value="<%=a%>" id="branchid"> 
+			<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+			<div id="hh" style="height:540px;width:100%;">
+				<div id="branchChart" style="padding:5px;height:500px;width:99%;"></div>
 			</div>
-			
 		
 						
-			<div class="row-fluid">
-				
-				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
+			<div class="row-fluid" >
+				<div id="center" class="widget blue span5" style="padding:5px;width:40%;height:100%;float:left;">
 					
 					<h2><span class="glyphicons globe"><i></i></span> 销量前十产品</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="verticalChart">
-							<c:forEach items="${products }" var="products">
-							<div class="singleBar">
-								<div class="bar">
-									<div class="value">
-										<span>${products.buyno }</span>
-									</div>
-								</div>
-								<div class="title">${products.productname }</div>
-							</div>
-							</c:forEach>
-							<!-- <div class="clearfix"></div> -->
-							
-						</div>
-					
-					</div>
-					
+					<div id="branchHotproduct" style="height:350px;width:100%;"> </div>						
 				</div>
-				<!-- <div class="widget blue span5" onTablet="span6" onDesktop="span5">
-					
-					<h2><span class="glyphicons globe"><i></i></span>活动收入前十</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="verticalChart">
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>37%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">US</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>16%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">PL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>12%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">GB</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>9%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">DE</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>7%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">NL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>6%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">CA</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>5%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">FI</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>4%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">RU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>3%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">AU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>1%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">N/A</div>
-							
-							</div>	
-							
-							<div class="clearfix"></div>
-							
-						</div>
-					
-					</div>
-					
-				</div> -->
-				<!--/span-->
-			</div>
-			
-			<div class="row-fluid">
-				
-				<!--/span-->
-				
-				<!--/span-->
-				
-				
-			
+				<div id="haha" style="padding-left: 20px;width:58%;height:400px;float:left;">
+					<div id="branchuser" style="height:393px;width:100%;"></div>
+				</div>		
 			</div>
 			
 			<div class="row-fluid">	
@@ -359,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</footer>
 	<!-- start: JavaScript-->
-
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/js/echarts.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -390,6 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/branchChart.js"></script>
 	<!-- end: JavaScript-->
   </body>
 </html>
