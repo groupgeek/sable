@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
-import com.xiaohe.bean.ActivityrecommendCustom;
-import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.service.ActivityService;
-import com.xiaohe.service.BranchAdminService;
 
 @Controller
 @RequestMapping("edu")
@@ -31,9 +27,6 @@ public class ActivityController {
 	@Autowired
 	@Qualifier("activityService")
 	private ActivityService activityService;
-	
-	@Autowired
-	private BranchAdminService branchAdminService;
 	
 	
 	public User getUser(HttpServletRequest request){
@@ -82,41 +75,5 @@ public class ActivityController {
 		return vo;
 	}
 	
-	@RequestMapping(value="/actInfo")
-	public String actInfo(Integer id,Model model,HttpServletRequest request){
-		User user = getUser(request);
-		List<ActivityrecommendCustom> allActRec = new ArrayList<ActivityrecommendCustom>();
-		ActivityCustom act = new ActivityCustom();
-		act = activityService.oneAct(id);
-		allActRec = branchAdminService.branchActRec(act.getBranchid());
-		int a = activityService.countPeople(act);
-		
-		Activityregistery activityregistery = new Activityregistery();
-		activityregistery.setUserid(user.getUserid());
-		activityregistery.setActivityid(id);
-		activityregistery = activityService.oneUserAct(activityregistery);
-		
-		model.addAttribute("activityregistery", activityregistery);
-		model.addAttribute("allActRec", allActRec);
-		model.addAttribute("act", act);
-		model.addAttribute("a", a);
-		return "edu/actInfo";
-	}
 	
-	@RequestMapping(value="/regAct")   //活动报名
-	public @ResponseBody Activityregistery insertAct(@RequestBody ActivityrecommendCustom activityrecommendCustom,HttpServletRequest request){
-		User user = getUser(request);
-		Activityregistery activityregistery = new Activityregistery();
-		Activityregistery actreg = new Activityregistery();
-		activityregistery.setUserid(user.getUserid());
-		activityregistery.setActivityid(activityrecommendCustom.getActivityid());
-		activityregistery.setRegistery("报名");
-		actreg = activityService.oneActreg(activityregistery);
-		if(actreg==null){
-			activityService.insertActRec(activityregistery);
-			return activityregistery;
-		}else{
-			return null;
-		}
-	}
 }

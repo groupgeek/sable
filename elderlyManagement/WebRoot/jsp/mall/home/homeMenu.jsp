@@ -155,7 +155,7 @@
 				$(".user_info li").first().text("用户名："+data.username);
 				$(".user_info li").last().text("等级："+data.level.level);
 				$(".setting").parent().attr("href",root+"/jsp/mall/person/information.jsp");
-				$(".user_info").prev().find("img").attr("src","/upload/"+data.avatar);
+				$(".user_info").prev().find("img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.avatar);
 		}
 	});
 	

@@ -272,14 +272,6 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		return activityVo;
 	}
-
-	public ActivityCustom oneAct(Integer id) {
-		return activityMapper.oneActivityCustom(id);
-	}
-
-	public Integer countPeople(ActivityCustom activityCustom) {
-		return activityMapper.countActNo(activityCustom);
-	}
 	
 	public List<ActivityCustom> quertyActivityArea(String phone) {
 	 	
@@ -311,19 +303,6 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		
 		return true;
-	}
-
-	public int insertActRec(Activityregistery activityregistery) {
-		activityregisteryMapper.insert(activityregistery);
-		return 0;
-	}
-
-	public Activityregistery oneActreg(Activityregistery activityregistery) {
-		return activityregisteryMapper.selectByPrimaryKey(activityregistery);
-	}
-
-	public Activityregistery oneUserAct(Activityregistery activityregistery) {
-		return activityregisteryMapper.oneUserAct(activityregistery);
 	}
 	
 	

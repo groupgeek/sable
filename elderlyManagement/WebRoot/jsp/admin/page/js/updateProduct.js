@@ -20,7 +20,7 @@
 			if(data.productInfo.picture == null){
 				$("#picture div").html("空");
 			}else{
-				$("#picture img").attr("src","/upload/"+data.productInfo.picture);
+				$("#picture img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.productInfo.picture);
 			}
 			
 			$("#productname input").attr("value",data.productInfo.productname);

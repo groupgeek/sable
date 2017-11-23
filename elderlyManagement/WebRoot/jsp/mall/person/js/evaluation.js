@@ -25,7 +25,7 @@ $(document).ready(function(){
 			'<li class="td td-item">'+
 				'<div class="item-pic">'+
 					'<a href="'+root+'/product/productInfo?id='+data.productid+'" class="J_MakePoint">'+
-						'<img src="/upload/'+data.productpicture+'" class="itempic">'+
+						'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.productpicture+'" class="itempic">'+
 					'</a>'+
 				'</div>'+
 			'</li>'+

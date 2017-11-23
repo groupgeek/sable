@@ -52,7 +52,7 @@ $(document).ready(function(){
 			if(data.activityInfo.activitypicture == null){
 				$("#activitypicturetemp div").html("空");
 			}else{
-				$("#activitypicturetemp img").attr("src","/upload/"+data.activityInfo.activitypicture);
+				$("#activitypicturetemp img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.activityInfo.activitypicture);
 			}
 			
 			if(data.activityInfo.video == null){
@@ -61,11 +61,11 @@ $(document).ready(function(){
 				$("#showVideo div").append(
 						
 						'<video width="320" height="240" controls autoplay>'+
-						  '<source id = "showVideoogg" src="/upload/'+ data.activityInfo.video +'"type="video/ogg">'+
-						  '<source id = "showVideomp4" src="/upload/'+ data.activityInfo.video +'"type="video/mp4">'+
-						  '<source id = "showVideowebm" src="/upload/'+ data.activityInfo.video +'"type="video/webm">'+
-						 '<object id = "showVideoobject" data="/upload/'+ data.activityInfo.video +'" width="320" height="240">'+
-						    '<embed width="320" height="240" src="/upload/'+ data.activityInfo.video +'">'+
+						  '<source id = "showVideoogg" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/ogg">'+
+						  '<source id = "showVideomp4" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/mp4">'+
+						  '<source id = "showVideowebm" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/webm">'+
+						 '<object id = "showVideoobject" data="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'" width="320" height="240">'+
+						    '<embed width="320" height="240" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'">'+
 						  '</object>'+
 						'</video>'
 				

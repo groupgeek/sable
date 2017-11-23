@@ -103,7 +103,7 @@
 										</c:when>
 									
 										<c:otherwise>
-											<img  id = "" src="/upload/${employeeInfo.avatar }" style="width: 100px;">
+											<img  id = "" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${employeeInfo.avatar }" style="width: 100px;">
 										</c:otherwise>
 									</c:choose>
 								</div>

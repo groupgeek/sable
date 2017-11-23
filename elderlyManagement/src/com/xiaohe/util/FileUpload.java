@@ -9,49 +9,48 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.aliyun.oss.OSSClient;
+
 public class FileUpload {
 	
+	private static String endpoint = "http://oss-cn-beijing.aliyuncs.com";
+	private static String accessKeyId = "LTAIDvL8UKTlESNG";
+	private static String accessKeySecret = "Rbu6uCtsqBtmn3J1txDUBXqrzXZ3uW";
+	private static String bucketName = "com-xiaohe-res";
+	private static String objectkey  = "";
+	
 	public static String oneFileUpload(MultipartFile newFile,String oldFile,String type) throws IllegalStateException, IOException{
+		
 		
 				if(newFile.isEmpty()){
 					return null;
 				}
-				String path = "D:\\code\\web\\upload\\";
+				OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
 				//开始上传文件的处理
 				//原始文件名称
 				String file_name =  newFile.getOriginalFilename();
 				//新文件名称
-				String newFileName = UUID.randomUUID().toString()+file_name.substring(file_name.lastIndexOf("."));
+				objectkey = UUID.randomUUID().toString()+file_name.substring(file_name.lastIndexOf("."));
 				if("picture".equals(type)){
-					newFileName = "picture\\" + newFileName;
+					objectkey = "picture/"+ objectkey;
+					
 				}
 				if("video".equals(type)){
-					newFileName = "video\\" + newFileName;
+					objectkey = "video/"+ objectkey;
 				}
-				//上传图片
-				File uploadPic = new File(path+newFileName);
-				//向磁盘写文件
-				newFile.transferTo(uploadPic);
+				
+				//向oss写文件
+				ossClient.putObject(bucketName, objectkey , newFile.getInputStream());
 				
 				//开始删除原来文件的处理
-				if(oldFile == null){
-					return newFileName;
+				if(oldFile == null || "".equals(oldFile)){
+					ossClient.shutdown();
+					return objectkey;
 				}
-				File rmFile = new File(path+oldFile);
-				if(rmFile.isDirectory()){
-					return newFileName;
-				}
-				if(rmFile.isFile()){
-					if(rmFile.delete()){
-						return newFileName;
-					}else{
-						File rmNewFile = new File(path+newFileName);
-						rmNewFile.delete();
-						return null;
-					}
-				}
-				
-				return newFileName;
+				//删除
+				ossClient.deleteObject(bucketName, oldFile);
+				ossClient.shutdown();
+				return objectkey;
 	}
 	
 	

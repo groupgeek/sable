@@ -135,7 +135,7 @@ $(document).ready(function(){
 											'<li class="td td-item">'+
 												'<div class="item-pic">'+
 													'<a href="#" class="J_MakePoint">'+
-														'<img src="/upload/'+data[i].picture+'">'+
+														'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].picture+'">'+
 													'</a>'+
 												'</div>'+
 												'<div class="item-info">'+

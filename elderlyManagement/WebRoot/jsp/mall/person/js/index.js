@@ -12,7 +12,7 @@ $(document)
 							if (data != null) {
 								$(".s-name").text("" + data.username + "");
 								$("#userAvatar img").attr("src",
-										"/upload/" + data.avatar);
+										"http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/" + data.avatar);
 							} else {
 								alert("请登录");
 								window.location.href = root
@@ -40,7 +40,7 @@ $(document)
 						url : root + "/product/queryPersonHotProduct",
 						success : function(data) {
 							$("#hot img")
-									.attr("src", "/upload/" + data.picture);
+									.attr("src", "http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/" + data.picture);
 							$("#hot span").text(data.productname);
 							$("#hot").find("a[class=follow]").text(
 									"￥" + data.price);
@@ -63,7 +63,7 @@ $(document)
 						url : root + "/product/queryPersonProductrec",
 						success : function(data) {
 							$("#rec img")
-									.attr("src", "/upload/" + data.picture);
+									.attr("src", "http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/" + data.picture);
 							$("#rec span").text(data.productname);
 							$("#rec").find("a[class=follow]").text(
 									"￥" + data.price);
@@ -115,7 +115,7 @@ $(document)
 															'<li class="lg-item">'
 																	+ '<div class="item-info">'
 																	+ '<a href="javascript:;">'
-																	+ '<img src="/upload/'
+																	+ '<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'
 																	+ data[i].picture
 																	+ '">'
 																	+ '</a>'
