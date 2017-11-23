@@ -9,7 +9,7 @@ public class Shippingaddress {
 
     private Boolean defaultaddress;
 
-    private Integer phone;
+    private String phone;
 
     private String receiver;
 
@@ -45,11 +45,11 @@ public class Shippingaddress {
         this.defaultaddress = defaultaddress;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

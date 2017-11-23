@@ -19,6 +19,9 @@ $(document).ready(function(){
 	});
 	
 	$("#addBranch").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+		
 		var areaid =$("#areaname select").attr("value");
 		var employeeid =$("#employeename select").attr("value");
 		var branchname =$("#branchname input").attr("value");
@@ -32,14 +35,20 @@ $(document).ready(function(){
 				+'"branchname"'+':'+'"'+branchname+'"'
 		    			+'}',
 			success:function(data){
-				alert(data.message);
+				//alert(data.message);
+				//显示提示信息
+				if(data.message != null && data.message != undefined){
+					$("#showMessage").text(data.message);
+					$('#messageNotification').fadeIn(2000);
+					getSrceenWH();
+					$('#messageNotification').fadeOut(3000);
+					
+					$('#loading').hide();
+					$('body').removeClass("hiddenBody");
+				}
 				
 			}
 		});
 	});
 	
-	var message = $("#message").attr("value");
-	if(message != ""){
-		alert(message);
-	}
 });

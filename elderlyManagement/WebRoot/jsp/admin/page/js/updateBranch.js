@@ -26,6 +26,9 @@ $(document).ready(function(){
 	});
 	
 	$("#updateBranch").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+		
 		var branchid = $("#branchid").attr("value");
 		var oldemployeeid = $("#oldemployeeid").attr("value");
 		var areaid = $("#areaid").attr("value");
@@ -43,8 +46,17 @@ $(document).ready(function(){
 					+'"employeeid"'+':'+'"'+employeeid+'"'
 	    			+'}',
 			success:function(data){
-				alert("ok");
-				alert(data.message);
+				//alert("ok");
+				//alert(data.message);
+				//显示提示信息
+				$("#showMessage").text(data.message);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+				
+				
+				$('#loading').hide();
+				$('body').removeClass("hiddenBody");
 			}
 		});
 		

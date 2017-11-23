@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	var root =  $("#root").attr("value");
 	
+	
 	//显示当前用户如果没有就跳转到登录界面
 	$.ajax({
 		type:"post",
@@ -31,6 +32,18 @@ $(document).ready(function(){
 			}
 		}
 	});
+	/*alert($("#showMessageInput").val())*/
+	var val = window.location.href.split("?")[1];
+	if(val != undefined){
+		//显示弹框
+		var showMessageInput = decodeURI(val.split("=")[1]);
+		
+		$("#showMessage").text(showMessageInput);
+		$('#messageNotification').fadeIn(2000);
+		getSrceenWH();
+		$('#messageNotification').fadeOut(3000);
+	}
+	
 	
 	//点击事件 可修改电话号码
 	$("#updatePhone").click(function(){
@@ -39,9 +52,14 @@ $(document).ready(function(){
 		$(".update-phone-label").show();
 	});
 	
+
+	
+	
 	//保存修改的信息
 	$("#save").click(function(){
 		
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
 		$("#formSubmit").submit();
 		
 		
@@ -109,5 +127,6 @@ $(document).ready(function(){
 		}
 	
 	});*/
+	
 	
 });

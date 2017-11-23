@@ -166,9 +166,14 @@
 							   <div class="control-group" id = "showVideo">
 								<label class="control-label">已有视频</label>
 								<div class="controls">
-									
+									<div  class="prism-player" id="J_prismPlayer"></div>
 								</div>
+								
 							  </div>
+							  
+							  
+							  
+							  
 							  <div class="control-group hidden-phone" id = "activitydetails">
 								  <label class="control-label">活动详情</label>
 								  <div class="controls">
@@ -229,6 +234,7 @@
 	<!-- start: JavaScript-->
 
 	<%-- <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>
+	
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/jquery-migrate-1.0.0.min.js"></script>

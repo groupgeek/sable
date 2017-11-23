@@ -8,7 +8,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
 		<title>个人资料</title>
-
+		
+		<link href="${pageContext.request.contextPath }/jsp/util/_css/wait.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
@@ -19,9 +20,25 @@
 		<%-- <script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/jquery.min.js" type="text/javascript"></script> --%>
 		<script src="${pageContext.request.contextPath }/jsp/mall/UI/assets/js/amazeui.js" type="text/javascript"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
+		
+		
+
 	</head>
 
 	<body>
+	
+	<div id="loading" style="display: none;">
+				<div id="loading-center">
+					<div id="loading-center-absolute">
+						<div class="object" id="object_one"></div>
+						<div class="object" id="object_two"></div>
+						<div class="object" id="object_three"></div>
+						<div class="object" id="object_four"></div>
+		
+					</div>
+				</div>
+
+			</div>
 	<input id="root" type="hidden"
 		value="${pageContext.request.contextPath }">
 		<!--头 -->
@@ -58,7 +75,7 @@
 						<div class="user-infoPic">
 
 							<div class="filePic">
-								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+								<!-- <input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*"> -->
 								<img class="am-circle am-img-thumbnail" src="../images/getAvatar.do.jpg" alt="" />
 							</div>
 
@@ -72,7 +89,7 @@
 						            </span>
 								</div>
 								<div class="u-safety">
-									<a href="safety.html">
+									<a href="JavaScript:;">
 									 账户安全
 									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
 									</a>
@@ -150,7 +167,6 @@
 									<!-- <input type="submit" value="保存修改"> -->
 									<div class="am-btn am-btn-danger" id = "save">保存修改</div>
 								</div>
-
 							</form>
 						</div>
 
@@ -160,9 +176,15 @@
 				<!--底部-->
 				<c:import url="/jsp/mall/footer.jsp"></c:import>
 			</div>
+			
+			
 
 			<!-- 菜单 -->
 			<c:import url="/jsp/mall/personMenu.jsp"></c:import>
+			
+			
+			<c:import url="/jsp/util/messageNotification.jsp"></c:import>
+			<%-- <input type = "hidden" value = "${message }" id = "showMessageInput"> --%>
 			<!--js  -->
 			<script type="text/javascript"
 				src="${pageContext.request.contextPath }/jsp/mall/person/js/information.js"></script>

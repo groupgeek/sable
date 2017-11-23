@@ -182,7 +182,7 @@
 							  <div class="control-group" id = "showVideo">
 								<label class="control-label">已有视频</label>
 								<div class="controls">
-									
+									<div  class="prism-player" id="J_prismPlayer"></div>
 								</div>
 							  </div>
 							  <div class="control-group" id = "activitypicture">

@@ -123,4 +123,16 @@
 		}
 	});
 	
+	$("#addProduct").click(function(){
+		/*//显示提示信息
+		$("#showMessage").text(data.message);
+		$('#messageNotification').fadeIn(2000);
+		getSrceenWH();
+		$('#messageNotification').fadeOut(3000);*/
+		
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
+	
+	
 });

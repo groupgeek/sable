@@ -357,7 +357,7 @@ public class UserServiceImpl implements UserService {
 			ShippingAddressCustom addressInfo) {
 		
 		//添加
-		if(shippingaddressMapper.insertSelective(addressInfo) < 0) return null;
+		if(shippingaddressMapper.insertSelective(addressInfo) <= 0) return null;
 		
 		return addressInfo;
 	}

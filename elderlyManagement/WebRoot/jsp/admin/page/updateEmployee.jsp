@@ -390,7 +390,7 @@
 			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-	
+	<!-- 
 	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-content">
 			<ul class="list-inline item-details">
@@ -398,7 +398,7 @@
 				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 	
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>
@@ -500,11 +500,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var message = $("#message").attr("value");
-			if(message != ""){
-				alert(message);
-			}
-		
+			$("#updateEmployee").click(function(){
+				$('#loading').show();
+				$('body').addClass("hiddenBody");
+			})
 		});
 	
 	</script>

@@ -4,7 +4,7 @@
 		var messageid = 1;
 		var message = $("#message").attr("value");
 		if(message != ""){
-			alert(message);
+			//alert(message);
 			activityid = $("#messageid").attr("value");
 		}else{
 			val = window.location.href.split("?")[1];

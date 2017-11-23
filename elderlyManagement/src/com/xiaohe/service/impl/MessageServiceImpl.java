@@ -72,6 +72,7 @@ public class MessageServiceImpl implements MessageService {
 		
 		MessageCustom message = new MessageCustom();
 		message = messageMapper.selectMessageInfoById(id);
+		if(message == null) return null;
 		message.setMessagetimeString(GetStringByDate.getString(message.getMessagetime()));
 		
 		return message;

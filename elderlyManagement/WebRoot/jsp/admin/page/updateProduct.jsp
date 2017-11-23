@@ -239,7 +239,7 @@
 							  
 							  <input type="hidden" value="" id = "productid" name="productid">
 							  <div class="form-actions">
-							  	<button type="submit" class="btn btn-primary">保存</button>
+							  	<button type="submit" class="btn btn-primary" id = "updateProduct">保存</button>
 							  </div> 
 							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
@@ -289,6 +289,7 @@
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>
 	
+	<input type = "hidden" value = "${message }" id = "message">
 	<!-- start: JavaScript-->
 
 	<%-- <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>

@@ -6,7 +6,7 @@
     <result column="shippingAddress" property="shippingaddress" jdbcType="VARCHAR" />
     <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="defaultAddress" property="defaultaddress" jdbcType="BIT" />
-    <result column="phone" property="phone" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="receiver" property="receiver" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -27,7 +27,7 @@
       userId, defaultAddress, phone, 
       receiver)
     values (#{shippingaddressid,jdbcType=INTEGER}, #{shippingaddress,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=INTEGER}, #{defaultaddress,jdbcType=BIT}, #{phone,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{defaultaddress,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, 
       #{receiver,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Shippingaddress" >
@@ -69,7 +69,7 @@
         #{defaultaddress,jdbcType=BIT},
       </if>
       <if test="phone != null" >
-        #{phone,jdbcType=INTEGER},
+        #{phone,jdbcType=VARCHAR},
       </if>
       <if test="receiver != null" >
         #{receiver,jdbcType=VARCHAR},
@@ -89,7 +89,7 @@
         defaultAddress = #{defaultaddress,jdbcType=BIT},
       </if>
       <if test="phone != null" >
-        phone = #{phone,jdbcType=INTEGER},
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="receiver != null" >
         receiver = #{receiver,jdbcType=VARCHAR},
@@ -102,7 +102,7 @@
     set shippingAddress = #{shippingaddress,jdbcType=VARCHAR},
       userId = #{userid,jdbcType=INTEGER},
       defaultAddress = #{defaultaddress,jdbcType=BIT},
-      phone = #{phone,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
       receiver = #{receiver,jdbcType=VARCHAR}
     where shippingAddressId = #{shippingaddressid,jdbcType=INTEGER}
   </update>

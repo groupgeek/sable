@@ -486,13 +486,7 @@
 	<!-- end: JavaScript-->
 	
 	<script type="text/javascript">
-		$(document).ready(function(){
-			var message = $("#message").attr("value");
-			if(message != ""){
-				alert(message);
-			}
 		
-		});
 	
 	</script>
 	

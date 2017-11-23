@@ -4,19 +4,31 @@
 <html>
 <head>
 
-<!-- start: Meta -->
 <meta charset="utf-8">
 <title>head</title>
 <meta name="description" content="admin">
 <meta name="keyword" content="admin">
-<!-- end: Meta -->
-
-<!-- start: Mobile Specific -->
-
-
+<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.3.0/aliplayer-min.js"></script>
+<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.3.0/skins/default/aliplayer-min.css" />
+<link href="${pageContext.request.contextPath }/jsp/util/_css/wait.css" rel="stylesheet" type="text/css" />
 </head>
 
+
 <body>
+<c:import url="/jsp/util/messageNotification.jsp"></c:import>
+<div id="loading" style="z-index: 10000000000;display: none;">
+				<div id="loading-center">
+					<div id="loading-center-absolute">
+						<div class="object" id="object_one"></div>
+						<div class="object" id="object_two"></div>
+						<div class="object" id="object_three"></div>
+						<div class="object" id="object_four"></div>
+		
+					</div>
+				</div>
+
+			</div>
+	
 	<input id="root" type="hidden"
 		value="${pageContext.request.contextPath }">
 	<!-- start: Header -->
@@ -109,7 +121,17 @@
 				}
 			});
 	
-
+	$(document).ready(function(){
+			var message = $("#message").attr("value");
+			if(message != "" && message != undefined){
+				//显示提示信息
+				$("#showMessage").text(message);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+			}
+		
+		});
 </script>
 
 </body>

@@ -29,6 +29,15 @@ $(document).ready(function(){
 	
 	var message = $("#message").attr("value");
 	if(message != ""){
-		alert(message);
+
+		$("#showMessage").text(message);
+		$('#messageNotification').fadeIn(2000);
+		getSrceenWH();
+		$('#messageNotification').fadeOut(3000);
 	}
+	
+	$("#addEmployee").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
 });

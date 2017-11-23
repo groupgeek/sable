@@ -23,6 +23,8 @@ $(document).ready(function(){
 	});
 	
 	$("#updateReturnvisitRecord").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
 		//var username = $("#username input").attr("value");
 		var address = $("#address input").attr("value");
 		var lastvisttime = $("#lastvisttime input").attr("value");
@@ -52,7 +54,15 @@ $(document).ready(function(){
 	    	*/
 			data:JSON.stringify(info),
 			success:function(data){
-				alert(data.message);
+				//显示提示信息
+				$("#showMessage").text(data.message);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+				
+				
+				$('#loading').hide();
+				$('body').removeClass("hiddenBody");
 			}
 		});
 		

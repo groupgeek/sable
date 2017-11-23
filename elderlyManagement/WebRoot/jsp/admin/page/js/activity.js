@@ -6,6 +6,7 @@ $(document).ready(function(){
 		var sort = $("#selectSort").val();
 		var activitystatus = $("#activitystatus").attr("value");
 		
+		
 		function createActivityTable(data){
 			for(var i in data.activityList){
 				$("#box tbody").append(
@@ -48,7 +49,10 @@ $(document).ready(function(){
 						if(data.flag){
 							myself.parent().parent().remove();
 						}else{
-							alert(data.message);
+							$("#showMessage").text(data.message);
+							$('#messageNotification').fadeIn(2000);
+							getSrceenWH();
+							$('#messageNotification').fadeOut(3000);
 						}
 					}
 				});

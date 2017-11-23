@@ -2,6 +2,7 @@
 	var root =  $("#root").attr("value");
 	var val = window.location.href.split("?")[1];
 	var productid = val.split("=")[1];
+	
 	$.ajax({
 		
 		type:"post",
@@ -100,7 +101,7 @@
 			if(data.productInfo.tasteList != null || data.productInfo.tasteList != ""){
 				for(var i in data.productInfo.tasteList){
 					
-					teaste += data.productInfo.tasteList[i].producttaste + ",";
+					teaste += data.productInfo.tasteList[i].producttaste + " ";
 				}
 				teaste = teaste.substring(0, teaste.length-1);
 			}
@@ -112,7 +113,7 @@
 			var colour = "";
 			if(data.productInfo.tasteList != null || data.productInfo.tasteList != ""){
 				for(var i in data.productInfo.colourList){
-					colour += data.productInfo.colourList[i].productcolour + ",";
+					colour += data.productInfo.colourList[i].productcolour + " ";
 				}
 				colour = colour.substring(0, colour.length-1);
 			}
@@ -175,5 +176,11 @@
 			$("#productcolour input").attr("value","");
 		}
 	});
+	
+	$("#updateProduct").click(function(){
+		
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
 	
 });

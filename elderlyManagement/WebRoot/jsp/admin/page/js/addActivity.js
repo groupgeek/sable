@@ -39,9 +39,17 @@ $(document).ready(function(){
 			}
 		}
 	});
+	$("#addActivity").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
 	
-	var message = $("#message").attr("value");
-	if(message != ""){
-		alert(message);
-	}
+
+	/*if(data.message != null && data.message != undefined){信息展示
+		$("#showMessage").text(data.message);
+		$('#messageNotification').fadeIn(2000);
+		getSrceenWH();
+		$('#messageNotification').fadeOut(3000);
+		
+	}*/
 });

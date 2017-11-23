@@ -248,8 +248,8 @@ public class superAdminController {
 		}else{
 			message = "修改失败";
 		}
-		
-		return "redirect:updateUserInfoView?id="+userInfo.getUserid()+"&message="+message;
+		model.addAttribute("message",message);
+		return "redirect:updateUserInfoView?id="+userInfo.getUserid();
 	}
 	
 	/**
@@ -384,8 +384,8 @@ public class superAdminController {
 		}else{
 			message = "修改失败";
 		}
-		
-		return "redirect:updateEmployeeInfoView?id="+employeeInfo.getEmployeeid()+"&message="+message;
+		model.addAttribute("message",message);
+		return "redirect:updateEmployeeInfoView?id="+employeeInfo.getEmployeeid();
 	}
 	
 	/**
@@ -787,8 +787,7 @@ public class superAdminController {
 		}else{
 			model.addAttribute("message", "修改失败");
 		}
-		
-		return "admin/page/mallInfo";
+		return "redirect:/jsp/admin/page/productInfo.jsp?productidid="+info.getProductid();
 	}
 	
 	/**

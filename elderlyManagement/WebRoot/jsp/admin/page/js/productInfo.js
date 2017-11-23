@@ -1,7 +1,10 @@
  $(document).ready(function(){
 	var root =  $("#root").attr("value");
 	var val = window.location.href.split("?")[1];
-	var productid = val.split("=")[1];
+	
+	var par = val.split("&");
+	var productid = par[0].split("=")[1];
+	
 	$.ajax({
 		
 		type:"post",
@@ -46,7 +49,7 @@
 			if(data.tasteList != null || data.tasteList != ""){
 				for(var i in data.tasteList){
 					
-					teaste += data.tasteList[i].producttaste + ",";
+					teaste += data.tasteList[i].producttaste + " ";
 				}
 				teaste = teaste.substring(0, teaste.length-1);
 			}
@@ -59,7 +62,7 @@
 			var colour = "";
 			if(data.tasteList != null || data.tasteList != ""){
 				for(var i in data.colourList){
-					colour += data.colourList[i].productcolour + ",";
+					colour += data.colourList[i].productcolour + " ";
 				}
 				colour = colour.substring(0, colour.length-1);
 			}
@@ -69,5 +72,14 @@
 		}
 		
 	});
+	
+	if(par[1] != null || par[1] != ""){
+		
+		//显示提示信息
+		$("#showMessage").text(decodeURI(par[1].split("=")[1]));
+		$('#messageNotification').fadeIn(2000);
+		getSrceenWH();
+		$('#messageNotification').fadeOut(3000);
+	}
 	
 });
