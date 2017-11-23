@@ -217,13 +217,6 @@ public interface ActivityMapper {
     
     
     /**
-     * 查询教育下某一类活动信息
-     * @param condition
-     * @return
-     */
-    List<ActivityCustom> selectEduAllTypeActByCondition(ActivityCustom condition);
-    
-    /**
      *查询教育下某一类活动数量
      * @param condition
      * @return
