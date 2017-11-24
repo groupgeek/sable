@@ -16,9 +16,11 @@ import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.Activityregistery;
+import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityregisteryMapper;
+import com.xiaohe.mapper.ActivityreportMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.util.FileUpload;
@@ -38,6 +40,9 @@ public class ActivityServiceImpl implements ActivityService {
 	@Autowired
 	@Qualifier("activityregisteryMapper")
 	private ActivityregisteryMapper activityregisteryMapper;
+	
+	@Autowired
+	private ActivityreportMapper activityreportMapper;
 	
 	/**
 	 * 给Introduction字段赋值 (活动描述里面的值的一部分)
@@ -293,7 +298,6 @@ public class ActivityServiceImpl implements ActivityService {
 
 	
 	public void insertUserRegistery(Activityregistery activityregistery) {
-	
 		activityregisteryMapper.insert(activityregistery);
 	}
 
@@ -324,6 +328,15 @@ public class ActivityServiceImpl implements ActivityService {
 
 	public Activityregistery oneUserAct(Activityregistery activityregistery) {
 		return activityregisteryMapper.oneUserAct(activityregistery);
+	}
+
+	public Activityreport oneActivityreport(Integer id) {
+		return activityreportMapper.oneActivityreport(id);
+	}
+
+	public int updateActrep(Activityreport activityreport) {
+		activityreportMapper.updateByPrimaryKey(activityreport);
+		return 0;
 	}
 	
 	

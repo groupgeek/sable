@@ -240,4 +240,10 @@ public interface ActivityMapper {
      * @return
      */
     List<CeoActivity> CeoBranchHealIncome(Integer id);
+    /**
+     * 查看活动的八名人数
+     * @param activityCustom
+     * @return
+     */
+    Integer countActNo(Integer id);
 }

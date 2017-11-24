@@ -2,6 +2,7 @@ package com.xiaohe.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.TransactionVo;
 
@@ -35,4 +36,11 @@ public interface TransactionService {
 	 * @return
 	 */
 	public boolean deleteRecord(Integer transactionid);
+	
+	/**
+	 * 根据用户id查询交易表
+	 * @param id
+	 * @return
+	 */
+	public TransactionCustom oneTransaction(Integer id);
 }

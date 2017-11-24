@@ -11,7 +11,9 @@ import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.Activityregistery;
+import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Integral;
 
 /**
  * 活动处理
@@ -140,5 +142,54 @@ public interface ActivityService {
 	 * @return boolean
 	 */
 	public boolean quertyIfUsetRegistery(Activityregistery activityregistery);
+	
+	/**
+	 * 根据活动id查询到对应的活动
+	 * @param id
+	 * @return
+	 */
+	public ActivityCustom oneAct(Integer id);
+	
+	/**
+	 * 根据活动id查询到总报名人数
+	 * @param id
+	 * @return
+	 */
+	public Integer countPeople(Integer id);
+	
+	/**
+	 * 插入活动报名信息
+	 * @param activityregistery
+	 * @return
+	 */
+	public int insertActRec(Activityregistery activityregistery);
+	
+	/**
+	 * 查询一个报名的活动
+	 * @param activityregistery
+	 * @return
+	 */
+	public Activityregistery oneActreg(Activityregistery activityregistery);
+	
+	/**
+	 * 查询用户的报名情况
+	 * @param activityregistery
+	 * @return
+	 */
+	public Activityregistery oneUserAct(Activityregistery activityregistery);
+	
+	/**
+	 * 根据活动id查询到对用的活动报表
+	 * @param id
+	 * @return
+	 */
+	public Activityreport oneActivityreport(Integer id);
+	
+	/**
+	 * 跟新活动报表
+	 * @param activityreport
+	 * @return
+	 */
+	public int updateActrep(Activityreport activityreport);
 
 }

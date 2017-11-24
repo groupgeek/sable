@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
+import com.xiaohe.bean.Transaction;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.TransactionVo;
 import com.xiaohe.mapper.TransactionMapper;
@@ -74,6 +75,11 @@ public class TransactionServiceImpl implements TransactionService {
 		if(transactionMapper.deleteByPrimaryKey(transactionid) <= 0) return false;
 		
 		return true;
+	}
+
+	public TransactionCustom oneTransaction(Integer id) {
+		
+		return transactionMapper.selectTransactionByUserId(id);
 	}
 
 }

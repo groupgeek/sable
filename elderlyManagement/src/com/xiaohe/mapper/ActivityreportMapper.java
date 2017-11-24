@@ -77,4 +77,11 @@ public interface ActivityreportMapper {
      * @return
      */
     CeoActivityreport ceoactivitychartByAll();
+    
+    /**
+     * 根据活动id查询到活动报表
+     * @param id
+     * @return
+     */
+    Activityreport oneActivityreport(Integer id);
 }

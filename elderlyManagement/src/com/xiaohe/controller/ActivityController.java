@@ -1,12 +1,15 @@
 package com.xiaohe.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.omg.PortableInterceptor.TRANSPORT_RETRY;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,10 +23,18 @@ import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityVo;
 import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.Activityregistery;
+import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.Integral;
+import com.xiaohe.bean.IntegralCustom;
+import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
+import com.xiaohe.bean.UserCustom;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.BranchAdminService;
+import com.xiaohe.service.IntegralService;
+import com.xiaohe.service.TransactionService;
+import com.xiaohe.util.GetStringByDate;
 
 @Controller
 @RequestMapping("edu")
@@ -34,6 +45,12 @@ public class ActivityController {
 	
 	@Autowired
 	private BranchAdminService branchAdminService;
+	
+	@Autowired
+	private IntegralService integralService;
+	
+	@Autowired
+	private TransactionService transactionService;
 	
 	
 	public User getUser(HttpServletRequest request){
@@ -107,13 +124,71 @@ public class ActivityController {
 	@RequestMapping(value="/regAct")   //活动报名
 	public @ResponseBody Activityregistery insertAct(@RequestBody ActivityrecommendCustom activityrecommendCustom,HttpServletRequest request){
 		User user = getUser(request);
+		UserCustom oneUserCustom = new UserCustom();
+		oneUserCustom = branchAdminService.oneUser(user.getUserid());
+		Activityreport activityreport = new Activityreport();
+		activityreport = activityService.oneActivityreport(activityrecommendCustom.getActivityid());
+		TransactionCustom transactionCustom = new TransactionCustom();
+		transactionCustom = transactionService.oneTransaction(user.getUserid());
+		/*GetStringByDate caltimeByDate = new GetStringByDate();
+		int days = caltimeByDate.calculateDate(user.getRegistrationdate(), new Date());
+		int month = days/30;
+		if(month%1!=0){
+			month = month+1;
+		}*/
+		
+		
 		Activityregistery activityregistery = new Activityregistery();
 		Activityregistery actreg = new Activityregistery();
 		activityregistery.setUserid(user.getUserid());
 		activityregistery.setActivityid(activityrecommendCustom.getActivityid());
 		activityregistery.setRegistery("报名");
 		actreg = activityService.oneActreg(activityregistery);
+		Integral integral = new Integral();
+		Integral integral2 = new Integral();
+		IntegralCustom condetion = new IntegralCustom();
+		condetion.setCurrentPage(1);
+		condetion.setPageNum(1);
+		condetion.setUserid(user.getUserid());
+		integral = integralService.queryUpToDateRecord(condetion);
+		
 		if(actreg==null){
+			//更新活动报表
+			if(activityreport.getTotalprice()!=null){
+			activityreport.setTotalprice(activityreport.getTotalprice().add(activityrecommendCustom.getRegisteryfee()));
+			}else{
+				activityreport.setTotalprice(new BigDecimal(0).add(activityrecommendCustom.getRegisteryfee()));
+			}
+			activityreport.setCountactivity(activityreport.getCountactivity()+1);
+			activityService.updateActrep(activityreport);
+			//赠送积分
+			Integer a = (Integer.parseInt(activityrecommendCustom.getRegisteryfee().divide(new BigDecimal(10)).toBigInteger().toString()));
+			integral2.setChangeintegral(a);
+			Integer b = integral.getRemainingpoints(); 
+			integral2.setRemainingpoints(a+b);
+			integral2.setChangetime(new Date());
+			integral2.setDetails("报名："+activityrecommendCustom.getActivityname()+"获得");
+			integral2.setUserid(user.getUserid());
+			integralService.insertIntel(integral2);
+			//更新客户信息表
+			transactionCustom.setCountbuy(transactionCustom.getCountbuy()+1);
+			transactionCustom.setTotalprice(transactionCustom.getTotalprice().add(activityrecommendCustom.getRegisteryfee()));
+			Long date = (new Date()).getTime() - user.getRegistrationdate().getTime();
+			Long monthTemp = date / (1000);
+			Integer month = (int) (monthTemp / (3600 * 24 * 30));
+			
+			if(date % (1000 * 3600 * 24 * 30) != 0){
+				month += 1;
+			}
+			Float temp;
+			if(month > 0){
+				temp = ((transactionCustom.getCountbuy() + 1) / (float)month);
+				transactionCustom.setFrequency(temp);
+				transactionCustom.setCycle((float)1 / temp);
+			}
+			
+			transactionService.updateRecordInfoById(transactionCustom);
+			//插入报名信息
 			activityService.insertActRec(activityregistery);
 			return activityregistery;
 		}else{

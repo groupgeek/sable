@@ -166,10 +166,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 							<div style="padding-left: 35%;padding-bottom: 30px">
 							<c:if test="${employee.avatar==null }">
-							<img class="image1" src="/upload/picture/ss.jpg">
+							<img class="image1" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/ss.jpg">
 							</c:if>
 							<c:if test="${employee.avatar!=null }">
-							<img class="image1" src="/upload/${employee.avatar }">
+							<img class="image1" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${employee.avatar }">
 							</c:if>
 							</div>
 							

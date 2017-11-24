@@ -202,7 +202,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="controls">
 									<select id="selectError3" name="activitytypeid">
 									<c:forEach items="${actTypes }" var="actTypes">
+									<c:if test="${actTypes.activitytypeid >= 3}">
 										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
+									</c:if>
 									</c:forEach>
 									</select>
 								</div>

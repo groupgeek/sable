@@ -17,7 +17,8 @@
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/edu/css/bootstrap.min.css"  type="text/css">
-	
+	<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.3.0/aliplayer-min.js"></script>
+<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.3.0/skins/default/aliplayer-min.css" />
 	<!-- Custom CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/edu/css/style.css">
 	
@@ -63,10 +64,11 @@
 					<div class="product">
 						<div class="col-md-6">
 							<div class="image" style="width: 350px;height: 400px;">
-								<img src="/upload/${act.activitypicture }" />
+								<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }" />
 							</div>
 						</div>
 						<input type="hidden" value="${act.activityid }" id="regActid"/>
+						<input type="hidden" value="${act.activityname }" id="activityname"/>
 						<input type="hidden" value="${pageContext.request.contextPath }" id="root"/>
 						<div class="col-md-6">
 							<div class="caption">
@@ -85,6 +87,7 @@
 										</c:if>
 									</ul>
 								</div>
+								<input type="hidden" value="${act.registeryfee }" id="registery">
 								<input type="hidden" value="${a }" id="a">
 								<p id="lll" class="lll">已经报名人数：${a }</p>
 								<div class="price">最大报名人数：${act.maxnum }</div>
@@ -122,6 +125,7 @@
 						</div>
 						<div class="clear"></div>
 					</div>	
+					<input type="hidden" id="actvideo" value="${act.video }">
 					<div class="product-desc">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#description">活动描述</a></li>
@@ -132,17 +136,15 @@
 								<h4>${act.activityname }的简单描述：</h4>
 								<p>${act.activitydetails }</p>
 							</div>
-							<div id="review" class="tab-pane fade">
-							  <div class="review-text" style="width: 400px;">
-							  <video width="320" height="240" controls autoplay> <source
-												src="/upload/${act.video }" type="video/ogg"> <source
-												src="/upload/${act.video }" type="video/mp4"> <source
-												src="/upload/${act.video }" type="video/webm"> <object
-												data="/upload/${act.video }" width="320" height="240">
-												<embed width="320" height="240" src="/upload/${act.video }">
-											</object></video>
+							<div id="review" class="tab-pane fade" style="padding: 1px;width: 600px;">
+							  <div class="review-text" style="padding: 1px;">
+							  <c:if test="${act.video!=null }">
+							  <div  class="prism-player" id="J_prismPlayer"></div>
+							  </c:if>
+							  <c:if test="${act.video==null }">
+										  暂无视频简介，看看详情吧！
+							  </c:if>
 							  </div>
-							 
 							</div>
 						</div>
 					</div>
@@ -151,7 +153,7 @@
 						<div class="products">
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="product">
-									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[0].activityid}"><img src="/upload/${allActRec[0].activitypicture }" /></a></div>
+									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[0].activityid}"><img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${allActRec[0].activitypicture }" /></a></div>
 									<div class="caption">
 										<div class="name"><h3><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[0].activityid}">${allActRec[0].activityname}</a></h3></div>
 										<div class="price">报名费：￥${allActRec[0].registeryfee}元</div>
@@ -161,7 +163,7 @@
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="product">
-									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[1].activityid}"><img src="/upload/${allActRec[1].activitypicture }" /></a></div>
+									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[1].activityid}"><img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${allActRec[1].activitypicture }" /></a></div>
 									<div class="caption">
 										<div class="name"><h3><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[1].activityid}">${allActRec[1].activityname}</a></h3></div>
 										<div class="price">报名费：￥${allActRec[1].registeryfee}元</div>
@@ -170,7 +172,7 @@
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="product">
-									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[2].activityid}"><img src="/upload/${allActRec[2].activitypicture }" /></a></div>
+									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[2].activityid}"><img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${allActRec[2].activitypicture }" /></a></div>
 									<div class="caption">
 										<div class="name"><h3><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[2].activityid}">${allActRec[2].activityname}</a></h3></div>
 										<div class="price">报名费：￥${allActRec[2].registeryfee}元</div>
@@ -197,6 +199,24 @@
     </div><!-- /.modal -->
 	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/edu/js/actReg.js"></script>
 	<script src="${pageContext.request.contextPath }/jsp/edu/js/sweet-alert.min.js"></script>
+	<script type="text/javascript">
+	var video = document.getElementById("actvideo");
+						var player = new Aliplayer({
+			            id: 'J_prismPlayer',
+			            width: '100%',
+			            height: '100%',
+			            autoplay: false,
+			            //支持播放地址播放,此播放优先级最高
+			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+video,
+			            //播放方式二：推荐
+			            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
+			            playauth : '',
+			           /*  useH5Prism : true, */
+			            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
+			            },function(player){
+			                console.log('播放器创建好了。');
+			           });
+	</script>
 	<script>
 	$(document).ready(function(){
 		$(".nav-tabs a").click(function(){

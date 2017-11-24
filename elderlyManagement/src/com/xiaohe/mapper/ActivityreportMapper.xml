@@ -234,4 +234,10 @@
   	select sum(totalPrice) sumtotalPrice,sum(totalExpenditure) sumtotalExpenditure,DuringTime
 	from activityreport
   </select>
+  
+  
+  <select id="oneActivityreport" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Activityreport"> 
+  select * from activityreport
+  where activityid=#{activityId,jdbcType=INTEGER}
+  </select>
 </mapper>

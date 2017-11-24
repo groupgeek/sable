@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Integral;
 import com.xiaohe.bean.IntegralCustom;
 
 @Transactional
@@ -23,4 +24,10 @@ public interface IntegralService {
 	 */
 	public List<IntegralCustom> queryAllByCondition(IntegralCustom condition);
 	
+	/**
+	 * 插入积分信息
+	 * @param integral
+	 * @return
+	 */
+	public int insertIntel(Integral integral);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.ActivityCustom;
 import com.xiaohe.bean.ActivityrecommendCustom;
+import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.Activitytype;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.Area;
@@ -168,7 +169,19 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 		return activityMapper.branchActs(id);
 	}
 	public void inertActs(Activity activity,MultipartFile file) {
-		activityMapper.insert(activity);
+		activityMapper.insertSelective(activity);
+		
+		Activityreport activityreport = new Activityreport();
+		activityreport.setCountactivity(0);
+		activityreport.setActivityid(activity.getActivityid());
+		activityreport.setBranchid(activity.getBranchid());
+		activityreport.setDuringtime(activity.getActivitydate());
+		activityreport.setTotalprice(new BigDecimal(0));
+		activityreport.setTotalexpenditure(activity.getActivityprice());
+		activityreport.setAveragepeople(0);
+		activityreport.setOnline(activity.getOnline());
+		activityreportMapper.insert(activityreport);
+		
 	}
 	public Branch oneBranch(Integer id) {
 		return branchMapper.selectByPrimaryKey(id);

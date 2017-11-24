@@ -16,12 +16,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<!-- end: Meta -->
-	
+
 	<!-- start: Mobile Specific -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
+	<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.3.0/aliplayer-min.js"></script>
+<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.3.0/skins/default/aliplayer-min.css" />
 	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
@@ -43,8 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
+			
 		
 		
 </head>
@@ -143,8 +144,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>修改活动信息</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
@@ -175,10 +174,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 <label class="control-label" for="fileInput">活动图片</label>
 						<div class="controls">
 						<c:if test="${act.activitypicture!=null }">
-							<img style="width: 140px;height: 120px" src="/upload/${act.activitypicture }">						
+							<img style="width: 140px;height: 120px" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }">						
 						</c:if>
 						<c:if test="${act.activitypicture==null }">
-						<img style="width: 160px;height: 140px" src="/upload/picture/hh.jpg">	
+						<img style="width: 160px;height: 140px" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/hh.jpg">	
 						</c:if>
 						</div>
 					</div><br>
@@ -186,15 +185,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div>
 										<label class="control-label" for="fileInput">活动视频</label>
 										<c:if test="${act.video!=null }">
-										<div class="controls">
-											<video width="320" height="240" controls autoplay> <source
-												src="/upload/${act.video }" type="video/ogg"> <source
-												src="/upload/${act.video }" type="video/mp4"> <source
-												src="/upload/${act.video }" type="video/webm"> <object
-												data="/upload/${act.video }" width="320" height="240">
-												<embed width="320" height="240" src="/upload/${act.video }">
-											</object></video>
-										</div>
+											<div class="controls">
+												<div  class="prism-player" id="J_prismPlayer"></div>
+											</div>
 										</c:if>
 										<c:if test="${act.video==null }">
 										<div class="controls">
@@ -260,10 +253,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<option value=true>线上</option>
 									</c:if>
 									
-									<%-- <c:if test="${act.online ==null}">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</c:if> --%>
 									</select>
 								</div>
 					</div> 
@@ -309,116 +298,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</fieldset>
 			</form>
 					
-					
-					
-					
-					
-					
-					
-					
-						<%-- <form class="form-horizontal" action="${pageContext.request.contextPath }/brach/insertActs.action" method="post" enctype="multipart/form-data">
-						 <!--  <fieldset> -->
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">活动名称 </label>
-							  <div class="controls">
-								<input type="text" name="activityname" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-								<!-- <p class="help-block">Start typing to activate auto complete!</p> -->
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead">活动日期</label>
-							  <div class="controls">
-								<input name="activitydate" onClick="laydate()"><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
-							  </div>
-							</div>
-
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入视频</label>
-							  <div class="controls">
-								<input class="input-file uniform_on" name="video" id="fileInput" type="file">
-							  </div>
-							</div>  
-							
-							
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">插入图片</label>
-							  <div class="controls">
-							  <input type="file" name="activitypicture">
-								<!-- <input class="input-file uniform_on" name="activitypicture1" id="fileInput" type="file"> -->
-							  </div>
-							</div> 
-							      
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动状态</label>
-								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
-								</div>
-							</div>  
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">活动类型</label>
-								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
-								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError3">线上线下</label>
-								<div class="controls">
-									<select id="selectError3" name="online">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</select>
-								</div>
-							</div> 
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动经费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="activityprice" size="16" type="text">
-								  </div>
-								</div>
-							  </div>
-							
-							<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">活动报名费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input id="appendedPrependedInput" name="registeryfee" size="16" type="text">
-								  </div>
-								</div>
-							  </div>
-							
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">活动描述</label>
-							  <div class="controls">
-								<textarea class="cleditor" id="textarea2" name="activitydetails" rows="3"></textarea>
-							  </div>
-							</div>
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">提交信息</button>
-							</div>
-						 <!--  </fieldset> -->
-						</form>   --%>
-						
-						<%-- <form action="${pageContext.request.contextPath }/upload.action" method="post" enctype="multipart/form-data">
-						 <input type="file" name="file" multiple>
-						 <input type="submit" value="提交">
-						</form>  --%>
-
 					</div>
 				</div><!--/span-->
 
@@ -459,6 +338,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</p>
 
 	</footer>
+	<input type="hidden" value="${act.video }" id="actvideo">
+	<script type="text/javascript">
+	var video = document.getElementById("actvideo");
+						var player = new Aliplayer({
+			            id: 'J_prismPlayer',
+			            width: '50%',
+			            height: '50%',
+			            autoplay: false,
+			            //支持播放地址播放,此播放优先级最高
+			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+video,
+			            //播放方式二：推荐
+			            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
+			            playauth : '',
+			           /*  useH5Prism : true, */
+			            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
+			            },function(player){
+			                console.log('播放器创建好了。');
+			           });
+	</script>
+	
 	
 	<!-- start: JavaScript-->
 
@@ -480,10 +379,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
@@ -520,6 +419,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
 		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
+		
+
 		
 	<!-- end: JavaScript-->
 	

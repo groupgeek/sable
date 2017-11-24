@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.Integral;
 import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.mapper.IntegralMapper;
 import com.xiaohe.service.IntegralService;
@@ -32,6 +33,11 @@ public class IntegralServiceImpl implements IntegralService {
 		}
 		
 		return all;
+	}
+
+	public int insertIntel(Integral integral) {
+		integralMapper.insertSelective(integral);
+		return 0;
 	}
 
 }
