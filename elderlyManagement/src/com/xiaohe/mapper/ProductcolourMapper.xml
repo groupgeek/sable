@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ProductcolourMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Productcolour" >
+    <id column="productColourId" property="productcolourid" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="ProductColour" property="productcolour" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productColourId, productId, ProductColour
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productcolour
+    where productColourId = #{productcolourid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productcolour
+    where productColourId = #{productcolourid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Productcolour" >
+    insert into productcolour (productColourId, productId, ProductColour
+      )
+    values (#{productcolourid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{productcolour,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Productcolour" >
+    insert into productcolour
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productcolourid != null" >
+        productColourId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="productcolour != null" >
+        ProductColour,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productcolourid != null" >
+        #{productcolourid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productcolour != null" >
+        #{productcolour,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Productcolour" >
+    update productcolour
+    <set >
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productcolour != null" >
+        ProductColour = #{productcolour,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where productColourId = #{productcolourid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Productcolour" >
+    update productcolour
+    set productId = #{productid,jdbcType=INTEGER},
+      ProductColour = #{productcolour,jdbcType=VARCHAR}
+    where productColourId = #{productcolourid,jdbcType=INTEGER}
+  </update>
+  
+   <select id="findProductColorAndSize" parameterType="Integer" resultType="com.xiaohe.bean.ProductcolourCustom">
+  SELECT p.picture,p.productId,p.productName,p.price,pr.ProductColour,pz.size,pz.sizeStock 
+  FROM product p ,productcolour pr,productcoloursize pz 
+  WHERE p.productId=pr.productId 
+  AND pr.productColourId=pz.ProductColourId and p.productId=#{productId}
+  </select>
+  
+  
+  <delete id="deleteColorByProductId" parameterType="Integer">
+
+	delete from productcolour
+    where productId = #{id}
+
+  </delete>
+  
+  
+  <select id="selectColourByProductid" parameterType="Integer" resultType="ProductcolourCustom">
+  	SELECT * FROM productcolour WHERE productId = #{id}
+  </select>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="elderlyManagement"
+  id="myeclipse.1507685148722"
+  context-root="/elderlyManagement"
+  j2ee-spec="5.0"
+  archive="elderlyManagement.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

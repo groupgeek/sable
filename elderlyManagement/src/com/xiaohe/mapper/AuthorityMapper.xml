@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.AuthorityMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Authority" >
+    <id column="authorityId" property="authorityid" jdbcType="INTEGER" />
+    <result column="authorityLevel" property="authoritylevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    authorityId, authorityLevel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from authority
+    where authorityId = #{authorityid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from authority
+    where authorityId = #{authorityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Authority" >
+    insert into authority (authorityId, authorityLevel)
+    values (#{authorityid,jdbcType=INTEGER}, #{authoritylevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Authority" >
+    insert into authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authorityid != null" >
+        authorityId,
+      </if>
+      <if test="authoritylevel != null" >
+        authorityLevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authorityid != null" >
+        #{authorityid,jdbcType=INTEGER},
+      </if>
+      <if test="authoritylevel != null" >
+        #{authoritylevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Authority" >
+    update authority
+    <set >
+      <if test="authoritylevel != null" >
+        authorityLevel = #{authoritylevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where authorityId = #{authorityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Authority" >
+    update authority
+    set authorityLevel = #{authoritylevel,jdbcType=VARCHAR}
+    where authorityId = #{authorityid,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 自定义sql -->
+  <select id="allAuths" resultType="com.xiaohe.bean.Authority">
+  select * from authority
+  </select>
+  
+  <select id="selectAll" resultType="AuthorityCustom">
+  	SELECT * FROM authority
+  </select>
+  
+  
+  
+</mapper>

@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+.control-group{
+	position:relative;
+	left:30px; 
+	top:10px
+}
+.chart{
+	width: 1000px;
+	height: 700px;
+	margin-left: 44px;
+}
+.product{
+	width: 790px;
+	height: 350px;
+	padding-left: 0px;
+}
+.line{
+	width: 790px;
+	height: 350px;
+	padding-left: 0;
+	margin-top:70px;
+}
+.pie1{
+	width: 210px;
+	height: 350px;
+	position: relative;
+	top:-770px;
+	float:right;
+}
+.pie2{
+	width: 210px;
+	height: 350px;
+	position: relative;
+	top:-350px;
+	left:790px;
+}
+.pieChart{
+	width: 1050px;
+	height:1000px;
+}
+.Actpie1{
+	width:480px;
+	height: 300px;
+}
+.Actpie2{
+	width: 480px;
+	height: 300px;
+	margin-left: 570px;
+	margin-top: -300px;
+}
+.Actpie3{
+	width: 600px;
+	height: 500px;
+	margin-left: 225px;
+}
+.Allpie{
+	width: 1050px;
+	height:1000px;
+}
+.Allpie1{
+	width:480px;
+	height: 300px;
+}
+.Allpie2{
+	width: 480px;
+	height: 300px;
+	margin-left: 570px;
+	margin-top: -300px;
+}
+.Allpie3{
+	width: 600px;
+	height: 500px;
+	margin-left: 225px;
+}
+.productChart{
+	width:800px;
+	height:500px;
+	padding-left: 50px;
+	padding-top: 50px;
+}

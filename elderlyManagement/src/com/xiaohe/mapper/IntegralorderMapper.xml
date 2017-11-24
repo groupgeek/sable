@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.IntegralorderMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Integralorder" >
+    <id column="integralOrderId" property="integralorderid" jdbcType="VARCHAR" />
+    <result column="articleId" property="articleid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="resAddress" property="resaddress" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="orderTime" property="ordertime" jdbcType="TIMESTAMP" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="orderStatus" property="orderstatus" jdbcType="VARCHAR" />
+    <result column="productStatus" property="productstatus" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="signStatus" property="signstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    integralOrderId, articleId, userName, userId, resAddress, integral, orderTime, branchId, 
+    orderStatus, productStatus, phone, signStatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from integralorder
+    where integralOrderId = #{integralorderid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from integralorder
+    where integralOrderId = #{integralorderid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Integralorder" >
+    insert into integralorder (integralOrderId, articleId, userName, 
+      userId, resAddress, integral, 
+      orderTime, branchId, orderStatus, 
+      productStatus, phone, signStatus
+      )
+    values (#{integralorderid,jdbcType=VARCHAR}, #{articleid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{resaddress,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, 
+      #{ordertime,jdbcType=TIMESTAMP}, #{branchid,jdbcType=INTEGER}, #{orderstatus,jdbcType=VARCHAR}, 
+      #{productstatus,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{signstatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Integralorder" >
+    insert into integralorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="integralorderid != null" >
+        integralOrderId,
+      </if>
+      <if test="articleid != null" >
+        articleId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="resaddress != null" >
+        resAddress,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="ordertime != null" >
+        orderTime,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus,
+      </if>
+      <if test="productstatus != null" >
+        productStatus,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="signstatus != null" >
+        signStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="integralorderid != null" >
+        #{integralorderid,jdbcType=VARCHAR},
+      </if>
+      <if test="articleid != null" >
+        #{articleid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="resaddress != null" >
+        #{resaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="ordertime != null" >
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null" >
+        #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productstatus != null" >
+        #{productstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="signstatus != null" >
+        #{signstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Integralorder" >
+    update integralorder
+    <set >
+      <if test="articleid != null" >
+        articleId = #{articleid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="resaddress != null" >
+        resAddress = #{resaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="ordertime != null" >
+        orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productstatus != null" >
+        productStatus = #{productstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="signstatus != null" >
+        signStatus = #{signstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where integralOrderId = #{integralorderid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Integralorder" >
+    update integralorder
+    set articleId = #{articleid,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      resAddress = #{resaddress,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      branchId = #{branchid,jdbcType=INTEGER},
+      orderStatus = #{orderstatus,jdbcType=VARCHAR},
+      productStatus = #{productstatus,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      signStatus = #{signstatus,jdbcType=VARCHAR}
+    where integralOrderId = #{integralorderid,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="selectCountOrder" resultType="Integer">
+  	SELECT COUNT(*) FROM integralorder
+  </select>
+</mapper>

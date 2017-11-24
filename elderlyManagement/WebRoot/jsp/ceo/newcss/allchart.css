@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+#tou{
+	height:70px;
+	width:100%;
+}
+#juzhong{
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+#branchchart{
+	margin: auto;
+}
+#zhong{
+	height:100%;
+	width:22%;
+	float:left;
+}
+#zhonghou{
+	height:100%;
+	width:11%;
+	float:left;
+}
+#hou{
+	height:100%;
+	width:10%;
+	float:right;
+}
+.page ul{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	float: right;
+}
+.page li{
+	text-align:center;
+	width:50px;
+	float: left;
+	display:block;
+}
+#pageNumBox{
+	float: left;
+}
+#search{
+	float: right;
+}
+#selectSort{
+	width: 150px;
+	float: right;
+}
+#selectSortofactivity{
+	width: 150px;
+	float: right;
+}
+#searchofactivity{
+	float: right;
+}
+#userPage{
+	float: left;	
+}
+#employeePage{
+	float: left;	
+}
+#messagePage{
+	float: left;	
+}

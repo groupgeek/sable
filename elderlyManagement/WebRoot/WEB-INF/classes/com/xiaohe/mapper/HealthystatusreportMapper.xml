@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.HealthystatusreportMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Healthystatusreport" >
+    <id column="healthyStatusId" property="healthystatusid" jdbcType="INTEGER" />
+    <result column="countPerson" property="countperson" jdbcType="INTEGER" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiaohe.bean.Healthystatusreport" extends="BaseResultMap" >
+    <result column="nowMedicalRecords" property="nowmedicalrecords" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    healthyStatusId, countPerson, branchId
+  </sql>
+  <sql id="Blob_Column_List" >
+    nowMedicalRecords
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from healthystatusreport
+    where healthyStatusId = #{healthystatusid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from healthystatusreport
+    where healthyStatusId = #{healthystatusid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Healthystatusreport" >
+    insert into healthystatusreport (healthyStatusId, countPerson, branchId, 
+      nowMedicalRecords)
+    values (#{healthystatusid,jdbcType=INTEGER}, #{countperson,jdbcType=INTEGER}, #{branchid,jdbcType=INTEGER}, 
+      #{nowmedicalrecords,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Healthystatusreport" >
+    insert into healthystatusreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="healthystatusid != null" >
+        healthyStatusId,
+      </if>
+      <if test="countperson != null" >
+        countPerson,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="nowmedicalrecords != null" >
+        nowMedicalRecords,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="healthystatusid != null" >
+        #{healthystatusid,jdbcType=INTEGER},
+      </if>
+      <if test="countperson != null" >
+        #{countperson,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="nowmedicalrecords != null" >
+        #{nowmedicalrecords,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Healthystatusreport" >
+    update healthystatusreport
+    <set >
+      <if test="countperson != null" >
+        countPerson = #{countperson,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="nowmedicalrecords != null" >
+        nowMedicalRecords = #{nowmedicalrecords,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where healthyStatusId = #{healthystatusid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaohe.bean.Healthystatusreport" >
+    update healthystatusreport
+    set countPerson = #{countperson,jdbcType=INTEGER},
+      branchId = #{branchid,jdbcType=INTEGER},
+      nowMedicalRecords = #{nowmedicalrecords,jdbcType=LONGVARCHAR}
+    where healthyStatusId = #{healthystatusid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Healthystatusreport" >
+    update healthystatusreport
+    set countPerson = #{countperson,jdbcType=INTEGER},
+      branchId = #{branchid,jdbcType=INTEGER}
+    where healthyStatusId = #{healthystatusid,jdbcType=INTEGER}
+  </update>
+</mapper>

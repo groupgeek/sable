@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ProducttasteMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Producttaste" >
+    <id column="productTasteId" property="producttasteid" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="productTaste" property="producttaste" jdbcType="VARCHAR" />
+    <result column="tasteStock" property="tastestock" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productTasteId, productId, productTaste, tasteStock
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from producttaste
+    where productTasteId = #{producttasteid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from producttaste
+    where productTasteId = #{producttasteid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Producttaste" >
+    insert into producttaste (productTasteId, productId, productTaste, 
+      tasteStock)
+    values (#{producttasteid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{producttaste,jdbcType=VARCHAR}, 
+      #{tastestock,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Producttaste" >
+    insert into producttaste
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="producttasteid != null" >
+        productTasteId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="producttaste != null" >
+        productTaste,
+      </if>
+      <if test="tastestock != null" >
+        tasteStock,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="producttasteid != null" >
+        #{producttasteid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="producttaste != null" >
+        #{producttaste,jdbcType=VARCHAR},
+      </if>
+      <if test="tastestock != null" >
+        #{tastestock,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Producttaste" >
+    update producttaste
+    <set >
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="producttaste != null" >
+        productTaste = #{producttaste,jdbcType=VARCHAR},
+      </if>
+      <if test="tastestock != null" >
+        tasteStock = #{tastestock,jdbcType=INTEGER},
+      </if>
+    </set>
+    where productTasteId = #{producttasteid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Producttaste" >
+    update producttaste
+    set productId = #{productid,jdbcType=INTEGER},
+      productTaste = #{producttaste,jdbcType=VARCHAR},
+      tasteStock = #{tastestock,jdbcType=INTEGER}
+    where productTasteId = #{producttasteid,jdbcType=INTEGER}
+  </update>
+  <select id="countStock"  resultType="Integer">
+  select productId , SUM(tasteStock) st FROM producttaste GROUP BY productId;
+  </select>
+  
+  <select id="quertyProducttasteByid" parameterType="Integer" resultType="ProducttasteCustom">
+ SELECT price,productName,picture,producttaste.* FROM producttaste,product WHERE product.productId = producttaste.productId and product.productId= #{productId}
+  </select>
+  
+  <delete id="deleteProducttasteByProductid" parameterType="Integer">
+  	delete from producttaste
+    where productId = #{id}
+  </delete>
+  
+  <select id="selectasteByProductid" parameterType="Integer" resultType="ProducttasteCustom">
+  	SELECT * FROM producttaste WHERE productId = #{id}
+  </select>
+</mapper>

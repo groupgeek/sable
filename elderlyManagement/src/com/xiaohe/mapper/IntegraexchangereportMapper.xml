@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.IntegraexchangereportMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Integraexchangereport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="totalExpenditure" property="totalexpenditure" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, totalExpenditure
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from integraexchangereport
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from integraexchangereport
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Integraexchangereport" >
+    insert into integraexchangereport (id, totalExpenditure)
+    values (#{id,jdbcType=INTEGER}, #{totalexpenditure,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Integraexchangereport" >
+    insert into integraexchangereport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="totalexpenditure != null" >
+        totalExpenditure,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="totalexpenditure != null" >
+        #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Integraexchangereport" >
+    update integraexchangereport
+    <set >
+      <if test="totalexpenditure != null" >
+        totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Integraexchangereport" >
+    update integraexchangereport
+    set totalExpenditure = #{totalexpenditure,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
