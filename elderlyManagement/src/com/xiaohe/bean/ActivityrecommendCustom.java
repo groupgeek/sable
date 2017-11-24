@@ -1,19 +1,8 @@
 package com.xiaohe.bean;
 
-import java.math.BigDecimal;
-
 public class ActivityrecommendCustom extends Activityrecommend {
 	public String activityname;
 	private String activitypicture;
-	public BigDecimal getRegisteryfee() {
-		return registeryfee;
-	}
-
-	public void setRegisteryfee(BigDecimal registeryfee) {
-		this.registeryfee = registeryfee;
-	}
-
-	private BigDecimal registeryfee;
 	public String getActivitypicture() {
 		return activitypicture;
 	}

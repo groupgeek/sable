@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.JsonDeserializer;
@@ -636,8 +637,11 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/updateUserInfo")
-	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload){
+	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload,Model model){
 		if(userService.UpdateUserInfoByUser(userInfo, pictureUpload)){
+			model.addAttribute("message","更新成功");
+		}else{
+			model.addAttribute("message","更新失败");
 		}
 		return "redirect:/jsp/mall/person/information.jsp";
 	}
@@ -700,13 +704,13 @@ public class MallController {
 	 * @return
 	 */
 	@RequestMapping("/addAddress")
-	public @ResponseBody ShippingAddressCustom addAddress(@RequestBody ShippingAddressCustom condition, HttpServletRequest request){
+	public @ResponseBody ShippingAddressCustom addAddress(@RequestBody ShippingAddressCustom addressInfo, HttpServletRequest request){
 		User user = getUser(request);
 		ShippingAddressCustom  record = new ShippingAddressCustom();
 		if(user == null) return null;
-		condition.setUserid(user.getUserid());
+		addressInfo.setUserid(user.getUserid());
 		
-		record = userService.addAddressReturnAddress(condition);
+		record = userService.addAddressReturnAddress(addressInfo);
 		
 		return record;
 	}

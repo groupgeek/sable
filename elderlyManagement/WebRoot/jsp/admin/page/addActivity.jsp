@@ -198,14 +198,14 @@
 							  </div>
 							  
 							  <div class="control-group" id = "activitypicture">
-								<label class="control-label">更改图片</label>
+								<label class="control-label">上传图片</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
 								</div>
 							  </div>
 							  
 							  <div class="control-group" id = "video">
-								<label class="control-label">更改视频</label>
+								<label class="control-label">上传视频</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "videoUpload" type="file">
 								</div>

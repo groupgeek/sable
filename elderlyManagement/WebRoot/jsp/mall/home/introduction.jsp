@@ -241,9 +241,9 @@
 					</section>
 				</div> --%>
 
-<%-- <a href="/upload/${productInfo.picture }">
-								<img src="/upload/${productInfo.picture }" 
-								alt="细节展示放大镜特效" rel="/upload/${productInfo.picture }" class="jqzoom" /></a> --%>
+<%-- <a href="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productInfo.picture }">
+								<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productInfo.picture }" 
+								alt="细节展示放大镜特效" rel="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productInfo.picture }" class="jqzoom" /></a> --%>
 				<!--放大镜-->
 
 				<div class="item-inform">
@@ -263,9 +263,9 @@
 							</script>
 
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="/upload/${productInfo.picture }">
-								<img src="/upload/${productInfo.picture }" 
-								alt="细节展示放大镜特效" rel="/upload/${productInfo.picture }" class="jqzoom" /></a>
+								<a href="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productInfo.picture }">
+								<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productInfo.picture }" 
+								alt="细节展示放大镜特效" rel="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productInfo.picture }" class="jqzoom" /></a>
 							</div>
 						</div>
 
@@ -515,7 +515,7 @@
 							      <li>
 							      	<div class="p-img">                    
 							      		<a  href="${pageContext.request.contextPath }/product/productInfo?id=${similarProduct.productid }"> 
-							      		<img class="" src="/upload/${similarProduct.picture }" style="max-height: 200px;"> </a>               
+							      		<img class="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${similarProduct.picture }" style="max-height: 200px;"> </a>               
 							      	</div>
 							      	<div class="p-name"><a href="${pageContext.request.contextPath }/product/productInfo?id=${similarProduct.productid }">
 							      		${similarProduct.productname }

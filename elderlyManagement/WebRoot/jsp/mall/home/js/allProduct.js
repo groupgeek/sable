@@ -24,7 +24,7 @@ $(document).ready(function(){
 						 	'<input type = "hidden" value = "'+ data.productList[i].productid +'">'+
 					      	'<div class="p-img">'+
 					      	'<a  href="'+root+'/product/productInfo?id='+ data.productList[i].productid +'">'+
-				      		'<img style="max-height: 230px;" class="" src="/upload/'+data.productList[i].picture+'"> </a>'+  
+				      		'<img style="max-height: 230px;" class="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.productList[i].picture+'"> </a>'+  
 					      	'</div>'+
 					      	'<div class="p-name"><a href="#">'+
 					      		data.productList[i].productname+
@@ -57,7 +57,7 @@ $(document).ready(function(){
 				'<li>'+
 				 	'<a href ="'+root+'/product/productInfo?id='+ data.productList[i].productid +'">'+	
 					'<div class="i-pic limit">'+
-						'<img src="/upload/'+data.productList[i].picture+'" style="max-height: 230px;"/>'+
+						'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.productList[i].picture+'" style="max-height: 230px;"/>'+
 						'<p>'+data.productList[i].productname+
 						'<span>'+data.productList[i].description+'</span></p>'+
 						'<p class="price fl">'+

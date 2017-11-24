@@ -15,7 +15,7 @@
 			if(data.avatar == null){
 				$("#avatar div").html("空");
 			}else{
-				$("#avatar img").attr("src","/upload/"+data.avatar);
+				$("#avatar img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.avatar);
 			}
 			
 			$("#username span").text(data.username);

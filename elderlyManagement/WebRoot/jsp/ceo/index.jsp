@@ -32,9 +32,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: Favicon -->	
 	<style type="text/css">
 		#header{
-			padding:20px;
+			padding:0px;
 			height:500px;
-			width:100%;			
+			width:97%;			
 		}
 		#chartmain{			
 			padding:20px;
@@ -111,63 +111,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 			<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
     		<div id="header">
-    			<div id="chartmain" style="width:90%;height:100%;"></div>
+    			<div id="chartmain" style="width:100%;height:100%;"></div>
     		</div>
     		
-			<div class="row-fluid">			
-				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
-					
-					<h2><span class="glyphicons globe"><i></i></span>分店总盈利前十名</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="verticalChart">
-							<c:forEach items = "${findTotalreportandBranch }" var="k">
-								<div class="singleBar">
-									<div class="bar">
-										<div class="value">
-											<span>${k.stringbigdecimal }</span>
-										</div>								
-									</div>								
-									<div class="title">${k.branchname }</div>							
-								</div>
-							</c:forEach>
-
-							<div class="clearfix"></div>
-							
-						</div>
-					
-					</div>
-					
-				</div><!--/span-->
+			<div id="hh" style="padding-top:20px;padding-bottom:20px; width:100%;height:420px;float:left">			
+				<div id="branchto" style="padding-top:20px; padding-left:0px;padding-right:100px; width:600px;height:380px;float:left;"></div>
 				
-				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
+				<div class="widget blue span5" id="haha" style="padding-top:20px; width:800px;height:400px;float:left;">
 					
-					<h2><span class="glyphicons globe"><i></i></span>分店总用户前十名</h2>
+					<h2><span class="glyphicons globe"><i></i></span>分店总用户前十名</h2>					
 					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="verticalChart">
-							<c:forEach items = "${findUserCustoms }" var="m">
-								<div class="singleBar">
-									<div class="bar">
-										<div class="value">
-											<span>${m.stringuser }</span>
-										</div>								
-									</div>								
-									<div class="title">${m.branchname }</div>							
-								</div>
-							</c:forEach>
-
-							<div class="clearfix"></div>
-							
-						</div>
-					
-					</div>
+					<div id="userChart" style="width:100%;height:350px;float:left;"></div>
 					
 				</div><!--/span-->
 			

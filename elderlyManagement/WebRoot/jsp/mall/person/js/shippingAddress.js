@@ -19,7 +19,7 @@ $(document).ready(function(){
 					
 				}else{
 					$("#address-list").append(
-							'<li class="user-addresslist">'+
+							'<li class="user-addresslist" style="margin-bottom: 10px;">'+
 							'<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>'+
 							'<p class="new-tit new-p-re">'+
 								'<span class="new-txt">'+data.addresssList[i].receiver+'</span>'+
@@ -90,6 +90,11 @@ $(document).ready(function(){
 						success:function(data){
 							if(data.flag){
 								myself.parent().parent().remove();
+								//显示提示信息
+								$("#showMessage").text("删除成功");
+								$('#messageNotification').fadeIn(2000);
+								getSrceenWH();
+								$('#messageNotification').fadeOut(3000);
 							};
 						}
 						
@@ -147,7 +152,7 @@ $(document).ready(function(){
 				if(data.shippingaddressid != null){
 					//增加页面的地址
 					$("#address-list").append(
-							'<li class="user-addresslist">'+
+							'<li class="user-addresslist" style="margin-bottom: 10px;">'+
 							'<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>'+
 							'<p class="new-tit new-p-re">'+
 								'<span class="new-txt">'+data.receiver+'</span>'+
@@ -166,6 +171,11 @@ $(document).ready(function(){
 							'</div>'+
 							'</li>'
 					);
+					//显示提示信息
+					$("#showMessage").text("添加成功");
+					$('#messageNotification').fadeIn(2000);
+					getSrceenWH();
+					$('#messageNotification').fadeOut(3000);
 				};
 				
 				
@@ -198,6 +208,11 @@ $(document).ready(function(){
 						success:function(data){
 							if(data.flag){
 								myself.parent().parent().remove();
+								//显示提示信息
+								$("#showMessage").text("删除成功");
+								$('#messageNotification').fadeIn(2000);
+								getSrceenWH();
+								$('#messageNotification').fadeOut(3000);
 							};
 						}
 						

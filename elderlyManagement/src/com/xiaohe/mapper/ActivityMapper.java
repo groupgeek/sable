@@ -215,6 +215,7 @@ public interface ActivityMapper {
      */
     List<ActivityCustom> selectEduAllTypeActByCondition(ActivityCustom condition);
     
+    
     /**
      *查询教育下某一类活动数量
      * @param condition
@@ -227,12 +228,16 @@ public interface ActivityMapper {
      * @return
      */
     List<ActivityCustom> quertyActivityArea(String phone);   
-    
     /**
-     * 查看活动的八名人数
-     * @param activityCustom
+     * 按月份查询分店一年的教育收入
+     * @param id
      * @return
      */
-    Integer countActNo(Integer id);
-    
+    List<CeoActivity> CeoBranchEduIncome(Integer id);
+    /**
+     * 按月份查询分店一年的健康收入
+     * @param id
+     * @return
+     */
+    List<CeoActivity> CeoBranchHealIncome(Integer id);
 }

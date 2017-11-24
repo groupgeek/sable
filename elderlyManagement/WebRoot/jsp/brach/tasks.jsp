@@ -111,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <td>${visits.username }</td>
 						  <td>${visits.address }</td>
 						  <td>
-						  <fmt:formatDate value="${visits.lastvisttime }"pattern="yyyy-MM-dd" />
+						  <fmt:formatDate value="${visits.lastvisttime }" pattern="yyyy-MM-dd HH:mm:ss" />
 						  </td>
 						  <td>${visits.countvisit }</td>
 						  </tr>

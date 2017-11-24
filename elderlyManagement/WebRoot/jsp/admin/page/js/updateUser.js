@@ -1,5 +1,13 @@
  $(document).ready(function(){
 	var root =  $("#root").attr("value");
+	
+	
+	$("#updateUser").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
+	
+	
 	/*var val = window.location.href.split("?")[1];
 	var userid = val.split("=")[1];
 	//$("#username").val(data.username);

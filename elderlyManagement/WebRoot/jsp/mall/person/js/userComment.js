@@ -11,7 +11,7 @@ $(document).ready(function(){
 		data:JSON.stringify(evaluationid),
 		success:function(data){
 			
-			$(".itempic").attr("src","/upload/"+data.productpicture);
+			$(".itempic").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.productpicture);
 			$(".item-name").find("p").text(data.productname);
 			if(data.colour != null)
 			$(".item-info div").first().append('<span>颜色：'+data.colour+'</span><span></br>型号：'+data.size+'</span>');

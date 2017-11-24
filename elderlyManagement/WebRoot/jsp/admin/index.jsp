@@ -81,7 +81,6 @@
 	<div class="clearfix"></div>
 	<c:import url="footer.jsp"></c:import>
 	
-
 	<!-- start: JavaScript-->
 
 	<%-- <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>

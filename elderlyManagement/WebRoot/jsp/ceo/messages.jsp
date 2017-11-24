@@ -30,7 +30,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-
+	<script type="text/javascript">
+			function change(id){
+				$.ajax({
+					type : 'post',					
+					url:'${pageContext.request.contextPath }/ceo/readmessage.action',
+					contentType : 'application/json;charset=utf-8',
+					data:'{"messageid"'+':'+'"'+id+'"}',
+					success:function(data){
+						$("#username").html(data.username);
+						$("#email").html(data.email);
+						$("#messagetime").html(data.stringDate);
+						$("#message").html(data.messagecontext);									
+					}
+				});
+			}
+	</script>
   </head>
   
   <body>
@@ -46,46 +61,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="${pageContext.request.contextPath }/ceo/index.action">管理员界面</a> 
 				<i class="icon-angle-right"></i>
 			</li>
-			<li><a href="#">信息中心</a></li>
+			<li><a href="#">用户留言</a></li>
 		</ul>
 		<div class="row-fluid">
 			<div class="span7">
 				<h1>留言板</h1>					
 				<ul class="messagesList">
 					<c:forEach items="${findMessageCustoms }" var="e">
-						<li>
-							<a href="${pageContext.request.contextPath }/ceo/messages.action?id=${e.messageid }">
+						<li id="hh" onclick="change(${e.messageid })">
+							
 								<span class="from"> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>
-							</a>
+						
 						</li>
 					</c:forEach>
-				</ul>
-				<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-					<div class="modal-content">
-						<ul class="list-inline item-details">
-							<li><a href="#">Admin templates</a></li>
-							<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-						</ul>
-					</div>
-				</div>	
+				</ul>				
 			</div>
 			<div name="message" class="span5 noMarginLeft">					
-				<div class="message dark">						
+				<div class="message dark">					
+						<%
+						String id = request.getParameter("id");
+						int a = 0;
+						if(id != null){
+						a = Integer.valueOf(id);
+						}
+						%>
+					 	<input type="hidden" value="<%=a%>" id="messageid">
+					 	<input type="hidden" id = "root" value="${pageContext.request.contextPath }">					
 					<div class="header">
-						<h1>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.."</h1>
-						<div class="from"><i class="halflings-icon user"></i> <b>${findMessage.username }</b> / ${findMessage.email }</div>
-						<div class="date"><i class="halflings-icon time"></i> ${findMessage.stringDate }</div>							
-						<div class="menu"></div>							
+						<h1>详细信息</h1>
+						<div class="from"><i class="halflings-icon user"></i> <b id="username">${findMessageCustoms[0].username }</b> / <b id="email">${findMessageCustoms[0].email }</b></div>
+						<div class="date"><i class="halflings-icon time"></i> <b id="messagetime">${findMessageCustoms[0].stringDate }</b></div>
+						<br>							
+						<div class="menu"></div>		
+						<br>					
 					</div>						
-					<div class="content">
-						<p>${findMessage.messagecontext }</p>	
-					</div>						
+									
 					<form class="replyForm"method="post" action="">
 						<fieldset>
-							<textarea tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
-							<div class="actions">									
-								<button tabindex="3" type="submit" class="btn btn-success">Send message</button>									
-							</div>
+						<br>
+							<div  tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="没有内容">${findMessageCustoms[0].messagecontext }</div>
+							
 						</fieldset>
 					</form>							
 				</div>						
@@ -95,27 +110,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: Content -->
 </div><!--/#content.span10-->
 </div><!--/fluid-row-->		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>	
-	<div class="clearfix"></div>	
+	
 	<footer>
 		<p>
 			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
 		</p>
 	</footer>
 	<!-- start: JavaScript-->
-
+		
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -146,6 +148,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/message.js"></script>
 	<!-- end: JavaScript-->
+
   </body>
 </html>

@@ -31,4 +31,10 @@ $(document).ready(function(){
 	if(message != ""){
 		alert(message);
 	}
+	
+	
+	$("#addUser").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
 });

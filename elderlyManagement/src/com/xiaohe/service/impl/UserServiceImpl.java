@@ -275,6 +275,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		UserCustom userInfo = userMapper.selectUserInfoById(id);
+		if(userInfo == null) return null;
 		userInfo.setDateStringRegistrationdate(GetStringByDate.getString(userInfo.getRegistrationdate()));
 		if(userInfo.getBirthday() != null)
 		userInfo.setBirthdayString(GetStringByDate.getString(userInfo.getBirthday()));
@@ -286,6 +287,7 @@ public class UserServiceImpl implements UserService {
 	public boolean UpdateUserInfoByUser(UserCustom userInfo,MultipartFile pictureUpload) {
 		if(userInfo == null) return false;
 		if(userInfo.getUserid() == null) return false;
+		
 		if(pictureUpload != null){
 			if(!pictureUpload.isEmpty()){
 				try {
@@ -355,7 +357,7 @@ public class UserServiceImpl implements UserService {
 			ShippingAddressCustom addressInfo) {
 		
 		//添加
-		if(shippingaddressMapper.insertSelective(addressInfo) < 0) return null;
+		if(shippingaddressMapper.insertSelective(addressInfo) <= 0) return null;
 		
 		return addressInfo;
 	}

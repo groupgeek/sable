@@ -52,24 +52,39 @@ $(document).ready(function(){
 			if(data.activityInfo.activitypicture == null){
 				$("#activitypicturetemp div").html("空");
 			}else{
-				$("#activitypicturetemp img").attr("src","/upload/"+data.activityInfo.activitypicture);
+				$("#activitypicturetemp img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.activityInfo.activitypicture);
 			}
 			
 			if(data.activityInfo.video == null){
 				$("#showVideo div").html("空");
 			}else{
-				$("#showVideo div").append(
+				 var player = new Aliplayer({
+			            id: 'J_prismPlayer',
+			            width: '50%',
+			            height: '50%',
+			            autoplay: false,
+			            //支持播放地址播放,此播放优先级最高
+			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.activityInfo.video,
+			            //播放方式二：推荐
+			            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
+			            playauth : '',
+			           /*  useH5Prism : true, */
+			            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
+			            },function(player){
+			                console.log('播放器创建好了。');
+			           });
+				/*$("#showVideo div").append(
 						
 						'<video width="320" height="240" controls autoplay>'+
-						  '<source id = "showVideoogg" src="/upload/'+ data.activityInfo.video +'"type="video/ogg">'+
-						  '<source id = "showVideomp4" src="/upload/'+ data.activityInfo.video +'"type="video/mp4">'+
-						  '<source id = "showVideowebm" src="/upload/'+ data.activityInfo.video +'"type="video/webm">'+
-						 '<object id = "showVideoobject" data="/upload/'+ data.activityInfo.video +'" width="320" height="240">'+
-						    '<embed width="320" height="240" src="/upload/'+ data.activityInfo.video +'">'+
+						  '<source id = "showVideoogg" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/ogg">'+
+						  '<source id = "showVideomp4" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/mp4">'+
+						  '<source id = "showVideowebm" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/webm">'+
+						 '<object id = "showVideoobject" data="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'" width="320" height="240">'+
+						    '<embed width="320" height="240" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'">'+
 						  '</object>'+
 						'</video>'
 				
-				);
+				);*/
 			}
 			
 			$("#activityid").attr("value",data.activityInfo.activityid);
@@ -102,6 +117,9 @@ $(document).ready(function(){
 		});
 		
 	});*/
-	
+	$("#updateActivity").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+	})
 	
 });

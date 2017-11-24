@@ -47,6 +47,7 @@ import com.xiaohe.bean.ShowMessage;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.TransactionVo;
 import com.xiaohe.bean.UpdateActivityVo;
+import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
 import com.xiaohe.bean.UserVo;
 import com.xiaohe.mapper.UserMapper;
@@ -239,15 +240,16 @@ public class superAdminController {
 	 * @return
 	 */
 	@RequestMapping("/updateUserInfo")
-	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload,Model model){
+	public String updateUserInfo(UserCustom userInfo,MultipartFile pictureUpload,Model model,HttpServletRequest request){
+		
 		String message = null;
 		if(userService.UpdateUserInfoByUser(userInfo,pictureUpload)){
 			message = "修改成功";
 		}else{
 			message = "修改失败";
 		}
-		
-		return "redirect:updateUserInfoView?id="+userInfo.getUserid()+"&message="+message;
+		model.addAttribute("message",message);
+		return "redirect:updateUserInfoView?id="+userInfo.getUserid();
 	}
 	
 	/**
@@ -382,8 +384,8 @@ public class superAdminController {
 		}else{
 			message = "修改失败";
 		}
-		
-		return "redirect:updateEmployeeInfoView?id="+employeeInfo.getEmployeeid()+"&message="+message;
+		model.addAttribute("message",message);
+		return "redirect:updateEmployeeInfoView?id="+employeeInfo.getEmployeeid();
 	}
 	
 	/**
@@ -785,8 +787,7 @@ public class superAdminController {
 		}else{
 			model.addAttribute("message", "修改失败");
 		}
-		
-		return "admin/page/mallInfo";
+		return "redirect:/jsp/admin/page/productInfo.jsp?productidid="+info.getProductid();
 	}
 	
 	/**

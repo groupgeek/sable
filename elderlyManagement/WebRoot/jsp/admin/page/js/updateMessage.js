@@ -23,6 +23,10 @@ $(document).ready(function(){
 	});
 	
 	$("#updateMessage").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+		
+		
 		var username = $("#username input").attr("value");
 		var messagetime = $("#messagetime input").attr("value");
 		var messagecontext = $("#messagecontext textarea").attr("value");
@@ -42,10 +46,21 @@ $(document).ready(function(){
 	    			+'}',
 	    	error:function(){
 	    		alert("更新失败");
+	    		$('#loading').hide();
+	    		$('body').removeClass("hiddenBody");
 	    	},
 			success:function(data){
 				if(data.flag){
-					alert(data.message);
+					//alert(data.message);
+					
+					//显示提示信息
+					$("#showMessage").text(data.message);
+					$('#messageNotification').fadeIn(2000);
+					getSrceenWH();
+					$('#messageNotification').fadeOut(3000);
+					
+					$('#loading').hide();
+					$('body').remove("hiddenBody");
 				}
 			}
 		});

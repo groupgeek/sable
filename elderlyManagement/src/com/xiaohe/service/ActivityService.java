@@ -140,39 +140,5 @@ public interface ActivityService {
 	 * @return boolean
 	 */
 	public boolean quertyIfUsetRegistery(Activityregistery activityregistery);
-	
-	/**
-	 * 根据活动id查询到对应的活动
-	 * @param id
-	 * @return
-	 */
-	public ActivityCustom oneAct(Integer id);
-	
-	/**
-	 * 根据活动id查询到总报名人数
-	 * @param id
-	 * @return
-	 */
-	public Integer countPeople(Integer id);
-	
-	/**
-	 * 插入活动报名信息
-	 * @param activityregistery
-	 * @return
-	 */
-	public int insertActRec(Activityregistery activityregistery);
-	
-	/**
-	 * 查询一个报名的活动
-	 * @param activityregistery
-	 * @return
-	 */
-	public Activityregistery oneActreg(Activityregistery activityregistery);
-	
-	/**
-	 * 查询用户的报名情况
-	 * @param activityregistery
-	 * @return
-	 */
-	public Activityregistery oneUserAct(Activityregistery activityregistery);
+
 }

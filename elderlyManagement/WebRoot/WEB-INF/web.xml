@@ -29,6 +29,16 @@
     <url-pattern>*.action</url-pattern>
   </servlet-mapping>
   
+  <!-- 服务器路径 -->
+  <context-param>
+  	<param-name>webAppRootKey</param-name>
+  	<param-value>xiaohe.com</param-value>
+  </context-param>
+  
+  <listener>
+  	<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
+  </listener>
+  
   
   <!-- springmvc前端控制器，rest配置 -->
 	<servlet>

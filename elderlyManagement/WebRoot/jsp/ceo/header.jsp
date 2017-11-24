@@ -55,13 +55,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="dropdown-menu-title">
- 									<span>账户设置</span>
-								</li>
-								<li><a href="#"><i class="halflings-icon user"></i>账户信息</a></li>
+								
 								<li><a href="${pageContext.request.contextPath }/jsp/AdminLogin/login.jsp"><i class="halflings-icon off"></i>注销</a></li>
 							</ul>
 						</li>
+						
 						<!-- end: User Dropdown -->
 					</ul>
 				</div>

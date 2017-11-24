@@ -6,44 +6,44 @@ import java.util.Date;
 public class CeoActivity extends Activity{
 	
 	private Integer activityid;
-
     private String activityname;
-
     private Integer activitytypeid;
-
     private Boolean online;
-
     private String activitypicture;
-
     private String activitystatus;
-
     private Date activitydate;
-
     private Integer branchid;
-
     private BigDecimal registeryfee;
-
     private String video;
-
     private BigDecimal activityprice;
-
-    private String activitydetails;
-    
-    private String activitytypename;
-    
-    private String branchname;
-    
-    private String registery;
-    
-    private String stringDate;
-    
-    private String stringTime;
-    
-    private String stringline;
-    
-    private String sumactivityPrice;
-    
+    private String activitydetails;   
+    private String activitytypename;    
+    private String branchname;    
+    private String registery;    
+    private String stringDate;   
+    private String stringTime;    
+    private String stringline;   
+    private String sumactivityPrice;    
     private String sumregisteryFee;
+    
+    private String sumEduIncome;
+    private String sumHealIncome;
+
+	public String getSumEduIncome() {
+		return sumEduIncome;
+	}
+
+	public void setSumEduIncome(String sumEduIncome) {
+		this.sumEduIncome = sumEduIncome;
+	}
+
+	public String getSumHealIncome() {
+		return sumHealIncome;
+	}
+
+	public void setSumHealIncome(String sumHealIncome) {
+		this.sumHealIncome = sumHealIncome;
+	}
 
 	public String getStringTime() {
 		return stringTime;

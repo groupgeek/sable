@@ -87,5 +87,14 @@ public interface MessageMapper {
      * @return
      */
     List<MessageCustom> selectNewMessage();
-    
+    /**
+     * CEO端查询最近三十条留言
+     * @return
+     */
+    List<MessageCustom> selectAllMessageByCeo();
+    /**
+     * 查询最新的第一条留言
+     * @return
+     */
+    MessageCustom selectOnemessage();
 }

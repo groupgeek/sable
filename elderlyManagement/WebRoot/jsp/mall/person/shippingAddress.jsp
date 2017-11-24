@@ -55,16 +55,16 @@
 						<hr/>
 						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails" id = "address-list">
 
-							<li class="user-addresslist defaultAddr" id = "default-address">
+							<li class="user-addresslist defaultAddr" id = "default-address" style="margin-bottom: 10px;">
 								<span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
 								<p class="new-tit new-p-re">
-									<span class="new-txt">小叮当</span>
-									<span class="new-txt-rd2">159****1622</span>
+									<span class="new-txt"></span>
+									<span class="new-txt-rd2"></span>
 								</p>
 								<div class="new-mu_l2a new-p-re">
 									<p class="new-mu_l2cw">
 										<span class="title">地址：</span>
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+										<span class="street"></span></p>
 								</div>
 								<div class="new-addr-btn">
 									<a href="javascript:;"><i class="am-icon-edit"></i>编辑</a>
@@ -170,6 +170,7 @@
 			<!-- 菜单 -->
 			<c:import url="/jsp/mall/personMenu.jsp"></c:import>
 		</div>
+		<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/person/js/shippingAddress.js"></script>
 	</body>
