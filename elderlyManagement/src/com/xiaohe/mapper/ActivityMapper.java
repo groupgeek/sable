@@ -228,4 +228,11 @@ public interface ActivityMapper {
      */
     List<ActivityCustom> quertyActivityArea(String phone);   
     
+    /**
+     * 查看活动的八名人数
+     * @param activityCustom
+     * @return
+     */
+    Integer countActNo(Integer id);
+    
 }

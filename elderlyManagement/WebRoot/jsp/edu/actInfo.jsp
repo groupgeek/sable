@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -9,26 +10,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>Mobile Shop</title>
+    <title>活动信息</title>
+	
+<%-- 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/jsp/edu/css/example.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/jsp/edu/css/sweet-alert.css"> --%>
 	
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/edu/css/bootstrap.min.css"  type="text/css">
 	
 	<!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/edu/css/style.css">
 	
 	
 	<!-- Custom Fonts -->
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"  type="text/css">
-    <link rel="stylesheet" href="fonts/font-slider.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/edu/font-awesome/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/jsp/edu/fonts/font-slider.css" type="text/css">
 	
 	<!-- jQuery and Modernizr-->
-	<script src="js/jquery-2.1.1.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/edu/js/jquery-2.1.1.js"></script>
 	
 	<!-- Core JavaScript Files -->  	 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/jsp/edu/js/bootstrap.min.js"></script>
     
-    <script src="js/photo-gallery.js"></script>
+    <script src="${pageContext.request.contextPath }/jsp/edu/js/photo-gallery.js"></script>
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,6 +40,8 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/jsp/edu/css/example.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/jsp/edu/css/sweet-alert.css">
 </head>
 <body>
 	<c:import url="head.jsp"></c:import>
@@ -56,23 +62,62 @@
 				<div id="main-content" ><!-- class="col-md-8" -->
 					<div class="product">
 						<div class="col-md-6">
-							<div class="image">
-								<img src="images/galaxy-note.jpg" />
-								
+							<div class="image" style="width: 350px;height: 400px;">
+								<img src="/upload/${act.activitypicture }" />
 							</div>
 						</div>
+						<input type="hidden" value="${act.activityid }" id="regActid"/>
+						<input type="hidden" value="${pageContext.request.contextPath }" id="root"/>
 						<div class="col-md-6">
 							<div class="caption">
-								<div class="name"><h3>小课堂</h3></div>
+								<div class="name"><h3>${act.activityname }</h3></div>
 								<div class="info">
 									<ul>
 										<!-- <li>Brand: text</li> -->
-										<li>报名费：￥122.00元</li>
+										<li>报名费：￥${act.registeryfee }元</li>
+										<li>开展时间：<fmt:formatDate value="${act.activitydate }" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+										<li>活动状态：${act.activitystatus }</li>
+										<c:if test="${act.online==true }">
+										<li>线上线下：线下</li>
+										</c:if>
+										<c:if test="${act.online==false }">
+										<li>线上线下：线上</li>
+										</c:if>
 									</ul>
 								</div>
-								<div class="price">哈哈哈</div>
-								<div class="well"><label>点击报名 </label><a href="#" class="btn btn-2 ">报名</a></div>
-								
+								<input type="hidden" value="${a }" id="a">
+								<p id="lll" class="lll">已经报名人数：${a }</p>
+								<div class="price">最大报名人数：${act.maxnum }</div>
+								<c:if test="${activityregistery.registery == '报名' }">
+								<div id="ready" class="well" style="width: 300px"><label>已报名</label></div>
+								</c:if>
+								<c:if test="${activityregistery.registery != '报名' }">
+								<div id="ready" class="well" style="width: 300px">
+								<label>点击参加活动： </label><a href="#" onclick="one()" class="btn btn-2 ">报名</a></div>
+								</c:if>
+								<div id="light" class="white_content"> 
+									    <div class="demo1">
+									    <div class="actname"> <p id="name" >活动名字：</p></div>
+									    <div class="acttext"> <P>${act.activityname }</P></div></div>
+									    <div class="demo2">
+									    <div class="money"> <p id="name" >付款金额：</p></div>
+									    <div class="moneytext"> <P>￥${act.registeryfee }元</P></div></div>
+									    <div class="demo3">
+									    <div class="phone"> <p id="name" >登录账号：</p></div>
+									    <div class="text"> <input type="text" id="text" name="hahha" value="${user.phone}"></div></div>
+									    <div class="demo4">
+									    <div class="phone"> <p id="name" >账号密码：</p></div>
+									    <div class="text"> <input type="text" id="text" name="hahha" value="${user.password }"></div></div>
+									    <div class="subandcon">
+									    <div class="subbmit">
+									    <button id="consol-1" type="button" style="padding-top:10px;padding-bottom:10px;
+									    width:150px;height:40px;margin-top: 0px;
+									    margin-left:-30px;" 
+									    onmouseout="xixi()" onmouseover="haha()" onclick="actReg()"><span>确认报名</span></button></div>
+									    <div class="consol" >
+									    <button id="consol-2" type="button" style="padding-top:10px;padding-bottom:10px;width:150px;height:40px;margin-top: 0px;margin-left:20px;" onmouseout="xixi2()" onmouseover="haha2()" onclick="two()">取消</button></div>
+									    </div>
+  								</div> 
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -84,11 +129,18 @@
 						</ul>
 						<div class="tab-content">
 							<div id="description" class="tab-pane fade in active">
-								<h4>Sample Lorem Ipsum Text</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula. Pellentesque aliquam quam vel dolor. Nunc adipiscing. Sed quam odio, tempus ac, aliquam molestie, varius ac, tellus. Vestibulum ut nulla aliquam risus rutrum interdum. Pellentesque lorem. Curabitur sit amet erat quis risus feugiat viverra. Pellentesque augue justo, sagittis et, lacinia at, venenatis non, arcu. Nunc nec libero. In cursus dictum risus. Etiam tristique nisl a</p>
+								<h4>${act.activityname }的简单描述：</h4>
+								<p>${act.activitydetails }</p>
 							</div>
 							<div id="review" class="tab-pane fade">
-							  <div class="review-text">
+							  <div class="review-text" style="width: 400px;">
+							  <video width="320" height="240" controls autoplay> <source
+												src="/upload/${act.video }" type="video/ogg"> <source
+												src="/upload/${act.video }" type="video/mp4"> <source
+												src="/upload/${act.video }" type="video/webm"> <object
+												data="/upload/${act.video }" width="320" height="240">
+												<embed width="320" height="240" src="/upload/${act.video }">
+											</object></video>
 							  </div>
 							 
 							</div>
@@ -99,19 +151,33 @@
 						<div class="products">
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="product">
-									<div class="image"><a href="product.html"><img src="images/iphone.png" /></a></div>
-									<!-- <div class="buttons">
-										<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-										<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>
-										<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>
-									</div> -->
+									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[0].activityid}"><img src="/upload/${allActRec[0].activitypicture }" /></a></div>
 									<div class="caption">
-										<div class="name"><h3><a href="product.html">小课堂</a></h3></div>
-										<div class="price">报名费：￥98.00元</div>
+										<div class="name"><h3><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[0].activityid}">${allActRec[0].activityname}</a></h3></div>
+										<div class="price">报名费：￥${allActRec[0].registeryfee}元</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="product">
+									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[1].activityid}"><img src="/upload/${allActRec[1].activitypicture }" /></a></div>
+									<div class="caption">
+										<div class="name"><h3><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[1].activityid}">${allActRec[1].activityname}</a></h3></div>
+										<div class="price">报名费：￥${allActRec[1].registeryfee}元</div>
 									</div>
 								</div>
 							</div>
-							
+							<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="product">
+									<div class="image"><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[2].activityid}"><img src="/upload/${allActRec[2].activitypicture }" /></a></div>
+									<div class="caption">
+										<div class="name"><h3><a href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[2].activityid}">${allActRec[2].activityname}</a></h3></div>
+										<div class="price">报名费：￥${allActRec[2].registeryfee}元</div>
+									</div>
+								</div>
+								
+							</div>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -129,7 +195,8 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-	
+	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/edu/js/actReg.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/edu/js/sweet-alert.min.js"></script>
 	<script>
 	$(document).ready(function(){
 		$(".nav-tabs a").click(function(){

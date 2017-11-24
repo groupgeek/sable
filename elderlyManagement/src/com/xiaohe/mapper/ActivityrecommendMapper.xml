@@ -71,7 +71,7 @@
   
   <!-- 自定义sql -->
   <select id="branchActRec" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityrecommendCustom">
-  SELECT a.*,c.activityName from activityrecommend a,employee e,branch b,activity c
+  SELECT c.*,a.*,c.activityName,c.registeryfee from activityrecommend a,employee e,branch b,activity c
 	where e.employeeId = b.employeeId
 	and b.branchId = a.branchId
 	and a.activityId = c.activityId

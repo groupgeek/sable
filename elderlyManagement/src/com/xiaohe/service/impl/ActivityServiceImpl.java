@@ -274,13 +274,11 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	public ActivityCustom oneAct(Integer id) {
-		// TODO Auto-generated method stub
 		return activityMapper.oneActivityCustom(id);
 	}
 
 	public Integer countPeople(Integer id) {
-		// TODO Auto-generated method stub
-		return activityMapper.countActUsers(id);
+		return activityMapper.countActNo(id);
 	}
 	
 	public List<ActivityCustom> quertyActivityArea(String phone) {
@@ -313,6 +311,19 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		
 		return true;
+	}
+
+	public int insertActRec(Activityregistery activityregistery) {
+		activityregisteryMapper.insert(activityregistery);
+		return 0;
+	}
+
+	public Activityregistery oneActreg(Activityregistery activityregistery) {
+		return activityregisteryMapper.selectByPrimaryKey(activityregistery);
+	}
+
+	public Activityregistery oneUserAct(Activityregistery activityregistery) {
+		return activityregisteryMapper.oneUserAct(activityregistery);
 	}
 	
 	

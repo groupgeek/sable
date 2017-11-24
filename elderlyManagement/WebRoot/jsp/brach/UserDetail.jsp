@@ -224,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<label class="control-label">客户生日</label>
 								<div class="controls">
 								<a name="birthday" value="${user.birthday }"></a>
-								  <span class="input-xlarge uneditable-input" disabled="" value="${user.birthday }">${user.birthday }</span>
+								  <span class="input-xlarge uneditable-input" disabled="" value="${user.birthday }"><fmt:formatDate value="${user.birthday }" pattern="yyyy-MM-dd"/></span>
 								</div>
 							  </div>
 							  
