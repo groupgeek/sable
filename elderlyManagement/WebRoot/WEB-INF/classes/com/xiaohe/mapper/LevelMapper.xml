@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.LevelMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Level" >
+    <id column="levelId" property="levelid" jdbcType="INTEGER" />
+    <result column="MinMoney" property="minmoney" jdbcType="DECIMAL" />
+    <result column="MaxMoney" property="maxmoney" jdbcType="DECIMAL" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    levelId, MinMoney, MaxMoney, level
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from level
+    where levelId = #{levelid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from level
+    where levelId = #{levelid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Level" >
+    insert into level (levelId, MinMoney, MaxMoney, 
+      level)
+    values (#{levelid,jdbcType=INTEGER}, #{minmoney,jdbcType=DECIMAL}, #{maxmoney,jdbcType=DECIMAL}, 
+      #{level,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Level" >
+    insert into level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="levelid != null" >
+        levelId,
+      </if>
+      <if test="minmoney != null" >
+        MinMoney,
+      </if>
+      <if test="maxmoney != null" >
+        MaxMoney,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="levelid != null" >
+        #{levelid,jdbcType=INTEGER},
+      </if>
+      <if test="minmoney != null" >
+        #{minmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="maxmoney != null" >
+        #{maxmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Level" >
+    update level
+    <set >
+      <if test="minmoney != null" >
+        MinMoney = #{minmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="maxmoney != null" >
+        MaxMoney = #{maxmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where levelId = #{levelid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Level" >
+    update level
+    set MinMoney = #{minmoney,jdbcType=DECIMAL},
+      MaxMoney = #{maxmoney,jdbcType=DECIMAL},
+      level = #{level,jdbcType=VARCHAR}
+    where levelId = #{levelid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="oneLev" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Level">
+  SELECT l.* from level l,user u
+	where l.levelId = u.levelId
+	and u.userId = #{userid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultType="levelCustom">
+  	 SELECT * from level
+  </select>
+  
+  
+</mapper>

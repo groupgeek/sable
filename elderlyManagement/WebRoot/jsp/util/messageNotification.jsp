@@ -10,7 +10,7 @@
 <meta content="telephone=no" name="format-detection">
 <title></title>
 
-<link rel="stylesheet" href="css/common.css" />
+<!-- <link rel="stylesheet" href="css/common.css" /> -->
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 
@@ -18,11 +18,11 @@
 #messageNotification {
 	margin: 0 auto;
 	display: none;
-	background-color: red;
+	background-color: #43b5AD;
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	margin: -120px 0 0 -150px;
+	margin: -150px 0 0 -150px;
 	z-index: 10000;
 	border: 1px solid #ccc;
 	border-radius: 10px;
@@ -45,7 +45,7 @@
 	function getSrceenWH() {
 		w = $(window).width();
 		h = $(window).height();
-		$('#messageNotification').width(w / 4).height(h / 12);
+		$('#messageNotification').width(w / 4).height(h / 15);
 
 	}
 

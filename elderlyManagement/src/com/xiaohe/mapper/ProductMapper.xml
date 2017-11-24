@@ -450,7 +450,7 @@ SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.accountNumber=#{
 		
 		<if test="sort != null">
 		
-			ORDER BY #{sort} DESC 
+			ORDER BY ${sort} DESC 
 		</if>
 		
 		<if test="begin != null">
@@ -473,10 +473,13 @@ SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.accountNumber=#{
 	
 	<select id="selectProductColourById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
 	
-		SELECT p.* , pc.productColourId , pc.ProductColour ,pcs.sizeId, pcs.ProductColourId , pcs.size , pcs.sizeStock , ptype.productTypeName
+		<!-- SELECT p.* , pc.productColourId , pc.ProductColour ,pcs.sizeId, pcs.ProductColourId , pcs.size , pcs.sizeStock , ptype.productTypeName
            FROM product p , productcolour pc , productcoloursize pcs , producttype ptype
            WHERE p.productId = #{id} AND pc.productId = p.productId AND pcs.ProductColourId = pc.productColourId AND ptype.productTypeId = p.productTypeId
-		
+		 -->
+		 SELECT p.* , pc.productColourId , pc.ProductColour , ptype.productTypeName
+           FROM product p , productcolour pc , producttype ptype
+           WHERE p.productId = #{id} AND pc.productId = p.productId AND ptype.productTypeId = p.productTypeId
 	
 	</select>
 	

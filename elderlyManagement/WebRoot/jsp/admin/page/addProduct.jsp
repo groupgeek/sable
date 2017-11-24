@@ -286,6 +286,26 @@
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>
 	
+	<input type = "hidden" id = "message" value = "${message }">
+	
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+		//显示提示信息
+		var message = $("#message").val();
+		if(message != ""){
+	
+			
+			$("#showMessage").text(message);
+			$('#messageNotification').fadeIn(2000);
+			getSrceenWH();
+			$('#messageNotification').fadeOut(3000);
+		}
+		
+	})
+		
+	</script>
+	
 	<!-- start: JavaScript-->
 
 	<%-- <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>

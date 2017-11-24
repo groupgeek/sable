@@ -15,6 +15,12 @@ function tab(){     //柱状图
 			act(data);
 			myChart.setOption(option);
 			myChart.hideLoading();
+			
+			/*alert(data.activityname);
+			alert(data.totalReg);
+			alert(data.totalExpend);
+			alert(data.countReg);*/
+           
 		},
 	});
 	

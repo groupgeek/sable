@@ -1,7 +1,11 @@
  $(document).ready(function(){
 	var root =  $("#root").attr("value");
 	var val = window.location.href.split("?")[1];
+	
+	
+	
 	var branchid = val.split("=")[1];
+	
 	$("#branchid").val(branchid);
 	var k = 0;
 	$.ajax({
@@ -12,7 +16,8 @@
 		success:function(data){
 			
 			for(var i in data){
-				if(k = 0){
+				
+				if(k == 0){
 					if(data[i].producttypeid == 1){
 						$("#producttaste input").attr("readonly","readonly");
 						$("#storagemethod input").attr("readonly","readonly");
@@ -124,15 +129,12 @@
 	});
 	
 	$("#addProduct").click(function(){
-		/*//显示提示信息
-		$("#showMessage").text(data.message);
-		$('#messageNotification').fadeIn(2000);
-		getSrceenWH();
-		$('#messageNotification').fadeOut(3000);*/
+		
 		
 		$('#loading').show();
 		$('body').addClass("hiddenBody");
 	})
+	
 	
 	
 });

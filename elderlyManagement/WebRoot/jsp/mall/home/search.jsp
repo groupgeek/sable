@@ -104,7 +104,7 @@
 								<div class="sort">
 									<li value = "buyNo" id = "buyNo"><a title="销量" href="javascript:;">销量排序</a></li>
 									<li value = "price" id = "price"><a title="价格" href="javascript:;">价格优先</a></li>
-									<li class="big" value = "good" id = "evaluation"><a title="评价" href="javascript:;">评价为主</a></li>
+									<li class="big" value = "good" id = "good"><a title="热度" href="javascript:;">热度为主</a></li>
 								</div>
 								<div class="clear"></div>
 
@@ -140,6 +140,7 @@
 									<ul>
 										<li>
 											<div class="i-pic check">
+												<a href = "${pageContext.request.contextPath }/product/productInfo?id=${productCustom.productid}">
 												<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productCustom.picture }" />
 												<p class="check-title">${productCustom.productname }</p>
 												<p class="price fl">
@@ -149,6 +150,7 @@
 												<p class="number fl">
 													销量<span>${productCustom.buyno }</span>
 												</p>
+												</a>
 											</div>
 										</li>
 									</ul>
@@ -324,6 +326,10 @@
 					        				$("#nextPage").attr("value",1);
 					        				$("#previousPage").attr("value",1);
 					        				productSumPage();//更新页数
+					        				$("#previousPage").attr("value",1);
+											$("#nextPage").attr("value",1);
+											$("#productCurrentPage").text(1);
+											
 					        				for (var i in data){
 					        					$("#products").append(
 						        					'<li>'+
@@ -465,10 +471,14 @@
 					
 				}
 				
-				if($(this).attr("id") == "buyNo" || $(this).attr("id") == "price"  || $(this).attr("id") == "evaluation"){
+				if($(this).attr("id") == "buyNo" || $(this).attr("id") == "price"  || $(this).attr("id") == "good"){
 					var sort = $(this).attr("id");
-					alert(sort);
-					//ajacUpdate(this,sort,null);
+					$("#previousPage").attr("value",1);
+					$("#nextPage").attr("value",1);
+					productSum();
+					ajacUpdate(this,sort,1);
+					
+					$("#productCurrentPage").text(1);
 				}
 				
 				if($(this).attr("id") == "home" || $(this).attr("id") == "previousPage"  || $(this).attr("id") == "nextPage"|| $(this).attr("id") == "lastPage"){

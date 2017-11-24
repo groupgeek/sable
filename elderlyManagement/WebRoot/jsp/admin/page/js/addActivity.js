@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
+	
 	var i = 0;
 	$.ajax({
 		
@@ -45,11 +46,4 @@ $(document).ready(function(){
 	})
 	
 
-	/*if(data.message != null && data.message != undefined){信息展示
-		$("#showMessage").text(data.message);
-		$('#messageNotification').fadeIn(2000);
-		getSrceenWH();
-		$('#messageNotification').fadeOut(3000);
-		
-	}*/
 });

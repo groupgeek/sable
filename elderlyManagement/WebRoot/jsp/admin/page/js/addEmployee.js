@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
+	var val = window.location.href.split("?")[1];
+	
 	var allAuthority = $("#authoritylevel select");
 	var allArea = $("#areaname select");
 	var allPositional = $("#positional select");
@@ -26,11 +28,10 @@ $(document).ready(function(){
 			}
 		}
 	});
-	
-	var message = $("#message").attr("value");
+	//var message = $("#message").attr("value");
+	var message = val.split("=")[1];
 	if(message != ""){
 
-		
 		$("#showMessage").text(message);
 		$('#messageNotification').fadeIn(2000);
 		getSrceenWH();

@@ -445,13 +445,15 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 				e.printStackTrace();
 			}
 		}
+		if("".equals(productInfo.getStoragemethod())) productInfo.setStoragemethod(null);
+		if("".equals(productInfo.getEdiblemethod())) productInfo.setEdiblemethod(null);
 		
 		if(productMapper.insertSelective(productInfo) < 0) return false;
 		
 		Producttaste record = new Producttaste();
 		record.setProductid(productInfo.getProductid());
 		
-		if(productInfo.getTasteString() != null ||  !"".endsWith(productInfo.getTasteString())){
+		if(productInfo.getTasteString() != null &&  !"".equals(productInfo.getTasteString())){
 			for(String temp : productInfo.getTasteString().split(" ")){
 				record.setProducttaste(temp);
 				if(producttasteMapper.insertSelective(record) < 0) return false;
@@ -460,7 +462,7 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		
 		Productcolour recordColor = new Productcolour();
 		recordColor.setProductid(productInfo.getProductid());
-		if(productInfo.getColorString() != null || !"".endsWith(productInfo.getColorString())){
+		if(productInfo.getColorString() != null && !"".equals(productInfo.getColorString())){
 			for(String temp : productInfo.getColorString().split(" ")){
 				recordColor.setProductcolour(temp);
 				if(productcolourMapper.insert(recordColor) < 0) return false;
