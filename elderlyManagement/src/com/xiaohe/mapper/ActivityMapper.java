@@ -246,4 +246,11 @@ public interface ActivityMapper {
      * @return
      */
     Integer countActNo(Integer id);
+    
+    /**
+     * 查询用户报名的活动
+     * @param userid
+     * @return
+     */
+    List<ActivityCustom> selectActivityByUserId(Integer userid);
 }

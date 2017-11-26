@@ -632,4 +632,13 @@ and b.registery='报名'
   	group by date_format(a.activityDate,'%Y-%m')
   </select>
   
+  <select id="selectActivityByUserId" parameterType="Integer" resultType="ActivityCustom">
+  
+  	SELECT a.* , ar.registery FROM `activity` a , activityregistery ar , activitytype atype
+	WHERE ar.userId = #{id} AND atype.fatherTypeID = 2
+	AND a.activityId = ar.activityId AND a.activityTypeID = atype.activityTypeID
+	ORDER BY activityDate DESC  
+  
+  </select>
+  
 </mapper>

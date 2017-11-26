@@ -19,6 +19,8 @@ public class ActivityCustom extends Activity {
 	private String username;
 	private String avatar;
 	
+		
+	
 
 	public String getUsername() {
 		return username;

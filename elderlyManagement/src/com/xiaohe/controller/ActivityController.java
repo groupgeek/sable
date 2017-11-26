@@ -99,6 +99,27 @@ public class ActivityController {
 		return vo;
 	}
 	
+	
+	/**
+	 * 查询教育模块下用户报名的活动
+	 * @return
+	 */
+	@RequestMapping("/queryAllEduActivityReg")
+	public @ResponseBody List<ActivityCustom> queryAllEduActivityReg(HttpServletRequest request){
+		User user = getUser(request);
+		
+		List<ActivityCustom> list = new ArrayList<ActivityCustom>();
+		
+		list = activityService.queryActivityByUsserId(user.getUserid());
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/actInfo")
 	public String actInfo(Integer id,Model model,HttpServletRequest request){
 		User user = getUser(request);

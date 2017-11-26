@@ -13,7 +13,7 @@ $(document).ready(function(){
 			$(".products").append(
 					'<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">'+
 					'<div class="product">'+
-						'<div class="image"><a href="'+root+'/edu/actInfo.action?id='+data.activityList[i].activityid+'"><img src="/upload/'+data.activityList[i].activitypicture+'" /></a></div>'+
+						'<div class="image"><a href="'+root+'/edu/actInfo.action?id='+data.activityList[i].activityid+'"><img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.activityList[i].activitypicture+'" /></a></div>'+
 						'<div class="buttons">'+
 							/*'<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>'+
 							'<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>'+

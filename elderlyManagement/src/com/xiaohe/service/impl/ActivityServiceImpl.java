@@ -338,6 +338,17 @@ public class ActivityServiceImpl implements ActivityService {
 		activityreportMapper.updateByPrimaryKey(activityreport);
 		return 0;
 	}
+
+	public List<ActivityCustom> queryActivityByUsserId(Integer userid) {
+		
+		if(userid == null) return null;
+		
+		List<ActivityCustom> list = new ArrayList<ActivityCustom>();
+		
+		list = activityMapper.selectActivityByUserId(userid);
+		
+		return list;
+	}
 	
 	
     

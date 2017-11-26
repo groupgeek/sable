@@ -7,6 +7,8 @@ public class Ceo {
 
     private String password;
 
+    private String ceoaccountnumber;
+
     public Integer getCeoid() {
         return ceoid;
     }
@@ -29,5 +31,13 @@ public class Ceo {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getCeoaccountnumber() {
+        return ceoaccountnumber;
+    }
+
+    public void setCeoaccountnumber(String ceoaccountnumber) {
+        this.ceoaccountnumber = ceoaccountnumber == null ? null : ceoaccountnumber.trim();
     }
 }
