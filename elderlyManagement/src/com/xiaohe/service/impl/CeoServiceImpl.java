@@ -837,8 +837,7 @@ public class CeoServiceImpl implements CeoService{
 	
 	public CeoActivityreport findCeoActivityreportById(Integer id){
 		CeoActivityreport cList = activityreportMapper.ceooneActivityreport(id);
-		BigDecimal a = cList.getTotalprice().subtract(cList.getTotalexpenditure());
-		cList.setOnlyget(a);
+		
 		return cList;
 	}
 	public List<CeoProducttransactionreport> findceoproductchart(){

@@ -22,8 +22,8 @@ $(document).ready(function(){
 					'<td class="center">'+(data.lisproductchart)[i].getprice+'</td>'+
 					'<td class="center">'+										
 						'<a class="btn btn-info" href="'+root+'/ceo/chart.action?id='+(data.lisproductchart)[i].productid+'">'+
-						'查看报表'+
-							'<i class="halflings-icon white edit"></i></a>'+
+						'<i class="halflings-icon white zoom-in"></i>'+
+							
 					'</td>'+
 				'</tr>'
 			);
@@ -45,8 +45,8 @@ $(document).ready(function(){
 						'<td class="center">'+data.listactivity[i].averagepeople+'</td>'+
 						'<td class="center">'+										
 							'<a class="btn btn-info" href="'+root+'/ceo/activitychart.action?id='+data.listactivity[i].activityid+'">'+
-							'查看报表'+
-								'<i class="halflings-icon white edit"></i></a>'+				
+							'<i class="halflings-icon white zoom-in"></i>'+
+										
 						'</td>'+
 					'</tr>'
 			

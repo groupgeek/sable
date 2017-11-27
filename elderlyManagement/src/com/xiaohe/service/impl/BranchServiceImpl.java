@@ -136,4 +136,29 @@ public class BranchServiceImpl implements BranchService {
 		return true;
 	}
 
+	public BranchVo queryBranchByCustom(BranchCustom custom){
+		BranchVo branchVo = new BranchVo();
+		List<BranchCustom> allbranchs = new ArrayList<BranchCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		if(custom != null){			
+			if(custom.getCurrentPage() >= 1){
+				Integer tempBegin = (custom.getCurrentPage()-1) * custom.getPageNum();
+				custom.setBegin(tempBegin);
+			}else{
+				custom.setBegin(0);
+			}
+		}
+		allbranchs = branchMapper.selectAllBranchByCustom(custom);
+		sum = branchMapper.selectAllBranchSumByCustom(custom);
+		pageSum = sum / custom.getPageNum();
+		if(sum % custom.getPageNum() != 0){
+			pageSum += 1;
+		}
+		branchVo.setBranchList(allbranchs);
+		branchVo.setBranchSum(sum);
+		branchVo.setPageSum(pageSum);
+			
+		return branchVo;
+	}
 }

@@ -66,6 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>存货分店</th>
 								  <th>存货量</th>
 								  <th>销售量</th>
+								  <th>详细信息</th>
 							  </tr>
 						  </thead>   
 							<c:forEach items = "${findProductCustoms }" var = "product">
@@ -85,6 +86,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										${product.instock }</a>
 									</td>
 									<td class="center">${product.buyno }</td>
+									<td class="center">
+										<a class="btn btn-success" href="${pageContext.request.contextPath }/ceo/product.action?productid=${product.productid}">
+											<i class="halflings-icon white zoom-in"></i>
+										</a>
+									</td>
 								</tr>						
 							</c:forEach>							
 						  </tbody>

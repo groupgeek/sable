@@ -66,6 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>用户性别</th>
 								  <th>用户地址</th>
 								  <th>用户电话</th>
+								  <th>详细信息</th>
 							  </tr>
 						  </thead>   
 							<c:forEach items = "${finduserandbranch }" var = "user">
@@ -85,6 +86,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										${user.address }</a>
 									</td>
 									<td class="center">${user.phone }</td>
+									<td class="center">
+										<a class="btn btn-success" href="${pageContext.request.contextPath }/ceo/user.action?userid=${user.userid}">
+											<i class="halflings-icon white zoom-in"></i>
+										</a>
+									</td>
 								</tr>						
 							</c:forEach>							
 						  </tbody>

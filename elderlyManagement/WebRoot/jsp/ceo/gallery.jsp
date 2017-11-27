@@ -66,6 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>活动报名费</th>
 								  <th>活动支出</th>
 								  <th>是否开展</th>
+								  <th>详细信息</th>
 							  </tr>
 						  </thead>   
 							<c:forEach items = "${findAllActivitie }" var = "d">
@@ -83,6 +84,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td class="center">
 										<a href="${pageContext.request.contextPath }/ceo/activity.action?activityid=${d.activityid}">
 										${d.activitystatus }</a>
+									</td>
+									<td class="center">
+										<a class="btn btn-success" href="${pageContext.request.contextPath }/ceo/activity.action?activityid=${d.activityid}">
+											<i class="halflings-icon white zoom-in"></i>
+										</a>
 									</td>
 								</tr>
 							

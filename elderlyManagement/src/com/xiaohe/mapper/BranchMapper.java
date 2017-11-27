@@ -72,4 +72,17 @@ public interface BranchMapper {
      * @return
      */
     BranchCustom selectBranchByUserid(Integer userid);
+    
+    /**
+     * 查询所有分店
+     * @param custom
+     * @return
+     */
+    List<BranchCustom> selectAllBranchByCustom(BranchCustom custom);
+    /**
+     * 查询分店数量
+     * @param custom
+     * @return
+     */
+    Integer selectAllBranchSumByCustom(BranchCustom custom);
 }

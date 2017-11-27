@@ -61,12 +61,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	width:100%;
 	height:140px;
 	}
-	.image1{ 
-       	padding-left:30%;
+	#image1{ 
+       	padding-left:10%;
         width:300px; 
         height:350px;
         float:left; 
-        border-radius:130px; 
+ 
     }
     #footer{
     	width:100%;
@@ -119,8 +119,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="hidden" name="productid" value="${findProductById.productid }"  />
 							<div style="padding-bottom: 30px">
 								<div id="header">
+									
 									<div id="nav">
-										<div id="section1"><img class="image1" src="img/picture.jpg"></div>							
+										<%
+											String id = request.getParameter("productid");
+											int a = Integer.valueOf(id);
+						 				%>
+						 				<input type="hidden" id="productid" value="<%=a %>">
+										<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+										<div class="control-group" id="picture">
+											<label class="control-label" for="disabledInput">商品照片</label>
+											<div class="controls" id="section1">
+								  				<img id="image1" src="">
+											</div>
+							  			</div>							
 									</div>
 									<div id="section">
 										<div class="control-group">
@@ -196,22 +208,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div class="control-group">
 										<label class="control-label" for="disabledInput">商品描述</label>
 										<div class="controls">
-							   				<input class="message" id="disabledInput" type="text" name="description" value="${findProductById.description }" disabled="">
+											<textarea rows="4" disabled="" style="width: 700px; background-color: #FCFCFC;">${findProductById.description }</textarea>					  
 							  			</div>
 							  		</div>
 							  		<div class="control-group">
 										<label class="control-label" for="disabledInput">存储方式</label>
 										<div class="controls">
-							   				<input class="message" id="disabledInput" type="text" name="storagemethod" value="${findProductById.storagemethod }" disabled="">
+											<textarea rows="4" disabled="" style="width: 700px; background-color: #FCFCFC;">${findProductById.storagemethod }</textarea>
 							  			</div>
 							  		</div>
 							  		<div class="control-group">
 										<label class="control-label" for="disabledInput">食用方法</label>
 										<div class="controls">
-							   				<input class="message" id="disabledInput" type="text" name="ediblemethod" value="${findProductById.ediblemethod }" disabled="">
+											<textarea rows="4" disabled="" style="width: 700px; background-color: #FCFCFC;">${findProductById.ediblemethod }</textarea>
 							  			</div>
 							  		</div>
 								</div>
+							</div>
 							</fieldset>
 						  </form>
 					
@@ -302,6 +315,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/oneproduct.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

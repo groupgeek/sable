@@ -43,13 +43,14 @@ $(document).ready(function(){
 				$("#box tbody").append(
 						'<tr>'+
 							'<td>'+ (data.productList)[i].productname +'</td>'+
-							'<td class="center">'+(data.productList)[i].price+
+							'<td class="center">'+ (data.productList)[i].branchname +'</td>'+
+							'<td class="center">'+(data.productList)[i].price+'</td>'+
 							'<td class="center">'+ (data.productList)[i].buyno +'</td>'+
 							'<td class="center">'+
 								'<span class="label label-success">'+ (data.productList)[i].instock +'</span>'+
 							'</td>'+
 							'<td class="center">'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/productReport.jsp?productid='+ (data.productList)[i].productid +'" target="_black">'+
+								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/oneproductReport.jsp?id='+ (data.productList)[i].productid +'" target="_black">'+
 									'<i class="halflings-icon white zoom-in"></i>'+
 								'</a>'+
 								'<input type="hidden" value="'+ (data.productList)[i].productid +'">'+

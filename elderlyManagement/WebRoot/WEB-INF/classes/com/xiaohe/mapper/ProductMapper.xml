@@ -538,16 +538,16 @@ SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.accountNumber=#{
 	
 	<select id="selectAllProductByCondition" parameterType="productCustom" resultType="productCustom">
   
-	  	SELECT * FROM `product`
-		WHERE 
+	  	SELECT *,branchname FROM `product`,branch
+		WHERE product.branchId=branch.branchId
 	  	<if test="search != null">
-	  		(productName LIKE '%${search}%' OR description LIKE '%${search}%')
+	  		and (productName LIKE '%${search}%' OR description LIKE '%${search}%')
 	  	</if>
 	  	<if test="producttypeid != null" >
 		    AND productTypeId = #{producttypeid}
 		</if>
 		<if test="branchid != null" >
-		  	AND branchId = #{branchid}
+		  	AND branch.branchId = #{branchid}
 	  	</if>
 	  	<if test="sort != null" >
 		    ORDER BY #{sort} DESC  
