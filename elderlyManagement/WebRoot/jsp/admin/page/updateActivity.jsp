@@ -171,7 +171,20 @@
 								  </select>
 								</div>
 							  </div>
-							  
+							  <div class="control-group" id = "showVideoHref">
+								<label class="control-label">活动链接</label>
+								<div class="controls">
+									<a href="javascript:;" style="display:block;padding-top: 6px;">活动链接</a>
+								</div>
+								
+							  </div>
+							  <div class="control-group" id = "updateVideoHref">
+								<label class="control-label">修改链接</label>
+								<div class="controls">
+									<input type="text" name = "videoHref" value="" style="width: 400px;">
+								</div>
+								
+							  </div>						  
 							  <div class="control-group" id = "activitypicturetemp">
 								<label class="control-label">已有图片</label>
 								<div class="controls">

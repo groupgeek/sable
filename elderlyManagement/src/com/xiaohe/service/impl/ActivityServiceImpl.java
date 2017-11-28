@@ -137,6 +137,12 @@ public class ActivityServiceImpl implements ActivityService {
 		if(activityInfo.getActivityid() == null || activityInfo.getActivityid() <0) return false;
 		if(activityInfo.getActivityname() == null || " ".equals(activityInfo.getActivityname()) || "".equals(activityInfo.getActivityname()))
 			return false;
+		
+
+		if(!"".equals(activityInfo.getVideoHref()) && videoUpload.isEmpty()){
+			activityInfo.setVideo(activityInfo.getVideoHref());
+		}
+		
 		if(!videoUpload.isEmpty()){
 			try {
 				String newVideo = FileUpload.oneFileUpload(videoUpload,activityInfo.getVideo() , "video");
@@ -147,6 +153,8 @@ public class ActivityServiceImpl implements ActivityService {
 				e.printStackTrace();
 			}
 		}
+		
+
 		
 		if(!pictureUpload.isEmpty()){
 			try {
@@ -165,6 +173,7 @@ public class ActivityServiceImpl implements ActivityService {
 	public boolean addActivity(ActivityCustom activity,MultipartFile videoUpload,MultipartFile pictureUpload) {
 		if(activity == null) return false;
 		
+		
 		if(!videoUpload.isEmpty()){
 			try {
 				String newVideo = FileUpload.oneFileUpload(videoUpload,null ,"video");
@@ -174,6 +183,10 @@ public class ActivityServiceImpl implements ActivityService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		if(!"".equals(activity.getVideoHref()) && videoUpload.isEmpty()){
+			activity.setVideo(activity.getVideoHref());
 		}
 		
 		if(!pictureUpload.isEmpty()){

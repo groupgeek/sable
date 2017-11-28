@@ -511,7 +511,7 @@ public class superAdminController {
 			model.addAttribute("message", "修改成功");
 			model.addAttribute("activityid", activityInfo.getActivityid());
 		}else{
-			model.addAttribute("message", "修改失败");
+
 		}
 		return "admin/page/activityInfo";
 	}

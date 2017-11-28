@@ -1,12 +1,10 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
 	
-	
 	var productid = $("#productid").attr("value");
 	var taste = "";
 	var colour = "";
 	var size = "";
-	
 	//获取到口味或者颜色型号的值
 	$("#teast li").click(function(){
 		taste = $(this).attr("value");
@@ -46,10 +44,16 @@ $(document).ready(function(){
 		//跳转页面
 		
 		//window.location.href = root+"/jsp/mall/home/shopcart.jsp";
-
 		if($("#teastType").attr("value") == 1){
 			if(taste == ""){
-				alert("请选择口味");
+				//alert("请选择口味");
+				//更改信息框颜色
+				$("#messageNotification").attr("style","background-color: red;");
+				
+				$("#showMessage").text("请选择口味");
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
 			}else{
 				var data = "type="+1+"&productid="+productid+"&number="+$("#text_box").attr("value")+"&taste="+taste;
 				if($(this).attr("id") == "shoppingCart"){
@@ -65,7 +69,16 @@ $(document).ready(function(){
 						+'"taste"'+':'+'"'+taste+'"'
 				    			+'}',
 						success:function(data){
-							alert(data.message);
+							//alert(data.message);
+							$(".cart_num ").text(parseInt($(".cart_num ").text()) + 1);
+							//更改信息框颜色
+							$("#messageNotification").attr("style","background-color: red;");
+							
+							$("#showMessage").text(data.message);
+							$('#messageNotification').fadeIn(2000);
+							getSrceenWH();
+							$('#messageNotification').fadeOut(3000);
+							
 						}
 					});
 					
@@ -94,7 +107,14 @@ $(document).ready(function(){
 		}
 		if($("#colourType").attr("value") == 2){
 			if(colour == "" || size == ""){
-				alert("请选择颜色或者型号");
+				//alert("请选择颜色或者型号");
+				//更改信息框颜色
+				$("#messageNotification").attr("style","background-color: red;");
+				
+				$("#showMessage").text("请选择颜色或者型号");
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
 			}else{
 				var data = "type="+2+"&productid="+productid+"&number="+$("#text_box").attr("value")+"&colour="+colour+"&size="+size;
 				if($(this).attr("id") == "shoppingCart"){
@@ -110,8 +130,16 @@ $(document).ready(function(){
 						+'"sziestring"'+':'+'"'+size+'"'
 				    			+'}',
 					success:function(data){
-						alert(data.message);
+						//alert(data.message);
 						$(".cart_num ").text(parseInt($(".cart_num ").text()) + 1);
+						//更改信息框颜色
+						$("#messageNotification").attr("style","background-color: red;");
+						
+						$("#showMessage").text(data.message);
+						$('#messageNotification').fadeIn(2000);
+						getSrceenWH();
+						$('#messageNotification').fadeOut(3000);
+						
 						}
 					});
 				}

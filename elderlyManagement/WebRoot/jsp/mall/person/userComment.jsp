@@ -55,7 +55,7 @@
 							<div class="comment-list">
 								<div class="item-pic">
 									<a href="javascript:;" class="J_MakePoint">
-										<img src="" class="itempic">
+										<img src="" class="itempic" style="min-height: 160px;">
 									</a>
 								</div>
 

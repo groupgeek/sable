@@ -38,6 +38,9 @@ $(document).ready(function(){
 		//显示弹框
 		var showMessageInput = decodeURI(val.split("=")[1]);
 		
+		//更改信息框颜色
+		$("#messageNotification").attr("style","background-color: red;");
+		
 		$("#showMessage").text(showMessageInput);
 		$('#messageNotification').fadeIn(2000);
 		getSrceenWH();

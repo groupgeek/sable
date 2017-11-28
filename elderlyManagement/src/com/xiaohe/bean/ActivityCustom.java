@@ -19,9 +19,17 @@ public class ActivityCustom extends Activity {
 	private String username;
 	private String avatar;
 	
-		
+	private String videoHref;
+	
+	
 	
 
+	public String getVideoHref() {
+		return videoHref;
+	}
+	public void setVideoHref(String videoHref) {
+		this.videoHref = videoHref;
+	}
 	public String getUsername() {
 		return username;
 	}

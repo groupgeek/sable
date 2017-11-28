@@ -40,6 +40,42 @@ $(document).ready(function(){
 			}
 		}
 	});
+	//直播事件
+	$("#activitytypename select").change(function(){
+		if($(this).attr("value") == 6){
+			$("#online select").attr("disabled","disabled");
+			$("#online select").attr("value",true);
+			$("#video").hide();
+			$("#videoHref").show();
+			$("#video input").val("");
+			
+		}else{
+			$("#online select").attr("disabled",null);
+			$("#online select").attr("value",false);
+			$("#video").show();
+			$("#videoHref").hide();
+			$("#videoHref input").val("");
+		}
+	});
+	
+	//线上事件
+	$("#online select").change(function(){
+		
+		if($(this).attr("value") == "true"){
+			$("#video").hide();
+			$("#videoHref").show();
+			$("#video input").val("");
+		}else{
+			$("#video").show();
+			$("#videoHref").hide();
+			$("#videoHref input").val("");
+		}
+		
+	});
+	
+	
+	
+	//添加
 	$("#addActivity").click(function(){
 		$('#loading').show();
 		$('body').addClass("hiddenBody");

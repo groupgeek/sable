@@ -16,6 +16,11 @@ $(document).ready(function(){
 		success:function(data){
 			$("#activityname input").val(data.activityInfo.activityname);
 			
+			if(data.activityInfo.activitytypeid == 6){
+				$("#online select").attr("disabled","disabled");
+				$("#online select").attr("value",true);
+			}
+			
 			for(var i in data.allActivitytype){
 				if((data.allActivitytype)[i].activitytypeid == data.activityInfo.activitytypeid){
 					$("#activitytypename select").append('<option value="'+ (data.allActivitytype)[i].activitytypeid +'" selected="selected">'+ (data.allActivitytype)[i].activitytypename +'</option>');
@@ -39,8 +44,36 @@ $(document).ready(function(){
 			}
 			if(data.activityInfo.online == true){
 				$("#true").attr("selected","selected");
+				$("#showVideo").remove();
+				$("#video").hide();
+				$("#updateVideoHref input").val(data.activityInfo.video);
+				$("#showVideoHref a").attr("href",data.activityInfo.video);
+				$("#showVideoHref a").text(data.activityInfo.video);
+				
 			}else{
 				$("#false").attr("selected","selected");
+				$("#showVideoHref").remove();
+				$("#updateVideoHref").hide();
+				
+				if(data.activityInfo.video == null){
+					$("#showVideo div").html("空");
+				}else{
+					 var player = new Aliplayer({
+				            id: 'J_prismPlayer',
+				            width: '50%',
+				            height: '50%',
+				            autoplay: false,
+				            //支持播放地址播放,此播放优先级最高
+				            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.activityInfo.video,
+				            //播放方式二：推荐
+				            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
+				            playauth : '',
+				           /*  useH5Prism : true, */
+				            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
+				            },function(player){
+				                console.log('播放器创建好了。');
+				           });
+				}
 			}
 			$("#activitydate input").val(data.activityInfo.activitydateString);
 			
@@ -55,37 +88,7 @@ $(document).ready(function(){
 				$("#activitypicturetemp img").attr("src","http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/"+data.activityInfo.activitypicture);
 			}
 			
-			if(data.activityInfo.video == null){
-				$("#showVideo div").html("空");
-			}else{
-				 var player = new Aliplayer({
-			            id: 'J_prismPlayer',
-			            width: '50%',
-			            height: '50%',
-			            autoplay: false,
-			            //支持播放地址播放,此播放优先级最高
-			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.activityInfo.video,
-			            //播放方式二：推荐
-			            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
-			            playauth : '',
-			           /*  useH5Prism : true, */
-			            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
-			            },function(player){
-			                console.log('播放器创建好了。');
-			           });
-				/*$("#showVideo div").append(
-						
-						'<video width="320" height="240" controls autoplay>'+
-						  '<source id = "showVideoogg" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/ogg">'+
-						  '<source id = "showVideomp4" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/mp4">'+
-						  '<source id = "showVideowebm" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'"type="video/webm">'+
-						 '<object id = "showVideoobject" data="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'" width="320" height="240">'+
-						    '<embed width="320" height="240" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.activityInfo.video +'">'+
-						  '</object>'+
-						'</video>'
-				
-				);*/
-			}
+			
 			
 			$("#activityid").attr("value",data.activityInfo.activityid);
 			$("#activitypicturehidden").attr("value",data.activityInfo.activitypicture);
@@ -117,6 +120,46 @@ $(document).ready(function(){
 		});
 		
 	});*/
+	
+	
+	//直播事件
+	$("#activitytypename select").change(function(){
+		if($(this).attr("value") == 6){
+			$("#online select").attr("disabled","disabled");
+			$("#online select").attr("value",true);
+			$("#video").hide();
+			$("#showVideoHref").show();
+			$("#updateVideoHref").show();
+			$("#video input").val("");
+			
+		}else{
+			$("#online select").attr("disabled",null);
+			$("#online select").attr("value",false);
+			$("#video").show();
+			$("#showVideoHref").hide();
+			$("#updateVideoHref").hide();
+			$("#updateVideoHref input").val("");
+		}
+	});
+	
+	//线上事件
+	$("#online select").change(function(){
+		
+		if($(this).attr("value") == "true"){
+			$("#video").hide();
+			$("#showVideoHref").show();
+			$("#updateVideoHref").show();
+			$("#video input").val("");
+		}else{
+			$("#video").show();
+			$("#showVideoHref").hide();
+			$("#updateVideoHref").hide();
+			$("#updateVideoHref input").val("");
+		}
+		
+	});
+	
+	
 	$("#updateActivity").click(function(){
 		$('#loading').show();
 		$('body').addClass("hiddenBody");
