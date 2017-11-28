@@ -68,4 +68,6 @@
       password = #{password,jdbcType=VARCHAR}
     where ceoId = #{ceoid,jdbcType=INTEGER}
   </update>
+  <select id="quertyCEO" parameterType="String" resultType="Ceo">
+  SELECT * FROM ceo WHERE ceoAccountNumber = #{ceoAccountNumber}</select>
 </mapper>

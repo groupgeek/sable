@@ -6,8 +6,18 @@ public class Ceo {
     private Integer authorityid;
 
     private String password;
+    
+    private String ceoaccountNumber;
 
-    public Integer getCeoid() {
+    public String getCeoaccountNumber() {
+		return ceoaccountNumber;
+	}
+
+	public void setCeoaccountNumber(String ceoaccountNumber) {
+		this.ceoaccountNumber = ceoaccountNumber;
+	}
+
+	public Integer getCeoid() {
         return ceoid;
     }
 

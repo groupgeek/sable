@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>服装详情</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${employee.employeename }
+								<i class="halflings-icon white user"></i> ${admins.employeename }
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -96,15 +96,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- start: Main Menu -->
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+							<ul class="nav nav-tabs nav-stacked main-menu">
+	
 						<li><a href="${pageContext.request.contextPath }/productmanage/producttype.action"><i class="icon-comment"></i><span class="hidden-tablet"> 增加商品</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/stockout.action"><i class="icon-user"></i><span class="hidden-tablet">缺货商品</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/NoproductRecommend.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 推荐商品</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/quertyPopularProduct.action"><i class="icon-random"></i><span class="hidden-tablet">热销商品</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/recommendproduct.action"><i class="icon-briefcase"></i><span class="hidden-tablet">本店推荐</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>						
-						<li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
+				</ul>
 				</div>
 			</div>
 			</div>
@@ -135,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white user"></i><span class="break"></span>商品信息</h2>
 						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+						<!-- 	<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
@@ -156,8 +156,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <tbody>
 							<c:forEach items="${Color }" var="Color">
 					<tr>
-						<td class="center">${Color.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" style="width:80px;height:40px"/></td>
+						<td class="center">${Color.productName }</td>
+						<td class="center"> <img class="img-responsive"  src="/upload/${Color.picture }g" alt="" style="width:80px;height:40px"/></td>
 						<td class="center">${Color.productcolour}</td>
 						<td class="center"> ${Color.size}</td>
 						<td class="center"> ${Color.price}</td>
@@ -165,13 +165,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					
 						<td class="center">
-						<a class="btn btn-success" href="#">
-										<i class="halflings-icon white zoom-in"></i>
+						<!-- <a class="btn btn-success" href="#">
+										<i class="halflings-icon white zoom-in"></i> -->
 									</a>
-									<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/selectProduct.action?productid=${product.productid}">
+									<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/selectProduct.action?productid=${Color.productid}">
 										<i class="halflings-icon white edit"></i>  
 									</a>
-									<a class="btn btn-danger" href="${pageContext.request.contextPath }/productmanage/deleteproduct.action?productid=${product.productid}">+
+									<a class="btn btn-danger" href="${pageContext.request.contextPath }/productmanage/deleteproduct.action?productid=${Color.productid}">+
 										<i class="halflings-icon white trash"></i>
 									</a>
 						</td>

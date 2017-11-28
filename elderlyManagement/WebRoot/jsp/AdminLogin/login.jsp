@@ -104,9 +104,19 @@ with (thisform)
 					class="fh5co-form animate-box" data-animate-effect="fadeIn" style="background-color:rgba(0,0,0,0.5); padding-bottom: 50px;"   method="post">
 					<h2>登录</h2>
 					<div class="form-group">
+					
+					<c:if test="${Massage!=null }">
+					
+					<label for="employeeid" class="sr-only" >员工账号</label> <input
+							type="text" class="form-control" id="id" name="id" digits=true  
+							placeholder="员工账号" autocomplete="off" required value="${Massage}">
+					
+					</c:if>
+					<c:if test="${Massage==null }">
 						<label for="employeeid" class="sr-only" >员工账号</label> <input
 							type="text" class="form-control" id="id" name="id" digits=true  
 							placeholder="员工账号" autocomplete="off" required>
+					</c:if>
 					</div>
 					<div class="form-group">
 						<label for="password" class="sr-only">密码 </label> <input
@@ -180,8 +190,8 @@ with (thisform)
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.1.8.1.min.js"></script>
 		<script 
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.validate.messages_zh.js"></script>
-<!-- <script
-	src="//www.w3cschool.cn/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script> -->
+<script
+	src="//www.w3cschool.cn/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 <script>
 
 	$(document).ready(function() {
