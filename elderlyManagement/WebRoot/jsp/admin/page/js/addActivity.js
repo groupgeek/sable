@@ -38,8 +38,44 @@ $(document).ready(function(){
 					'<option value ='+(data.allBranchs)[i].branchid+' >'+(data.allBranchs)[i].branchname+'</option>'
 				);
 			}
+			var dafaultBranchid = $("#branchname select").attr("value");
+			//默认负责人
+			$.ajax({
+				
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:root+"/superAdmin/queryAllEmployeeByBranchId",
+				data:JSON.stringify(dafaultBranchid),
+				success:function(result){
+					$("#principalname select").html("");
+					for(var i in result){
+						$("#principalname select").append('<option value="'+ result[i].employeeid +'">'+ result[i].employeename +'</option>');
+					}
+				}
+			});
 		}
+	
+	
 	});
+	
+	//查询负责人
+	$("#branchname select").change(function(){
+		var branchid = $(this).val();
+		$.ajax({
+			
+			type:"post",
+			contentType:"application/json;charset=utf-8",
+			url:root+"/superAdmin/queryAllEmployeeByBranchId",
+			data:JSON.stringify(branchid),
+			success:function(result){
+				$("#principalname select").html("");
+				for(var i in result){
+					$("#principalname select").append('<option value="'+ result[i].employeeid +'">'+ result[i].employeename +'</option>');
+				}
+			}
+		});
+	})
+	
 	//直播事件
 	$("#activitytypename select").change(function(){
 		if($(this).attr("value") == 6){
@@ -76,7 +112,7 @@ $(document).ready(function(){
 	
 	
 	//添加
-	$("#addActivity").click(function(){
+	$("#addEmployee").click(function(){
 		$('#loading').show();
 		$('body').addClass("hiddenBody");
 	})

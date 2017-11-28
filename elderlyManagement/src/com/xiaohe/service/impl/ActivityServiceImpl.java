@@ -18,10 +18,13 @@ import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.EmployeeCustom;
+import com.xiaohe.bean.LecturerCustom;
 import com.xiaohe.mapper.ActivityMapper;
 import com.xiaohe.mapper.ActivityregisteryMapper;
 import com.xiaohe.mapper.ActivityreportMapper;
 import com.xiaohe.mapper.ActivitytypeMapper;
+import com.xiaohe.mapper.LecturerMapper;
 import com.xiaohe.service.ActivityService;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetStringByDate;
@@ -43,6 +46,10 @@ public class ActivityServiceImpl implements ActivityService {
 	
 	@Autowired
 	private ActivityreportMapper activityreportMapper;
+	
+	@Autowired
+	@Qualifier("lecturerMapper")
+	private LecturerMapper lecturerMapper;
 	
 	/**
 	 * 给Introduction字段赋值 (活动描述里面的值的一部分)
@@ -398,5 +405,45 @@ public ActivityVo queryActivityByCondition(ActivityCustom condition) {
 				
 		return activityVo;
 	}
+
+public List<LecturerCustom> queryAllLecturerByUser(Integer userid) {
+	if(userid == null) return null;
+	
+	List<LecturerCustom> all = new ArrayList<LecturerCustom>();
+	
+	all = lecturerMapper.selectAllByBranch(userid);
+	
+	if("".equals(all)) return null;
+	
+	return all;
+}
+
+public EmployeeCustom queryEmployeeByAId(Integer activityid) {
+	if(activityid == null) return null;
+	EmployeeCustom employee = new EmployeeCustom();
+	
+	employee = activityMapper.selectEmployeeByActivityId(activityid);
+	
+	return employee;
+}
+
+public List<EmployeeCustom> queryAllEmployeeByAId(Integer activityid) {
+	if(activityid == null) return null;
+	List<EmployeeCustom> all = new ArrayList<EmployeeCustom>();
+	all = activityMapper.selectAllEmployeeByActivityId(activityid);
+	
+	return all;
+}
+
+public List<EmployeeCustom> queryAllEmployeeByBranchId(Integer branchid) {
+	if(branchid == null) return null;
+	
+	List<EmployeeCustom> all = new ArrayList<EmployeeCustom>();
+	
+	all = activityMapper.selectAllEmployeeByBranchId(branchid);
+	
+	
+	return all;
+}
     
 }

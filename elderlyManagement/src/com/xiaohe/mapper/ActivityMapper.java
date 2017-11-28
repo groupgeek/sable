@@ -266,4 +266,26 @@ public interface ActivityMapper {
      * @return
      */
     Integer selectAllactivitySumByCondition(ActivityCustom condition);
+    
+    /**
+     * 根据活动ID查询负责人（员工）
+     * @param activityid
+     * @return
+     */
+    EmployeeCustom selectEmployeeByActivityId(Integer activityid);
+    
+    /**
+     * 根据活动ID查询负责人（员工）多人
+     * @param activityid
+     * @return 
+     */
+    List<EmployeeCustom> selectAllEmployeeByActivityId(Integer activityid);
+    
+    /**
+     * 根据分店ID查询负责人（员工）多人
+     * @param branchid
+     * @return 
+     */
+    List<EmployeeCustom> selectAllEmployeeByBranchId(Integer branchid);
+    
 }

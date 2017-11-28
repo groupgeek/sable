@@ -103,6 +103,8 @@
 								</div>
 							  </div>
 							  
+							  
+							  
 							   <!-- <div class="control-group" id = "activitytypename">
 								<label class="control-label">活动类型*</label>
 								<div class="controls">
@@ -140,6 +142,15 @@
 								  <select name="branchid">
 								  	
 								  </select>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id="principalname">
+								<label class="control-label" for="focusedInput">活动负责人</label>
+								<div class="controls">
+								   <select name="principalid">
+								  		
+								   </select>
 								</div>
 							  </div>
 							   <%-- <div class="control-group" id = "entrytime">

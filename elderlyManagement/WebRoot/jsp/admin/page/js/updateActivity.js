@@ -21,6 +21,25 @@ $(document).ready(function(){
 				$("#online select").attr("value",true);
 			}
 			
+			//查询负责人
+			var principalid = data.activityInfo.principalid
+			$.ajax({
+				
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:root+"/superAdmin/queryAllEmployeeByactivityId",
+				data:JSON.stringify(activityid),
+				success:function(result){
+					for(var i in result){
+						if(result[i].employeeid == principalid){
+							$("#principalname select").append('<option value="'+ result[i].employeeid +'" selected="selected">'+ result[i].employeename +'</option>');
+						}else{
+							$("#principalname select").append('<option value="'+ result[i].employeeid +'">'+ result[i].employeename +'</option>');
+						}
+					}
+				}
+			});
+			
 			for(var i in data.allActivitytype){
 				if((data.allActivitytype)[i].activitytypeid == data.activityInfo.activitytypeid){
 					$("#activitytypename select").append('<option value="'+ (data.allActivitytype)[i].activitytypeid +'" selected="selected">'+ (data.allActivitytype)[i].activitytypename +'</option>');
@@ -164,5 +183,10 @@ $(document).ready(function(){
 		$('#loading').show();
 		$('body').addClass("hiddenBody");
 	})
+	
+	
+	
+	
+	
 	
 });

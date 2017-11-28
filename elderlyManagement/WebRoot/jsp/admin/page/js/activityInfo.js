@@ -24,6 +24,7 @@
 		success:function(data){
 			$("#activityUrl").attr("href",root+'/jsp/admin/page/updateActivity.jsp?activityid='+data.activityid);
 			$("#activityname span").text(data.activityname);
+			
 			$("#activitytypename span").text(data.activitytypename);
 			$("#fathertypename span").text(data.fathertypename);
 			$("#activitystatus span").text(data.activitystatus);
@@ -84,6 +85,18 @@
 			//
 		}
 		
+	});
+	
+	//查询负责人
+	$.ajax({
+		
+		type:"post",
+		contentType:"application/json;charset=utf-8",
+		url:root+"/superAdmin/queryEmployeeByactivityId",
+		data:JSON.stringify(activityid),
+		success:function(data){
+			$("#principalname span").text(data.employeename);
+		}
 	});
 	
 });

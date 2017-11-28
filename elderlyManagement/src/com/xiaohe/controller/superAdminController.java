@@ -479,6 +479,20 @@ public class superAdminController {
 	}
 	
 	/**
+	 * 查询活动负责人
+	 * @param activityid
+	 * @return
+	 */
+	@RequestMapping("/queryEmployeeByactivityId")
+	public @ResponseBody Employee queryEmployeeByactivityId(@RequestBody Integer activityid){
+		EmployeeCustom employee = new EmployeeCustom();
+		
+		employee = activityService.queryEmployeeByAId(activityid);
+		
+		return employee;
+	}
+	
+	/**
 	 * 加载活动数据
 	 * @param activityInfo
 	 * @return
@@ -499,6 +513,20 @@ public class superAdminController {
 		updateActivityVo.setAllBranch(allBranch);
 		
 		return updateActivityVo;
+	}
+	
+	/**
+	 * 加载活动负责人（多人）
+	 * @param activityid
+	 * @return
+	 */
+	@RequestMapping("/queryAllEmployeeByactivityId")
+	public @ResponseBody List<EmployeeCustom> queryAllEmployeeByactivityId(@RequestBody Integer activityid){
+		List<EmployeeCustom> all = new ArrayList<EmployeeCustom>();
+		
+		all = activityService.queryAllEmployeeByAId(activityid);
+		
+		return all;
 	}
 	
 	/**
@@ -539,6 +567,20 @@ public class superAdminController {
 		
 		return addActivityVo;
 	};
+	
+	/**
+	 * 加载活动负责人（多人）根据分店
+	 * @param branchid
+	 * @return
+	 */
+	@RequestMapping("/queryAllEmployeeByBranchId")
+	public @ResponseBody List<EmployeeCustom> queryAllEmployeeByBranchId(@RequestBody Integer branchid){
+		List<EmployeeCustom> all = new ArrayList<EmployeeCustom>();
+		
+		all = activityService.queryAllEmployeeByBranchId(branchid);
+		
+		return all;
+	}
 	
 	/**
 	 * 添加活动
