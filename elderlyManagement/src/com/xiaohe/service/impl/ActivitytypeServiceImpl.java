@@ -37,5 +37,12 @@ public class ActivitytypeServiceImpl implements ActivitytypeService {
 		}
 		return allTypes;
 	}
+	
+	public List<ActivitytypeCustom> querySimallactivitytype(){
+		ActivitytypeCustom condition = new ActivitytypeCustom();
+		condition.setBegin(0);
+		condition.setPageNum(9);
+		return activitytypeMapper.selectSmallActivitytype(condition);
+	}
 
 }

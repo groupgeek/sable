@@ -92,4 +92,12 @@
   <select id="selectAllEduType" resultType="ActivitytypeCustom">
   	SELECT * FROM activitytype WHERE fatherTypeID = 2
   </select>
+  <select id="selectSmallActivitytype" parameterType="com.xiaohe.bean.ActivitytypeCustom" resultType="com.xiaohe.bean.ActivitytypeCustom">
+  	SELECT * FROM activitytype WHERE fatherTypeID != 0
+  	<if test="begin != null">
+			<if test="pageNum != null">
+				LIMIT #{begin} , #{pageNum}
+			</if>
+		</if>
+  </select>
 </mapper>

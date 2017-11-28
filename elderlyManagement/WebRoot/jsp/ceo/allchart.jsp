@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>商品单价</th>
 								  <th>销售量</th>
 								  <th>销售收入</th>								 
-								  <th>报表</th>
+								  <th style="width:200px;">查看报表</th>
 							  </tr>
 						</thead>
 						<tbody>
@@ -172,7 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>活动收入</th>
 								  <th>活动支出</th>
 								  <th>参与人数</th>
-								  <th>查看报表</th>
+								  <th style="width:200px;">查看报表</th>
 							  </tr>
 						  </thead>
 						  <tbody>

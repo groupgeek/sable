@@ -6,18 +6,10 @@ public class Ceo {
     private Integer authorityid;
 
     private String password;
-    
-    private String ceoaccountNumber;
 
-    public String getCeoaccountNumber() {
-		return ceoaccountNumber;
-	}
+    private String ceoaccountnumber;
 
-	public void setCeoaccountNumber(String ceoaccountNumber) {
-		this.ceoaccountNumber = ceoaccountNumber;
-	}
-
-	public Integer getCeoid() {
+    public Integer getCeoid() {
         return ceoid;
     }
 
@@ -39,5 +31,13 @@ public class Ceo {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getCeoaccountnumber() {
+        return ceoaccountnumber;
+    }
+
+    public void setCeoaccountnumber(String ceoaccountnumber) {
+        this.ceoaccountnumber = ceoaccountnumber == null ? null : ceoaccountnumber.trim();
     }
 }

@@ -338,7 +338,52 @@ public class ActivityServiceImpl implements ActivityService {
 		activityreportMapper.updateByPrimaryKey(activityreport);
 		return 0;
 	}
+
+	public List<ActivityCustom> queryActivityByUsserId(Integer userid) {
+		
+		if(userid == null) return null;
+		
+		List<ActivityCustom> list = new ArrayList<ActivityCustom>();
+		
+		list = activityMapper.selectActivityByUserId(userid);
+		
+		return list;
+	}
 	
-	
+public ActivityVo queryActivityByCondition(ActivityCustom condition) {
+		
+		ActivityVo activityVo = new ActivityVo();
+		List<ActivityCustom> allactivitys = new ArrayList<ActivityCustom>();
+		Integer pageSum = 0;
+		Integer sum = 0;
+		if(condition != null){
+			if(condition.getActivitytypeid() == -1){
+				condition.setActivitytypeid(null);
+			}
+			
+			if(condition.getCurrentPage() >= 1){
+				Integer tempBegin = (condition.getCurrentPage()-1) * condition.getPageNum();
+				condition.setBegin(tempBegin);
+			}else{
+				condition.setBegin(0);
+			}
+			
+		}
+		if(condition.getBranchid() != null)
+		if(condition.getBranchid() == -1){
+			condition.setBranchid(null);
+		}
+		allactivitys = activityMapper.selectAllactivityByCondition(condition);
+		sum = activityMapper.selectAllactivitySumByCondition(condition);
+		pageSum = sum / condition.getPageNum();
+		if(sum % condition.getPageNum() != 0){
+			pageSum += 1;
+		}
+		activityVo.setActivityList(allactivitys);
+		activityVo.setActivitySum(sum);
+		activityVo.setPageSum(pageSum);
+				
+		return activityVo;
+	}
     
 }

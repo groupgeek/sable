@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+.page ul{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	float: right;
+}
+.page li{
+	text-align:center;
+	width:35px;
+	float: left;
+	display:block;
+}
+#pageNumBox{
+	float: left;
+}
+#search{
+	float: right;
+}
+#activitytypeid{
+	width: 150px;
+	float: right;
+}
+#allBranch{
+	width: 150px;
+	float: right;
+}
+#itemsPage{
+	float: left;	
+}

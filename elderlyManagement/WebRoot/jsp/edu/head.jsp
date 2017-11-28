@@ -30,7 +30,7 @@
 	<header class="container">
 		<div class="row">
 			<div class="col-md-4">
-				<div id="logo"><img src="images/logo.png" /></div>
+				<div id="logo"><img src="${pageContext.request.contextPath }/jsp/edu/images/logo.png" /></div>
 			</div>
 			<div class="col-md-4">
 				<!-- <form class="form-search">  
@@ -39,7 +39,7 @@
 				</form> -->
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="cart.html"><!-- <span class="glyphicon glyphicon-shopping-cart"> </span>-->我的课程</a></div>
+				<div id="cart"><a class="btn btn-1" href="${pageContext.request.contextPath }/jsp/edu/myActivities.jsp"><!-- <span class="glyphicon glyphicon-shopping-cart"> </span>-->我的课程</a></div>
 			</div>
 		</div>
 	</header>

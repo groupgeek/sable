@@ -49,19 +49,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	#section {
    	 width:49%;
-   	 float:left;
-   	 padding:10px;	 	 
+   	 float:left;	 	 
+	}
+	#section2 {
+   	 width:49%;
+   	 float:left;	 	 
 	}
 	#section1{
 	width:100%;
 	height:140px;
 	}
-	.image1{ 
-       	padding-left:30%;
+	#image1{ 
+       	padding-left:10%;
         width:130px; 
-        height:130px;
-        float:left; 
-        border-radius:130px; 
+        height:150px;
+        float:left;        
     }
     .form-actions{
     	clear:both;
@@ -104,10 +106,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a href="${pageContext.request.contextPath }/ceo/table.action" ><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
+							<%
+								String id = request.getParameter("employeeid");
+								int a = Integer.valueOf(id);
+						 	%>
+						 	<input type="hidden" id="employeeid" value="<%=a %>">
+							<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
 					<div class="box-content">
 						<form class="form-horizontal" action="">
 							<fieldset>
 							<input type="hidden" name="employeeid" value="${findEmployeeAllMessage.employeeid }"  />
+							
 							<div style="padding-bottom: 30px">
 								<div id="header">
 									<div id="nav">
@@ -131,10 +140,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  			</div>
 							  			
 									</div>
-									<div id="section">
-										<div id="section1"><img class="image1" src="img/avatar.jpg"></div>
-							
-									</div>
+									
+									<div class="control-group" id = "section2">
+										<label class="control-label">员工头像</label>
+										<div class="controls" id="section1">
+											<img  id = "image1" src="" >
+										</div>
+							  		</div>
 								</div>
 								<div id="nav">
 									<div class="control-group">
@@ -298,6 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/employee.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

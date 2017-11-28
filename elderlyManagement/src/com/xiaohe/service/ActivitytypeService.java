@@ -20,4 +20,10 @@ public interface ActivitytypeService {
 	 * @return map集合
 	 */
 	public Map<String, List<ActivitytypeCustom>> queryAllTypeOrderByFather();
+	
+	/**
+	 * 查询出活动小类型
+	 * @return
+	 */
+	public List<ActivitytypeCustom> querySimallactivitytype();
 }

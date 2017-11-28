@@ -34,14 +34,14 @@ $(document).ready(function(){
 						$("#container").find("div[id="+key+"]").append(
 								'<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">'+
 								'<div class="product">'+
-									'<div class="image"><a href="product.html"><img src="/upload/'+data[key][i].activitypicture+'" /></a></div>'+
+									'<div class="image"><a href="'+root+'/edu/actInfo?id='+data[key][i].activityid+'"><img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[key][i].activitypicture+'" /></a></div>'+
 									'<div class="buttons">'+
 										/*'<a class="btn cart" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>'+
 										'<a class="btn wishlist" href="#"><span class="glyphicon glyphicon-heart"></span></a>'+
 										'<a class="btn compare" href="#"><span class="glyphicon glyphicon-transfer"></span></a>'+*/
 									'</div>'+
 									'<div class="caption">'+
-										'<div class="name"><h3><a href="product.html">'+data[key][i].activityname+'</a></h3></div>'+
+										'<div class="name"><h3><a href="'+root+'/edu/actInfo?id='+data[key][i].activityid+'">'+data[key][i].activityname+'</a></h3></div>'+
 										'<div class="price">￥'+data[key][i].registeryfee+'</div>'+
 										/*'<div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></div>'+*/
 									'</div>'+

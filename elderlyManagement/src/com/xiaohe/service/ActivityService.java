@@ -191,5 +191,18 @@ public interface ActivityService {
 	 * @return
 	 */
 	public int updateActrep(Activityreport activityreport);
+	
+	/**
+	 * 查询用户报名的活动
+	 * @return
+	 */
+	public List<ActivityCustom> queryActivityByUsserId(Integer userid);
+	
+	/**
+	 * 查询所有活动的信息（管理员）
+	 * @param condition
+	 * @return
+	 */
+	public ActivityVo queryActivityByCondition(ActivityCustom condition);
 
 }

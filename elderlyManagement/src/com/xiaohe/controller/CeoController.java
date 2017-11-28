@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.BranchCustom;
+import com.xiaohe.bean.Ceo;
 import com.xiaohe.bean.CeoActivity;
 import com.xiaohe.bean.CeoActivityreport;
 import com.xiaohe.bean.CeoActivityreportVo;
@@ -27,6 +29,7 @@ import com.xiaohe.bean.CeoProducttransactionreportVo;
 import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -42,6 +45,29 @@ public class CeoController {
 	@Autowired
 	@Qualifier("ceoService")
 	private CeoService ceoService;
+	
+	public Ceo getAdmin(HttpServletRequest request){
+		return (Ceo) request.getSession().getAttribute("ceos");
+	}
+	/**
+	 * 登录验证
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getCeoAdmin")
+	public @ResponseBody Ceo getCeoAdmin(HttpServletRequest request){
+		Ceo admin = new Ceo();
+		admin = getAdmin(request);
+		return admin;
+	}
+	//退出
+	@RequestMapping("/logout")
+	public String logout(HttpSession session)throws Exception{			
+		//session过期
+		session.invalidate();			
+		return "redirect:/jsp/AdminLogin/login.jsp";
+	}
+	
 	/**
 	 * 首页
 	 * @param request
@@ -49,11 +75,7 @@ public class CeoController {
 	 * @return
 	 */
 	@RequestMapping(value="/index")
-	public String sumTotalreportMoney(HttpServletRequest request , Model model){
-		//如果没登录直接访问会返回一个错误页面
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+	public String sumTotalreportMoney(HttpServletRequest request , Model model){		
 		//盈利额的查询
 		List<String> sumAllBigDecimal = ceoService.findSumTotalreportMoney();
 		List<BigDecimal> sumBigDecimalByTim = ceoService.findSumTotalreportMoneyByTime();
@@ -118,9 +140,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value="/usertable")
 	public String userandbranch(HttpServletRequest request ,Model model){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}		
+			
 		List<UserCustom> finduserandbranch = ceoService.findAllUserAndBranch();
 		model.addAttribute("finduserandbranch",finduserandbranch);
 		return "ceo/usertable";
@@ -134,13 +154,16 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/user")
 	public String findUser(HttpServletRequest request ,Model model,Integer userid){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		UserCustom findUserById = ceoService.findUserById(userid);
 		model.addAttribute("findUserById",findUserById);
 		
 		return "ceo/user";
+	}
+	@RequestMapping(value = "/oneuser")
+	public @ResponseBody UserCustom oneuser(@RequestBody UserCustom userCustom){
+		UserCustom oneuser = ceoService.findUserById(userCustom.getUserid());
+		return oneuser;
 	}
 	/*-------------------------------------------------------------------------------------*/
 	/**
@@ -151,9 +174,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/producttable")
 	public String findproductCustom(HttpServletRequest request ,Model model){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		List<ProductCustom> findProductCustoms = ceoService.findProductCustoms();		
 		model.addAttribute("findProductCustoms",findProductCustoms);
 		return "ceo/producttable";
@@ -167,12 +188,15 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/product")
 	public String findProduct(HttpServletRequest request ,Model model , Integer productid){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		Product findProductById = ceoService.findProductById(productid);
 		model.addAttribute("findProductById",findProductById);		
 		return "ceo/product";
+	}
+	@RequestMapping(value = "/someproduct")
+	public @ResponseBody Product oneproduct(@RequestBody Product product){
+		Product oneproduct = ceoService.findProductById(product.getProductid());
+		return oneproduct;
 	}
 	/*-------------------------------------------------------------------------------------*/
 	
@@ -184,9 +208,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value="/table")
 	public String findEmployee(HttpServletRequest request , Model model){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		Employee employee = new Employee();		
 		List<Employee> findEmployees = ceoService.findEmployees(employee);
 		List<CeoEmployee> findBranchEmployee = ceoService.findBranchEmployee();
@@ -203,12 +225,15 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/employee")
 	public String findEmployeeAllMessage(HttpServletRequest request , Model model ,Integer employeeid ){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		CeoEmployee findEmployeeAllMessage = ceoService.findEmployeeById(employeeid);
 		model.addAttribute("findEmployeeAllMessage",findEmployeeAllMessage);		
 		return "ceo/employee";
+	}
+	@RequestMapping(value = "/oneemployee")
+	public @ResponseBody CeoEmployee oneemployee(@RequestBody CeoEmployee ceoEmployee){
+		CeoEmployee fEmployee = ceoService.findEmployeeById(ceoEmployee.getEmployeeid());
+		return fEmployee;
 	}
 	/*-------------------------------------------------------------------------------------*/
 	/**
@@ -219,9 +244,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value="/gallery")
 	public String findAllActivity(HttpServletRequest request , Model model){	
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		List<CeoActivity> findAllActivitie = ceoService.findAllActivities();
 		model.addAttribute("findAllActivitie",findAllActivitie);		
 		return "ceo/gallery";
@@ -237,9 +260,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/activity")
 	public String findCeoActivity(HttpServletRequest request ,Model model , Integer activityid){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		CeoActivity findCeoActivity = ceoService.findCeoActivity(activityid);
 		model.addAttribute("findCeoActivity",findCeoActivity);		
 		return "ceo/activity";
@@ -253,9 +274,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/messages")
 	public String findAllUserMessage(HttpServletRequest request , Model model,Integer id){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		List<MessageCustom> findMessageCustoms = ceoService.findAllUserMessageCustoms();
 		model.addAttribute("findMessageCustoms",findMessageCustoms);		
 		return "ceo/messages";
@@ -279,9 +298,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/branch")
 	public String findBranchCustom(HttpServletRequest request,Model model){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}		
+			
 		List<BranchCustom> findBranchCustoms = ceoService.findBranchCustoms();
 		model.addAttribute("findBranchCustoms",findBranchCustoms);
 		
@@ -296,9 +313,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value="/branchtask")
 	public String totalIncome(HttpServletRequest request,Model model,Integer branchid){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		Branch findBranch = ceoService.findBrachById(branchid);		
 		List<String> arr = ceoService.arr(branchid);
 		List<Integer> ar = ceoService.intlList(branchid);		
@@ -331,9 +346,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/allchart")
 	public String allchart(HttpServletRequest request, Model model){
-		if (request.getSession().getAttribute("ceos") == null) {
-			return "ceo/error";
-		}
+		
 		List<CeoActivityreport> ceoActivityreports = ceoService.allActivityreports();
 		List<BranchCustom> branchCustoms = ceoService.findBranchCustoms();
 		model.addAttribute("branchCustoms",branchCustoms);
@@ -358,6 +371,7 @@ public class CeoController {
 	 */
 	@RequestMapping(value = "/oneproduct")
 	public @ResponseBody List<CeoProducttransactionreport> oneProducttransactionreports(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		System.out.println(ceoProducttransactionreport);
 		List<CeoProducttransactionreport> list = ceoService.ceoProductList(ceoProducttransactionreport);
 		return list;
 	}
@@ -440,15 +454,5 @@ public class CeoController {
 			return"";
 		}
 		
-		/**
-		 * 测试
-		 * @param request
-		 * @return
-		 */
-		@RequestMapping(value = "/Test")
-		public @ResponseBody List<CeoTotalreport> findTotalreportAndBranch(HttpServletRequest request){
-			List<CeoTotalreport> ceoTotalreport = ceoService.findTotalreportAndBranch();			
-			return ceoTotalreport;
-		}
-		
+
 }
