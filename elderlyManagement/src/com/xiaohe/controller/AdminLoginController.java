@@ -60,7 +60,7 @@ public class AdminLoginController {
 		if (mark==0) {
 			Ceo  ceos=new Ceo();
 		
-			ceos.setCeoaccountNumber(id);
+			ceos.setCeoaccountnumber(id);
 			ceos.setPassword(password);
 			 ceos = ceoService.quertyCEO(ceos);
 			if(ceos.getAuthorityid()==6){
