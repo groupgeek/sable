@@ -192,7 +192,7 @@ public EmployeeCustom getAdmins(HttpServletRequest request){
 	@RequestMapping("recommendproduct")
 	public String  quertyRecommendProduct(Model model ,HttpServletRequest request)
 	{	List<ProductCustom>  recommendproduct =productManageService.quertyRecommendProduct(( getAdmins(request)).getBranchId());
-			model.ad4.dAttribute("recommendproduct", recommendproduct);
+			model.addAttribute("recommendproduct", recommendproduct);
 		return"/productmanage/page/recommendproduct";
 		
 	}

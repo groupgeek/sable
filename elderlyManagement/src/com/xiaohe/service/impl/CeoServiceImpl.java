@@ -899,7 +899,7 @@ public class CeoServiceImpl implements CeoService{
 		if(ceo==null){
 			return null;
 		}else {
-		Ceo ceos = ceoMapper.quertyCEO(ceo.getCeoaccountNumber());
+		Ceo ceos = ceoMapper.quertyCEO(ceo.getCeoaccountnumber());
 		if(ceos == null){
 			
 			return null;
