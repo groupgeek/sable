@@ -62,4 +62,11 @@ public interface BranchService {
 	 * @return
 	 */
 	public boolean addBranch(BranchCustom branchInfo);
+	
+	/**
+	 * 查询所有分店
+	 * @param custom
+	 * @return
+	 */
+	public BranchVo queryBranchByCustom(BranchCustom custom);
 }

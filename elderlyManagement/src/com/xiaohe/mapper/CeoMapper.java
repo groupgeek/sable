@@ -14,4 +14,6 @@ public interface CeoMapper {
     int updateByPrimaryKeySelective(Ceo record);
 
     int updateByPrimaryKey(Ceo record);
+    
+    Ceo quertyCEO(String ceoAccountNumber);
 }

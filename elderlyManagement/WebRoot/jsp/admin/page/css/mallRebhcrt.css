@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+.page ul{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	float: right;
+}
+.page li{
+	text-align:center;
+	width:35px;
+	float: left;
+	display:block;
+}
+#pageNumBox{
+	float: left;
+}
+#search{
+	float: right;
+}
+#activitys{
+	margin-left : 5px;
+	width: 150px;
+	float: right;
+}
+#products{
+	margin-left : 5px;
+	width: 150px;
+	float: right;
+}
+#itemsPage{
+	float: left;	
+}

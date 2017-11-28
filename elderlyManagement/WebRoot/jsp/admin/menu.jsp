@@ -61,10 +61,10 @@
 									<a class="submenu" href="${pageContext.request.contextPath }/jsp/admin/page/mallReport.jsp"><i class="icon-file-alt"></i><span class="hidden-tablet"> 商城报表</span></a>
 								</li>
 								<li>
-									<a class="submenu" href="javascript:;"><i class="icon-file-alt"></i><span class="hidden-tablet"> 活动</span></a>
+									<a class="submenu" href="${pageContext.request.contextPath }/jsp/admin/page/mallReact.jsp"><i class="icon-file-alt"></i><span class="hidden-tablet"> 活动报表</span></a>
 								</li>
 								<li>
-									<a class="submenu" href="javascript:;"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a>
+									<a class="submenu" href="${pageContext.request.contextPath }/jsp/admin/page/mallRebhcrt.jsp"><i class="icon-file-alt"></i><span class="hidden-tablet"> 总报表</span></a>
 								</li>
 							</ul>	
 						</li>

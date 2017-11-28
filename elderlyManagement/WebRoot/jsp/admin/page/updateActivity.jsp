@@ -121,7 +121,7 @@
 							   <div class="control-group" id = "activitydate">
 								<label class="control-label">活动时间</label>
 								<div class="controls">
-								  	<input class="input-xlarge focused" name = "activitydate" type="text" onClick="laydate()" value="<fmt:formatDate value="${activity.activitydate }"pattern="yyyy-MM-dd" />">
+								  	<input class="input-xlarge focused" name = "activitydate" type="text" onClick="laydate()" value="<fmt:formatDate value="${activity.activitydate }" pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							 

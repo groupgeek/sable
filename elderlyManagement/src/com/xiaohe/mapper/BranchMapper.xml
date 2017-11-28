@@ -151,4 +151,26 @@
 	AND b.areaId = u.areaId
   
   </select>
+  
+  <select id="selectAllBranchByCustom" parameterType="BranchCustom" resultType="BranchCustom">
+  	select b.*,a.areaName,a.areaAddress,e.employeeName from branch b,area a,employee e
+	where b.areaId=a.areaId
+	and b.employeeId=e.employeeId
+	<if test="search != null">
+		and (b.branchId like '%${search}%' or b.branchName LIKE '%${search}%' OR a.areaAddress LIKE '%${search}%' or e.employeeName like '%${search}%')	
+	</if>
+	<if test="begin != null">
+		<if test="pageNum != null">
+			LIMIT  #{begin} , #{pageNum};
+		</if>
+	</if>
+  </select>
+  <select id="selectAllBranchSumByCustom" parameterType="BranchCustom" resultType="Integer">
+  	select count(*) from branch b,area a,employee e
+	where b.areaId=a.areaId
+	and b.employeeId=e.employeeId
+	<if test="search != null">
+		and (b.branchId like '%${search}%' or b.branchName LIKE '%%' OR a.areaAddress LIKE '%%' or e.employeeName like '%%')
+	</if>
+  </select>
 </mapper>

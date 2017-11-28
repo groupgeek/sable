@@ -640,5 +640,39 @@ and b.registery='报名'
 	ORDER BY activityDate DESC  
   
   </select>
+  <select id="selectAllactivityByCondition" parameterType="ActivityCustom" resultType="ActivityCustom">
+  	SELECT *,branchname FROM `activity`,branch
+		WHERE activity.branchId=branch.branchId
+		<if test="search != null">
+	  		and (activityName LIKE '%${search}%' OR activityDetails LIKE '%${search}%')
+	  	</if>
+	  	<if test="activitytypeid != null" >
+		    AND activityTypeId = #{activitytypeid}
+		</if>
+		<if test="branchid != null" >
+		  	AND branch.branchId = #{branchid}
+	  	</if>
+	  	<if test="sort != null" >
+		    ORDER BY #{sort} DESC  
+		</if>
+	   	<if test="begin != null" >
+		  <if test="pageNum != null" >
+		      LIMIT  #{begin} , #{pageNum};
+		  </if>
+	  	</if>
+  </select>
   
+  <select id="selectAllactivitySumByCondition" parameterType="ActivityCustom" resultType="Integer">
+  	SELECT COUNT(*) FROM `activity`
+		WHERE 
+		<if test="search != null">
+	  		(activityName LIKE '%${search}%' OR activityDetails LIKE '%${search}%')
+	  	</if>
+  		<if test="activitytypeid != null" >
+		    AND activityTypeID = #{activitytypeid}
+		</if>
+		<if test="branchid != null" >
+		  	AND branchId = #{branchid}
+	  	</if>	  		
+  </select>
 </mapper>

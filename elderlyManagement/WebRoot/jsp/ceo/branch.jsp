@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>分店管理员</th>
 								  <th>分店名称</th>
 								  <th>分店所在地</th>
-								  <th>分店详情</th>
+								  <th style="width:300px;">分店详情</th>
 							  </tr>
 						  </thead>   
 							<c:forEach items = "${findBranchCustoms }" var = "g">
@@ -74,9 +74,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td class="center">${g.branchname }</td>
 									<td class="center">${g.areaaddress }</td>
 									<td class="center">
-										<a class="btn btn-success" href="${pageContext.request.contextPath }/ceo/branchtask.action?branchid=${g.branchid}">
-											查看分店详情
-											<!-- <i class="halflings-icon white zoom-in"></i>   -->
+										<a class="btn btn-success" href="${pageContext.request.contextPath }/ceo/branchtask.action?branchid=${g.branchid}">					
+											<i class="halflings-icon white zoom-in"></i>
 										</a>
 									</td>
 								</tr>

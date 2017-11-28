@@ -174,7 +174,7 @@ $(document)
 									//分页事件
 									$(".lg-list").append('<div style="width: 100%; height: 20px; text-align: center;"><a href = "javascript:;" id = "listLoading">加载更多</a></div>');
 									
-									var num = 5;
+									var num = 3;
 									$(".lg-list li").hide();
 									
 									for(var i = 0 ; i < num ; i++){

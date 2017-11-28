@@ -44,19 +44,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				</a>
 				<a class="brand" href="${pageContext.request.contextPath }/ceo/index.action"><span>管理员界面</span></a>
-								
+				<input id="root" type="hidden" value="${pageContext.request.contextPath }">				
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${ceos.ceoid}
+								<i class="halflings-icon white user"></i> <span class = "ceoAdmin">未登录</span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								
-								<li><a href="${pageContext.request.contextPath }/jsp/AdminLogin/login.jsp"><i class="halflings-icon off"></i>注销</a></li>
+								<li><a href="${pageContext.request.contextPath }/ceo/logout"><i class="halflings-icon off"></i>注销</a></li>
 							</ul>
 						</li>
 						
@@ -68,5 +68,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript">
+	var root = $("#root").attr("value");
+
+	$.ajax({
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:root+"/ceo/getCeoAdmin",
+				success:function(data){
+					
+					if(data == ""){
+						window.location.href = root + "/jsp/AdminLogin/login.jsp";
+					}
+					$(".ceoAdmin").text(data.ceoid);
+				}
+			});
+		
+	</script>
   </body>
 </html>

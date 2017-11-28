@@ -29,6 +29,7 @@ import com.xiaohe.bean.AreaCustom;
 import com.xiaohe.bean.AuthorityCustom;
 import com.xiaohe.bean.BranchCustom;
 import com.xiaohe.bean.BranchVo;
+import com.xiaohe.bean.CeoActivityreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
@@ -37,6 +38,7 @@ import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Positional;
 import com.xiaohe.bean.PositionalCustom;
+import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductVo;
 import com.xiaohe.bean.ProducttransactionreportCustom;
@@ -56,6 +58,7 @@ import com.xiaohe.service.ActivitytypeService;
 import com.xiaohe.service.AreaService;
 import com.xiaohe.service.AuthorityService;
 import com.xiaohe.service.BranchService;
+import com.xiaohe.service.CeoService;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.LevelSevice;
 import com.xiaohe.service.MessageService;
@@ -131,7 +134,9 @@ public class superAdminController {
 	@Qualifier("reportService")
 	private ReportService reportService;
 	
-	
+	@Autowired
+	@Qualifier("ceoService")
+	private CeoService ceoService;
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -718,6 +723,17 @@ public class superAdminController {
 	}
 	
 	/**
+	 * 查询所有活动类型（小）
+	 * @return
+	 */
+	@RequestMapping("/queryAllActivityType")
+	public @ResponseBody List<ActivitytypeCustom> queryAllActivityType(){
+		List<ActivitytypeCustom> allActivitytype = new ArrayList<ActivitytypeCustom>();
+		allActivitytype = activitytypeService.querySimallactivitytype();
+		return allActivitytype;
+	}
+	
+	/**
 	 * 查询所有产品
 	 * @param condition
 	 * @return
@@ -728,6 +744,43 @@ public class superAdminController {
 		productVo = productService.queryAllProductByCondition(condition);
 		
 		return productVo;
+	}
+	
+	/**
+	 * 查询所有活动
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryAllActivitys")
+	public @ResponseBody ActivityVo queryAllActivitys(@RequestBody ActivityCustom condition){
+		ActivityVo activityVo = new ActivityVo();
+		activityVo = activityService.queryActivityByCondition(condition);
+		return activityVo;
+	}
+	
+	/**
+	 * 查询所有分店（制作报表）
+	 * @param custom
+	 * @return
+	 */
+	@RequestMapping("/queryAllbranchs")
+	public @ResponseBody BranchVo queryAllbranchs(@RequestBody BranchCustom custom){
+		BranchVo branchVo = new BranchVo();
+		branchVo = branchService.queryBranchByCustom(custom);
+		return branchVo;
+	}
+	
+	@RequestMapping(value = "/oneproductReport")
+	public String productchart(HttpServletRequest request,Model model,Integer id){
+		Product productname = ceoService.findProductById(id);
+		model.addAttribute("productname",productname);
+		return "admin/page/oneproductReport";
+	}
+	@RequestMapping(value = "/oneactivityReport")
+	public String activityString(Integer id,Model model){
+		List<CeoActivityreport> oneList = ceoService.findActivityreportById(id);
+		model.addAttribute("oneList",oneList);
+		return "admin/page/oneactivityReport";
 	}
 	
 	/**

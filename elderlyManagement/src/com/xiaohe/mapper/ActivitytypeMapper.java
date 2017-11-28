@@ -48,4 +48,11 @@ public interface ActivitytypeMapper {
      * @return
      */
     List<ActivitytypeCustom> selectAllEduType();
+    
+    /**
+     * 查询小活动的类型
+     * @param activitytype
+     * @return
+     */
+    List<ActivitytypeCustom> selectSmallActivitytype(ActivitytypeCustom activitytype);
 }

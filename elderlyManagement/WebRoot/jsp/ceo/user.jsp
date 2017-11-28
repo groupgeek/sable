@@ -50,18 +50,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	#section {
    	 width:49%;
    	 float:left;
-   	 padding:10px;	 	 
+ 	 
+	}
+	#avatar{
+	 width:49%;
+   	 float:left;
 	}
 	#section1{
 	width:100%;
 	height:140px;
 	}
-	.image1{ 
-       	padding-left:30%;
+	#image1{ 
+       	padding-left:10%;
         width:130px; 
-        height:130px;
+        height:150px;
         float:left; 
-        border-radius:130px; 
+ 
     }
     .form-actions{
     	clear:both;
@@ -131,10 +135,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  			</div>
 							  			
 									</div>
-									<div id="section">
-										<div id="section1"><img class="image1" src="${pageContext.request.contextPath }/ceo/img/gallery/photo5.jpg"></div>
-							
-									</div>
+									<%
+										String id = request.getParameter("userid");
+										int a = Integer.valueOf(id);
+						 			%>
+						 			<input type="hidden" id="userid" value="<%=a %>">
+									<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+									<div class="control-group" id = "avatar">
+										<label class="control-label">用户头像</label>
+										<div class="controls" id="section1">
+											<img  id = "image1" src="" >
+										</div>
+							  		</div>
 								</div>
 								<div id="nav">
 									<div class="control-group">
@@ -311,6 +323,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/user.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

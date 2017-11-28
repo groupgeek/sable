@@ -837,8 +837,7 @@ public class CeoServiceImpl implements CeoService{
 	
 	public CeoActivityreport findCeoActivityreportById(Integer id){
 		CeoActivityreport cList = activityreportMapper.ceooneActivityreport(id);
-		BigDecimal a = cList.getTotalprice().subtract(cList.getTotalexpenditure());
-		cList.setOnlyget(a);
+		
 		return cList;
 	}
 	public List<CeoProducttransactionreport> findceoproductchart(){
@@ -900,7 +899,7 @@ public class CeoServiceImpl implements CeoService{
 		if(ceo==null){
 			return null;
 		}else {
-		Ceo ceos = ceoMapper.selectByPrimaryKey(ceo.getCeoid());
+		Ceo ceos = ceoMapper.quertyCEO(ceo.getCeoaccountnumber());
 		if(ceos == null){
 			
 			return null;

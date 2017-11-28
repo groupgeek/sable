@@ -14,10 +14,12 @@ $(document).ready(function(){
         data : JSON.stringify(messageCustom),
         success : function(result) {  
         	if(result != null){
-        		username.innerText=result.username;
-        		email.innerText=result.email;
-        		messagetime.innerText=result.stringDate;
-        		message.innerText=result.messagecontext;        	
+        		if(result.email != null){
+	        		username.innerHTML=result.username;
+	        		email.innerHTML=result.email;
+	        		messagetime.innerHTML=result.stringDate;
+	        		message.innerHTML=result.messagecontext;  
+        		}
         	}
         }
     });
