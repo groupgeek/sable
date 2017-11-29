@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.ReturnvisitCustom;
 import com.xiaohe.bean.ReturnvisitVo;
 import com.xiaohe.bean.User;
@@ -116,6 +117,10 @@ public class ReturnvisitCustomImpl implements ReturnvisitService {
 		if(returnvisitMapper.deleteByPrimaryKey(returnvisitid) <= 0) return false;
 		
 		return true;
+	}
+
+	public int updateReturn(Returnvisit returnvisit) {
+		return returnvisitMapper.updateByPrimaryKeySelective(returnvisit);
 	}
 
 }

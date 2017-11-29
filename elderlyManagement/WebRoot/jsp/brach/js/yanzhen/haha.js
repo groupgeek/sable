@@ -94,3 +94,72 @@ function checkLength(obj) {
 
 
 
+function hidden(){
+	alert(0);
+	var value = document.getElementById("selectErrors");
+	var index = value.selectedIndex ;
+	var val = value.options[index].value; 
+	alert(val);
+	
+}
+
+$('#selectErrors').mouseleave(function (){
+	var value = document.getElementById("selectErrors");
+	var index = value.selectedIndex ;
+	var val = value.options[index].value; 
+	if(val == 'true'){
+		$('#film').hide();
+		$('#vid').show();
+	}if(val == 'false'){
+		$('#film').show();
+		$('#vid').hide();
+	}
+	
+});
+
+$('#vid').hide();
+$('#line').hide();
+$('#selectErro').mouseleave(function (){
+	var value = document.getElementById("selectErro");
+	var index = value.selectedIndex;
+	var val = value.options[index].value; 
+	var line = document.getElementById("actline").value;
+	var video = document.getElementById("actvideo").value;
+	if(val == 'true'){           	  //线上
+		if(line == 'true'){
+			$('#vidline').show();    //自带链接
+			$('#vidfilm').hide();    //视频和添加视频
+			$('#line').show();       //链接
+			$('#vid').hide();        //更换视频
+		}if(line == 'false'){
+			$('#vid').hide();        //更换视频
+			$('#vidline').hide();    //自带链接
+			$('#vidfilm').hide();    //视频和添加视频
+			$('#line').show();       //链接
+		}
+	}if(val == 'false'){                       //线下
+		if(line == 'false'){
+			$('#vidfilm').show();    //视频和添加视频
+			$('#vidline').hide();    //自带链接
+			$('#line').hide();
+			$('#vid').hide();        //更换视频
+		}if(line == 'true'){
+			$('#vid').show();        //更换视频
+			$('#vidline').hide();    //自带链接
+			$('#vidfilm').hide();    //视频和添加视频
+			$('#line').hide();       //链接
+		}
+		
+		
+	}
+	
+});
+
+
+
+/*function videoLine(){
+	
+	
+}*/
+
+/**/
