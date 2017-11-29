@@ -902,8 +902,8 @@ background: #d2d2d2;
 
 /*----===----*/
 .ctn_blue{
-	background: #0877CC !important;/* IE fix */
-	background: rgba(8,119,204, 0.85) !important;
+	background: #666666 !important;/* IE fix */
+	background: rgba(102,102,102, 0.85) !important;
 	color: #fff !important;
 }
 .ctn_blue .pf_button{

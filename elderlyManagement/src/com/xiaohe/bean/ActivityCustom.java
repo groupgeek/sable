@@ -19,9 +19,25 @@ public class ActivityCustom extends Activity {
 	private String username;
 	private String avatar;
 	
-		
+	private String videoHref;
+	
+	private String principalname;
+	
+	
 	
 
+	public String getPrincipalname() {
+		return principalname;
+	}
+	public void setPrincipalname(String principalname) {
+		this.principalname = principalname;
+	}
+	public String getVideoHref() {
+		return videoHref;
+	}
+	public void setVideoHref(String videoHref) {
+		this.videoHref = videoHref;
+	}
 	public String getUsername() {
 		return username;
 	}

@@ -245,9 +245,9 @@
 
             <div id="contact">
                 <div class="title text-center">
-                    <h3 class="title-text">Contact us</h3>
+                    <h3 class="title-text">关于我们</h3>
 
-                    <em class="lead">For better service , you're bound to contact us.</em>
+                    <em class="lead">为了更好的服务，您一定要联系我们.</em>
                     <hr>
                 </div>
             </div>
@@ -259,16 +259,14 @@
                 <div class="container">
                     <div class="widget col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="title">
-                            <h3>About <span>Attorney</span></h3>
+                            <h3>孝和 <span>简介</span></h3>
                         </div>
-                        <br>
-                        <p>Attorney-Template  is a clean, minimal, stylish Bootstrap theme for showcasing your Law firm. </p>
-                        <p>On the other hand, we denounce with rious indignation and dislike men who are so be guiled and demoralized by the charms that they cannot foresee the pain</p>
+                        <p>孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介</p>
                     </div><!-- end widget -->
 
                     <div class="widget col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="title">
-                            <h3>Contact Us.</h3>
+                            <h3>您有什么宝贵的意见请发送给我们</h3>
                         </div>
                         <div class="contact_widget row">
                             <div id="message"></div>
@@ -286,11 +284,11 @@
                                 <div class="clearfix"></div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" name="comments" required="required" id="comments" rows="6" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="comments" required="required" id="comments" rows="6" placeholder="在这里输入您宝贵的意见"></textarea>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <button type="button" value="SEND" id="button" onclick='sendMessage()' class="btn btn-lg btn-primary">SEND</button>
+                                    <button type="button" value="" id="button" onclick='sendMessage()' class="btn btn-lg btn-primary">发送</button>
                                 </div>
                             </form>
                         </div> <!-- end contact_widget -->
@@ -298,14 +296,14 @@
 
                     <div class="widget col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="title">
-                            <h3>Keep in Touch.</h3>
+                            <h3>联系我们</h3>
                         </div>
                         <ul class="contact_details">
-                            <li><i class="fa fa-map-marker"></i> <span>15 Springfield Way Hythe</span></li>
+                            <li><i class="fa fa-map-marker"></i> <span>贵州省</span></li>
                             <li><i class="fa fa-mobile-phone"></i> <span>(+ 00) 1-714-252-0026</span></li>
-                            <li><i class="fa fa-envelope"></i> <span>support@law.com</span></li>
+                            <li><i class="fa fa-envelope"></i> <span>xiaohe@XXX.com</span></li>
                         </ul>
-                        <div class="social pull-left">
+                        <!-- <div class="social pull-left">
                             <span><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></span>
                             <span><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></span>
                             <span><a title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a></span>
@@ -313,27 +311,10 @@
                             <span><a title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a></span>
                             <span><a title="Youtube" href="#"><i class="fa fa-youtube"></i></a></span>
                             <span><a title="Pinterest" href="#"><i class="fa fa-pinterest"></i></a></span>
-                        </div><!-- end social -->
+                        </div> --><!-- end social -->
                     </div><!-- end widget -->
                 </div><!-- end container -->
             </footer><!-- end footer -->
-
-            <div class="copyrights">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="title left">
-                                <h5 class="title-footer">Copyrights Â© 2014. All Rights Reserved.  More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a> - Collect from <a href="http://www.cssmoban.com/" title="ç½é¡µæ¨¡æ¿" target="_blank">ç½é¡µæ¨¡æ¿</a></h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="title right">
-                                <h5 class="title-footer">Theme by Themewagon</h5>
-                            </div>
-                        </div><!-- end col-lg-4 -->
-                    </div>
-                </div><!-- end container -->
-            </div><!-- end copyrights -->
         </div>
     </div>
 

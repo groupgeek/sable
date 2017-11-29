@@ -38,9 +38,81 @@ $(document).ready(function(){
 					'<option value ='+(data.allBranchs)[i].branchid+' >'+(data.allBranchs)[i].branchname+'</option>'
 				);
 			}
+			var dafaultBranchid = $("#branchname select").attr("value");
+			//默认负责人
+			$.ajax({
+				
+				type:"post",
+				contentType:"application/json;charset=utf-8",
+				url:root+"/superAdmin/queryAllEmployeeByBranchId",
+				data:JSON.stringify(dafaultBranchid),
+				success:function(result){
+					$("#principalname select").html("");
+					for(var i in result){
+						$("#principalname select").append('<option value="'+ result[i].employeeid +'">'+ result[i].employeename +'</option>');
+					}
+				}
+			});
+		}
+	
+	
+	});
+	
+	//查询负责人
+	$("#branchname select").change(function(){
+		var branchid = $(this).val();
+		$.ajax({
+			
+			type:"post",
+			contentType:"application/json;charset=utf-8",
+			url:root+"/superAdmin/queryAllEmployeeByBranchId",
+			data:JSON.stringify(branchid),
+			success:function(result){
+				$("#principalname select").html("");
+				for(var i in result){
+					$("#principalname select").append('<option value="'+ result[i].employeeid +'">'+ result[i].employeename +'</option>');
+				}
+			}
+		});
+	})
+	
+	//直播事件
+	$("#activitytypename select").change(function(){
+		if($(this).attr("value") == 6){
+			$("#online select").attr("disabled","disabled");
+			$("#online select").attr("value",true);
+			$("#video").hide();
+			$("#videoHref").show();
+			$("#video input").val("");
+			
+		}else{
+			$("#online select").attr("disabled",null);
+			$("#online select").attr("value",false);
+			$("#video").show();
+			$("#videoHref").hide();
+			$("#videoHref input").val("");
 		}
 	});
-	$("#addActivity").click(function(){
+	
+	//线上事件
+	$("#online select").change(function(){
+		
+		if($(this).attr("value") == "true"){
+			$("#video").hide();
+			$("#videoHref").show();
+			$("#video input").val("");
+		}else{
+			$("#video").show();
+			$("#videoHref").hide();
+			$("#videoHref input").val("");
+		}
+		
+	});
+	
+	
+	
+	//添加
+	$("#addEmployee").click(function(){
 		$('#loading').show();
 		$('body').addClass("hiddenBody");
 	})

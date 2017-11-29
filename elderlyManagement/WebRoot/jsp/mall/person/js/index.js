@@ -171,6 +171,37 @@ $(document)
 										}
 										
 									}
+									//分页事件
+									$(".lg-list").append('<div style="width: 100%; height: 20px; text-align: center;"><a href = "javascript:;" id = "listLoading">加载更多</a></div>');
+									
+									var num = 3;
+									$(".lg-list li").hide();
+									
+									for(var i = 0 ; i < num ; i++){
+										$(".lg-list li").eq(i).show();
+									}
+									
+									$("#listLoading").click(function(){
+										
+										if(num >= $(".lg-list li").length){
+											//更改信息框颜色
+											$("#messageNotification").attr("style","background-color: red;");
+											
+											$("#showMessage").text("没有了哦0.0");
+											$('#messageNotification').fadeIn(2000);
+											getSrceenWH();
+											$('#messageNotification').fadeOut(3000);
+										}else{
+											
+											for(var i = num ; i < num + 5 ; i++){
+												$(".lg-list li").eq(i).show();
+											}
+											num = num + 5;
+										}
+									});
+									
+									
+									// 签收
 									sign($(".lg-list li").find("a[class=i-btn-typical]"));
 
 									// 签收

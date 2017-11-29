@@ -675,4 +675,22 @@ and b.registery='报名'
 		  	AND branchId = #{branchid}
 	  	</if>	  		
   </select>
+  
+  <select id="selectEmployeeByActivityId" parameterType="Integer" resultType="EmployeeCustom">
+  	SELECT e.* FROM employee e , activity a 
+		WHERE a.activityId = #{id}
+		AND e.employeeId = a.principalId
+  </select>
+  
+   <select id="selectAllEmployeeByActivityId" parameterType="Integer" resultType="EmployeeCustom">
+  	SELECT e.* FROM employee e , activity a ,branch b
+		WHERE a.activityId = #{id} AND b.branchId = a.branchId
+		AND e.areaId = b.areaId AND e.employeeId != 9
+  </select>
+  
+  <select id="selectAllEmployeeByBranchId" parameterType="Integer" resultType="EmployeeCustom">
+  	SELECT e.* FROM employee e ,branch b
+		WHERE b.branchId = #{id}
+		AND e.areaId = b.areaId AND e.employeeId != 9
+  </select>
 </mapper>

@@ -8,9 +8,10 @@
     <result column="attention" property="attention" jdbcType="INTEGER" />
     <result column="like" property="like" jdbcType="INTEGER" />
     <result column="avater" property="avater" jdbcType="VARCHAR" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    lecturerId, name, work, attention, like, avater
+    lecturerId, name, work, attention, like, avater, branchId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Lecturer" >
     insert into lecturer (lecturerId, name, work, 
-      attention, like, avater
-      )
+      attention, like, avater, 
+      branchId)
     values (#{lecturerid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{work,jdbcType=VARCHAR}, 
-      #{attention,jdbcType=INTEGER}, #{like,jdbcType=INTEGER}, #{avater,jdbcType=VARCHAR}
-      )
+      #{attention,jdbcType=INTEGER}, #{like,jdbcType=INTEGER}, #{avater,jdbcType=VARCHAR}, 
+      #{branchid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Lecturer" >
     insert into lecturer
@@ -51,6 +52,9 @@
       <if test="avater != null" >
         avater,
       </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="lecturerid != null" >
@@ -70,6 +74,9 @@
       </if>
       <if test="avater != null" >
         #{avater,jdbcType=VARCHAR},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -91,6 +98,9 @@
       <if test="avater != null" >
         avater = #{avater,jdbcType=VARCHAR},
       </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
     </set>
     where lecturerId = #{lecturerid,jdbcType=INTEGER}
   </update>
@@ -100,7 +110,20 @@
       work = #{work,jdbcType=VARCHAR},
       attention = #{attention,jdbcType=INTEGER},
       like = #{like,jdbcType=INTEGER},
-      avater = #{avater,jdbcType=VARCHAR}
+      avater = #{avater,jdbcType=VARCHAR},
+      branchId = #{branchid,jdbcType=INTEGER}
     where lecturerId = #{lecturerid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAllByBranch" parameterType="Integer" resultType="LecturerCustom">
+  	
+  	SELECT l.* FROM `lecturer` l , `user` u , branch b
+	WHERE u.userId = #{id}
+	AND b.areaId = u.areaId AND l.branchId = b.branchId
+	ORDER BY l.like DESC
+	LIMIT 0 , 15
+  	
+  </select>
+  
+  
 </mapper>

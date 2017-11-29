@@ -102,10 +102,10 @@
 										</li>
 										<li>活动状态：${act.activitystatus }</li>
 										<c:if test="${act.online==true }">
-											<li>开展方式：线下</li>
+											<li>开展方式：线上</li>
 										</c:if>
 										<c:if test="${act.online==false }">
-											<li>开展方式：线上</li>
+											<li>开展方式：线下</li>
 										</c:if>
 									</ul>
 								</div>
@@ -117,10 +117,10 @@
 								
 								<c:choose>
 								
-									<c:when test="${act.activitytypeid == 6}">
+									<c:when test="${act.online==true }">
 										
 										<div id="ready" class="well" style="width: 300px">
-												<label>点击观看直播： </label><a href="javascript:;"
+												<label>点击观看： </label><a href="${act.video }"
 													class="btn btn-2 ">去围观</a>
 										</div>
 										

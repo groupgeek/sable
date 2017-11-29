@@ -13,6 +13,8 @@ public class Lecturer {
 
     private String avater;
 
+    private Integer branchid;
+
     public Integer getLecturerid() {
         return lecturerid;
     }
@@ -59,5 +61,13 @@ public class Lecturer {
 
     public void setAvater(String avater) {
         this.avater = avater == null ? null : avater.trim();
+    }
+
+    public Integer getBranchid() {
+        return branchid;
+    }
+
+    public void setBranchid(Integer branchid) {
+        this.branchid = branchid;
     }
 }
