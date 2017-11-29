@@ -113,7 +113,67 @@ $(document).ready(function(){
 			);
 			//alert(myself.find("a[name="+data[i].orderid+"]").text());
 		}
+		
+		//点击出现更多
+		myself.append('<div style="width: 100%; height: 20px; text-align: center;"><a href = "javascript:;" id = "'+father.find("a").attr("name")+'Loading">加载更多</a></div>');
 		//var logo = father.find("a").attr("name");
+		//alert($("#allOrdersLoading").text())
+		var num = 5;
+		myself.find("div[class=order-main]").hide();
+		
+		for(var i = 0 ; i < num ; i++){
+			myself.find("div[class=order-main]").eq(i).show();
+		}
+		
+		
+		$("#allOrdersLoading ,#pendingPaymentLoading ,#tobeDeliveredLoading ,#tobeReceivedLoading ,#beEvaluatedLoading").click(function(){
+			
+			if(num >= myself.find("div[class=order-main]").length){
+				//更改信息框颜色
+				$("#messageNotification").attr("style","background-color: red;");
+				
+				$("#showMessage").text("没有了哦0.0");
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+			}else{
+				for(var i = num ; i < num + 5 ; i++){
+					myself.find("div[class=order-main]").eq(i).show();
+				}
+				num = num + 5;
+			}
+			
+		});
+		
+		
+		/*$("#pendingPaymentLoading").click(function(){
+			
+			alert($("#pendingPaymentLoading").text())
+			
+		});*/
+		
+		
+		/*$("#tobeDeliveredLoading").click(function(){
+			
+			alert($("#tobeDeliveredLoading").text())
+			
+		});*/
+		
+		/*
+		$("#tobeReceivedLoading").click(function(){
+			
+			alert($("#tobeReceivedLoading").text())
+			
+		});*/
+		
+		/*$("#beEvaluatedLoading").click(function(){
+			
+			
+			
+		});*/
+		//结束
+		
+		
 		function type(){
 			
 		}

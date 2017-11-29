@@ -121,6 +121,7 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
+	<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 	<!-- /.modal -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/edu/js/actReg.js"></script>

@@ -64,6 +64,34 @@ $(document).ready(function(){
 		}
 	});
 	
+	//加载讲师
+	$.ajax({
+		
+		type:"post",
+		contentType:"application/json;charset=utf-8",
+		url:root+"/edu/queryAllByBranch",
+		success:function(data){
+			for(var i in data){
+
+				var html = 
+					'<dl>'+
+						'<dt>'+
+							'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].avater+'" width="66" height="66" alt="" />'+
+						'</dt>'+
+						'<dd>'+
+							'<h4 style = "min-height:30px;">'+data[i].name+'老师'+
+						'</dd>'+
+						'<dd style="display:block;min-width: 110px;">'+data[i].work+'</dd>'+
+						'<dd style="display:block;min-width: 150px;">'+
+							'点赞:<span>'+data[i].like+'</span>'+
+						'</dd>'+
+					'</dl>';
+				$("#lecturer").append(html);
+			}
+		}
+		
+		
+	});
 	
 	
 });
