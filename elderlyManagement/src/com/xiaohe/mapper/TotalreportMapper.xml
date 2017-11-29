@@ -97,6 +97,7 @@
   <select id="selectTotalreportSumByTime" resultType="DECIMAL">
   	select sum(totalPrice - totalExpenditure) stringmoney
   	from totalreport
+  	where date_format(duringtime, '%Y-%m-%d')
 	group by duringtime order by duringTime desc limit 15
   </select>
   

@@ -30,7 +30,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-
+	<style type="text/css">
+		#box td{
+			vertical-align: middle;   		
+		}
+	</style>
   </head>
   
   <body>
@@ -57,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<h2><i class="halflings-icon white picture"></i><span class="break"></span> 活动基本信息</h2>
 						
 					</div>
-					<div class="box-content">
+					<div class="box-content" id="box">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>

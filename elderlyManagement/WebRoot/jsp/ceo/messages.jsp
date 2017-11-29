@@ -65,13 +65,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</ul>
 		<div class="row-fluid">
 			<div class="span7">
-				<h1>留言板</h1>					
-				<ul class="messagesList">
-					<c:forEach items="${findMessageCustoms }" var="e">
-						<li id="hh" onclick="change(${e.messageid })">
+				<h1 style="text-align: center; border-style:solid; border-width:1px; border-color:#000;">留言板</h1>
 							
-								<span class="from"> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>
-						
+				<ul class="messagesList">
+					<c:forEach items="${mVo.allMessage }" var="e">
+						<li id="hh" onclick="change(${e.messageid })">							
+								<span class="from"><i class="icon-star-empty"></i> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>													
 						</li>
 					</c:forEach>
 				</ul>				
@@ -89,8 +88,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	<input type="hidden" id = "root" value="${pageContext.request.contextPath }">					
 					<div class="header">
 						<h1>详细信息</h1>
-						<div class="from"><i class="halflings-icon user"></i> <b id="username">${findMessageCustoms[0].username }</b> / <b id="email">${findMessageCustoms[0].email }</b></div>
-						<div class="date"><i class="halflings-icon time"></i> <b id="messagetime">${findMessageCustoms[0].stringDate }</b></div>
+						<div class="from"><i class="halflings-icon user"></i> <b id="username">${mVo.allMessage[0].username }</b> / <b id="email">${mVo.allMessage[0].email }</b></div>
+						<div class="date"><i class="halflings-icon time"></i> <b id="messagetime">${mVo.allMessage[0].stringDate }</b></div>
 						<br>							
 						<div class="menu"></div>		
 						<br>					
@@ -99,12 +98,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form class="replyForm"method="post" action="">
 						<fieldset>
 						<br>
-							<div  tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="没有内容">${findMessageCustoms[0].messagecontext }</div>
 							
+							<textarea tabindex="3" class="input-xlarge span12" id="message" name="body" placeholder="没有内容" rows="14" disabled="" style="width: 600px; background-color: #FCFCFC;">${mVo.allMessage[0].messagecontext }</textarea>
 						</fieldset>
 					</form>							
 				</div>						
-			</div>						
+			</div>	
+			<div  style="position:absolute;left:430px;top:620px">
+			<table>
+<tr>
+	<c:choose>
+				<c:when test="${mVo.nowPage==1}">
+					首页
+					上一页
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=1">
+						首页</a>
+					<a href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.nowPage-1}">
+						上一页</a>
+				</c:otherwise>
+	</c:choose>
+	<c:choose>
+				<c:when test="${mVo.nowPage==mVo.count}">
+					下一页
+					尾页
+				</c:when>
+				<c:otherwise>
+					<a style="text-decoration:none" href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.nowPage+1}">
+						下一页</a>
+					<a style="text-decoration:none" href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.count}">
+						尾页</a>
+				</c:otherwise>
+	</c:choose>
+	
+	</tr>
+</table>
+</div>					
 		</div>
 	</div><!--/.fluid-container-->	
 	<!-- end: Content -->

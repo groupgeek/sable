@@ -178,4 +178,27 @@ public interface ProducttransactionreportMapper {
      * @return
      */
     List<CeoProducttransactionreport> ceodfindproductchartOfbranch(Integer id);
+    /**
+     * 查询所有商品盈利（作图用）
+     * @return
+     */
+    List<CeoProducttransactionreport> selectSumAllProductBigDecimal();
+    /**
+     * 查询分店商品盈利（做图用）
+     * @param ceoProducttransactionreport
+     * @return
+     */
+    List<CeoProducttransactionreport> selectSumAllProductBigDecimalByBranch(CeoProducttransactionreport ceoProducttransactionreport);
+    /**
+     * 查询分店年收入（做饼图用）
+     * @param ceoProducttransactionreport
+     * @return
+     */
+    CeoProducttransactionreport selectproductMoneyYearByBranch(CeoProducttransactionreport ceoProducttransactionreport);
+    /**
+     * 查询分店总收入（做图用）
+     * @param ceoProducttransactionreport
+     * @return
+     */
+    CeoProducttransactionreport selectproductMoneyAllByBranch(CeoProducttransactionreport ceoProducttransactionreport);
 }

@@ -169,7 +169,7 @@ var myChart = echarts.init(document.getElementById('productchart'));
 		    ]   		   
     };
     twoChart.showLoading();
-    
+    //=========================================================================
     var threeChart = echarts.init(document.getElementById("chart2"));
     var option2={
  		title : {
@@ -239,4 +239,124 @@ var myChart = echarts.init(document.getElementById('productchart'));
     	});
     	twoChart.setOption(option1);
     	threeChart.setOption(option2);
+   //================================================================================
+    	
+    	var fourChart = echarts.init(document.getElementById('productchartLine'));
+
+    	var option = {
+    	title : {
+            text: '商品盈利'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['支出','收入','盈利']
+        },
+        dataZoom: [{
+            type: 'slider',
+            start: 80,
+            end: 100
+        }, {
+            type: 'inside',
+            start: 80,
+            end: 100
+        }],
+        xAxis: [
+                {
+                    type : 'category',
+                	data : []           	
+                }
+            ],
+        yAxis: [
+        		{
+            		type : 'value',
+            		name : '人民币',
+            		position : 'left',
+            		axisLine: {
+                        lineStyle: {
+                            color: 'red'
+                        }
+                    },
+                    axisLabel: {
+                        formatter: '￥{value}'
+                    }        			
+            	}  	
+            ],
+        	series: [
+                	{        			
+                		name:'支出',
+                		type:'line',
+                		data:[],    		
+            		},    
+            		{
+            			
+                		name:'收入',
+                		type:'line',
+                		data:[]           		
+            		},
+            		{       			
+                		name:'盈利',
+                		type:'line',
+                		data:[]
+            		}
+            	]
+    		};
+    		fourChart.showLoading();	
+    		var sumall=[];    //类别数组（实际用来盛放X轴坐标值）
+    		var sumto=[];
+         	var sumget=[];
+            var time=[];   //销量数组（实际用来盛放Y坐标值）
+            var root = $("#root").val(); 
+            $.ajax({
+            type : 'post',
+            async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : root+'/ceo/ceoPVo.action',    
+            data : '{}',
+            contentType : 'application/json;charset=utf-8',        //返回数据形式为json
+            success : function(result) {
+                 //请求成功时执行该函数内容，result即为服务器返回的json对象
+                if (result) {
+                 		
+                       for(var i=0;i<result.listsumBigDecimal.length;i++){       
+                    	   time.push(result.listsumBigDecimal[i].stringDate);    
+                         }                                        
+                       for(var i=0;i<result.listsumBigDecimal.length;i++){
+                    	   sumall.push(result.listsumBigDecimal[i].sumBigDecimal);
+                       }
+                       for(var i=0;i<result.listsumBigDecimal.length;i++){
+                    	   sumto.push(result.listsumBigDecimal[i].toprice);
+                       }
+                       for(var i=0;i<result.listsumBigDecimal.length;i++){
+                    	   sumget.push(result.listsumBigDecimal[i].getprice);
+                       }
+                       fourChart.hideLoading();      //隐藏加载动画 
+                       fourChart.setOption({        //加载数据图表
+                           	xAxis: {
+                                data: time
+                            },
+                            series: [
+                            {
+                            	name: '支出',
+                            	data : sumto
+                            },                        
+                            {
+                            	name: '收入',
+                            	data: sumget
+                            },
+                            {
+                            	name: '盈利',
+                            	data: sumall
+                            }
+                            ]
+                        });                      
+                 }         
+            },
+             error : function(errorMsg) {
+                 //请求失败时执行该函数
+             alert("图表请求数据失败!");
+             fourChart.hideLoading();
+             }
+        	});
+            fourChart.setOption(option);
 });

@@ -15,7 +15,7 @@ $(document).ready(function(){
 		for(var i=0;i<data.lisproductchart.length;i++){
 			$("#box tbody").append(
 				'<tr>'+
-					'<td>'+(data.lisproductchart)[i].productname+'</td>'+
+					'<td style="text-valign:center;">'+(data.lisproductchart)[i].productname+'</td>'+
 					'<td class="center">'+(data.lisproductchart)[i].branchname+'</td>'+
 					'<td class="center">'+(data.lisproductchart)[i].price+'</td>'+
 					'<td class="center">'+(data.lisproductchart)[i].buynum+'</td>'+
@@ -29,7 +29,11 @@ $(document).ready(function(){
 			);
 		}
 		}else{
-			alert("该分店还没有商品报表记录！");
+			$("#box tbody").append(
+					'<tr>'+
+						'<td colspan="6">'+"没有找到数据！"+'</td>'+						
+					'</tr>'
+				);
 		}
 	}
 	
@@ -54,7 +58,11 @@ $(document).ready(function(){
 				);
 			}
 		}else{
-			alert("该分店还没有开展任何活动！");
+			$("#actchart tbody").append(
+				'<tr>'+
+					'<td colspan="6">'+"没有找到数据！"+'</td>'+	
+				'</tr>'
+			);
 		}
 	}
 

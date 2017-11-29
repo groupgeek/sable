@@ -67,8 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row-fluid">
 				
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">
-						<c:forEach items="${sumBigDecimalByTim }" var="a">${a },</c:forEach>
+					<div class="boxchart" style="display: none;">
+						<c:forEach items="${sumBigDecimalByTim }" var = "a">${a },</c:forEach>
 					</div>
 					<div class="number">￥${sumAllBigDecimal[0] }${sumAllBigDecimal[1] }</div>									
 					<div class="title">${sumBigDecimalByTim[0] }</div>			
@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>	
 				</div>
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">
+					<div class="boxchart" style="display: none;">
 						<c:forEach items="${sumProductMoneyByTime }" var="b">${b },</c:forEach>
 					</div>
 					<div class="number" >￥${sumProductAllMoney[0] }${sumProductAllMoney[1] }</div>
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">
+					<div class="boxchart" style="display: none;">
 						<c:forEach items="${findSumActivities }" var="j">${j },</c:forEach>
 					</div>
 					<div class="number">￥${sumActivityBigdecimal[0] }${sumActivityBigdecimal[1] }</div>
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">		
-					<div class="boxchart">
+					<div class="boxchart" style="display: none;">
 						<c:forEach items="${alluserByTime }" var="i">${i },</c:forEach>
 					</div>
 					<div class="number">${alluser[0] }${alluser[1] }人</i></div>
@@ -142,9 +142,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:forEach items = "${findHotProduct }" var="l">
 								<li>
 									<a href="${pageContext.request.contextPath }/ceo/product.action?productid=${l.productid}">
-										<i class="icon-arrow-up green"></i>                               
-										<strong>${l.productid }</strong>
-										${l.productname } 							      
+										<i class="icon-arrow-up green"></i> 
+										<strong style="padding-left:10px;">${l.productname }</strong> 
+										<strong style="float:right;padding-right:20px;">${l.buyno }</strong>							      
 									</a>
 								</li>
 							</c:forEach>
@@ -163,33 +163,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="box-content">
 						<ul class="dashboard-list metro">
-							<li class="green">
+							<li class="green" id="avatar1">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[0].userid}">
-									<img class="avatar" alt="${findFourUser[0].username }" src="img/avatar.jpg">
+									<img class="avatar" alt="${findFourUser[0].username }" src="">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[0].username}<br>
 								<strong>性别：</strong> ${findFourUser[0].sex }<br>
 								<strong>注册时间：</strong> ${findFourUser[0].stringregistrationdate }             
 							</li>
-							<li class="yellow">
+							<li class="yellow" id="avatar2">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[1].userid}">
-									<img class="avatar" alt="${findFourUser[1].username }" src="img/avatar.jpg">
+									<img class="avatar" alt="${findFourUser[1].username }" src="">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[1].username }<br>
 								<strong>性别：</strong> ${findFourUser[1].sex }<br>
 								<strong>注册时间：</strong> ${findFourUser[1].stringregistrationdate }                                
 							</li>
-							<li class="red">
+							<li class="red" id="avatar3">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[2].userid}">
-									<img class="avatar" alt="${findFourUser[2].username }" src="img/avatar.jpg">
+									<img class="avatar" alt="${findFourUser[2].username }" src="">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[2].username }<br>
 								<strong>性别：</strong> ${findFourUser[2].sex }<br>
 								<strong>注册时间：</strong> ${findFourUser[2].stringregistrationdate }                                
 							</li>
-							<li class="blue">
+							<li class="blue" id="avatar4">
 								<a href="${pageContext.request.contextPath }/ceo/user.action?userid=${findFourUser[3].userid}">
-									<img class="avatar" alt="${findFourUser[3].username }" src="img/avatar.jpg">
+									<img class="avatar" alt="${findFourUser[3].username }" src="">
 								</a>
 								<strong>姓名：</strong> ${findFourUser[3].username }<br>
 								<strong>性别：</strong> ${findFourUser[3].sex }<br>
@@ -336,6 +336,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: JavaScript-->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/js/echarts.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/index.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery-ui-1.10.0.custom.min.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/jquery.ui.touch-punch.js"></script>	
@@ -365,7 +366,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/myChart.js"></script>
+		
 	<!-- end: JavaScript-->
   </body>
 </html>

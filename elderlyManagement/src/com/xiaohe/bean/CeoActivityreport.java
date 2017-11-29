@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class CeoActivityreport extends Activityreport{
 	private String activityname;
 	private String stringDate;
+	private String stringTime;
 	private String branchname;
 	private Integer activityid;
 	private BigDecimal onlyget;
@@ -14,12 +15,74 @@ public class CeoActivityreport extends Activityreport{
 	private BigDecimal sumtoprice;
 	private BigDecimal sumtotalPrice;
 	private BigDecimal sumtotalExpenditure;
+	private BigDecimal sumAllBigDecimal;
+	private BigDecimal sumAlltoprice;
+	private BigDecimal sumAllgetprice;
+	private BigDecimal sumAllBigDecimalBranch;
+	private BigDecimal sumAlltopriceBranch;
+	private BigDecimal sumAllgetpriceBranch;
 	
 	private String sortofactivity;  //排序
 	private Integer begin;
 	private Integer pageNumofact;
 	private String searchofact;
 	private Integer currentPageofactivity;
+
+	public String getStringTime() {
+		return stringTime;
+	}
+
+	public void setStringTime(String stringTime) {
+		this.stringTime = stringTime;
+	}
+
+	public BigDecimal getSumAllBigDecimalBranch() {
+		return sumAllBigDecimalBranch;
+	}
+
+	public void setSumAllBigDecimalBranch(BigDecimal sumAllBigDecimalBranch) {
+		this.sumAllBigDecimalBranch = sumAllBigDecimalBranch;
+	}
+
+	public BigDecimal getSumAlltopriceBranch() {
+		return sumAlltopriceBranch;
+	}
+
+	public void setSumAlltopriceBranch(BigDecimal sumAlltopriceBranch) {
+		this.sumAlltopriceBranch = sumAlltopriceBranch;
+	}
+
+	public BigDecimal getSumAllgetpriceBranch() {
+		return sumAllgetpriceBranch;
+	}
+
+	public void setSumAllgetpriceBranch(BigDecimal sumAllgetpriceBranch) {
+		this.sumAllgetpriceBranch = sumAllgetpriceBranch;
+	}
+
+	public BigDecimal getSumAllBigDecimal() {
+		return sumAllBigDecimal;
+	}
+
+	public void setSumAllBigDecimal(BigDecimal sumAllBigDecimal) {
+		this.sumAllBigDecimal = sumAllBigDecimal;
+	}
+
+	public BigDecimal getSumAlltoprice() {
+		return sumAlltoprice;
+	}
+
+	public void setSumAlltoprice(BigDecimal sumAlltoprice) {
+		this.sumAlltoprice = sumAlltoprice;
+	}
+
+	public BigDecimal getSumAllgetprice() {
+		return sumAllgetprice;
+	}
+
+	public void setSumAllgetprice(BigDecimal sumAllgetprice) {
+		this.sumAllgetprice = sumAllgetprice;
+	}
 
 	public BigDecimal getSumtotalPrice() {
 		return sumtotalPrice;

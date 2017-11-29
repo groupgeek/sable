@@ -28,6 +28,7 @@ import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
+import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.OrdersCustom;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
@@ -524,19 +525,31 @@ public class CeoServiceImpl implements CeoService{
 	/**
 	 * 实现留言部分的查询
 	 */
-	public List<MessageCustom> findAllUserMessageCustoms() {
+	public MessageVo messages(MessageVo messageVo){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		List<MessageCustom> messageCustoms = messageMapper.selectAllMessageByCeo();
-		for (MessageCustom mCustom : messageCustoms) {
-			String format = dateFormat.format(mCustom.getMessagetime());
-			if (format != null) {
-				mCustom.setStringDate(format);
-			}else {
-				mCustom.setStringDate(null);
+		List<MessageCustom> messages = new ArrayList<MessageCustom>();
+		if(messageVo.getNowPage()==null || messageVo.getNowPage()==0){
+			messageVo.setNowPage(1);
+		}		
+		messageVo.setSize(13);
+		messageVo.setStart((messageVo.getNowPage()-1)*messageVo.getSize());	
+		messages = messageMapper.selectAllMessageByCeo(messageVo);
+		for (MessageCustom mCustom : messages) {
+			if(mCustom.getMessagetime() != null){
+				String dString = dateFormat.format(mCustom.getMessagetime());
+				mCustom.setStringDate(dString);
 			}
 		}
-		return messageCustoms;
+		int a = messageMapper.somecount();
+		int count = (a/messageVo.getSize());
+		if (count%(messageVo.getSize())!=0){
+			count+=1;
+		}
+		messageVo.setCount(count);
+		messageVo.setAllMessage(messages);		
+		return messageVo;
 	}
+	
 	public MessageCustom findMessage(Integer id){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		if (id == 0) {
@@ -865,6 +878,67 @@ public class CeoServiceImpl implements CeoService{
 		cList.add(clist1);
 		cList.add(clist2);
 		return cList;
+	}
+	public CeoProducttransactionreportVo listSumBigDecimal(CeoProducttransactionreport ceoProducttransactionreport){
+		CeoProducttransactionreportVo cVo = new CeoProducttransactionreportVo();
+		List<CeoProducttransactionreport> sumlist = producttransactionreportMapper.selectSumAllProductBigDecimal();
+		List<CeoProducttransactionreport> sumlistbybranch = producttransactionreportMapper.selectSumAllProductBigDecimalByBranch(ceoProducttransactionreport);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		for(CeoProducttransactionreport cProducttransactionreport : sumlist){
+			if(cProducttransactionreport.getBuytime() != null){
+				String dString = dateFormat.format(cProducttransactionreport.getBuytime());
+				cProducttransactionreport.setStringDate(dString);
+			}
+		}
+		for (CeoProducttransactionreport ceoProduct : sumlistbybranch) {
+			if(ceoProduct.getBuytime() != null){
+				String dString = dateFormat.format(ceoProduct.getBuytime());
+				ceoProduct.setStringTime(dString);
+			}
+		}
+		cVo.setListsumBigDecimal(sumlist);
+		cVo.setListsumBigDecimalByBranch(sumlistbybranch);
+		
+		return cVo;
+	}
+	public List<CeoProducttransactionreport> listSumBigDecimalByBranch(CeoProducttransactionreport ceoProducttransactionreport){
+		CeoProducttransactionreport yearBigDecimal = producttransactionreportMapper.selectproductMoneyYearByBranch(ceoProducttransactionreport);
+		CeoProducttransactionreport allBigDecimal = producttransactionreportMapper.selectproductMoneyAllByBranch(ceoProducttransactionreport);
+		List<CeoProducttransactionreport> list = new ArrayList<CeoProducttransactionreport>();
+		list.add(yearBigDecimal);
+		list.add(allBigDecimal);
+		return list;
+	}
+	public CeoActivityreportVo listSumActivityreportMoney(CeoActivityreport ceoActivityreport){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		CeoActivityreportVo ceoActivityreportVo = new CeoActivityreportVo();
+		List<CeoActivityreport> alllList = activityreportMapper.selectSumBigDecimal();
+		List<CeoActivityreport> listBranch = activityreportMapper.selectSumBigDecimalByBranch(ceoActivityreport);
+		for (CeoActivityreport cActivityreport : alllList) {
+			if (cActivityreport.getDuringtime() != null) {
+				String dString = dateFormat.format(cActivityreport.getDuringtime());
+				cActivityreport.setStringDate(dString);
+			}
+		}
+		for (CeoActivityreport cActivityrepor : listBranch) {
+			if (cActivityrepor.getDuringtime() != null) {
+				String dString = dateFormat.format(cActivityrepor.getDuringtime());
+				cActivityrepor.setStringTime(dString);
+			}
+		}
+		ceoActivityreportVo.setListAllactivity(alllList);
+		ceoActivityreportVo.setListAllBranchactivity(listBranch);
+		
+		return ceoActivityreportVo;
+	}
+	public List<CeoActivityreport> lintAllMoneyByBranch(CeoActivityreport ceoActivityreport){
+		CeoActivityreport yearmoney = activityreportMapper.selectYearMoneyByBranch(ceoActivityreport);
+		CeoActivityreport allmongey = activityreportMapper.selectAllMoneyByBranch(ceoActivityreport);
+		List<CeoActivityreport> list = new ArrayList<CeoActivityreport>();
+		list.add(yearmoney);
+		list.add(allmongey);
+		
+		return list;
 	}
 	
 	/*-------------------------------------报表结束-------------------------------------*/

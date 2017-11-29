@@ -51,7 +51,11 @@
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
 <!-- end: Favicon -->
-
+	<style type="text/css">
+		#box td{
+			vertical-align: middle;   		
+		}
+	</style>
 
 
 
