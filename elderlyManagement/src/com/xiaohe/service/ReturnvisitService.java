@@ -2,6 +2,7 @@ package com.xiaohe.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaohe.bean.Returnvisit;
 import com.xiaohe.bean.ReturnvisitCustom;
 import com.xiaohe.bean.ReturnvisitVo;
 
@@ -36,5 +37,12 @@ public interface ReturnvisitService {
 	 * @return
 	 */
 	public boolean deleteRecord(Integer returnvisitid);
+	
+	/**
+	 * 更新用户回访信息
+	 * @param returnvisit
+	 * @return
+	 */
+	public int updateReturn(Returnvisit returnvisit);
 
 }

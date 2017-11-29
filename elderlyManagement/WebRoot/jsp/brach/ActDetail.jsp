@@ -159,16 +159,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </div>
 					</div>
 
-						<div class="control-group">
+					<div class="control-group">
 							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">更换活动日期</label>
 							  <div class="controls">
-							 <%--  <fmt:formatDate value="${messages[0].messagetime }"
-								pattern="yyyy-MM-dd HH:mm:ss" /> --%>
 								<input name="activitydate" onClick="laydate()"  value = '<fmt:formatDate value="${act.activitydate }"
 								pattern="yyyy-MM-dd" />'><br /><br />
-								<!-- <input type="text" name="activitydate" class="input-xlarge datepicker" id="date01" value=""> -->
 							  </div>
 					</div>
+					
+					<div class="control-group">
+								<label class="control-label" for="selectError3">更换模式</label>
+								<div class="controls">
+									<select id="selectErro" name="online" onmouseover="hidd()">
+									<c:if test="${act.online==true || act.online==null}">
+									<option value=true>线上</option>
+									<option value=false>线下</option>
+									</c:if>
+									<c:if test="${act.online ==false}">
+									<option value=false>线下</option>
+									<option value=true>线上</option>
+									</c:if>
+									</select>
+								</div>
+					</div> 
+					
+					
 					
 					<div >
 					 <label class="control-label" for="fileInput">活动图片</label>
@@ -181,22 +196,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</c:if>
 						</div>
 					</div><br>
-
+					
+					<c:if test="${act.online==false }">
+									<div  id="vidfilm">
 									<div>
 										<label class="control-label" for="fileInput">活动视频</label>
 										<c:if test="${act.video!=null }">
 											<div class="controls">
 												<div  class="prism-player" id="J_prismPlayer"></div>
-											</div>
-										</c:if>
+											</div> <br>
+										</c:if><br>
 										<c:if test="${act.video==null }">
-										<div class="controls">
+										<div class="controls" style="margin-top: -15px">
 										暂时没有视频，快去添加吧
-										</div>
+										</div><br>
 										</c:if>
-
 									</div>
+									
+									<div class="control-group">
+							  		<label class="control-label" for="fileInput">更换视频</label>
+							  		<div class="controls">
+							 		<input type="file" name="nice">
+							  </div>
+								</div>
+								</div>
+									</c:if>
 									<br>
+									
+									
+									
+					<c:if test="${act.online==true }">
+					<div class="control-group" id="vidline">
+							  <label class="control-label" for="typeahead">活动链接 </label>
+							  <div class="controls">
+								<input type="text" name="0000" 
+								class="span6 typeahead" id="typeahead" value="${act.video }" disabled="">
+								<%-- <a href="">${act.activityname }活动详情</a> --%>
+							  </div>
+					</div>
+					</c:if>					
+					
+					<div class="control-group" id="vid">
+							  <label class="control-label" for="fileInput">更换视频</label>
+							  <div class="controls">
+							  <input type="file" name="nice"></div>
+					</div>
+					
+					<div class="control-group" id="line">
+							  <label class="control-label" for="typeahead">更改活动链接 </label>
+							  <div class="controls">
+								<input type="text"  onkeyup="long()" name="video" 
+								class="span6 typeahead" id="typeahead" value="${act.video }">
+							  </div>
+					</div>
+					
+					
+					
+					
 					
 					<div class="control-group">
 							  <label class="control-label" for="fileInput">更换图片</label>
@@ -205,12 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </div>
 					</div> 
 					
-					<div class="control-group">
-							  <label class="control-label" for="fileInput">更换视频</label>
-							  <div class="controls">
-							  <input type="file" name="nice">
-							  </div>
-					</div>
+					
 					
 					<div class="control-group">
 								<label class="control-label" for="selectError3">更换活动状态</label>
@@ -240,22 +291,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 					</div>
 					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换模式</label>
-								<div class="controls">
-									<select id="selectError3" name="online">
-									<c:if test="${act.online==true || act.online==null}">
-									<option value=true>线上</option>
-									<option value=false>线下</option>
-									</c:if>
-									<c:if test="${act.online ==false}">
-									<option value=false>线下</option>
-									<option value=true>线上</option>
-									</c:if>
-									
-									</select>
-								</div>
-					</div> 
+					
 					
 					<div class="control-group">
 								<label class="control-label" for="appendedPrependedInput">修改活动经费</label>
@@ -339,6 +375,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</footer>
 	<input type="hidden" value="${act.video }" id="actvideo">
+	<input type="hidden" value="${act.online }" id="actline">
 	<script type="text/javascript">
 	var video = document.getElementById("actvideo");
 						var player = new Aliplayer({
@@ -347,7 +384,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            height: '50%',
 			            autoplay: false,
 			            //支持播放地址播放,此播放优先级最高
-			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+video,
+			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+video.value,
 			            //播放方式二：推荐
 			            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
 			            playauth : '',

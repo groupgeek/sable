@@ -103,6 +103,8 @@
 								</div>
 							  </div>
 							  
+							  
+							  
 							   <!-- <div class="control-group" id = "activitytypename">
 								<label class="control-label">活动类型*</label>
 								<div class="controls">
@@ -140,6 +142,15 @@
 								  <select name="branchid">
 								  	
 								  </select>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id="principalname">
+								<label class="control-label" for="focusedInput">活动负责人</label>
+								<div class="controls">
+								   <select name="principalid">
+								  		
+								   </select>
 								</div>
 							  </div>
 							   <%-- <div class="control-group" id = "entrytime">
@@ -192,8 +203,15 @@
 								<div class="controls">
 								  <select id="" data-rel="" name="online">
 								  	<option value=true id ="true">是</option>
-								  	<option value=false id = "false">否</option>
+								  	<option value=false id = "false" selected="selected">否</option>
 								  </select>
+								</div>
+							  </div>
+							  
+							  <div class="control-group" id = "videoHref" style="display: none;">
+								<label class="control-label">活动链接</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "videoHref" type="text">
 								</div>
 							  </div>
 							  
@@ -210,7 +228,6 @@
 								  <input class="input-xlarge focused" name = "videoUpload" type="file">
 								</div>
 							  </div>
-							  
 							  
 							  
 							  <div class="control-group hidden-phone" id = "activitydetails">

@@ -39,7 +39,7 @@
 				</form> -->
 			</div>
 			<div class="col-md-4">
-				<div id="cart"><a class="btn btn-1" href="${pageContext.request.contextPath }/jsp/edu/myActivities.jsp"><!-- <span class="glyphicon glyphicon-shopping-cart"> </span>-->我的课程</a></div>
+				<div id="cart"><a class="btn btn-1" href="${pageContext.request.contextPath }/jsp/edu/myActivities.jsp"><!-- <span class="glyphicon glyphicon-shopping-cart"> </span>-->我的活动</a></div>
 			</div>
 		</div>
 	</header>

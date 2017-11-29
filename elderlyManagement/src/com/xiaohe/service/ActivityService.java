@@ -13,7 +13,9 @@ import com.xiaohe.bean.ActivityrecommendCustom;
 import com.xiaohe.bean.Activityregistery;
 import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.ActivitytypeCustom;
+import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.Integral;
+import com.xiaohe.bean.LecturerCustom;
 
 /**
  * 活动处理
@@ -205,4 +207,31 @@ public interface ActivityService {
 	 */
 	public ActivityVo queryActivityByCondition(ActivityCustom condition);
 
+	/**
+	 * 根据用户所在的地区查询该地区的讲师15名点赞排序
+	 * @param userid
+	 * @return
+	 */
+	public List<LecturerCustom> queryAllLecturerByUser(Integer userid);
+	
+	/**
+	 *根据活动ID查询负责人
+	 * @param activityid
+	 * @return
+	 */
+	public EmployeeCustom queryEmployeeByAId(Integer activityid);
+	
+	/**
+	 *根据活动ID查询负责人多人
+	 * @param activityid
+	 * @return
+	 */
+	public List<EmployeeCustom> queryAllEmployeeByAId(Integer activityid);
+	
+	/**
+	 *根据分店ID查询负责人多人
+	 * @param activityid
+	 * @return
+	 */
+	public List<EmployeeCustom> queryAllEmployeeByBranchId(Integer branchid);
 }

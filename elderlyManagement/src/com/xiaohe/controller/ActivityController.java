@@ -27,6 +27,7 @@ import com.xiaohe.bean.Activityreport;
 import com.xiaohe.bean.ActivitytypeCustom;
 import com.xiaohe.bean.Integral;
 import com.xiaohe.bean.IntegralCustom;
+import com.xiaohe.bean.LecturerCustom;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
@@ -215,5 +216,18 @@ public class ActivityController {
 		}else{
 			return null;
 		}
+	}
+	
+	/**
+	 * 根据用户所在区域查询出该地区的讲师
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/queryAllByBranch")
+	public @ResponseBody List<LecturerCustom> queryAllByBranch(HttpServletRequest request){
+		User user = getUser(request);
+		List<LecturerCustom> all = new ArrayList<LecturerCustom>();
+		all = activityService.queryAllLecturerByUser(user.getUserid());
+		return all;
 	}
 }

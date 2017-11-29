@@ -5,10 +5,9 @@
     <id column="ceoId" property="ceoid" jdbcType="INTEGER" />
     <result column="authorityId" property="authorityid" jdbcType="INTEGER" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="ceoAccountNumber" property="ceoaccountnumber" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ceoId, authorityId, password, ceoAccountNumber
+    ceoId, authorityId, password
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,10 +20,10 @@
     where ceoId = #{ceoid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiaohe.bean.Ceo" >
-    insert into ceo (ceoId, authorityId, password, 
-      ceoAccountNumber)
-    values (#{ceoid,jdbcType=INTEGER}, #{authorityid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, 
-      #{ceoaccountnumber,jdbcType=VARCHAR})
+    insert into ceo (ceoId, authorityId, password
+      )
+    values (#{ceoid,jdbcType=INTEGER}, #{authorityid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaohe.bean.Ceo" >
     insert into ceo
@@ -38,9 +37,6 @@
       <if test="password != null" >
         password,
       </if>
-      <if test="ceoaccountnumber != null" >
-        ceoAccountNumber,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="ceoid != null" >
@@ -51,9 +47,6 @@
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="ceoaccountnumber != null" >
-        #{ceoaccountnumber,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -66,17 +59,15 @@
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="ceoaccountnumber != null" >
-        ceoAccountNumber = #{ceoaccountnumber,jdbcType=VARCHAR},
-      </if>
     </set>
     where ceoId = #{ceoid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Ceo" >
     update ceo
     set authorityId = #{authorityid,jdbcType=INTEGER},
-      password = #{password,jdbcType=VARCHAR},
-      ceoAccountNumber = #{ceoaccountnumber,jdbcType=VARCHAR}
+      password = #{password,jdbcType=VARCHAR}
     where ceoId = #{ceoid,jdbcType=INTEGER}
   </update>
+  <select id="quertyCEO" parameterType="String" resultType="Ceo">
+  SELECT * FROM ceo WHERE ceoAccountNumber = #{ceoAccountNumber}</select>
 </mapper>

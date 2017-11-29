@@ -51,6 +51,7 @@ import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProductrecommendCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
 import com.xiaohe.bean.Returnvisit;
+import com.xiaohe.bean.ReturnvisitCustom;
 import com.xiaohe.bean.TransactionCustom;
 import com.xiaohe.bean.User;
 import com.xiaohe.bean.UserCustom;
@@ -60,6 +61,7 @@ import com.xiaohe.service.ActivityService;
 import com.xiaohe.service.ActivitytypeService;
 import com.xiaohe.service.BranchAdminService;
 import com.xiaohe.service.EmployeeService;
+import com.xiaohe.service.ReturnvisitService;
 import com.xiaohe.service.UserService;
 import com.xiaohe.util.FileUpload;
 import com.xiaohe.util.GetStringByDate;
@@ -71,6 +73,9 @@ public class BrachAdminController {
 
 	@Autowired
 	private BranchAdminService branchService;
+	
+	@Autowired
+	private ReturnvisitService returnvisitService;
 	
 	@RequestMapping(value="/log")    //模拟登陆
 	public String log(HttpServletRequest request){
@@ -261,6 +266,23 @@ public class BrachAdminController {
 		return "brach/tasks";
 	}
 	
+	@RequestMapping(value="/oneReturnVist")
+	public String oneVist(Integer id,Model model){
+		ReturnvisitCustom returnvisitCustom = new ReturnvisitCustom();
+		returnvisitCustom = returnvisitService.queryRecordInfoById(id);
+		model.addAttribute("returnvisitCustom", returnvisitCustom);
+		return "brach/oneReturnVist";
+	}
+	
+	@RequestMapping(value="/updateReturnVist")
+	public String updateVist(Returnvisit returnvisit){
+		Returnvisit ret = new ReturnvisitCustom();
+		ret = returnvisitService.queryRecordInfoById(returnvisit.getReturnvisitid());
+		returnvisit.setCountvisit(ret.getCountvisit()+1);
+		returnvisitService.updateReturn(returnvisit);
+		return "redirect:branchVist";
+	}
+	
 	/* 查询分店所有的活动 */
 	@RequestMapping(value="/allActs")
 	public String AllActivity(Model model,HttpServletRequest request){
@@ -354,7 +376,11 @@ public class BrachAdminController {
 				e.printStackTrace();
 			}
 		}else {
-			filevideo = act.getVideo();
+			if(activity.getVideo()!=null||activity.getVideo()!=""||!activity.getVideo().equals("")){
+				filevideo = activity.getVideo();
+			}else {
+				filevideo = act.getVideo();
+			}
 		}
 		
 		if(filename!=null){
@@ -863,8 +889,10 @@ public class BrachAdminController {
 			Date start = new Date();
 			Date end = new Date();
 			GetStringByDate calTime = new GetStringByDate(); 
-			start = calTime.addDate(date, -5);
-			end = calTime.addDate(date, 5);
+			/*start = calTime.addDate(date, -5);*/
+			start = calTime.addDate(date, -10);
+			/*end = calTime.addDate(date, 5);*/
+			end = date;
 			productTranctionReportCustom.setStartingTime(start);
 			productTranctionReportCustom.setEndTime(end);
 		}
@@ -944,8 +972,8 @@ public class BrachAdminController {
 			Date start = new Date();
 			Date end = new Date();
 			GetStringByDate calTime = new GetStringByDate();
-			start = calTime.addDate(date, -5);
-			end = calTime.addDate(date, 5);
+			start = calTime.addDate(date, -10);
+			end = date;
 			producttransactionreportCustom.setStartingTime(start);
 			producttransactionreportCustom.setEndTime(end);
 		}

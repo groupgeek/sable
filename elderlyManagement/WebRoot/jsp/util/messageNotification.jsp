@@ -32,7 +32,7 @@
 	opacity: 0.6;
 	filter: alpha(opacity = 60);
 	text-align: center;
-	padding-top: 20px;
+	padding-top: 17px;
 }
 
 #showMessage {

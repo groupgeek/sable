@@ -984,7 +984,7 @@ function indexline(data){
 	                }
 	            },
 	            data: [{
-	                value: data.oneSail,
+	                value: data.totalprice,
 	                name: '活动盈利占比 ',
 	                itemStyle: {
 	                    normal: {
@@ -1002,7 +1002,7 @@ function indexline(data){
 	                    }
 	                }
 	            }, {
-	                value: data.totalprice,
+	                value: data.oneSail,
 	               
 	                tooltip: {
 	                    show: false
@@ -1038,7 +1038,7 @@ function indexline(data){
 	                }
 	            },
 	            data: [{
-	                value: data.totalprice,
+	                value: data.oneSail,
 	                name: '商城盈利占比 ',
 	                itemStyle: {
 	                    normal: {
@@ -1056,7 +1056,7 @@ function indexline(data){
 	                    }
 	                }
 	            }, {
-	                value: data.oneSail,
+	                value: data.totalprice,
 	               
 	                tooltip: {
 	                    show: false

@@ -164,26 +164,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td class="center">${acts.activitystatus }</td>
 						<td class="center">${acts.registeryfee }</td>
 						<td class="center"><fmt:formatDate value="${acts.activitydate }" pattern="yyyy-MM-dd" /></td>
-						<%-- <td><a href="${pageContext.request.contextPath }/admin/deletUser.action?id=${ allUsers.userid}">删除</a></td> --%>
 						<td class="center">
-						<%-- <a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a> --%>
 									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneActCus.action?id=${ acts.activityid}">
 										<i class="halflings-icon white edit"></i>                                            
 									</a>
-									<!-- <a class="btn btn-info" href="#">
-										<i class="halflings-icon white edit"></i>                                            
-									</a> -->
 									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delAct.action?id=${ acts.activityid}">
 										<i class="halflings-icon white trash"></i> 
-										
 									</a>
 								</td>
-						<%-- <td><fmt:formatDate value="${user.birthday }"
-								pattern="yyyy-MM-dd HH:mm:ss" />
-						</td> --%>
-						<%-- <td><a
-							href="${pageContext.request.contextPath}/user/queryUserById.action?id=${user.id }">修改</a>
-						</td> --%>
 					</tr>
 				</c:forEach>
 							

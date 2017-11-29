@@ -242,7 +242,7 @@
 		<!-- js -->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/mall/person/js/index.js"></script>
 		
-		
+		<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 		<!-- <c:import url="/jsp/util/animeMove.jsp"></c:import> -->
 	</body>
 
