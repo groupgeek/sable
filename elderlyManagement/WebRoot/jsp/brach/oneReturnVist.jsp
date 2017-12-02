@@ -11,19 +11,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>修改活动信息</title>
+	<title>修改用户信息</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<!-- end: Meta -->
-
+	
 	<!-- start: Mobile Specific -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
-	<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.3.0/aliplayer-min.js"></script>
-<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.3.0/skins/default/aliplayer-min.css" />
 	<link id="bootstrap-style" href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath }/jsp/brach/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
@@ -45,7 +43,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
-			
+	
+	<style type="text/css">
+	.image1{ 
+       
+        width:130px; 
+        height:130px; 
+        border-radius:130px; 
+    }
+	</style>
+		
 		
 		
 </head>
@@ -135,206 +142,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li>
 					<i class="icon-edit"></i>
-					<a href="#">修改活动</a>
+					<a href="#">用户回访详情</a>
 				</li>
 			</ul>
 			
-			<div class="row-fluid sortable">
+					<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>修改活动信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户回访信息</h2>
 						<div class="box-icon">
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
-					
-			<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateAct.action?id=${act.activityid}" method="post" enctype="multipart/form-data">
-				<fieldset>
-					<div class="control-group">
-							  <label class="control-label" for="typeahead">更换活动名称 </label>
-							  <div class="controls">
-								<input type="text"  onkeyup="long()" name="activityname" 
-								class="span6 typeahead" id="typeahead" value="${act.activityname }">
-							  </div>
-					</div>
-
-					<div class="control-group">
-							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">更换活动日期</label>
-							  <div class="controls">
-								<input name="activitydate" onClick="laydate()"  value = '<fmt:formatDate value="${act.activitydate }"
-								pattern="yyyy-MM-dd" />'><br /><br />
-							  </div>
-					</div>
-					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换模式</label>
-								<div class="controls">
-									<select id="selectErro" name="online" onmouseover="hidd()">
-									<c:if test="${act.online==true || act.online==null}">
-									<option value=true>线上</option>
-									<option value=false>线下</option>
-									</c:if>
-									<c:if test="${act.online ==false}">
-									<option value=false>线下</option>
-									<option value=true>线上</option>
-									</c:if>
-									</select>
-								</div>
-					</div> 
-					
-					
-					
-					<div >
-					 <label class="control-label" for="fileInput">活动图片</label>
-						<div class="controls">
-						<c:if test="${act.activitypicture!=null }">
-							<img style="width: 140px;height: 120px" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }">						
-						</c:if>
-						<c:if test="${act.activitypicture==null }">
-						<img style="width: 160px;height: 140px" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/hh.jpg">	
-						</c:if>
-						</div>
-					</div><br>
-					
-					<c:if test="${act.online==false }">
-									<div  id="vidfilm">
-									<div>
-										<label class="control-label" for="fileInput">活动视频</label>
-										<c:if test="${act.video!=null }">
-											<div class="controls">
-												<div  class="prism-player" id="J_prismPlayer"></div>
-											</div> <br>
-										</c:if><br>
-										<c:if test="${act.video==null }">
-										<div class="controls" style="margin-top: -15px">
-										暂时没有视频，快去添加吧
-										</div><br>
-										</c:if>
-									</div>
-									
-									<div class="control-group">
-							  		<label class="control-label" for="fileInput">更换视频</label>
-							  		<div class="controls">
-							 		<input type="file" name="nice">
-							  </div>
-								</div>
-								</div>
-									</c:if>
-									<br>
-									
-									
-									
-					<c:if test="${act.online==true }">
-					<div class="control-group" id="vidline">
-							  <label class="control-label" for="typeahead">活动链接 </label>
-							  <div class="controls">
-								<input type="text" name="0000" 
-								class="span6 typeahead" id="typeahead" value="${act.video }" disabled="">
-								<%-- <a href="">${act.activityname }活动详情</a> --%>
-							  </div>
-					</div>
-					</c:if>					
-					
-					<div class="control-group" id="vid">
-							  <label class="control-label" for="fileInput">更换视频</label>
-							  <div class="controls">
-							  <input type="file" name="nice"></div>
-					</div>
-					
-					<div class="control-group" id="line">
-							  <label class="control-label" for="typeahead">更改活动链接 </label>
-							  <div class="controls">
-								<input type="text"  onkeyup="long()" name="video" 
-								class="span6 typeahead" id="typeahead" value="${act.video }">
-							  </div>
-					</div>
-					
-					
-					
-					
-					
-					<div class="control-group">
-							  <label class="control-label" for="fileInput">更换图片</label>
-							  <div class="controls">
-							  <input type="file" name="file">
-							  </div>
-					</div> 
-					
-					
-					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换活动状态</label>
-								<div class="controls">
-									<select id="selectError3" name="activitystatus">
-									<c:if test="${act.activitystatus !=null}">
-									<option selected="true">${act.activitystatus}</option>
-									</c:if>
-										<option>已开展</option>
-										<option>未开展</option>
-										<option>进行中</option>
-									</select>
-								</div>
-					</div>
-					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">更换活动类型</label>
-								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
-									<c:if test="${act.activitytypeid !=null}">
-										<option selected="true" value="${act.activitytypeid }">${actcus.activitytypename }</option>
-									</c:if>
-									<c:forEach items="${actTypes }" var="actTypes">
-										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
-									</c:forEach>
-									</select>
-								</div>
-					</div>
-					
-					
-					
-					<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">修改活动经费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input class="appendedPrependedInput" id="appendedPrependedInput" name="activityprice" oninput="xixi(this.value)" size="16" type="text" value="${act.activityprice }">
-								  </div>
-								</div>
-					</div>
+						<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateReturnVist.action?id=${ returnvisitCustom.returnvisitid}">
+							<fieldset>
 							
-					<div class="control-group">
-								<label class="control-label" for="appendedPrependedInput">修改活动报名费</label>
-								<div class="controls">
-								  <div class="input-prepend input-append">
-									<span class="add-on">￥</span>
-									<input class="appendedPrependedInput2" id="appendedPrependedInput2" name="registeryfee" oninput="xixi2(this.value)" size="16" type="text" value="${act.registeryfee }">
-								  </div>
-								</div>
-				    </div>
+							<input type="hidden" name="returnvisitid" value="${returnvisitCustom.returnvisitid }"  />
 							
-					<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">更新活动描述</label>
-							  <div class="controls">
-							 	<textarea id="subject" style="width: 320px;height: 100px" name="activitydetails" maxlength="120" onkeyup="checkLength(this)" accesskey="1" tabindex="11">${act.activitydetails }</textarea>
-								<span id="subjectchk">还可输入
-  							    <strong id="checklen" style="color: #FF0000">?</strong>个字符
-   								</span>
-   								<span id="postNameRule" class="spn_flag_1" style="display: none"></span>
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">客户姓名</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="userid" placeholder="${returnvisitCustom.username }" disabled="">
+								</div>
 							  </div>
-					</div>
+							  
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">客户地址</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${returnvisitCustom.address }" disabled="">
+								</div>
+							  </div>
+							  
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">上次回访时间</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" disabled="" value=<fmt:formatDate value="${returnvisitCustom.lastvisttime }" pattern="yyyy-MM-dd HH:mm:ss" />> <%-- value="${returnvisitCustom.lastvisttime }" placeholder="${returnvisitCustom.lastvisttime }" --%> 
+								</div>
+							  </div>
+							  
+							  <div class="control-group">
+								<label class="control-label">本次回访时间</label>
+								<div class="controls">
+								  <input name="lastvisttime" onClick="laydate()" id="visittime"><br /><br />
+								</div>
+							  </div>
+							  
+							 
+							  
+							  <div class="control-group">
+								<label class="control-label" for="disabledInput">总回访次数</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${returnvisitCustom.countvisit }" disabled="">
+								</div>
+							  </div>
+							  
+							  <div class="form-actions">
+								<button type="submit" class="btn btn-primary">提交修改</button>
+							  </div>
+							</fieldset>
+						  </form>
 					
-					<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">提交信息</button>
 					</div>
-					<!-- <div>
-						<button type="submit">提交信息</button>
-					</div> -->
+				</div><!--/span-->
+			
+			
+			
+			
+			</div>
 					
-				</fieldset>
-			</form>
 					
-					</div>
+					
+					
+					
+					
+					
 				</div><!--/span-->
 
 			</div><!--/row-->
@@ -347,8 +231,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
@@ -374,27 +256,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</p>
 
 	</footer>
-	<input type="hidden" value="${act.video }" id="actvideo">
-	<input type="hidden" value="${act.online }" id="actline">
-	<script type="text/javascript">
-	var video = document.getElementById("actvideo");
-						var player = new Aliplayer({
-			            id: 'J_prismPlayer',
-			            width: '50%',
-			            height: '50%',
-			            autoplay: false,
-			            //支持播放地址播放,此播放优先级最高
-			            source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+video.value,
-			            //播放方式二：推荐
-			            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
-			            playauth : '',
-			           /*  useH5Prism : true, */
-			            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
-			            },function(player){
-			                console.log('播放器创建好了。');
-			           });
-	</script>
-	
 	
 	<!-- start: JavaScript-->
 
@@ -416,10 +277,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src='${pageContext.request.contextPath }/jsp/brach/js/jquery.dataTables.min.js'></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/excanvas.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.flot.resize.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery.chosen.min.js"></script>
 	
@@ -455,11 +316,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
 		
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/yanzhen/haha.js"></script>
-		
-
-		
 	<!-- end: JavaScript-->
+	
+
 	
 </body>
 </html>

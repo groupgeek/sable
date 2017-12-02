@@ -681,10 +681,10 @@
 				</div>
 			</div>
 			<!-- 菜單 -->
-			<!-- <c:import url="homeMenu.jsp"></c:import> -->
+			<c:import url="homeMenu.jsp"></c:import>
 
-
-
+			<!-- 信息提示 -->
+			<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/home/js/introduction.js"></script>
 

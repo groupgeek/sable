@@ -91,7 +91,7 @@ public interface MessageMapper {
      * CEO端查询最近三十条留言
      * @return
      */
-    List<MessageCustom> selectAllMessageByCeo();
+    List<MessageCustom> selectAllMessageByCeo(MessageVo messageVo);
     /**
      * 查询最新的第一条留言
      * @return

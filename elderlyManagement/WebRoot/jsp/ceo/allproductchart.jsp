@@ -64,11 +64,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="box-content">
 						<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
-						<div id = "productchart" style="padding:10px;width:100%;height:500px;"></div>
-						<div id="header" style="padding:10px;width:100%;height:500px;">
-							<div id="chart1" style="padding:10px;width:48%;height:490px;float:left;"></div>
-							<div id="chart2" style="padding:10px;width:48%;height:490px;float:left;"></div>
-						</div>		         
+						<div style="width:100%;height:400px;margin-bottom: 100px;">
+							<div id = "productchart" style="padding:5px;width:69%;height:100%;float:left"></div>
+							<div id="chart1" style="padding:5px;width:29%;height:100%;float:left;"></div>
+						</div>
+						<div style="width:100%;height:400px;">
+							<div id = "productchartLine" style="padding:5px;width:69%;height:100%;float:left;"></div>
+							<div id="chart2" style="padding:5px;width:29%;height:100%;float:left;"></div>
+						</div>         
 					</div>
 				</div><!--/span-->			
 			</div><!--/row-->		

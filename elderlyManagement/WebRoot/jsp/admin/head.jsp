@@ -38,14 +38,14 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> </a> <a class="brand" href="index.html"><span>JANUX</span>
+					class="icon-bar"></span> </a> <a class="brand" href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><span>XIAOHE-ADMIN</span>
 				</a>
 
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						<!-- start: Message Dropdown -->
-						<li class="dropdown hidden-phone"><a
+						<!-- <li class="dropdown hidden-phone"><a
 							class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="icon-envelope"></i> <span class="badge red"> 4
 							</span> </a>
@@ -73,7 +73,7 @@
 											adipiscing elit, et al commore </span> </a></li>
 								<li><a class="dropdown-menu-sub-footer">View all
 										messages</a></li>
-							</ul></li>
+							</ul></li> -->
 
 						<!-- start: User Dropdown -->
 						<li class="dropdown"><a class="btn dropdown-toggle"

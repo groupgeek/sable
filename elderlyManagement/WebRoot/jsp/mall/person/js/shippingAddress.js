@@ -91,6 +91,7 @@ $(document).ready(function(){
 							if(data.flag){
 								myself.parent().parent().remove();
 								//显示提示信息
+								$("#messageNotification").attr("style","background-color: red;");
 								$("#showMessage").text("删除成功");
 								$('#messageNotification').fadeIn(2000);
 								getSrceenWH();

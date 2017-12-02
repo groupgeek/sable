@@ -416,4 +416,27 @@
 		group by pt.productid
 		order by pt.BuyTime asc
 	</select>
+	<select id="selectSumAllProductBigDecimal" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(totalPrice-totalExpenditure) sumBigDecimal,sum(totalPrice) getprice,sum(totalExpenditure) toprice,BuyTime from producttransactionreport
+		group by date_format(BuyTime, '%Y-%m-%d')
+	</select>
+	<select id="selectSumAllProductBigDecimalByBranch" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(p.totalPrice-p.totalExpenditure) branchBigDecimal,sum(p.totalPrice) branchtotalPrice,sum(p.totalExpenditure) branchtotalExpenditure,p.BuyTime,b.branchName from producttransactionreport p,branch b
+		where p.branchId=b.branchId
+		and b.branchId = #{branchid,jdbcType=INTEGER}
+		group by date_format(p.BuyTime, '%Y-%m-%d')
+	</select>
+	<select id="selectproductMoneyYearByBranch" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(totalExpenditure) sumtoprice,sum(totalPrice) sumgetprice,p.BuyTime 
+		from producttransactionreport p,branch b
+		where BuyTime>DATE_SUB(CURDATE(), INTERVAL 1 year)
+    	and p.branchId=b.branchId
+    	and b.branchId = #{branchid,jdbcType=INTEGER}
+	</select>
+	<select id="selectproductMoneyAllByBranch" parameterType="com.xiaohe.bean.CeoProducttransactionreport" resultType="com.xiaohe.bean.CeoProducttransactionreport">
+		select sum(p.totalExpenditure) sumtotalExpenditure,sum(p.totalPrice) sumtotalPrice,p.BuyTime 
+		from producttransactionreport p,branch b
+    	where p.branchId=b.branchId
+    	and b.branchId = #{branchid,jdbcType=INTEGER}	
+	</select>
 </mapper>

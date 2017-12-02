@@ -6,6 +6,23 @@ public class CeoProducttransactionreportVo {
 	private Integer pageSum;//总页数
 	private Integer productSum;//总条数
 	private List<CeoProducttransactionreport> lisproductchart;
+	private List<CeoProducttransactionreport> listsumBigDecimal;
+	private List<CeoProducttransactionreport> listsumBigDecimalByBranch;
+	
+	public List<CeoProducttransactionreport> getListsumBigDecimal() {
+		return listsumBigDecimal;
+	}
+	public void setListsumBigDecimal(
+			List<CeoProducttransactionreport> listsumBigDecimal) {
+		this.listsumBigDecimal = listsumBigDecimal;
+	}
+	public List<CeoProducttransactionreport> getListsumBigDecimalByBranch() {
+		return listsumBigDecimalByBranch;
+	}
+	public void setListsumBigDecimalByBranch(
+			List<CeoProducttransactionreport> listsumBigDecimalByBranch) {
+		this.listsumBigDecimalByBranch = listsumBigDecimalByBranch;
+	}
 	public Integer getPageSum() {
 		return pageSum;
 	}

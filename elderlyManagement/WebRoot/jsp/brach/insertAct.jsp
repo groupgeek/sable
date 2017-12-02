@@ -164,6 +164,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </div>
 					</div>
 					
+					<div class="control-group" >
+								<label class="control-label" for="selectError3">线上线下</label>
+								<div class="controls">
+									<select id="selectErrors" name="online" onmouseover="hidden()">
+										<option value=true id="true">线上</option>
+										<option value=false id="false">线下</option>
+									</select>
+								</div>
+					</div> 
+					
+					
 					<div class="control-group">
 							  <label class="control-label" for="date01" class="span6 typeahead" onkeyup="haha()">活动日期</label>
 							  <div class="controls">
@@ -179,17 +190,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </div>
 					</div> 
 					
-					<div class="control-group">
+					<div class="control-group" id="film">
 							  <label class="control-label" for="fileInput">添加视频</label>
 							  <div class="controls">
 							  <input type="file" name="nice">
 							  </div>
 					</div>
 					
+					<div class="control-group" id="vid">
+							  <label class="control-label" for="typeahead">添加链接 </label>
+							  <div class="controls">
+								<input type="text" name="video" onkeyup="long()" class="span6 typeahead" id="typeahead">
+							  </div>
+					</div>
+					
 					<div class="control-group">
 								<label class="control-label" for="selectError3">活动状态</label>
 								<div class="controls">
-									<select id="selectError3" name="activitystatus">
+									<select id="selectError1" name="activitystatus">
 										<option>已开展</option>
 										<option>未开展</option>
 										<option>进行中</option>
@@ -200,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="control-group">
 								<label class="control-label" for="selectError3">活动类型</label>
 								<div class="controls">
-									<select id="selectError3" name="activitytypeid">
+									<select id="selectError2" name="activitytypeid">
 									<c:forEach items="${actTypes }" var="actTypes">
 									<c:if test="${actTypes.activitytypeid >= 3}">
 										<option value="${actTypes.activitytypeid }">${actTypes.activitytypename }</option>
@@ -210,15 +228,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 					</div>
 					
-					<div class="control-group">
-								<label class="control-label" for="selectError3">线上线下</label>
-								<div class="controls">
-									<select id="selectError3" name="online">
-										<option value="0">线上</option>
-										<option value="1">线下</option>
-									</select>
-								</div>
-					</div> 
+					
 					
 					<div class="control-group">
 								<label class="control-label" for="appendedPrependedInput">活动经费</label>

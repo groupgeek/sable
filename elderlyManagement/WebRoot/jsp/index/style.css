@@ -103,7 +103,8 @@ ul {
 	font-weight: normal !important;
 	font-size: 18px !important;
 	line-height: 150%;
-	color: rgb(119, 156, 147);
+	/* color: rgb(119, 156, 147);颜色 */
+	color:#666666;
 }
 .hidden{
 	display:none
@@ -438,7 +439,9 @@ h2.header-text{
 	  color: #ededed;
 	}
 	.current {
-	background: rgba(218, 253, 249, 0.5);
+	/* background: rgba(218, 253, 249, 0.5); */
+	background-color: gray;
+	border-radius: 10px;
 	}
 	.navbar-brand {
 	 float: left; 
@@ -499,7 +502,8 @@ h2.header-text{
 		padding-right:20px;
 	}
 	.header, .navbar-default, #custom .menu-wrapper.affix .header, #custom .menu-wrapper.affix .navbar-default {
-	background: rgb(48, 173, 151) !important;
+	/* background: rgb(48, 173, 151) !important; 导航栏颜色 */
+	background: #212D2A !important;
 	margin-top: -20px;
 	transition: .4s;
 	}
@@ -937,7 +941,8 @@ border: 0px solid transparent !important;
 		padding-bottom: 0;
 		text-transform: uppercase;
 		letter-spacing: 0.6px;
-		color: #5F928F;
+		/* color: #5F928F; */
+		color:#333333;
 		}
 	#page_header hr {
 		margin:0 auto 30px !important;
@@ -993,7 +998,8 @@ border: 0px solid transparent !important;
 	.navbar-default .navbar-nav > .open > a:focus,
 	.header .nav li a:hover,
 	.header .nav li a:focus {
-		color:#B5F1E3;
+		/* color:#B5F1E3; 箭头颜色*/
+		color:white;
 	}
 	
 	p.drop-caps.full:first-child:first-letter,
@@ -1023,6 +1029,7 @@ border: 0px solid transparent !important;
 		border-color:#26cda4 !important;
 	}
 	blockquote {
+		/* border-left-color:#26cda4; 分隔符 颜色*/
 		border-left-color:#26cda4;
 	}
 	#custom .navbar-toggle,

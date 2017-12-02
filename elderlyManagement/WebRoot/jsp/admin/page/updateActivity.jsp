@@ -101,6 +101,15 @@
 								</div>
 							  </div>
 							  
+							  <div class="control-group" id="principalname">
+								<label class="control-label" for="focusedInput">活动负责人</label>
+								<div class="controls">
+								   <select name="principalid">
+								  		
+								   </select>
+								</div>
+							  </div>
+							  
 							  <div class="control-group" id = "activitytypename">
 								<label class="control-label">活动类型</label>
 								<div class="controls">
@@ -121,7 +130,7 @@
 							   <div class="control-group" id = "activitydate">
 								<label class="control-label">活动时间</label>
 								<div class="controls">
-								  	<input class="input-xlarge focused" name = "activitydate" type="text" onClick="laydate()" value="<fmt:formatDate value="${activity.activitydate }"pattern="yyyy-MM-dd" />">
+								  	<input class="input-xlarge focused" name = "activitydate" type="text" onClick="laydate()" value="<fmt:formatDate value="${activity.activitydate }" pattern="yyyy-MM-dd" />">
 								</div>
 							  </div>
 							 
@@ -171,7 +180,20 @@
 								  </select>
 								</div>
 							  </div>
-							  
+							  <div class="control-group" id = "showVideoHref">
+								<label class="control-label">活动链接</label>
+								<div class="controls">
+									<a href="javascript:;" style="display:block;padding-top: 6px;">活动链接</a>
+								</div>
+								
+							  </div>
+							  <div class="control-group" id = "updateVideoHref">
+								<label class="control-label">修改链接</label>
+								<div class="controls">
+									<input type="text" name = "videoHref" value="" style="width: 400px;">
+								</div>
+								
+							  </div>						  
 							  <div class="control-group" id = "activitypicturetemp">
 								<label class="control-label">已有图片</label>
 								<div class="controls">

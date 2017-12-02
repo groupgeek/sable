@@ -137,6 +137,7 @@
 			</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/person/js/order.js"></script>
+		<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 	</body>
 
 </html>

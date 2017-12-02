@@ -50,10 +50,10 @@ public class CeoTest {
 	public void findUserById(){
 		System.out.println(ceoService.findUserById(33).getStringregistrationdate());
 	}
-	@Test
+	/*@Test
 	public void findAllUserMessageCustoms(){
 		System.out.println(ceoService.findAllUserMessageCustoms().get(0).getStringDate());
-	}
+	}*/
 	@Test
 	public void findMessage(){
 		System.out.println(ceoService.findMessage(1).getStringDate());

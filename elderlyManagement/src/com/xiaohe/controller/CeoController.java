@@ -31,6 +31,7 @@ import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.MessageCustom;
+import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.ProducttransactionreportCustom;
@@ -115,6 +116,11 @@ public class CeoController {
 		model.addAttribute("findNewMessage",findNewMessage);
 		
 		return "ceo/index";
+	}
+	@RequestMapping(value = "/userindex")
+	public @ResponseBody List<UserCustom> newuser(){
+		List<UserCustom> newuser = ceoService.findfourUserByTime();
+		return newuser;
 	}
 	@RequestMapping(value = "/readindex")
 	public @ResponseBody CeoSelectVo findBigDecimal(@RequestBody CeoSelectVo ceoSelectVo,HttpServletRequest request){
@@ -250,7 +256,7 @@ public class CeoController {
 		return "ceo/gallery";
 	}
 	
-	/*-------------------------------------------------------------------------------------*/
+	
 	/**
 	 * 活动的详细信息
 	 * @param request
@@ -265,6 +271,12 @@ public class CeoController {
 		model.addAttribute("findCeoActivity",findCeoActivity);		
 		return "ceo/activity";
 	}
+	@RequestMapping(value = "/readactivity")
+	public @ResponseBody CeoActivity oneActivity(@RequestBody CeoActivity ceoActivity){
+		CeoActivity oneActivity = ceoService.findCeoActivity(ceoActivity.getActivityid());
+		return oneActivity;
+	}
+	/*-------------------------------------------------------------------------------------*/
 	/**
 	 * 所有留言
 	 * @param request
@@ -273,10 +285,10 @@ public class CeoController {
 	 * @return
 	 */
 	@RequestMapping(value = "/messages")
-	public String findAllUserMessage(HttpServletRequest request , Model model,Integer id){
-		
-		List<MessageCustom> findMessageCustoms = ceoService.findAllUserMessageCustoms();
-		model.addAttribute("findMessageCustoms",findMessageCustoms);		
+	public String findAllUserMessage(HttpServletRequest request , Model model,MessageVo messageVo){		
+		MessageVo mVo = new MessageVo();
+		mVo = ceoService.messages(messageVo);
+		model.addAttribute("mVo",mVo);		
 		return "ceo/messages";
 	}
 	@RequestMapping(value = "/newmessage")
@@ -407,6 +419,16 @@ public class CeoController {
 		List<CeoProducttransactionreport> productchartsofbranch = ceoService.findceoproductchatOfbranch(ceoProducttransactionreport.getBranchid());
 		return productchartsofbranch;
 	}
+	@RequestMapping(value = "/ceoPVo")
+	public @ResponseBody CeoProducttransactionreportVo ceoPVo(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		CeoProducttransactionreportVo cVo = ceoService.listSumBigDecimal(ceoProducttransactionreport);
+		return cVo;
+	}
+	@RequestMapping(value = "/sumBigDecimalByBranch")
+	public @ResponseBody List<CeoProducttransactionreport> sumBigDecimalByBranch(@RequestBody CeoProducttransactionreport ceoProducttransactionreport){
+		List<CeoProducttransactionreport> sumBigDecimalByBranch = ceoService.listSumBigDecimalByBranch(ceoProducttransactionreport);
+		return sumBigDecimalByBranch;
+	}
 	/**
 	 * 活动报表
 	 * @param ceoActivityreport
@@ -448,6 +470,17 @@ public class CeoController {
 		List<CeoActivityreport> caList = ceoService.ceoactivitychartByYear();
 		return caList;
 	}
+	@RequestMapping(value = "/ceoActivityVo")
+	public @ResponseBody CeoActivityreportVo lisVo(@RequestBody CeoActivityreport ceoActivityreport){
+		CeoActivityreportVo cVo = ceoService.listSumActivityreportMoney(ceoActivityreport);
+		return cVo;
+	}
+	@RequestMapping(value = "/ceomoneyBybranch")
+	public @ResponseBody List<CeoActivityreport> listmoney(@RequestBody CeoActivityreport ceoActivityreport){
+		List<CeoActivityreport> list = ceoService.lintAllMoneyByBranch(ceoActivityreport);
+		return list;
+	}
+	
 	/*-------------------------------------------------------------------------------------*/
 	//ceo信息查询
 		public String quertyCEO() {

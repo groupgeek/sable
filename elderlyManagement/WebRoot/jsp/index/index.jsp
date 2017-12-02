@@ -263,7 +263,7 @@
                 <div class="title text-center">
                     <h3 class="title-text">关于我们</h3>
 
-                    <em class="lead">你可以发送宝贵的建议给我们.</em>
+                    <em class="lead">为了更好的服务，您一定要联系我们.</em>
                     <hr>
                 </div>
             </div>
@@ -271,57 +271,26 @@
                 
             </div>
 
-            <footer class="footer">
+             <footer class="footer">
                 <div class="container">
-                    <div class="widget col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="widget col-lg-3 col-md-3 col-sm-6 col-xs-12" style="position: relative;left: 180px;">
                         <div class="title">
-                            <h3>About <span>Attorney</span></h3>
+                            <h3>孝和 <span>简介</span></h3>
                         </div>
-                        <br>
-                        <p>Attorney-Template  is a clean, minimal, stylish Bootstrap theme for showcasing your Law firm. </p>
-                        <p>On the other hand, we denounce with rious indignation and dislike men who are so be guiled and demoralized by the charms that they cannot foresee the pain</p>
+                        <p>孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介孝和集团简介</p>
                     </div><!-- end widget -->
 
-                    <div class="widget col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                    <div class="widget col-lg-3 col-md-3 col-sm-6 col-xs-12" style="position: relative;left: 500px;">
                         <div class="title">
-                            <h3>Contact Us.</h3>
-                        </div>
-                        <div class="contact_widget row">
-                            <div id="message"></div>
-                            <form id="contactform" action="contact.php" name="contactform" method="post">
-                                <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <input type="text" name="name" id="name" required="required" class="form-control" placeholder="Name">
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <input type="text" name="email" id="email" required="required" class="form-control" placeholder="Email Address">
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <input type="text" name="subject" id="subject" required="required" class="form-control" placeholder="Subject">
-                                </div> -->
-
-                                <div class="clearfix"></div>
-
-                                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" name="comments" required="required" id="comments" rows="6" placeholder="Message"></textarea>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <button type="submit" value="SEND" id="submit" class="btn btn-lg btn-primary">SEND</button>
-                                </div> -->
-                            </form>
-                        </div> <!-- end contact_widget -->
-                    </div><!-- end widget -->
-
-                    <div class="widget col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="title">
-                            <h3>Keep in Touch.</h3>
+                            <h3>联系我们</h3>
                         </div>
                         <ul class="contact_details">
-                            <li><i class="fa fa-map-marker"></i> <span>15 Springfield Way Hythe</span></li>
+                            <li><i class="fa fa-map-marker"></i> <span>贵州省</span></li>
                             <li><i class="fa fa-mobile-phone"></i> <span>(+ 00) 1-714-252-0026</span></li>
-                            <li><i class="fa fa-envelope"></i> <span>support@law.com</span></li>
+                            <li><i class="fa fa-envelope"></i> <span>xiaohe@XXX.com</span></li>
                         </ul>
-                       <!--  <div class="social pull-left">
+                        <!-- <div class="social pull-left">
                             <span><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></span>
                             <span><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></span>
                             <span><a title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a></span>
