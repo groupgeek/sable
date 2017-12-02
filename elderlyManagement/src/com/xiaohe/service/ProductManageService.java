@@ -27,7 +27,7 @@ public interface ProductManageService {
 	public EmployeeCustom productManageAdminsLogin(EmployeeCustom employeeCustom) throws Exception;
 	
 	//商品信息更新
-	public void updateProductCustom(Product product)throws Exception;
+	public void updateProductCustom(Product product,MultipartFile pictureUpload)throws Exception;
 	/**
 	 * 查询单个商品信息
 	 * @param productid

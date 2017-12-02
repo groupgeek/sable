@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="index.html">XIAOHE</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">本店推荐</a></li>
+				<li><a href="#">推荐</a></li>
 			</ul>
 
 			<div class="row-fluid sortable">		
@@ -153,10 +153,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </tr>
 						  </thead>   
 						  <tbody>
+						  ${message }
 							<c:forEach items="${recommendproduct }" var="recommendproduct">
 					<tr>
 						<td class="center">${recommendproduct.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="/upload/${recommendproduct.picture }" alt="" style="width:80px;height:40px"/></td>
+						<td class="center"> <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct.picture }" alt="" style="width:80px;height:40px"/></td>
 						<td class="center">${recommendproduct.producttypename}</td>
 						<td class="center"> ${recommendproduct.price}</td>
 						<td class="center">${recommendproduct.instock}</td>

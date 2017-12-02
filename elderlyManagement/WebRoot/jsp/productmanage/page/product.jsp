@@ -120,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div style="padding-bottom: 30px">
 								<div id="header">
 									<div id="nav">
-										<div id="section1"><img class="image1" src="/upload/${list.picture }"></div>							
+										<div id="section1"><img class="image1" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${list.picture }"></div>							
 									</div>
 									<div id="section">
 										<div class="control-group">
