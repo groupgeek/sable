@@ -8,8 +8,20 @@ public class MedicalrecordsWithBLOBs extends Medicalrecords {
     private String personalrecords;
 
     private String familyrecords;
+    
+    private String healthmessage;
+	
 
-    public String getNowmedicalrecords() {
+    
+    public String getHealthmessage() {
+		return healthmessage;
+	}
+
+	public void setHealthmessage(String healthmessage) {
+		this.healthmessage = healthmessage;
+	}
+
+	public String getNowmedicalrecords() {
         return nowmedicalrecords;
     }
 

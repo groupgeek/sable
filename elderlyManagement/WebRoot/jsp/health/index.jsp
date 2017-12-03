@@ -48,34 +48,34 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.jsp">首页</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath }/jsp/index/index.jsp">官网首页</a>
         </div>
          <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="work.html">食疗</a></li>
-            <li><a href="about.html">活动</a></li>
-            <li><a href="blog.html">健康监测</a></li>
+          <!-- <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">食疗</a></li>
+            <li><a href="#">活动</a></li>
+            <li><a href="#">健康监测</a></li>
            
-          </ul>
+          </ul> -->
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
 	<!-- +++++ Welcome Section +++++ -->
-	<div id="ww">
+	<%-- <div id="ww">
 	    <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<img src="src="/upload/${activity[0].avatar}" alt="Stanley">
 					<h1>尊敬的： ${mm.username }</h1>
-					<p>${mm.beforemedicalrecords}</p>
-					<p>${mm.personalrecords}</p>
+					<p>${mm.healthmessage}</p>
+				
 					
 				
 				</div><!-- /col-lg-8 -->
 			</div><!-- /row -->
 	    </div> <!-- /container -->
-	</div><!-- /ww -->
+	</div><!-- /ww --> --%>
     <div class="copyrights">Collect from <a href="#" >xiaohe</a></div>
 	
 	
@@ -91,20 +91,20 @@
 			<div class="col-lg-4" style="min-height: 300px;">
 			
 				<a class="zoom green" href="${pageContext.request.contextPath }/health/activityInfo.action?activityid=${activity[0].activityid}"><img class="img-responsive"
-												src="/upload/${activity[0].activitypicture }" style="width:370px;height:275px"/></a>
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activity[0].activitypicture }" style="width:370px;height:275px"/></a>
 									
 				<a href="${pageContext.request.contextPath }/health/activityInfo.action?activityid=${activity[0].activityid}" }><p>${activity[0].activityname}</p></a>
 
 			</div>
 			<div class="col-lg-4">
 				<a class="zoom green" href="${pageContext.request.contextPath }/health/activityInfo.action?activityid=${activity[1].activityid}"><img class="img-responsive"
-												src="/upload/${activity[1].activitypicture }" alt="" style="width:370px;height:275px"/></a>
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activity[1].activitypicture }" alt="" style="width:370px;height:275px"/></a>
 				<a href="${pageContext.request.contextPath }/health/activityInfo.action?activityid=${activity[1].activityid}" ><p>${activity[1].activityname }</p></a>
 
 			</div>
 				<div class="col-lg-4">
 				<a class="zoom green" href="${pageContext.request.contextPath }/health/activityInfo.action?activityid=${activity[2].activityid}"><img class="img-responsive"
-												src="/upload/${activity[2].activitypicture }" alt="" style="width:370px;height:275px"/></a>
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activity[2].activitypicture }" alt="" style="width:370px;height:275px"/></a>
 				<a href="${pageContext.request.contextPath }/health/activityInfo.action?activityid=${activity[2].activityid}"><p>${activity[2].activityname }</p></a>
 
 			</div>
@@ -123,21 +123,21 @@
 	
 	
 			<div class="col-lg-4">
-					<img class="img-responsive"style="width:370px;height:150px"
-												src="/upload/${recommendproduct[0].picture}" alt="" /></a>
+				<a href="${pageContext.request.contextPath }/product/productInfo.action?id=${recommendproduct[0].productid}">	<img class="img-responsive"style="width:370px;height:150px"
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[0].picture}" alt="" /></a>
 				<p>${recommendproduct[0].productname}</p>
 				</div>
 				<!-- /col-lg-4 -->
 				
 				<div class="col-lg-4">
-					<img class="img-responsive"style="width:370px;height:150px"
-												src="/upload/${recommendproduct[0].picture}" alt="" /></a>
+					<a href="${pageContext.request.contextPath }/product/productInfo.action?id=${recommendproduct[0].productid}"> <img class="img-responsive"style="width:370px;height:150px"
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[0].picture}" alt="" /></a>
 				<p>${recommendproduct[1].productname}</p>
 				</div><!-- /col-lg-4 -->
 				
 				<div class="col-lg-4">
-						<img class="img-responsive"style="width:370px;height:150px"
-												src="/upload/${recommendproduct[0].picture}" alt="" /></a>
+					<a href="${pageContext.request.contextPath }/product/productInfo.action?id=${recommendproduct[0].productid}">	<img class="img-responsive"style="width:370px;height:150px"
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[0].picture}" alt="" /></a>
 				<p>${recommendproduct[2].productname}</p>
 				</div><!-- /col-lg-4 -->
 			
