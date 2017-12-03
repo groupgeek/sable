@@ -112,9 +112,10 @@
 								<div class="am-form-group">
 									<label for="user-name" class="am-form-label">姓名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name" placeholder="姓名" name="username">
-
+										<input type="text" id="user-name" placeholder="姓名" name="username" maxlength="20">
+										<p style="color: red;display: none;" id = "user-name-error">名字不能包含特殊字符，长度为2-15个字符</p>
 									</div>
+									
 								</div>
 
 								<div class="am-form-group">
@@ -158,7 +159,7 @@
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
 										<input id="user-email" placeholder="邮箱" type="email" name="email">
-
+										<p style="color: red;display: none;" id = "user-email-error">不是有效的邮箱格式</p>
 									</div>
 								</div>
 								

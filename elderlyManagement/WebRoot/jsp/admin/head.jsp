@@ -38,7 +38,7 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> </a> <a class="brand" href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><span>XIAOHE-ADMIN</span>
+					class="icon-bar"></span> </a> <a class="brand" href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><span>XIAOHE</span>
 				</a>
 
 				<!-- start: Header Menu -->
