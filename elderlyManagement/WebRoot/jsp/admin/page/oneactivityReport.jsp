@@ -107,9 +107,9 @@
 						%>
 					 	<input type="hidden" value="<%=a%>" id="activityId"> 
 						<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
-						<div id="oneactivity" style="padding:50px;width:500px;height:400px;float:left"></div>
-						<div id="null" style="width:200px;height:400px;float:left;"></div>
-						<div id="twoactivity" style="padding:50px;width:500px;height:400px;float:left;"></div>
+						<div id="oneactivity" style="padding:50px;width:40%;height:400px;float:left"></div>
+						
+						<div id="twoactivity" style="padding:50px;width:40%;height:400px;float:left;"></div>
 
 					</div>
 				</div>

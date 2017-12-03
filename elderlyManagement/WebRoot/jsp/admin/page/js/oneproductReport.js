@@ -218,7 +218,7 @@ var option = {
         		            name:'销售量',
         		            type:'pie',
         		            selectedMode: 'single',
-        		            radius: [0, '30%'],
+        		            radius: [0, '20%'],
 
         		            label: {
         		                normal: {
@@ -235,7 +235,7 @@ var option = {
         		        {
         		            name:'总收入',
         		            type:'pie',
-        		            radius: ['40%', '55%'],
+        		            radius: ['30%', '45%'],
         		            label: {
         		                normal: {
         		                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
@@ -268,7 +268,7 @@ var option = {
         		                            height: 0
         		                        },
         		                        b: {
-        		                            fontSize: 16,
+        		                            fontSize: 10,
         		                            lineHeight: 33
         		                        },
         		                        per: {
@@ -355,7 +355,7 @@ var option = {
             		            name:'销售量',
             		            type:'pie',
             		            selectedMode: 'single',
-            		            radius: [0, '30%'],
+            		            radius: [0, '20%'],
 
             		            label: {
             		                normal: {
@@ -372,7 +372,7 @@ var option = {
             		        {
             		            name:'总售价',
             		            type:'pie',
-            		            radius: ['40%', '55%'],
+            		            radius: ['30%', '45%'],
             		            label: {
             		                normal: {
             		                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
@@ -405,7 +405,7 @@ var option = {
             		                            height: 0
             		                        },
             		                        b: {
-            		                            fontSize: 16,
+            		                            fontSize: 10,
             		                            lineHeight: 33
             		                        },
             		                        per: {

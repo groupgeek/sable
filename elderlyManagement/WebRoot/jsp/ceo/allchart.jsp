@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="tou">
 				<div id="zhong">
 					<form class="branchsumbit" name="myform" method="get">
-						<label><span id="juzhong" class="btn btn-info btn-setting">选择分店：</span>
+						<label><span id="juzhong" class="btn btn-info">选择分店：</span>
 						<select id="branchchart" name="branchchart">
 							<option value ="-1">--请选择--</option>
         					<c:forEach items = "${branchCustoms}" var= "branch">

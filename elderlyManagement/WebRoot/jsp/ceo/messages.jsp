@@ -73,7 +73,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span class="from"><i class="icon-star-empty"></i> ${e.username } </span><span class="title"> ${e.messagecontext }</span><span class="date"><b>${e.stringDate }</b></span>													
 						</li>
 					</c:forEach>
-				</ul>				
+				</ul>
+				
+				<div  style="position:absolute;left:25%;">
+				<table>
+				<tr>
+					<c:choose>
+						<c:when test="${mVo.nowPage==1}">
+							首页
+							上一页
+						</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=1">
+						首页</a>
+						<a href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.nowPage-1}">
+						上一页</a>
+					</c:otherwise>
+					</c:choose>
+						<c:choose>
+							<c:when test="${mVo.nowPage==mVo.count}">
+								下一页
+								尾页
+							</c:when>
+							<c:otherwise>
+								<a style="text-decoration:none" href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.nowPage+1}">
+								下一页</a>
+								<a style="text-decoration:none" href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.count}">
+								尾页</a>
+							</c:otherwise>
+						</c:choose>
+	
+					</tr>
+				</table>
+			</div>	
+							
 			</div>
 			<div name="message" class="span5 noMarginLeft">					
 				<div class="message dark">					
@@ -104,37 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</form>							
 				</div>						
 			</div>	
-			<div  style="position:absolute;left:430px;top:620px">
-			<table>
-<tr>
-	<c:choose>
-				<c:when test="${mVo.nowPage==1}">
-					首页
-					上一页
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=1">
-						首页</a>
-					<a href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.nowPage-1}">
-						上一页</a>
-				</c:otherwise>
-	</c:choose>
-	<c:choose>
-				<c:when test="${mVo.nowPage==mVo.count}">
-					下一页
-					尾页
-				</c:when>
-				<c:otherwise>
-					<a style="text-decoration:none" href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.nowPage+1}">
-						下一页</a>
-					<a style="text-decoration:none" href="${pageContext.request.contextPath}/ceo/messages.action?nowPage=${mVo.count}">
-						尾页</a>
-				</c:otherwise>
-	</c:choose>
-	
-	</tr>
-</table>
-</div>					
+							
 		</div>
 	</div><!--/.fluid-container-->	
 	<!-- end: Content -->

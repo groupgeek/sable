@@ -440,7 +440,7 @@
 					        			url:"${pageContext.request.contextPath }/product/queryProduct_json.action",
 					        			data:'{"producttypename"'+':'+'"'+producttypename+'"'+','
 					        					+'"search"'+':'+'"'+search+'"'+','
-					        					+'"sort"'+':'+'"'+sort+'"'+','
+					        					
 					        					+'"currentPage"'+':'+'"'+1+'"'
 					        			+'}',	
 					        			success:function(data){
