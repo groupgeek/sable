@@ -199,13 +199,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </div>
 							  
 							  
-							  <!-- <div class="control-group">
-								<label class="control-label">Uneditable input</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input">Some value here</span>
-								</div>
-							  </div> -->
-							  
 							  <div class="control-group">
 								<label class="control-label" for="disabledInput">客户邮箱</label>
 								<div class="controls">

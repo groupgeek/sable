@@ -27,6 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link id="base-style" href="${pageContext.request.contextPath }/jsp/brach/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath }/jsp/brach/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+		<link id="base-style" href="${pageContext.request.contextPath }/jsp/layui/css/layui.css" rel="stylesheet">
+		<script src="${pageContext.request.contextPath }/jsp/layui/layui.js"></script>
+		<script src="${pageContext.request.contextPath }/jsp/layui/layui.all.js"></script>
+		
 	<!-- end: CSS -->
 	
 
@@ -156,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:forEach items="${product }" var="product">
 					<tr>
 						<td class="center">${product.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="/upload/${product.picture }" alt="" style="width:80px;height:40px"/></td>
+						<td class="center"> <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="width:80px;height:40px"/></td>
 						<td class="center">${product.producttypename}</td>
 						<td class="center"> ${product.price}</td>
 						<td class="center">${product.instock}</td>
@@ -302,6 +306,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
+	<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>
 	
 </body>
 </html>

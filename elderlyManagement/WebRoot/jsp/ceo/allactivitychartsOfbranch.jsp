@@ -69,7 +69,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 %>
 						 <input type="hidden" id="branchid" value="<%=a %>">
 						<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
-						<div id = "activitychartofbranch" style="padding:10px;width:100%;height:500px;"></div>		         
+						
+						
+						<div style="width:100%;height:400px;margin-bottom: 100px;">
+							<div id = "activitychartofbranch" style="padding:5px;width:69%;height:100%;float:left"></div>
+							<div id="chart1" style="padding:5px;width:29%;height:100%;float:left;"></div>
+						</div>
+						<div style="width:100%;height:400px;">
+							<div id = "activitychartofbranchLine" style="padding:5px;width:69%;height:100%;float:left;"></div>
+							<div id="chart2" style="padding:5px;width:29%;height:100%;float:left;"></div>
+						</div>	         
 					</div>
 				</div><!--/span-->			
 			</div><!--/row-->		

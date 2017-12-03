@@ -39,26 +39,33 @@ $(document).ready(function(){
 		
 		
 		function createActivityTable(data){
-			for(var i in data.activityList){
-				$("#box tbody").append(
-						'<tr>'+
-							'<td>'+ (data.activityList)[i].activityname +'</td>'+
-							'<td class="center">'+ (data.activityList)[i].branchname +'</td>'+
-							'<td class="center">'+(data.activityList)[i].registeryfee+'</td>'+
-							'<td class="center">'+ (data.activityList)[i].activityprice +'</td>'+
-							'<td class="center">'+
-								'<span class="label label-success">'+ (data.activityList)[i].maxnum +'</span>'+
-							'</td>'+
-							'<td class="center">'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/oneactivityReport.jsp?id='+ (data.activityList)[i].activityid +'" target="_black">'+
-									'<i class="halflings-icon white zoom-in"></i>'+
-								'</a>'+
-								'<input type="hidden" value="'+ (data.activityList)[i].activityid +'">'+
-							'</td>'+
-						'</tr>'
+			if(data.activityList != ""){
+				for(var i in data.activityList){
+					$("#box tbody").append(
+							'<tr>'+
+								'<td>'+ (data.activityList)[i].activityname +'</td>'+
+								'<td class="center">'+ (data.activityList)[i].branchname +'</td>'+
+								'<td class="center">'+(data.activityList)[i].registeryfee+'</td>'+
+								'<td class="center">'+ (data.activityList)[i].activityprice +'</td>'+
+								'<td class="center">'+
+									'<span class="label label-success">'+ (data.activityList)[i].maxnum +'</span>'+
+								'</td>'+
+								'<td class="center">'+
+									'<a class="btn btn-success" href="'+root+'/jsp/admin/page/oneactivityReport.jsp?id='+ (data.activityList)[i].activityid +'" target="_black">'+
+										'<i class="halflings-icon white zoom-in"></i>'+
+									'</a>'+
+									'<input type="hidden" value="'+ (data.activityList)[i].activityid +'">'+
+								'</td>'+
+							'</tr>'
 					);				
+				}
+			}else{
+				$("#box tbody").append(
+					'<tr>'+
+						'<td colspan="6">'+"没有找到数据！"+'</td>'+							
+					'</tr>'
+				);	
 			}
-			
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");

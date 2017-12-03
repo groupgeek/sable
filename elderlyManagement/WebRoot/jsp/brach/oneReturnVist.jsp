@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>本店推荐</title>
+	<title>修改用户信息</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -44,6 +44,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/brach/img/favicon.ico">
 	<!-- end: Favicon -->
 	
+	<style type="text/css">
+	.image1{ 
+       
+        width:130px; 
+        height:130px; 
+        border-radius:130px; 
+    }
+	</style>
 		
 		
 		
@@ -65,19 +73,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						
+						<!-- start: Notifications Dropdown -->
+						
+						<!-- end: Notifications Dropdown -->
+						<!-- start: Message Dropdown -->
+						
 						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> ${admins.employeename }
+								<i class="halflings-icon white user"></i>${admins.employeename}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
-								<li><a href="${pageContext.request.contextPath }/productmanage/loginout.action"><i class="halflings-icon off"></i>退出登录</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/vip.action"><i class="halflings-icon user"></i>个人中心</a></li>
+								<li><a href="${pageContext.request.contextPath }/brach/logout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -96,15 +109,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- start: Main Menu -->
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
-							<ul class="nav nav-tabs nav-stacked main-menu">
-	
-						<li><a href="${pageContext.request.contextPath }/productmanage/producttype.action"><i class="icon-comment"></i><span class="hidden-tablet"> 增加商品</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/productmanage/stockout.action"><i class="icon-user"></i><span class="hidden-tablet">缺货商品</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/productmanage/NoproductRecommend.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 推荐商品</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/productmanage/quertyPopularProduct.action"><i class="icon-random"></i><span class="hidden-tablet">热销商品</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/productmanage/recommendproduct.action"><i class="icon-briefcase"></i><span class="hidden-tablet">本店推荐</span></a></li>
-						<li><a href="${pageContext.request.contextPath }/productmanage/quertyProduct.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>						
-				</ul>
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="${pageContext.request.contextPath }/brach/index.action"><i class="icon-home"></i><span class="hidden-tablet">管理中心</span></a></li>	
+						<li><a href="${pageContext.request.contextPath }/brach/fenyeMessage.action"><i class="icon-comment"></i><span class="hidden-tablet"> 用户留言</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/employees.action"><i class="icon-list-alt"></i><span class="hidden-tablet">员工管理</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/users.action"><i class="icon-user"></i><span class="hidden-tablet">用户信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchTran.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 客户关系</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/branchVist.action"><i class="icon-random"></i><span class="hidden-tablet">回访信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/allActs.action"><i class="icon-briefcase"></i><span class="hidden-tablet">活动信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/products.action"><i class=" icon-shopping-cart"></i><span class="hidden-tablet">商品信息</span></a></li>
+						<li><a href="${pageContext.request.contextPath }/brach/charts.action"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li></ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->
@@ -123,81 +137,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">XIAOHE</a> 
-					<i class="icon-angle-right"></i>
+					<a href="index.html">XIAOHE</a>
+					<i class="icon-angle-right"></i> 
 				</li>
-				<li><a href="#">推荐</a></li>
+				<li>
+					<i class="icon-edit"></i>
+					<a href="#">用户回访详情</a>
+				</li>
 			</ul>
-
-			<div class="row-fluid sortable">		
+			
+					<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>商品信息</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>用户回访信息</h2>
 						<div class="box-icon">
-							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						  <thead>
-							 <tr>
-								  <th>商品名称</th>
-								  <th>图片</th>
-								  <th>类型(s)</th>
-								  <th>价格</th>
-								  <th>库存</th>
-								  <th>操作</th>
-								 
-							  </tr>
-						  </thead>   
-						  <tbody>
-						  ${message }
-							<c:forEach items="${recommendproduct }" var="recommendproduct">
-					<tr>
-						<td class="center">${recommendproduct.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct.picture }" alt="" style="width:80px;height:40px"/></td>
-						<td class="center">${recommendproduct.producttypename}</td>
-						<td class="center"> ${recommendproduct.price}</td>
-						<td class="center">${recommendproduct.instock}</td>
-						<td class="center">
-					<!-- 	<input type="checkbox" name="yyy" lay-skin="switch" value="" > -->
-						<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/productRecommend.action?productid=${recommendproduct.productid}">
-										<i class="halflings-icon white edit"></i>  
-									</a>		
-						</td>
-						<%-- <td class="center">
-						<a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a>
-									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneUser.action?id=${ users.userid}">
-										<i class="halflings-icon white edit"></i>                                            
-									</a>
-									<!-- <a class="btn btn-info" href="#">
-										<i class="halflings-icon white edit"></i>                                            
-									</a> -->
-									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delUser.action?id=${ users.userid}">
-										<i class="halflings-icon white trash"></i> 
-										
-									</a>
-								</td>  --%>
-						<%-- <td><fmt:formatDate value="${user.birthday }"
-								pattern="yyyy-MM-dd HH:mm:ss" />
-						</td> --%>
-						<%-- <td><a
-							href="${pageContext.request.contextPath}/user/queryUserById.action?id=${user.id }">修改</a>
-						</td> --%>
-					</tr>
-				</c:forEach>
+						<form class="form-horizontal" action="${pageContext.request.contextPath }/brach/updateReturnVist.action?id=${ returnvisitCustom.returnvisitid}">
+							<fieldset>
 							
-						  </tbody>
-					  </table>            
+							<input type="hidden" name="returnvisitid" value="${returnvisitCustom.returnvisitid }"  />
+							
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">客户姓名</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" name="userid" placeholder="${returnvisitCustom.username }" disabled="">
+								</div>
+							  </div>
+							  
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">客户地址</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${returnvisitCustom.address }" disabled="">
+								</div>
+							  </div>
+							  
+							   <div class="control-group">
+								<label class="control-label" for="disabledInput">上次回访时间</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" disabled="" value=<fmt:formatDate value="${returnvisitCustom.lastvisttime }" pattern="yyyy-MM-dd HH:mm:ss" />> <%-- value="${returnvisitCustom.lastvisttime }" placeholder="${returnvisitCustom.lastvisttime }" --%> 
+								</div>
+							  </div>
+							  
+							  <div class="control-group">
+								<label class="control-label">本次回访时间</label>
+								<div class="controls">
+								  <input name="lastvisttime" onClick="laydate()" id="visittime"><br /><br />
+								</div>
+							  </div>
+							  
+							 
+							  
+							  <div class="control-group">
+								<label class="control-label" for="disabledInput">总回访次数</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="${returnvisitCustom.countvisit }" disabled="">
+								</div>
+							  </div>
+							  
+							  <div class="form-actions">
+								<button type="submit" class="btn btn-primary">提交修改</button>
+							  </div>
+							</fieldset>
+						  </form>
+					
 					</div>
 				</div><!--/span-->
 			
+			
+			
+			
+			</div>
+					
+					
+					
+					
+					
+					
+					
+				</div><!--/span-->
+
 			</div><!--/row-->
 
-			<!--/row-->
-			
 			<!--/row-->
 			
 			<!--/row-->
@@ -206,8 +231,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
@@ -222,14 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
+	
 	<div class="clearfix"></div>
 	
 	<footer>
@@ -243,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- start: JavaScript-->
 
-		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -297,7 +313,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
+		
+		<script src="${pageContext.request.contextPath }/jsp/brach/js/laydate.js"></script>
+		
 	<!-- end: JavaScript-->
+	
+
 	
 </body>
 </html>

@@ -84,4 +84,27 @@ public interface ActivityreportMapper {
      * @return
      */
     Activityreport oneActivityreport(Integer id);
+    /**
+     * 查询所有活动的盈利（做图用）
+     * @return
+     */
+    List<CeoActivityreport> selectSumBigDecimal();
+    /**
+     * 查询分店活动的盈利（做图用）
+     * @param ceoActivityreport
+     * @return
+     */
+    List<CeoActivityreport> selectSumBigDecimalByBranch(CeoActivityreport ceoActivityreport);
+    /**
+     * 查询活动年收入（做饼图用）
+     * @param ceoActivityreport
+     * @return
+     */
+    CeoActivityreport selectYearMoneyByBranch(CeoActivityreport ceoActivityreport);
+    /**
+     * 查询活动总收入（做饼图用）
+     * @param ceoActivityreport
+     * @return
+     */
+    CeoActivityreport selectAllMoneyByBranch(CeoActivityreport ceoActivityreport);
 }

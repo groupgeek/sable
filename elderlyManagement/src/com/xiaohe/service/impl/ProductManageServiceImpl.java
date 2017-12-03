@@ -77,7 +77,17 @@ public Product quertyProduct(Integer productid) throws Exception {
 	return productMapper.selectByPrimaryKey(productid);
 }
 
-public void updateProductCustom(Product product) throws Exception {
+public void updateProductCustom(Product product,MultipartFile producPpicture) throws Exception {
+	if(!producPpicture.isEmpty()){
+		try {
+			product.setPicture(FileUpload.oneFileUpload(producPpicture,product.getPicture(), "picture"));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	productMapper.updateByPrimaryKeySelective(product);
 }
 public List<ProductCustom> quertyRecommendProduct(Integer branchid) {

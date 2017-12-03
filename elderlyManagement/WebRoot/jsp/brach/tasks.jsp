@@ -92,8 +92,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white user"></i><span class="break"></span>回访记录</h2>
 						<div class="box-icon">
-							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
@@ -104,6 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <th>客户地址</th>
 								  <th>上次回访时间</th>
 								  <th>总回访次数</th>
+								  <th>更新回访信息</th>
 						  </thead>   
 						  <tbody>
 						  <c:forEach items="${visits }" var="visits">
@@ -111,12 +110,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <td>${visits.username }</td>
 						  <td>${visits.address }</td>
 						  <td>
-						  <fmt:formatDate value="${visits.lastvisttime }" pattern="yyyy-MM-dd HH:mm:ss" />
+						  <fmt:formatDate value="${visits.lastvisttime }" pattern="yyyy-MM-dd" />
 						  </td>
 						  <td>${visits.countvisit }</td>
+						   <td>
+							<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/oneReturnVist.action?id=${ visits.returnvisitid}">
+										<i class="halflings-icon white edit"></i>                                            
+									</a>
+							</td>
 						  </tr>
 						  </c:forEach>
-							
+						 
 						  </tbody>
 					  </table>            
 					</div>
