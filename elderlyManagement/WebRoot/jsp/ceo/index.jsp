@@ -39,6 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#chartmain{			
 			padding:20px;
 			float:left;
+			margin: 0px;
 		}
 		
 		
@@ -115,9 +116,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</div>
     		
 			<div id="hh" style="padding-top:20px;padding-bottom:20px; width:100%;height:420px;float:left">			
-				<div id="branchto" style="padding-top:20px; padding-left:0px;padding-right:100px; width:600px;height:380px;float:left;"></div>
+				<div id="branchto" style="padding-top:20px; padding-left:0px;padding-right:100px; width:35%;height:380px;float:left;"></div>
 				
-				<div class="widget blue span5" id="haha" style="padding-top:20px; width:800px;height:400px;float:left;">
+				<div class="widget blue span5" id="haha" style="padding-top:20px; width:53%;height:400px;float:left;">
 					
 					<h2><span class="glyphicons globe"><i></i></span>分店总用户前十名</h2>					
 					

@@ -70,6 +70,10 @@ $(document).ready(function(){
 		pageNum = $("#selectPageNum").attr("value");
 		sort = $("#selectSort").attr("value");
 		search = $("#search").val();
+		var patt1 = new RegExp(/\s+/g);
+		if(patt1.test(search)){
+			return search.replace(/\s+/g, "");
+		}
 		currentPage = 1;
 		branchid = $("#branchchart").val();
 		$.ajax({
@@ -100,6 +104,10 @@ $(document).ready(function(){
 		pageNumofact = $("#selectPageNumofactivity").attr("value");
 		sortofactivity = $("#selectSortofactivity").val();
 		searchofact = $("#searchofactivity").val();
+		var patt2 = new RegExp(/\s+/g);
+		if(patt2.test(searchofact)){
+			return searchofact.replace(/\s+/g, "");
+		}
 		currentPageofactivity = 1;
 		branchid = $("#branchchart").val();
 		$.ajax({

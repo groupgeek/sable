@@ -66,7 +66,7 @@ public class CeoController {
 	public String logout(HttpSession session)throws Exception{			
 		//session过期
 		session.invalidate();			
-		return "redirect:/jsp/AdminLogin/login.jsp";
+		return "redirect:/jsp/AdminLogin/login/login.jsp";
 	}
 	
 	/**

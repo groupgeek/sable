@@ -71,6 +71,10 @@ $(document).ready(function(){
 			pageNum = $("#selectPageNum").attr("value");
 			//sort = $("#selectSort").attr("value");
 			search = $("#search").val();
+			var patt = new RegExp(/\s+/g);
+			if(patt.test(search)){
+				return search.replace(/\s+/g, "");
+			}
 			activitytypeid = $("#activitytypeid").attr("value");
 			branchid = $("#allBranch").attr("value");
 			currentPage = 1;
