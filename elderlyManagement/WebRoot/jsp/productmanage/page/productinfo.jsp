@@ -91,10 +91,10 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Account Settings</span>
+ 									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i>登出</a></li>
+								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
+								<li><a href="${pageContext.request.contextPath }/productmanage/loginout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -139,6 +139,7 @@
 						</a>
 						<li><a href="JavaScript:;"><i class="icon-dashboard"></i><span
 								class="hidden-tablet">留言管理</spa --%>
+							
 								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
 								<li><a href="${pageContext.request.contextPath }/jsp/productmanage/logReg/login.jsp"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
@@ -159,8 +160,7 @@
 			<!-- start: Main Menu -->
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
-							<ul class="nav nav-tabs nav-stacked main-menu">
-	
+						<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="${pageContext.request.contextPath }/productmanage/producttype.action"><i class="icon-comment"></i><span class="hidden-tablet"> 增加商品</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/stockout.action"><i class="icon-user"></i><span class="hidden-tablet">缺货商品</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/productmanage/NoproductRecommend.action"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> 推荐商品</span></a></li>
@@ -170,29 +170,7 @@
 				</ul>
 				</div>
 			</div>
-						</a>
-						</li>
-						<!-- <li><a class="dropmenu" href="JavaScript:;"><i
-								class="icon-folder-close-alt"></i><span class="hidden-tablet">
-									活动管理</span><span class="label label-important"> 3 </span>
-						</a>
-							<ul>
-								<li><a class="submenu" href="JavaScript:;"><i
-										class="icon-file-alt"></i><span class="hidden-tablet">
-											教育</span>
-								</a>
-								</li>
-								<li><a class="submenu" href="JavaScript:;"><i
-										class="icon-file-alt"></i><span class="hidden-tablet">
-											健康</span>
-								</a>
-								</li>
-							</ul>
-						</li> -->
-
-					</ul>
-				</div>
-			</div>
+				
 
 			<!-- start: Content -->
 			
@@ -207,17 +185,29 @@
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
-				<form  action="${pageContext.request.contextPath }/productmanage/update.action" class="form-horizontal" method="post" >
-				 <input type="hidden" name="productid" value="${product.productid }" />
+				<form  class="form-horizontal" action="${pageContext.request.contextPath }/productmanage/update.action"   method="post" enctype="multipart/form-data">
+			
 					<div class="box-content">
-						
+							 <input type="hidden" name="productid" value="${product.productid }" >
 							<fieldset>
 							  <div class="control-group" id = "productname">
 								<label class="control-label">商品名</label>
 								<div class="controls">
-								  
+								 
 								  <input class="input-xlarge" type="text" id="grumble" name="productname" value="${product.productname}"/>
 							
+								</div>
+							  </div>
+							  	  <div class="control-group" id = "picture">
+								<label class="control-label">图片</label>
+								
+								  <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="width:100px;height:80px"/>
+							
+							  </div>
+							  <div class="control-group" id = "producPpicture">
+								<label class="control-label">更改图片</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "producPpicture" type="file">
 								</div>
 							  </div>
 							  <div class="control-group" id = "instock">

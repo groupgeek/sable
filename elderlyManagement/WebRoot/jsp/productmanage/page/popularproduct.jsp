@@ -76,8 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-							<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
-							
+								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
 								<li><a href="${pageContext.request.contextPath }/productmanage/loginout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>
@@ -157,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:forEach items="${popularProduct }" var="pp">
 					<tr>
 						<td class="center">${pp.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="/upload/${pp.picture }" alt="" style="width:80px;height:40px"/></td>
+						<td class="center"> <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${pp.picture }" alt="" style="width:80px;height:40px"/></td>
 						<td class="center">${pp.producttypename}</td>
 						<td class="center"> ${pp.price}</td>
 						<td class="center">${pp.instock}</td>

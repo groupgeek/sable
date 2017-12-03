@@ -108,14 +108,111 @@ $(document).ready(function(){
 		}
 		
 	});
+	//js验证
+	var flagName = false;
+	var activityprice = false;
+	var registeryfee = false;
+	var maxnum = false;
+	var activitydate = false;
+	
+	var nameRe = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_]){1,100}$/;
+	var timeRe = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_]){1,100}$/;
+	//名字验证
+	$("#activityname input").bind("input propertychange",function(){
+		if(nameRe.test($(this).val())){
+			$("#activity-name-error").hide();
+			flagName = true;
+			addActivity();
+			
+		}else{
+			flagName = false;
+			$("#activity-name-error").show();
+			$("#addActivity").unbind();
+			$("#addActivity").hide();
+		}
+		
+	});
+	//支出验证
+	$("#activityprice input").bind("input propertychange",function(){
+		if(!(/[^0-9]/).test($(this).val())){
+			$("#activity-activityprice-error").hide();
+			activityprice = true;
+			addActivity();
+			
+		}else{
+			activityprice = false;
+			$("#activity-activityprice-error").show();
+			$("#addActivity").unbind();
+			$("#addActivity").hide();
+		}
+		
+	});
+	//报名验证
+	$("#registeryfee input").bind("input propertychange",function(){
+		if(!(/[^0-9]/).test($(this).val())){
+			$("#activity-registeryfee-error").hide();
+			registeryfee = true;
+			addActivity();
+			
+		}else{
+			registeryfee = false;
+			$("#activity-registeryfee-error").show();
+			$("#addActivity").unbind();
+			$("#addActivity").hide();
+		}
+		
+	});
+	//人数验证
+	$("#maxnum input").bind("input propertychange",function(){
+		if(!(/[^0-9]/).test($(this).val())){
+			$("#activity-maxnum-error").hide();
+			maxnum = true;
+			addActivity();
+			
+		}else{
+			maxnum = false;
+			$("#activity-maxnum-error").show();
+			$("#addActivity").unbind();
+			$("#addActivity").hide();
+		}
+		
+	});
+	
+	//时间验证
+	$("#activitydate input").bind("input propertychange",function(){
+		
+		if($(this).val().length > 0){
+			$("#activity-activitydate-error").hide();
+			activitydate = true;
+			addActivity();
+			
+		}else{
+			activitydate = false;
+			$("#activity-activitydate-error").show();
+			$("#addActivity").unbind();
+			$("#addActivity").hide();
+		}
+		
+	});
+	
+	function addActivity(){
+		if(flagName && activityprice && registeryfee && maxnum){
+			$("#addActivity").show();
+				
+			if($("#activitydate input").val().length > 0){
+				$("#addActivity").click(function(){
+					$('#loading').show();
+					$('body').addClass("hiddenBody");
+				});
+				
+			}
+			
+			
+		}
+	}
 	
 	
 	
-	//添加
-	$("#addEmployee").click(function(){
-		$('#loading').show();
-		$('body').addClass("hiddenBody");
-	})
 	
 
 });

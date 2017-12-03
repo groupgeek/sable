@@ -155,7 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:forEach items="${taste }" var="taste">
 					<tr>
 						<td class="center">${taste.productname }</td>
-						<td class="center"> <img class="img-responsive"  src="/upload/${product.picture }" alt="" style="width:80px;height:40px"/></td>
+						<td class="center"> <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="width:80px;height:40px"/></td>
 						<td class="center">${taste.producttaste}</td>
 						<td class="center"> ${taste.tastestock}</td>
 					

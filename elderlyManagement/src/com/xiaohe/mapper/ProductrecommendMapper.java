@@ -58,7 +58,17 @@ public interface ProductrecommendMapper {
      * @return 返回用户信息
      */
     UserCustom quertyuserProduct(String  phone);
-    
+    /**
+     *分店推荐
+     * @param branchid
+     * @return
+     */
     List<ProductCustom> quertyRecommendingProduct(Integer branchid);
+    /**
+     * 	单个商品信息
+     * @param productid
+     * @return
+     */
+    Productrecommend quertyOneProduct(Integer productid);
     
 }
