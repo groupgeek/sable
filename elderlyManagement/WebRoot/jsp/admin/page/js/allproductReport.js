@@ -3,7 +3,7 @@ var myChart = echarts.init(document.getElementById('productchart'));
 
 	var option = {
 	title : {
-        text: '商品报表'
+        text: '商品销售情况'
     },
     tooltip: {
         trigger: 'axis'
@@ -265,6 +265,7 @@ var myChart = echarts.init(document.getElementById('productchart'));
         xAxis: [
                 {
                     type : 'category',
+                    boundaryGap: false,
                 	data : []           	
                 }
             ],
@@ -298,7 +299,18 @@ var myChart = echarts.init(document.getElementById('productchart'));
             		{       			
                 		name:'盈利',
                 		type:'line',
-                		data:[]
+                		data:[],
+                		markPoint: {
+                			data: [
+                                  {type: 'max', name: '最大值'},
+                                  {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                        	data: [
+                                  {type: 'average', name: '平均值'}
+                            ]
+                        }
             		}
             	]
     		};

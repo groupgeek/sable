@@ -2,20 +2,17 @@ package com.xiaohe.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Update;
-
 import com.xiaohe.bean.Activityrecommend;
 import com.xiaohe.bean.ActivityrecommendCustom;
-import com.xiaohe.bean.ActivityrecommendKey;
 
 public interface ActivityrecommendMapper {
-    int deleteByPrimaryKey(ActivityrecommendKey key);
+    int deleteByPrimaryKey(Integer reid);
 
     int insert(Activityrecommend record);
 
     int insertSelective(Activityrecommend record);
 
-    Activityrecommend selectByPrimaryKey(ActivityrecommendKey key);
+    Activityrecommend selectByPrimaryKey(Integer reid);
 
     int updateByPrimaryKeySelective(Activityrecommend record);
 
