@@ -336,7 +336,7 @@ var myChart = echarts.init(document.getElementById('chartmain'));
             	        }
             	    ]
             };
-            var branchname=[];
+            var name=[];
             var usernum=[];
             var root = $("#root").val();           
             $.ajax({
@@ -350,14 +350,14 @@ var myChart = echarts.init(document.getElementById('chartmain'));
                 if (result) {
                  		
                        for(var i=0;i<result.length;i++){       
-                    	   branchname.push(result[i].branchname);    
+                    	   name.push(result[i].branchname);    
                          }    
                         for(var i=0;i<result.length;i++){
                         	usernum.push(result[i].usernumber);
                  		}    
                         threeChart.setOption({        //加载数据图表
                            	xAxis: {                          	
-                                data: branchname
+                                data: name
                             },
                             series: [
                             {

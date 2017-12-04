@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</div>
     		
 			<div id="hh" style="padding-top:20px;padding-bottom:20px; width:100%;height:420px;float:left">			
-				<div id="branchto" style="padding-top:20px; padding-left:0px;padding-right:100px; width:35%;height:380px;float:left;"></div>
+				<div id="branchto" style="padding-top:20px; padding-left:10px;padding-right:10px; width:42%;height:380px;float:left;"></div>
 				
 				<div class="widget blue span5" id="haha" style="padding-top:20px; width:53%;height:400px;float:left;">
 					
@@ -327,11 +327,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="clearfix"></div>
 	
 	<footer>
-
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎使用XIAOHE</a></span>
 		</p>
-
 	</footer>
 	
 	<!-- start: JavaScript-->
