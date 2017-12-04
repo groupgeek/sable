@@ -121,11 +121,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="clearfix"></div>
 	
 	<footer>
-
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎使用XIAOHE</a></span>
 		</p>
-
 	</footer>
 	<!-- start: JavaScript-->
 

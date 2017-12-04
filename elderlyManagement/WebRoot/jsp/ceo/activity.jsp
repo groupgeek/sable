@@ -223,52 +223,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							</fieldset>
 						  </form>
-						<%-- <table class="table table-bordered table-striped table-condensed">
-							  <thead>
-								  <tr>
-									  <th>活动属性</th>
-									  <th>详细信息</th>                                        
-								  </tr>
-							  </thead>
-							  <tbody>
-								<tr>
-									<td>活动名称</td>
-									<td class="center">${findCeoActivity.activityname }</td>								                                    
-								</tr>
-								<tr>
-									<td>活动类型</td>
-									<td class="center">${findCeoActivity.activitytypename }</td>									                                      
-								</tr>
-								<tr>
-									<td>开设分店</td>
-									<td class="center">${findCeoActivity.branchname }</td>                                        
-								</tr>
-								<tr>
-									<td>是否线上</td>
-									<td class="center">${findCeoActivity.stringline }</td>									                                        
-								</tr>
-								<tr>
-									<td>活动状态</td>
-									<td class="center">${findCeoActivity.activitystatus }</td>								                                        
-								</tr>
-								<tr>
-									<td>活动细节</td>
-									<td class="center">${findCeoActivity.activitydetails }</td>									                                       
-								</tr>								 
-								<tr>
-									<td>活动日期</td>
-									<td class="center">${findCeoActivity.stringDate }</td>                                        
-								</tr>  
-								<tr>
-									<td>注册费</td>
-									<td class="center">${findCeoActivity.registeryfee }</td>                                        
-								</tr>
-								<tr>
-									<td>活动支出</td>
-									<td class="center">${findCeoActivity.activityprice }</td>                                        
-								</tr>                  
-							  </tbody>
-						 </table>   --%>
 						
 					</div>
 				</div><!--/span-->
@@ -304,7 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<footer>
 		<p>
-			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/ceo/index.action" alt="Bootstrap_Metro_Dashboard">欢迎使用Ceo专用管理站点！</a></span>
+			<span style="text-align:left;float:left">&copy; 2017 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎使用XIAOHE</a></span>
 		</p>
 	</footer>
 	<!-- start: JavaScript-->

@@ -3,7 +3,7 @@ var myChart = echarts.init(document.getElementById('activitychart'));
 
 	var option = {
 	title : {
-        text: '活动报表'
+        text: '活动开展情况'
     },
     tooltip: {
         trigger: 'axis'
@@ -266,6 +266,7 @@ var myChart = echarts.init(document.getElementById('activitychart'));
         xAxis: [
                 {
                     type : 'category',
+                    boundaryGap: false,
                 	data : []           	
                 }
             ],
@@ -299,7 +300,18 @@ var myChart = echarts.init(document.getElementById('activitychart'));
             		{       			
                 		name:'盈利',
                 		type:'line',
-                		data:[]
+                		data:[],
+                		markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
             		}
             	]
     		};
