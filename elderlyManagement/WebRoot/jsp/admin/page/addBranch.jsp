@@ -101,7 +101,8 @@
 								<label class="control-label" for="focusedInput">分店名字*</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "branchname" type="text"placeholder="分店名字"
-										minlength=2 autocomplete="off" required>
+										minlength=1 autocomplete="off" required>
+										<p id = "branch-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
 								</div>
 							  </div>
 							  
@@ -125,7 +126,7 @@
 							 <input type="hidden" value = "${message }" id = "message">
 							  
 							  <div class="form-actions">
-								<button type="button" id = "addBranch" class="btn btn-primary">保存</button>
+								<button type="button" id = "addBranch" class="btn btn-primary" style="display: none;">保存</button>
 							  </div>
 							</fieldset>
 						  </form>

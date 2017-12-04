@@ -3,21 +3,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html>
 <head>
-
-<!-- start: Meta -->
-<meta charset="utf-8">
-<title>商城管理</title>
-<meta name="description" content="Bootstrap Metro Dashboard">
-<meta name="author" content="Dennis Ji">
-<meta name="keyword"
-	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<!-- end: Meta -->
-
-<!-- start: Mobile Specific -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- end: Mobile Specific -->
-
-<link id="bootstrap-style"
+	
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>商品分类添加</title>
+	<meta name="description" content="Bootstrap Metro Dashboard">
+	<meta name="author" content="zb">
+	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<link id="bootstrap-style"
 	href="${pageContext.request.contextPath }/jsp/admin/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
@@ -32,33 +31,30 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
-<link id="superAdmin"
-	href="${pageContext.request.contextPath }/jsp/admin/page/css/mallInfo.css"
-	rel="stylesheet">
-<!-- end: CSS -->
+	<!-- end: CSS -->
+	
 
-
-<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
 	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<link id="ie-style" href="css/ie.css" rel="stylesheet">
 	<![endif]-->
-
-<!--[if IE 9]>
+	
+	<!--[if IE 9]>
 		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
 	<![endif]-->
-
-<!-- start: Favicon -->
-<link rel="shortcut icon" href="img/favicon.ico">
-<!-- end: Favicon -->
-
-
-
-
+		
+	<!-- start: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- end: Favicon -->
+	
+		
+		
+		
 </head>
 
 <body>
-	<!-- start: Header -->
+<!-- start: Header -->
 	<c:import url="/jsp/admin/head.jsp"></c:import>
 
 	<div class="container-fluid-full">
@@ -66,9 +62,9 @@
 
 			<!-- start: Main Menu -->
 			<c:import url="/jsp/admin/menu.jsp"></c:import>
+
 			<!-- start: Content -->
 			<div id="content" class="span10">
-			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
@@ -81,123 +77,115 @@
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp">商城管理</a>
+					<i class="icon-angle-right"></i>
 				</li>
+				<li><a href="#">商品添加</a></li>
 			</ul>
 			
-				<div class="row-fluid sortable">
-					<div class="box span12">
-
-						<div class="box-header" data-original-title>
-							<h2>
-								<i class="halflings-icon white user"></i><span class="break"></span>商城信息管理
-							</h2>
-							<h2>
-								<span class="break"></span>商品数量<span id="productSum"></span>件
-							</h2>
-							<h2>
-								<span class="break"></span><a href="${pageContext.request.contextPath }/jsp/admin/page/addProductType.jsp" id = "addProductTypeUrl" style="color: white; text-decoration: none;">添加商品分类</a>
-							</h2>
-							<h2>
-								<span class="break"></span><a href="" id = "addProductUrl" style="color: white; text-decoration: none;">添加商品</a>
-							</h2>
-							<div class="box-icon">
-								<a href="#" class="btn-minimize"><i
-									class="halflings-icon white chevron-up"></i> </a>
-							</div>
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>商品分类添加</h2>
+						<h2 id = "adminMall"></h2>
+						<div class="box-icon">
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
+							<a href="" id = "updateProductUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
-						<div class="box-content " id="box">
-							<div>
-								<div id="pageNumBox">
-									<select id="selectPageNum">
-										<option value="1">1</option>
-										<option value="2" selected="selected">2</option>
-										<option value="3">3</option>
-									</select>
-								</div>
-								<select id="selectSort">
-									<!-- <option>排序方式</option> -->
-									<option value="buyNo">购买次数</option>
-									<!-- <option>0.0</option> -->
-								</select> 
-								<select id="producttypeid">
-									<option value= -1 selected="selected">全部</option>
-								</select> 
-								<input type="text" id="search" placeholder="搜索">
-
-							</div>
-
-
-
-
-
-							<table
-								class="table table-striped table-bordered bootstrap-datatable">
-								<thead>
-									<tr>
-										<th>商品名</th>
-										<th>单价</th>
-										<th>购买次数</th>
-										<th>库存</th>
-										<th>操作</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-
-
-							<div class="page">
-								<div id="productPage">
-									<p>
-										当前为第<strong id="currentPage">1</strong>页,共<strong id="pageSum">0</strong>页
-									</p>
-								</div>
-
-								<ul class="am-pagination am-pagination-right" id="pageUl">
-									<li value=1 id="home"><a href="javascript:;">首页</a></li>
-									<li id="previousPage"><a href="javascript:;">&laquo;</a></li>
-									<li id="nextPage"><a href="javascript:;">&raquo;</a></li>
-									<li id="lastPage"><a href="javascript:;">尾页</a></li>
-								</ul>
-							</div>
-
-						</div>
-
+					</div>
+					
+					<div class="box-content">
+						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/addProduct" method="post" enctype="multipart/form-data">
+							<fieldset>
+							 
+							 <div style="height: 20px;padding-bottom: 20px;">
+							 	<select id = "selectType">
+									<option>空</option>
+								 	<option value = "0">添加商品大类</option>
+								 	<option value = "1">添加商品小类</option>
+								</select>
+							 </div>
+							 
+							 
+							 <div id = "fatherType" style="display: none;">
+							 	<div class="control-group" id = "fathertypename">
+									<label class="control-label">商品父类类型</label>
+									<div class="controls">
+									  <input type="text" value="" id = "fathertypeid">
+									  <p id = "fatherType-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
+									</div>
+								  </div>
+							 </div>
+							  
+							   <div id = "smallType" style="display: none;">
+								   	<div class="control-group" id = "smallFathertypename">
+									<label class="control-label">商品父类类型</label>
+									<div class="controls">
+									  <select name = "smallfathertypeid">
+									  </select>
+									</div>
+								  </div>
+								  
+								  <div class="control-group" id = "producttypename">
+									<label class="control-label">商品分类名字</label>
+									<div class="controls">
+									  <input class="input-xlarge focused" name = "producttypename" type="text" value="">
+									  <p id = "producttype-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
+									</div>
+								  </div>
+							   
+							   </div>
+							  
+							  <div class="form-actions">
+							  	<button type="button" class="btn btn-primary" id = "addFatherType" style="display: none;">保存</button>
+							  	<button type="button" class="btn btn-primary" id = "addProductType" style="display: none;">保存</button>
+							  </div> 
+							  <!-- <div class="form-actions">
+								<button type="submit" class="btn btn-primary">Save changes</button>
+								<button class="btn">Cancel</button>
+							  </div> -->
+							</fieldset>
+						  </form>
+					
 					</div>
 				</div>
 			</div>
-			<!--/span-->
-		</div>
+				
+				
+				
+				
+				
+				
+			</div>
+			</div>
 
-	</div>
-
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
-				class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1"
-		role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-
+		
+	
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>
-
+	
+	<input type = "hidden" id = "message" value = "${message }">
+	
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+		//显示提示信息
+		var message = $("#message").val();
+		if(message != ""){
+	
+			
+			$("#showMessage").text(message);
+			$('#messageNotification').fadeIn(2000);
+			getSrceenWH();
+			$('#messageNotification').fadeOut(3000);
+		}
+		
+	})
+		
+	</script>
+	
 	<!-- start: JavaScript-->
 
 	<%-- <script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script> --%>
@@ -290,8 +278,9 @@
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
 	
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/mallInfo.js"></script>
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/addProductType.js"></script>
+	
 	<!-- end: JavaScript-->
-
+	
 </body>
 </html>

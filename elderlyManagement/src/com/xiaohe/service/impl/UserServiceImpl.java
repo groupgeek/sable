@@ -19,6 +19,7 @@ import com.xiaohe.bean.Branch;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EvaluationCustom;
+import com.xiaohe.bean.Integral;
 import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.Level;
 import com.xiaohe.bean.MedicalrecordsWithBLOBs;
@@ -299,6 +300,27 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
+		
+		//更新积分
+		IntegralCustom condetion = new IntegralCustom();
+		condetion.setCurrentPage(1);
+		condetion.setPageNum(1);
+		condetion.setUserid(userInfo.getUserid());
+		
+		IntegralCustom integral = new IntegralCustom();
+		integral.setUserid(userInfo.getUserid());
+		integral.setChangetime(new Date());
+		
+		IntegralCustom temp = integralMapper.selectUpToDateRecord(condetion);
+		
+			integral.setChangeintegral(Integer.parseInt(userInfo.getIntegral()) - temp.getRemainingpoints());
+			integral.setDetails("管理员更新");
+			integral.setRemainingpoints(Integer.parseInt(userInfo.getIntegral()));
+		
+		integralMapper.insertSelective(integral);
+		
+		
+		
 		//User user = new User();
 		
 		//Authority authority = userInfo.getAuthority();

@@ -60,7 +60,7 @@
 							'<li class="am-comment">'+
 												'<!-- 评论容器 -->'+
 												'<a href="">'+
-													'<img id = "avatar" class="am-comment-avatar" src="pic/'+ data.evaluationsList[i].avatar +'" />'+
+													'<img id = "avatar" class="am-comment-avatar" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+ data.evaluationsList[i].avatar +'" />'+
 													'<!-- 评论者头像 -->'+
 												'</a>'+
 	
@@ -131,16 +131,16 @@
 					var currentPage = $(this).attr("value");
 					if("previousPage" == $(this).attr("id")){
 						if(currentPage > 1){
-							$(this).attr("value",currentPage-1);
-							$("#nextPage").attr("value",currentPage-1);
+							$(this).attr("value",parseInt(currentPage)-1);
+							$("#nextPage").attr("value",parseInt(currentPage)-1);
 						}
 					}
 					if("nextPage" == $(this).attr("id")){
 						//alert(sort);
 						if($(this).attr("value") < $("#lastPage").attr("value")){
 						
-							$(this).attr("value",currentPage+1);
-							$("#previousPage").attr("value",currentPage+1);
+							$(this).attr("value",parseInt(currentPage)+1);
+							$("#previousPage").attr("value",parseInt(currentPage)+1);
 						}
 					}
 					if("home" == $(this).attr("id")){
@@ -152,8 +152,7 @@
 						$("#previousPage").attr("value",$(this).attr("value"));
 						
 					}
-					$("#currentPage").html($(this).attr("value"));
-					//alert($(this).attr("value"));
+					$("#currentPage").html(parseInt($(this).attr("value")));
 					$.ajax({
 						type:"post",
 						contentType:"application/json;charset=utf-8",
@@ -654,10 +653,10 @@
 									
 									<ul class="am-pagination am-pagination-right" id = "page">
 										<li>当前为第<strong id = "currentPage">1</strong>页</li>
-									    <li value="1" id = "home"><a href="javascript:;">首页</a></li>
-										<li value="1" id = "previousPage"><a href="javascript:;">&laquo;</a></li>
-										<li value="1" id = "nextPage"><a href="javascript:;">&raquo;</a></li>
-										<li value="1" id = "lastPage"><a href="javascript:;">尾页</a></li>
+									    <li value=1 id = "home"><a href="javascript:;">首页</a></li>
+										<li value=1 id = "previousPage"><a href="javascript:;">&laquo;</a></li>
+										<li value=1 id = "nextPage"><a href="javascript:;">&raquo;</a></li>
+										<li value=1 id = "lastPage"><a href="javascript:;">尾页</a></li>
 									</ul>
 									<div class="clear"></div>
 

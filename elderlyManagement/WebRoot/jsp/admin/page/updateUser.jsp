@@ -209,7 +209,7 @@
 							  <div class="control-group" id = "integral">
 								<label class="control-label">积分</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "integral" type="text" value="${userInfo.integral }">
+								  <input class="input-xlarge focused" name = "integral" type="text" value="0">
 								</div>
 							  </div>
 							    <div class="control-group" id = "email">
@@ -342,7 +342,7 @@
 							  
 							 
 							 
-							 <input type="hidden" value = "${userInfo.userid }" name = "userid">
+							 <input type="hidden" value = "${userInfo.userid }" name = "userid" id = "user-id">
 							 <input type="hidden" value = "${userInfo.med.medicalrecordsid }" name = "med.medicalrecordsid">
 							 <input type="hidden" value = "${message }" id = "message">
 							  

@@ -12,6 +12,10 @@ public class Medicalrecords {
     private String sex;
 
     private Date birthday;
+    
+ 
+
+	
 
     public Integer getMedicalrecordsid() {
         return medicalrecordsid;

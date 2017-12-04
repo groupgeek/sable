@@ -37,4 +37,17 @@ public interface ProductTypeService {
 	 */
 	public List<ProducttypeCustom> queryFatherType();
 	
+	/**
+	 *  添加商品大类型
+	 * @param addfatherType
+	 * @return
+	 */
+	public boolean addProductFather(String addfatherType);
+	
+	/**
+	 *  添加商品类型
+	 * @param data
+	 * @return
+	 */
+	public boolean addProductType(ProducttypeCustom data);
 }

@@ -110,7 +110,7 @@
 								</div>
 							  </div>
 							  <div class="control-group hidden-phone" id = "messagecontext">
-								  <label class="control-label">留言类容</label>
+								  <label class="control-label">留言详情</label>
 								  <div class="controls">
 									<textarea class="" id="" rows="6"  name="messagecontext" style="width: 500px; background-color: #FCFCFC;" readonly="readonly"></textarea>
 								  </div>
