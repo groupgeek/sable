@@ -7,13 +7,14 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
 <head>
 
 <!-- start: Meta -->
 <meta charset="utf-8">
-<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+<title> 订单信息</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <meta name="keyword"
@@ -114,8 +115,8 @@
 						<ul class="nav nav-tabs nav-stacked main-menu">							
 							<li><a href="#"><i class="icon-home"></i><span class="hidden-tablet">订单管理中心</span></a></li>	
 							<li><a href="${pageContext.request.contextPath }/selectorder/selectorderbybranchid.action"><i class="icon-comment"></i><span class="hidden-tablet">订单信息</span></a></li>
-							<li><a href="#"><i class="icon-user"></i><span class="hidden-tablet">修改订单信息</span></a></li>						
- 	 						<%-- <li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li> --%>
+<!-- 							<li><a href="#"><i class="icon-user"></i><span class="hidden-tablet">修改订单信息</span></a></li>						
+ --> 	 						<%-- <li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li> --%>
 						</ul>		
 				</div>
 			</div>
@@ -166,7 +167,7 @@
 							<table
 								class="table table-striped table-bordered bootstrap-datatable datatable">
 								<thead>
-									<tr>				
+									<tr>
 						    			<th>商品名称</th>
 						    			<th>用户名称</th>
 						    			<th>收货地址</th>
@@ -180,29 +181,31 @@
 								</thead>
 								<tbody>
 									<c:forEach var="order" items="${orderList}">
-										<tr>											
+										<tr>										
 											<td class="center">${order.productname}</td>					
 											<td class="center">${order.username}</td>
 											<td class="center">${order.resaddress}</td>
 											<td class="center">${order.productnumber}</td>
-											<td class="center">${order.totalprice * order.productnumber}</td>
+											<td class="center">${order.price * order.productnumber}</td>
 											<td class="center">${order.price}</td>
-											<td class="center">${order.ordertime}</td>											
-											<td class="center">${order.status}</td>
+											<td class="center"><fmt:formatDate value="${order.ordertime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+											<td class="center">${order.orderstatus}</td>
 											<td class="center">
 												<a class="btn btn-info"   href="${pageContext.request.contextPath }/selectorder/selectorderbyorderid.action?orderid=${order.orderid}"><i class="halflings-icon white edit"></i> </a> 
-												<a class="btn btn-danger" href="${pageContext.request.contextPath }/selectorder/selectorderbyorderiddelete.action?orderid=${order.orderid}"><i class="halflings-icon white trash"></i> </a>
- 											</td> 
-											
-										</tr>
+ 												<a class="btn btn-danger" href="javascript:void(0);" onclick="if(confirm('真的要删除?不可恢复哦!')) location.href='${pageContext.request.contextPath }/selectorder/deleteorderbyid.action?orderid=${order.orderid}';return false;"><i class="halflings-icon white trash"></i> </a>
+ 											</td>
+ 										</tr>
 									</c:forEach>
 
 								</tbody>
+								
 							</table>
+							
 						</div>
 					</div>
+					
 				</div>
-
+				
 			</div>
 			<!--/.fluid-container-->
 
@@ -211,7 +214,7 @@
 		<!--/#content.span10-->
 	</div>
 	<!--/fluid-row-->
-
+	 
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">Ã</button>

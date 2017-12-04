@@ -106,7 +106,7 @@ with (thisform)
 					<div class="form-group">
 					
 					<c:if test="${Massage!=null }">
-					
+				
 					<label for="employeeid" class="sr-only" >员工账号</label> <input
 							type="text" class="form-control" id="id" name="id" digits=true  
 							placeholder="员工账号" autocomplete="off" required value="${Massage}">
@@ -150,11 +150,11 @@ with (thisform)
 								</div>
 					</div> 
 					<div class="form-group">
-						<input type="submit" value="登录" class="btn btn-primary">
+						<input id=message  type="submit" value="登录" class="btn btn-primary">
 					</div>
 				</form>
 				<!-- END Sign In Form -->
-
+				<input type="hidden" value = "${Massage}" id = "errorMessage">
 			</div>
 		</div>
 		<div class="row" style="padding-top: 60px; clear: both;">
@@ -168,7 +168,8 @@ with (thisform)
 			</div>
 		</div>
 	</div>
-
+	
+<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 	<!-- jQuery -->
 	<script
 		src="${pageContext.request.contextPath }/jsp/logReg/js/jquery.min.js"></script>
@@ -199,6 +200,39 @@ with (thisform)
 	});
 </script>
 
+<!-- <script>
+	$(document).ready(function(){
+		var root =  $("#root").attr("value");
+		$.ajax({
+			
+			type:"post",
+			contentType:"application/json;charset=utf-8",
+			success:function(data){
+			if(data!=null){
+			alert("Welcome " + Massage + ", the ");
+			}
+			}
+			
+			});
+		});
+
+
+</script> -->
+<!-- <script type="text/javascript">
+
+$(document).ready(function(){
+alert($("#errorMessage").val())
+			var errorMessage = $("#errorMessage").val();
+			if(errorMessage != "" && errorMessage != undefined){
+				//显示提示信息
+				$("#showMessage").text(errorMessage);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+			}
+		
+		});
+</script> -->
 
 </body>
 </html>

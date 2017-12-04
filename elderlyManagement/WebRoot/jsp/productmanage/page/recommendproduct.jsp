@@ -7,11 +7,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
+<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>本店推荐</title>
+	<title>商品推介</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -153,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  </tr>
 						  </thead>   
 						  <tbody>
-						  ${message }
+						
 							<c:forEach items="${recommendproduct }" var="recommendproduct">
 					<tr>
 						<td class="center">${recommendproduct.productname }</td>
@@ -165,7 +166,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- 	<input type="checkbox" name="yyy" lay-skin="switch" value="" > -->
 						<a class="btn btn-info" href="${pageContext.request.contextPath }/productmanage/productRecommend.action?productid=${recommendproduct.productid}">
 										<i class="halflings-icon white edit"></i>  
-									</a>		
+									</a>
+										
 						</td>
 						<%-- <td class="center">
 						<a href="${pageContext.request.contextPath }/brach/delUser.action?id=${users.userid }">删除</a>
@@ -175,10 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<!-- <a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>                                            
 									</a> -->
-									<a class="btn btn-danger" href="${pageContext.request.contextPath }/brach/delUser.action?id=${ users.userid}">
-										<i class="halflings-icon white trash"></i> 
-										
-									</a>
+									
 								</td>  --%>
 						<%-- <td><fmt:formatDate value="${user.birthday }"
 								pattern="yyyy-MM-dd HH:mm:ss" />
@@ -230,17 +229,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 	</div>
-	<div class="clearfix"></div>
+	<div class="clearfix">
+</div>	<input type="hidden" value = "${Massage}" id = "errorMessage">
 	
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎光临XIAOHE</a></span>
+			<span style="text-align:left;float:left">&copy; 2013 <a href="${pageContext.request.contextPath }/jsp/index/index.jsp" alt="Bootstrap_Metro_Dashboard">欢迎光临XIAOHE </a></span>
 			
 		</p>
 
 	</footer>
-	
+	<c:import url="/jsp/util/messageNotification.jsp"></c:import>
+		<script type="text/javascript">
+
+
+
+$(document).ready(function(){
+
+var val = window.location.href.split("?")[1];
+
+var message = val.split("=")[1];
+			var errorMessage = $("#errorMessage").val();
+			if(message != "" && message != undefined){
+			
+				//显示提示信息
+				$("#showMessage").attr("style","color:red;");
+				$("#showMessage").text(decodeURI(message));
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+				 //window.location.href = "${pageContext.request.contextPath }/productmanage/recommendproduct.action";
+			}
+		/* window.location.href = "${pageContext.request.contextPath }/productmanage/recommendproduct.action"; */
+		});</script>
 	<!-- start: JavaScript-->
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/jquery-1.9.1.min.js"></script>
@@ -298,6 +320,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
-	
+
 </body>
 </html>

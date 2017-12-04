@@ -109,7 +109,10 @@
   <select id="quertyRecommendProdcut" parameterType="Integer" resultType="productCustom">
   	
   <!-- 	SELECT p.* FROM productrecommend pre , product p WHERE p.productId = pre.productId and  p.branchId=#{branchId} -->
-  	SELECT p.*,pt.productTypeName FROM productrecommend pre , product p , producttype pt WHERE p.productId = pre.productId and p.productTypeId=pt.productTypeId AND  p.branchId=1
+  	SELECT p.*,pt.productTypeName,pre.* 
+  	FROM productrecommend pre , product p , producttype pt 
+  	WHERE p.productId = pre.productId and p.productTypeId=pt.productTypeId AND pre.productShow=1 
+  	and p.branchId=#{branchId}
   
   </select>
   

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
@@ -29,36 +30,25 @@ public class OrdersController {
 	private ProductManageService productManageService;
 	
 
-	@RequestMapping(value="selectorderbyorderid")
+	@RequestMapping(value="selectorderbyorderid",method={RequestMethod.POST,RequestMethod.GET})
 	public String selectByPrimaryKey(String orderid,Model model) throws Exception{	
 		
 		Orders orderOne = new Orders();
-	    orderOne = ordersService.selectByPrimaryKey(orderid);//传入订单id获取订单信息
+	    orderOne = ordersService.selectByPrimaryKey(orderid);
 	  	model.addAttribute("orderOne", orderOne);	
 		return "/deliverymanlogReg/page/updateorder";
 	}
 	
-	@RequestMapping(value="selectorderbyorderiddelete")
-	public String selectByPrimaryKey2(String orderid,Model model) throws Exception{	
-		
-		Orders orderTow = new Orders();
-	    orderTow = ordersService.selectByPrimaryKey(orderid);//传入订单id获取订单信息
-	  	model.addAttribute("orderTow", orderTow);
-	  	System.out.println(orderTow.getProductname()+"************************************************************");
-		return "/deliverymanlogReg/page/deleteorder";
-	}
 	
-	
-	
-	@RequestMapping(value="selectorderbybranchid")  
+	@RequestMapping(value="selectorderbybranchid",method={RequestMethod.POST,RequestMethod.GET})  
 	public String selectAllOrdersByBranchId(Integer branchid,Model model,HttpServletRequest request) throws Exception{ 
 		EmployeeCustom employeeCustom = (EmployeeCustom) request.getSession().getAttribute("admins");
-		List<Orders> orderList = ordersService.selectAllOrdersByBranchId(employeeCustom.getBranchId());//传入分店id获取下所有订单信息
+		List<Orders> orderList = ordersService.selectAllOrdersByBranchId(employeeCustom.getBranchId());
 		model.addAttribute("orderList",orderList);
 		return "/deliverymanlogReg/page/showorders";
 	} 
 	
-	@RequestMapping(value="deleteorderbyid") 
+	@RequestMapping(value="deleteorderbyid",method={RequestMethod.POST,RequestMethod.GET}) 
 	public String deleteByPrimaryKey(String orderid) throws Exception{
 		
 		ordersService.deleteByPrimaryKey(orderid);
@@ -66,7 +56,7 @@ public class OrdersController {
 		return "/deliverymanlogReg/page/showorders";
 	}
 	
-	@RequestMapping(value="updateorderbyid")
+	@RequestMapping(value="updateorderbyid",method={RequestMethod.POST,RequestMethod.GET})
 	public String updateByPrimaryKey(Orders record,HttpServletRequest request) throws Exception {
 		
 		EmployeeCustom employeeCustom = (EmployeeCustom) request.getSession().getAttribute("admins");
