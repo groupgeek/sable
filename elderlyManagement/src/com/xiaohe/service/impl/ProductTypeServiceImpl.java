@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.ProductCustom;
+import com.xiaohe.bean.Producttype;
 import com.xiaohe.bean.ProducttypeCustom;
 import com.xiaohe.mapper.ProducttypeMapper;
 import com.xiaohe.service.ProductTypeService;
@@ -38,6 +39,29 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
 	public List<ProducttypeCustom> queryFatherType() {
 		return producttypeMapper.selectAllFatherType();
+	}
+
+	public boolean addProductFather(String addfatherType) {
+		if(addfatherType == null || "".equals(addfatherType)) return false;
+		
+		addfatherType = addfatherType.substring(1, addfatherType.length()-1);
+		Producttype record = new Producttype();
+		record.setFatherid(0);
+		record.setProducttypename(addfatherType);
+		if(producttypeMapper.insertSelective(record) <= 0) return false;
+		
+		return true;
+	}
+
+	public boolean addProductType(ProducttypeCustom data) {
+		
+		if(data == null) return false;
+		
+		if(data.getFatherid() == null || data.getProducttypename() == null) return false;
+		
+		if(producttypeMapper.insertSelective(data) <= 0) return false;
+		
+		return true;
 	}
 
 }

@@ -99,9 +99,9 @@
 		</div>
 	</div>
 	<!-- start: Header -->
-	<div class="copyrights">
+	<!-- <div class="copyrights">
 		Collect from <a href="http://www.cssmoban.com/">企业网站模板</a>
-	</div>
+	</div> -->
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 

@@ -1,6 +1,19 @@
  $(document).ready(function(){
 	var root =  $("#root").attr("value");
 	
+	var userid = $("#user-id").val();
+	//查询积分
+	$.ajax({
+		
+		type:"post",
+		contentType:"application/json;charset=utf-8",
+		url:root+"/superAdmin/queryIntegral",
+		data:JSON.stringify(userid),
+		success:function(data){
+			$("#integral input").val(data.remainingpoints);
+		}
+	});
+	
 	//js验证
 	var flagName = true;
 	//var flagEmail = false;
@@ -12,7 +25,7 @@
 	var emailRe = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
 	var phoneRe = /^1(3|4|5|7|8)\d{9}$/;
 	
-	
+	updateUser();
 	//名字验证
 	$("#username input").bind("input propertychange",function(){
 
@@ -83,15 +96,14 @@
 		
 	});
 	
-
 	function updateUser(){
 		if(flagName && flagPhone && flagPassword){
 			$("#updateUser").show();
-				
+			
 			$("#updateUser").click(function(){
 				$('#loading').show();
 				$('body').addClass("hiddenBody");
-			})
+			});
 		}
 	}
 	

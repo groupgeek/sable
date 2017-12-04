@@ -33,6 +33,7 @@ import com.xiaohe.bean.CeoActivityreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
+import com.xiaohe.bean.IntegralCustom;
 import com.xiaohe.bean.LevelCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
@@ -60,6 +61,7 @@ import com.xiaohe.service.AuthorityService;
 import com.xiaohe.service.BranchService;
 import com.xiaohe.service.CeoService;
 import com.xiaohe.service.EmployeeService;
+import com.xiaohe.service.IntegralService;
 import com.xiaohe.service.LevelSevice;
 import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
@@ -137,6 +139,10 @@ public class superAdminController {
 	@Autowired
 	@Qualifier("ceoService")
 	private CeoService ceoService;
+	
+	@Autowired
+	@Qualifier("integralService")
+	private IntegralService integralService;
 	
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
@@ -1091,5 +1097,62 @@ public class superAdminController {
 		map = reportService.queryProductReportByTimeInterval(condition);
 		
 		return map;
+	}
+	
+	/**
+	 * 添加商品大类型
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/addProductFather")
+	public @ResponseBody ShowMessage addProductFather(@RequestBody String addfatherType){
+		ShowMessage message = new ShowMessage();
+		
+		if(productTypeService.addProductFather(addfatherType)){
+			message.setFlag(true);
+			message.setMessage("添加成功");
+		}else{
+			message.setFlag(false);
+			message.setMessage("添加失败");
+		}
+		
+		return message;
+	}
+	
+	/**
+	 * 添加商品类型
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/addProductType")
+	public @ResponseBody ShowMessage addProductType(@RequestBody ProducttypeCustom record){
+		ShowMessage message = new ShowMessage();
+		
+		if(productTypeService.addProductType(record)){
+			message.setFlag(true);
+			message.setMessage("添加成功");
+		}else{
+			message.setFlag(false);
+			message.setMessage("添加失败");
+		}
+		
+		return message;
+	}
+	
+	/**
+	 * 查询某用户的可用积分
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/queryIntegral")
+	public @ResponseBody IntegralCustom queryIntegral(@RequestBody Integer userid){
+		if(userid == null) return null;
+		
+		IntegralCustom condition = new IntegralCustom();
+		IntegralCustom info = new IntegralCustom();
+		condition.setUserid(userid);
+		info = integralService.queryUpToDateRecord(condition);
+		
+		return info;
 	}
 }
