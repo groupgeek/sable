@@ -13,10 +13,29 @@ $(document).ready(function(){
 				$("#areaname select").append('<option value ='+data.allArea[key].areaid+' >'+data.allArea[key].areaname+'</option>');
 			}
 			for(var key in data.employeeList){
+				if(data.employeeList[key].employeeid != 9)
 				$("#employeename select").append('<option value ='+data.employeeList[key].employeeid+' >'+data.employeeList[key].employeename+'</option>');
 			}
 		}
 	});
+	
+	//js验证
+	
+	var nameRe = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_]){1,100}$/;
+	//名字验证
+	$("#branchname input").bind("input propertychange",function(){
+		if(nameRe.test($(this).val())){
+			$("#branch-name-error").hide();
+			$("#addBranch").show();
+			
+		}else{
+			$("#branch-name-error").show();
+			$("#addBranch").hide();
+		}
+		
+	});
+	
+	
 	
 	$("#addBranch").click(function(){
 		$('#loading').show();

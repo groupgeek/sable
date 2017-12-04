@@ -634,7 +634,7 @@ AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 	</select>
 
 	<select id="selectHotProduct" resultMap="BaseResultMap">
-		select productId,productName from product order by buyNo desc limit 8
+		select productId,productName,buyNo from product order by buyNo desc limit 8
 	</select>
 	
 	<select id="selectAllProduct" resultType="com.xiaohe.bean.ProductCustom">

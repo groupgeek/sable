@@ -38,32 +38,42 @@ $(document).ready(function(){
 		
 		
 		function createBranchTable(data){
-			for(var i in data.branchList){
+			if(data.branchList != ""){
+				for(var i in data.branchList){
+					$("#box tbody").append(
+							'<tr>'+
+								'<td>'+ (data.branchList)[i].branchid +'</td>'+
+								'<td class="center">'+ (data.branchList)[i].branchname +'</td>'+
+								'<td class="center">'+(data.branchList)[i].employeename+'</td>'+
+								'<td class="center">'+ (data.branchList)[i].areaaddress +'</td>'+							
+								'<td class="center">'+
+									'<a class="btn btn-success" href="'+root+'/jsp/admin/page/allproductReportofbranch.jsp?id='+ (data.branchList)[i].branchid +'" target="_black">'+
+										'商品报表'+
+									'</a>'+
+									'&nbsp;'+
+									'<a class="btn btn-success" href="'+root+'/jsp/admin/page/allactivityReportofbranch.jsp?id='+ (data.branchList)[i].branchid +'" target="_black">'+
+										'活动报表'+
+									'</a>'+
+								'</td>'+
+							'</tr>'
+					);				
+				}
+			}else{
 				$("#box tbody").append(
-						'<tr>'+
-							'<td>'+ (data.branchList)[i].branchid +'</td>'+
-							'<td class="center">'+ (data.branchList)[i].branchname +'</td>'+
-							'<td class="center">'+(data.branchList)[i].employeename+'</td>'+
-							'<td class="center">'+ (data.branchList)[i].areaaddress +'</td>'+							
-							'<td class="center">'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/allproductReportofbranch.jsp?id='+ (data.branchList)[i].branchid +'" target="_black">'+
-									'商品报表'+
-								'</a>'+
-								'&nbsp;'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/allactivityReportofbranch.jsp?id='+ (data.branchList)[i].branchid +'" target="_black">'+
-									'活动报表'+
-								'</a>'+
-							'</td>'+
-						'</tr>'
-					);
-				
+					'<tr>'+
+						'<td colspan="5">'+"没有找到数据！"+'</td>'+	
+					'</tr>'
+				);
 			}
-			
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");
 			//sort = $("#selectSort").attr("value");
 			search = $("#search").val();
+			var patt = new RegExp(/\s+/g);
+			if(patt.test(search)){
+				return search.replace(/\s+/g, "");
+			}
 			currentPage = 1;
 			$.ajax({
 				

@@ -81,7 +81,7 @@
                                     <li class="current"><a href="#Home" title="">主页</a></li>
                                     <li><a href="${pageContext.request.contextPath }/product/mallIndex" title="商城">商城</a></li>
                                     <li><a href="${pageContext.request.contextPath }/jsp/edu/index.jsp" title="">教育中心</a></li>
-                                    <li><a href="" title="">健康中心</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/health/activity" title="">健康中心</a></li>
                                     <li><a href="${pageContext.request.contextPath }/user/oneUser" title="">${user.username }的个人中心</a></li>
                                     <li><a href="${pageContext.request.contextPath }/logReg/logout" title="">安全退出</a></li>
                                 </ul>

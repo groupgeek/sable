@@ -106,8 +106,9 @@
 							  <div class="control-group" id="username">
 								<label class="control-label" for="focusedInput">姓名*</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "username" type="text" placeholder="姓名"
-										minlength=2 autocomplete="off" required>
+								  <input class="input-xlarge focused" name = "username" type="text" placeholder="姓名" 
+										minlength=2 maxlength=15 autocomplete="off" required>
+									<p id = "user-name-error" style="color: red;display: none;">名字不能包含特殊字符，长度为2-15个字符</p>
 								</div>
 							  </div>
 							  
@@ -135,6 +136,7 @@
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "phone" type="text" digits=true minlength = 11 maxlength = 11
 										placeholder="手机号码" autocomplete="off" required>
+										<p id = "user-phone-error" style="color: red;display: none;">手机号码格式不对</p>
 								</div>
 							  </div>
 							  
@@ -144,6 +146,7 @@
 								  <input class="input-xlarge focused" id = "userPassword" name = "password" type="text" minlength=6
 										maxlength=15 name="password" placeholder="密码 6-15" autocomplete="off"
 										required>
+									<p id = "user-password-error" style="color: red;display: none;">密码为6-15位</p>
 								</div>
 							  </div>
 							  <div class="control-group" id = "re-password">
@@ -186,6 +189,7 @@
 								<label class="control-label">邮箱</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "email" type="email" value="">
+								  <p id = "user-email-error" style="color: red;display: none;">不是有效的邮箱格式</p>
 								</div>
 							  </div>
 							  
@@ -299,7 +303,7 @@
 							 <input type="hidden" value = "${message }" id = "message">
 							  
 							  <div class="form-actions">
-								<button type="submit" id = "addUser" class="btn btn-primary">保存</button>
+								<input type="submit" id = "addUser" class="btn btn-primary" value = "保存" style="display: none;">
 							  </div>
 							</fieldset>
 						  </form>
@@ -318,28 +322,6 @@
 		</div>
 	</div>
 		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
 	
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>

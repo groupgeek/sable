@@ -38,7 +38,7 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> </a> <a class="brand" href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><span>XIAOHE-ADMIN</span>
+					class="icon-bar"></span> </a> <a class="brand" href="${pageContext.request.contextPath }/jsp/admin/index.jsp"><span>XIAOHE</span>
 				</a>
 
 				<!-- start: Header Menu -->
@@ -99,9 +99,9 @@
 		</div>
 	</div>
 	<!-- start: Header -->
-	<div class="copyrights">
+	<!-- <div class="copyrights">
 		Collect from <a href="http://www.cssmoban.com/">企业网站模板</a>
-	</div>
+	</div> -->
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 

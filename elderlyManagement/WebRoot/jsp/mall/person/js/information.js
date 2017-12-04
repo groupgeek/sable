@@ -55,16 +55,66 @@ $(document).ready(function(){
 		$(".update-phone-label").show();
 	});
 	
+	//js验证
+	/*function check(value){
+		 var regex = new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_]){1,20}$");//不包含“-”
+		 //var regex = new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_-]){1,20}$");//包含“-”
+		 var res = regex.test(value);
+		 if(res==true){
+		 // alert("包含中英文字母或下划线");
+		  return true;
+		 }else{
+		  //alert("不包含中英文字母或下划线");
+		  return false;
+		 }
+	*/
+	var nameRe = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_]){2,20}$/;
+	
+	var emailRe = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+	//名字验证
+	$("#user-name").bind("input propertychange",function(){
 
+		if(nameRe.test($(this).val())){
+			$("#user-name-error").hide();
+			emailCheck();
+			
+		}else{
+			$("#user-name-error").show();
+			$("#save").unbind();
+		}
+		
+	});
+	
+	//邮箱验证
+	function emailCheck(){
+		$("#user-email").bind("input propertychange",function(){
+			
+			if(emailRe.test($(this).val())){
+				$("#user-email-error").hide();
+				save();
+				
+			}else{
+				$("#user-email-error").show();
+				$("#save").unbind();
+			}
+			
+		});
+	}
+	
+	
+	
+	
 	
 	
 	//保存修改的信息
-	$("#save").click(function(){
-		
-		$('#loading').show();
-		$('body').addClass("hiddenBody");
-		$("#formSubmit").submit();
-		
+	save();
+	function save(){
+		$("#save").click(function(){
+			$('#loading').show();
+			$('body').addClass("hiddenBody");
+			$("#formSubmit").submit();
+		});	
+	}	
 		
 		
 		/*var userid = $("#userid").attr("value");
@@ -113,7 +163,7 @@ $(document).ready(function(){
 				
 			}
 		});*/
-	});
+
 	
 	
 /*	//文件上传

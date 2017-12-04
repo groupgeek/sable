@@ -133,6 +133,13 @@ SELECT * FROM `user` u,branch b WHERE b.areaId=u.areaId AND u.phone=#{phone}
   </select>
   
   <select id="quertyRecommendingProduct" parameterType="integer" resultType="ProductCustom" >
-  select * from productrecommend pr,product p   WHERE  pr.productId=p.productId AND and prodcutShow=1 p.branchId=#{branchId}
+   select * from productrecommend pr,product p   WHERE  pr.productId=p.productId AND pr.productShow=1 and p.branchId=#{branchId}
   </select>
+  <select id="quertyOneProduct" parameterType="integer" resultType="Productrecommend">
+   select * from productrecommend pr   WHERE productShow=1 and pr.productId=#{productId}
+
+  </select>
+  
+  
+  
 </mapper>

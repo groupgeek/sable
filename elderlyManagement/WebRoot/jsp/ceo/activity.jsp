@@ -32,7 +32,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/jsp/ceo/img/favicon.ico">
 	<!-- end: Favicon -->
-
+	
+	<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.3.0/aliplayer-min.js"></script>
+	<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.3.0/skins/default/aliplayer-min.css" />
+	<link href="${pageContext.request.contextPath }/jsp/util/_css/wait.css" rel="stylesheet" type="text/css" />
+	
+	<style type="text/css">
+	#header {
+	height:355px;
+	width:100%;
+    padding-up:10px;
+    padding-left:0px;
+	}
+	#center{
+	height:300px;
+	width:100%;
+	}
+	#nav {
+   	 line-height:30px;
+  	 height:100%;
+  	 width:45%;
+   	 float:left;
+   	 padding:5px;	      
+	}
+	#section {
+	height:100%;
+   	 width:49%;
+   	 float:left;
+   	 padding:10px;	 	 
+	}
+	#section1{
+	width:100%;
+	height:140px;
+	}
+	#image1{ 
+       	
+        width:300px; 
+        height:350px;
+        float:left; 
+ 
+    }
+    #footer{
+    	width:100%;
+    	height:100%;	 	
+    }
+    .message{
+    	padding-left:30%;
+    	width:900px;
+    	height:100px;
+    }
+	</style>
   </head>
   
   <body>
@@ -66,13 +115,121 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-bordered table-striped table-condensed">
+					<form class="form-horizontal" action="">
+							<fieldset>
+							<input type="hidden" name="productid" value="${findCeoActivity.activityid }"  />
+							<div style="padding-bottom: 30px">
+								<div id="header">
+									
+									<div id="nav">
+										<%
+											String id = request.getParameter("activityid");
+											int a = Integer.valueOf(id);
+						 				%>
+						 				<input type="hidden" id="activityid" value="<%=a %>">
+										<input type="hidden" id = "root" value="${pageContext.request.contextPath }">
+										<div class="control-group" id="activitypicture">
+											<label class="control-label" for="disabledInput">活动照片</label>
+											<div class="controls" id="section1">
+								  				<img id="image1" src="">
+											</div>
+							  			</div>							
+									</div>
+									<div id="section">
+										<div class="control-group">
+											<label class="control-label" for="disabledInput">活动名称</label>
+											<div class="controls">
+								  				<input class="input-xlarge disabled" id="disabledInput" type="text" name="productname" value="${findCeoActivity.activityname }" disabled="">
+											</div>
+							  			</div>
+							   			<div class="control-group">
+							 				<label class="control-label" for="typeahead">活动类型 </label>
+							  				<div class="controls">
+							   					<input class="input-xlarge disabled" id="disabledInput" type="text" name="instock" value="${findCeoActivity.activitytypename }" disabled="">
+							  				</div>
+							  			</div>
+							 			 <div class="control-group">
+											<label class="control-label" for="optionsCheckbox2">开设分店</label>
+											<div class="controls">
+							   					<input class="input-xlarge disabled" id="disabledInput" type="text" name="price" value="${findCeoActivity.branchname }" disabled="">
+							  				</div>
+							  			</div>
+							  			<div class="control-group">
+											<label class="control-label" for="disabledInput">是否线上</label>
+											<div class="controls">
+								  				<input class="input-xlarge disabled" id="disabledInput" type="text" name="buyno" value="${findCeoActivity.stringline }" disabled="">
+											</div>
+							  			</div>
+							  			<div class="control-group">
+											<label class="control-label" for="disabledInput">活动状态</label>
+											<div class="controls">
+								  				<input class="input-xlarge disabled" id="disabledInput" type="text" name="purchaseprice" value="${findCeoActivity.activitystatus }" disabled="">
+											</div>
+							  			</div>
+							  			<div class="control-group">
+											<label class="control-label" for="disabledInput">活动细节</label>
+											<div class="controls">
+								  				<input class="input-xlarge disabled" id="disabledInput" type="text" name="good" value="${findCeoActivity.activitydetails }" disabled="">
+											</div>
+							  			</div>
+							  			<div class="control-group">
+											<label class="control-label" for="disabledInput">活动日期</label>
+											<div class="controls">
+								  				<input class="input-xlarge disabled" id="disabledInput" type="text" name="shelflife" value="${findCeoActivity.stringDate }" disabled="">
+											</div>
+							  			</div>
+									</div>
+									
+								</div>
+								<div id="center">
+								<div id="nav">
+									<div class="control-group" id = "showVideo">
+										<label class="control-label">活动视频</label>
+										<div class="controls">
+											<div  class="prism-player" id="J_prismPlayer"></div>
+										</div>								
+							  		</div>							  								  		
+								</div>
+								<div id="section">
+									<div class="control-group">
+										<label class="control-label" for="disabledInput">报名费</label>
+										<div class="controls">
+							   				<input class="input-xlarge disabled" id="disabledInput" type="text" name="productionlicensenumber" value="${findCeoActivity.registeryfee }" disabled="">
+							  			</div>
+							  		</div>
+							  		<div class="control-group">
+										<label class="control-label">活动支出</label>
+										<div class="controls">
+							   				<input class="input-xlarge disabled" id="disabledInput" type="text" name="productspecifications" value="${findCeoActivity.activityprice }" disabled="">
+							  			</div>
+							  		</div>	
+							  		<div class="control-group">
+										<label class="control-label">活动人数上限</label>
+										<div class="controls">
+							   				<input class="input-xlarge disabled" id="disabledInput" type="text" name="productspecifications" value="${findCeoActivity.maxnum }" disabled="">
+							  			</div>
+							  		</div>						  
+								</div>
+								</div>
+								<div id="footer">
+									<div class="control-group">
+											<label class="control-label" for="disabledInput">活动细节</label>
+											<div class="controls">
+												<textarea rows="4" disabled="" style="width: 700px; background-color: #FCFCFC;">${findCeoActivity.activitydetails }</textarea>
+								  				
+											</div>
+							  		</div>
+								</div>
+							</div>
+							</fieldset>
+						  </form>
+						<%-- <table class="table table-bordered table-striped table-condensed">
 							  <thead>
 								  <tr>
 									  <th>活动属性</th>
 									  <th>详细信息</th>                                        
 								  </tr>
-							  </thead>   
+							  </thead>
 							  <tbody>
 								<tr>
 									<td>活动名称</td>
@@ -111,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td class="center">${findCeoActivity.activityprice }</td>                                        
 								</tr>                  
 							  </tbody>
-						 </table>  
+						 </table>   --%>
 						
 					</div>
 				</div><!--/span-->
@@ -182,6 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/counter.js"></script>	
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/retina.js"></script>
 		<script src="${pageContext.request.contextPath }/jsp/ceo/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/ceo/newjs/activity.js"></script>
 	<!-- end: JavaScript-->
   </body>
 </html>

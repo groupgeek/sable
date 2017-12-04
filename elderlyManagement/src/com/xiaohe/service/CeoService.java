@@ -20,6 +20,7 @@ import com.xiaohe.bean.CeoSelectVo;
 import com.xiaohe.bean.CeoTotalreport;
 import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.MessageCustom;
+import com.xiaohe.bean.MessageVo;
 import com.xiaohe.bean.Product;
 import com.xiaohe.bean.ProductCustom;
 import com.xiaohe.bean.Producttransactionreport;
@@ -228,13 +229,15 @@ public interface CeoService {
 	 * 查询留言信息	
 	 * @return
 	 */
-	public List<MessageCustom> findAllUserMessageCustoms();
+	public MessageVo messages(MessageVo messageVo);
 	/**
 	 * 查询留言的详细
 	 * @param id
 	 * @return
 	 */
 	public MessageCustom findMessage(Integer id);	
+	
+	
 	
 	/*---------------------------------留言信息结束----------------------------*/
 	
@@ -340,6 +343,30 @@ public interface CeoService {
 	 * @return
 	 */
 	public List<CeoActivityreport> ceoactivitychartByYear();
+	/**
+	 * 查询商品的盈利（作图用）
+	 * @param ceoProducttransactionreport
+	 * @return
+	 */
+	public CeoProducttransactionreportVo listSumBigDecimal(CeoProducttransactionreport ceoProducttransactionreport);
+	/**
+	 * 查询分店商品的收入（做饼图用）
+	 * @param ceoProducttransactionreport
+	 * @return
+	 */
+	public List<CeoProducttransactionreport> listSumBigDecimalByBranch(CeoProducttransactionreport ceoProducttransactionreport);
+	/**
+	 * 查询活动盈利（做图用）
+	 * @param ceoActivityreport
+	 * @return
+	 */
+	public CeoActivityreportVo listSumActivityreportMoney(CeoActivityreport ceoActivityreport);
+	/**
+	 * 查询活动的收入（做饼图用）
+	 * @param ceoActivityreport
+	 * @return
+	 */
+	public List<CeoActivityreport> lintAllMoneyByBranch(CeoActivityreport ceoActivityreport);
 	/*-------------------------------------报表结束-------------------------------------*/
 	
 	/**

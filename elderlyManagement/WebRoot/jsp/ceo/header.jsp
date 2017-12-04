@@ -79,9 +79,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				success:function(data){
 					
 					if(data == ""){
-						window.location.href = root + "/jsp/AdminLogin/login.jsp";
+						window.location.href = root + "/jsp/AdminLogin/login/login.jsp";
 					}
-					$(".ceoAdmin").text(data.ceoid);
+					$(".ceoAdmin").text(data.ceoaccountnumber);
 				}
 			});
 		

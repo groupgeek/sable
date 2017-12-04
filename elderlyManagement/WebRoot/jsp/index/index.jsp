@@ -139,9 +139,10 @@
 	                            <div class="caption8 ctn_blue">
 	                                <h3>${product.productname }</h3>
 	                                <p>${product.description }.</p>
-	                                <a href="#" class="pf_button green">详细</a>
+	                                <a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp" class="pf_button black">详细</a>
 	                            </div>
-	                            <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" />
+	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
+	                            <img alt="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" style="min-height: 300px;">
 	                        </li>
 	                    </ul>
 	                        </div>
@@ -160,7 +161,6 @@
             </div><!-- end portfolio_wrapper -->
             </div>
 
-            <br><div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
 
 
             <div id="Case_Area">
@@ -186,7 +186,7 @@
                             <h6 class="pm-column-title">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>
                                 <p>${activitie.introduction }.</p>
-                            <div class="btn-blk"><a href="#" class="pm-rounded-btn">去围观</a></div>
+                            <div class="btn-blk"><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp" class="pm-rounded-btn">去围观</a></div>
 
                         </div>
                     </div>

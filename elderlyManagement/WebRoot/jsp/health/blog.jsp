@@ -17,7 +17,7 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-<title>STANLEY - Free Bootstrap Theme</title>
+<title>活动详情</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -50,19 +50,10 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">STANLEY</a>
+				          <a class="navbar-brand" href="${pageContext.request.contextPath }/jsp/index/index.jsp">官网首页</a>
 			</div>
 			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="work.html">Work</a>
-					</li>
-					<li><a href="about.html">About</a>
-					</li>
-					<li><a href="blog.html">Blog</a>
-					</li>
-					<li><a href="contact.html">Contact</a>
-					</li>
-				</ul>
+				
 			</div>
 			<!--/.nav-collapse -->
 		</div>
@@ -87,10 +78,10 @@
 						</p>
 					</div>
 					<video width="100%" height="240" controls autoplay> <source
-						src="/upload/${ac.video }" type="video/ogg"> <source
-						src="/upload/${ac.video }" type="video/mp4"> <source
-						src="/upload/${ac.video }" type="video/webm"> <object
-						data="/upload/${ac.video }" width="320" height="240">
+						src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${ac.video }" type="video/ogg"> <source
+						src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${ac.video }" type="video/mp4"> <source
+						src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${ac.video }" type="video/webm"> <object
+						data="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${ac.video }" width="320" height="240">
 						<embed width="100%" height="240" src="/upload/${ac.video }">
 					</object></video>
 					<br />
@@ -104,7 +95,7 @@
 					<div>
 
 						<div style="min-height: 300px;">
-							<img class="img-responsive" src="/upload/${ac.activitypicture }"
+							<img class="img-responsive" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${ac.activitypicture }"
 								alt="" style="width:370px;height:275px; float:left;"/>
 							${ac.activitydetails}
 								
@@ -135,26 +126,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
-					<h4>My Bunker</h4>
-					<p>
-						Some Address 987,<br /> +34 9054 5455, <br /> Madrid, Spain.
-					</p>
+					
 				</div>
 				<!-- /col-lg-4 -->
 
 				<div class="col-lg-4">
-					<h4>My Links</h4>
-					<p>
-						<a href="#">Dribbble</a><br /> <a href="#">Twitter</a><br /> <a
-							href="#">Facebook</a>
-					</p>
+					
 				</div>
 				<!-- /col-lg-4 -->
 
 				<div class="col-lg-4">
-					<h4>About Stanley</h4>
-					<p>This cute theme was created to showcase your work in a
-						simple way. Use it wisely.</p>
+				
 				</div>
 				<!-- /col-lg-4 -->
 

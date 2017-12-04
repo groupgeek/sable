@@ -10,7 +10,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>跳转中</title>
+    <meta http-equiv="Refresh" content="0;url=<%=basePath%>index/index">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -22,10 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+   
 
-
-	<img alt="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/aa54c498-a2a9-4de9-adcd-c5ff12bfba0c.gif">
 	
 
 

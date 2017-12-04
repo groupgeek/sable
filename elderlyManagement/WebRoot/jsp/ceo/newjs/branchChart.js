@@ -172,7 +172,7 @@ $(document).ready(function(){
         },
          error : function(errorMsg) {
              //请求失败时执行该函数
-         alert("图表请求数据失败!");
+         
          myChart.hideLoading();
          }
     	});
@@ -249,7 +249,7 @@ $(document).ready(function(){
     },
      error : function(errorMsg) {
          //请求失败时执行该函数
-     alert("图表请求数据失败!");
+     
      twoChart.hideLoading();
      }
 	});
@@ -342,7 +342,7 @@ $(document).ready(function(){
     },
      error : function(errorMsg) {
          //请求失败时执行该函数
-     alert("图表请求数据失败!");
+     
      threeChart.hideLoading();
      }
 	});

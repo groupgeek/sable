@@ -108,6 +108,7 @@
 								<label class="control-label">商品名字</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "productname" type="text" value="">
+								  <p id = "product-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
 								</div>
 							  </div>
 							   <div class="control-group" id = "fathertypename">
@@ -138,18 +139,21 @@
 								<label class="control-label">购买次数</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "buyno" type="text" value="">
+								  <p id = "product-buyNo-error" style="color: red;display: none;">只能为数字</p>
 								</div>
 							  </div>
 							  <div class="control-group" id = "price">
 								<label class="control-label">商品价格</label>
 								<div class="controls">
-								  <span class="add-on">$</span><input id="" size="16" type="text" name = "price"><span class="add-on">.00</span>
+								  <span class="add-on">￥</span><input id="" size="16" type="text" name = "price">
+									<p id = "product-price-error" style="color: red;display: none;">格式错误</p>
 								</div>
 							  </div>
 							  <div class="control-group" id = "purchaseprice">
 								<label class="control-label">商品进价</label>
 								<div class="controls">
-								  <span class="add-on">$</span><input id="" size="16" type="text" name = "purchaseprice"><span class="add-on">.00</span>
+								  <span class="add-on">￥</span><input id="" size="16" type="text" name = "purchaseprice">
+									<p id = "product-purchaseprice-error" style="color: red;display: none;">格式错误</p>
 								</div>
 							  </div>
 							 <!--  <div class="control-group" id = "branchname">
@@ -163,6 +167,7 @@
 								<label class="control-label">总库存</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "instock" type="text" value="">
+									<p id = "product-instock-error" style="color: red;display: none;">只能为数字</p>
 								</div>
 							  </div>
 							 <!--  <div class="control-group" id = "discount">
@@ -236,7 +241,7 @@
 							  
 							  <input type="hidden" value="" id = "productid" name="productid">
 							  <div class="form-actions">
-							  	<button type="submit" class="btn btn-primary" id = "addProduct">保存</button>
+							  	<button type="submit" class="btn btn-primary" id = "addProduct" style="display: none;">保存</button>
 							  </div> 
 							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
@@ -260,28 +265,6 @@
 		</div>
 	</div>
 		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
 	
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>

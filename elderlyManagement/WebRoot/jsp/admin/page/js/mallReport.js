@@ -39,32 +39,42 @@ $(document).ready(function(){
 		
 		
 		function createActivityTable(data){
-			for(var i in data.productList){
+			if(data.productList != ""){
+				for(var i in data.productList){
+					$("#box tbody").append(
+							'<tr>'+
+								'<td>'+ (data.productList)[i].productname +'</td>'+
+								'<td class="center">'+ (data.productList)[i].branchname +'</td>'+
+								'<td class="center">'+(data.productList)[i].price+'</td>'+
+								'<td class="center">'+ (data.productList)[i].buyno +'</td>'+
+								'<td class="center">'+
+									'<span class="label label-success">'+ (data.productList)[i].instock +'</span>'+
+								'</td>'+
+								'<td class="center">'+
+									'<a class="btn btn-success" href="'+root+'/jsp/admin/page/oneproductReport.jsp?id='+ (data.productList)[i].productid +'" target="_black">'+
+										'<i class="halflings-icon white zoom-in"></i>'+
+									'</a>'+
+									'<input type="hidden" value="'+ (data.productList)[i].productid +'">'+
+								'</td>'+
+							'</tr>'
+						);				
+				}
+			}else{
 				$("#box tbody").append(
 						'<tr>'+
-							'<td>'+ (data.productList)[i].productname +'</td>'+
-							'<td class="center">'+ (data.productList)[i].branchname +'</td>'+
-							'<td class="center">'+(data.productList)[i].price+'</td>'+
-							'<td class="center">'+ (data.productList)[i].buyno +'</td>'+
-							'<td class="center">'+
-								'<span class="label label-success">'+ (data.productList)[i].instock +'</span>'+
-							'</td>'+
-							'<td class="center">'+
-								'<a class="btn btn-success" href="'+root+'/jsp/admin/page/oneproductReport.jsp?id='+ (data.productList)[i].productid +'" target="_black">'+
-									'<i class="halflings-icon white zoom-in"></i>'+
-								'</a>'+
-								'<input type="hidden" value="'+ (data.productList)[i].productid +'">'+
-							'</td>'+
+							'<td colspan="6">'+"没有找到数据！"+'</td>'+							
 						'</tr>'
-					);
-				
+				);
 			}
-			
 		}
 		function queryData(){
 			pageNum = $("#selectPageNum").attr("value");
 			//sort = $("#selectSort").attr("value");
 			search = $("#search").val();
+			var patt = new RegExp(/\s+/g);
+			if(patt.test(search)){
+				return search.replace(/\s+/g, "");
+			}
 			producttypeid = $("#producttypeid").attr("value");
 			branchid = $("#allBranch").attr("value");
 			currentPage = 1;

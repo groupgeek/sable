@@ -198,11 +198,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<form class="form-horizontal">
 						  <fieldset>
 							 
-							 
-							 
-							 
-							 
-							 
 							 <div class="control-group">
 								<label class="control-label" for="selectError3" name="">推荐活动1</label>
 								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec1">
@@ -223,11 +218,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<i class="icon-ok-sign"></i>                                            
 									</a></div>
 							</div> 
-							
-							
-							
-							
-							
 							
 							<div class="control-group">
 								<label class="control-label" for="selectError3">推荐活动2</label>
@@ -268,22 +258,94 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									 <a class="btn btn-info" href="" onclick="insertRecAct3()">
 										<i class="icon-ok-sign"></i>                                            
 									</a> 
-									<!-- <button type="submit" class="btn btn-info" onclick="insertRecAct()"><i class="icon-ok-sign"></i> </button> -->
-									<%-- <c:if test="${allBranchActRec[2].activityid ==null}">
-									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/insertRecAct.action">
-										<i class="icon-ok-sign"></i>                                            
-									</a>
-									</c:if> --%>
+									
 								</div>
 							</div> 
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>设置分店官网健康推荐活动</h2>
+						<div class="box-icon">
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							 
+							 <div class="control-group">
+								<label class="control-label" for="selectError3" name="">推荐活动1</label>
+								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec1">
+								<div class="controls">
+									<select id="selectError1" name="activity" >
+									<c:if test="${allBranchActRec[0] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[0] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[0].activityname}</option>
+									</c:if>
+									
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct1()">
+										<i class="icon-ok-sign"></i>                                            
+									</a></div>
+							</div> 
 							
-							
-							
-							
-							<!-- <div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Save changes</button>
-							  <button type="reset" class="btn">Cancel</button>
-							</div> -->
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐活动2</label>
+								<input type="hidden" value="${allBranchActRec[1].activityid }" id = "activityidRec2">
+								<div class="controls">
+									
+									<select id="selectError2" name="activity" >
+									<c:if test="${allBranchActRec[1] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[1] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[1].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct2()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐活动3</label>
+								<input type="hidden" value="${allBranchActRec[2].activityid }" id = "activityidRec3">
+								<div class="controls">
+									<select id="selectError3" name="activity" >
+									<c:if test="${allBranchActRec[2] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[2] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[2].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct3()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> 
+									
+								</div>
+							</div> 
 						  </fieldset>
 						</form>   
 
@@ -293,6 +355,90 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			
 			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>设置分店官网教育推荐活动</h2>
+						<div class="box-icon">
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							 
+							 <div class="control-group">
+								<label class="control-label" for="selectError3" name="">推荐活动1</label>
+								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec1">
+								<div class="controls">
+									<select id="selectError1" name="activity" >
+									<c:if test="${allBranchActRec[0] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[0] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[0].activityname}</option>
+									</c:if>
+									
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct1()">
+										<i class="icon-ok-sign"></i>                                            
+									</a></div>
+							</div> 
+							
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐活动2</label>
+								<input type="hidden" value="${allBranchActRec[1].activityid }" id = "activityidRec2">
+								<div class="controls">
+									
+									<select id="selectError2" name="activity" >
+									<c:if test="${allBranchActRec[1] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[1] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[1].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct2()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError3">推荐活动3</label>
+								<input type="hidden" value="${allBranchActRec[2].activityid }" id = "activityidRec3">
+								<div class="controls">
+									<select id="selectError3" name="activity" >
+									<c:if test="${allBranchActRec[2] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchActRec[2] !=null}">
+										<option selected="true" name="activityid">${ allBranchActRec[2].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecAct3()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> 
+									
+								</div>
+							</div> 
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div>
 			
 			
 			

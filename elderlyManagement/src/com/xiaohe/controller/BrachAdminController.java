@@ -531,7 +531,6 @@ public class BrachAdminController {
 			}else{
 				branchService.insertActRec(act3);
 			}
-			
 		}else if(act2 != null && act5!=null){
 			if(branchService.oneActRecById(act2)!=null){
 				branchService.delActRec(act2);

@@ -1,5 +1,7 @@
 package com.xiaohe.service;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xiaohe.bean.Productrecommend;
@@ -15,11 +17,19 @@ public interface ProductRecommendService {
 	 void	insertProductRecommend(Productrecommend productrecommend);
 	 
 
-	 int  sumProductRecommend(Integer branchid);
+	 int  sumProductRecommend(Integer productrecommendid);
 	 /**
 	  * 
 	  *  查询推荐商品用户登录账户	
 	  * @return
 	  */
 	 UserCustom quertyCustoms(String phone);
+	 
+	 /**
+	  * 查询单个商品信息
+	  * @param productid
+	  * @return
+	  */
+	 Boolean quertyOneProduct(int productid);
+	 
 }

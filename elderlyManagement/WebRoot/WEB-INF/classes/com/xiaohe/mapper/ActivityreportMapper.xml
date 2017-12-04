@@ -240,4 +240,30 @@
   select * from activityreport
   where activityid=#{activityId,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectSumBigDecimal" resultType="com.xiaohe.bean.CeoActivityreport">
+  	select sum(totalPrice) sumAllgetprice,sum(totalExpenditure) sumAlltoprice,sum(totalPrice-totalExpenditure) sumAllBigDecimal,DuringTime
+	from activityreport
+	group by date_format(DuringTime, '%Y-%m-%d')
+  </select>
+  <select id="selectSumBigDecimalByBranch" parameterType="com.xiaohe.bean.CeoActivityreport" resultType="com.xiaohe.bean.CeoActivityreport">
+  	select sum(a.totalPrice) sumAllgetpriceBranch,sum(a.totalExpenditure) sumAlltopriceBranch,sum(a.totalPrice-a.totalExpenditure) sumAllBigDecimalBranch,a.DuringTime,b.branchName
+	from activityreport a,branch b
+	where a.branchId=b.branchId
+	and b.branchId = #{branchid,jdbcType=INTEGER}
+	group by date_format(a.DuringTime, '%Y-%m-%d')
+  </select>
+  <select id="selectYearMoneyByBranch" parameterType="com.xiaohe.bean.CeoActivityreport" resultType="com.xiaohe.bean.CeoActivityreport">
+  	select sum(a.totalExpenditure) sumtotalExpenditure,sum(a.totalPrice) sumtotalPrice,a.DuringTime 
+	from activityreport a,branch b
+	where a.DuringTime>DATE_SUB(CURDATE(), INTERVAL 1 year)
+    and a.branchId=b.branchId
+    and b.branchId = #{branchid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllMoneyByBranch" parameterType="com.xiaohe.bean.CeoActivityreport" resultType="com.xiaohe.bean.CeoActivityreport">
+  	select sum(a.totalExpenditure) sumtoprice,sum(a.totalPrice) sumgetprice,a.DuringTime 
+	from activityreport a,branch b
+    where a.branchId=b.branchId
+    and b.branchId = #{branchid,jdbcType=INTEGER}
+  </select>
 </mapper>

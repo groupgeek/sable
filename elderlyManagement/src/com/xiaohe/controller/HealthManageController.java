@@ -48,9 +48,8 @@ public class HealthManageController {
 	@RequestMapping("activity")
 	public String activityType(Model model,HttpServletRequest request) {
 		UserCustom userCustom=new UserCustom();
-		/*userCustom= (UserCustom) request.getSession().getAttribute("user");*/
-		userCustom.setPhone("12345678910");
-		userCustom.setUserid(1);
+		userCustom= (UserCustom) request.getSession().getAttribute("user");
+	
 	
 	 List<ActivityCustom> activity=activityService.quertyActivityArea(userCustom.getPhone());
 	
@@ -73,10 +72,10 @@ public class HealthManageController {
 	}
 	@RequestMapping("insertacrivityreg")
 	public String insertyActivityReg(Activityregistery activityregistery,HttpServletRequest request,Integer activityid){
-		/*UserCustom userCustom= (UserCustom) request.getSession().getAttribute("user");*/
-		UserCustom userCustom=new UserCustom();
-		userCustom.setPhone("12345678910");
-		userCustom.setUserid(12);
+		
+		UserCustom userCustom= (UserCustom) request.getSession().getAttribute("user");
+		/*userCustom.setPhone("12345678910");
+		userCustom.setUserid(12);*/
 		Activity Acty=(Activity) request.getSession().getAttribute("ac");
 		activityregistery.setUserid(userCustom.getUserid());
 		activityregistery.setActivityid(Acty.getActivityid());

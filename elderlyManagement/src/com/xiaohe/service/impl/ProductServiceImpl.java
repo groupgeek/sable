@@ -194,7 +194,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<EvaluationCustom> queryEvaluationByProductId(EvaluationCustom condition) {
 		if(condition == null) return null;
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		condition.setPageNum(3);
+		condition.setPageNum(5);
 		if(condition.getCurrentPage() > 0){
 			Integer beginTemp = (condition.getCurrentPage() - 1) * condition.getPageNum();
 			condition.setBegin(beginTemp);
@@ -240,6 +240,7 @@ public class ProductServiceImpl implements ProductService {
 		double c = (a / b) * 100;
 		DecimalFormat df = new DecimalFormat("#.00");
 		praiseOf = df.format(c);
+		if(c == 0) praiseOf = "0.00";
 		
 		evaluationCustom.setBadReview(badReview);
 		evaluationCustom.setAverage(average);
@@ -253,8 +254,8 @@ public class ProductServiceImpl implements ProductService {
 	public Integer queryEvaluationSum(Integer id) {
 		if(id == null) return null;
 		Integer sum = evaluationMapper.selectEvaluationSum(id);
-		Integer pageSum = sum / 3;
-		if(sum % 3 != 0){
+		Integer pageSum = sum / 5;
+		if(sum % 5 != 0){
 			pageSum += 1;
 		}
 		return pageSum;

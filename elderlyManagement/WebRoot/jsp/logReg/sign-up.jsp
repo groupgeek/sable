@@ -81,7 +81,7 @@
 					<div class="form-group">
 						<label for="name" class="sr-only">姓名</label> <input type="text" onfocus="selectArea()"
 							class="form-control" id="name" name="username" placeholder="姓名"
-							minlength=2 autocomplete="off" required>
+							minlength=2 maxlength=20 autocomplete="off" required>
 					</div>
 					<div class="form-group">
 						<label for="email" class="sr-only">手机号码</label>

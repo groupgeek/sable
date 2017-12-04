@@ -48,7 +48,16 @@
 <link rel="shortcut icon" href="img/favicon.ico">
 <!-- end: Favicon -->
 
-
+<style type="text/css">
+#welcome{
+	text-align: center;
+	display: block;
+	padding-top: 200px;
+	padding-top: 200px;
+	font-size: 3.5em;
+	font-family: '微软雅黑';
+}
+</style>
 
 
 </head>
@@ -71,7 +80,7 @@
 					<a href="${pageContext.request.contextPath }/jsp/admin/index.jsp">主页</a> 
 				</li>
 			</ul>
-			hello word
+			<span id = "welcome"><i>欢迎使用</i></span>
 				
 			</div>
 			</div>

@@ -52,5 +52,16 @@
 		}
 		
 	});
+	//查询积分
+	$.ajax({
+		
+		type:"post",
+		contentType:"application/json;charset=utf-8",
+		url:root+"/superAdmin/queryIntegral",
+		data:JSON.stringify(userid),
+		success:function(data){
+			$("#integral span").text(data.remainingpoints);
+		}
+	});
 	
 });

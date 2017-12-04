@@ -120,6 +120,7 @@
 								<label class="control-label" for="focusedInput">姓名</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "username" type="text" value="${userInfo.username }">
+								  <p id = "user-name-error" style="color: red;display: none;">名字不能包含特殊字符，长度为2-15个字符</p>
 								</div>
 							  </div>
 							  
@@ -161,6 +162,7 @@
 								<label class="control-label">手机号(账号)</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "phone" type="text" value="${userInfo.phone }">
+								  <p id = "user-phone-error" style="color: red;display: none;">手机号码格式不对</p>
 								</div>
 							  </div>
 							  
@@ -168,6 +170,7 @@
 								<label class="control-label">密码</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "password" type="text" value="${userInfo.password }">
+								  <p id = "user-password-error" style="color: red;display: none;">密码为6-15位</p>
 								</div>
 							  </div>
 							   <div class="control-group" id = "registrationdate">
@@ -206,13 +209,14 @@
 							  <div class="control-group" id = "integral">
 								<label class="control-label">积分</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "integral" type="text" value="${userInfo.integral }">
+								  <input class="input-xlarge focused" name = "integral" type="text" value="0">
 								</div>
 							  </div>
 							    <div class="control-group" id = "email">
 								<label class="control-label">邮箱</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "email" type="email" value="${userInfo.email }">
+								  <p id = "user-email-error" style="color: red;display: none;">不是有效的邮箱格式</p>
 								</div>
 							  </div>
 							  
@@ -338,7 +342,7 @@
 							  
 							 
 							 
-							 <input type="hidden" value = "${userInfo.userid }" name = "userid">
+							 <input type="hidden" value = "${userInfo.userid }" name = "userid" id = "user-id">
 							 <input type="hidden" value = "${userInfo.med.medicalrecordsid }" name = "med.medicalrecordsid">
 							 <input type="hidden" value = "${message }" id = "message">
 							  
@@ -362,28 +366,7 @@
 		</div>
 	</div>
 		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
 	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
 	
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>

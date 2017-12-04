@@ -99,7 +99,8 @@
 								<label class="control-label" for="focusedInput">活动名字*</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "activityname" type="text"placeholder="活动名字"
-										minlength=2 autocomplete="off" required>
+										minlength=1 autocomplete="off" required>
+										<p id = "activity-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
 								</div>
 							  </div>
 							  
@@ -134,6 +135,7 @@
 								<label class="control-label">活动时间*</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" name = "activitydate" type="text" onClick="laydate()" value="" placeholder="活动时间" required>
+									<label id = "activity-"activitydate"-error" style="color: red;display: none;">时间格式错误</plabel>
 								</div>
 							  </div>
 							  <div class="control-group" id = "branchname">
@@ -164,6 +166,8 @@
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">$</span><input id="" size="16" type="text" name = "activityprice" placeholder="活动支出" digits=true required><span class="add-on">.00</span>
+									<label id = "activity-activityprice-error" style="color: red;display: none;">格式错误</plabel>
+									
 								  </div>
 								</div>
 							  </div>
@@ -173,6 +177,7 @@
 								<div class="controls">
 								  <div class="input-prepend input-append">
 									<span class="add-on">$</span><input id="" size="16" type="text" name = "registeryfee" placeholder="活动报名费" digits=true required><span class="add-on">.00</span>
+								  	<label id = "activity-registeryfee-error" style="color: red;display: none;">格式错误</label>
 								  </div>
 								</div>
 							  </div>
@@ -182,6 +187,7 @@
 								<div class="controls">
 									<div class="input-prepend input-append">
 										<input id="appendedPrependedInput" size="16" type="text" name = "maxnum" value="" digits=true required><span class="add-on">人</span>
+								    	<label id = "activity-maxnum-error" style="color: red;display: none;">格式错误</label>
 								    </div>
 								</div>
 							  </div>
@@ -242,7 +248,7 @@
 							 <input type="hidden" value = "${message }" id = "message">
 							  
 							  <div class="form-actions">
-								<button type="submit" id = "addEmployee" class="btn btn-primary">保存</button>
+								<button type="submit" id = "addActivity" class="btn btn-primary" style="display: none;">保存</button>
 							  </div>
 							</fieldset>
 						  </form>

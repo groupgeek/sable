@@ -23,6 +23,10 @@ public class CeoProducttransactionreport extends Producttransactionreport{
 	private String productname;
 	private BigDecimal price;
 	private String branchname;
+	private BigDecimal sumBigDecimal;
+	private BigDecimal branchBigDecimal;
+	private BigDecimal branchtotalPrice;
+	private BigDecimal branchtotalExpenditure;
 	
 	private String sort;  //排序
 	private Integer begin;
@@ -33,6 +37,38 @@ public class CeoProducttransactionreport extends Producttransactionreport{
 	
 	
 	
+	public BigDecimal getBranchBigDecimal() {
+		return branchBigDecimal;
+	}
+
+	public void setBranchBigDecimal(BigDecimal branchBigDecimal) {
+		this.branchBigDecimal = branchBigDecimal;
+	}
+
+	public BigDecimal getBranchtotalPrice() {
+		return branchtotalPrice;
+	}
+
+	public void setBranchtotalPrice(BigDecimal branchtotalPrice) {
+		this.branchtotalPrice = branchtotalPrice;
+	}
+
+	public BigDecimal getBranchtotalExpenditure() {
+		return branchtotalExpenditure;
+	}
+
+	public void setBranchtotalExpenditure(BigDecimal branchtotalExpenditure) {
+		this.branchtotalExpenditure = branchtotalExpenditure;
+	}
+
+	public BigDecimal getSumBigDecimal() {
+		return sumBigDecimal;
+	}
+
+	public void setSumBigDecimal(BigDecimal sumBigDecimal) {
+		this.sumBigDecimal = sumBigDecimal;
+	}
+
 	@Override
 	public String toString() {
 		return "CeoProducttransactionreport [getprice=" + getprice

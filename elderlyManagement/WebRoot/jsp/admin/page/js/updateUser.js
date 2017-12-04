@@ -1,11 +1,116 @@
  $(document).ready(function(){
 	var root =  $("#root").attr("value");
 	
+	var userid = $("#user-id").val();
+	//查询积分
+	$.ajax({
+		
+		type:"post",
+		contentType:"application/json;charset=utf-8",
+		url:root+"/superAdmin/queryIntegral",
+		data:JSON.stringify(userid),
+		success:function(data){
+			$("#integral input").val(data.remainingpoints);
+		}
+	});
 	
-	$("#updateUser").click(function(){
-		$('#loading').show();
-		$('body').addClass("hiddenBody");
-	})
+	//js验证
+	var flagName = true;
+	//var flagEmail = false;
+	var flagPhone = true;
+	
+	var flagPassword = true;
+	
+	var nameRe = /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9_]){2,20}$/;
+	var emailRe = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+	var phoneRe = /^1(3|4|5|7|8)\d{9}$/;
+	
+	updateUser();
+	//名字验证
+	$("#username input").bind("input propertychange",function(){
+
+		if(nameRe.test($(this).val())){
+			$("#user-name-error").hide();
+			flagName = true;
+			updateUser();
+			
+		}else{
+			flagName = false;
+			$("#user-name-error").show();
+			$("#updateUser").unbind();
+			$("#updateUser").hide();
+		}
+		
+	});
+	//邮箱验证
+	$("#email input").change(function(){
+		
+		if(emailRe.test($(this).val())){
+			//flagEmail = true;
+			$("#user-email-error").hide();
+			updateUser();
+			//save();
+			
+		}else{
+			//flagEmail = false;
+			$("#email input").val("");
+			$("#user-email-error").show();
+			//$("#addUser").unbind();
+			//$("#addUser").hide();
+		}
+		
+	});
+	
+	//手机号验证
+	$("#phone input").bind("input propertychange",function(){
+		
+		if(phoneRe.test($(this).val())){
+			flagPhone = true;
+			$("#user-phone-error").hide();
+			updateUser();
+			//save();
+			
+		}else{
+			flagPhone = false;
+			$("#user-phone-error").show();
+			$("#updateUser").unbind();
+			$("#updateUser").hide();
+		}
+		
+	});
+	
+	//密码
+	$("#password input").bind("input propertychange",function(){
+		if($(this).val().length >= 6 && $(this).val().length <= 15){
+			flagPassword = true;
+			$("#user-password-error").hide();
+			updateUser();
+			//save();
+			
+		}else{
+			flagPassword = false;
+			$("#user-password-error").show();
+			$("#updateUser").unbind();
+			$("#updateUser").hide();
+		}
+		
+	});
+	
+	function updateUser(){
+		if(flagName && flagPhone && flagPassword){
+			$("#updateUser").show();
+			
+			$("#updateUser").click(function(){
+				$('#loading').show();
+				$('body').addClass("hiddenBody");
+			});
+		}
+	}
+	
+	
+	
+	
+	
 	
 	
 	/*var val = window.location.href.split("?")[1];
