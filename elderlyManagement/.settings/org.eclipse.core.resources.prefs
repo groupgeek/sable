@@ -1,4 +1,4 @@
-#Sun Nov 26 16:13:23 CST 2017
+#Mon Dec 04 22:34:27 CST 2017
 eclipse.preferences.version=1
 encoding//WebRoot/jsp/AdminLogin/login/css/style.css=UTF-8
 encoding//WebRoot/jsp/AdminLogin/login/login.jsp=UTF-8
@@ -22,3 +22,4 @@ encoding//WebRoot/jsp/mall/person/shippingAddress.jsp=UTF-8
 encoding//WebRoot/jsp/mall/person/userComment.jsp=UTF-8
 encoding//WebRoot/jsp/test/jquery.jsp=UTF-8
 encoding//WebRoot/jsp/util/Popupbox.jsp=UTF-8
+encoding//src/readme=UTF-8
