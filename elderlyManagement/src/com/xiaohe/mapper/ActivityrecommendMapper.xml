@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaohe.mapper.ActivityrecommendMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaohe.bean.Activityrecommend" >
+    <id column="reId" property="reid" jdbcType="INTEGER" />
+    <result column="activityId" property="activityid" jdbcType="INTEGER" />
+    <result column="branchId" property="branchid" jdbcType="INTEGER" />
+    <result column="websiteType" property="websitetype" jdbcType="VARCHAR" />
+    <result column="activityTypeFatherId" property="activitytypefatherid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reId, activityId, branchId, websiteType, activityTypeFatherId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activityrecommend
+    where reId = #{reid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activityrecommend
+    where reId = #{reid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.bean.Activityrecommend" >
+    insert into activityrecommend (reId, activityId, branchId, 
+      websiteType, activityTypeFatherId)
+    values (#{reid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, #{branchid,jdbcType=INTEGER}, 
+      #{websitetype,jdbcType=VARCHAR}, #{activitytypefatherid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.bean.Activityrecommend" >
+    insert into activityrecommend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reid != null" >
+        reId,
+      </if>
+      <if test="activityid != null" >
+        activityId,
+      </if>
+      <if test="branchid != null" >
+        branchId,
+      </if>
+      <if test="websitetype != null" >
+        websiteType,
+      </if>
+      <if test="activitytypefatherid != null" >
+        activityTypeFatherId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reid != null" >
+        #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null" >
+        #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="websitetype != null" >
+        #{websitetype,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytypefatherid != null" >
+        #{activitytypefatherid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.bean.Activityrecommend" >
+    update activityrecommend
+    <set >
+      <if test="activityid != null" >
+        activityId = #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        branchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="websitetype != null" >
+        websiteType = #{websitetype,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytypefatherid != null" >
+        activityTypeFatherId = #{activitytypefatherid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where reId = #{reid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.bean.Activityrecommend" >
+    update activityrecommend
+    set activityId = #{activityid,jdbcType=INTEGER},
+      branchId = #{branchid,jdbcType=INTEGER},
+      websiteType = #{websitetype,jdbcType=VARCHAR},
+      activityTypeFatherId = #{activitytypefatherid,jdbcType=INTEGER}
+    where reId = #{reid,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 自定义sql -->
+  <select id="branchActRec" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityrecommendCustom">
+  SELECT c.*,a.*,c.activityName,c.registeryfee from activityrecommend a,employee e,branch b,activity c
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and a.activityId = c.activityId
+	and a.websiteType = '分店官网'
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="deleteByPrimary" parameterType="com.xiaohe.bean.ActivityrecommendCustom">
+   delete from activityrecommend
+    where activityId = #{activityid,jdbcType=INTEGER}
+      and branchId = #{branchid,jdbcType=INTEGER}
+      </select>
+      
+    <select id="selectByPrimary" parameterType="com.xiaohe.bean.ActivityrecommendCustom" resultType="com.xiaohe.bean.ActivityrecommendCustom">
+   select * from activityrecommend
+    where activityId = #{activityid,jdbcType=INTEGER}
+     and branchId = #{branchid,jdbcType=INTEGER}
+      </select>  
+      
+      <insert id="insertAct" parameterType="com.xiaohe.bean.ActivityrecommendCustom" >
+    insert into activityrecommend (activityId, websiteType, branchId
+      )
+    values (#{activityid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}, #{branchid,jdbcType=INTEGER}
+      )
+  </insert> 
+  
+  
+  <select id="countActRec" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(*) from employee e,branch b,activityrecommend a
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+</mapper>
