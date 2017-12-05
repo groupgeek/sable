@@ -53,6 +53,7 @@
 			<mvc:mapping path="/product/*" />
 			<mvc:mapping path="/user/*"/>
 			<mvc:mapping path="/edu/*"/>
+			<mvc:mapping path="/health/*"/>
 			<bean class="com.xiaohe.controller.interceptor.UserLoginInterceptor"></bean>
 		</mvc:interceptor>
 		
@@ -61,7 +62,8 @@
 			<mvc:mapping path="/superAdmin/*" />
 			<!-- 管理员2登录拦截 -->
 			<mvc:mapping path="/brach/*" />
-			<!-- 管理员3登录拦截 -->
+			<!-- 商品管理登录拦截 -->
+			<mvc:mapping path="/productmanage/*" />
 			<bean class="com.xiaohe.controller.interceptor.AdminLoginInterceptor"></bean>
 		</mvc:interceptor>
 		

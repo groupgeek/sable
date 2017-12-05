@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.xiaohe.bean.Activity;
 import com.xiaohe.bean.Branch;
@@ -979,7 +980,7 @@ public class CeoServiceImpl implements CeoService{
 			return null;
 			
 		}else if(ceos.getPassword().equals(ceo.getPassword()) == false){
-			
+		
 			return  null;
 			
 		}else{

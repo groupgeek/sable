@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html>
 <head>
@@ -58,6 +60,18 @@
 </head>
 
 <body>
+	<!-- 输出校验错误提示信息 -->
+	<%-- <c:if test="${allErrors != null }">
+			<c:forEach items="${allErrors}" var="error">
+				${error.defaultMessage}
+			</c:forEach>
+		</c:if> 
+	--%>
+	
+
+
+
+
 	<input id="root" type="hidden"
 		value="${pageContext.request.contextPath }">
 	<!-- start: Header -->
@@ -254,8 +268,8 @@
 						<ul class="nav nav-tabs nav-stacked main-menu">
 							<li><a href="#"><i class="icon-home"></i><span class="hidden-tablet">订单管理中心</span></a></li>	
 							<li><a href="${pageContext.request.contextPath }/selectorder/selectorderbybranchid.action"><i class="icon-comment"></i><span class="hidden-tablet">订单信息</span></a></li>
-							<li><a href="#"><i class="icon-user"></i><span class="hidden-tablet">修改订单信息</span></a></li>						
-	 						<%-- <li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li> --%>
+<!-- 							<li><a href="#"><i class="icon-user"></i><span class="hidden-tablet">修改订单信息</span></a></li>						
+ -->	 						<%-- <li><a href="${pageContext.request.contextPath }/jsp/brach/chart.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet">报表</span></a></li> --%>
 						</ul>
 				</div>
 			</div>
@@ -304,7 +318,12 @@
 									<div class="control-group" id="resaddress">
 										<label class="control-label">收货地址</label>
 										<div class="controls">
-											<input class="input-xlarge" name="resaddress" value="${orderOne.resaddress}" />
+											<input class="input-xlarge" name="resaddress" data-val="true" data-val-required="请输入用户名！" value="${orderOne.resaddress}" />
+											<%-- <c:if test="${allErrors != null}">
+												<c:forEach items="${allErrors }" var="error">
+													${allErrors }
+												</c:forEach>
+											</c:if> --%>
 										</div>
 									</div>
 
@@ -318,7 +337,7 @@
 									<div class="control-group" id="totalprice">
 										<label class="control-label">总价</label>
 										<div class="controls">
-											<input class="input-xlarge" type="text" id="picture" name="totalprice" value="${orderOne.productnumber * orderOne.price}" />
+											<input class="input-xlarge" type="text" id="picture" name="totalprice" value="${orderOne.productnumber*orderOne.price}" disabled="disabled" />
 										</div>
 									</div>
 
@@ -332,14 +351,14 @@
 									<div class="control-group" id="ordertime">
 										<label class="control-label">下单日期</label>
 										<div class="controls">
-											<input class="input-xlarge" name="ordertime" value="${orderOne.ordertime}" />
+											<input class="input-xlarge" name="ordertime" value=" <fmt:formatDate value="${orderOne.ordertime}" pattern="yyyy-MM-dd HH:mm:ss"/>" /> 
 										</div>
 									</div>
-
-									<div class="control-group" id="status">
+									
+									<div class="control-group" id="orderstatus">
 										<label class="control-label">订单交易状态</label>
 										<div class="controls">
-											<input class="input-xlarge" name="status" value="${orderOne.status}" />
+											<input class="input-xlarge" name="orderstatus" value="${orderOne.orderstatus}" />
 										</div>
 									</div>
 									

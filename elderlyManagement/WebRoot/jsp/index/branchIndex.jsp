@@ -107,13 +107,13 @@
         </div><!-- end page_header -->
 
         <div class="white-wrapper">
-        <div class="container">
+       <!--  <div class="container">
 
             <div class="tagline makepadding clearfix">
                 <h1><span>Hello!</span> We Design Stunning Products.</h1>
                 <p class="lead">We are a <span>Law</span> team working together to craft awesome websites, realise brand identities, design for<br> print and capture visual imagery through quality.</p>
-            </div><!-- end tagline -->
-        </div>
+            </div>end tagline
+        </div> -->
         
         
         <div id="Case_Area">
@@ -168,9 +168,9 @@
 	                            <div class="caption8 ctn_blue">
 	                                <h3>${product.productname }</h3>
 	                                <p>${product.description }.</p>
-	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button green">详细</a>
+	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button black">详细</a>
 	                            </div>
-	                            <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="min-height: 350px; max-height: 350px;"/>
+	                            <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="min-height: 300px;"/>
 	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
 	                        </li>
 	                    </ul>

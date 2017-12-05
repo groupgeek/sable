@@ -335,6 +335,8 @@
 		</div>
 	</div>
 	
+	input type="hidden" value = "${Massage}" id = "errorMessage">
+	
 	<div class="clearfix"></div>
 	<footer>
 
@@ -348,6 +350,10 @@
 	</footer>
 	
 	<!-- start: JavaScript-->
+	
+	<c:import url="/jsp/util/messageNotification.jsp"></c:import>
+
+	<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 
 	<script src="${pageContext.request.contextPath }/jsp/js/jquery.js"></script>
 
@@ -453,6 +459,20 @@
 		}
 	}
 	</script>
+	<script type="text/javascript">
+
+$(document).ready(function(){
+			var errorMessage = $("#errorMessage").val();
+			if(errorMessage != "" && errorMessage != undefined){
+				//显示提示信息
+				$("#showMessage").attr("style","color:red;");
+				$("#showMessage").text(errorMessage);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+			}
+		
+		});</script>
 	
 </body>
 </html>

@@ -78,18 +78,7 @@ var option = {
             		type:'bar',
             		barMaxWidth:60,
             		data:[],
-                    yAxisIndex: 1,
-            		markPoint : {
-                		data : [
-                    		{type : 'max', name: '最大值'},
-                    		{type : 'min', name: '最小值'}
-                		]
-            		}, 
-            		markLine : {
-                		data : [
-                    		{type : 'average', name: '平均值'}
-                		]
-            		}
+                    yAxisIndex: 1
         		},    
         		{
         			

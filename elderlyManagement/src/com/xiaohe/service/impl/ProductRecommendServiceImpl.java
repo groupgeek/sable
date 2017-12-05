@@ -35,14 +35,18 @@ public class ProductRecommendServiceImpl implements ProductRecommendService {
 	}
 
 	public Boolean quertyOneProduct(int productid) {
+	
 		Productrecommend productrecommend=productrecommendMapper.quertyOneProduct(productid);
-		if (productrecommend.getProductid()!=(productid)) {
-			
-			return true;
+		if (productrecommend==null) {
+			return false;
 		}
 		
-			return false;
+			return true;
 
+	}
+
+	public void upProductRecomment(Productrecommend productrecommend) {
+		productrecommendMapper.updateByPrimaryKey(productrecommend);
 	}
 
 	

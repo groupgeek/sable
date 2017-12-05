@@ -333,4 +333,26 @@ public class BranchAdminServiceImpl implements BranchAdminService{
 			ProducttransactionreportCustom producttransactionreportCustom) {
 		return producttransactionreportMapper.onedayAllAct(producttransactionreportCustom);
 	}
+	public int insertRecAct(ActivityrecommendCustom avtActivityrecommendCustom) {
+		activityrecommendMapper.insertRecAct(avtActivityrecommendCustom);
+		return 0;
+	}
+	public int countActRec(Integer emid) {
+		activityrecommendMapper.countActRec(emid);
+		return 0;
+	}
+	public int countActHealthRec(Integer emid) {
+		activityrecommendMapper.countActHealthRec(emid);
+		return 0;
+	}
+	public int countActEduRec(Integer emid) {
+		activityrecommendMapper.countActEduRec(emid);
+		return 0;
+	}
+	public List<ActivityrecommendCustom> branchActHealthRec(Integer id) {
+		return activityrecommendMapper.branchActHealthRec(id);
+	}
+	public List<ActivityrecommendCustom> branchActEduRec(Integer id) {
+		return activityrecommendMapper.branchActEduRec(id);
+	}
 }

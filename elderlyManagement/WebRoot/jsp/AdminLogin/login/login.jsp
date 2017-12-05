@@ -22,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //js -->
 <link href="${pageContext.request.contextPath }/jsp/AdminLogin/login/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 </head>
 <body>
 	<div class="main">
@@ -68,10 +69,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div> 	
 					</form>
 				  </div>
-				 
+				 	<input type="hidden" value = "${Massage}" id = "errorMessage">
 				  <div class="cta"><a href="#" onclick="tanchuang()">忘记密码?</a></div>
 				
 			</div>
+			<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 			<script>
 				$('.toggle').click(function(){
 				  // Switches the Icon
@@ -90,6 +92,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p>© 2016 Sign In | Design by <a href="#">孝和</a></p>
 		</div>
 	</div>
+	<!-- <script type="text/javascript">
+
+$(document).ready(function(){
+			var errorMessage = $("#errorMessage").val();
+			if(errorMessage != "" && errorMessage != undefined){
+				//显示提示信息
+				$("#showMessage").attr("style","color:red;")
+				$("#showMessage").text(errorMessage);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+			}
+		
+		});
+</script> -->
 	<script>
 
 	$(document).ready(function() {
@@ -112,5 +129,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		alert("联系网管");
 	}
 </script>
+
 </body>
 </html>

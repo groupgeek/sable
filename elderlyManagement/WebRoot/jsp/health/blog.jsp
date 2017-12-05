@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN">
 <html lang="en">
+<script type="text/javascript" src="${pageContext.request.contextPath }/jsp/js/jquery-3.2.1.js"></script>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -117,9 +118,7 @@
 	</div>
 	<!-- /white -->
 
-
-
-
+<input type="hidden" value = "${Massage}" id = "errorMessage">
 	<!-- +++++ Footer Section +++++ -->
 
 	<div id="footer">
@@ -144,12 +143,27 @@
 
 		</div>
 	</div>
-
+<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="${pageContext.request.contextPath }/jsp/health/assets/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript">
+
+$(document).ready(function(){
+			var errorMessage = $("#errorMessage").val();
+			if(errorMessage != "" && errorMessage != undefined){
+				//显示提示信息
+				$("#showMessage").attr("style","color:red;");
+				$("#showMessage").text(errorMessage);
+				$('#messageNotification').fadeIn(2000);
+				getSrceenWH();
+				$('#messageNotification').fadeOut(3000);
+			}
+		
+		});</script>
 </body>
 </html>

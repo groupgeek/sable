@@ -90,6 +90,7 @@ public void updateProductCustom(Product product,MultipartFile producPpicture) th
 	
 	productMapper.updateByPrimaryKeySelective(product);
 }
+
 public List<ProductCustom> quertyRecommendProduct(Integer branchid) {
 	
 	return productrecommendMapper.quertyRecommendProdcut(branchid);

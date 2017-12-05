@@ -31,5 +31,9 @@ public interface ProductRecommendService {
 	  * @return
 	  */
 	 Boolean quertyOneProduct(int productid);
-	 
+	 /**
+	  * 更新商品推介信息
+	  * @param productrecommend
+	  */
+	 void upProductRecomment(Productrecommend productrecommend);
 }

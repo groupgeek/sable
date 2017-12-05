@@ -286,7 +286,7 @@
       productNumber = #{productnumber,jdbcType=INTEGER},
       totalPrice = #{totalprice,jdbcType=DECIMAL},
       price = #{price,jdbcType=DECIMAL},
-      orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      <!-- orderTime = #{ordertime,jdbcType=TIMESTAMP}, -->
       branchId = #{branchid,jdbcType=INTEGER},
       orderStatus = #{orderstatus,jdbcType=VARCHAR},
       productStatus = #{productstatus,jdbcType=VARCHAR},
