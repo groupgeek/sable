@@ -380,7 +380,7 @@
 								</a>
 							</div> -->
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[0].productid }"> <img
-								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[0].picture }" />
+								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[0].picture }" style="border-radius:10px;"/>
 								<div class="outer-con ">
 									<div class="title ">${oneTypeProducts.value[0].productname }</div>
 									<div class="title ">${oneTypeProducts.value[0].price }</div>
