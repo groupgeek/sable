@@ -81,7 +81,7 @@
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span>分店详细信息</h2>
-						<h2><span class="break"></span><a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp" style="color: white; text-decoration: none;">查看商城</a></h2>
+						<h2><span class="break"></span><a href="" style="color: white; text-decoration: none;" id = "mallUrl">查看商城</a></h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
 							<a href="" id = "branchUrl"><i class="halflings-icon white wrench"></i></a>

@@ -121,6 +121,8 @@
 
 			<!-- 菜单 -->
 			<c:import url="/jsp/mall/personMenu.jsp"></c:import>
+			
+			<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 		</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/person/js/evaluation.js"></script>

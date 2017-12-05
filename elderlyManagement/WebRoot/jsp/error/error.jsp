@@ -9,7 +9,7 @@
 <meta name="keywords" content="keywords, keyword, seo, google" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Coffee Break : 404</title>
+<title>error</title>
 <link rel="stylesheet" media="screen"
 	href="${pageContext.request.contextPath }/jsp/error/_css/style.css"
 	type="text/css" />

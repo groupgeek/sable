@@ -539,7 +539,7 @@ $(document).ready(function(){
 				data:JSON.stringify(payArr),
 				success:function(data){
 					//alert(data)
-					if(data != null || data != "")
+					if(data != null && data != "")
 					window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
 					
 				}
