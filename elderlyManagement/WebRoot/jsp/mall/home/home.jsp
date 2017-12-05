@@ -335,7 +335,7 @@
 							<h4>特惠</h4>
 							<div class="activityMain">
 								<a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }"><img
-									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg"></img></a>
+									src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productDiscount.picture }"></img></a>
 							</div>
 							<div class="info" style="opacity : 0.5;">
 								<h3><a 
