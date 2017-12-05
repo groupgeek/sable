@@ -11,8 +11,14 @@ public class ProductCustom extends Product {
 	private String producttypename;
 	private String search;
 	private Integer currentPage;
+	private Integer productrecommendid;
 	
-	
+	public Integer getProductrecommendid() {
+		return productrecommendid;
+	}
+	public void setProductrecommendid(Integer productrecommendid) {
+		this.productrecommendid = productrecommendid;
+	}
 	private List<ProducttasteCustom> tasteList;
 	private List<ProductcolourCustom> colourList;
 	private Integer employeeid;

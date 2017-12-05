@@ -71,20 +71,21 @@ public class HealthManageController {
 		return "health/blog"; 
 	}
 	@RequestMapping("insertacrivityreg")
-	public String insertyActivityReg(Activityregistery activityregistery,HttpServletRequest request,Integer activityid){
+	public String insertyActivityReg(Activityregistery activityregistery,HttpServletRequest request,Integer activityid,Model model){
 		
 		UserCustom userCustom= (UserCustom) request.getSession().getAttribute("user");
-		/*userCustom.setPhone("12345678910");
-		userCustom.setUserid(12);*/
+		
 		Activity Acty=(Activity) request.getSession().getAttribute("ac");
 		activityregistery.setUserid(userCustom.getUserid());
 		activityregistery.setActivityid(Acty.getActivityid());
 		activityregistery.setRegistery("报名");
 		if (activityService.quertyIfUsetRegistery(activityregistery)==true) {
 			activityService.insertUserRegistery(activityregistery);
-			return "health/blog01";
-		}
 		
+			return "health/blog01";
+			
+		}
+		model.addAttribute("Massage", "你已报名");
 		return "health/blog";
 	}
 }

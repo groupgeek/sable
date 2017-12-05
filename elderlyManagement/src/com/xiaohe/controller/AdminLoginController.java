@@ -59,10 +59,10 @@ public class AdminLoginController {
 		}
 		if (mark==0) {
 			Ceo  ceos=new Ceo();
-		
 			ceos.setCeoaccountnumber(id);
 			ceos.setPassword(password);
 			 ceos = ceoService.quertyCEO(ceos);
+			 if(ceos!=null){
 			if(ceos.getAuthorityid()==6){
 			request.getSession().setAttribute("ceos", ceos);
 			//ECO跳转
@@ -70,6 +70,7 @@ public class AdminLoginController {
 			}else {
 				return "AdminLogin/login/login";
 			}
+			 }
 		return "AdminLogin/login/login";
 	}	
 }
