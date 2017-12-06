@@ -6,6 +6,18 @@ public class ActivityrecommendCustom extends Activityrecommend {
 	public String activityname;
 	private String activitypicture;
 	private BigDecimal registeryfee;
+	
+	private Integer fathertypeid;
+	
+	
+	public Integer getFathertypeid() {
+		return fathertypeid;
+	}
+
+	public void setFathertypeid(Integer fathertypeid) {
+		this.fathertypeid = fathertypeid;
+	}
+
 	public BigDecimal getRegisteryfee() {
 		return registeryfee;
 	}

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
-	//查询某一类商品的销量前4
+	//查询某一类商品的销量前4  style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;"
 	var buyNo = new Object();
 	var types = new Array(8,9,12,13);
 	//alert((((Math.random()*10+"").substring(0, 1)/3)+"").substring(0, 1));
@@ -25,7 +25,7 @@ $(document).ready(function(){
 					      	'<a  href="'+root+'/product/productInfo?id='+ data.productList[i].productid +'">'+
 				      		'<img style="max-height: 230px;" class="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.productList[i].picture+'"> </a>'+  
 					      	'</div>'+
-					      	'<div class="p-name"><a href="#">'+
+					      	'<div class="p-name"><a href="'+root+'/product/productInfo?id='+ data.productList[i].productid +'">'+
 					      		data.productList[i].productname+
 					      	'</a>'+
 					      	'</div>'+
@@ -36,7 +36,7 @@ $(document).ready(function(){
 					      '</li>'
 				);
 				if(index == 0){
-					$(".mc ul").find('"input[value='+ data.productList[i].productid+']"').parent().addClass("first");
+					$(".mc ul").find("li").first().addClass("first");
 				}
 				index++;
 			}
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	//查询积分兑换的商品
 	//
 	var currentPage = 1;
-	var pageNum = 1;
+	var pageNum = 16;
 	var condition = new Object;
 	
 	function createActivityTable(data){
@@ -185,17 +185,16 @@ $(document).ready(function(){
 	
 	//分页事件
 	$("#ull li").click(function(){
-		
 		if("previousPage" == $(this).attr("id")){
-			if(currentPage > 1){
-				$(this).attr("value",currentPage-1);
-				$("#nextPage").attr("value",currentPage-1);
+			if(parseInt(currentPage) > 1){
+				$(this).attr("value",parseInt(currentPage)-1);
+				$("#nextPage").attr("value",parseInt(currentPage)-1);
 			}
 		}
 		if("nextPage" == $(this).attr("id")){
 			if($(this).attr("value") < $("#lastPage").attr("value")){
-				$(this).attr("value",currentPage+1);
-				$("#previousPage").attr("value",currentPage+1);
+				$(this).attr("value",parseInt(currentPage)+1);
+				$("#previousPage").attr("value",parseInt(currentPage)+1);
 			}
 		}
 		if("home" == $(this).attr("id")){

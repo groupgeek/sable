@@ -477,6 +477,12 @@ public class BrachAdminController {
 			}
 		}
 		model.addAttribute("url", filename);
+		if(file.isEmpty()){
+			activity.setActivitypicture(null);
+		}
+		if(nice.isEmpty()){
+			activity.setVideo(null);
+		}
 		if(filename!=null){
 		activity.setActivitypicture(filename);
 		}
@@ -908,7 +914,7 @@ public class BrachAdminController {
 	@RequestMapping(value="/logout")
 	public String logOut(HttpServletRequest request){
 		request.getSession().invalidate();
-		return "AdminLogin/login";
+		return "AdminLogin/login/login";
 	}
 	
 	//--------------------------报表开始--------------------------

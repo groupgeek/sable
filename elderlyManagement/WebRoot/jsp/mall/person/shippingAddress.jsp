@@ -67,8 +67,6 @@
 										<span class="street"></span></p>
 								</div>
 								<div class="new-addr-btn">
-									<a href="javascript:;"><i class="am-icon-edit"></i>编辑</a>
-									<span class="new-addr-bar">|</span>
 									<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>
 									<input type="hidden" name = "shippingaddressid">
 								</div>
