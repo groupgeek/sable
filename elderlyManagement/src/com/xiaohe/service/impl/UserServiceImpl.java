@@ -301,23 +301,27 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		
-		//更新积分
-		IntegralCustom condetion = new IntegralCustom();
-		condetion.setCurrentPage(1);
-		condetion.setPageNum(1);
-		condetion.setUserid(userInfo.getUserid());
+		if(userInfo.getIntegral() != null){
+			//更新积分
+			IntegralCustom condetion = new IntegralCustom();
+			condetion.setCurrentPage(1);
+			condetion.setPageNum(1);
+			condetion.setUserid(userInfo.getUserid());
+			
+			IntegralCustom integral = new IntegralCustom();
+			integral.setUserid(userInfo.getUserid());
+			integral.setChangetime(new Date());
+			
+			IntegralCustom temp = integralMapper.selectUpToDateRecord(condetion);
+			
+				integral.setChangeintegral(Integer.parseInt(userInfo.getIntegral()) - temp.getRemainingpoints());
+				integral.setDetails("管理员更新");
+				integral.setRemainingpoints(Integer.parseInt(userInfo.getIntegral()));
+			
+			integralMapper.insertSelective(integral);
+		}
 		
-		IntegralCustom integral = new IntegralCustom();
-		integral.setUserid(userInfo.getUserid());
-		integral.setChangetime(new Date());
 		
-		IntegralCustom temp = integralMapper.selectUpToDateRecord(condetion);
-		
-			integral.setChangeintegral(Integer.parseInt(userInfo.getIntegral()) - temp.getRemainingpoints());
-			integral.setDetails("管理员更新");
-			integral.setRemainingpoints(Integer.parseInt(userInfo.getIntegral()));
-		
-		integralMapper.insertSelective(integral);
 		
 		
 		

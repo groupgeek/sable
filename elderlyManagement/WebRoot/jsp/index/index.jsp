@@ -83,7 +83,7 @@
                     <nav id="navigation" class="navbar navbar-default" role="navigation">
                         <div class="navbar-inner">
                             <div class="navbar-header">
-                                <a id="brand" class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
+                                <a id="brand" class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath }/jsp/index/images/logo12.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right" id="nav">
@@ -100,7 +100,7 @@
             </header><!-- end header -->
         </div><!-- end container -->
         <div id="page_header">
-            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/5.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
+            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/bg6.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
 
 
             <div class="container text-center header-part">
@@ -137,7 +137,7 @@
 	                    <ul>
 	                        <li class="img_item">
 	                            <div class="caption8">
-	                                <h3>${product.productname }</h3>
+	                                <h3 style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${product.productname }</h3>
 	                                <p>${product.description }.</p>
 	                                <a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp" class="pf_button black">详细</a>
 	                            </div>

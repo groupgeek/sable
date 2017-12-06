@@ -7,6 +7,7 @@
 	var branchid = val.split("=")[1];
 	
 	$("#branchid").val(branchid);
+	$("#mallInfoUrl").attr("href",root+"/jsp/admin/page/mallInfo.jsp?branchid="+branchid);
 	var k = 0;
 	$.ajax({
 		
@@ -154,13 +155,13 @@
 	});
 	//进价验证
 	$("#purchaseprice input").bind("input propertychange",function(){
-		if(!digitalRe.test($(this).val())){
+		if(!digitalRe.test($(this).val()) && $(this).val().length > 0){
 			$("#product-purchaseprice-error").hide();
-			activityprice = true;
+			purchaseprice = true;
 			addProduct();
 			
 		}else{
-			activityprice = false;
+			purchaseprice = false;
 			$("#product-purchaseprice-error").show();
 			$("#addProduct").unbind();
 			$("#addProduct").hide();
@@ -169,13 +170,13 @@
 	});
 	//购买次数验证
 	$("#buyNo input").bind("input propertychange",function(){
-		if(!(/[^0-9]/).test($(this).val())){
+		if(!(/[^0-9]/).test($(this).val()) && $(this).val().length > 0){
 			$("#product-buyNo-error").hide();
-			registeryfee = true;
+			buyNo = true;
 			addProduct();
 			
 		}else{
-			registeryfee = false;
+			buyNo = false;
 			$("#product-buyNo-error").show();
 			$("#addProduct").unbind();
 			$("#addProduct").hide();
@@ -184,13 +185,13 @@
 	});
 	//单价验证
 	$("#price input").bind("input propertychange",function(){
-		if(!digitalRe.test($(this).val())){
+		if(!digitalRe.test($(this).val()) && $(this).val().length > 0){
 			$("#product-price-error").hide();
-			maxnum = true;
+			price = true;
 			addProduct();
 			
 		}else{
-			maxnum = false;
+			price = false;
 			$("#product-price-error").show();
 			$("#addProduct").unbind();
 			$("#addProduct").hide();
@@ -201,13 +202,13 @@
 	//库存验证
 	$("#instock input").bind("input propertychange",function(){
 		
-		if(!(/[^0-9]/).test($(this).val())){
+		if(!(/[^0-9]/).test($(this).val()) && $(this).val().length > 0){
 			$("#product-instock-error").hide();
-			activitydate = true;
+			instock = true;
 			addProduct();
 			
 		}else{
-			activitydate = false;
+			instock = false;
 			$("#product-instock-error").show();
 			$("#addProduct").unbind();
 			$("#addProduct").hide();
@@ -216,7 +217,7 @@
 	});
 	
 	function addProduct(){
-		if(flagName && activityprice && registeryfee && maxnum){
+		if(flagName && instock && price && buyNo && purchaseprice){
 			$("#addProduct").show();
 				
 				$("#addProduct").click(function(){

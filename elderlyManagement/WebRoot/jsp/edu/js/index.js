@@ -64,7 +64,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	//加载讲师
+/*	//加载讲师
 	$.ajax({
 		
 		type:"post",
@@ -91,7 +91,7 @@ $(document).ready(function(){
 		}
 		
 		
-	});
+	});*/
 	
 	
 });

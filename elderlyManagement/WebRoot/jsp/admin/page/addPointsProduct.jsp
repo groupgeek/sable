@@ -85,7 +85,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>商品添加</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>积分商品添加</h2>
 						<h2 id = "adminMall"></h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
@@ -95,7 +95,7 @@
 					</div>
 					
 					<div class="box-content">
-						<form class="form-horizontal" action = "${pageContext.request.contextPath }/superAdmin/addProduct" method="post" enctype="multipart/form-data">
+						<form class="form-horizontal" id = "pointsProductForm" action = "${pageContext.request.contextPath }/superAdmin/addPointsProduct" method="post" enctype="multipart/form-data">
 							<fieldset>
 							  <input name = "branchid" type="hidden" value="" id = "branchid">
 							  <div class="control-group" id = "producPpicture">
@@ -104,52 +104,18 @@
 								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
 								</div>
 							  </div>
-							  <div class="control-group" id = "productname">
+							  <div class="control-group" id = "articlename">
 								<label class="control-label">商品名字</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "productname" type="text" value="">
+								  <input class="input-xlarge focused" name = "articlename" type="text" value="">
 								  <p id = "product-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
 								</div>
 							  </div>
-							   <div class="control-group" id = "fathertypename">
-								<label class="control-label">商品父类类型</label>
+							  <div class="control-group" id = "integral">
+								<label class="control-label">商品积分价格</label>
 								<div class="controls">
-								  <select name = "fathertype">
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group" id = "producttypename">
-								<label class="control-label">商品类型</label>
-								<div class="controls">
-								  <select name = "producttypeid">
-								  	
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group" id = "shelves">
-								<label class="control-label">是否上架</label>
-								<div class="controls">
-								   <select name = "shelves">
-								   	<option value = true>是</option>
-								   	<option value = false>否</option>
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group" id = "buyNo">
-								<label class="control-label">购买次数</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "buyno" type="text" value="">
-								  <p id = "product-buyNo-error" style="color: red;display: none;">只能为数字</p>
-								</div>
-							  </div>
-							  <div class="control-group" id = "price">
-								<label class="control-label">商品价格</label>
-								<div class="controls">
-								<div class="input-prepend input-append">
-								  <span class="add-on">￥</span><input id="" size="16" type="text" name = "price">
-									
-								</div>
-								<p id = "product-price-error" style="color: red;display: none;">格式错误</p>
+								  <input id="" size="16" type="text" name = "integral">
+									<p id = "product-integral-error" style="color: red;display: none;">格式错误</p>
 								</div>
 							  </div>
 							  <div class="control-group" id = "purchaseprice">
@@ -160,7 +126,7 @@
 									
 								</div>
 								<p id = "product-purchaseprice-error" style="color: red;display: none;">格式错误</p>
-								</div>
+								 </div>
 							  </div>
 							 <!--  <div class="control-group" id = "branchname">
 								<label class="control-label">所属分店</label>
@@ -184,70 +150,16 @@
 							  </div> -->
 							  
 							  
-							   <div class="control-group" id = "origin">
-								<label class="control-label">产地</label>
-								<div class="controls">
-									<input class="input-xlarge focused" name = "origin" type="text" value="">
-								</div>
-							  </div>
-							   <div class="control-group" id = "productspecifications">
-								<label class="control-label">产品规格</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "productspecifications" type="text" value="">
-								</div>
-							  </div>
-							   <div class="control-group" id = "producstandards">
-								<label class="control-label">产品标准号</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "producstandards" type="text" value="">
-								</div>
-							  </div>
-							   <div class="control-group" id = "productionlicensenumber">
-								<label class="control-label">生产许可证编号</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "productionlicensenumber" type="text" value="">
-								</div>
-							  </div>
-							   <div class="control-group" id = "producttaste">
-								<label class="control-label">口味</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "tasteString" type="text" placeholder="多个用空格分隔">
-								</div>
-							  </div>
-							  <div class="control-group" id = "storagemethod">
-								<label class="control-label">存储方法</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "storagemethod" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group" id = "ediblemethod">
-								<label class="control-label">食用方法</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "ediblemethod" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group" id = "shelflife">
-								<label class="control-label">保质期</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "shelflife" type="text" value="">
-								</div>
-							  </div>
-							   <div class="control-group" id = "productcolour">
-								<label class="control-label">颜色</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" name = "colorString" type="text" placeholder="多个用空格分隔">
-								</div>
-							  </div>
-							  <div class="control-group hidden-phone" id = "description">
+							   
+							  <div class="control-group hidden-phone" id = "detail">
 								  <label class="control-label">商品描述</label>
 								  <div class="controls">
-									<textarea class="" id="" rows="6"  name="description" style="width: 500px;"></textarea>
+									<textarea class="" id="" rows="6"  name="detail" style="width: 500px;"></textarea>
 								  </div>
 							  </div>
 							  
-							  <input type="hidden" value="" id = "productid" name="productid">
 							  <div class="form-actions">
-							  	<button type="submit" class="btn btn-primary" id = "addProduct" style="display: none;">保存</button>
+							  	<button type="button" class="btn btn-primary" id = "addPointsProduct" style="display: none;">保存</button>
 							  </div> 
 							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
@@ -388,7 +300,7 @@
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
 	
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/addProduct.js"></script>
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/addPointsProduct.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

@@ -95,7 +95,11 @@ public class CeoServiceImpl implements CeoService{
 		BigDecimal f = new BigDecimal("10000.00");
 		BigDecimal c = new BigDecimal("100000.00");
 		BigDecimal e = new BigDecimal("100000000.00");
-		if (bigdecimal.compareTo(c) == -1) {
+		if (bigdecimal == null) {
+			list.add("0.00");
+			list.add(null);
+			return list;
+		}else if (bigdecimal.compareTo(c) == -1) {
 			list.add(bigdecimal.toString());
 			list.add(null);
 			return list;
@@ -130,7 +134,11 @@ public class CeoServiceImpl implements CeoService{
 		BigDecimal a = new BigDecimal("10000.00");
 		BigDecimal b = new BigDecimal("100000.00");
 		BigDecimal c = new BigDecimal("100000000.00");
-		if (bigDecimal.compareTo(b) == -1) {
+		if (bigDecimal == null) {
+			list.add("0.00");
+			list.add(null);
+			return list;
+		}else if (bigDecimal.compareTo(b) == -1) {
 			list.add(bigDecimal.toString());
 			list.add(null);
 			return list;
@@ -156,6 +164,12 @@ public class CeoServiceImpl implements CeoService{
 		BigDecimal bigDecimal1 = activityMapper.selectSumActivityPrice();
 		BigDecimal bigDecimal2 = activityMapper.selectSumregisteryFee();
 		BigDecimal bigDecimal = new BigDecimal("0.00");
+		if (bigDecimal1 == null) {
+			bigDecimal1 = new BigDecimal("0.00");
+		}
+		if (bigDecimal2 == null) {
+			bigDecimal2 = new BigDecimal("0.00");
+		}
 		bigDecimal = bigDecimal2.subtract(bigDecimal1);
 		List<String> list = new ArrayList<String>();
 		BigDecimal a = new BigDecimal("10000.00");
@@ -335,8 +349,10 @@ public class CeoServiceImpl implements CeoService{
 		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		List<MessageCustom> messageCustoms = messageMapper.selectNewMessage();
 		for (MessageCustom mCustom : messageCustoms) {
-			String format = dt.format(mCustom.getMessagetime());
-			mCustom.setStringDate(format);
+			if (mCustom.getMessagetime() != null) {
+				String format = dt.format(mCustom.getMessagetime());
+				mCustom.setStringDate(format);
+			}
 		}
 		return messageCustoms;
 	}
@@ -402,8 +418,10 @@ public class CeoServiceImpl implements CeoService{
 		List<CeoProducttransactionreport> cList = producttransactionreportMapper.ceoProductByIdinmonth(ceoProducttransactionreport);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		for (CeoProducttransactionreport cProducttransactionreport : cList) {
-			String string = dateFormat.format(cProducttransactionreport.getBuytime());
-			cProducttransactionreport.setStringTime(string);
+			if (cProducttransactionreport.getBuytime() != null) {
+				String string = dateFormat.format(cProducttransactionreport.getBuytime());
+				cProducttransactionreport.setStringTime(string);
+			}
 		}
 		return cList;
 	}
@@ -411,8 +429,10 @@ public class CeoServiceImpl implements CeoService{
 		List<CeoProducttransactionreport> cList = producttransactionreportMapper.ceoProductByIdinyear(ceoProducttransactionreport);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
 		for (CeoProducttransactionreport cProducttransactionreport : cList) {
-			String string = dateFormat.format(cProducttransactionreport.getBuytime());
-			cProducttransactionreport.setStringDate(string);
+			if (cProducttransactionreport.getBuytime() != null) {
+				String string = dateFormat.format(cProducttransactionreport.getBuytime());
+				cProducttransactionreport.setStringDate(string);
+			}
 		}
 		return cList;
 	}
@@ -420,8 +440,10 @@ public class CeoServiceImpl implements CeoService{
 		List<CeoProducttransactionreport> cList = producttransactionreportMapper.ceoProductByIdAllyear(ceoProducttransactionreport);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy");
 		for (CeoProducttransactionreport cProducttransactionreport : cList) {
-			String string = dateFormat.format(cProducttransactionreport.getBuytime());
-			cProducttransactionreport.setDateString(string);
+			if (cProducttransactionreport.getBuytime() != null) {
+				String string = dateFormat.format(cProducttransactionreport.getBuytime());
+				cProducttransactionreport.setDateString(string);
+			}
 		}
 		return cList;
 	}
