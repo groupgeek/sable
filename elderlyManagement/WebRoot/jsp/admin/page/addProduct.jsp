@@ -276,6 +276,7 @@
 		$(document).ready(function(){
 		//显示提示信息
 		var message = $("#message").val();
+		//var message =  window.location.href.split("?")[1]
 		if(message != ""){
 	
 			

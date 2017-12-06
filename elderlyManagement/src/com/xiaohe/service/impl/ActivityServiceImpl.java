@@ -85,7 +85,7 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		List<ActivityCustom> activityCustoms = activityMapper.selectActivityrecommendByCondition(custom);
 	
-		return sub(activityCustoms,4);
+		return activityCustoms;
 	}
 
 	public ActivityVo queryAllActivityByCondition(ActivityCustom condition) {
