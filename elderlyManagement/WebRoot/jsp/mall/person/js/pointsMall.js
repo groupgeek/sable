@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
-	//查询某一类商品的销量前4
+	//查询某一类商品的销量前4  style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;"
 	var buyNo = new Object();
 	var types = new Array(8,9,12,13);
 	//alert((((Math.random()*10+"").substring(0, 1)/3)+"").substring(0, 1));
@@ -25,7 +25,7 @@ $(document).ready(function(){
 					      	'<a  href="'+root+'/product/productInfo?id='+ data.productList[i].productid +'">'+
 				      		'<img style="max-height: 230px;" class="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data.productList[i].picture+'"> </a>'+  
 					      	'</div>'+
-					      	'<div class="p-name"><a href="#">'+
+					      	'<div class="p-name"><a href="'+root+'/product/productInfo?id='+ data.productList[i].productid +'">'+
 					      		data.productList[i].productname+
 					      	'</a>'+
 					      	'</div>'+
