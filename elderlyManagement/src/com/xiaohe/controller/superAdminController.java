@@ -34,6 +34,7 @@ import com.xiaohe.bean.Employee;
 import com.xiaohe.bean.EmployeeCustom;
 import com.xiaohe.bean.EmployeeVo;
 import com.xiaohe.bean.IntegralCustom;
+import com.xiaohe.bean.Integraltoarticle;
 import com.xiaohe.bean.LevelCustom;
 import com.xiaohe.bean.MessageCustom;
 import com.xiaohe.bean.MessageVo;
@@ -62,6 +63,7 @@ import com.xiaohe.service.BranchService;
 import com.xiaohe.service.CeoService;
 import com.xiaohe.service.EmployeeService;
 import com.xiaohe.service.IntegralService;
+import com.xiaohe.service.IntegraltoarticleService;
 import com.xiaohe.service.LevelSevice;
 import com.xiaohe.service.MessageService;
 import com.xiaohe.service.PositionalSerice;
@@ -144,6 +146,9 @@ public class superAdminController {
 	@Qualifier("integralService")
 	private IntegralService integralService;
 	
+	@Autowired
+	@Qualifier("integraltoarticleService")
+	private IntegraltoarticleService integraltoarticleService;
 	@RequestMapping("/test")
 	public @ResponseBody UserCustom queryEvaluation(@RequestBody UserCustom text){
 		
@@ -1156,4 +1161,23 @@ public class superAdminController {
 		
 		return info;
 	}
+	
+	/**
+	 * 添加积分商品
+	 * @param condition
+	 * @return
+	 */
+	@RequestMapping("/addPointsProduct")
+	public @ResponseBody ShowMessage addPointsProduct(Integraltoarticle integraltoarticle,MultipartFile pictureUpload){
+		ShowMessage message = new ShowMessage();
+		if(integraltoarticleService.addPointsProduct(integraltoarticle, pictureUpload)){
+			message.setMessage("添加成功");
+		}else{
+			message.setMessage("添加失败");
+		}
+		
+		return message;
+	}
+	
+	
 }

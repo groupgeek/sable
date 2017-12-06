@@ -74,7 +74,7 @@
                     <nav id="navigation" class="navbar navbar-default" role="navigation">
                         <div class="navbar-inner">
                             <div class="navbar-header">
-                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
+                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action"><img src="${pageContext.request.contextPath }/jsp/index/images/logo12.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right" id="nav">
@@ -92,7 +92,7 @@
             </header><!-- end header -->
         </div><!-- end container -->
         <div id="page_header">
-            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/5.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
+            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/bg2.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
 
 
             <div class="container text-center header-part">
@@ -130,7 +130,6 @@
                    
 				<c:forEach items="${activities }" var="activitie" varStatus="status">
 				
-					 <!-- Column 1 -->
 
                     <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated" data-wow-delay="0.3s" data-wow-offset="50" data-wow-duration="1s">
                         <div class="block-one block">
@@ -139,11 +138,16 @@
                             <h6 class="pm-column-title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>
                                 <p style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activitydetails }.</p>
-                            <div class="btn-blk"><a href="#" class="pm-rounded-btn">去围观</a></div>
+                                <c:if test="${activitie.fathertypeid == 1 }">
+                                	<div class="btn-blk"><a href="${pageContext.request.contextPath }/health/activityInfo?activityid=${activitie.activityid }" class="pm-rounded-btn">去围观</a></div>
+                                </c:if>
+                                <c:if test="${activitie.fathertypeid == 2 }">
+                                	<div class="btn-blk"><a href="${pageContext.request.contextPath }/edu/actInfo?id=${activitie.activityid }" class="pm-rounded-btn">去围观</a></div>
+                                </c:if>
+                            
 
                         </div>
                     </div>
-                    <!-- Column 1 end -->
 				</c:forEach>
 
                 </div>
@@ -166,7 +170,7 @@
 	                    <ul>
 	                        <li class="img_item">
 	                            <div class="caption8">
-	                                <h3>${product.productname }</h3>
+	                                <h3 style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${product.productname }</h3>
 	                                <p>${product.description }.</p>
 	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button black">详细</a>
 	                            </div>
