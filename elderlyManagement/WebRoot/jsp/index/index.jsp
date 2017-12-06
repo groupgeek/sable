@@ -142,7 +142,7 @@
 	                                <a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp" class="pf_button black">详细</a>
 	                            </div>
 	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
-	                            <img alt="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" style="min-height: 300px;">
+	                            <img alt="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" style="min-height: 350px;">
 	                        </li>
 	                    </ul>
 	                        </div>
@@ -181,7 +181,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated" data-wow-delay="0.3s" data-wow-offset="50" data-wow-duration="1s">
                         <div class="block-one block">
-                            <img src="${pageContext.request.contextPath }/jsp/index/images/icon1.png" width="200" class="img-responsive pm-inline" alt="icon" />
+                            <img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activitie.activitypicture }" width="200" class="img-responsive pm-inline" style="border-radius:150px;min-height: 201px;" alt="icon" />
 
                             <h6 class="pm-column-title">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>

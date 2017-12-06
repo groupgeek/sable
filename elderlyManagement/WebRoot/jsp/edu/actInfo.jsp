@@ -81,8 +81,7 @@
 					<div class="product">
 						<div class="col-md-6">
 							<div class="image" style="width: 350px;height: 400px;">
-								<img
-									src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }" />
+								<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }" />
 							</div>
 						</div>
 						<input type="hidden" value="${act.activityid }" id="regActid" /> <input

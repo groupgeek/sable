@@ -13,6 +13,9 @@ public class ProductCustom extends Product {
 	private Integer currentPage;
 	private Integer productrecommendid;
 	
+	
+	
+	
 	public Integer getProductrecommendid() {
 		return productrecommendid;
 	}

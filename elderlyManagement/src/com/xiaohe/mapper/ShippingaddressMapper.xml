@@ -107,7 +107,7 @@
     where shippingAddressId = #{shippingaddressid,jdbcType=INTEGER}
   </update>
   <select id="selectAllAddressByUserid" parameterType="Integer" resultType="ShippingAddressCustom">
-  	SELECT * FROM shippingAddress WHERE userId = #{id}
+  	SELECT * FROM shippingaddress WHERE userId = #{id}
   </select>
   
   <select id="selectDefaultAddressByByUserid" parameterType="Integer" resultType="ShippingAddressCustom">

@@ -102,8 +102,7 @@ $(document).ready(function(){
 				}
 				
 				//开始分页
-				em.click(function(){
-					
+				em.find("div").last().click(function(){
 					if(num >= em.find("div[class=row]").length){
 						//更改信息框颜色
 						$("#messageNotification").attr("style","background-color: black;");

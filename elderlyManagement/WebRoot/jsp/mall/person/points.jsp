@@ -54,7 +54,7 @@
 						<div class="pointsTitle">
 						   <div class="usable">可用积分<span>0</span></div>
 						   <div class="pointshop"><a href="${pageContext.request.contextPath }/jsp/mall/person/pointsMall.jsp"><i><img src="../images/u5.png" /></i>积分商城</a></div>
-						   <div class="signIn"><a href="#"><i class="am-icon-calendar"></i><em>+2</em>每日签到</a></div>
+						   
 						</div>
 						<div class="pointlist am-tabs" data-am-tabs>
 							<ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
@@ -145,6 +145,8 @@
 
 			<!-- 菜单 -->
 			<c:import url="/jsp/mall/personMenu.jsp"></c:import>
+			
+			<c:import url="/jsp/util/messageNotification.jsp"></c:import>
 		</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/jsp/mall/person/js/points.js"></script>

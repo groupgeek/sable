@@ -21,5 +21,5 @@
 		}
 		
 	});
-	
+	$("#mallUrl").attr("href",root+"/jsp/admin/page/mallInfo.jsp?branchid="+branchid);
 });

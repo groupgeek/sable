@@ -16,6 +16,7 @@ $(document).ready(function(){
 			contentType:"application/json;charset=utf-8",
 			url:root+"/product/queryAllShopCartByUserid",
 			success:function(data){
+				/*alert(1)class="itempic J_ItemImg"*/
 				for(var i in data){
 					if(data[i].type == 2){
 						
@@ -31,7 +32,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'?x-oss-process=image/resize,m_lfit,h_80,w_80" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -96,7 +97,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'?x-oss-process=image/resize,m_lfit,h_80,w_80" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -162,7 +163,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'?x-oss-process=image/resize,m_lfit,h_80,w_80" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -538,7 +539,7 @@ $(document).ready(function(){
 				data:JSON.stringify(payArr),
 				success:function(data){
 					//alert(data)
-					if(data != null || data != "")
+					if(data != null && data != "")
 					window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
 					
 				}
