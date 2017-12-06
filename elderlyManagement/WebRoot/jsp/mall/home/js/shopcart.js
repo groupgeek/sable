@@ -172,14 +172,11 @@ $(document).ready(function(){
 									'</div>'+
 								'</li>'+
 								
-								/*'<li class="td td-info">'+
-									'<div class="item-props item-props-can">'+
-										'<span class="sku-line"> </span>'+
-										'<span tabindex="0" class="btn-edit-sku theme-login" name = "updateOption">修改</span>'+
-										'<input type="hidden" name="ptype" value="'+data[i].type+'">'+
-										'<i class="theme-login am-icon-sort-desc"></i>'+
+								'<li class="td td-info">'+
+									'<div class="item-props">'+
+										
 									'</div>'+
-								'</li>'+*/
+								'</li>'+
 								
 								'<li class="td td-price">'+
 									'<div class="item-price price-promo-promo">'+
@@ -217,7 +214,6 @@ $(document).ready(function(){
 					}
 						
 				}	
-				
 				
 				//删除一个
 				$(".delete").click(function(){

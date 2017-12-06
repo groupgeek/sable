@@ -174,6 +174,10 @@ public class ActivityController {
 		condetion.setUserid(user.getUserid());
 		integral = integralService.queryUpToDateRecord(condetion);
 		
+		/*if(activityreport == null){
+			return null;
+		}*/
+		  
 		if(actreg==null){
 			//更新活动报表
 			if(activityreport.getTotalprice()!=null){

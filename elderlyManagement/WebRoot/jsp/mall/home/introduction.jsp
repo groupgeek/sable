@@ -355,45 +355,54 @@
 													<div class="theme-options">
 														<ul id = "options"></ul>
 													
-														<c:if test="${productInfo.tasteList != null}">
-															<div class="cart-title">口味</div>
-															<input type="hidden" name="type" id = "teastType" value = "1">
-															<ul id = "teast">
-																<!-- <li class="sku-line selected">原味<i></i></li> -->
-																<c:forEach items="${productInfo.tasteList}" var="taste" varStatus="status">
-																
-																	<li class="sku-line" value="${taste.producttasteid}">${taste.producttaste}<i></i></li>
-																</c:forEach>
-															</ul>
-														</c:if>
-														<c:if test="${productInfo.colourList != null}">
-															<div class="cart-title">颜色</div>
-															<input type="hidden" name="type" id = "colourType" value = "2">
-															<ul id = "colour">
-																<!-- <li class="sku-line selected">原味<i></i></li> -->
-																<c:forEach items="${productInfo.colourList}" var="colour">
-																	<li class="sku-line" value="${colour.productcolourid}">${colour.productcolour}<i></i></li>
-																</c:forEach>
-															</ul>
-															
-															<c:if test="${productInfo.colourList[0].colourSizeList != null}">
-															<div class="cart-title">型号</div>
-															<ul id = "size">
-																<%-- <c:forEach items="${productInfo.colourList}" var="colour">
-																	<c:forEach items="${colour.colourSizeList}" var="size">
-																		<li class="sku-line" value="">${size.size}<i></i></li>
+														<c:choose>
+															<c:when test="${productInfo.tasteList != null}">
+																<div class="cart-title">口味</div>
+																<input type="hidden" name="type" id = "teastType" value = "1">
+																<ul id = "teast">
+																	<!-- <li class="sku-line selected">原味<i></i></li> -->
+																	<c:forEach items="${productInfo.tasteList}" var="taste" varStatus="status">
+																	
+																		<li class="sku-line" value="${taste.producttasteid}">${taste.producttaste}<i></i></li>
 																	</c:forEach>
-																</c:forEach> --%>
-																<li class="sku-line" value= "xs" >xs<i></i></li>
-																<li class="sku-line" value= "s" >s<i></i></li>
-																<li class="sku-line" value= "m" >m<i></i></li>
-																<li class="sku-line" value= "l" >l<i></i></li>
-																<li class="sku-line" value= "xl" >xl<i></i></li>
-																<li class="sku-line" value= "xll" >xll<i></i></li>
-																<!-- <li class="sku-line" value="xlll">xlll<i></i></li> -->
-															</ul>
-															</c:if>
-														</c:if>
+																</ul>
+															
+															</c:when>
+															
+															<c:when test="${productInfo.colourList != null}">
+																
+																<div class="cart-title">颜色</div>
+																<input type="hidden" name="type" id = "colourType" value = "2">
+																<ul id = "colour">
+																	<!-- <li class="sku-line selected">原味<i></i></li> -->
+																	<c:forEach items="${productInfo.colourList}" var="colour">
+																		<li class="sku-line" value="${colour.productcolourid}">${colour.productcolour}<i></i></li>
+																	</c:forEach>
+																</ul>
+																
+																<c:if test="${productInfo.colourList[0].colourSizeList != null}">
+																<div class="cart-title">型号</div>
+																<ul id = "size">
+																	<%-- <c:forEach items="${productInfo.colourList}" var="colour">
+																		<c:forEach items="${colour.colourSizeList}" var="size">
+																			<li class="sku-line" value="">${size.size}<i></i></li>
+																		</c:forEach>
+																	</c:forEach> --%>
+																	<li class="sku-line" value= "xs" >xs<i></i></li>
+																	<li class="sku-line" value= "s" >s<i></i></li>
+																	<li class="sku-line" value= "m" >m<i></i></li>
+																	<li class="sku-line" value= "l" >l<i></i></li>
+																	<li class="sku-line" value= "xl" >xl<i></i></li>
+																	<li class="sku-line" value= "xll" >xll<i></i></li>
+																	<!-- <li class="sku-line" value="xlll">xlll<i></i></li> -->
+																</ul>
+																</c:if>
+															</c:when>
+															
+															<c:otherwise>
+																<input type="hidden" name="type" id = "other" value = "3">
+															</c:otherwise>
+														</c:choose>
 														
 													</div>
 													

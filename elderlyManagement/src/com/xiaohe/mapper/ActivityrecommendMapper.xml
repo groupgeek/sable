@@ -97,7 +97,7 @@
 	where e.employeeId = b.employeeId
 	and b.branchId = a.branchId
 	and a.activityId = c.activityId
-	and a.websiteType = '分店官网'
+	and a.websiteType = '分店官网(教育)'
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   

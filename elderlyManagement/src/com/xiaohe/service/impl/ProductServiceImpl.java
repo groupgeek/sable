@@ -173,7 +173,8 @@ public class ProductServiceImpl implements ProductService {
 	public ProductCustom queryProductInfoById(Integer id) {
 		if(id == null) return null;
 		ProductCustom product= new ProductCustom();
-		Product temp = productMapper.selectByPrimaryKey(id);
+		ProductCustom temp = new ProductCustom();
+		temp = productMapper.selectProductByPrimaryKey(id);
 		if(temp != null){
 			
 			if(temp.getEdiblemethod() != null){
@@ -184,6 +185,10 @@ public class ProductServiceImpl implements ProductService {
 				product = productMapper.selectProductColourById(id);
 				if(product != null){
 					product.setTasteList(null);
+				}else{
+					product = temp;
+					product.setTasteList(null);
+					product.setColourList(null);
 				}
 			}
 		}
@@ -791,10 +796,13 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		if(producttaste != null)
 			orders.setTaste(producttaste.getProducttaste());
 		
-		if(productcolour != null)
+		if(productcolour != null){
 			orders.setColour(productcolour.getProductcolour());
+			orders.setSize(info.getSizeString());//
+		}
+			
 		
-		orders.setSize(info.getSizeString());//
+		
 		
 		
 		//查询用户分店

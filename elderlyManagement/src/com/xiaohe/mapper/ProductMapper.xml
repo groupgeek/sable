@@ -608,7 +608,7 @@ SELECT * FROM branch b,employee e WHERE e.areaId=b.areaId AND e.accountNumber=#{
 	<select id="selectProductAndOtherById" parameterType="Integer" resultMap="selectProductInfoByIdSqlMap">
 	
 	
-		SELECT p.* ,  b.branchName , e.employeeid, e.employeename,ptype1.productTypeName ,ptype2.productTypeName fatherType ,ptype2.productTypeId fatherTypeId , 
+		SELECT p.* ,  b.branchName , e.employeeid, e.employeename,ptype1.productTypeName ,ptype2.productTypeName fatherType ,ptype2.productTypeId fatherTypeId
 		FROM `product` p ,branch b , employee e ,producttype ptype1 ,producttype ptype2
 		WHERE p.productId = #{id}
 		AND b.branchId = p.branchId AND e.areaId = b.areaId AND e.employeeId = b.employeeId
@@ -683,4 +683,10 @@ AND productrecommend.productShow=0 AND product.branchId=#{branchId}
 		AND b.areaId = u.areaId AND p.branchId = b.branchId 
 		AND p.productTypeId = #{producttypeid} AND p.shelves = TRUE
   </select>
+  
+   <select id="selectProductByPrimaryKey" resultType="productCustom" parameterType="java.lang.Integer" >
+    select * from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </select>
+  
 </mapper>
