@@ -52,6 +52,10 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
+    
+    	<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.3.0/aliplayer-min.js"></script>
+<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.3.0/skins/default/aliplayer-min.css" />
+    
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/jsp/edu/css/example.css">
 <link rel="stylesheet" type="text/css"
@@ -81,8 +85,7 @@
 					<div class="product">
 						<div class="col-md-6">
 							<div class="image" style="width: 350px;height: 400px;">
-								<img
-									src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }" />
+								<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${act.activitypicture }" />
 							</div>
 						</div>
 						<input type="hidden" value="${act.activityid }" id="regActid" /> <input
@@ -200,6 +203,8 @@
 						<div class="clear"></div>
 					</div>
 					
+					
+					<div style="margin-top: 20px;height: 30px"></div>
 					<c:choose>
 								
 									<c:when test="${act.activitytypeid == 6}">
@@ -271,7 +276,8 @@
 													href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[0].activityid}">${allActRec[0].activityname}</a>
 											</h3>
 										</div>
-										<div class="price">报名费：￥${allActRec[0].registeryfee}元</div>
+										<c:if test="${ allActRec[0]!=null}">
+										<div class="price">报名费：￥${allActRec[0].registeryfee}元</div></c:if>
 									</div>
 								</div>
 
@@ -291,7 +297,8 @@
 													href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[1].activityid}">${allActRec[1].activityname}</a>
 											</h3>
 										</div>
-										<div class="price">报名费：￥${allActRec[1].registeryfee}元</div>
+										<c:if test="${ allActRec[1]!=null}">
+										<div class="price">报名费：￥${allActRec[1].registeryfee}元</div></c:if>
 									</div>
 								</div>
 							</div>
@@ -310,7 +317,8 @@
 													href="${pageContext.request.contextPath }/edu/actInfo.action?id=${allActRec[2].activityid}">${allActRec[2].activityname}</a>
 											</h3>
 										</div>
-										<div class="price">报名费：￥${allActRec[2].registeryfee}元</div>
+										<c:if test="${ allActRec[2]!=null}">
+										<div class="price">报名费：￥${allActRec[2].registeryfee}元</div></c:if>
 									</div>
 								</div>
 
@@ -339,6 +347,7 @@
 		src="${pageContext.request.contextPath }/jsp/edu/js/actReg.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/jsp/edu/js/sweet-alert.min.js"></script>
+		<input type="hidden" value="${act.video }" id="actvideo">
 	<script type="text/javascript">
 		var video = document.getElementById("actvideo");
 		var player = new Aliplayer(
@@ -349,7 +358,7 @@
 					autoplay : false,
 					//支持播放地址播放,此播放优先级最高
 					source : 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'
-							+ video,
+							+ video.value,
 					//播放方式二：推荐
 					//vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
 					playauth : '',

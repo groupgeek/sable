@@ -97,7 +97,25 @@
 	where e.employeeId = b.employeeId
 	and b.branchId = a.branchId
 	and a.activityId = c.activityId
-	and a.websiteType = '分店官网'
+	and a.websiteType = '分店官网(教育)'
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+    <select id="branchActHealthRec" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityrecommendCustom">
+ 	SELECT c.*,a.*,c.activityName,c.registeryfee from activityrecommend a,employee e,branch b,activity c
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and a.activityId = c.activityId
+	and a.activityTypeFatherId = 1
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="branchActEduRec" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityrecommendCustom">
+ 	SELECT c.*,a.*,c.activityName,c.registeryfee from activityrecommend a,employee e,branch b,activity c
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and a.activityId = c.activityId
+	and a.activityTypeFatherId = 2
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -111,6 +129,9 @@
    select * from activityrecommend
     where activityId = #{activityid,jdbcType=INTEGER}
      and branchId = #{branchid,jdbcType=INTEGER}
+     <if test="activitytypefatherid != null" >
+        and activityTypeFatherId = #{activitytypefatherid,jdbcType=INTEGER}
+      </if>
       </select>  
       
       <insert id="insertAct" parameterType="com.xiaohe.bean.ActivityrecommendCustom" >
@@ -120,11 +141,34 @@
       )
   </insert> 
   
+  <insert id="insertRecAct" parameterType="com.xiaohe.bean.ActivityrecommendCustom" >
+    insert into activityrecommend (activityId, websiteType, branchId ,activityTypeFatherId
+      )
+    values (#{activityid,jdbcType=INTEGER}, #{websitetype,jdbcType=VARCHAR}, #{branchid,jdbcType=INTEGER} ,#{activitytypefatherid,jdbcType=INTEGER}
+      )
+  </insert> 
+  
   
   <select id="countActRec" parameterType="java.lang.Integer" resultType="java.lang.Integer">
   select count(*) from employee e,branch b,activityrecommend a
 	where e.employeeId = b.employeeId
 	and b.branchId = a.branchId
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countActHealthRec" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(*) from employee e,branch b,activityrecommend a
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and a.activityTypeFatherid = 1
+	and e.employeeId = #{employeeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countActEduRec" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(*) from employee e,branch b,activityrecommend a
+	where e.employeeId = b.employeeId
+	and b.branchId = a.branchId
+	and a.activityTypeFatherid = 2
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
 </mapper>

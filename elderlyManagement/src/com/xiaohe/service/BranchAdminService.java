@@ -495,4 +495,40 @@ public interface BranchAdminService {
 	 */
 	public ProducttransactionreportCustom onedayAct(ProducttransactionreportCustom producttransactionreportCustom);
 	
+	
+	public int insertRecAct(ActivityrecommendCustom avtActivityrecommendCustom);
+	
+    /**
+     * 查询总推荐活动条数
+     * @param emid
+     * @return
+     */
+	public int countActRec(Integer emid);
+    
+    /**
+     * 查询健康活动总条数
+     * @param emid
+     * @return
+     */
+	public int countActHealthRec(Integer emid);
+    
+    /**
+     * 查询教育活动总条数
+     * @param emid
+     * @return
+     */
+	public int countActEduRec(Integer emid);
+	
+	/**
+     * 根据分店管理员id查询到分店健康推荐活动
+     * @return
+     */
+    List<ActivityrecommendCustom> branchActHealthRec(Integer id);
+    
+    /**
+     * 根据分店管理员id查询到分店教育推荐活动
+     * @return
+     */
+    List<ActivityrecommendCustom> branchActEduRec(Integer id);
+	
 }
