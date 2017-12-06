@@ -3,7 +3,7 @@ $("#btn-sub").hide();
 $("#health2").hide();
 $("#birthday").attr("onClick",null);
 $("#sub-changeMed").click(function(){
-		$("#form-name").attr("readonly",null);
+		/*$("#form-name").attr("readonly",null);*/
 		$("#health").attr("readonly",null);
 		$("#bank").attr("readonly",null);
 		$("#addr").attr("readonly",null);
