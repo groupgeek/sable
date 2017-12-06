@@ -914,13 +914,14 @@ public class superAdminController {
 	public String addProduct(Model model,ProductCustom productInfo,MultipartFile pictureUpload){
 		if(productInfo == null) return "admin/page/addProduct";
 		
+		model.addAttribute("brnchid", productInfo.getBranchid());
 		if(productService.addProduct(productInfo, pictureUpload)){
-			model.addAttribute("message", "修改成功");
+			//model.addAttribute("message", "修改成功");
 		}else{
-			model.addAttribute("message", "修改失败");
+			//model.addAttribute("message", "修改失败");
 		}
 		
-		return "admin/page/addProduct";
+		return "redirect:/jsp/admin/page/addProduct.jsp";
 	}
 	
 	/**

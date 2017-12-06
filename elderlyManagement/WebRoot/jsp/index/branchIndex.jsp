@@ -136,9 +136,9 @@
                         <div class="block-one block">
                             <img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activitie.activitypicture }" width="200" class="img-responsive pm-inline" style="border-radius:150px;min-height: 201px;" alt="icon" />
 
-                            <h6 class="pm-column-title">${activitie.activityname }</h6>
+                            <h6 class="pm-column-title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>
-                                <p>${activitie.introduction }.</p>
+                                <p style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activitydetails }.</p>
                             <div class="btn-blk"><a href="#" class="pm-rounded-btn">去围观</a></div>
 
                         </div>
@@ -165,7 +165,7 @@
 	                    <div class="item-blog col-lg-4 col-md-4 col-sm-6 col-xs-12">
 	                    <ul>
 	                        <li class="img_item">
-	                            <div class="caption8 ctn_blue">
+	                            <div class="caption8">
 	                                <h3>${product.productname }</h3>
 	                                <p>${product.description }.</p>
 	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button black">详细</a>

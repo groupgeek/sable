@@ -80,7 +80,7 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp">商城管理</a>
+					<a href="" id = "mallUrl">商城管理</a>
 				</li>
 			</ul>
 			
