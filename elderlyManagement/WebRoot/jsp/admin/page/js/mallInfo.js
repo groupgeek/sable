@@ -8,7 +8,8 @@ $(document).ready(function(){
 		var pageNum = $("#selectPageNum").attr("value");;
 		var sort = $("#selectSort").val();
 		var producttypeid = $("#producttypeid").attr("value");
-		
+	
+		$("#mallUrl").attr("href",root+"/jsp/admin/page/mallInfo.jsp?branchid="+branchid);
 		$.ajax({
 			
 			type:"post",

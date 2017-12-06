@@ -176,7 +176,7 @@ public class MallController {
 		//开始模糊查询
 		ProductCustom condition = new ProductCustom();
 		condition.setSearch(searchCondition);
-		condition.setTotal(1);
+		condition.setTotal(12);
 		condition.setCurrentPage(currentPage);
 		condition.setUserid(user.getUserid());
 		int tempSum = productService.queryProductSumByCondition(condition);
@@ -235,7 +235,7 @@ public class MallController {
 	public @ResponseBody List<ProductCustom> queryProduct_json(@RequestBody ProductCustom condition , HttpServletRequest request){
 		User user = getUser(request);
 		condition.setUserid(user.getUserid());
-		condition.setTotal(1);
+		condition.setTotal(12);
 		List<ProductCustom> products = productService.queryProductByCondition(condition);
 		return products;
 	}
@@ -249,7 +249,7 @@ public class MallController {
 	public @ResponseBody int  queryProductSum(@RequestBody ProductCustom condition , HttpServletRequest request){
 		User user = getUser(request);
 		condition.setUserid(user.getUserid());
-		condition.setTotal(1);
+		condition.setTotal(12);
 		int tempSum = productService.queryProductSumByCondition(condition);
 		int sum = tempSum / condition.getTotal();
 		

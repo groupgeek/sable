@@ -54,7 +54,7 @@
 			</div>
 			<div class="logoBig">
 				<li><img
-					src="${pageContext.request.contextPath }/jsp/mall/images/logobig.png" />
+					src="${pageContext.request.contextPath }/jsp/util/images/logo1.png"/>
 				</li>
 			</div>
 

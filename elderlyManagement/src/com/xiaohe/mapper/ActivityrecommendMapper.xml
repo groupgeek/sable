@@ -97,7 +97,7 @@
 	where e.employeeId = b.employeeId
 	and b.branchId = a.branchId
 	and a.activityId = c.activityId
-	and a.websiteType = '分店官网(教育)'
+	and a.websiteType = '分店官网'
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -129,6 +129,9 @@
    select * from activityrecommend
     where activityId = #{activityid,jdbcType=INTEGER}
      and branchId = #{branchid,jdbcType=INTEGER}
+     <if test="websitetype != null" >
+        and websitetype = #{websitetype,jdbcType=VARCHAR}
+      </if>
      <if test="activitytypefatherid != null" >
         and activityTypeFatherId = #{activitytypefatherid,jdbcType=INTEGER}
       </if>

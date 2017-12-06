@@ -562,17 +562,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="${pageContext.request.contextPath }/jsp/brach/js/custom.js"></script>
 	<!-- end: JavaScript-->
-	
+	<input type="hidden" value="${pageContext.request.contextPath }" id="root">
 	<script type="text/javascript">
 	function insertRecAct1(){
 		var select1 = document.getElementById("selectError1");
 		var value1 = select1.options[select1.selectedIndex].value;
 		var values = document.getElementById("activityidRec1").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value1;
+		activityrecommendCustom.activityidRec = values;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
+			url:root+'/brach/RequestAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value1+'"'+','+'"activityidRec"'+':'+'"'+values+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){
@@ -587,13 +591,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select2 = document.getElementById("selectError2");
 		var value2 = select2.options[select2.selectedIndex].value;
 		var value4 = document.getElementById("activityidRec2").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value2;
+		activityrecommendCustom.activityidRec = value4;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
+			url:root+'/brach/RequestAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value2+'"'+','+'"activityidRec"'+':'+'"'+value4+'"}',
-			success:function(data){
-			alert("处理成功");
+			data:JSON.stringify(activityrecommendCustom),
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
 			}
 		});
 	}
@@ -604,12 +614,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select3 = document.getElementById("selectError3");
 		var value3 = select3.options[select3.selectedIndex].value;
 		var value5 = document.getElementById("activityidRec3").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value3;
+		activityrecommendCustom.activityidRec = value5;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestAct.action',
+			url:root+'/brach/RequestAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value3+'"'+','+'"activityidRec"'+':'+'"'+value5+'"}',
-			success:function(data){
+			data:JSON.stringify(activityrecommendCustom),
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
 			}
 		});
 	}
@@ -622,11 +639,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select4 = document.getElementById("selectError4");
 		var value4 = select4.options[select4.selectedIndex].value;
 		var values1 = document.getElementById("activityidRec4").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value4;
+		activityrecommendCustom.activityidRec = values1;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestHealthAct.action',
+			url:root+'/brach/RequestHealthAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value4+'"'+','+'"activityidRec"'+':'+'"'+values1+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){
@@ -641,11 +662,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select5 = document.getElementById("selectError5");
 		var value5 = select5.options[select5.selectedIndex].value;
 		var values2 = document.getElementById("activityidRec5").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value5;
+		activityrecommendCustom.activityidRec = values2;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestHealthAct.action',
+			url:root+'/brach/RequestHealthAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value5+'"'+','+'"activityidRec"'+':'+'"'+values2+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){
@@ -660,11 +685,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select6 = document.getElementById("selectError6");
 		var value6 = select6.options[select6.selectedIndex].value;
 		var values3 = document.getElementById("activityidRec6").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value6;
+		activityrecommendCustom.activityidRec = values3;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestHealthAct.action',
+			url:root+'/brach/RequestHealthAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value6+'"'+','+'"activityidRec"'+':'+'"'+values3+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){
@@ -680,11 +709,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select7 = document.getElementById("selectError7");
 		var value7 = select7.options[select7.selectedIndex].value;
 		var values7 = document.getElementById("activityidRec7").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value7;
+		activityrecommendCustom.activityidRec = values7;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestEduAct.action',
+			url:root+'/brach/RequestEduAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value7+'"'+','+'"activityidRec"'+':'+'"'+values7+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){
@@ -699,11 +732,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select8 = document.getElementById("selectError8");
 		var value8 = select8.options[select8.selectedIndex].value;
 		var values8 = document.getElementById("activityidRec8").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value8;
+		activityrecommendCustom.activityidRec = values8;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestEduAct.action',
+			url:root+'/brach/RequestEduAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value8+'"'+','+'"activityidRec"'+':'+'"'+values8+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){
@@ -718,11 +755,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var select9 = document.getElementById("selectError9");
 		var value9 = select9.options[select9.selectedIndex].value;
 		var values9 = document.getElementById("activityidRec9").value;
+		var activityrecommendCustom = new Object();
+		activityrecommendCustom.activityid = value9;
+		activityrecommendCustom.activityidRec = values9;
+		var root = document.getElementById("root").value;
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath }/brach/RequestEduAct.action',
+			url:root+'/brach/RequestEduAct.action',
 			contentType : 'application/json;charset=utf-8',
-			data:'{"activityid"'+':'+'"'+value9+'"'+','+'"activityidRec"'+':'+'"'+values9+'"}',
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(){
 			},
 			error:function(){

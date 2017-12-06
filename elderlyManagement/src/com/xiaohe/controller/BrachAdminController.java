@@ -524,12 +524,17 @@ public class BrachAdminController {
 		act4.setWebsitetype("分店官网");
 		act2 = branchService.oneActRecById(act3);//这个活动推荐是通过选中的
 		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
+		
 		if(act2 == null&& act5 == null){
-			/*acts.setBranchid(branch.getBranchid());
-			acts.setActivityid(activityrecommendCustom.getActivityid());
-			acts.setWebsitetype("分店官网");
-			branchService.insertActRec(acts);*/
-			return null;
+			if(activityrecommendCustom.getActivityid()==null){
+				return null;
+			}else if(activityrecommendCustom.getActivityid()!=null){
+				acts.setBranchid(branch.getBranchid());
+				acts.setActivityid(activityrecommendCustom.getActivityid());
+				acts.setWebsitetype("分店官网");
+				branchService.insertActRec(acts);
+			}
+			
 		}else if(act2 == null && act5!=null){
 			if(b>=3){
 				branchService.delActRec(act5);
@@ -539,8 +544,7 @@ public class BrachAdminController {
 			}
 		}else if(act2 != null && act5!=null){
 			if(branchService.oneActRecById(act2)!=null){
-				branchService.delActRec(act2);
-				branchService.insertActRec(act2);
+				return null;
 			}else{
 				if(b>=3){
 					branchService.delActRec(act5);
@@ -585,12 +589,16 @@ public class BrachAdminController {
 		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
 		
 		if(act2 == null&& act5 == null){
-			/*acts.setBranchid(branch.getBranchid());
-			acts.setActivityid(activityrecommendCustom.getActivityid());
-			acts.setWebsitetype("分店官网(健康)");
-			acts.setActivitytypefatherid(1);
-			branchService.insertActRec(acts);*/
-			return null;
+			if(activityrecommendCustom.getActivityid()==null){
+				return null;
+			}else if(activityrecommendCustom.getActivityid()!=null){
+				acts.setBranchid(branch.getBranchid());
+				acts.setActivityid(activityrecommendCustom.getActivityid());
+				acts.setWebsitetype("分店官网(健康)");
+				acts.setActivitytypefatherid(1);
+				branchService.insertActRec(acts);
+			}
+			
 		}else if(act2 == null && act5!=null){
 			if(b>=3){
 				branchService.delActRec(act5);
@@ -599,9 +607,8 @@ public class BrachAdminController {
 				branchService.insertActRec(act3);
 			}
 		}else if(act2 != null && act5!=null){
-			if(branchService.oneActRecById(act2).getActivityid()!=null){
-				branchService.delActRec(act2);
-				branchService.insertActRec(act2);
+			if(branchService.oneActRecById(act2)!=null){
+				return null;
 			}else{
 				if(b>=3){
 					branchService.delActRec(act5);
@@ -611,7 +618,7 @@ public class BrachAdminController {
 				}
 			}
 		}else if(act5==null&&act2!=null){
-			if(branchService.oneActRecById(act2).getActivityid()!=null){
+			if(branchService.oneActRecById(act2)!=null){
 				branchService.delActRec(act2);
 				branchService.insertActRec(act2);
 			}else{
@@ -646,12 +653,16 @@ public class BrachAdminController {
 		act2 = branchService.oneActRecById(act3);//这个活动推荐是通过选中的
 		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
 		if(act2 == null&& act5 == null){
-			/*acts.setBranchid(branch.getBranchid());
-			acts.setActivityid(activityrecommendCustom.getActivityid());
-			acts.setWebsitetype("分店官网(教育)");
-			acts.setActivitytypefatherid(2);
-			branchService.insertActRec(acts);*/
-			return null;
+			if(activityrecommendCustom.getActivityid()==null){
+				return null;
+			}else if(activityrecommendCustom.getActivityid()!=null){
+				acts.setBranchid(branch.getBranchid());
+				acts.setActivityid(activityrecommendCustom.getActivityid());
+				acts.setWebsitetype("分店官网(教育)");
+				acts.setActivitytypefatherid(2);
+				branchService.insertActRec(acts);
+			}
+			
 		}else if(act2 == null && act5!=null){
 			if(b>=3){
 				branchService.delActRec(act5);
@@ -661,8 +672,7 @@ public class BrachAdminController {
 			}
 		}else if(act2 != null && act5!=null){
 			if(branchService.oneActRecById(act2)!=null){
-				branchService.delActRec(act2);
-				branchService.insertActRec(act2);
+				return null;
 			}else{
 				if(b>=3){
 					branchService.delActRec(act5);
