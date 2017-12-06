@@ -22,6 +22,7 @@ $(document).ready(function(){
 		//创建列表
 		
 		em.append(
+				'<div class = "row">'+
 			'<li class="td td-item">'+
 				'<div class="item-pic">'+
 					'<a href="'+root+'/product/productInfo?id='+data.productid+'" class="J_MakePoint">'+
@@ -49,8 +50,8 @@ $(document).ready(function(){
 
 					'</div>'+
 				'</div>'+
-			 '</li>'
-			
+			 '</li>'+
+			'</div>'
 		);
 		var span = em.find('input[name='+data.evaluationid+']').next().find("span");
 		var evaluationcontent = em.find('input[name='+data.evaluationid+']').parent().parent().prev();
@@ -107,6 +108,48 @@ $(document).ready(function(){
 				if(data[i].evaluationcontent == null)
 				createEvaluation(data[i] , $("#beEvaluated ul"));
 			}
+			//分页
+			//加载按钮
+			$("#allEvaluated ul").append('<div style="width: 100%; height: 20px; text-align: center;" class="click"><a href = "javascript:void(0)" id = "allLoading">加载更多</a></div>');
+			$("#beEvaluated ul").append('<div style="width: 100%; height: 20px; text-align: center;" class="click"><a href = "javascript:;" id = "getLoading">加载更多</a></div>');
+			
+			//加载分页事件
+			splitPage($("#allEvaluated ul"));
+			splitPage($("#beEvaluated ul"));
+			
+			//分页事件
+			function splitPage(em){
+				//开始显示的数据
+				var num = 5;
+				//隐藏数据
+				em.find("div[class=row]").hide();
+				
+				for(var i = 0 ; i < num ; i++){
+					em.find("div[class=row]").eq(i).show();
+				}
+				
+				//开始分页
+				em.find("div[class=click]").click(function(){
+					
+					if(num >= em.find("div[class=row]").length){
+						//更改信息框颜色
+						$("#messageNotification").attr("style","background-color: red;");
+						
+						$("#showMessage").text("没有了哦0.0");
+						$('#messageNotification').fadeIn(2000);
+						getSrceenWH();
+						$('#messageNotification').fadeOut(3000);
+					}else{
+						for(var i = num ; i < num + 5 ; i++){
+							em.find("div[class=row]").eq(i).show();
+						}
+						num = num + 5;
+					}
+					
+				});
+			}
+			
+			
 			
 		}
 	});

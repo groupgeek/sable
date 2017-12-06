@@ -218,6 +218,10 @@ public interface ProductMapper {
      */
     Integer selectAllProductSumByTypeId(ProductCustom condition);
     
-    
-    
+    /**
+     * 查询商品信息
+     * @param productid
+     * @return 
+     */
+    ProductCustom selectProductByPrimaryKey(Integer productid);
 }

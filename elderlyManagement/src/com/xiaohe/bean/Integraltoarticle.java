@@ -82,4 +82,21 @@ public class Integraltoarticle {
     public void setDetail(String detail) {
         this.detail = detail == null ? null : detail.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Integraltoarticle [articleid=" + articleid + ", articlename="
+				+ articlename + ", purchaseprice=" + purchaseprice
+				+ ", integral=" + integral + ", instock=" + instock
+				+ ", picture=" + picture + ", branchid=" + branchid
+				+ ", detail=" + detail + ", getArticleid()=" + getArticleid()
+				+ ", getArticlename()=" + getArticlename()
+				+ ", getPurchaseprice()=" + getPurchaseprice()
+				+ ", getIntegral()=" + getIntegral() + ", getInstock()="
+				+ getInstock() + ", getPicture()=" + getPicture()
+				+ ", getBranchid()=" + getBranchid() + ", getDetail()="
+				+ getDetail() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+    
 }

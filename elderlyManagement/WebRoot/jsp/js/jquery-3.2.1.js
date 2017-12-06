@@ -9256,7 +9256,7 @@ jQuery.extend( {
 					val = window.location.href.split("/");
 					var root = val[0] + "//" + val[1] + val[2]+ "/" + val[3];
 					var hrefUser = root + "/jsp/logReg/login.jsp";
-					var hrefAdmin = root + "/jsp/AdminLogin/login.jsp";
+					var hrefAdmin = root + "/jsp/AdminLogin/login/login.jsp";
 			        var result = responses.text;
 			        if(result.indexOf("IsAjaxUser")>=0){
 			        	window.location.href = hrefUser;

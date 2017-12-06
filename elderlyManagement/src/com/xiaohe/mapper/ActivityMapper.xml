@@ -331,7 +331,7 @@
   </select>
   
   <select id="selectActivityrecommendByCondition" parameterType="activityrecommendCustom" resultType="ActivityCustom">
-  	SELECT a.* ,ac.websiteType FROM activityrecommend ac , activity a  
+  	SELECT a.* ,ac.websiteType ,atype.fatherTypeID FROM activityrecommend ac , activity a , activitytype atype
   	<where>
   		<if test="branchid != null">
   			AND ac.branchId = #{branchid}
@@ -349,6 +349,10 @@
   			AND a.activityId = ac.activityId
   		</if>
   		
+  		<if test="true">
+  			AND atype.activityTypeId = a.activityTypeId
+  		</if>
+  		
   	</where>
   	
   		
@@ -360,7 +364,7 @@
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
 	and c.registery = '报名'
-	and b.activityTypeID=1
+	and b.fatherTypeID=1
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   <select id="branchEduIncome" parameterType="java.lang.Integer" resultType="DECIMAL">
@@ -369,7 +373,7 @@
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
 	and c.registery = '报名'
-	and b.activityTypeID=2
+	and b.fatherTypeID=2
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -381,9 +385,10 @@
   </select>
   
   <select id="branchActs" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.ActivityCustom">
-  select a.* from activity a,employee e,branch b
+  select * from activity a,employee e,branch b,activitytype d
 	where a.branchId = b.branchId
 	and b.employeeId = e.employeeId
+	and a.activityTypeID = d.activityTypeID
 	and e.employeeId = #{employeeid,jdbcType=INTEGER}
   </select>
   
@@ -409,7 +414,8 @@
   </select>
   
   <select id="Acts" resultType="com.xiaohe.bean.ActivityCustom">
-  select * from activity
+  select * from activity a,activitytype b
+	where a.activityTypeID = b.activityTypeID
   </select>
   
   <select id="oneAct" parameterType="java.lang.Integer" resultType="com.xiaohe.bean.Activity">
@@ -531,7 +537,7 @@
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
 	and c.registery = '报名'
-	and b.activityTypeID=1
+	and b.fatherTypeID=1
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   		<if test="start !=null">
   			<if test="end !=null">
@@ -550,7 +556,7 @@
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
 	and c.registery = '报名'
-	and b.activityTypeID=2
+	and b.fatherTypeID=2
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   		<if test="start !=null">
   			<if test="end !=null">
@@ -615,7 +621,7 @@ and b.registery='报名'
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
 	and c.registery = '报名'
-	and b.activityTypeID=1
+	and b.fatherTypeID=1
 	and a.activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   	group by date_format(a.activityDate,'%Y-%m')
@@ -626,7 +632,7 @@ and b.registery='报名'
 	and a.branchId = d.branchId
 	and c.activityId = a.activityId
 	and c.registery = '报名'
-	and b.activityTypeID=2
+	and b.fatherTypeID=2
 	and a.activityDate>DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
 	and d.employeeId = #{employeeid,jdbcType=INTEGER}
   	group by date_format(a.activityDate,'%Y-%m')

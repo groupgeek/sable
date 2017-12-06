@@ -40,10 +40,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
 				<c:if test="${user.avatar!=null }">
-                    <img src="/upload/${user.avatar }" class="user-image img-responsive"/>
+                    <img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${user.avatar }" class="user-image img-responsive"/>
                     </c:if>
                     <c:if test="${user.avatar==null }">
-                     <img src="/upload/ss.jpg" class="user-image img-responsive"/>
+                     <img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/ss.jpg" class="user-image img-responsive"/>
                     </c:if>
 					</li>
                     <li>
@@ -126,17 +126,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                  
                   <div class="control-group">
                   <div>
-						<label class="control-label" for="typeahead">性别：</label></div>
+                  <c:if test="${user.sex != null}">
+						<label class="control-label" for="typeahead">性别：</label>
 						<div class="form-text" id="rad-sex" readonly="readonly">
 						<label class="radio-inline" >
 								<input name="sex" checked="checked" type="radio" value="${user.sex}">${user.sex}</label>
+								
+								
+								
 						<c:if test="${user.sex=='男' }">
 						<label class="radio-inline">
 								<input name="sex" type="radio" value="女">女</label></c:if>
 						<c:if test="${user.sex=='女' }">
 						<label class="radio-inline">
 								<input name="sex" type="radio" value="男">男</label></c:if>
-								</div>
+								
+								
+								</div></c:if>
 						</div>
 
 					<div class="control-group">

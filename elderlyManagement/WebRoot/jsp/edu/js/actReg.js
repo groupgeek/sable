@@ -1,21 +1,21 @@
 function actReg(){
 		var obj = $("#lll");
 		var ob = document.getElementById("ready");
-		var activityregistery = new Object();
+		var activityrecommendCustom = new Object();
 		var root = document.getElementById("root").value;
 		var activityid = document.getElementById("regActid").value;
 		var registeryfee = document.getElementById("registery").value;
 		var activityname = document.getElementById("activityname").value;
 		var a = document.getElementById("a").value;
 		var c= parseInt(a) + parseInt(1);
-		activityregistery.activityid = activityid;
-		activityregistery.registeryfee = registeryfee;
-		activityregistery.activityname = activityname;
+		activityrecommendCustom.activityid = activityid;
+		activityrecommendCustom.registeryfee = registeryfee;
+		activityrecommendCustom.activityname = activityname;
 		$.ajax({
 			type:'post',
 			url: root+'/edu/regAct.action',
 			contentType:"application/json;charset=utf-8",
-			data:JSON.stringify(activityregistery),
+			data:JSON.stringify(activityrecommendCustom),
 			success:function(data){
 				if(data==null){
 					alert("报名失败！");

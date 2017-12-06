@@ -198,11 +198,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<form class="form-horizontal">
 						  <fieldset>
 							 
-							 
-							 
-							 
-							 
-							 
 							 <div class="control-group">
 								<label class="control-label" for="selectError3" name="">推荐活动1</label>
 								<input type="hidden" value="${allBranchActRec[0].activityid }" id = "activityidRec1">
@@ -223,11 +218,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<i class="icon-ok-sign"></i>                                            
 									</a></div>
 							</div> 
-							
-							
-							
-							
-							
 							
 							<div class="control-group">
 								<label class="control-label" for="selectError3">推荐活动2</label>
@@ -268,22 +258,100 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									 <a class="btn btn-info" href="" onclick="insertRecAct3()">
 										<i class="icon-ok-sign"></i>                                            
 									</a> 
-									<!-- <button type="submit" class="btn btn-info" onclick="insertRecAct()"><i class="icon-ok-sign"></i> </button> -->
-									<%-- <c:if test="${allBranchActRec[2].activityid ==null}">
-									<a class="btn btn-info" href="${pageContext.request.contextPath }/brach/insertRecAct.action">
-										<i class="icon-ok-sign"></i>                                            
-									</a>
-									</c:if> --%>
+									
 								</div>
 							</div> 
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>设置分店官网健康推荐活动</h2>
+						<div class="box-icon">
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							 
+							 <div class="control-group">
+								<label class="control-label" for="selectError4" name="">推荐活动1</label>
+								<input type="hidden" value="${allBranchHealthRec[0].activityid }" id = "activityidRec4">
+								<div class="controls">
+									<select id="selectError4" name="activity" >
+									<c:if test="${allBranchHealthRec[0] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchHealthRec[0] !=null}">
+										<option selected="true" name="activityid">${ allBranchHealthRec[0].activityname}</option>
+									</c:if>
+									
+									<c:forEach items="${allActs }" var="allActs">
+									<c:if test="${allActs.fathertypeid == 1 }">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:if>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecHealth1()">
+										<i class="icon-ok-sign"></i>                                            
+									</a></div>
+							</div> 
 							
-							
-							
-							
-							<!-- <div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Save changes</button>
-							  <button type="reset" class="btn">Cancel</button>
-							</div> -->
+							<div class="control-group">
+								<label class="control-label" for="selectError5">推荐活动2</label>
+								<input type="hidden" value="${allBranchHealthRec[1].activityid }" id = "activityidRec5">
+								<div class="controls">
+									
+									<select id="selectError5" name="activity" >
+									<c:if test="${allBranchHealthRec[1] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchHealthRec[1] !=null}">
+										<option selected="true" name="activityid">${ allBranchHealthRec[1].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<c:if test="${allActs.fathertypeid == 1 }">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:if>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecHealth2()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError6">推荐活动3</label>
+								<input type="hidden" value="${allBranchHealthRec[2].activityid }" id = "activityidRec6">
+								<div class="controls">
+									<select id="selectError6" name="activity" >
+									<c:if test="${allBranchHealthRec[2] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchHealthRec[2] !=null}">
+										<option selected="true" name="activityid">${ allBranchHealthRec[2].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<c:if test="${allActs.fathertypeid == 1 }">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:if>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecHealth3()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> 
+									
+								</div>
+							</div> 
 						  </fieldset>
 						</form>   
 
@@ -293,6 +361,96 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			
 			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>设置分店官网教育推荐活动</h2>
+						<div class="box-icon">
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a> -->
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							 
+							 <div class="control-group">
+								<label class="control-label" for="selectError7" name="">推荐活动1</label>
+								<input type="hidden" value="${allBranchEduRec[0].activityid }" id = "activityidRec7">
+								<div class="controls">
+									<select id="selectError7" name="activity" >
+									<c:if test="${allBranchEduRec[0] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchEduRec[0] !=null}">
+										<option selected="true" name="activityid">${ allBranchEduRec[0].activityname}</option>
+									</c:if>
+									
+									<c:forEach items="${allActs }" var="allActs">
+										<c:if test="${allActs.fathertypeid == 2 }">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:if>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecEdu1()">
+										<i class="icon-ok-sign"></i>                                            
+									</a></div>
+							</div> 
+							
+							<div class="control-group">
+								<label class="control-label" for="selectError8">推荐活动2</label>
+								<input type="hidden" value="${allBranchEduRec[1].activityid }" id = "activityidRec8">
+								<div class="controls">
+									
+									<select id="selectError8" name="activity" >
+									<c:if test="${allBranchEduRec[1] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchEduRec[1] !=null}">
+										<option selected="true" name="activityid">${ allBranchEduRec[1].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<c:if test="${allActs.fathertypeid == 2 }">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:if>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecEdu2()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> </div>
+							</div> 
+							      
+							<div class="control-group">
+								<label class="control-label" for="selectError9">推荐活动3</label>
+								<input type="hidden" value="${allBranchEduRec[2].activityid }" id = "activityidRec9">
+								<div class="controls">
+									<select id="selectError9" name="activity" >
+									<c:if test="${allBranchEduRec[2] ==null}">
+									<option name="activityid" value=""> --请选择-- </option>
+									</c:if>
+									<c:if test="${allBranchEduRec[2] !=null}">
+										<option selected="true" name="activityid">${ allBranchEduRec[2].activityname}</option>
+									</c:if>
+									<c:forEach items="${allActs }" var="allActs">
+										<c:if test="${allActs.fathertypeid == 2 }">
+										<option name="activityid"  value="${allActs.activityid }">${allActs.activityname} </option>
+									</c:if>
+									</c:forEach>
+									</select>
+									 <a class="btn btn-info" href="" onclick="insertRecEdu3()">
+										<i class="icon-ok-sign"></i>                                            
+									</a> 
+									
+								</div>
+							</div> 
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div>
 			
 			
 			
@@ -406,7 +564,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- end: JavaScript-->
 	
 	<script type="text/javascript">
-	
 	function insertRecAct1(){
 		var select1 = document.getElementById("selectError1");
 		var value1 = select1.options[select1.selectedIndex].value;
@@ -426,7 +583,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 	
 	<script type="text/javascript">
-	
 	function insertRecAct2(){
 		var select2 = document.getElementById("selectError2");
 		var value2 = select2.options[select2.selectedIndex].value;
@@ -444,7 +600,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 	
 	<script type="text/javascript">
-	
 	function insertRecAct3(){
 		var select3 = document.getElementById("selectError3");
 		var value3 = select3.options[select3.selectedIndex].value;
@@ -460,5 +615,121 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	</script>
 	
+	
+	
+	<script type="text/javascript">
+	function insertRecHealth1(){
+		var select4 = document.getElementById("selectError4");
+		var value4 = select4.options[select4.selectedIndex].value;
+		var values1 = document.getElementById("activityidRec4").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestHealthAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value4+'"'+','+'"activityidRec"'+':'+'"'+values1+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	function insertRecHealth2(){
+		var select5 = document.getElementById("selectError5");
+		var value5 = select5.options[select5.selectedIndex].value;
+		var values2 = document.getElementById("activityidRec5").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestHealthAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value5+'"'+','+'"activityidRec"'+':'+'"'+values2+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	function insertRecHealth3(){
+		var select6 = document.getElementById("selectError6");
+		var value6 = select6.options[select6.selectedIndex].value;
+		var values3 = document.getElementById("activityidRec6").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestHealthAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value6+'"'+','+'"activityidRec"'+':'+'"'+values3+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
+	
+	
+	<script type="text/javascript">
+	function insertRecEdu1(){
+		var select7 = document.getElementById("selectError7");
+		var value7 = select7.options[select7.selectedIndex].value;
+		var values7 = document.getElementById("activityidRec7").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestEduAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value7+'"'+','+'"activityidRec"'+':'+'"'+values7+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	function insertRecEdu2(){
+		var select8 = document.getElementById("selectError8");
+		var value8 = select8.options[select8.selectedIndex].value;
+		var values8 = document.getElementById("activityidRec8").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestEduAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value8+'"'+','+'"activityidRec"'+':'+'"'+values8+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	function insertRecEdu3(){
+		var select9 = document.getElementById("selectError9");
+		var value9 = select9.options[select9.selectedIndex].value;
+		var values9 = document.getElementById("activityidRec9").value;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath }/brach/RequestEduAct.action',
+			contentType : 'application/json;charset=utf-8',
+			data:'{"activityid"'+':'+'"'+value9+'"'+','+'"activityidRec"'+':'+'"'+values9+'"}',
+			success:function(){
+			},
+			error:function(){
+			alert("操作成功！刷新界面！");
+			}
+		});
+	}
+	</script>
 </body>
 </html>

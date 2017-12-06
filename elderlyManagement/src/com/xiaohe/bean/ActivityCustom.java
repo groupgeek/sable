@@ -23,9 +23,15 @@ public class ActivityCustom extends Activity {
 	
 	private String principalname;
 	
-	
+	private Integer activitytypefatherid;
 	
 
+	public Integer getActivitytypefatherid() {
+		return activitytypefatherid;
+	}
+	public void setActivitytypefatherid(Integer activitytypefatherid) {
+		this.activitytypefatherid = activitytypefatherid;
+	}
 	public String getPrincipalname() {
 		return principalname;
 	}
