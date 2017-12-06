@@ -31,8 +31,6 @@ $(document).ready(function(){
 									'<span class="street">'+data.addresssList[i].shippingaddress+'</span></p>'+
 							'</div>'+
 							'<div class="new-addr-btn">'+
-								'<a href="javascript:;"><i class="am-icon-edit"></i>编辑</a>'+
-								'<span class="new-addr-bar">|</span>'+
 								'<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>'+
 								'<input type="hidden" name = "shippingaddressid" value="'+data.addresssList[i].shippingaddressid+'">'+
 							'</div>'+
@@ -165,14 +163,13 @@ $(document).ready(function(){
 									'<span class="street">'+data.shippingaddress+'</span></p>'+
 							'</div>'+
 							'<div class="new-addr-btn">'+
-								'<a href="javascript:;"><i class="am-icon-edit"></i>编辑</a>'+
-								'<span class="new-addr-bar">|</span>'+
 								'<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>'+
 								'<input type="hidden" name = "shippingaddressid" value="'+data.shippingaddressid+'">'+
 							'</div>'+
 							'</li>'
 					);
 					//显示提示信息
+					$("#messageNotification").attr("style","background-color: red;");
 					$("#showMessage").text("添加成功");
 					$('#messageNotification').fadeIn(2000);
 					getSrceenWH();
@@ -210,6 +207,7 @@ $(document).ready(function(){
 							if(data.flag){
 								myself.parent().parent().remove();
 								//显示提示信息
+								$("#messageNotification").attr("style","background-color: red;");
 								$("#showMessage").text("删除成功");
 								$('#messageNotification').fadeIn(2000);
 								getSrceenWH();

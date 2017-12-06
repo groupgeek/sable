@@ -1,5 +1,6 @@
 package com.xiaohe.service.impl;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaohe.bean.Integral;
 import com.xiaohe.bean.IntegralCustom;
@@ -24,6 +26,7 @@ import com.xiaohe.mapper.IntegralorderMapper;
 import com.xiaohe.mapper.IntegraltoarticleMapper;
 import com.xiaohe.mapper.UserMapper;
 import com.xiaohe.service.IntegraltoarticleService;
+import com.xiaohe.util.FileUpload;
 
 @Repository("integraltoarticleService")
 public class IntegraltoarticleServiceImpl implements IntegraltoarticleService {
@@ -136,6 +139,29 @@ public class IntegraltoarticleServiceImpl implements IntegraltoarticleService {
 		integralInfo.setChangetime(new Date());
 		
 		if(integralMapper.insertSelective(integralInfo) <= 0) return false; 
+		
+		return true;
+	}
+
+	public boolean addPointsProduct(Integraltoarticle integraltoarticle,
+			MultipartFile pictureUpload) {
+		
+		if(integraltoarticle.getBranchid() == null) return false;
+		if(integraltoarticle.getArticlename() == null) return false;
+		
+		if(pictureUpload != null){
+			if(!pictureUpload.isEmpty()){
+				try {
+					integraltoarticle.setPicture(FileUpload.oneFileUpload(pictureUpload,null, "picture"));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		if(integraltoarticleMapper.insertSelective(integraltoarticle) <= 0) return false;
 		
 		return true;
 	}

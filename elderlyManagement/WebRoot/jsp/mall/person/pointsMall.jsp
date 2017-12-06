@@ -101,7 +101,7 @@
 								<li>
 									<a href="#">
 
-										<span class="index-needs-dt-txt">积分商品</span></a>
+										<span class="index-needs-dt-txt" id = "pointsProduct">积分商品</span></a>
 								</li>
 							</ul>
 
@@ -119,10 +119,10 @@
 									<!--分页 -->
 									<p style="float: right; height: 10px;">当前为第<strong id = "productCurrentPage">1</strong>页</p>
 									<ul class="am-pagination am-pagination-right" id = "ull">
-										<li id = "home"><a href="javascript:;">首页</a></li>
-										<li id = "previousPage"><a href="javascript:;">&laquo;</a></li>
-										<li id = "nextPage"><a href="javascript:;">&raquo;</a></li>
-										<li id = "lastPage"><a href="javascript:;">尾页</a></li>
+										<li id = "home"><a href="javascript:void(0)">首页</a></li>
+										<li id = "previousPage"><a href="javascript:void(0)">&laquo;</a></li>
+										<li id = "nextPage"><a href="javascript:void(0)">&raquo;</a></li>
+										<li id = "lastPage"><a href="javascript:void(0)">尾页</a></li>
 									</ul>
 									<div class="clear"></div>
 

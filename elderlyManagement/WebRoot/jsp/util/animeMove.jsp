@@ -7,14 +7,16 @@
 #oblong {
 	width: 200px;
 	height: 200px;
+	border-radius:10px;
 	background-image:
 		url('${pageContext.request.contextPath }/jsp/util/images/65.gif');
+	
 	background-repeat: no-repeat;
 	z-index: 1000;
 	position: fixed;
 	/* left: 1200px; */
 	right: 10px;
-	top: 500px;
+	top: 380px;
 }
 </style>
 </head>

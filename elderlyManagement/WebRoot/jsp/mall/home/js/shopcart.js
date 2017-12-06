@@ -16,6 +16,7 @@ $(document).ready(function(){
 			contentType:"application/json;charset=utf-8",
 			url:root+"/product/queryAllShopCartByUserid",
 			success:function(data){
+				/*alert(1)class="itempic J_ItemImg"*/
 				for(var i in data){
 					if(data[i].type == 2){
 						
@@ -31,7 +32,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'?x-oss-process=image/resize,m_lfit,h_80,w_80" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -96,7 +97,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'?x-oss-process=image/resize,m_lfit,h_80,w_80" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -162,7 +163,7 @@ $(document).ready(function(){
 								'<li class="td td-item">'+
 									'<div class="item-pic">'+
 										'<a href="'+root+'/product/productInfo?id='+data[i].productid+'" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">'+
-											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'" class="itempic J_ItemImg"></a>'+
+											'<img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/'+data[i].productInfo.picture+'?x-oss-process=image/resize,m_lfit,h_80,w_80" class="itempic J_ItemImg"></a>'+
 									'</div>'+
 									'<div class="item-info">'+
 										'<div class="item-basic-info">'+
@@ -171,14 +172,11 @@ $(document).ready(function(){
 									'</div>'+
 								'</li>'+
 								
-								/*'<li class="td td-info">'+
-									'<div class="item-props item-props-can">'+
-										'<span class="sku-line"> </span>'+
-										'<span tabindex="0" class="btn-edit-sku theme-login" name = "updateOption">修改</span>'+
-										'<input type="hidden" name="ptype" value="'+data[i].type+'">'+
-										'<i class="theme-login am-icon-sort-desc"></i>'+
+								'<li class="td td-info">'+
+									'<div class="item-props">'+
+										
 									'</div>'+
-								'</li>'+*/
+								'</li>'+
 								
 								'<li class="td td-price">'+
 									'<div class="item-price price-promo-promo">'+
@@ -216,7 +214,6 @@ $(document).ready(function(){
 					}
 						
 				}	
-				
 				
 				//删除一个
 				$(".delete").click(function(){
@@ -538,7 +535,7 @@ $(document).ready(function(){
 				data:JSON.stringify(payArr),
 				success:function(data){
 					//alert(data)
-					if(data != null || data != "")
+					if(data != null && data != "")
 					window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
 					
 				}

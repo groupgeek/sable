@@ -1,11 +1,15 @@
 $(document).ready(function(){
 	var root = $("#root").attr("value");
+	var val = window.location.href.split("?")[1];
+	var branchid = val.split("=")[1];
+	
 		var search = "";
 		var currentPage = 1;
 		var pageNum = $("#selectPageNum").attr("value");;
 		var sort = $("#selectSort").val();
 		var producttypeid = $("#producttypeid").attr("value");
-		
+	
+		$("#mallUrl").attr("href",root+"/jsp/admin/page/mallInfo.jsp?branchid="+branchid);
 		$.ajax({
 			
 			type:"post",
@@ -78,6 +82,7 @@ $(document).ready(function(){
 			search = $("#search").val();
 			producttypeid = $("#producttypeid").attr("value");
 			currentPage = 1;
+			
 			$.ajax({
 				
 				type:"post",
@@ -87,6 +92,7 @@ $(document).ready(function(){
 				+'"currentPage"'+':'+'"'+currentPage+'"'+','
 				+'"producttypeid"'+':'+'"'+producttypeid+'"'+','
 				+'"pageNum"'+':'+'"'+pageNum+'"'+','
+				+'"branchid"'+':'+'"'+branchid+'"'+','
 				+'"sort"'+':'+'"'+sort+'"'
 	        			+'}',
 				success:function(data){
@@ -113,6 +119,7 @@ $(document).ready(function(){
 			+'"currentPage"'+':'+'"'+currentPage+'"'+','
 			+'"pageNum"'+':'+'"'+pageNum+'"'+','
 			+'"producttypeid"'+':'+'"'+producttypeid+'"'+','
+			+'"branchid"'+':'+'"'+branchid+'"'+','
 			+'"sort"'+':'+'"'+sort+'"'
         			+'}',
 			success:function(data){
@@ -189,6 +196,7 @@ $(document).ready(function(){
 				+'"currentPage"'+':'+'"'+currentPage+'"'+','
 				+'"producttypeid"'+':'+'"'+producttypeid+'"'+','
 				+'"pageNum"'+':'+'"'+pageNum+'"'+','
+				+'"branchid"'+':'+'"'+branchid+'"'+','
 				+'"sort"'+':'+'"'+sort+'"'
 	        			+'}',
 				success:function(data){

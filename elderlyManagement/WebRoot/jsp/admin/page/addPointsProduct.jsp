@@ -6,9 +6,9 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>分店详情</title>
+	<title>商品添加</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
-	<meta name="author" content="Dennis Ji">
+	<meta name="author" content="zb">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<!-- end: Meta -->
 	
@@ -62,6 +62,7 @@
 
 			<!-- start: Main Menu -->
 			<c:import url="/jsp/admin/menu.jsp"></c:import>
+
 			<!-- start: Content -->
 			<div id="content" class="span10">
 			<ul class="breadcrumb">
@@ -74,75 +75,92 @@
 					<a href="${pageContext.request.contextPath }/jsp/admin/page/branch.jsp">分店管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">分店详情</a></li>
+				<li>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp" id = "mallInfoUrl">商城管理</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="#">商品添加</a></li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>分店详细信息</h2>
-						<h2><span class="break"></span><a href="" style="color: white; text-decoration: none;" id = "mallUrl">查看商城</a></h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>积分商品添加</h2>
+						<h2 id = "adminMall"></h2>
 						<div class="box-icon">
 							<!-- <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a> -->
-							<a href="" id = "branchUrl"><i class="halflings-icon white wrench"></i></a>
+							<a href="" id = "updateProductUrl"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 						</div>
 					</div>
 					
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" id = "pointsProductForm" action = "${pageContext.request.contextPath }/superAdmin/addPointsProduct" method="post" enctype="multipart/form-data">
 							<fieldset>
-							  <div class="control-group" id = "branchname">
-								<label class="control-label">分店名字</label>
+							  <input name = "branchid" type="hidden" value="" id = "branchid">
+							  <div class="control-group" id = "producPpicture">
+								<label class="control-label">添加图片</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "pictureUpload" type="file">
 								</div>
 							  </div>
-							  <div class="control-group" id = "employeename">
-								<label class="control-label">分店管理员</label>
+							  <div class="control-group" id = "articlename">
+								<label class="control-label">商品名字</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "articlename" type="text" value="">
+								  <p id = "product-name-error" style="color: red;display: none;">名字不能包含特殊字符，最少1个字符</p>
 								</div>
 							  </div>
-							  <div class="control-group" id = "areaname">
-								<label class="control-label">所在地区</label>
+							  <div class="control-group" id = "integral">
+								<label class="control-label">商品积分价格</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input id="" size="16" type="text" name = "integral">
+									<p id = "product-integral-error" style="color: red;display: none;">格式错误</p>
 								</div>
 							  </div>
-							  <div class="control-group" id = "areaaddress">
-								<label class="control-label">地区地址</label>
+							  <div class="control-group" id = "purchaseprice">
+								<label class="control-label">商品进价</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								<div class="input-prepend input-append">
+								  <span class="add-on">￥</span><input id="" size="16" type="text" name = "purchaseprice">
+									
+								</div>
+								<p id = "product-purchaseprice-error" style="color: red;display: none;">格式错误</p>
+								 </div>
+							  </div>
+							 <!--  <div class="control-group" id = "branchname">
+								<label class="control-label">所属分店</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "branchid" type="text" value="">
+								</div>
+							  </div> -->
+							   
+							  <div class="control-group" id = "instock">
+								<label class="control-label">总库存</label>
+								<div class="controls">
+								  <input class="input-xlarge focused" name = "instock" type="text" value="">
+									<p id = "product-instock-error" style="color: red;display: none;">只能为数字</p>
 								</div>
 							  </div>
-							  <div class="control-group" id = "employeenum">
-								<label class="control-label">分店员工数量(人)</label>
+							 <!--  <div class="control-group" id = "discount">
+								<label class="control-label">打折</label>
 								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
+								  <input class="input-xlarge focused" name = "discount" type="text" value="">
 								</div>
+							  </div> -->
+							  
+							  
+							   
+							  <div class="control-group hidden-phone" id = "detail">
+								  <label class="control-label">商品描述</label>
+								  <div class="controls">
+									<textarea class="" id="" rows="6"  name="detail" style="width: 500px;"></textarea>
+								  </div>
 							  </div>
 							  
-							  <div class="control-group" id = "usernum">
-								<label class="control-label">分店客户数量(人)</label>
-								<div class="controls">
-								  <span class="input-xlarge uneditable-input"></span>
-								</div>
-							  </div>
-							  
-							  
-							  
-							  
-							  
-							  
-							  
-							  
-							  
-							  
-							  
-							  
-							  <%-- <input type="hidden" value="${message }" id = "message">
-							  <input type="hidden" value="${activityid }" id = "activityid"> --%>
+							  <div class="form-actions">
+							  	<button type="button" class="btn btn-primary" id = "addPointsProduct" style="display: none;">保存</button>
+							  </div> 
 							  <!-- <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
 								<button class="btn">Cancel</button>
@@ -165,31 +183,30 @@
 		</div>
 	</div>
 		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="#">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
 	
 	<div class="clearfix"></div>
 	<c:import url="/jsp/admin/footer.jsp"></c:import>
+	
+	<input type = "hidden" id = "message" value = "${message }">
+	
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+		//显示提示信息
+		var message = $("#message").val();
+		//var message =  window.location.href.split("?")[1]
+		if(message != ""){
+	
+			
+			$("#showMessage").text(message);
+			$('#messageNotification').fadeIn(2000);
+			getSrceenWH();
+			$('#messageNotification').fadeOut(3000);
+		}
+		
+	})
+		
+	</script>
 	
 	<!-- start: JavaScript-->
 
@@ -281,9 +298,9 @@
 
 	<script
 		src="${pageContext.request.contextPath }/jsp/admin/js/custom.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/jsp/admin/page/js/branchInfo.js"></script>
 	
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/jsp/admin/page/js/addPointsProduct.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

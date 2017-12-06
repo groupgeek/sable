@@ -80,7 +80,7 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp">商城管理</a>
+					<a href="" id = "mallUrl">商城管理</a>
 				</li>
 			</ul>
 			
@@ -109,9 +109,9 @@
 							<div>
 								<div id="pageNumBox">
 									<select id="selectPageNum">
-										<option value="1">1</option>
-										<option value="2" selected="selected">2</option>
-										<option value="3">3</option>
+										<option value="5">5</option>
+										<option value="10" selected="selected">10</option>
+										<option value="15">15</option>
 									</select>
 								</div>
 								<select id="selectSort">

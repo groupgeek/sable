@@ -44,7 +44,7 @@ $(document).ready(function(){
 		//跳转页面
 		
 		//window.location.href = root+"/jsp/mall/home/shopcart.jsp";
-		if($("#teastType").attr("value") == 1){
+		if($("#teastType").attr("value") == "1"){
 			if(taste == ""){
 				//alert("请选择口味");
 				//更改信息框颜色
@@ -105,7 +105,7 @@ $(document).ready(function(){
 
 			}
 		}
-		if($("#colourType").attr("value") == 2){
+		if($("#colourType").attr("value") == "2"){
 			if(colour == "" || size == ""){
 				//alert("请选择颜色或者型号");
 				//更改信息框颜色
@@ -165,6 +165,54 @@ $(document).ready(function(){
 				
 
 			}
+		}
+		
+		if($("#other").attr("value") == "3"){
+			
+				if($(this).attr("id") == "shoppingCart"){
+					$.ajax({
+						
+						type:"post",
+						contentType:"application/json;charset=utf-8",
+						url:root+"/product/addShopCart",
+						data:'{"type"'+':'+'"'+2+'"'+','
+						+'"productid"'+':'+'"'+productid+'"'+','
+						+'"number"'+':'+'"'+$("#text_box").attr("value")+'"'
+				    			+'}',
+					success:function(data){
+						//alert(data.message);
+						$(".cart_num ").text(parseInt($(".cart_num ").text()) + 1);
+						//更改信息框颜色
+						$("#messageNotification").attr("style","background-color: red;");
+						
+						$("#showMessage").text(data.message);
+						$('#messageNotification').fadeIn(2000);
+						getSrceenWH();
+						$('#messageNotification').fadeOut(3000);
+						
+						}
+					});
+				}
+				if($(this).attr("id") == "buy"){
+					var info = new Object();
+					info.productid = productid;
+					info.price = $("#price").text();
+					info.productname = $("#productName").text();
+					
+					
+					$.ajax({
+						type:"post",
+						contentType:"application/json;charset=utf-8",
+						url:root+"/product/buyNow",
+						data:JSON.stringify(info),
+						success:function(data){
+							window.open(root+"/jsp/mall/home/pay.jsp?ordersid="+data);
+						}
+					});
+					
+				}
+				
+
 		}
 		
 		

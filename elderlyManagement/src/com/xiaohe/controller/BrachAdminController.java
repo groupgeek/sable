@@ -295,10 +295,16 @@ public class BrachAdminController {
 		allActs = branchService.acts();
 		/*分店的推荐活动*/
 		List<ActivityrecommendCustom> allBranchActRec = new ArrayList<ActivityrecommendCustom>();
+		List<ActivityrecommendCustom> allBranchHealthRec = new ArrayList<ActivityrecommendCustom>();
+		List<ActivityrecommendCustom> allBranchEduRec = new ArrayList<ActivityrecommendCustom>();
 		allBranchActRec = branchService.branchActRec(a);
+		allBranchHealthRec = branchService.branchActHealthRec(a);
+		allBranchEduRec = branchService.branchActEduRec(a);
 	/*	Activityrecommend act = new Activityrecommend();*/
-		System.out.println(allBranchActRec);
+		
 		model.addAttribute("allBranchActRec", allBranchActRec);
+		model.addAttribute("allBranchHealthRec", allBranchHealthRec);
+		model.addAttribute("allBranchEduRec", allBranchEduRec);
 		model.addAttribute("allActs", allActs);
 		model.addAttribute("acts", acts);
 		return "brach/activity";
@@ -313,7 +319,6 @@ public class BrachAdminController {
 		System.out.println(activityrecommendCustom.getActivityid().toString()+activityrecommendCustom.getBranchid().toString());
 		/*branchService.delActRec(activityrecommendCustom);*/
 		return "";
-		
 	}
 	
 	@RequestMapping(value="/oneActCus")
@@ -519,11 +524,17 @@ public class BrachAdminController {
 		act4.setWebsitetype("分店官网");
 		act2 = branchService.oneActRecById(act3);//这个活动推荐是通过选中的
 		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
+		
 		if(act2 == null&& act5 == null){
-			acts.setBranchid(branch.getBranchid());
-			acts.setActivityid(activityrecommendCustom.getActivityid());
-			acts.setWebsitetype("分店官网");
-			branchService.insertActRec(acts);
+			if(activityrecommendCustom.getActivityid()==null){
+				return null;
+			}else if(activityrecommendCustom.getActivityid()!=null){
+				acts.setBranchid(branch.getBranchid());
+				acts.setActivityid(activityrecommendCustom.getActivityid());
+				acts.setWebsitetype("分店官网");
+				branchService.insertActRec(acts);
+			}
+			
 		}else if(act2 == null && act5!=null){
 			if(b>=3){
 				branchService.delActRec(act5);
@@ -531,11 +542,9 @@ public class BrachAdminController {
 			}else{
 				branchService.insertActRec(act3);
 			}
-			
 		}else if(act2 != null && act5!=null){
 			if(branchService.oneActRecById(act2)!=null){
-				branchService.delActRec(act2);
-				branchService.insertActRec(act2);
+				return null;
 			}else{
 				if(b>=3){
 					branchService.delActRec(act5);
@@ -555,6 +564,135 @@ public class BrachAdminController {
 		return act2;
 		/*acts = branchService.oneActRecById(acts);*/
 	}
+	/*------------------------------------------------------------------------------------*/
+	@RequestMapping(value="/RequestHealthAct")
+	public @ResponseBody ActivityrecommendCustom HealthAct(@RequestBody ActivityrecommendCustom activityrecommendCustom,HttpServletRequest request){
+		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		Branch branch = new Branch();
+		branch = branchService.oneBranchByEmployeeId(a);
+		int b = branchService.countActHealthRec(a);
+		/*这个是插入的对象*/
+		ActivityrecommendCustom acts = new ActivityrecommendCustom();
+		ActivityrecommendCustom act2 = new ActivityrecommendCustom();
+		ActivityrecommendCustom act3 = new ActivityrecommendCustom();
+		ActivityrecommendCustom act4 = new ActivityrecommendCustom();
+		ActivityrecommendCustom act5 = new ActivityrecommendCustom();
+		act3.setActivityid(activityrecommendCustom.getActivityid());
+		act3.setBranchid(branch.getBranchid());
+		act3.setWebsitetype("分店官网(健康)");
+		act3.setActivitytypefatherid(1);
+		act4.setActivityid(activityrecommendCustom.getActivityidRec());
+		act4.setBranchid(branch.getBranchid());
+		act4.setWebsitetype("分店官网(健康)");
+		act4.setActivitytypefatherid(1);
+		act2 = branchService.oneActRecById(act3);//这个活动推荐是通过选中的
+		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
+		
+		if(act2 == null&& act5 == null){
+			if(activityrecommendCustom.getActivityid()==null){
+				return null;
+			}else if(activityrecommendCustom.getActivityid()!=null){
+				acts.setBranchid(branch.getBranchid());
+				acts.setActivityid(activityrecommendCustom.getActivityid());
+				acts.setWebsitetype("分店官网(健康)");
+				acts.setActivitytypefatherid(1);
+				branchService.insertActRec(acts);
+			}
+			
+		}else if(act2 == null && act5!=null){
+			if(b>=3){
+				branchService.delActRec(act5);
+				branchService.insertActRec(act3);
+			}else{
+				branchService.insertActRec(act3);
+			}
+		}else if(act2 != null && act5!=null){
+			if(branchService.oneActRecById(act2)!=null){
+				return null;
+			}else{
+				if(b>=3){
+					branchService.delActRec(act5);
+					branchService.insertActRec(act2);
+				}else{
+					branchService.insertActRec(act2);
+				}
+			}
+		}else if(act5==null&&act2!=null){
+			if(branchService.oneActRecById(act2)!=null){
+				branchService.delActRec(act2);
+				branchService.insertActRec(act2);
+			}else{
+				branchService.insertActRec(act2);
+			}
+		}
+		return act2;
+		/*acts = branchService.oneActRecById(acts);*/
+	}
+	
+	
+	@RequestMapping(value="/RequestEduAct")
+	public @ResponseBody ActivityrecommendCustom EduAct(@RequestBody ActivityrecommendCustom activityrecommendCustom,HttpServletRequest request){
+		int a = ((Employee)request.getSession().getAttribute("admins")).getEmployeeid();
+		Branch branch = new Branch();
+		branch = branchService.oneBranchByEmployeeId(a);
+		int b = branchService.countActEduRec(a);
+		/*这个是插入的对象*/
+		ActivityrecommendCustom acts = new ActivityrecommendCustom();
+		ActivityrecommendCustom act2 = new ActivityrecommendCustom();
+		ActivityrecommendCustom act3 = new ActivityrecommendCustom();
+		ActivityrecommendCustom act4 = new ActivityrecommendCustom();
+		ActivityrecommendCustom act5 = new ActivityrecommendCustom();
+		act3.setActivityid(activityrecommendCustom.getActivityid());
+		act3.setBranchid(branch.getBranchid());
+		act3.setWebsitetype("分店官网(教育)");
+		act3.setActivitytypefatherid(2);
+		act4.setActivityid(activityrecommendCustom.getActivityidRec());
+		act4.setBranchid(branch.getBranchid());
+		act4.setWebsitetype("分店官网(教育)");
+		act4.setActivitytypefatherid(2);
+		act2 = branchService.oneActRecById(act3);//这个活动推荐是通过选中的
+		act5 = branchService.oneActRecById(act4);//这个是后台原本传过去的活动
+		if(act2 == null&& act5 == null){
+			if(activityrecommendCustom.getActivityid()==null){
+				return null;
+			}else if(activityrecommendCustom.getActivityid()!=null){
+				acts.setBranchid(branch.getBranchid());
+				acts.setActivityid(activityrecommendCustom.getActivityid());
+				acts.setWebsitetype("分店官网(教育)");
+				acts.setActivitytypefatherid(2);
+				branchService.insertActRec(acts);
+			}
+			
+		}else if(act2 == null && act5!=null){
+			if(b>=3){
+				branchService.delActRec(act5);
+				branchService.insertActRec(act3);
+			}else{
+				branchService.insertActRec(act3);
+			}
+		}else if(act2 != null && act5!=null){
+			if(branchService.oneActRecById(act2)!=null){
+				return null;
+			}else{
+				if(b>=3){
+					branchService.delActRec(act5);
+					branchService.insertActRec(act2);
+				}else{
+					branchService.insertActRec(act2);
+				}
+			}
+		}else if(act5==null&&act2!=null){
+			if(branchService.oneActRecById(act2)!=null){
+				branchService.delActRec(act2);
+				branchService.insertActRec(act2);
+			}else{
+				branchService.insertActRec(act2);
+			}
+		}
+		return act2;
+		/*acts = branchService.oneActRecById(acts);*/
+	}
+	/*------------------------------------------------------------------------------------*/
 	
 	@RequestMapping(value="/RequestBranchProductRec")    //添加分店推荐商品
 	public @ResponseBody ProductrecommendCustom requestBranchRec(@RequestBody ProductCustom productCustom,HttpServletRequest request){

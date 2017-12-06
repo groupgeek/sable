@@ -173,7 +173,8 @@ public class ProductServiceImpl implements ProductService {
 	public ProductCustom queryProductInfoById(Integer id) {
 		if(id == null) return null;
 		ProductCustom product= new ProductCustom();
-		Product temp = productMapper.selectByPrimaryKey(id);
+		ProductCustom temp = new ProductCustom();
+		temp = productMapper.selectProductByPrimaryKey(id);
 		if(temp != null){
 			
 			if(temp.getEdiblemethod() != null){
@@ -184,6 +185,10 @@ public class ProductServiceImpl implements ProductService {
 				product = productMapper.selectProductColourById(id);
 				if(product != null){
 					product.setTasteList(null);
+				}else{
+					product = temp;
+					product.setTasteList(null);
+					product.setColourList(null);
 				}
 			}
 		}
@@ -405,28 +410,30 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 				e.printStackTrace();
 			}
 		}
-		if(productMapper.updateByPrimaryKeySelective(productInfo) < 0) return false;
+		if("".equals(productInfo.getStoragemethod())) productInfo.setStoragemethod(null);
+		if("".equals(productInfo.getEdiblemethod())) productInfo.setEdiblemethod(null);
+		if(productMapper.updateByPrimaryKeySelective(productInfo) <= 0) return false;
 		
 		
 		
 		Producttaste record = new Producttaste();
 		record.setProductid(productInfo.getProductid());
 		
-		if(productInfo.getTasteString() != null){
+		if(productInfo.getTasteString() != null && !"".equals(productInfo.getTasteString())){
 			if(producttasteMapper.deleteProducttasteByProductid(record.getProductid()) < 0) return false;
 			for(String temp : productInfo.getTasteString().split(" ")){
 				record.setProducttaste(temp);
-				if(producttasteMapper.insertSelective(record) < 0) return false;
+				if(producttasteMapper.insertSelective(record) <= 0) return false;
 			}
 		}
 		
 		Productcolour recordColor = new Productcolour();
 		recordColor.setProductid(productInfo.getProductid());
-		if(productInfo.getColorString() != null){
+		if(productInfo.getColorString() != null && !"".equals(productInfo.getColorString())){
 			if(productcolourMapper.deleteColorByProductId(recordColor.getProductid()) < 0) return false;
 			for(String temp : productInfo.getColorString().split(" ")){
 				recordColor.setProductcolour(temp);
-				if(productcolourMapper.insert(recordColor) < 0) return false;
+				if(productcolourMapper.insertSelective(recordColor) <= 0) return false;
 			}
 		}
 		
@@ -789,10 +796,13 @@ public List<ProductCustom> quertyNoBranchRecommendProduct(Integer branchid) {
 		if(producttaste != null)
 			orders.setTaste(producttaste.getProducttaste());
 		
-		if(productcolour != null)
+		if(productcolour != null){
 			orders.setColour(productcolour.getProductcolour());
+			orders.setSize(info.getSizeString());//
+		}
+			
 		
-		orders.setSize(info.getSizeString());//
+		
 		
 		
 		//查询用户分店

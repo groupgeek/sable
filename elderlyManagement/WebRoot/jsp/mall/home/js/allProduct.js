@@ -37,7 +37,7 @@ $(document).ready(function(){
 					      '</li>'
 				);
 				if(index == 0){
-					$(".mc ul").find('"input[value='+ data.productList[i].productid+']"').parent().addClass("first");
+					$(".mc ul").find("li").first().addClass("first");
 				}
 				index++;
 			}
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	
 	//开始查询这一类的所有商品
 	var currentPage = 1;
-	var pageNum = 1;
+	var pageNum = 16;
 	var condition = new Object;
 	
 	function createActivityTable(data){

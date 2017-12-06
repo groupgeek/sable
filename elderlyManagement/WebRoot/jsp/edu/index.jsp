@@ -109,7 +109,7 @@
 	</div>
 
 	<!--讲师团队 开始-->
-	<div class="heading"></div>
+<!-- 	<div class="heading"></div>
 	<div class="Lecturer">
 		<div class="content">
 			<ul>
@@ -120,7 +120,7 @@
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- footer -->
 	<c:import url="footer.jsp"></c:import>

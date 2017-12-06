@@ -74,7 +74,7 @@
                     <nav id="navigation" class="navbar navbar-default" role="navigation">
                         <div class="navbar-inner">
                             <div class="navbar-header">
-                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
+                                <a id="brand" class="navbar-brand" href="${pageContext.request.contextPath }/branch/index.action"><img src="${pageContext.request.contextPath }/jsp/index/images/logo12.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right" id="nav">
@@ -92,7 +92,7 @@
             </header><!-- end header -->
         </div><!-- end container -->
         <div id="page_header">
-            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/5.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
+            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/bg2.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
 
 
             <div class="container text-center header-part">
@@ -130,20 +130,24 @@
                    
 				<c:forEach items="${activities }" var="activitie" varStatus="status">
 				
-					 <!-- Column 1 -->
 
                     <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated" data-wow-delay="0.3s" data-wow-offset="50" data-wow-duration="1s">
                         <div class="block-one block">
-                            <img src="${pageContext.request.contextPath }/jsp/index/images/icon1.png" width="200" class="img-responsive pm-inline" alt="icon" />
+                            <img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activitie.activitypicture }" width="200" class="img-responsive pm-inline" style="border-radius:150px;min-height: 201px;" alt="icon" />
 
-                            <h6 class="pm-column-title">${activitie.activityname }</h6>
+                            <h6 class="pm-column-title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>
-                                <p>${activitie.introduction }.</p>
-                            <div class="btn-blk"><a href="#" class="pm-rounded-btn">去围观</a></div>
+                                <p style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activitydetails }.</p>
+                                <c:if test="${activitie.fathertypeid == 1 }">
+                                	<div class="btn-blk"><a href="${pageContext.request.contextPath }/health/activityInfo?activityid=${activitie.activityid }" class="pm-rounded-btn">去围观</a></div>
+                                </c:if>
+                                <c:if test="${activitie.fathertypeid == 2 }">
+                                	<div class="btn-blk"><a href="${pageContext.request.contextPath }/edu/actInfo?id=${activitie.activityid }" class="pm-rounded-btn">去围观</a></div>
+                                </c:if>
+                            
 
                         </div>
                     </div>
-                    <!-- Column 1 end -->
 				</c:forEach>
 
                 </div>
@@ -165,12 +169,12 @@
 	                    <div class="item-blog col-lg-4 col-md-4 col-sm-6 col-xs-12">
 	                    <ul>
 	                        <li class="img_item">
-	                            <div class="caption8 ctn_blue">
-	                                <h3>${product.productname }</h3>
+	                            <div class="caption8">
+	                                <h3 style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${product.productname }</h3>
 	                                <p>${product.description }.</p>
 	                                <a href="${pageContext.request.contextPath }/product/productInfo?id=${product.productid }" class="pf_button black">详细</a>
 	                            </div>
-	                            <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="min-height: 300px;"/>
+	                            <img class="img-responsive"  src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" alt="" style="min-height: 350px;"/>
 	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
 	                        </li>
 	                    </ul>

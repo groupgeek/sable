@@ -76,7 +76,7 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp">商城管理</a>
+					<a href="${pageContext.request.contextPath }/jsp/admin/page/mallInfo.jsp" id = "mallInfoUrl">商城管理</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li><a href="#">商品添加</a></li>
@@ -145,15 +145,21 @@
 							  <div class="control-group" id = "price">
 								<label class="control-label">商品价格</label>
 								<div class="controls">
+								<div class="input-prepend input-append">
 								  <span class="add-on">￥</span><input id="" size="16" type="text" name = "price">
-									<p id = "product-price-error" style="color: red;display: none;">格式错误</p>
+									
+								</div>
+								<p id = "product-price-error" style="color: red;display: none;">格式错误</p>
 								</div>
 							  </div>
 							  <div class="control-group" id = "purchaseprice">
 								<label class="control-label">商品进价</label>
 								<div class="controls">
+								<div class="input-prepend input-append">
 								  <span class="add-on">￥</span><input id="" size="16" type="text" name = "purchaseprice">
-									<p id = "product-purchaseprice-error" style="color: red;display: none;">格式错误</p>
+									
+								</div>
+								<p id = "product-purchaseprice-error" style="color: red;display: none;">格式错误</p>
 								</div>
 							  </div>
 							 <!--  <div class="control-group" id = "branchname">
@@ -276,6 +282,7 @@
 		$(document).ready(function(){
 		//显示提示信息
 		var message = $("#message").val();
+		//var message =  window.location.href.split("?")[1]
 		if(message != ""){
 	
 			

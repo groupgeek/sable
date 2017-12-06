@@ -107,13 +107,13 @@
 											<div class="area-in">
 												<div class="area-bg">
 													<div class="menu-srot">
-														<div class="sort-side">
+														<div class="sort-side" style="width: 1500px;">
 															<dl class="dl-sort">
 																<dt>
 																	<span title="蛋糕">名字</span>
 																</dt>
 																<dd>
-																	<a title="蒸蛋糕" href="#"><span>类容</span> </a>
+																	<a title="蒸蛋糕" href="#"><span>内容</span> </a>
 																</dd>
 																
 															</dl>
@@ -196,80 +196,7 @@
 
 
 
-			<!--小导航 -->
-			<%-- <div class="am-g am-g-fixed sjsp/mallnav">
-				<div class="am-u-sm-3">
-					<a href="sort.html"><img
-						src="${pageContext.request.contextPath }/jsp/mall/images/navsjsp/mall.jpg" />
-						<div class="title">商品分类</div> </a>
-				</div>
-				<div class="am-u-sm-3">
-					<a href="#"><img
-						src="${pageContext.request.contextPath }/jsp/mall/images/huisjsp/mall.jpg" />
-						<div class="title">大聚惠</div> </a>
-				</div>
-				<div class="am-u-sm-3">
-					<a href="#"><img
-						src="${pageContext.request.contextPath }/jsp/mall/images/mansjsp/mall.jpg" />
-						<div class="title">个人中心</div> </a>
-				</div>
-				<div class="am-u-sm-3">
-					<a href="#"><img
-						src="${pageContext.request.contextPath }/jsp/mall/images/moneysjsp/mall.jpg" />
-						<div class="title">投资理财</div> </a>
-				</div>
-			</div> --%>
-
-			<!--走马灯 -->
-
-			<%-- <div class="marqueen">
-				<span class="marqueen-title">商城头条</span>
-				<div class="demo">
-
-					<ul>
-						<li class="title-first"><a target="_blank" href="#"> <img
-								src="${pageContext.request.contextPath }/jsp/mall/images/TJ2.jpg"></img>
-								<span>[特惠]</span>商城爆品1分秒 </a></li>
-						<li class="title-first"><a target="_blank" href="#"> <span>[公告]</span>商城与广州市签署战略合作协议
-								<img
-								src="${pageContext.request.contextPath }/jsp/mall/images/TJ.jpg"></img>
-								<p>XXXXXXXXXXXXXXXXXX</p> </a></li>
-
-						<div class="mod-vip">
-							<div class="m-baseinfo">
-								<a href="../person/index.html"> <img
-									src="${pageContext.request.contextPath }/jsp/mall/images/getAvatar.do.jpg">
-								</a> <em> Hi,<span class="s-name">小叮当</span> <a href="#"><p>点击更多优惠活动</p>
-								</a> </em>
-							</div>
-							<div class="member-logout">
-								<a class="am-btn-warning btn"
-									href="${pageContext.request.contextPath }/jsp/logReg/login.jsp">登录</a>
-								<a class="am-btn-warning btn"
-									href="${pageContext.request.contextPath }/logReg/sinup.action">注册</a>
-							</div>
-
-							<div class="member-login">
-								<a href="#"><strong>0</strong>待收货</a> <a href="#"><strong>0</strong>待发货</a>
-								<a href="#"><strong>0</strong>待付款</a> <a href="#"><strong>0</strong>待评价</a>
-							</div>
-							<div class="clear"></div>
-						</div>
-
-						<li><a target="_blank" href="#"><span>[特惠]</span>洋河年末大促，低至两件五折</a>
-						</li>
-						<li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a>
-						</li>
-						<li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券
-								买1送1！</a></li>
-
-					</ul>
-					<div class="advTip">
-						<img
-							src="${pageContext.request.contextPath }/jsp/mall/images/advTip.jpg" />
-					</div>
-				</div>
-			</div> --%>
+		
 			<div class="clear"></div>
 		</div>
 		<script type="text/javascript">
@@ -306,7 +233,7 @@
 					varStatus="status">
 					<div class="am-u-sm-4 am-u-lg-3 ">
 						<div class="info ">
-							<h3>${productrecommend.productname }</h3>
+							<h3 style="width: 120px;">${productrecommend.productname }</h3>
 							<h4></h4>
 						</div>
 						<div class="recommendationMain one">
@@ -317,6 +244,7 @@
 						</div>
 					</div>
 				</c:forEach>
+				<!-- style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;" -->
 			</div>
 			<div class="clear "></div>
 			<!--热门活动 -->
@@ -335,10 +263,10 @@
 							<h4>特惠</h4>
 							<div class="activityMain">
 								<a href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }"><img
-									src="${pageContext.request.contextPath }/jsp/mall/images/activity2.jpg"></img></a>
+									src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${productDiscount.picture }"></img></a>
 							</div>
 							<div class="info" style="opacity : 0.5;">
-								<h3><a 
+								<h3><a style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;"
 								href="${pageContext.request.contextPath }/product/productInfo?id=${productDiscount.productid }">${productDiscount.productname }</a></h3>
 							</div>
 						</div>
@@ -380,10 +308,10 @@
 								</a>
 							</div> -->
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[0].productid }"> <img
-								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[0].picture }" />
+								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[0].picture }" style="border-radius:10px;"/>
 								<div class="outer-con ">
-									<div class="title ">${oneTypeProducts.value[0].productname }</div>
-									<div class="title ">${oneTypeProducts.value[0].price }</div>
+									<div class="title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;width: 180px;">${oneTypeProducts.value[0].productname }</div>
+									<div class="title">${oneTypeProducts.value[0].price }</div>
 								</div> </a>
 							<div class="triangle-topright"></div>
 						</div>
@@ -391,7 +319,7 @@
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[1].productid }"> <img
 								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[1].picture }" />
 								<div class="outer-con ">
-									<div class="title ">${oneTypeProducts.value[1].productname }</div>
+									<div class="title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;width: 180px;">${oneTypeProducts.value[1].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[1].price }</div>
 									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 								</div> </a>
@@ -400,7 +328,7 @@
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[2].productid }"> <img
 								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[2].picture }" />
 								<div class="outer-con ">
-									<div class="title ">${oneTypeProducts.value[2].productname }</div>
+									<div class="title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;width: 180px;">${oneTypeProducts.value[2].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[2].price }</div>
 									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 								</div> </a>
@@ -410,7 +338,7 @@
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[3].productid }"> <img
 								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[3].picture }" />
 								<div class="outer-con ">
-									<div class="title ">${oneTypeProducts.value[3].productname }</div>
+									<div class="title " style="width: 180px;">${oneTypeProducts.value[3].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[3].price }</div>
 									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 								</div> </a>
@@ -419,7 +347,7 @@
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[4].productid }"> <img
 								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[4].picture }" />
 								<div class="outer-con ">
-									<div class="title ">${oneTypeProducts.value[4].productname }</div>
+									<div class="title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;width: 180px;">${oneTypeProducts.value[4].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[4].price }</div>
 									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 								</div> </a>
@@ -428,7 +356,7 @@
 							<a href="${pageContext.request.contextPath }/product/productInfo?id=${oneTypeProducts.value[5].productid }"> <img
 								src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${oneTypeProducts.value[5].picture }" />
 								<div class="outer-con ">
-									<div class="title ">${oneTypeProducts.value[5].productname }</div>
+									<div class="title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;width: 180px;">${oneTypeProducts.value[5].productname }</div>
 									<div class="sub-title ">¥${oneTypeProducts.value[5].price }</div>
 									<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 								</div> </a>
@@ -513,7 +441,7 @@
 						dl.append(
 						
 							'<dd>'+
-								'<a title="商品" href="${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'"><span>'+ data[i].productname  +'</span> </a>'+
+								'<a title="商品" href="${pageContext.request.contextPath }/product/productInfo?id='+ data[i].productid +'"><span>'+ data[i].productname.substring(0,5)+'...'+'</span> </a>'+
 							'</dd>'
 						
 						);

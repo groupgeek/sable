@@ -83,7 +83,7 @@
                     <nav id="navigation" class="navbar navbar-default" role="navigation">
                         <div class="navbar-inner">
                             <div class="navbar-header">
-                                <a id="brand" class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath }/jsp/index/images/logo.png" alt="Law"></a>
+                                <a id="brand" class="navbar-brand" href="index.html"><img src="${pageContext.request.contextPath }/jsp/index/images/logo12.png" alt="Law"></a>
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right" id="nav">
@@ -100,7 +100,7 @@
             </header><!-- end header -->
         </div><!-- end container -->
         <div id="page_header">
-            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/5.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
+            <div id="parallax" class="parallax bgback bg" style="background-image: url('${pageContext.request.contextPath }/jsp/index/images/bg6.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20"></div>
 
 
             <div class="container text-center header-part">
@@ -136,13 +136,13 @@
 	                    <div class="item-blog col-lg-4 col-md-4 col-sm-6 col-xs-12">
 	                    <ul>
 	                        <li class="img_item">
-	                            <div class="caption8 ctn_blue">
-	                                <h3>${product.productname }</h3>
+	                            <div class="caption8">
+	                                <h3 style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${product.productname }</h3>
 	                                <p>${product.description }.</p>
 	                                <a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp" class="pf_button black">详细</a>
 	                            </div>
 	                            <%-- <img class="img-responsive"  src="${pageContext.request.contextPath }/jsp/index/images/1.jpg" alt="" /> --%>
-	                            <img alt="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" style="min-height: 300px;">
+	                            <img alt="" src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${product.picture }" style="min-height: 350px;width: 345px;">
 	                        </li>
 	                    </ul>
 	                        </div>
@@ -181,11 +181,11 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp animated" data-wow-delay="0.3s" data-wow-offset="50" data-wow-duration="1s">
                         <div class="block-one block">
-                            <img src="${pageContext.request.contextPath }/jsp/index/images/icon1.png" width="200" class="img-responsive pm-inline" alt="icon" />
+                            <img src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${activitie.activitypicture }" width="200" class="img-responsive pm-inline" style="border-radius:150px;min-height: 201px;" alt="icon" />
 
-                            <h6 class="pm-column-title">${activitie.activityname }</h6>
+                            <h6 class="pm-column-title" style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activityname }</h6>
                             <div class="caret-down"><i class="fa fa-caret-down"></i></div>
-                                <p>${activitie.introduction }.</p>
+                                <p style="text-overflow:ellipsis;white-space: nowrap;overflow: hidden;display: block;">${activitie.activitydetails }.</p>
                             <div class="btn-blk"><a href="${pageContext.request.contextPath }/jsp/logReg/login.jsp" class="pm-rounded-btn">去围观</a></div>
 
                         </div>

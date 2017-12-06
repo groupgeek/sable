@@ -140,7 +140,7 @@
 							  <div class="control-group" id = "buyNo">
 								<label class="control-label">购买次数</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "buyNo" type="text" value="">
+								  <input class="input-xlarge focused" name = "buyno" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group" id = "price">
@@ -203,7 +203,7 @@
 							   <div class="control-group" id = "producttaste">
 								<label class="control-label">口味</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "producttaste" type="text" value="">
+								  <input class="input-xlarge focused" name = "tasteString" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group" id = "storagemethod">
@@ -227,7 +227,7 @@
 							   <div class="control-group" id = "productcolour">
 								<label class="control-label">颜色</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" name = "productcolour" type="text" value="">
+								  <input class="input-xlarge focused" name = "colorString" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group hidden-phone" id = "description">
