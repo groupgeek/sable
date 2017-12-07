@@ -244,7 +244,7 @@
 														<c:if test="${act.video!=null }">
 															<div class="prism-player" id="J_prismPlayer"></div>
 														</c:if>
-														<c:if test="${act.video==null }">
+														<c:if test="${act.video==null||act.video==''}">
 															  暂无视频简介，看看详情吧！
 												  </c:if>
 													</div>
