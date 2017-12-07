@@ -55,7 +55,7 @@
 				            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
 				            playauth : '',
 				           /*  useH5Prism : true, */
-				            cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png'
+				            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/0a6e51ed-3f7b-4c54-9744-acb141962018.jpg'
 				            },function(player){
 				                console.log('播放器创建好了。');
 				           });

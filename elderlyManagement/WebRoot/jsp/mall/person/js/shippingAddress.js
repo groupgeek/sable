@@ -1,15 +1,17 @@
 $(document).ready(function(){
 	var root =  $("#root").attr("value");
+	var flagDefault = false;
 	$.ajax({
 		type:"post",
 		contentType:"application/json;charset=utf-8",
 		url:root+"/product/queryAllAddressByUserid",
 		success:function(data){
-			if(data == null){
-				alert("请登录");
-				window.location.href = root+"/jsp/logReg/login.jsp";
-			}
 			
+			if(data.addresssList == null || data.addresssList == ""){
+				$("#address-list li").first().hide();
+				flagDefault = true;
+			}else{
+				
 			for(var i in data.addresssList){
 				if(data.addresssList[i].defaultaddress){//默认地址的加载
 					$("#default-address p span").first().text(data.addresssList[i].receiver);
@@ -39,6 +41,8 @@ $(document).ready(function(){
 				}
 					
 			}
+			}
+			
 			
 			//地址选择事件
 				$(".user-addresslist").click(function() {
@@ -132,6 +136,9 @@ $(document).ready(function(){
 	//新增地址
 	//保存地址
 	$("#save").click(function(){
+		$('#loading').show();
+		$('body').addClass("hiddenBody");
+		
 		var addressInfo = new Object();
 		var province = $("#province").val();
 		var city = $("#city").val();
@@ -141,7 +148,13 @@ $(document).ready(function(){
 		addressInfo.receiver = $("#user-name").val();
 		addressInfo.phone = $("#user-phone").val();
 		addressInfo.shippingaddress = province + city + county + user_adddress_info;
-		addressInfo.defaultaddress = false;
+		
+		if(flagDefault){
+			addressInfo.defaultaddress = true;
+		}else{
+			addressInfo.defaultaddress = false;
+		}
+		
 		$.ajax({
 			type:"post",
 			contentType:"application/json;charset=utf-8",
@@ -150,24 +163,56 @@ $(document).ready(function(){
 			success:function(data){
 				if(data.shippingaddressid != null){
 					//增加页面的地址
-					$("#address-list").append(
-							'<li class="user-addresslist" style="margin-bottom: 10px;">'+
-							'<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>'+
-							'<p class="new-tit new-p-re">'+
-								'<span class="new-txt">'+data.receiver+'</span>'+
-								'<span class="new-txt-rd2">'+data.phone+'</span>'+
-							'</p>'+
-							'<div class="new-mu_l2a new-p-re">'+
-								'<p class="new-mu_l2cw">'+
-									'<span class="title">地址：</span>'+
-									'<span class="street">'+data.shippingaddress+'</span></p>'+
-							'</div>'+
-							'<div class="new-addr-btn">'+
-								'<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>'+
-								'<input type="hidden" name = "shippingaddressid" value="'+data.shippingaddressid+'">'+
-							'</div>'+
-							'</li>'
-					);
+					
+					
+					if(flagDefault){
+						$("#address-list").append(
+								'<li class="user-addresslist" style="margin-bottom: 10px;">'+
+								'<span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>'+
+								'<p class="new-tit new-p-re">'+
+									'<span class="new-txt">'+data.receiver+'</span>'+
+									'<span class="new-txt-rd2">'+data.phone+'</span>'+
+								'</p>'+
+								'<div class="new-mu_l2a new-p-re">'+
+									'<p class="new-mu_l2cw">'+
+										'<span class="title">地址：</span>'+
+										'<span class="street">'+data.shippingaddress+'</span></p>'+
+								'</div>'+
+								'<div class="new-addr-btn">'+
+									'<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>'+
+									'<input type="hidden" name = "shippingaddressid" value="'+data.shippingaddressid+'">'+
+								'</div>'+
+								'</li>'
+						);
+					}else{
+						$("#address-list").append(
+								'<li class="user-addresslist" style="margin-bottom: 10px;">'+
+								'<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>'+
+								'<p class="new-tit new-p-re">'+
+									'<span class="new-txt">'+data.receiver+'</span>'+
+									'<span class="new-txt-rd2">'+data.phone+'</span>'+
+								'</p>'+
+								'<div class="new-mu_l2a new-p-re">'+
+									'<p class="new-mu_l2cw">'+
+										'<span class="title">地址：</span>'+
+										'<span class="street">'+data.shippingaddress+'</span></p>'+
+								'</div>'+
+								'<div class="new-addr-btn">'+
+									'<a href="javascript:void(0);" name="del-address"><i class="am-icon-trash"></i>删除</a>'+
+									'<input type="hidden" name = "shippingaddressid" value="'+data.shippingaddressid+'">'+
+								'</div>'+
+								'</li>'
+						);
+					}
+					flagDefault = false;
+					$('#loading').hide();
+					$('body').removeClass("hiddenBody");
+					
+					//清空
+					$("#user-name").val("");
+					$("#user-adddress-info").val("");
+					$("#user-phone").val("");
+					
 					//显示提示信息
 					$("#messageNotification").attr("style","background-color: red;");
 					$("#showMessage").text("添加成功");

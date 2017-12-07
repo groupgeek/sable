@@ -33,7 +33,7 @@ public class LogRegController {
 	private AreaService areaService;
 	
 	
-	@RequestMapping("/sinup")
+	@RequestMapping("/sinup.action")
 	public String sinUp(Model model){
 		AreaCustom condition = new AreaCustom();
 		List<AreaCustom> allAreas = new ArrayList<AreaCustom>();
@@ -54,7 +54,7 @@ public class LogRegController {
 
 			model.addAttribute("message", "注册失败,手机号码已经被注册0.0");
 
-			return "redirect:logReg/sinup.action";
+			return "redirect:sinup.action";
 		}
 
 	}

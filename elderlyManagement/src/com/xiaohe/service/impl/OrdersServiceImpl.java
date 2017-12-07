@@ -198,6 +198,10 @@ public class OrdersServiceImpl implements OrdersService{
 		integral.setUserid(user.getUserid());
 		integral.setChangetime(ordersData.getPaymenttime());
 		IntegralCustom nowRec = integralMapper.selectUpToDateRecord(condetion);
+		if(nowRec == null){
+			nowRec = new IntegralCustom();
+			nowRec.setRemainingpoints(0);
+		}
 		
 		integral.setChangeintegral(Integer.parseInt(total.divide(new BigDecimal(10)).toBigInteger().toString()));
 		integral.setDetails("购买产品赠送，单号：" + info.getOrdersid()[0] + "....");

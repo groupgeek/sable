@@ -263,7 +263,7 @@ public class ActivityServiceImpl implements ActivityService {
 		if(condition == null) return null;
 		if(condition.getCurrentPage() == null) return null;
 		
-		condition.setPageNum(1);///////////////////////////////////
+		condition.setPageNum(8);///////////////////////////////////
 		
 		ActivityVo activityVo = new ActivityVo();
 		List<ActivityCustom> allActivity = new ArrayList<ActivityCustom>();
