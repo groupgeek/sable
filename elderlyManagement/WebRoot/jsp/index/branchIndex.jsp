@@ -411,8 +411,8 @@
         			//data:'messagecontext:'+message,
         			data:'{"messagecontext"'+':'+'"'+message+'"}',
         			success:function(data,status){
-        				alert(data.messagecontext);
-        				alert(status);
+        				alert("添加成功");
+        				$("#comments").val("");
         			}
         		
         		});

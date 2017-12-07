@@ -63,7 +63,7 @@ $(document).ready(function(){
 						'<p>'+data.productList[i].articlename+
 						'<span>'+data.productList[i].detail+'</span></p>'+
 						'<p class="price fl">'+
-						'<b>¥</b>'+
+						'<b>所需积分：</b>'+
 						'<strong>'+data.productList[i].integral+'</strong>'+
 					'</p>'+
 					'<p class="number fl">'+

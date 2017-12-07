@@ -9,6 +9,7 @@
 
 		<title>地址管理</title>
 
+		<link href="${pageContext.request.contextPath }/jsp/util/_css/wait.css" rel="stylesheet" type="text/css" />
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="${pageContext.request.contextPath }/jsp/mall/UI/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
@@ -20,6 +21,18 @@
 	</head>
 
 	<body>
+		<div id="loading" style="display: none;">
+				<div id="loading-center">
+					<div id="loading-center-absolute">
+						<div class="object" id="object_one"></div>
+						<div class="object" id="object_two"></div>
+						<div class="object" id="object_three"></div>
+						<div class="object" id="object_four"></div>
+		
+					</div>
+				</div>
+
+			</div>
 		<input id="root" type="hidden"
 			value="${pageContext.request.contextPath }">
 		<!--头 -->

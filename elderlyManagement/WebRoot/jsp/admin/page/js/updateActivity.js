@@ -88,7 +88,7 @@ $(document).ready(function(){
 				            //vid : '07e001ab-d0e2-4ba9-be1f-4e1da1353509',
 				            playauth : '',
 				           /*  useH5Prism : true, */
-				            cover: 'http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/picture/00d98634-e2fc-4bec-8f46-f917aa636ca3.gif'
+				            cover: 'http://com-xiaohe-img.oss-cn-beijing.aliyuncs.com/videobg.jpg'
 				            },function(player){
 				                console.log('播放器创建好了。');
 				           });

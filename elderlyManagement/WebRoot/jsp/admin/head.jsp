@@ -125,7 +125,7 @@
 			var message = $("#message").attr("value");
 			if(message != "" && message != undefined){
 				//显示提示信息
-				$("#showMessage").text(message);
+				$("#showMessage").text(decodeURI(message));
 				$('#messageNotification').fadeIn(2000);
 				getSrceenWH();
 				$('#messageNotification').fadeOut(3000);

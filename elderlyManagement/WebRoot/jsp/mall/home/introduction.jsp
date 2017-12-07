@@ -589,7 +589,7 @@
 											<h4>商品细节</h4>
 										</div>
 										<div class="twlistNews">
-											<p style="text-align: left;">${productInfo.description}*************************</p>
+											<p style="text-align: left;">${productInfo.description}</p>
 										</div>
 									</div>
 									<div class="clear"></div>
