@@ -48,7 +48,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="${pageContext.request.contextPath }/jsp/index/index.jsp">官网首页</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath }/branch/index">官网首页</a>
         </div>
          <div class="navbar-collapse collapse">
           <!-- <ul class="nav navbar-nav navbar-right">
@@ -131,13 +131,13 @@
 				
 				<div class="col-lg-4">
 					<a href="${pageContext.request.contextPath }/product/productInfo.action?id=${recommendproduct[0].productid}"> <img class="img-responsive"style="width:370px;height:150px"
-												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[0].picture}" alt="" /></a>
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[1].picture}" alt="" /></a>
 				<p>${recommendproduct[1].productname}</p>
 				</div><!-- /col-lg-4 -->
 				
 				<div class="col-lg-4">
 					<a href="${pageContext.request.contextPath }/product/productInfo.action?id=${recommendproduct[0].productid}">	<img class="img-responsive"style="width:370px;height:150px"
-												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[0].picture}" alt="" /></a>
+												src="http://com-xiaohe-res.oss-cn-beijing.aliyuncs.com/${recommendproduct[2].picture}" alt="" /></a>
 				<p>${recommendproduct[2].productname}</p>
 				</div><!-- /col-lg-4 -->
 			
