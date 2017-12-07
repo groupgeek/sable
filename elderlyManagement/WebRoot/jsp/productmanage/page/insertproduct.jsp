@@ -86,11 +86,11 @@
 								<i class="halflings-icon white user"></i>${admins.employeename }
 								<span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu">
+								<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
  									<span>账号设定</span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> 个人中心</a></li>
+							
 								<li><a href="${pageContext.request.contextPath }/productmanage/loginout.action"><i class="halflings-icon off"></i>退出登录</a></li>
 							</ul>
 						</li>

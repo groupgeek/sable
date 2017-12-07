@@ -51,7 +51,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				          <a class="navbar-brand" href="${pageContext.request.contextPath }/jsp/index/index.jsp">官网首页</a>
+				          <a class="navbar-brand" href="${pageContext.request.contextPath }/branch/index">官网首页</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				
