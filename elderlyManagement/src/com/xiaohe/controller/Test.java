@@ -26,8 +26,8 @@ import com.aliyun.oss.model.UploadFileResult;
 public class Test {
 
 	private static String endpoint = "http://oss-cn-beijing.aliyuncs.com";
-	private static String accessKeyId = "LTAIDvL8UKTlESNG";
-	private static String accessKeySecret = "Rbu6uCtsqBtmn3J1txDUBXqrzXZ3uW";
+	private static String accessKeyId = "";
+	private static String accessKeySecret = "";
 	private static String bucketName = "com-xiaohe-res";
     private static String key = "1.mp4";
     private static String uploadFile = "<uploadFile>";
